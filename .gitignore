@@ -1,0 +1,9 @@
+*.pyc
+*__pycache__/
+
+models/
+
+# Cloned upstream ParlAI (source for datasets list, not part of this repo)
+ParlAI/
+
+splitted/
