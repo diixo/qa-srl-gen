@@ -197,3 +197,60 @@ def test_real_bank_passes_every_structural_invariant(bank_dev):
             tally[code] = tally.get(code, 0) + count
     assert set(tally) <= {"duplicate-judgment"}, tally
     assert tally.get("duplicate-judgment", 0) < 10
+
+
+# ---------------------------------------------------------------------------
+# Answer-placement rules recovered from QuestionProcessor's completeness guard
+# ---------------------------------------------------------------------------
+
+
+def test_only_who_and_what_can_question_the_subject():
+    assert check_slots(slots(wh="who", subj="_")) == []
+    assert "subject-gap-wh" in codes(check_slots(slots(wh="where", aux="did",
+                                                       verb="stem", subj="_")))
+
+
+def test_adverbial_question_always_spells_out_its_subject():
+    problems = check_slots(slots(wh="when", aux="did", verb="stem", subj="_"))
+    assert "adverbial-needs-subject" in codes(problems)
+    assert check_slots(slots(wh="when", aux="did", verb="stem",
+                             subj="something")) == []
+
+
+def test_a_nominal_question_needs_somewhere_to_put_the_answer():
+    full = slots(wh="what", aux="does", verb="stem", subj="something",
+                 obj="something", prep="to", obj2="someone")
+    assert "no-gap" in codes(check_slots(full))
+
+
+def test_a_bare_second_object_implies_a_first_object():
+    # The subject is the gap, so obj cannot also be the answer.
+    assert "obj2-without-obj" in codes(
+        check_slots(slots(wh="who", subj="_", obj="_", prep="_", obj2="something"))
+    )
+    # An adverbial wh cannot question the first object either.
+    assert "obj2-without-obj" in codes(
+        check_slots(slots(wh="where", aux="did", verb="stem", subj="something",
+                          obj="_", prep="_", obj2="something"))
+    )
+    # But a nominal wh with a spelled-out subject is fine: obj is the gap.
+    assert check_slots(slots(wh="what", aux="does", verb="stem",
+                             subj="something", obj="_", prep="_",
+                             obj2="something")) == []
+
+
+def test_a_gapped_complement_object_needs_a_nominal_wh():
+    assert check_slots(slots(wh="what", aux="does", verb="stem",
+                             subj="something", obj="something",
+                             prep="from", obj2="doing")) == []
+    assert "bare-complement-wh" in codes(
+        check_slots(slots(wh="why", aux="does", verb="stem", subj="something",
+                          obj="something", prep="from", obj2="doing"))
+    )
+
+
+def test_preposition_tokens_come_from_the_closed_inventory():
+    assert check_slots(slots(wh="who", prep="out of", obj2="something")) == []
+    assert "prep-vocabulary" in codes(
+        check_slots(slots(wh="who", prep="something", obj2="someone"))
+    )

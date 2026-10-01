@@ -115,26 +115,31 @@ on each split; the numbers are from the full QA-SRL Bank 2.0 shipped in
 
 | Split | Questions | slots → string | string → slots → string | exact slot recovery |
 |---|---:|---:|---:|---:|
-| `orig/train` | 215 432 | 100% | 100% | 99.67% |
-| `orig/dev` | 38 487 | 100% | 100% | 99.83% |
-| `orig/test` | 45 389 | 100% | 100% | 99.72% |
-| `expanded/train` | 293 629 | 100% | 100% | 99.64% |
-| `expanded/dev` | 52 370 | 100% | 100% | 99.77% |
-| `dense/dev` | 33 967 | 100% | 100% | 99.40% |
-| `dense/test` | 31 100 | 100% | 100% | 99.30% |
-| **total** | **710 374** | **100%** | **100%** | **99.65%** |
+| `orig/train` | 215 432 | 100% | 100% | 99.9986% |
+| `orig/dev` | 38 487 | 100% | 100% | 99.9974% |
+| `orig/test` | 45 389 | 100% | 100% | 100% |
+| `expanded/train` | 293 629 | 100% | 100% | 99.9990% |
+| `expanded/dev` | 52 370 | 100% | 100% | 99.9981% |
+| `dense/dev` | 33 967 | 100% | 100% | 99.9941% |
+| `dense/test` | 31 100 | 100% | 100% | 99.9968% |
+| **total** | **710 374** | **100%** | **100%** | **99.9985%** |
 
 The two round-trip columns are guarantees; the third is not, and cannot be.
-Rendering is many-to-one for a small set of constructions — `What does
-something make something?` gives no surface clue whether the first or the
-second object was questioned — so those questions parse to an equally valid
-but different slot assignment. `parse_question_all` returns every analysis;
-`parse_question` picks one by a documented preference.
+`parse_question_all` returns every analysis the grammar licenses;
+`parse_question` picks one by the same preference the original uses.
+
+The 11 remaining mismatches all have the lemma **`do`**, where the bank's own
+annotation treats the leading `does`/`did` as the predicate and the following
+`do` as a preposition. Both readings render back to the same string; see
+[SCALA_TO_PYTHON.md](SCALA_TO_PYTHON.md).
 
 The grammar is also checked for coverage: every one of the 88 distinct
 `(aux, verb)` pairs occurring in the bank is produced by `state_machine`, and
 for all 710 374 questions the stored tense/aspect/voice features are
-consistent with the stored slots.
+consistent with the stored slots. Five further invariants, recovered from the
+original's completeness guard, hold with zero exceptions over the same
+710 374 questions — among them "only *who*/*what* can question the subject"
+and "a *who*/*what* question must leave a slot empty for its answer".
 
 ## Known defects found in the released data
 
@@ -149,11 +154,14 @@ Reported rather than silently tolerated:
   `load_inflections` drops the junk and supplies `be` from
   `SUPPLETIVE_PARADIGMS`.
 
-## Not ported yet
+## Project status and what is missing
 
-See [NOT_PORTED.md](NOT_PORTED.md) for the rules and components that are
-deliberately still missing, including the parts of the original state machine
-this stage does not cover.
+* [STATUS_RU.md](STATUS_RU.md) — project-wide status: what is left to build
+  across all five stages, which data sits unused, and what blocks what.
+* [NOT_PORTED.md](NOT_PORTED.md) — the technical list of rules and components
+  deliberately not carried over from the Scala source.
+* [SCALA_TO_PYTHON.md](SCALA_TO_PYTHON.md) — the stage-0 audit and the
+  file-by-file mapping.
 
 ## Licence and attribution
 

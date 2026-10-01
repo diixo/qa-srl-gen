@@ -32,16 +32,24 @@ from typing import Iterator
 
 from .models import InflectedForms, QuestionSlots
 from .question_renderer import render_question
-from .question_slots import EMPTY, normalise_prep
+from .question_slots import EMPTY, answer_slot_problems, normalise_prep
 from .state_machine import (
     AUX_WORDS,
+    BARE_COMPLEMENT_OBJ2,
     OBJ2_VALUES,
     OBJ_VALUES,
+    PREPOSITIONS,
     SUBJ_VALUES,
     VERB_PREFIX_WORDS,
     WH_WORDS,
     is_known_chain,
 )
+
+#: Words the ``prep`` slot may be built from. Bounding it is what stops a
+#: placeholder being swallowed into a multi-word preposition, which would turn
+#: ``What causes something to do something?`` into a reading whose ``prep`` is
+#: ``something to do``.
+_PREP_WORDS: frozenset[str] = PREPOSITIONS | BARE_COMPLEMENT_OBJ2
 
 __all__ = ["QuestionParseError", "parse_question", "parse_question_all"]
 
@@ -60,11 +68,13 @@ class _Candidate:
     slots: QuestionSlots
     head_index: int
 
-    def rank_key(self) -> tuple[int, int, int]:
+    def rank_key(self) -> tuple[int, int]:
         return (
             -self.head_index,
-            0 if self.slots.obj != EMPTY else 1,
-            0 if self.slots.obj2 != EMPTY else 1,
+            # The template reaches "the first object is the gap" before it
+            # reaches "the first object is a placeholder", so when both
+            # analyses survive, the gapped one is the original's choice.
+            0 if self.slots.obj == EMPTY and self.slots.obj2 != EMPTY else 1,
         )
 
 
@@ -109,6 +119,8 @@ def _split_tail(tail: list[str]) -> Iterator[tuple[str, str, str]]:
         for obj2_len in obj2_options:
             obj2 = middle[-1] if obj2_len else EMPTY
             prep_words = middle[: len(middle) - obj2_len]
+            if not all(word in _PREP_WORDS for word in prep_words):
+                continue
             reading = (obj, normalise_prep(prep_words, obj2), obj2)
             if reading not in seen:
                 seen.add(reading)
@@ -169,6 +181,10 @@ def _analyse(
                         wh=wh, aux=aux, subj=subj, verb=verb,
                         obj=obj, prep=prep, obj2=obj2,
                     )
+                    if answer_slot_problems(slots):
+                        # Nowhere for the answer to sit, or a second object
+                        # without a first: not a question the template builds.
+                        continue
                     if render_question(slots, forms) == question:
                         yield _Candidate(slots, head)
 

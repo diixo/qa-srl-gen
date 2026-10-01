@@ -47,6 +47,10 @@ __all__ = [
     "FINITE_TENSES",
     "TENSES",
     "WH_WORDS",
+    "NOUN_WH",
+    "ADVERBIAL_WH",
+    "PREPOSITIONS",
+    "MOST_COMMON_PREPOSITIONS",
     "SUBJ_VALUES",
     "OBJ_VALUES",
     "OBJ2_VALUES",
@@ -85,6 +89,19 @@ WH_WORDS: tuple[str, ...] = (
     "how much",
     "how long",
 )
+
+#: Wh-words that question a nominal argument. Only these can question the
+#: subject, and only these licence a gap at all (``QuestionProcessor``'s
+#: completeness guard: a who/what question must have an answer slot).
+NOUN_WH: frozenset[str] = frozenset({"who", "what"})
+
+#: Wh-words that question an adjunct (``ArgumentSlot.allAdvSlots``). These
+#: reach the template with ``subjRequired = true``, so the subject is always
+#: spelled out. ``where`` is in both sets: it questions an adverbial, but it
+#: can also question a locative second object.
+ADVERBIAL_WH: frozenset[str] = frozenset(
+    {"when", "where", "why", "how", "how long", "how much"}
+)
 SUBJ_VALUES: tuple[str, ...] = ("someone", "something")
 OBJ_VALUES: tuple[str, ...] = ("someone", "something")
 OBJ2_VALUES: tuple[str, ...] = ("someone", "something", "somewhere", "do", "doing")
@@ -95,6 +112,29 @@ BARE_COMPLEMENT_OBJ2: frozenset[str] = frozenset({"do", "doing"})
 
 #: Literal words that may precede the inflected form inside the ``verb`` slot.
 VERB_PREFIX_WORDS: frozenset[str] = frozenset({"not", "be", "been", "being", "have"})
+
+#: The closed preposition inventory (``TemplateStateMachine.lotsOfPrepositions``).
+#: A question's own preposition set is drawn from the words of the sentence it
+#: is about, intersected with this list, plus the common ones below — which is
+#: why the ``prep`` slot looks open-class in the data while actually being
+#: bounded (72 entries). Every one of the 62 preposition tokens in the bank
+#: comes from this list or from ``BARE_COMPLEMENT_OBJ2``.
+PREPOSITIONS: frozenset[str] = frozenset(
+    """aboard about above across afore after against ahead along alongside amid
+    amidst among amongst around as aside astride at atop before behind below
+    beneath beside besides between beyond by despite down during except for from
+    given in inside into near next of off on onto opposite out outside over pace
+    per round since than through throughout till times to toward towards under
+    underneath until unto up upon versus via with within without""".split()
+)
+
+#: Prepositions always offered, regardless of the sentence
+#: (``TemplateStateMachine.mostCommonPrepositions``).
+MOST_COMMON_PREPOSITIONS: frozenset[str] = frozenset(
+    {"by", "for", "with", "in", "from", "to", "as"}
+)
+
+assert MOST_COMMON_PREPOSITIONS <= PREPOSITIONS
 
 # Finite surface forms of the auxiliaries ``have`` and ``be``.
 _FINITE_HAVE = {"present": "has", "past": "had"}
@@ -134,6 +174,21 @@ class TenseFeatures:
     @property
     def is_modal(self) -> bool:
         return self.tense in MODAL_TENSES
+
+    @property
+    def is_licensed(self) -> bool:
+        """Whether the template actually offers this combination.
+
+        English can in principle stack a progressive over a passive under a
+        modal (*can be being built*), but the template does not: the only
+        state that emits ``being`` is the one reached through a finite
+        ``be``-auxiliary. So a progressive passive is available in the simple
+        present and past and nowhere else. Excluding these 26 marginal chains
+        is what keeps the generated inventory equal to the attested one.
+        """
+        if self.is_progressive and self.is_passive:
+            return not self.is_modal and not self.is_perfect
+        return True
 
 
 @dataclass(frozen=True, slots=True)
@@ -242,7 +297,7 @@ def _all_feature_bundles() -> Iterator[TenseFeatures]:
                 for is_passive in (False, True):
                     for is_negated in (False, True):
                         for questioned in (False, True):
-                            yield TenseFeatures(
+                            features = TenseFeatures(
                                 tense=tense,
                                 is_perfect=is_perfect,
                                 is_progressive=is_progressive,
@@ -250,6 +305,8 @@ def _all_feature_bundles() -> Iterator[TenseFeatures]:
                                 is_negated=is_negated,
                                 subject_is_questioned=questioned,
                             )
+                            if features.is_licensed:
+                                yield features
 
 
 @lru_cache(maxsize=1)

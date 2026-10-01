@@ -24,13 +24,21 @@ from .models import (
     VerbEntry,
 )
 from .question_renderer import render_question
-from .question_slots import EMPTY, SILENT_PREP, SLOT_VOCABULARIES
+from .question_slots import (
+    EMPTY,
+    SILENT_PREP,
+    SLOT_VOCABULARIES,
+    answer_slot_problems,
+)
 from .state_machine import (
     BARE_COMPLEMENT_OBJ2,
+    PREPOSITIONS,
     TENSES,
     features_for_chain,
     is_known_chain,
 )
+
+_PREP_WORDS = PREPOSITIONS | BARE_COMPLEMENT_OBJ2
 
 __all__ = [
     "Problem",
@@ -122,6 +130,22 @@ def check_slots(slots: QuestionSlots, where: str = "") -> list[Problem]:
                 where,
             )
         )
+
+    if slots.prep not in (EMPTY, SILENT_PREP):
+        unknown = [w for w in slots.prep.split() if w not in _PREP_WORDS]
+        if unknown:
+            problems.append(
+                Problem(
+                    "prep-vocabulary",
+                    f"prep={slots.prep!r} uses {unknown}, which are not in the "
+                    "closed preposition inventory",
+                    where,
+                )
+            )
+
+    problems.extend(
+        Problem(code, message, where) for code, message in answer_slot_problems(slots)
+    )
 
     return problems
 

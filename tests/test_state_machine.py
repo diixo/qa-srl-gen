@@ -171,3 +171,78 @@ def test_stored_features_always_explain_the_stored_chain(bank_dev):
         ), f"{chain_key} cannot come from {stored}"
         if chain_key.aux == "_":
             assert subj == "_", "an unfronted question must be questioning its subject"
+
+
+# ---------------------------------------------------------------------------
+# Restrictions recovered from the Scala template
+# ---------------------------------------------------------------------------
+
+
+def test_progressive_passive_only_exists_under_a_finite_be():
+    """The template's only ``being`` state sits behind a finite be-auxiliary.
+
+    *Can be being built* is arguable English but the original never offers it,
+    so neither does this grammar.
+    """
+    assert TenseFeatures(tense="present", is_progressive=True,
+                         is_passive=True).is_licensed
+    assert TenseFeatures(tense="past", is_progressive=True,
+                         is_passive=True).is_licensed
+    assert not TenseFeatures(tense="can", is_progressive=True,
+                             is_passive=True).is_licensed
+    assert not TenseFeatures(tense="present", is_perfect=True,
+                             is_progressive=True, is_passive=True).is_licensed
+    assert not is_known_chain("can", "be being pastParticiple")
+    assert not is_known_chain("has", "been being pastParticiple")
+
+
+def test_generated_inventory_is_barely_wider_than_the_attested_one():
+    """90 licensed chains against the 88 the annotators actually produced."""
+    assert len(enumerate_verb_chains()) == 90
+    # Both extras are grammatical and genuinely licensed by the template.
+    assert is_known_chain("will", "have been presentParticiple")
+    assert is_known_chain("shouldn't", "have been presentParticiple")
+
+
+def test_wh_words_split_into_nominal_and_adverbial():
+    from semantic_corpus.qasrl_core.state_machine import (
+        ADVERBIAL_WH,
+        NOUN_WH,
+        WH_WORDS,
+    )
+
+    assert NOUN_WH == {"who", "what"}
+    assert NOUN_WH | ADVERBIAL_WH == set(WH_WORDS)
+    assert NOUN_WH.isdisjoint(ADVERBIAL_WH)
+
+
+def test_preposition_inventory_is_closed():
+    from semantic_corpus.qasrl_core.state_machine import (
+        MOST_COMMON_PREPOSITIONS,
+        PREPOSITIONS,
+    )
+
+    assert len(PREPOSITIONS) == 72
+    assert MOST_COMMON_PREPOSITIONS <= PREPOSITIONS
+    for word in ("out", "of", "to", "as", "up", "amid", "underneath"):
+        assert word in PREPOSITIONS
+    assert "something" not in PREPOSITIONS
+
+
+@pytest.mark.corpus
+def test_every_preposition_in_the_bank_comes_from_the_inventory(bank_dev):
+    from semantic_corpus.qasrl_core.bank_reader import read_bank
+    from semantic_corpus.qasrl_core.state_machine import (
+        BARE_COMPLEMENT_OBJ2,
+        PREPOSITIONS,
+    )
+
+    allowed = PREPOSITIONS | BARE_COMPLEMENT_OBJ2
+    seen = set()
+    for sentence in read_bank(bank_dev):
+        for _, label in sentence.question_labels():
+            prep = label.question_slots.prep
+            if prep not in ("_", ""):
+                seen.update(prep.split())
+    assert seen
+    assert seen <= allowed, sorted(seen - allowed)

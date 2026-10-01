@@ -10,20 +10,22 @@ inventory and the auxiliary-chain grammar implemented in
 *Large-Scale QA-SRL Parsing* (Fitzgerald, Michael, He, Zettlemoyer, ACL 2018).
 
 **Nature of the adaptation.** No Scala source was copied. The modules here
-were written from the published format specification
+were first written from the published format specification
 (<https://github.com/uwnlp/qasrl-bank/blob/master/FORMAT.md>), the paper, and
-the released QA-SRL Bank 2.0 data, then verified against that data. The
-grammar in `state_machine.py` is a re-derivation: it was reconstructed from
-the slot inventory observed in the bank and checked to generate every
-`(aux, verb)` combination the bank uses. Field names, slot names and verb-form
-keys are kept identical to the originals for compatibility.
+the released QA-SRL Bank 2.0 data. The upstream source was then audited at
+commit `16ab4949` (2023-09-22) and the grammar corrected against it; the
+rules carried over from `TemplateStateMachine`, `Frame`, `QuestionProcessor`
+and `SlotBasedLabel` are documented file by file in SCALA_TO_PYTHON.md. The
+implementations are reimplementations, not translations. Field names, slot
+names and verb-form keys are kept identical to the originals for
+compatibility.
 
 The upstream project is MIT licensed. Its notice:
 
 ```text
 MIT License
 
-Copyright (c) 2018 Julian Michael
+Copyright (c) 2017 Julian Michael
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

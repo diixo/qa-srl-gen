@@ -1,61 +1,64 @@
 # Not ported yet
 
 Stage 1 covers the QA-SRL core needed to read the bank and move losslessly
-between question slots and question strings. This file records what is
-deliberately still missing, so the gaps stay visible instead of being
-rediscovered later.
+between question slots and question strings. Stage 0 audited the upstream
+Scala source and closed the gaps that could be closed from it; see
+[SCALA_TO_PYTHON.md](SCALA_TO_PYTHON.md) for the full mapping. This file
+records what is still deliberately missing.
 
 ## 1. State machine rules not covered
 
-`semantic_corpus/qasrl_core/state_machine.py` implements the **verb chain**:
-the mapping between `(tense, perfect, progressive, passive, negated,
-subject-is-questioned)` and the `aux`/`verb` slots, in both directions. It is
-complete and exhaustively checked for that job — all 88 `(aux, verb)` pairs
-attested across 710 374 bank questions are generated, and no stored feature
-bundle contradicts its slots.
+`semantic_corpus/qasrl_core/state_machine.py` implements the verb chain and
+the slot vocabularies; `question_slots.answer_slot_problems` implements the
+completeness guard. Together they generate 90 `(aux, verb)` chains against the
+88 the bank uses, with nothing attested left out, and the answer-placement
+rules hold with zero exceptions over all 710 374 questions.
 
 What the original `TemplateStateMachine` additionally does, and this does not:
 
-1. **Incremental, token-by-token transitions.** The Scala machine is a real
-   automaton that advances one word at a time and exposes the set of legal
-   next tokens at every point. This port computes whole chains and validates
-   complete slot bundles. Nothing here can answer "what may follow *What might
-   have*?" without enumerating candidates.
-2. **Argument-structure licensing.** The grammar here constrains the verb
-   chain and the slot vocabularies, but it does not know which *argument
-   frames* a predicate allows. It will happily accept `obj2="somewhere"` on a
-   verb that takes no locative, and it cannot rule out
-   `prep="" obj2="do"` for a verb that takes no bare complement. This is the
-   single largest gap, and the direct cause of the residual 0.35% of questions
-   that parse to a different-but-equivalent slot assignment.
-3. **The preposition inventory.** `prep` is treated as an open class. The
-   original constrains it to an attested list, which would resolve readings
-   such as `prep="out of" obj2="doing"` versus `prep="out of doing"`.
-4. **Over-generation of marginal chains.** The grammar produces 114 chains
-   while the bank uses 88. The extra 26 are the progressive-passive
-   combinations under modals and perfects (`can be being pastParticiple`,
-   `has been being pastParticiple`) plus a few modal perfect-progressives.
-   They are grammatical English but vanishingly rare, and the original
-   excludes most of them. They are harmless for parsing — they only add
-   candidates that never match — but they should not be used as a generator
-   without filtering.
-5. **Auxiliary contraction coverage.** Negation contracts onto the fronted
-   auxiliary for every auxiliary attested in the bank, and `might` is special
-   cased because it has no usable contraction. Other modals outside the QA-SRL
-   tense inventory (`may`, `must`, `could`, `shall`) are not modelled at all.
-6. **`isPerfect` + `isProgressive` + `isPassive` all true.** Generated, never
-   attested, never verified against real data.
+1. **Incremental, token-by-token transitions.** The Scala machine is a
+   character-level automaton; `QuestionProcessor` walks it one character at a
+   time, keeping every live branch, and can report the legal continuations of
+   any prefix. The Python parser instead locates the inflected verb and
+   enumerates the readings around it. Same answers on this data, but nothing
+   here can answer "what may follow *What might have*?". **This is the one
+   remaining structural gap**, and it is why `Autocomplete` cannot be ported.
+2. **Sentence-conditioned preposition sets.** The inventory of 72 prepositions
+   is ported, but upstream narrows it per question: the candidate set is the
+   prepositions occurring in the sentence being annotated, plus adjacent
+   preposition bigrams, plus seven common ones. The port accepts any token
+   from the full inventory. This only matters for generation and for
+   autocomplete, not for reading the bank.
+3. **No typed `Frame`.** Upstream, slots are a projection of a `Frame` plus an
+   `answerSlot`; here slots are primary and the frame is implicit. The
+   well-formedness consequences are ported as slot-level invariants, but
+   there is no object to attach argument-structure reasoning to. Stage 2 will
+   need one.
+4. **`Tense.NonFinite`** (`bare`, `to`, `gerund`) and the clause-rendering
+   paths in `Frame` (`questionsForSlot`, `clauses`, `genClausesWithArgs`) are
+   not ported. They do not occur in Bank 2.0 question labels; they are used
+   for clausal representations.
+5. **Modals outside the QA-SRL inventory** (`may`, `must`, `could`, `shall`)
+   are not modelled, matching upstream.
+6. **`subj = "it"`.** The template accepts `it` as a subject placeholder on
+   input, though `getSlotsForQuestionStructure` never emits it and it occurs
+   nowhere in the bank. The parser here rejects it.
 
 ## 2. Components from the Scala project not ported
 
-Per the handoff, these are out of scope for now and were not started:
+Deliberately out of scope per the handoff, confirmed by the audit:
 
-* `autocomplete` — the crowdsourcing-time question completion service, which
-  depends on the incremental state machine (gap 1 above);
-* the ScalaJS browser and the old crowdsourcing UI;
-* the Mechanical Turk pipeline;
-* `qasrl-bank-service` and the HTTP server;
-* everything under `apps/`.
+* `Autocomplete.scala` — blocked on gap 1 above;
+* `labeling/QuestionTemplate.scala` — tense- and adverbial-normalised question
+  templates;
+* `labeling/ClauseResolution.scala` — slots to clausal frames;
+* `labeling/DiscreteLabel.scala` — questions to discrete role labels;
+* `labeling/QuestionLabelMapper.scala` — an arrow abstraction with no useful
+  Python counterpart;
+* `data/Dataset.scala`'s filter/merge algebra (streaming reads are ported);
+* `qasrl-crowd/`, `qasrl-crowd-example/` — Mechanical Turk pipeline;
+* `qasrl-bank-service/` — HTTP document service;
+* `apps/` — browser, reformatting and alignment CLIs.
 
 ## 3. Bank formats
 
@@ -63,7 +66,8 @@ Per the handoff, these are out of scope for now and were not started:
   fields in `Sentence.extra`, so 2.1 files round-trip without data loss, but
   nominal predicate entries are not parsed into typed models. There is no
   2.1 file in `data/` to test against.
-* **`index.json.gz`.** Document, domain and title metadata is not read.
+* **`index.json.gz`.** Document, domain and title metadata is not read; this
+  needs `qasrl-bank`'s `DataIndex`, `Document`, `SentenceId` and `Domain`.
 * The legacy `*.qa` reader returns raw slot strings. Its `verb` field holds a
   surface phrase (`be oxygenated`), not a form placeholder, so those questions
   cannot currently be converted into `QuestionSlots` — doing so needs a
@@ -72,8 +76,7 @@ Per the handoff, these are out of scope for now and were not started:
 ## 4. Later stages of the handoff
 
 Stages 2–5 are untouched: ontology, semantic generator, semantic annotator,
-question generator, SQLite storage and exporters. The directory layout for
-them is in the handoff, not yet in the repository.
+question generator, SQLite storage and exporters.
 
 ## 5. Repository hygiene
 
