@@ -7,6 +7,9 @@ Commands
                how often each direction is exact
 ``validate``   run the invariant checks over a bank file
 ``lookup``     look a verb up in the Wiktionary inflection indexes
+``frames``     print the typed frames the generator knows
+``generate``   generate sentences with their spans and relations
+``ambiguity``  show name pairs whose type only context settles
 """
 
 from __future__ import annotations
@@ -143,6 +146,56 @@ def cmd_lookup(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_frames(args: argparse.Namespace) -> int:
+    from .semantic_generator import DEFAULT_FRAMES
+
+    for frame in DEFAULT_FRAMES:
+        if args.lemma and frame.lemma != args.lemma:
+            continue
+        print(frame)
+        for pattern in frame.patterns:
+            parts = [f"{{{pattern.subject}}}", f"<{frame.lemma}>"]
+            for complement in pattern.complements:
+                if complement.preposition:
+                    parts.append(complement.preposition)
+                parts.append(f"{{{complement.slot}}}")
+            flag = " [passive]" if pattern.is_passive else ""
+            print(f"  {pattern.name:20s} {' '.join(parts)}.{flag}")
+        print()
+    return 0
+
+
+def cmd_generate(args: argparse.Namespace) -> int:
+    from .semantic_generator import Generator
+
+    generator = Generator(seed=args.seed, split=args.split)
+    for realized in generator.generate(args.count):
+        print(realized.text)
+        if args.spans:
+            for mention in realized.mentions:
+                print(
+                    f"    {mention.slot:22s} "
+                    f"[{mention.start_char:3d},{mention.end_char:3d}) "
+                    f"{mention.text!r} {mention.labels}"
+                )
+            for edge in realized.relations:
+                print(f"    {edge.source_slot} --{edge.relation}--> {edge.target}")
+    return 0
+
+
+def cmd_ambiguity(args: argparse.Namespace) -> int:
+    from .semantic_generator import Generator
+
+    generator = Generator(seed=args.seed)
+    for pair in generator.ambiguity_pairs():
+        print(f"{pair.surface_form}: {pair.left_label} vs {pair.right_label}")
+        print(f"  {pair.left.text}")
+        print(f"  {pair.right.text}")
+        print(f"  {pair.question()}")
+        print()
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="semantic-corpus", description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
@@ -169,6 +222,21 @@ def build_parser() -> argparse.ArgumentParser:
     lookup.add_argument("--inflections", type=Path, default=DEFAULT_INFLECTIONS)
     lookup.add_argument("--limit", type=int, default=10)
     lookup.set_defaults(func=cmd_lookup)
+
+    frames = sub.add_parser("frames", help="print the generator's typed frames")
+    frames.add_argument("--lemma", default=None)
+    frames.set_defaults(func=cmd_frames)
+
+    generate = sub.add_parser("generate", help="generate sentences from frames")
+    generate.add_argument("--count", type=int, default=10)
+    generate.add_argument("--seed", type=int, default=0)
+    generate.add_argument("--split", choices=("train", "dev", "test"), default=None)
+    generate.add_argument("--spans", action="store_true", help="show spans and relations")
+    generate.set_defaults(func=cmd_generate)
+
+    ambiguity = sub.add_parser("ambiguity", help="name pairs settled only by context")
+    ambiguity.add_argument("--seed", type=int, default=0)
+    ambiguity.set_defaults(func=cmd_ambiguity)
 
     return parser
 

@@ -33,13 +33,14 @@ Only `qasrl/` (and a fraction of `qasrl-bank/`) is relevant to this project:
 | `labeling/SlotBasedLabel.scala` | `models.QuestionSlots`, `question_slots`, `question_renderer` | **done** — `renderQuestionString` and the JSON codec are reproduced exactly |
 | `Tense.scala` | `state_machine.TENSES`, `MODAL_TENSES` | **done** for `Tense.Finite`; `Tense.NonFinite` (bare/to/gerund) not modelled |
 | `Frame.scala` → `getVerbStack`, `splitVerbStackIfNecessary`, `getVerbConjugation`, `modalTokens` | `state_machine.build_verb_chain` | **done** — verified to generate every chain the bank uses |
-| `Frame.scala` → `questionsForSlot`, `clauses`, `genClausesWithArgs` | — | not ported (clause generation, a stage-2 concern) |
+| `Frame.scala` → `questionsForSlot`, `clauses` | `frame.Frame.questions`, `Frame.clause` | **partial** — one rendering per slot, not the full variant enumeration |
+| `SlotBasedLabel.getSlotsForQuestionStructure` | `frame.Frame.to_slots` | **done**, in the released bank's convention; the inverse `frame_from_slots` round-trips all 710 374 questions |
 | `TemplateStateMachine.scala` → vocabularies, `lotsOfPrepositions`, `mostCommonPrepositions` | `state_machine.PREPOSITIONS`, `MOST_COMMON_PREPOSITIONS`, `WH_WORDS`, `NOUN_WH`, `ADVERBIAL_WH` | **done** |
 | `TemplateStateMachine.scala` → the automaton itself | `question_parser` (search, not an automaton) | **partial** — see "What the port does differently" |
 | `QuestionProcessor.scala` → `CompleteState` guard | `question_slots.answer_slot_problems` | **done** — the three completeness conditions are enforced on slots |
 | `QuestionProcessor.scala` → character-level traversal | — | not ported |
 | `labeling/SlotBasedLabel.getPreferredCompleteState` | `question_parser._Candidate.rank_key` | **done** |
-| `ArgumentSlot.scala`, `Argument.scala`, `ArgStructure.scala` | partly folded into `question_slots` | **partial** — the slot vocabularies and gap rules are ported; the typed `Frame`/`ArgStructure` objects are not |
+| `ArgumentSlot.scala`, `Argument.scala`, `ArgStructure.scala` | `frame.ArgumentSlot`, `Argument`/`Noun`/`Prep`/`Locative`, `ArgStructure` | **done** |
 | `Autocomplete.scala` | — | not ported; needs the incremental automaton |
 | `labeling/QuestionTemplate.scala` | — | not ported (tense/adverbial-normalised templates) |
 | `labeling/ClauseResolution.scala` | — | not ported (slots → clausal frames) |

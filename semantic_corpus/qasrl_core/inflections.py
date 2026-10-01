@@ -37,6 +37,10 @@ from .models import InflectedForms, VerbForm
 
 __all__ = [
     "SUPPLETIVE_PARADIGMS",
+    "BE_FORMS",
+    "DO_FORMS",
+    "HAVE_FORMS",
+    "AUXILIARY_PARADIGMS",
     "InflectionLexicon",
     "load_inflections",
     "load_postags",
@@ -55,6 +59,27 @@ SUPPLETIVE_PARADIGMS: dict[str, InflectedForms] = {
         past_participle="been",
     ),
 }
+
+#: The three auxiliary paradigms the verb chain conjugates on its own, spelled
+#: out rather than looked up: building a question must not depend on what a
+#: scraped dictionary happens to contain. ``be`` uses the singular forms,
+#: matching ``InflectedForms.beSingularForms`` upstream.
+BE_FORMS: InflectedForms = SUPPLETIVE_PARADIGMS["be"]
+DO_FORMS: InflectedForms = InflectedForms(
+    stem="do",
+    present_singular_3rd="does",
+    present_participle="doing",
+    past="did",
+    past_participle="done",
+)
+HAVE_FORMS: InflectedForms = InflectedForms(
+    stem="have",
+    present_singular_3rd="has",
+    present_participle="having",
+    past="had",
+    past_participle="had",
+)
+AUXILIARY_PARADIGMS: tuple[InflectedForms, ...] = (BE_FORMS, DO_FORMS, HAVE_FORMS)
 
 _JUNK_SURFACES = frozenset({"", "-", "--", "_"})
 

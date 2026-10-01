@@ -1,8 +1,9 @@
 # qa-srl-gen — semantic corpus toolkit
 
 Python core of QA-SRL plus, in later stages, a generator of semantic training
-corpora. This repository currently implements **stage 1: the QA-SRL core**
-(`semantic_corpus/qasrl_core`). The full plan lives in
+corpora. This repository currently implements **stages 0–2**: the QA-SRL core
+(`semantic_corpus/qasrl_core`), the ontology (`semantic_corpus/ontology`) and
+the semantic generator (`semantic_corpus/semantic_generator`). The full plan lives in
 [HANDOFF_SEMANTIC_CORPUS_RU.md](HANDOFF_SEMANTIC_CORPUS_RU.md).
 
 No installation, no virtualenv, no build system: the package sits at the
@@ -24,8 +25,16 @@ python -m semantic_corpus.cli --help
 | `qasrl_core/question_slots.py` | the nominal slots and their conventions |
 | `qasrl_core/question_renderer.py` | slots → surface question |
 | `qasrl_core/question_parser.py` | surface question → slots |
+| `qasrl_core/frame.py` | the typed argument structure the slots are a projection of |
 | `qasrl_core/validation.py` | invariant checks over slots, spans and sentences |
-| `cli.py` | `inspect`, `roundtrip`, `validate`, `lookup` |
+| `ontology/models.py` | the label inventory: multi-label spans, speech acts, relations |
+| `ontology/hierarchy.py` | type inheritance (`city → LOCATION`) and the candidate lexicon |
+| `semantic_generator/frames.py` | typed frames for `give`, `visit`, `own`, `feel`, `move`, `see`, `say` |
+| `semantic_generator/substitutions.py` | entity pools, real and invented names, held-out splits |
+| `semantic_generator/realization.py` | situation → sentence, with exact spans and relations |
+| `semantic_generator/transforms.py` | tense, voice, negation and modality variation |
+| `semantic_generator/generator.py` | seeded sampling, ambiguity pairs, omitted arguments |
+| `cli.py` | `inspect`, `roundtrip`, `validate`, `lookup`, `frames`, `generate`, `ambiguity` |
 
 ## Short example
 
@@ -74,6 +83,52 @@ slots = make_slots("what", chain.verb, aux=chain.aux, prep="to", obj2="someone")
 print(render_question(slots, give))
 # What might have been given to someone?
 ```
+
+## Generating situations
+
+```python
+from semantic_corpus.semantic_generator import Generator
+
+generator = Generator(seed=42)
+for realized in generator.generate(3):
+    print(realized.text)
+    for mention in realized.mentions:
+        print("   ", mention.slot, mention.text, mention.labels)
+```
+
+```text
+Sorel saw Kyiv.
+    experiencer Sorel PERSON + NAMED_ENTITY
+    stimulus Kyiv LOCATION + NAMED_ENTITY
+```
+
+The output is a semantic record, not a string: every argument carries the
+exact character span it occupies and the relation it bears to the predicate,
+so later stages never have to recover offsets by searching for substrings.
+
+Frames are typed, so a binding that does not fit is refused rather than
+realised — `give` takes an abstract theme (*gave an idea*) but not an
+emotional one, and an animal cannot be its agent. English morphology is not
+reimplemented: the verb chain comes from the same builder that reproduces
+every verb form in the bank, so `might not give`, `is being given` and
+`has given` are correct by construction.
+
+Two generators exist for the harder test sets:
+
+```bash
+python -m semantic_corpus.cli ambiguity --seed 2
+```
+
+```text
+Rex: ANIMAL vs PERSON
+  Leila gives Rex, a German shepherd, a book in Vustal.
+  Rex, the new mechanic, gives Luna a red ball.
+  What kind of entity is Rex?
+```
+
+`Generator.omitted_argument_examples` produces sentences that leave a known
+argument unexpressed, which is the honest basis for a *the text does not say*
+example: the record knows there was an agent, the sentence does not name it.
 
 ## How the question template works
 
@@ -153,6 +208,14 @@ Reported rather than silently tolerated:
   rows and misspelled lemmas (`found` is attributed to a non-word `foind`).
   `load_inflections` drops the junk and supplies `be` from
   `SUPPLETIVE_PARADIGMS`.
+
+## Deviations from the handoff's file layout
+
+* The ontology ships `ontology/defaults.json`, not `defaults.yaml`, so that
+  the core keeps no third-party dependency for what is a config file.
+* `semantic_generator/generator.py` is not in the handoff's list. Sampling
+  needs frames, pools and realisation at once, and putting it in any of the
+  three would make them import one another.
 
 ## Project status and what is missing
 

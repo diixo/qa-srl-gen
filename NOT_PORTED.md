@@ -29,18 +29,14 @@ What the original `TemplateStateMachine` additionally does, and this does not:
    preposition bigrams, plus seven common ones. The port accepts any token
    from the full inventory. This only matters for generation and for
    autocomplete, not for reading the bank.
-3. **No typed `Frame`.** Upstream, slots are a projection of a `Frame` plus an
-   `answerSlot`; here slots are primary and the frame is implicit. The
-   well-formedness consequences are ported as slot-level invariants, but
-   there is no object to attach argument-structure reasoning to. Stage 2 will
-   need one.
-4. **`Tense.NonFinite`** (`bare`, `to`, `gerund`) and the clause-rendering
-   paths in `Frame` (`questionsForSlot`, `clauses`, `genClausesWithArgs`) are
-   not ported. They do not occur in Bank 2.0 question labels; they are used
-   for clausal representations.
-5. **Modals outside the QA-SRL inventory** (`may`, `must`, `could`, `shall`)
+3. **`Tense.NonFinite`** (`bare`, `to`, `gerund`) is not modelled. It does not
+   occur in Bank 2.0 question labels; it is used for clausal representations.
+   `Frame.questionsForSlot` and `Frame.clauses` are ported in simplified form
+   (`Frame.questions`, `Frame.clause`): they render one string per slot rather
+   than enumerating every animacy and placeholder variant as upstream does.
+4. **Modals outside the QA-SRL inventory** (`may`, `must`, `could`, `shall`)
    are not modelled, matching upstream.
-6. **`subj = "it"`.** The template accepts `it` as a subject placeholder on
+5. **`subj = "it"`.** The template accepts `it` as a subject placeholder on
    input, though `getSlotsForQuestionStructure` never emits it and it occurs
    nowhere in the bank. The parser here rejects it.
 
@@ -75,8 +71,8 @@ Deliberately out of scope per the handoff, confirmed by the audit:
 
 ## 4. Later stages of the handoff
 
-Stages 2–5 are untouched: ontology, semantic generator, semantic annotator,
-question generator, SQLite storage and exporters.
+Stages 3–5 are untouched: semantic annotator, question generator, SQLite
+storage and exporters. Stage 2 (ontology and semantic generator) is done.
 
 ## 5. Repository hygiene
 
