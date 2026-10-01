@@ -1,0 +1,15 @@
+awaken	awakens	awakening	awoke	awoken
+awaken	awakens	awakening	awakened	awakened
+chide	chides	chiding	chid	chid
+chide	chides	chiding	chided	chided
+do	does	doing	did	done
+give	gives	giving	gave	given
+go	goes	going	went	gone
+happen	happens	happening	happened	happened
+have	has	having	had	had
+leave	leaves	leaving	left	left
+make	makes	making	made	made
+occur	occurs	occurring	occurred	occurred
+put	puts	putting	put	put
+read	reads	reading	read	read
+-	-	-	-	-
