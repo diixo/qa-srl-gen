@@ -433,8 +433,16 @@ def test_a_bare_locative_object_is_not_an_adjunct():
         document, run, resolver=ParadigmResolver(known=DEFAULT_PARADIGMS)
     )
     answers = [e.answer for e in produced]
-    assert not any(a.startswith("In ") for a in answers), answers
-    assert "Vustal." in answers
+    # The destination is answered bare, not with an invented preposition.
+    destination = next(
+        m.exact_text
+        for m in run.mentions
+        if m.exact_text in document.text.split("visit")[-1]
+    )
+    assert f"{destination}." in answers, answers
+    assert not any(
+        a.startswith("In ") and destination in a for a in answers
+    ), answers
 
 
 def test_the_passive_paraphrase_rebuilds_the_verb_chain():

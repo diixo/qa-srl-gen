@@ -1,0 +1,1562 @@
+{
+  "_comment": [
+    "Entity pool for the semantic generator. Each row is one reading of one",
+    "surface form; a form with several readings is listed several times,",
+    "which is how an ambiguous name is represented.",
+    "",
+    "Fields: text (surface form, exactly as it must appear in a sentence),",
+    "labels (ontology labels), type (ontology type name, optional),",
+    "named (true for proper names), preposition (what the form takes as an",
+    "adjunct: 'at noon' but 'on Monday'), appositive (a gloss that settles",
+    "the reading in context), property_head / property_degree (the",
+    "adjective already inside the form, kept decomposed).",
+    "",
+    "Held-out splits are derived from the surface form by a stable hash, so",
+    "adding a row never moves an existing one between splits.",
+    "Entries after the curated ones were mined from data/eng-base.jsonl with semantic_generator.mining and reviewed by hand; see STATUS_RU.md."
+  ],
+  "entities": [
+    {
+      "text": "London",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "city",
+      "named": true
+    },
+    {
+      "text": "Kyiv",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "city",
+      "named": true
+    },
+    {
+      "text": "Lisbon",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "city",
+      "named": true
+    },
+    {
+      "text": "Oslo",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "city",
+      "named": true
+    },
+    {
+      "text": "Toronto",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "city",
+      "named": true
+    },
+    {
+      "text": "Nairobi",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "city",
+      "named": true
+    },
+    {
+      "text": "Zelora",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "city",
+      "named": true
+    },
+    {
+      "text": "Narev",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "city",
+      "named": true
+    },
+    {
+      "text": "Taldin",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "city",
+      "named": true
+    },
+    {
+      "text": "Orvash",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "city",
+      "named": true
+    },
+    {
+      "text": "Kemdara",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "city",
+      "named": true
+    },
+    {
+      "text": "Vustal",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "city",
+      "named": true
+    },
+    {
+      "text": "Anna",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Helen",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Marcus",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Priya",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Tomas",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Leila",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Ivan",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Sorel",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Yavin",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Delkath",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Mira",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Tovan",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Esra",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Acme",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Belmont",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Orilex",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Kadrin Group",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Halverson",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Luna",
+      "labels": [
+        "ANIMAL",
+        "NAMED_ENTITY"
+      ],
+      "type": "creature",
+      "named": true
+    },
+    {
+      "text": "Bracken",
+      "labels": [
+        "ANIMAL",
+        "NAMED_ENTITY"
+      ],
+      "type": "creature",
+      "named": true
+    },
+    {
+      "text": "Pippin",
+      "labels": [
+        "ANIMAL",
+        "NAMED_ENTITY"
+      ],
+      "type": "creature",
+      "named": true
+    },
+    {
+      "text": "Titanic",
+      "labels": [
+        "PHYSICAL_OBJECT",
+        "NAMED_ENTITY",
+        "NAMED_OBJECT"
+      ],
+      "type": "ship",
+      "named": true
+    },
+    {
+      "text": "Endeavour",
+      "labels": [
+        "PHYSICAL_OBJECT",
+        "NAMED_ENTITY",
+        "NAMED_OBJECT"
+      ],
+      "type": "ship",
+      "named": true
+    },
+    {
+      "text": "Kestrel",
+      "labels": [
+        "PHYSICAL_OBJECT",
+        "NAMED_ENTITY",
+        "NAMED_OBJECT"
+      ],
+      "type": "ship",
+      "named": true
+    },
+    {
+      "text": "Rex",
+      "labels": [
+        "ANIMAL",
+        "NAMED_ENTITY"
+      ],
+      "named": true
+    },
+    {
+      "text": "Rex",
+      "labels": [
+        "ANIMAL",
+        "NAMED_ENTITY"
+      ],
+      "named": true,
+      "appositive": "a German shepherd"
+    },
+    {
+      "text": "Rex",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "named": true
+    },
+    {
+      "text": "Rex",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "named": true,
+      "appositive": "the new mechanic"
+    },
+    {
+      "text": "Paris",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "named": true
+    },
+    {
+      "text": "Paris",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "named": true,
+      "appositive": "the French capital"
+    },
+    {
+      "text": "Paris",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "named": true
+    },
+    {
+      "text": "Paris",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "named": true,
+      "appositive": "Helen's sister"
+    },
+    {
+      "text": "Rose",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "named": true
+    },
+    {
+      "text": "Rose",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "named": true,
+      "appositive": "the gardener"
+    },
+    {
+      "text": "Rose",
+      "labels": [
+        "PHYSICAL_OBJECT",
+        "NAMED_ENTITY"
+      ],
+      "named": true
+    },
+    {
+      "text": "Rose",
+      "labels": [
+        "PHYSICAL_OBJECT",
+        "NAMED_ENTITY"
+      ],
+      "named": true,
+      "appositive": "a wooden boat"
+    },
+    {
+      "text": "Jaguar",
+      "labels": [
+        "ANIMAL",
+        "NAMED_ENTITY"
+      ],
+      "named": true
+    },
+    {
+      "text": "Jaguar",
+      "labels": [
+        "ANIMAL",
+        "NAMED_ENTITY"
+      ],
+      "named": true,
+      "appositive": "a big cat"
+    },
+    {
+      "text": "Jaguar",
+      "labels": [
+        "PHYSICAL_OBJECT",
+        "NAMED_ENTITY"
+      ],
+      "named": true
+    },
+    {
+      "text": "Jaguar",
+      "labels": [
+        "PHYSICAL_OBJECT",
+        "NAMED_ENTITY"
+      ],
+      "named": true,
+      "appositive": "an old car"
+    },
+    {
+      "text": "Austin",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "named": true
+    },
+    {
+      "text": "Austin",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "named": true,
+      "appositive": "a city in Texas"
+    },
+    {
+      "text": "Austin",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "named": true
+    },
+    {
+      "text": "Austin",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "named": true,
+      "appositive": "the new driver"
+    },
+    {
+      "text": "the dog",
+      "labels": [
+        "ANIMAL"
+      ],
+      "type": "dog"
+    },
+    {
+      "text": "the cat",
+      "labels": [
+        "ANIMAL"
+      ],
+      "type": "cat"
+    },
+    {
+      "text": "the horse",
+      "labels": [
+        "ANIMAL"
+      ],
+      "type": "horse"
+    },
+    {
+      "text": "the woman",
+      "labels": [
+        "PERSON"
+      ],
+      "type": "woman"
+    },
+    {
+      "text": "the mechanic",
+      "labels": [
+        "PERSON"
+      ],
+      "type": "profession"
+    },
+    {
+      "text": "the teacher",
+      "labels": [
+        "PERSON"
+      ],
+      "type": "profession"
+    },
+    {
+      "text": "a red ball",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "type": "toy",
+      "property_head": "red"
+    },
+    {
+      "text": "a very large ball",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "type": "toy",
+      "property_head": "large",
+      "property_degree": "very"
+    },
+    {
+      "text": "a book",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "type": "document"
+    },
+    {
+      "text": "an old car",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "type": "car",
+      "property_head": "old"
+    },
+    {
+      "text": "a small blue car",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "type": "car",
+      "property_head": "blue"
+    },
+    {
+      "text": "the table",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "type": "furniture"
+    },
+    {
+      "text": "the city",
+      "labels": [
+        "LOCATION"
+      ],
+      "type": "city"
+    },
+    {
+      "text": "the village",
+      "labels": [
+        "LOCATION"
+      ],
+      "type": "village"
+    },
+    {
+      "text": "the company",
+      "labels": [
+        "ORGANIZATION"
+      ],
+      "type": "company"
+    },
+    {
+      "text": "the university",
+      "labels": [
+        "ORGANIZATION"
+      ],
+      "type": "university"
+    },
+    {
+      "text": "a plan",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "type": "notion"
+    },
+    {
+      "text": "an idea",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "type": "notion"
+    },
+    {
+      "text": "joy",
+      "labels": [
+        "ABSTRACT_ENTITY",
+        "EMOTION"
+      ],
+      "type": "feeling"
+    },
+    {
+      "text": "fear",
+      "labels": [
+        "ABSTRACT_ENTITY",
+        "EMOTION"
+      ],
+      "type": "feeling"
+    },
+    {
+      "text": "anger",
+      "labels": [
+        "ABSTRACT_ENTITY",
+        "EMOTION"
+      ],
+      "type": "feeling"
+    },
+    {
+      "text": "sadness",
+      "labels": [
+        "ABSTRACT_ENTITY",
+        "EMOTION"
+      ],
+      "type": "feeling"
+    },
+    {
+      "text": "Monday",
+      "labels": [
+        "DATE"
+      ],
+      "type": "DATE",
+      "preposition": "on"
+    },
+    {
+      "text": "March",
+      "labels": [
+        "DATE"
+      ],
+      "type": "DATE",
+      "preposition": "in"
+    },
+    {
+      "text": "the first of May",
+      "labels": [
+        "DATE"
+      ],
+      "type": "DATE",
+      "preposition": "on"
+    },
+    {
+      "text": "noon",
+      "labels": [
+        "TIME"
+      ],
+      "type": "TIME",
+      "preposition": "at"
+    },
+    {
+      "text": "dawn",
+      "labels": [
+        "TIME"
+      ],
+      "type": "TIME",
+      "preposition": "before"
+    },
+    {
+      "text": "midnight",
+      "labels": [
+        "TIME"
+      ],
+      "type": "TIME",
+      "preposition": "after"
+    },
+    {
+      "text": "Boston",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Australia",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Japan",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Tokyo",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "America",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Chicago",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Jackson",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Europe",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Harvard",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "New York",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "New Zealand",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "China",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "France",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Germany",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "India",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Africa",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Italy",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Spain",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Canada",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Brazil",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "England",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Hawaii",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Osaka",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Asia",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Kyoto",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "California",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Mexico",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Hokkaido",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Ireland",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Rome",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Washington",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "San Francisco",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Greece",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Los Angeles",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "South America",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Switzerland",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Tokyo Station",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Florida",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Russia",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Scotland",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Singapore",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Texas",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Austria",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Holland",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Nagano",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Nagoya",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "North America",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Vietnam",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Britain",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Korea",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Poland",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Sweden",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Vienna",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Afghanistan",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Alaska",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Ankara",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Beijing",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Berlin",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "City Hall",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Congress",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Hong Kong",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Iceland",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Norway",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Peru",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Sendai",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Venice",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Tom",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Mary",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "a ball",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "type": "toy"
+    },
+    {
+      "text": "a toy train",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "type": "toy"
+    },
+    {
+      "text": "a letter",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "type": "document"
+    },
+    {
+      "text": "the report",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "type": "document"
+    },
+    {
+      "text": "a map",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "type": "document"
+    },
+    {
+      "text": "the chair",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "type": "furniture"
+    },
+    {
+      "text": "an old desk",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "type": "furniture",
+      "property_head": "old"
+    },
+    {
+      "text": "the hammer",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "type": "tool"
+    },
+    {
+      "text": "a sharp knife",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "type": "tool",
+      "property_head": "sharp"
+    },
+    {
+      "text": "the boat",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "type": "ship"
+    },
+    {
+      "text": "a small boat",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "type": "ship",
+      "property_head": "small"
+    },
+    {
+      "text": "the truck",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "type": "vehicle"
+    },
+    {
+      "text": "a green bicycle",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "type": "vehicle",
+      "property_head": "green"
+    },
+    {
+      "text": "a promise",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "type": "notion"
+    },
+    {
+      "text": "the answer",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "type": "notion"
+    },
+    {
+      "text": "a question",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "type": "notion"
+    },
+    {
+      "text": "the rule",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "type": "notion"
+    },
+    {
+      "text": "a story",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "type": "notion"
+    },
+    {
+      "text": "the concert",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "type": "event"
+    },
+    {
+      "text": "a meeting",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "type": "event"
+    },
+    {
+      "text": "the bird",
+      "labels": [
+        "ANIMAL"
+      ],
+      "type": "bird"
+    },
+    {
+      "text": "a small bird",
+      "labels": [
+        "ANIMAL"
+      ],
+      "type": "bird",
+      "property_head": "small"
+    },
+    {
+      "text": "the nurse",
+      "labels": [
+        "PERSON"
+      ],
+      "type": "profession"
+    },
+    {
+      "text": "the pilot",
+      "labels": [
+        "PERSON"
+      ],
+      "type": "profession"
+    },
+    {
+      "text": "the farmer",
+      "labels": [
+        "PERSON"
+      ],
+      "type": "profession"
+    },
+    {
+      "text": "the boy",
+      "labels": [
+        "PERSON"
+      ],
+      "type": "child"
+    },
+    {
+      "text": "the girl",
+      "labels": [
+        "PERSON"
+      ],
+      "type": "child"
+    },
+    {
+      "text": "the town",
+      "labels": [
+        "LOCATION"
+      ],
+      "type": "town"
+    },
+    {
+      "text": "the building",
+      "labels": [
+        "LOCATION"
+      ],
+      "type": "building"
+    },
+    {
+      "text": "the agency",
+      "labels": [
+        "ORGANIZATION"
+      ],
+      "type": "agency"
+    },
+    {
+      "text": "the school",
+      "labels": [
+        "ORGANIZATION"
+      ],
+      "type": "institution"
+    }
+  ]
+}

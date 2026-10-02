@@ -42,7 +42,7 @@ Only `qasrl/` (and a fraction of `qasrl-bank/`) is relevant to this project:
 | `labeling/SlotBasedLabel.getPreferredCompleteState` | `question_parser._Candidate.rank_key` | **done** |
 | `ArgumentSlot.scala`, `Argument.scala`, `ArgStructure.scala` | `frame.ArgumentSlot`, `Argument`/`Noun`/`Prep`/`Locative`, `ArgStructure` | **done** |
 | `Autocomplete.scala` | — | not ported; needs the incremental automaton |
-| `labeling/QuestionTemplate.scala` | — | not ported (tense/adverbial-normalised templates) |
+| `labeling/QuestionTemplate.scala` | `qasrl_core.question_template` | **done** — abstraction plus `normalize_to_active` and `normalize_adverbials` |
 | `labeling/ClauseResolution.scala` | — | not ported (slots → clausal frames) |
 | `labeling/DiscreteLabel.scala` | — | not ported (questions → discrete role labels) |
 | `labeling/QuestionLabelMapper.scala` | — | not ported (an arrow/plumbing abstraction with no Python counterpart) |

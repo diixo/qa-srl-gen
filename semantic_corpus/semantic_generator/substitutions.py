@@ -21,9 +21,11 @@ run and on every machine, independent of pool order or insertion history.
 from __future__ import annotations
 
 import hashlib
+import json
 import random
 from dataclasses import dataclass
-from typing import Iterable
+from pathlib import Path
+from typing import Iterable, Mapping, Sequence
 
 from ..ontology import Label, LabelSet, TypeHierarchy
 
@@ -32,6 +34,11 @@ __all__ = [
     "EntityPool",
     "Split",
     "default_pool",
+    "load_pool",
+    "save_pool",
+    "entity_from_json",
+    "entity_to_json",
+    "ENTITIES_PATH",
     "SPLITS",
 ]
 
@@ -219,6 +226,30 @@ class EntityPool:
 
     # -- splitting ---------------------------------------------------------
 
+    def split_key(self, text: str) -> str:
+        """The form whose split *text* follows.
+
+        A held-out name must not reappear inside a longer one: holding out
+        ``America`` while training on ``North America`` puts the string in
+        the training text anyway, and the unseen-name test silently measures
+        less than it claims. So a form that contains a shorter pool form as
+        a whole word inherits that form's split, and the shortest member of
+        such a group decides for all of them.
+        """
+        words = text.split()
+        best = text
+        for other in self.surface_forms:
+            if other == text or len(other) >= len(best):
+                continue
+            other_words = other.split()
+            span = len(other_words)
+            if any(
+                words[i : i + span] == other_words
+                for i in range(len(words) - span + 1)
+            ):
+                best = other
+        return best
+
     def split(
         self,
         name: Split,
@@ -238,7 +269,12 @@ class EntityPool:
             raise ValueError(f"unknown split {name!r}; expected one of {SPLITS}")
         if not 0 <= dev_share + test_share < 1:
             raise ValueError("dev_share + test_share must be in [0, 1)")
-        chosen = [e for e in self._entities if _split_of(e.text, dev_share, test_share, salt) == name]
+        chosen = [
+            e
+            for e in self._entities
+            if self.split_of(e.text, dev_share=dev_share, test_share=test_share, salt=salt)
+            == name
+        ]
         return EntityPool(chosen)
 
     def split_of(
@@ -249,7 +285,7 @@ class EntityPool:
         test_share: float = 0.1,
         salt: str = "",
     ) -> Split:
-        return _split_of(text, dev_share, test_share, salt)
+        return _split_of(self.split_key(text), dev_share, test_share, salt)
 
 
 def _split_of(text: str, dev_share: float, test_share: float, salt: str) -> Split:
@@ -272,132 +308,86 @@ def _split_of(text: str, dev_share: float, test_share: float, salt: str) -> Spli
 # The default pool
 # ---------------------------------------------------------------------------
 
-_REAL_PLACES = ("Paris", "London", "Kyiv", "Lisbon", "Oslo", "Toronto", "Nairobi")
-#: Invented place names: no world knowledge can answer a question about them.
-_FICTIONAL_PLACES = ("Zelora", "Narev", "Taldin", "Orvash", "Kemdara", "Vustal")
+#: The pool lives in a data file rather than in code. It is the part of the
+#: project most likely to grow by an order of magnitude, and growing it
+#: should not mean editing Python.
+ENTITIES_PATH = Path(__file__).with_name("entities.json")
 
-_REAL_PEOPLE = ("Anna", "Helen", "Marcus", "Priya", "Tomas", "Leila", "Ivan")
-_FICTIONAL_PEOPLE = ("Sorel", "Yavin", "Delkath", "Mira", "Tovan", "Esra")
 
-_ORGANIZATIONS = ("Acme", "Belmont", "Orilex", "Kadrin Group", "Halverson")
-_ANIMAL_NAMES = ("Rex", "Luna", "Bracken", "Pippin")
-_NAMED_OBJECTS = ("Titanic", "Endeavour", "Kestrel")
+def entity_from_json(row: Mapping[str, object]) -> Entity:
+    """Build one entity from a pool row."""
+    labels = LabelSet(frozenset(Label(name) for name in row.get("labels", ())))
+    return Entity(
+        text=str(row["text"]),
+        labels=labels,
+        type_name=row.get("type"),  # type: ignore[arg-type]
+        is_named=bool(row.get("named", False)),
+        adjunct_preposition=row.get("preposition"),  # type: ignore[arg-type]
+        appositive=row.get("appositive"),  # type: ignore[arg-type]
+        property_head=row.get("property_head"),  # type: ignore[arg-type]
+        property_degree=row.get("property_degree"),  # type: ignore[arg-type]
+    )
 
-#: Forms deliberately given more than one reading, so that type assignment
-#: cannot be learned from the name alone.
-_AMBIGUOUS: tuple[tuple[str, tuple[Label, str], tuple[Label, str]], ...] = (
-    ("Rex", (Label.ANIMAL, "a German shepherd"), (Label.PERSON, "the new mechanic")),
-    ("Paris", (Label.LOCATION, "the French capital"), (Label.PERSON, "Helen's sister")),
-    ("Rose", (Label.PERSON, "the gardener"), (Label.PHYSICAL_OBJECT, "a wooden boat")),
-    ("Jaguar", (Label.ANIMAL, "a big cat"), (Label.PHYSICAL_OBJECT, "an old car")),
-    ("Austin", (Label.LOCATION, "a city in Texas"), (Label.PERSON, "the new driver")),
-)
 
-#: ``(text, label, type, property head, degree)``. The property is the
-#: adjective already inside the surface form, recorded rather than re-parsed.
-_COMMON_NOUNS: tuple[tuple[str, Label, str, str | None, str | None], ...] = (
-    ("the dog", Label.ANIMAL, "dog", None, None),
-    ("the cat", Label.ANIMAL, "cat", None, None),
-    ("the horse", Label.ANIMAL, "horse", None, None),
-    ("the woman", Label.PERSON, "woman", None, None),
-    ("the mechanic", Label.PERSON, "profession", None, None),
-    ("the teacher", Label.PERSON, "profession", None, None),
-    ("a red ball", Label.PHYSICAL_OBJECT, "toy", "red", None),
-    ("a very large ball", Label.PHYSICAL_OBJECT, "toy", "large", "very"),
-    ("a book", Label.PHYSICAL_OBJECT, "document", None, None),
-    ("an old car", Label.PHYSICAL_OBJECT, "car", "old", None),
-    ("a small blue car", Label.PHYSICAL_OBJECT, "car", "blue", None),
-    ("the table", Label.PHYSICAL_OBJECT, "furniture", None, None),
-    ("the city", Label.LOCATION, "city", None, None),
-    ("the village", Label.LOCATION, "village", None, None),
-    ("the company", Label.ORGANIZATION, "company", None, None),
-    ("the university", Label.ORGANIZATION, "university", None, None),
-    ("a plan", Label.ABSTRACT_ENTITY, "notion", None, None),
-    ("an idea", Label.ABSTRACT_ENTITY, "notion", None, None),
-)
+def entity_to_json(entity: Entity) -> dict[str, object]:
+    """Serialise an entity back into a pool row."""
+    row: dict[str, object] = {
+        "text": entity.text,
+        "labels": [str(label) for label in entity.labels.ordered],
+    }
+    for key, value in (
+        ("type", entity.type_name),
+        ("named", entity.is_named or None),
+        ("preposition", entity.adjunct_preposition),
+        ("appositive", entity.appositive),
+        ("property_head", entity.property_head),
+        ("property_degree", entity.property_degree),
+    ):
+        if value:
+            row[key] = value
+    return row
 
-_EMOTIONS: tuple[tuple[str, str], ...] = (
-    ("joy", "feeling"),
-    ("fear", "feeling"),
-    ("anger", "feeling"),
-    ("sadness", "feeling"),
-)
 
-#: Adjunct fillers, stored bare with the preposition they take alongside.
-_DATES: tuple[tuple[str, str], ...] = (
-    ("Monday", "on"),
-    ("March", "in"),
-    ("the first of May", "on"),
-)
-_TIMES: tuple[tuple[str, str], ...] = (
-    ("noon", "at"),
-    ("dawn", "before"),
-    ("midnight", "after"),
-)
+def load_pool(
+    path: Path | str = ENTITIES_PATH, hierarchy: TypeHierarchy | None = None
+) -> EntityPool:
+    """Read an entity pool from JSON.
+
+    *hierarchy* is checked against, not consulted: a row claiming a label
+    the ontology does not give its type is a contradiction between two
+    files that would otherwise sit there unnoticed.
+    """
+    with Path(path).open("rt", encoding="utf-8") as stream:
+        data = json.load(stream)
+    pool = EntityPool()
+    for index, row in enumerate(data.get("entities", ())):
+        try:
+            entity = entity_from_json(row)
+        except (KeyError, ValueError) as error:
+            raise ValueError(f"{path}: row {index}: {error}") from error
+        if hierarchy is not None and entity.type_name and entity.type_name in hierarchy:
+            inherited = hierarchy.labels_of(entity.type_name)
+            label = entity.entity_label
+            if label is not None and inherited.entity_labels and label not in inherited.labels:
+                raise ValueError(
+                    f"{path}: row {index}: {entity.text!r} is declared {label} "
+                    f"but the ontology says {entity.type_name} is {inherited}"
+                )
+        pool.add(entity)
+    return pool
+
+
+def save_pool(pool: EntityPool, path: Path | str, *, comment: Sequence[str] = ()) -> None:
+    """Write a pool back out, preserving the file's shape."""
+    payload = {
+        "_comment": list(comment),
+        "entities": [entity_to_json(entity) for entity in pool],
+    }
+    Path(path).write_text(
+        json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
+    )
 
 
 def default_pool(hierarchy: TypeHierarchy | None = None) -> EntityPool:
-    """The entity pool shipped with the package.
-
-    *hierarchy* is used only to look labels up for common nouns, so that the
-    pool and the ontology cannot disagree about what ``the dog`` is.
-    """
-    pool = EntityPool()
-    # Names with a curated set of readings are added only from _AMBIGUOUS, so
-    # that a plain single-label entry cannot shadow them in sampling.
-    ambiguous_forms = {form for form, _, _ in _AMBIGUOUS}
-
-    for text in _REAL_PLACES + _FICTIONAL_PLACES:
-        if text in ambiguous_forms:
-            continue
-        pool.add(_named(text, Label.LOCATION, "city"))
-    for text in _REAL_PEOPLE + _FICTIONAL_PEOPLE:
-        if text in ambiguous_forms:
-            continue
-        pool.add(_named(text, Label.PERSON, "human"))
-    for text in _ORGANIZATIONS:
-        pool.add(_named(text, Label.ORGANIZATION, "institution"))
-    for text in _ANIMAL_NAMES:
-        if text in ambiguous_forms:
-            continue
-        pool.add(_named(text, Label.ANIMAL, "creature"))
-    for text in _NAMED_OBJECTS:
-        pool.add(
-            Entity(
-                text,
-                LabelSet.of(Label.PHYSICAL_OBJECT, Label.NAMED_OBJECT, Label.NAMED_ENTITY),
-                "ship",
-                is_named=True,
-            )
-        )
-
-    for text, first, second in _AMBIGUOUS:
-        for label, appositive in (first, second):
-            # Both the bare name and the glossed one: the bare form creates
-            # the ambiguity, the glossed form resolves it.
-            pool.add(_named(text, label))
-            pool.add(_named(text, label, appositive=appositive))
-
-    for text, label, type_name, head, degree in _COMMON_NOUNS:
-        if hierarchy is not None and type_name in hierarchy:
-            labels = hierarchy.labels_of(type_name)
-            if label not in labels:
-                raise ValueError(
-                    f"{text!r} is declared {label} but the ontology says "
-                    f"{type_name} is {labels}"
-                )
-        if head is not None and head not in text:
-            raise ValueError(f"{text!r} does not contain its property head {head!r}")
-        pool.add(_common(text, label, type_name, None, head, degree))
-
-    for text, type_name in _EMOTIONS:
-        pool.add(
-            Entity(text, LabelSet.of(Label.ABSTRACT_ENTITY, Label.EMOTION), type_name)
-        )
-
-    for text, preposition in _DATES:
-        pool.add(_common(text, Label.DATE, "DATE", preposition))
-    for text, preposition in _TIMES:
-        pool.add(_common(text, Label.TIME, "TIME", preposition))
-
-    return pool
+    """The entity pool shipped with the package."""
+    return load_pool(ENTITIES_PATH, hierarchy)

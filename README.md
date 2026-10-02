@@ -40,6 +40,10 @@ python -m semantic_corpus.cli --help
 | `semantic_generator/transforms.py` | tense, voice, negation and modality variation |
 | `semantic_generator/generator.py` | seeded sampling, ambiguity pairs, omitted arguments |
 | `documents.py` | `Document`, `Passage`, `Utterance`, spans, `AnnotationRun` |
+| `qasrl_bridge.py` | QA-SRL Bank → canonical documents, runs and QA examples |
+| `qasrl_core/question_template.py` | the abstract shape of a question, for folding and counting |
+| `semantic_generator/entities.json` | the entity pool, as data rather than code |
+| `semantic_generator/mining.py` | typed entity proposals from a plain-text corpus |
 | `semantic_annotator/ingestion.py` | TXT/JSONL/dialogue input, dedup, document-level splits, passages |
 | `semantic_annotator/candidates.py` | proposals from morphology, POS counts, the ontology lexicon |
 | `semantic_annotator/lexicons.py` | closed lists: stative verbs, discourse markers, contractions |
@@ -287,6 +291,26 @@ compared.
 
 `python -m semantic_corpus.cli questions --count 3 --prompts` prints the
 decoder-only layout, with the loss computed over `<answer>` alone.
+
+## QA-SRL Bank as annotated real text
+
+The bank is real text that is already annotated — 64 018 sentences with
+predicates, argument spans and questions people wrote and voted on.
+`qasrl_bridge` converts it into the same `Document` + `AnnotationRun` shape
+everything else uses:
+
+```python
+from semantic_corpus.qasrl_bridge import iter_bank_canonical, bank_qa_examples
+
+for document, run in iter_bank_canonical("data/qasrl-v2/orig/dev.jsonl.gz"):
+    assert run.validate_against(document) == []
+```
+
+Over the whole bank: **0 invalid runs and 257 549 QA examples**, with the
+roles normalised through the typed `Frame` and the original question kept on
+each relation — the handoff makes the question primary and the role derived.
+Entity types are *not* invented: the bank never recorded them, so mentions
+carry an empty label set, which reads as "not annotated".
 
 ## Storing and exporting
 

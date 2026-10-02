@@ -45,8 +45,6 @@ What the original `TemplateStateMachine` additionally does, and this does not:
 Deliberately out of scope per the handoff, confirmed by the audit:
 
 * `Autocomplete.scala` — blocked on gap 1 above;
-* `labeling/QuestionTemplate.scala` — tense- and adverbial-normalised question
-  templates;
 * `labeling/ClauseResolution.scala` — slots to clausal frames;
 * `labeling/DiscreteLabel.scala` — questions to discrete role labels;
 * `labeling/QuestionLabelMapper.scala` — an arrow abstraction with no useful
