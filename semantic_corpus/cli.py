@@ -14,6 +14,8 @@ Commands
 ``candidates`` show what candidate extraction proposes for a text
 ``annotate``   run the annotator against an HTTP teacher
 ``questions``  generate QA examples from generated situations
+``build``      generate, store, export SFT/BIO and report on the result
+``report``     read an existing store and report distribution and leakage
 """
 
 from __future__ import annotations
@@ -303,6 +305,80 @@ def cmd_questions(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_build(args: argparse.Namespace) -> int:
+    from .exporters import build_report, export_bio, export_sft, write_report
+    from .question_generator import QuestionGenerator, balance
+    from .semantic_generator import Generator
+    from .semantic_generator.canonical import to_canonical
+    from .semantic_generator.generator import DEFAULT_PARADIGMS
+    from .storage import CorpusStore
+
+    store = CorpusStore(args.store)
+    generator = Generator(seed=args.seed, split=args.split)
+    questions = QuestionGenerator(
+        paradigms=DEFAULT_PARADIGMS,
+        ambiguous_forms=generator.pool.ambiguous_forms(),
+        seed=args.seed,
+    )
+
+    pairs = []
+    for index, realized in enumerate(generator.generate(args.count)):
+        document, run = to_canonical(
+            realized,
+            document_id=f"{args.prefix}-{index:06d}",
+            split=args.split,
+            random_seed=args.seed,
+        )
+        store.add_document(document)
+        store.add_run(run, document)
+        examples = questions.for_document(document, run)
+        if args.no_answer_share is not None or args.max_per_kind:
+            examples = balance(
+                examples,
+                seed=args.seed,
+                max_per_kind=args.max_per_kind or None,
+                no_answer_share=args.no_answer_share,
+            )
+        store.add_examples(examples, generation_run_id=run.run_id)
+        pairs.append((document, run))
+
+    version = store.publish_version(args.version, notes=args.notes)
+    print(f"stored {version['counts']['documents']} documents, "
+          f"{version['counts']['qa_examples']} examples "
+          f"(version {version['version_id']}, {version['content_hash'][:12]})")
+
+    out = Path(args.out)
+    written = export_sft(store.examples(split=args.split), out / "sft.jsonl")
+    print(f"sft: {written} records -> {out / 'sft.jsonl'}")
+    bio = export_bio(pairs, out / "bio.jsonl", scheme=args.scheme)
+    print(f"bio: {bio}")
+
+    # Names held out for the unseen-names test must not be in training text.
+    from .semantic_generator import default_pool
+
+    held_out = (
+        list(default_pool().split("test").surface_forms)
+        if args.split == "train"
+        else []
+    )
+    report = build_report(store, held_out_names=held_out)
+    write_report(report, out / "report.json")
+    print()
+    print(report)
+    return 0 if report.is_clean else 1
+
+
+def cmd_report(args: argparse.Namespace) -> int:
+    from .exporters import build_report, write_report
+    from .storage import CorpusStore
+
+    report = build_report(CorpusStore(args.store, create=False))
+    print(report)
+    if args.out:
+        write_report(report, args.out)
+    return 0 if report.is_clean else 1
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="semantic-corpus", description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
@@ -384,6 +460,25 @@ def build_parser() -> argparse.ArgumentParser:
     questions.add_argument("--prompts", action="store_true",
                            help="print the decoder-only training layout")
     questions.set_defaults(func=cmd_questions)
+
+    build = sub.add_parser("build", help="generate, store, export and report")
+    build.add_argument("--store", type=Path, default=Path("build/store"))
+    build.add_argument("--out", type=Path, default=Path("build/export"))
+    build.add_argument("--count", type=int, default=100)
+    build.add_argument("--seed", type=int, default=0)
+    build.add_argument("--split", choices=("train", "dev", "test"), default="train")
+    build.add_argument("--prefix", default="gen")
+    build.add_argument("--version", default="v1")
+    build.add_argument("--notes", default="")
+    build.add_argument("--scheme", choices=("BIO", "BILOU"), default="BIO")
+    build.add_argument("--max-per-kind", type=int, default=0)
+    build.add_argument("--no-answer-share", type=float, default=None)
+    build.set_defaults(func=cmd_build)
+
+    report = sub.add_parser("report", help="distribution and leakage of a store")
+    report.add_argument("--store", type=Path, required=True)
+    report.add_argument("--out", type=Path, default=None)
+    report.set_defaults(func=cmd_report)
 
     return parser
 

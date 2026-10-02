@@ -27,6 +27,13 @@ them produces questions whose stored answers are wrong:
     justification. For the same reason a clause is rebuilt from the verb
     chain rather than from the predicate's surface token, which in *Yavin
     didn't visit Vustal* is only the bare stem.
+
+Questions are worded in the **active voice** whatever voice the source
+sentence used. A question is about a relation, not about how the sentence
+happened to be phrased, and building an agent question on a passive record
+produces nonsense: *The city is visited by Marcus* would otherwise be asked
+as *Who is visited the city?* The passive wording is still produced, by
+:func:`passive_paraphrase_questions`, where it is deliberate.
 """
 
 from __future__ import annotations
@@ -97,19 +104,29 @@ _TENSES = frozenset({"present", "past", "can", "will", "might", "should", "would
 # ---------------------------------------------------------------------------
 
 
+#: Words that are safe to lower-case: an article never begins a name, so
+#: doing it cannot damage a proper noun.
+_LOWERABLE_FIRST_WORDS = frozenset({"the", "a", "an"})
+
+
 def _inline(mention: EntityMention | None) -> str:
     """A mention as it should read inside a sentence.
 
     A span lifted from the start of a sentence carries a capital that does
-    not belong mid-question: *What did The woman give?* A name keeps its
-    capital; a common noun loses it.
+    not belong mid-question: *What did The woman give?* Only a leading
+    article is lowered, because anything else might be a proper noun that a
+    label does not happen to mark — *March* is a ``DATE``, not a
+    ``NAMED_ENTITY``, and lowering it would be wrong.
     """
     if mention is None:
         return ""
     text = mention.exact_text
     if Label.NAMED_ENTITY in mention.labels or Label.NAMED_OBJECT in mention.labels:
         return text
-    return text[:1].lower() + text[1:]
+    first = text.split(" ", 1)[0].lower()
+    if first in _LOWERABLE_FIRST_WORDS:
+        return text[:1].lower() + text[1:]
+    return text
 
 
 def _article(word: str) -> str:
@@ -360,7 +377,9 @@ def _clause(view: ArgumentView, resolver: ParadigmResolver) -> str:
     Vustal* it is the bare stem ``visit``, and reusing it would produce the
     answer *Yavin visit Vustal.*
     """
-    words = _verb_words(view.predicate, resolver, subject_present=False)
+    words = _verb_words(
+        view.predicate, resolver, subject_present=False, passive=False
+    )
     parts = [
         _inline(view.agent),
         *words,
@@ -413,7 +432,9 @@ def atomic_questions(
 
         # The subject is the gap: no auxiliary is fronted, the verb stays finite.
         if agent is not None:
-            words = _verb_words(predicate, resolver, subject_present=False)
+            words = _verb_words(
+                predicate, resolver, subject_present=False, passive=False
+            )
             examples.append(
                 example(
                     _question(
@@ -426,7 +447,9 @@ def atomic_questions(
 
         # Any other argument: the subject is spelled out, so do-support appears.
         if theme is not None and agent is not None:
-            aux, *rest = _verb_words(predicate, resolver, subject_present=True)
+            aux, *rest = _verb_words(
+                predicate, resolver, subject_present=True, passive=False
+            )
             examples.append(
                 example(
                     _question(
@@ -444,7 +467,9 @@ def atomic_questions(
             )
 
         if recipient is not None and agent is not None:
-            aux, *rest = _verb_words(predicate, resolver, subject_present=True)
+            aux, *rest = _verb_words(
+                predicate, resolver, subject_present=True, passive=False
+            )
             examples.append(
                 example(
                     _question(
@@ -465,7 +490,9 @@ def atomic_questions(
         for relation, mention, preposition in view.adjuncts():
             wh = _WH_FOR_ADJUNCT[relation]
             if agent is not None:
-                aux, *rest = _verb_words(predicate, resolver, subject_present=True)
+                aux, *rest = _verb_words(
+                    predicate, resolver, subject_present=True, passive=False
+                )
                 question = _question([wh, aux, _inline(agent), *rest, _inline(theme)])
             else:
                 question = f"{wh} did this happen?"
@@ -477,7 +504,9 @@ def atomic_questions(
 
         # "What did Anna do?" — the whole event, answered by the clause.
         if agent is not None:
-            aux = _verb_words(predicate, resolver, subject_present=True)[0]
+            aux = _verb_words(
+                predicate, resolver, subject_present=True, passive=False
+            )[0]
             examples.append(
                 QAExample(
                     context=body,
@@ -514,7 +543,7 @@ def passive_paraphrase_questions(
 
     for view in build_views(run, document):
         agent, theme, recipient = view.agent, view.theme, view.recipient
-        if agent is None or theme is None or view.predicate.voice == "passive":
+        if agent is None or theme is None:
             continue
 
         # Theme questioned: it is the passive subject, so it is the gap.
@@ -795,7 +824,11 @@ def yes_no_questions(
         if agent is None:
             continue
         aux, *rest = _verb_words(
-            view.predicate, resolver, subject_present=True, negated=False
+            view.predicate,
+            resolver,
+            subject_present=True,
+            negated=False,
+            passive=False,
         )
         examples.append(
             QAExample(

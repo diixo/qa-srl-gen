@@ -1,12 +1,14 @@
 # qa-srl-gen — semantic corpus toolkit
 
 Python core of QA-SRL plus, in later stages, a generator of semantic training
-corpora. This repository currently implements **stages 0–4**: the QA-SRL core
-(`semantic_corpus/qasrl_core`), the canonical document representation
+corpora. This repository implements **all five stages** of the handoff: the QA-SRL
+core (`semantic_corpus/qasrl_core`), the canonical document representation
 (`semantic_corpus/documents.py`), the ontology (`semantic_corpus/ontology`),
 the semantic generator (`semantic_corpus/semantic_generator`), the semantic
-annotator (`semantic_corpus/semantic_annotator`) and the question generator
-(`semantic_corpus/question_generator`). The full plan lives in
+annotator (`semantic_corpus/semantic_annotator`), the question generator
+(`semantic_corpus/question_generator`), the store
+(`semantic_corpus/storage`) and the exporters
+(`semantic_corpus/exporters`). The full plan lives in
 [HANDOFF_SEMANTIC_CORPUS_RU.md](HANDOFF_SEMANTIC_CORPUS_RU.md).
 
 No installation, no virtualenv, no build system: the package sits at the
@@ -48,7 +50,12 @@ python -m semantic_corpus.cli --help
 | `question_generator/negatives.py` | genuinely unanswerable questions |
 | `question_generator/paraphrases.py` | conservative, deterministic rewordings |
 | `question_generator/answers.py` | the `QAExample` record and answer wording |
-| `cli.py` | `inspect`, `roundtrip`, `validate`, `lookup`, `frames`, `generate`, `ambiguity`, `ingest`, `candidates`, `annotate`, `questions` |
+| `storage/schema.py` | record codecs and the store's invariants |
+| `storage/repository.py` | the append-only JSONL store |
+| `exporters/sft.py` | decoder-only training records, split at the loss boundary |
+| `exporters/bio.py` | the lossy BIO/BILOU projection, with its cost counted |
+| `exporters/report.py` | class distribution and leakage |
+| `cli.py` | `inspect`, `roundtrip`, `validate`, `lookup`, `frames`, `generate`, `ambiguity`, `ingest`, `candidates`, `annotate`, `questions`, `build`, `report` |
 
 ## Short example
 
@@ -251,6 +258,55 @@ compared.
 `python -m semantic_corpus.cli questions --count 3 --prompts` prints the
 decoder-only layout, with the loss computed over `<answer>` alone.
 
+## Storing and exporting
+
+One command runs the whole pipeline — generate, store, export, report:
+
+```bash
+python -m semantic_corpus.cli build --count 100 --seed 42 --no-answer-share 0.15
+```
+
+```text
+stored 30 documents, 473 examples (version v1, b2ef8d35151b)
+sft: 473 records
+bio: 30 documents, 176 tokens, 113 spans tagged; dropped 0 overlapping spans
+     and 54 extra labels
+
+ontology v1  content b2ef8d35151b
+documents: train=30
+examples:  train=473
+kinds:     atomic=97, entity_type=83, no_answer=43, ontology=25, paraphrase=160, ...
+refusals:  10.6%
+leakage:   none
+```
+
+The store is a directory of append-only JSONL files — SQLite and Parquet are
+both ruled out, and JSONL is the only option that needs no dependency. Four
+guards are built in, each covering a failure that is otherwise silent:
+ontology versions cannot mix, documents are deduplicated by content hash, a
+document cannot change split, and a run whose offsets do not match its text
+is refused outright. A published version names exactly what the store held,
+with a content hash over every table.
+
+**The SFT export splits prompt from completion** rather than emitting one
+blob. The handoff puts the loss on the answer alone; a trainer handed a
+single `text` field has to find the boundary by string matching, and a
+question containing the tag text would break that silently — training the
+model to reproduce the context, which looks like learning and is not.
+
+**BIO is a projection and says what it cost.** A per-token tag sequence
+cannot represent a multi-label or nested annotation, so the exporter counts
+every span it dropped for overlapping and every label it discarded, instead
+of quietly keeping one.
+
+**The report looks for the failure that hides.** Leakage is checked by
+content hash rather than identifier — the same text under two ids is exactly
+the case an id-based check misses — and by held-out entity name, which is
+what turns `unseen_names_test` from a claim into a verified property. An
+identical example on both sides of the split line is fatal; the same
+question and answer under *different* contexts is reported separately, since
+the model still has to read the context.
+
 ## How the question template works
 
 A question is seven slots, concatenated in a fixed order, with `_` meaning
@@ -346,8 +402,11 @@ Reported rather than silently tolerated:
 * `question_generator/generator.py` and `semantic_generator/canonical.py` are
   the same pattern: a driver that needs every template family at once, and
   the bridge that lets generated and annotated records share one shape.
-* Storage will be JSONL. The handoff specifies SQLite; the user has ruled out
-  both SQLite and Parquet.
+* Storage is JSONL. The handoff specifies SQLite; the user has ruled out both
+  SQLite and Parquet, and JSONL is the only remaining option that keeps the
+  package dependency-free.
+* `exporters/report.py` is not in the handoff's file list, but the
+  distribution-and-leakage report it produces is step 6 of stage 5.
 
 ## Project status and what is missing
 
