@@ -1,9 +1,11 @@
 # qa-srl-gen — semantic corpus toolkit
 
 Python core of QA-SRL plus, in later stages, a generator of semantic training
-corpora. This repository currently implements **stages 0–2**: the QA-SRL core
-(`semantic_corpus/qasrl_core`), the ontology (`semantic_corpus/ontology`) and
-the semantic generator (`semantic_corpus/semantic_generator`). The full plan lives in
+corpora. This repository currently implements **stages 0–3**: the QA-SRL core
+(`semantic_corpus/qasrl_core`), the canonical document representation
+(`semantic_corpus/documents.py`), the ontology (`semantic_corpus/ontology`),
+the semantic generator (`semantic_corpus/semantic_generator`) and the
+semantic annotator (`semantic_corpus/semantic_annotator`). The full plan lives in
 [HANDOFF_SEMANTIC_CORPUS_RU.md](HANDOFF_SEMANTIC_CORPUS_RU.md).
 
 No installation, no virtualenv, no build system: the package sits at the
@@ -34,7 +36,13 @@ python -m semantic_corpus.cli --help
 | `semantic_generator/realization.py` | situation → sentence, with exact spans and relations |
 | `semantic_generator/transforms.py` | tense, voice, negation and modality variation |
 | `semantic_generator/generator.py` | seeded sampling, ambiguity pairs, omitted arguments |
-| `cli.py` | `inspect`, `roundtrip`, `validate`, `lookup`, `frames`, `generate`, `ambiguity` |
+| `documents.py` | `Document`, `Passage`, `Utterance`, spans, `AnnotationRun` |
+| `semantic_annotator/ingestion.py` | TXT/JSONL/dialogue input, dedup, document-level splits, passages |
+| `semantic_annotator/candidates.py` | proposals from morphology, POS counts, the ontology lexicon |
+| `semantic_annotator/teacher.py` | the provider-agnostic adapter protocol |
+| `semantic_annotator/alignment.py` | quoted spans → verified offsets, with rejections |
+| `semantic_annotator/verifier.py` | structural checks and an independent second pass |
+| `cli.py` | `inspect`, `roundtrip`, `validate`, `lookup`, `frames`, `generate`, `ambiguity`, `ingest`, `candidates`, `annotate` |
 
 ## Short example
 
@@ -130,6 +138,54 @@ Rex: ANIMAL vs PERSON
 argument unexpressed, which is the honest basis for a *the text does not say*
 example: the record knows there was an agent, the sentence does not name it.
 
+## Annotating real text
+
+```python
+from semantic_corpus.semantic_annotator import (
+    CandidateResources, HttpTeacher, annotate_document, ingest,
+)
+
+teacher = HttpTeacher("http://localhost:8000/annotate", name="local-7b")
+resources = CandidateResources.load()
+
+for document in ingest(["corpus.jsonl"]):
+    outcome = annotate_document(document, teacher, run_id="run-1", resources=resources)
+    print(outcome.summary())
+    for rejection in outcome.rejected:
+        print("  dropped:", rejection)
+```
+
+The teacher returns *text*, never offsets — asking a language model to count
+characters invites silent corruption. `alignment` locates each quote in the
+source and **drops anything it cannot find**, with a reason:
+
+```text
+d1: 8 annotations from 8 candidates, 3 rejected
+  dropped: 'Berlin': not found in the passage (occurrence 0)
+  dropped: 'Anna': a span has at most one entity type, got PERSON, ANIMAL
+  dropped: 'Monday': labels not in the ontology: ['WEEKDAY']
+```
+
+Candidates are proposals with evidence, never decisions. The dictionary says
+`ball` can be a verb, so `ball` is proposed as both `ACTION` and
+`PHYSICAL_OBJECT`, with the POS counts that make the noun reading likelier
+attached:
+
+```bash
+python -m semantic_corpus.cli candidates --text "The jaguar ran up to the gate."
+```
+
+```text
+  jaguar   ANIMAL                               ontology
+  ran      ACTION                               inflections
+  gate     ACTION + LOCATION                    inflections,postags,ontology
+```
+
+Annotation is append-only. Verifying does not edit a run: it produces a
+second one, formed without seeing the first, and `promote_agreed` marks what
+both passes found as `VERIFIED`. What only one pass found keeps its status —
+a single disagreement is evidence, not a verdict.
+
 ## How the question template works
 
 A question is seven slots, concatenated in a fixed order, with `_` meaning
@@ -216,6 +272,12 @@ Reported rather than silently tolerated:
 * `semantic_generator/generator.py` is not in the handoff's list. Sampling
   needs frames, pools and realisation at once, and putting it in any of the
   three would make them import one another.
+* `documents.py` holds the canonical representation, which the handoff
+  specifies but assigns to no module. It sits at the top level because the
+  annotator, the storage layer and the exporters all need it.
+* `semantic_annotator/ingestion.py` and `pipeline.py` are likewise not in the
+  list: reading sources is step 1 of the stage, and the pipeline is the
+  wiring that keeps the other four modules independently testable.
 
 ## Project status and what is missing
 

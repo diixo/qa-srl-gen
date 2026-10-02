@@ -10,6 +10,9 @@ Commands
 ``frames``     print the typed frames the generator knows
 ``generate``   generate sentences with their spans and relations
 ``ambiguity``  show name pairs whose type only context settles
+``ingest``     read source texts into documents, with splits and passages
+``candidates`` show what candidate extraction proposes for a text
+``annotate``   run the annotator against an HTTP teacher
 """
 
 from __future__ import annotations
@@ -196,6 +199,76 @@ def cmd_ambiguity(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_ingest(args: argparse.Namespace) -> int:
+    from .semantic_annotator import ingest
+
+    counts: dict[str, int] = {}
+    shown = 0
+    for document in ingest(
+        args.paths, window=args.window, dialogue_suffixes=args.dialogue_suffix
+    ):
+        counts[document.split or "?"] = counts.get(document.split or "?", 0) + 1
+        if shown < args.limit:
+            shown += 1
+            print(
+                f"{document.document_id} [{document.split}] "
+                f"{len(document.passages)} passages, "
+                f"{len(document.utterances)} turns, sha256={document.sha256[:12]}"
+            )
+            if args.passages:
+                for passage in document.passages:
+                    body = passage.text_in(document).replace("\n", " / ")
+                    print(f"    {passage.passage_id}: {body[:100]!r}")
+    print(f"documents by split: {dict(sorted(counts.items()))}")
+    return 0
+
+
+def cmd_candidates(args: argparse.Namespace) -> int:
+    from .documents import Document
+    from .semantic_annotator import CandidateResources, extract_candidates
+
+    text = args.text if args.text else Path(args.file).read_text(encoding="utf-8")
+    resources = CandidateResources.load(wiktionary_dir=args.wiktionary)
+    document = Document(document_id="cli", text=text)
+    for candidate in extract_candidates(document, None, resources):
+        print(
+            f"  {candidate.exact_text:18s} {str(candidate.proposed_labels):44s} "
+            f"{','.join(candidate.evidence)}"
+        )
+        if args.verbose:
+            print(f"      lemmas={candidate.lemmas} tags={dict(candidate.tag_counts)}")
+    return 0
+
+
+def cmd_annotate(args: argparse.Namespace) -> int:
+    from .ontology import Label
+    from .semantic_annotator import (
+        CandidateResources,
+        HttpTeacher,
+        annotate_document,
+        ingest,
+    )
+
+    teacher = HttpTeacher(
+        args.teacher_url, name=args.model, labels=[str(label) for label in Label]
+    )
+    resources = CandidateResources.load(wiktionary_dir=args.wiktionary)
+    failures = 0
+    for index, document in enumerate(ingest(args.paths)):
+        if args.limit and index >= args.limit:
+            break
+        outcome = annotate_document(
+            document, teacher, run_id=f"{args.run_id}-{index:05d}", resources=resources
+        )
+        print(outcome.summary())
+        if not outcome.ok:
+            failures += 1
+            print(outcome.structure)
+        for rejection in outcome.rejected[: args.show]:
+            print(f"    rejected {rejection}")
+    return 1 if failures else 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="semantic-corpus", description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
@@ -237,6 +310,37 @@ def build_parser() -> argparse.ArgumentParser:
     ambiguity = sub.add_parser("ambiguity", help="name pairs settled only by context")
     ambiguity.add_argument("--seed", type=int, default=0)
     ambiguity.set_defaults(func=cmd_ambiguity)
+
+    ingest_cmd = sub.add_parser("ingest", help="read source texts into documents")
+    ingest_cmd.add_argument("paths", nargs="+", type=Path)
+    ingest_cmd.add_argument("--window", type=int, default=3)
+    ingest_cmd.add_argument("--limit", type=int, default=5)
+    ingest_cmd.add_argument("--passages", action="store_true")
+    ingest_cmd.add_argument(
+        "--dialogue-suffix",
+        nargs="*",
+        default=[],
+        help="filename endings to read as dialogue, e.g. dailydialog-val.jsonl",
+    )
+    ingest_cmd.set_defaults(func=cmd_ingest)
+
+    candidates = sub.add_parser("candidates", help="show proposed annotation spans")
+    group = candidates.add_mutually_exclusive_group(required=True)
+    group.add_argument("--text")
+    group.add_argument("--file", type=Path)
+    candidates.add_argument("--wiktionary", default="data/wiktionary")
+    candidates.add_argument("--verbose", action="store_true")
+    candidates.set_defaults(func=cmd_candidates)
+
+    annotate = sub.add_parser("annotate", help="annotate documents with an HTTP teacher")
+    annotate.add_argument("paths", nargs="+", type=Path)
+    annotate.add_argument("--teacher-url", required=True)
+    annotate.add_argument("--model", default="http-teacher")
+    annotate.add_argument("--run-id", default="run")
+    annotate.add_argument("--wiktionary", default="data/wiktionary")
+    annotate.add_argument("--limit", type=int, default=0)
+    annotate.add_argument("--show", type=int, default=5)
+    annotate.set_defaults(func=cmd_annotate)
 
     return parser
 

@@ -10,9 +10,12 @@ from .models import (
     LabelSet,
     MarkerForm,
     MarkerFunction,
+    Mood,
     Polarity,
     Relation,
+    ReviewStatus,
     SpeechAct,
+    Stance,
 )
 
 __all__ = [
@@ -24,9 +27,12 @@ __all__ = [
     "LabelSet",
     "MarkerForm",
     "MarkerFunction",
+    "Mood",
     "Polarity",
     "Relation",
+    "ReviewStatus",
     "SpeechAct",
+    "Stance",
     "PREDICATE_LABELS",
     "ENTITY_LABELS",
     "CHARACTERISTIC_LABELS",

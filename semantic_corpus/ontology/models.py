@@ -29,6 +29,9 @@ __all__ = [
     "SpeechAct",
     "Relation",
     "Polarity",
+    "Stance",
+    "Mood",
+    "ReviewStatus",
     "LabelSet",
 ]
 
@@ -178,6 +181,46 @@ class Relation(str, Enum):
 class Polarity(str, Enum):
     POSITIVE = "POSITIVE"
     NEGATIVE = "NEGATIVE"
+
+    def __str__(self) -> str:
+        return self.value
+
+
+class Stance(str, Enum):
+    """The speaker's position towards what they are saying."""
+
+    NEUTRAL = "NEUTRAL"
+    SUPPORTIVE = "SUPPORTIVE"
+    OPPOSED = "OPPOSED"
+    UNCERTAIN = "UNCERTAIN"
+
+    def __str__(self) -> str:
+        return self.value
+
+
+class Mood(str, Enum):
+    """The grammatical mood of an utterance."""
+
+    DECLARATIVE = "DECLARATIVE"
+    INTERROGATIVE = "INTERROGATIVE"
+    IMPERATIVE = "IMPERATIVE"
+    EXCLAMATIVE = "EXCLAMATIVE"
+
+    def __str__(self) -> str:
+        return self.value
+
+
+class ReviewStatus(str, Enum):
+    """How far an annotation has got through checking.
+
+    Annotations are append-only, so this never moves backwards within one
+    run: a later run records a new judgment instead of editing an old one.
+    """
+
+    UNREVIEWED = "UNREVIEWED"
+    AUTO_VALIDATED = "AUTO_VALIDATED"
+    VERIFIED = "VERIFIED"
+    REJECTED = "REJECTED"
 
     def __str__(self) -> str:
         return self.value
