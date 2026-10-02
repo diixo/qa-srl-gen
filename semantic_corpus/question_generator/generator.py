@@ -77,6 +77,16 @@ def dialogue_act_questions(
         first = document.utterances[max(0, index - context_turns)]
         context = document.text[first.span.start_char : utterance.span.end_char]
         turn = utterance.text_in(document)
+        # The context is a slice, so a document-global span would point past
+        # its end. Evidence is recorded against what the example shows.
+        local = utterance.span.shifted(-first.span.start_char)
+
+        # A turn that already ends in "?" or "!" must not be quoted into a
+        # question that appends another: `...dinner?"?` reads as a typo and
+        # would be learned as one.
+        quoted = turn.rstrip()
+        if quoted and quoted[-1] in "?!.":
+            quoted = quoted[:-1].rstrip()
 
         def example(question: str, answer: str, **meta) -> QAExample:
             return QAExample(
@@ -86,14 +96,14 @@ def dialogue_act_questions(
                 kind=QAKind.SPEECH_ACT,
                 document_id=document.document_id,
                 run_id=run.run_id,
-                evidence=(utterance.span,),
+                evidence=(local,),
                 metadata={"utterance_id": utterance.utterance_id, **meta},
             )
 
         if annotation.speech_acts:
             examples.append(
                 example(
-                    f'What is the speaker doing when they say "{turn}"?',
+                    f'What is the speaker doing when they say "{quoted}"?',
                     _list_phrase([_readable(a) for a in annotation.speech_acts]),
                     aspect="speech_act",
                 )
@@ -101,7 +111,7 @@ def dialogue_act_questions(
         if annotation.marker_functions:
             examples.append(
                 example(
-                    f'What does "{turn}" express?',
+                    f'What does "{quoted}" express?',
                     _list_phrase([_readable(f) for f in annotation.marker_functions]),
                     aspect="marker",
                 )
@@ -109,7 +119,7 @@ def dialogue_act_questions(
         if annotation.stance is not None:
             examples.append(
                 example(
-                    f'What stance does the speaker take in "{turn}"?',
+                    f'What stance does the speaker take in "{quoted}"?',
                     _readable(annotation.stance),
                     aspect="stance",
                 )
@@ -117,7 +127,7 @@ def dialogue_act_questions(
         if annotation.polarity is not None:
             examples.append(
                 example(
-                    f'Is "{turn}" affirmative or negative?',
+                    f'Is "{quoted}" affirmative or negative?',
                     _readable(annotation.polarity),
                     aspect="polarity",
                 )
@@ -125,7 +135,7 @@ def dialogue_act_questions(
         if annotation.mood is not None:
             examples.append(
                 example(
-                    f'Is "{turn}" a statement, a question, or a command?',
+                    f'Is "{quoted}" a statement, a question, or a command?',
                     _readable(annotation.mood),
                     aspect="mood",
                 )

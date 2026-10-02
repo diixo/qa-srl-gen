@@ -35,9 +35,12 @@ from ..ontology import (
     ENTITY_LABELS,
     Label,
     LabelSet,
+    MarkerForm,
+    MarkerFunction,
     TypeHierarchy,
     load_default_hierarchy,
 )
+from .lexicons import CONTRACTIONS, NEGATION_TOKENS, STATIVE_VERBS, marker_for
 from ..qasrl_core.inflections import InflectionLexicon
 from ..qasrl_core.models import InflectedForms, VerbForm
 
@@ -46,6 +49,7 @@ __all__ = [
     "CandidateResources",
     "tokenize",
     "extract_candidates",
+    "rank_lemmas",
     "FUNCTION_WORDS",
 ]
 
@@ -87,6 +91,11 @@ class Candidate:
     verb_forms: tuple[VerbForm, ...] = ()
     #: How often the word is tagged this way in the POS resource, when known.
     tag_counts: Mapping[str, int] = field(default_factory=dict)
+    #: Set when the span reads as a discourse marker in this position.
+    marker_form: MarkerForm | None = None
+    marker_functions: tuple[MarkerFunction, ...] = ()
+    #: True for the clitic of a contraction that negates its clause.
+    negates: bool = False
 
     def validate_against(self, document: Document) -> None:
         document.check_span(self.span, self.exact_text)
@@ -94,6 +103,10 @@ class Candidate:
     @property
     def is_predicate_candidate(self) -> bool:
         return bool(self.proposed_labels.labels & {Label.ACTION, Label.STATE})
+
+    @property
+    def is_marker(self) -> bool:
+        return self.marker_form is not None
 
     def __str__(self) -> str:
         return f"{self.exact_text!r} -> {self.proposed_labels} ({', '.join(self.evidence)})"
@@ -142,17 +155,65 @@ class CandidateResources:
         return {k: tuple(v) for k, v in index.items()}
 
 
-def tokenize(text: str, offset: int = 0) -> tuple[Token, ...]:
-    """Split *text* into word tokens that carry their character offsets."""
-    return tuple(
-        Token(
-            text=match.group(),
-            start_char=match.start() + offset,
-            end_char=match.end() + offset,
-            index=index,
-        )
-        for index, match in enumerate(_TOKEN.finditer(text))
-    )
+def tokenize(
+    text: str, offset: int = 0, *, split_contractions: bool = True
+) -> tuple[Token, ...]:
+    """Split *text* into word tokens that carry their character offsets.
+
+    Contractions are split by default, so that ``don't`` becomes ``do`` plus
+    ``n't`` rather than one unknown word. Without this the negation is
+    invisible to everything downstream — and a corpus that cannot see
+    negation teaches that *I don't want it* and *I want it* mean the same.
+    Offsets stay exact: the two pieces partition the original span.
+    """
+    tokens: list[Token] = []
+    for match in _TOKEN.finditer(text):
+        word = match.group()
+        start = match.start() + offset
+        parts = CONTRACTIONS.get(word.lower()) if split_contractions else None
+        if parts and len(parts[0]) + len(parts[1]) == len(word):
+            head_end = start + len(parts[0])
+            tokens.append(Token(word[: len(parts[0])], start, head_end, len(tokens)))
+            tokens.append(
+                Token(word[len(parts[0]) :], head_end, match.end() + offset, len(tokens))
+            )
+            continue
+        tokens.append(Token(word, start, match.end() + offset, len(tokens)))
+    return tuple(tokens)
+
+
+def rank_lemmas(
+    lemmas: Sequence[str], resources: "CandidateResources"
+) -> tuple[str, ...]:
+    """Order candidate lemmas so the plausible ones come first.
+
+    The scrape offers ``thought -> thinck, think, thinke`` and
+    ``went -> gan, go``, in no useful order, so taking the first was taking
+    a guess. Mere presence in the part-of-speech resource does not separate
+    them — it is the same scrape, and ``thinck`` is in it too. What does
+    separate them is how many senses each lemma has recorded: a real word
+    accumulates several, scrape debris has exactly one. ``think`` carries
+    two tags against ``thinck``'s one, ``go`` three against ``gan``'s one,
+    ``make`` four against ``myek``'s one.
+    """
+    postags = resources.postags
+
+    def key(lemma: str) -> tuple[int, int, str]:
+        tags = postags.get(lemma.lower(), ())
+        return (-len(tags), len(lemma), lemma)
+
+    return tuple(sorted(dict.fromkeys(lemmas), key=key))
+
+
+def _capital_is_positional(document: Document, span: TextSpan) -> bool:
+    """Whether a capital letter is explained by sentence position alone.
+
+    Half the names proposed on DailyDialog were the first word of a second
+    sentence inside a turn — *Remember*, *Let's*, *Which*. A capital that
+    the position already explains is no evidence of a name.
+    """
+    before = document.text[: span.start_char].rstrip()
+    return not before or before[-1] in '.!?"\u2019\u201d'
 
 
 def _tag_counts(word: str, resources: CandidateResources) -> dict[str, int]:
@@ -182,6 +243,8 @@ def extract_candidates(
     tokens = tokenize(text, offset)
     candidates: list[Candidate] = []
     phrases = resources.phrase_index
+    content_tokens = [token for token in tokens if token.text.isalpha()]
+    alone = len(content_tokens) == 1
 
     consumed: set[int] = set()
 
@@ -212,10 +275,48 @@ def extract_candidates(
         if index in consumed:
             continue
         lowered = token.text.lower()
+        span = TextSpan(token.start_char, token.end_char, index, index + 1)
+
+        # Discourse markers are checked before the function-word filter:
+        # "no", "well" and "right" are function words in most positions and
+        # markers in a few, and the position is what tells them apart.
+        after = document.text[token.end_char : token.end_char + 1]
+        marker = marker_for(
+            lowered,
+            turn_initial=index == 0,
+            followed_by_comma=after in ",;:!",
+            stands_alone=alone,
+        )
+        if marker is not None:
+            candidates.append(
+                Candidate(
+                    span=span,
+                    exact_text=span.text_in(document.text),
+                    proposed_labels=LabelSet.of(Label.DISCOURSE_MARKER),
+                    evidence=("discourse_marker",),
+                    marker_form=marker.form,
+                    marker_functions=marker.functions,
+                )
+            )
+            continue
+
+        if lowered in NEGATION_TOKENS and not token.text.isalpha():
+            # The clitic of a contraction: not a candidate in its own right,
+            # but the clause it negates needs to know it is there.
+            candidates.append(
+                Candidate(
+                    span=span,
+                    exact_text=span.text_in(document.text),
+                    proposed_labels=LabelSet(frozenset()),
+                    evidence=("negation",),
+                    negates=True,
+                )
+            )
+            continue
+
         if lowered in FUNCTION_WORDS:
             continue
 
-        span = TextSpan(token.start_char, token.end_char, index, index + 1)
         counts = _tag_counts(token.text, resources)
 
         labels: set[Label] = set()
@@ -229,11 +330,17 @@ def extract_candidates(
             analyses = resources.inflections.analyses(lowered)
             if analyses:
                 paradigms = tuple(dict.fromkeys(p for p, _ in analyses))
-                lemmas = resources.inflections.lemmas_for(lowered)
+                lemmas = rank_lemmas(
+                    resources.inflections.lemmas_for(lowered), resources
+                )
                 forms = resources.inflections.forms_of(lowered)
-                # ACTION and STATE are both open here on purpose: morphology
-                # cannot tell a dynamic event from a static one.
-                labels |= {Label.ACTION, Label.STATE}
+                # Morphology cannot tell a dynamic event from a static one,
+                # so the closed list of stative verbs decides; everything
+                # else stays an ACTION proposal.
+                if any(lemma in STATIVE_VERBS for lemma in lemmas):
+                    labels.add(Label.STATE)
+                else:
+                    labels.add(Label.ACTION)
                 evidence.append("inflections")
 
         if counts:
@@ -253,8 +360,9 @@ def extract_candidates(
             if resources.hierarchy.candidates(lowered):
                 evidence.append("ontology")
 
-        # Orthography: a mid-sentence capital proposes a name, nothing more.
-        if token.text[:1].isupper() and index > 0:
+        # Orthography: a capital proposes a name only when position does not
+        # already explain it.
+        if token.text[:1].isupper() and not _capital_is_positional(document, span):
             labels.add(Label.NAMED_ENTITY)
             evidence.append("capitalisation")
 

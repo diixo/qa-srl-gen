@@ -160,13 +160,20 @@ def align_response(
     run_id: str,
     source: str = "teacher",
     status: ReviewStatus = ReviewStatus.AUTO_VALIDATED,
+    window: TextSpan | None = None,
 ) -> AlignmentResult:
     """Locate every annotation of *response* in *document*.
 
     Annotations are written against the document's own text, so the span of a
     mention found inside a passage is still a document-global offset.
+
+    *window* narrows the search below the passage. A dialogue passage carries
+    the previous turns so the teacher can interpret a short reply, but the
+    teacher was asked about the *last* turn — and a quote searched across the
+    whole window lands on an earlier turn whenever the same word occurs
+    twice, silently attaching an annotation to the wrong speaker.
     """
-    window = passage.span if passage else None
+    window = window if window is not None else (passage.span if passage else None)
     text = document.text
 
     mentions: list[EntityMention] = []

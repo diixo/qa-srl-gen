@@ -11,11 +11,24 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Sequence
 
-from ..documents import AnnotationRun, Document, ONTOLOGY_VERSION
-from ..ontology import ReviewStatus
+from ..documents import (
+    AnnotationRun,
+    DialogueAnnotation,
+    Document,
+    ONTOLOGY_VERSION,
+    Utterance,
+)
+from ..ontology import (
+    MarkerFunction,
+    Mood,
+    Polarity,
+    ReviewStatus,
+    SpeechAct,
+    Stance,
+)
 from .alignment import AlignmentResult, Rejection, align_response
 from .candidates import Candidate, CandidateResources, extract_candidates
-from .teacher import PROMPT_VERSION, Teacher, request_for
+from .teacher import PROMPT_VERSION, Teacher, TeacherResponse, request_for
 from .verifier import StructuralReport, verify_structure
 
 __all__ = ["AnnotationOutcome", "annotate_document"]
@@ -71,10 +84,23 @@ def annotate_document(
     all_candidates: list[Candidate] = []
     all_rejected: list[Rejection] = []
 
+    # For a dialogue, each passage is one turn plus the turns before it, so
+    # a response can be attached to the turn it was about. Pairing them here
+    # is what lets a teacher's utterance-level verdict become a
+    # DialogueAnnotation instead of being discarded.
+    utterance_for = _utterance_by_passage(document)
+
     for passage in passages:
         candidates = extract_candidates(document, passage, resources)  # type: ignore[arg-type]
         all_candidates.extend(candidates)
-        response = teacher.annotate(request_for(document, passage, candidates))  # type: ignore[arg-type]
+        utterance = utterance_for.get(getattr(passage, "passage_id", None))
+        request = request_for(
+            document,
+            passage,  # type: ignore[arg-type]
+            candidates,
+            focus=utterance.text_in(document) if utterance is not None else None,
+        )
+        response = teacher.annotate(request)
         identifier = getattr(passage, "passage_id", None) or document.document_id
         result: AlignmentResult = align_response(
             response,
@@ -83,6 +109,9 @@ def annotate_document(
             run_id=f"{run_id}#{identifier}",
             source=getattr(teacher, "name", "teacher"),
             status=status,
+            # The teacher was asked about one turn; its quotes must be found
+            # in that turn, not anywhere in the context around it.
+            window=utterance.span if utterance is not None else None,
         )
         all_rejected.extend(result.rejected)
         run = run.extended(
@@ -90,6 +119,9 @@ def annotate_document(
             predicates=result.predicates,
             properties=result.properties,
             relations=result.relations,
+            dialogue=_dialogue_annotations(
+                response, utterance, getattr(teacher, "name", "teacher"), status
+            ),
         )
 
     return AnnotationOutcome(
@@ -99,3 +131,49 @@ def annotate_document(
         rejected=tuple(all_rejected),
         structure=verify_structure(run, document),
     )
+
+
+def _utterance_by_passage(document: Document) -> dict[str, Utterance]:
+    """Pair each passage with the turn it was built around.
+
+    ``segment_dialogue`` ends every passage at the turn being annotated, so
+    the last utterance inside a passage is that turn.
+    """
+    if not document.is_dialogue:
+        return {}
+    pairs: dict[str, Utterance] = {}
+    for passage in document.passages:
+        inside = [u for u in document.utterances if passage.span.contains(u.span)]
+        if inside:
+            pairs[passage.passage_id] = inside[-1]
+    return pairs
+
+
+def _dialogue_annotations(
+    response: TeacherResponse,
+    utterance: Utterance | None,
+    source: str,
+    status: ReviewStatus,
+) -> list[DialogueAnnotation]:
+    """Build the utterance-level annotation a teacher reported, if any."""
+    if utterance is None:
+        return []
+    speech_acts = tuple(SpeechAct(a) for a in response.speech_acts)
+    if not (speech_acts or response.polarity or response.stance or response.mood):
+        return []
+    marker_functions: tuple[MarkerFunction, ...] = ()
+    raw_functions = response.raw.get("marker_functions") if response.raw else None
+    if raw_functions:
+        marker_functions = tuple(MarkerFunction(f) for f in raw_functions)
+    return [
+        DialogueAnnotation(
+            utterance_id=utterance.utterance_id,
+            speech_acts=speech_acts,
+            polarity=Polarity(response.polarity) if response.polarity else None,
+            stance=Stance(response.stance) if response.stance else None,
+            mood=Mood(response.mood) if response.mood else None,
+            marker_functions=marker_functions,
+            source=source,
+            review_status=status,
+        )
+    ]

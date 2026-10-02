@@ -242,3 +242,16 @@ def test_a_passage_locates_itself_in_the_document(document):
     passage = Passage("p0", "d1", TextSpan(11, 20))
     assert passage.text_in(document) == "Anna gave"
     assert passage.start_char == 11
+
+
+def test_a_leading_ellipsis_is_not_a_sentence_of_its_own():
+    """Found on DailyDialog: 30 turns start with '... ' and used to crash."""
+    text = "... Okay, I'm through. Here's the form."
+    spans = list(iter_sentence_spans(text))
+    assert [s.text_in(text) for s in spans] == ["... Okay, I'm through.", "Here's the form."]
+
+
+def test_punctuation_only_text_does_not_crash():
+    for text in ("...", "?!", "... ...", "\"...\""):
+        spans = list(iter_sentence_spans(text))
+        assert all(s.text_in(text).strip() for s in spans)

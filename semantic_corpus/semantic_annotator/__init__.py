@@ -16,7 +16,13 @@ from .alignment import (
     align_response,
     locate,
 )
-from .candidates import Candidate, CandidateResources, extract_candidates, tokenize
+from .candidates import (
+    Candidate,
+    CandidateResources,
+    extract_candidates,
+    rank_lemmas,
+    tokenize,
+)
 from .ingestion import (
     assign_split,
     deduplicate,
@@ -27,7 +33,14 @@ from .ingestion import (
     segment_dialogue,
     segment_document,
 )
+from .lexicons import (
+    CONTRACTIONS,
+    DISCOURSE_MARKERS,
+    STATIVE_VERBS,
+    marker_for,
+)
 from .pipeline import AnnotationOutcome, annotate_document
+from .rule_teacher import RuleBasedTeacher, TurnReading, classify_turn
 from .teacher import (
     PROMPT_VERSION,
     HttpTeacher,
@@ -57,6 +70,7 @@ __all__ = [
     "Candidate",
     "CandidateResources",
     "extract_candidates",
+    "rank_lemmas",
     "tokenize",
     "assign_split",
     "deduplicate",
@@ -68,6 +82,13 @@ __all__ = [
     "segment_document",
     "AnnotationOutcome",
     "annotate_document",
+    "RuleBasedTeacher",
+    "classify_turn",
+    "TurnReading",
+    "DISCOURSE_MARKERS",
+    "STATIVE_VERBS",
+    "CONTRACTIONS",
+    "marker_for",
     "PROMPT_VERSION",
     "HttpTeacher",
     "ProposedAnnotation",

@@ -42,6 +42,8 @@ python -m semantic_corpus.cli --help
 | `documents.py` | `Document`, `Passage`, `Utterance`, spans, `AnnotationRun` |
 | `semantic_annotator/ingestion.py` | TXT/JSONL/dialogue input, dedup, document-level splits, passages |
 | `semantic_annotator/candidates.py` | proposals from morphology, POS counts, the ontology lexicon |
+| `semantic_annotator/lexicons.py` | closed lists: stative verbs, discourse markers, contractions |
+| `semantic_annotator/rule_teacher.py` | offline teacher for the dialogue layer — no model, no tokens |
 | `semantic_annotator/teacher.py` | the provider-agnostic adapter protocol |
 | `semantic_annotator/alignment.py` | quoted spans → verified offsets, with rejections |
 | `semantic_annotator/verifier.py` | structural checks and an independent second pass |
@@ -177,6 +179,34 @@ d1: 8 annotations from 8 candidates, 3 rejected
   dropped: 'Berlin': not found in the passage (occurrence 0)
   dropped: 'Anna': a span has at most one entity type, got PERSON, ANIMAL
   dropped: 'Monday': labels not in the ontology: ['WEEKDAY']
+```
+
+### Annotating without a model
+
+`RuleBasedTeacher` decides the part of the task that surface form really
+settles — mood from punctuation, polarity from negation, speech acts from
+interrogatives, imperatives and a closed cue list, discourse markers from a
+closed inventory in the positions where a word cannot be a modifier. It
+refuses the rest: entity types and predicate senses need context a rule
+cannot read, and rubber-stamping the candidate layer would record guesses as
+fact. `RuleBasedTeacher.covers` says so, so an empty mention list reads as
+"not attempted" rather than "none found".
+
+Over all of `dailydialog-train.jsonl` — 11 118 dialogues, 81 869 turns, about
+five minutes — it yields 81 869 dialogue annotations and **271 168 training
+examples with nothing spent**:
+
+```text
+<context>
+I finally got the job.
+Wow, that's great!
+</context>
+<question>
+What does "Wow, that's great" express?
+</question>
+<answer>
+Surprise, reaction and approval.
+</answer>
 ```
 
 Candidates are proposals with evidence, never decisions. The dictionary says

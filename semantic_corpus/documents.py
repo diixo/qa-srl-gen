@@ -486,13 +486,35 @@ class AnnotationRun:
 # Sentence segmentation
 # ---------------------------------------------------------------------------
 
-#: Deliberately simple: a boundary is terminal punctuation followed by space
-#: and a capital. It is not a sentence splitter for arbitrary prose, and the
-#: abbreviations below are the ones that actually break the common cases.
+#: Deliberately simple: a boundary is terminal punctuation followed by space.
+#: This is not a sentence splitter for arbitrary prose; the exceptions below
+#: are the ones that actually break on real dialogue.
 _ABBREVIATIONS = frozenset(
     {"mr", "mrs", "ms", "dr", "prof", "st", "vs", "etc", "e.g", "i.e", "no", "fig"}
 )
 _BOUNDARY = re.compile(r"[.!?]+[\"')\]]*\s+")
+#: A letter-dot run: ``U.``, ``p.``, ``O.K.``, ``B.A.`` — the shape an
+#: initialism leaves behind when a naive splitter cuts it in half.
+_INITIALISM = re.compile(r"(?:[A-Za-z]\.)+$")
+
+
+def _continues_an_initialism(left_tail: str, right: str) -> bool:
+    """Whether a period between *left_tail* and *right* is inside an initialism.
+
+    A lone letter before a period is ambiguous: ``So do I.`` ends a sentence
+    while ``the U.`` does not. What settles it is the other side. The period
+    is internal when the next token continues the run (``U.`` + ``S.``) or
+    starts lower-case (``7 p.`` + ``m.``); a capitalised ordinary word after
+    it means the sentence really did end — ``Vitamin C.`` + ``It is good``.
+    """
+    if not _INITIALISM.search(left_tail):
+        return False
+    following = right.lstrip()
+    if not following:
+        return False
+    if _INITIALISM.match(following.split()[0].rstrip(",;:")):
+        return True
+    return following[0].islower()
 
 
 def iter_sentence_spans(text: str, offset: int = 0) -> Iterator[TextSpan]:
@@ -508,8 +530,14 @@ def iter_sentence_spans(text: str, offset: int = 0) -> Iterator[TextSpan]:
         if not candidate:
             start = end
             continue
-        last_word = candidate.rstrip(".!?\"')]").split()[-1].lower() if candidate.split() else ""
-        if last_word in _ABBREVIATIONS:
+        words = candidate.rstrip(".!?\"')]").split()
+        if not words:
+            # Punctuation alone — a leading "... " in "... Okay, I'm done." —
+            # is not a sentence. Keep it with whatever follows.
+            continue
+        if words[-1].lower() in _ABBREVIATIONS:
+            continue
+        if _continues_an_initialism(candidate.split()[-1], text[end:]):
             continue
         stripped_end = start + len(text[start:end].rstrip())
         yield TextSpan(start + offset, stripped_end + offset)
