@@ -70,10 +70,11 @@ class CorpusReport:
     repeated_qa: list[LeakageFinding] = field(default_factory=list)
     ontology_version: str = ""
     content_hash: str = ""
+    integrity_issues: list[str] = field(default_factory=list)
 
     @property
     def is_clean(self) -> bool:
-        return not self.leakage
+        return not self.leakage and not self.integrity_issues
 
     @property
     def refusal_share(self) -> float:
@@ -84,6 +85,7 @@ class CorpusReport:
         return {
             "ontology_version": self.ontology_version,
             "content_hash": self.content_hash,
+            "integrity_issues": self.integrity_issues,
             "documents_by_split": dict(self.documents_by_split),
             "examples_by_split": dict(self.examples_by_split),
             "examples_by_kind": dict(self.examples_by_kind),
@@ -121,6 +123,8 @@ class CorpusReport:
                 f"repeated:  {len(self.repeated_qa)} question/answer pairs "
                 "recur across splits under different contexts"
             )
+        if self.integrity_issues:
+            lines.append("integrity: " + "; ".join(self.integrity_issues[:10]))
         return "\n".join(lines)
 
 
@@ -154,7 +158,10 @@ def build_report(
 
     text_by_hash: dict[str, list[tuple[str, str | None]]] = {}
     split_of: dict[str, str | None] = {}
-    train_text: list[str] = []
+    held_out_names = tuple(name for name in held_out_names if name)
+    found_names: set[str] = set()
+    run_ids = {h["run_id"] for h in store.read("annotation_runs")}
+    orphan_counts: Counter = Counter()
 
     for row in store.read("documents"):
         split = row.get("document_split")
@@ -164,7 +171,7 @@ def build_report(
             (row["document_id"], split)
         )
         if split == "train":
-            train_text.append(row["text"])
+            found_names.update(name for name in held_out_names if name in row["text"])
 
     # Same text in two splits: the failure an id-based check cannot see.
     for digest, entries in text_by_hash.items():
@@ -180,8 +187,15 @@ def build_report(
             )
 
     for row in store.read("spans"):
+        if row.get("document_id") not in split_of:
+            orphan_counts["spans referencing missing documents"] += 1
+        if row.get("run_id") not in run_ids:
+            orphan_counts["spans referencing missing runs"] += 1
         if row.get("record") == "predicate":
             report.predicates[row.get("lemma", "?")] += 1
+            if row.get("predicate_type"):
+                report.labels[row["predicate_type"]] += 1
+            report.labels.update(row.get("extra_labels", ()))
         for label in row.get("labels", ()):
             report.labels[label] += 1
 
@@ -204,6 +218,11 @@ def build_report(
     exact: dict[str, set[str]] = {}
     pairs: dict[str, set[str]] = {}
     for row in store.read("qa_examples"):
+        if row.get("document_id") not in split_of:
+            orphan_counts["examples referencing missing documents"] += 1
+        for key in ("run_id", "generation_run_id"):
+            if row.get(key) is not None and row[key] not in run_ids:
+                orphan_counts[f"examples referencing missing {key}"] += 1
         split = split_of.get(row.get("document_id"), None)
         report.examples_by_split[split or "unassigned"] += 1
         report.examples_by_kind[row.get("kind", "?")] += 1
@@ -236,9 +255,8 @@ def build_report(
                 )
             )
 
-    corpus = "\n".join(train_text)
     for name in held_out_names:
-        if name and name in corpus:
+        if name in found_names:
             report.leakage.append(
                 LeakageFinding(
                     kind="held-out-name",
@@ -248,6 +266,7 @@ def build_report(
                 )
             )
 
+    report.integrity_issues.extend(f"{count} {kind}" for kind, count in sorted(orphan_counts.items()))
     return report
 
 

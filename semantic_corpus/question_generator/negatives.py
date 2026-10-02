@@ -37,6 +37,7 @@ from .templates import (
     _inline,
     active_verb_words,
     build_views,
+    type_is_grounded,
 )
 
 __all__ = [
@@ -80,16 +81,24 @@ def omitted_argument_questions(
     one case where unanswerability is certain: the frame had an agent, the
     passive dropped it, and no amount of reading will recover it.
     """
-    omitted = document.metadata.get("omitted_slots") or ()
-    if not omitted:
+    if not run.synthetic:
         return []
     resolver = resolver or ParadigmResolver()
     body = context if context is not None else document.text
     examples: list[QAExample] = []
     for view in build_views(run, document):
+        omitted = view.predicate.omitted_slots
+        if not omitted and len(run.predicates) == 1:
+            omitted = document.metadata.get("omitted_slots") or ()
+        # A separate clause may supply the answer, even without coreference
+        # annotation. Do not infer absence across an entire document.
+        if len(run.predicates) != 1:
+            continue
         theme = view.theme
         active = " ".join(active_verb_words(view.predicate, resolver))
         for slot in omitted:
+            if slot != "agent" or view.predicate.voice != "passive":
+                continue
             template = _SLOT_QUESTION.get(str(slot))
             if template is None:
                 continue
@@ -127,11 +136,13 @@ def missing_role_questions(
     the text and merely unannotated, and a refusal would then be flatly
     wrong — see the module docstring.
     """
-    if not run.synthetic:
+    if not run.synthetic or len(run.predicates) != 1:
         return []
     body = context if context is not None else document.text
     examples: list[QAExample] = []
     for view in build_views(run, document):
+        if view.is_negated or view.predicate.tense != "past" or view.predicate.modality:
+            continue
         for relation, question in _MISSING_ROLE_QUESTIONS.items():
             if view.by_relation.get(relation):
                 continue
@@ -182,12 +193,12 @@ def underdetermined_type_questions(
     for mention in run.mentions:
         if mention.exact_text not in forms or mention.mention_id.endswith(":appositive"):
             continue
-        if _has_gloss(run, mention.mention_id):
+        if type_is_grounded(run, mention):
             continue
         examples.append(
             QAExample(
                 context=body,
-                question=f"Is {mention.exact_text} a person or an animal?",
+                question=f"What kind of entity is {mention.exact_text}?",
                 answer=_reply(rng),
                 kind=QAKind.NO_ANSWER,
                 answerable=False,

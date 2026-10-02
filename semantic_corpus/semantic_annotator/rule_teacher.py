@@ -100,7 +100,7 @@ def classify_turn(text: str, *, is_reply: bool = False) -> TurnReading:
         return TurnReading()
 
     tokens = tokenize(stripped)
-    words = [t.text.lower() for t in tokens]
+    words = [t.text.lower().replace("’", "'") for t in tokens]
     content = [w for w in words if w.isalpha()]
 
     mood = Mood.DECLARATIVE
@@ -123,8 +123,8 @@ def classify_turn(text: str, *, is_reply: bool = False) -> TurnReading:
         after = stripped[token.end_char : token.end_char + 1]
         entry = marker_for(
             token.text.lower(),
-            turn_initial=index == 0,
-            followed_by_comma=after in ",;:!",
+            turn_initial=index == 0 or bool(re.search(r"[.!?]", stripped[tokens[index-1].end_char:token.start_char])),
+            followed_by_comma=bool(after) and after in ",;:!.?",
             stands_alone=alone,
         )
         if entry is not None:
@@ -138,19 +138,23 @@ def classify_turn(text: str, *, is_reply: bool = False) -> TurnReading:
         acts.append(SpeechAct.QUESTION)
         if _MODAL_REQUEST.match(stripped):
             acts.append(SpeechAct.REQUEST)
-    # Greetings open a turn; thanking and apologising can come anywhere in
-    # it, and "Thanks anyway." at the end is still thanking.
-    for word in content[:2]:
-        cue = SPEECH_ACT_CUES.get(word)
-        if cue is not None and cue not in acts:
-            acts.append(cue)
-    for word in content:
-        if word in THANKS or word in APOLOGIES:
-            cue = SPEECH_ACT_CUES[word]
-            if cue not in acts:
-                acts.append(cue)
+    # Cues must be acts of this speaker, not reported or negated words.
+    normalized = stripped.lower().replace("’", "'")
+    for clause in re.split(r"[.!?]+\s*", normalized):
+        clause = clause.strip()
+        if re.match(r"^(hello|hi|hey|greetings)\b|^good (morning|afternoon|evening)\b", clause):
+            acts.append(SpeechAct.GREETING)
+        if re.match(r"^(bye|goodbye|farewell|cheerio)\b", clause):
+            acts.append(SpeechAct.FAREWELL)
+        if re.match(r"^(thanks\b|thank you\b|thankyou\b|i thank you\b)", clause):
+            acts.append(SpeechAct.THANKING)
+        if re.match(r"^(sorry\b|apologies\b|i(?: am|'m) (?:so |very )?sorry\b|i apologi[sz]e\b)", clause):
+            acts.append(SpeechAct.APOLOGY)
+        if re.match(r"^no problem(?:[,.!]|$)", clause):
+            acts.append(SpeechAct.REASSURANCE)
     if mood is not Mood.INTERROGATIVE and content:
         if content[0] in _IMPERATIVE_OPENERS:
+            mood = Mood.IMPERATIVE
             acts.append(
                 SpeechAct.REQUEST if content[0] == "please" else SpeechAct.COMMAND
             )
@@ -212,7 +216,7 @@ class RuleBasedTeacher:
         "mood",
     )
 
-    def __init__(self, name: str = "rules-v1") -> None:
+    def __init__(self, name: str = "rules-v2") -> None:
         self.name = name
         self.calls = 0
 
@@ -223,16 +227,17 @@ class RuleBasedTeacher:
         reading = classify_turn(focus, is_reply=is_reply)
 
         annotations = []
-        seen: dict[str, int] = {}
         for text, _start, _end in reading.markers:
-            occurrence = seen.get(text, 0)
-            seen[text] = occurrence + 1
+            # Alignment counts literal occurrences, including non-markers.
+            leading = len(focus) - len(focus.lstrip())
+            occurrence = sum(1 for m in re.finditer(re.escape(text), focus)
+                             if m.start() < _start + leading)
             annotations.append(
                 ProposedAnnotation(
                     text=text,
                     labels=("DISCOURSE_MARKER",),
                     occurrence=occurrence,
-                    confidence=1.0,
+                    confidence=None,
                 )
             )
 

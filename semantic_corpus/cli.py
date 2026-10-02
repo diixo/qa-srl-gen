@@ -312,6 +312,7 @@ def cmd_build(args: argparse.Namespace) -> int:
     from .semantic_generator.canonical import to_canonical
     from .semantic_generator.generator import DEFAULT_PARADIGMS
     from .storage import CorpusStore
+    from .storage.repository import GENERATOR_VERSION, StoreError
 
     store = CorpusStore(args.store)
     generator = Generator(seed=args.seed, split=args.split)
@@ -321,7 +322,35 @@ def cmd_build(args: argparse.Namespace) -> int:
         seed=args.seed,
     )
 
-    pairs = []
+    # A repeated build is idempotent. Check identity/version conflicts before
+    # any document is appended, including conflicts late in the batch.
+    build_config = {key: getattr(args, key) for key in
+                    ("seed", "split", "prefix", "count", "max_per_kind", "no_answer_share")}
+    previous = next((v for v in store.versions() if v["version_id"] == args.version), None)
+    if previous is not None and previous.get("build_config") != build_config:
+        raise StoreError(f"version {args.version!r} exists; use a new version")
+    if previous is not None and (
+        previous.get("generator_version") != GENERATOR_VERSION
+        or previous["content_hash"] != store.content_hash()
+    ):
+        raise StoreError(f"version {args.version!r} names different content or generator; use a new version")
+    known_content = {r["source_hash"]: r.get("document_split") for r in store.read("documents")}
+    known_runs = {r["run_id"] for r in store.read("annotation_runs")}
+    for index, realized in enumerate(generator.generate(args.count)):
+        document, run = to_canonical(realized, document_id=f"{args.prefix}-{index:06d}",
+                                   split=args.split, random_seed=args.seed)
+        existing = store.document(document.document_id)
+        if existing is not None and existing != document:
+            raise StoreError(f"document {document.document_id!r} is immutable; use a new prefix")
+        if existing is None and run.run_id in known_runs:
+            raise StoreError(f"run {run.run_id!r} already exists; use a new prefix")
+        if document.sha256 in known_content and known_content[document.sha256] != document.split:
+            raise StoreError("duplicate text cannot cross splits")
+        if previous is not None and existing is None:
+            # Content duplicates can legitimately have skipped identifiers.
+            if document.sha256 not in known_content:
+                raise StoreError(f"version {args.version!r} exists; use a new version")
+    generator = Generator(seed=args.seed, split=args.split)
     for index, realized in enumerate(generator.generate(args.count)):
         document, run = to_canonical(
             realized,
@@ -329,8 +358,11 @@ def cmd_build(args: argparse.Namespace) -> int:
             split=args.split,
             random_seed=args.seed,
         )
-        store.add_document(document)
-        store.add_run(run, document)
+        if not store.add_document(document) and store.document(document.document_id) is None:
+            continue
+        if run.run_id not in known_runs:
+            store.add_run(run, document)
+            known_runs.add(run.run_id)
         examples = questions.for_document(document, run)
         if args.no_answer_share is not None or args.max_per_kind:
             examples = balance(
@@ -340,9 +372,8 @@ def cmd_build(args: argparse.Namespace) -> int:
                 no_answer_share=args.no_answer_share,
             )
         store.add_examples(examples, generation_run_id=run.run_id)
-        pairs.append((document, run))
 
-    version = store.publish_version(args.version, notes=args.notes)
+    version = store.publish_version(args.version, notes=args.notes, build_config=build_config)
     print(f"stored {version['counts']['documents']} documents, "
           f"{version['counts']['qa_examples']} examples "
           f"(version {version['version_id']}, {version['content_hash'][:12]})")
@@ -350,7 +381,14 @@ def cmd_build(args: argparse.Namespace) -> int:
     out = Path(args.out)
     written = export_sft(store.examples(split=args.split), out / "sft.jsonl")
     print(f"sft: {written} records -> {out / 'sft.jsonl'}")
-    bio = export_bio(pairs, out / "bio.jsonl", scheme=args.scheme)
+    def stored_pairs():
+        for doc in store.documents(split=args.split):
+            latest = None
+            for stored_run in store.runs(document_id=doc.document_id):
+                latest = stored_run
+            if latest is not None:
+                yield doc, latest
+    bio = export_bio(stored_pairs(), out / "bio.jsonl", scheme=args.scheme)
     print(f"bio: {bio}")
 
     # Names held out for the unseen-names test must not be in training text.

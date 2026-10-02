@@ -22,15 +22,16 @@ evaluation on that corpus is contaminated.
 different split is refused rather than appended, because the store would
 then contain two contradictory answers to "which split is this in".
 
-**Reads stream.** Nothing here loads a table into memory, so a store larger
-than RAM still works.
+**Reads stream.** Documents and annotations are decoded one document/run at
+a time. Identity, deduplication and byte-offset indexes remain in memory and
+grow with the number of records; this is not constant-memory storage.
 """
 
 from __future__ import annotations
 
 import hashlib
 import json
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterable, Iterator, Mapping, Sequence
@@ -64,7 +65,7 @@ __all__ = ["CorpusStore", "StoreError", "DuplicateDocument", "SplitConflict"]
 
 #: Bumped when the generator's output changes in a way that matters for
 #: reproducibility. Recorded on every dataset version.
-GENERATOR_VERSION = "0.1.0"
+GENERATOR_VERSION = "0.2.0"
 
 _MANIFEST = "manifest.json"
 
@@ -89,6 +90,7 @@ class _Index:
     splits: dict[str, str | None]
     run_ids: set[str]
     example_keys: set[str]
+    document_hashes: dict[str, str]
 
 
 class CorpusStore:
@@ -106,7 +108,12 @@ class CorpusStore:
             self.root.mkdir(parents=True, exist_ok=True)
         elif not self.root.is_dir():
             raise StoreError(f"no store at {self.root}")
+        if not create and not self.manifest_path.exists():
+            raise StoreError(f"no manifest at {self.root}")
         self.ontology_version = self._open_manifest(ontology_version)
+        # Only offsets are retained; text and annotations are decoded on demand.
+        self._offsets: dict[tuple[str, str], dict[Any, list[int]]] = {}
+        self._runs_by_document: dict[str, list[str]] | None = None
         self._index = self._build_index()
 
     # -- manifest ----------------------------------------------------------
@@ -153,14 +160,41 @@ class CorpusStore:
             raise StoreError(f"unknown table {table!r}") from None
 
     def _append(self, table: str, rows: Iterable[Mapping[str, Any]]) -> int:
-        rows = list(rows)
-        if not rows:
-            return 0
         path = self.path_for(table)
-        with path.open("a", encoding="utf-8", newline="\n") as stream:
+        count = 0
+        with path.open("ab") as stream:
             for row in rows:
-                stream.write(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n")
-        return len(rows)
+                data = (json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n").encode("utf-8")
+                offset = stream.tell()
+                stream.write(data)
+                for (indexed_table, key), index in self._offsets.items():
+                    if indexed_table == table:
+                        index.setdefault(row.get(key), []).append(offset)
+                count += 1
+        return count
+
+    def _rows_for(self, table: str, key: str, value: Any) -> Iterator[dict[str, Any]]:
+        index_key = (table, key)
+        path = self.path_for(table)
+        if index_key not in self._offsets:
+            index: dict[Any, list[int]] = {}
+            if path.exists():
+                with path.open("rb") as stream:
+                    while True:
+                        offset = stream.tell()
+                        line = stream.readline()
+                        if not line:
+                            break
+                        if line.strip():
+                            row = json.loads(line)
+                            index.setdefault(row.get(key), []).append(offset)
+            self._offsets[index_key] = index
+        offsets = self._offsets[index_key].get(value, ())
+        if offsets:
+            with path.open("rb") as stream:
+                for offset in offsets:
+                    stream.seek(offset)
+                    yield json.loads(stream.readline())
 
     def read(self, table: str) -> Iterator[dict[str, Any]]:
         """Stream the rows of one table."""
@@ -182,14 +216,16 @@ class CorpusStore:
     def _build_index(self) -> _Index:
         hashes: dict[str, str] = {}
         splits: dict[str, str | None] = {}
+        document_hashes: dict[str, str] = {}
         for row in self.read("documents"):
             hashes[row["source_hash"]] = row["document_id"]
             splits[row["document_id"]] = row.get("document_split")
+            document_hashes[row["document_id"]] = row["source_hash"]
         run_ids = {row["run_id"] for row in self.read("annotation_runs")}
         example_keys = {
             _example_key(row) for row in self.read("qa_examples")
         }
-        return _Index(hashes, splits, run_ids, example_keys)
+        return _Index(hashes, splits, run_ids, example_keys, document_hashes)
 
     # -- writing -----------------------------------------------------------
 
@@ -201,34 +237,35 @@ class CorpusStore:
         and the identifier differs, since that is almost always a mistake.
         """
         digest = document.sha256
+        previous_split = self._index.splits.get(document.document_id, _MISSING)
+        if previous_split is not _MISSING:
+            if previous_split != document.split:
+                raise SplitConflict(f"{document.document_id!r} cannot change split")
+            if _document_identity(self.document(document.document_id)) != _document_identity(document):
+                raise StoreError(f"document {document.document_id!r} is immutable")
         existing = self._index.hashes.get(digest)
         if existing is not None:
+            if self._index.splits[existing] != document.split:
+                raise SplitConflict(f"duplicate text {existing!r} cannot cross splits")
             if not skip_duplicates and existing != document.document_id:
                 raise DuplicateDocument(
                     f"{document.document_id!r} has the same text as {existing!r}"
                 )
             return False
 
-        previous_split = self._index.splits.get(document.document_id, _MISSING)
-        if previous_split is not _MISSING and previous_split != document.split:
-            raise SplitConflict(
-                f"{document.document_id!r} is already in split "
-                f"{previous_split!r}, cannot move it to {document.split!r}"
-            )
-
         self._append("documents", [encode_document(document)])
         self._append("passages", [encode_passage(p) for p in document.passages])
         self._append("utterances", [encode_utterance(u) for u in document.utterances])
         self._index.hashes[digest] = document.document_id
         self._index.splits[document.document_id] = document.split
+        self._index.document_hashes[document.document_id] = digest
         return True
 
     def add_run(self, run: AnnotationRun, document: Document | None = None) -> None:
         """Append an annotation run.
 
-        *document* is optional but checking against it is cheap and catches
-        the one error that makes a corpus quietly useless: annotations whose
-        offsets do not match the text they claim to describe.
+        Referenced documents must already exist. When *document* is omitted,
+        validation loads each referenced document from this store.
         """
         if run.ontology_version != self.ontology_version:
             raise OntologyVersionMismatch(
@@ -240,6 +277,39 @@ class CorpusStore:
                 f"run {run.run_id!r} is already stored; annotations are "
                 "append-only, so re-annotating needs a new run id"
             )
+        document_ids = {item.document_id for item in
+                        (*run.mentions, *run.predicates, *run.properties)}
+        if len(run.ids()) != len(run.mentions) + len(run.predicates) + len(run.properties):
+            raise StoreError("run contains duplicate annotation IDs")
+        if document is not None:
+            document_ids.add(document.document_id)
+            if _document_identity(self.document(document.document_id)) != _document_identity(document):
+                raise StoreError("run document must already be stored unchanged")
+        for d in run.dialogue:
+            owners = list(self._rows_for("utterances", "utterance_id", d.utterance_id))
+            if len(owners) != 1:
+                raise StoreError(f"unknown or ambiguous utterance {d.utterance_id!r}")
+            document_ids.add(owners[0]["document_id"])
+        for doc_id in document_ids:
+            stored = self.document(doc_id)
+            if stored is None:
+                raise StoreError(f"unknown document {doc_id!r}")
+            subset = replace(run,
+                mentions=tuple(m for m in run.mentions if m.document_id == doc_id),
+                predicates=tuple(p for p in run.predicates if p.document_id == doc_id),
+                properties=tuple(p for p in run.properties if p.document_id == doc_id),
+                dialogue=tuple(d for d in run.dialogue if d.utterance_id in
+                               {u.utterance_id for u in stored.utterances}),
+            )
+            ids = {m.mention_id for m in subset.mentions} | {p.predicate_id for p in subset.predicates} | {p.property_id for p in subset.properties}
+            subset = replace(subset, relations=tuple(e for e in run.relations
+                             if e.source_id in ids or e.target_id in ids))
+            problems = subset.validate_against(stored)
+            if problems:
+                raise StoreError(f"run {run.run_id!r} does not describe {doc_id!r}: " + "; ".join(problems[:5]))
+        all_ids = {m.mention_id for m in run.mentions} | {p.predicate_id for p in run.predicates} | {p.property_id for p in run.properties}
+        if any(e.source_id not in all_ids or e.target_id not in all_ids for e in run.relations):
+            raise StoreError("run contains dangling relations")
         if document is not None:
             problems = run.validate_against(document)
             if problems:
@@ -248,9 +318,13 @@ class CorpusStore:
                     f"{document.document_id!r}: " + "; ".join(problems[:5])
                 )
         rows = encode_run_rows(run)
+        rows["annotation_runs"][0]["document_ids"] = sorted(document_ids)
         for table, table_rows in rows.items():
             self._append(table, table_rows)
         self._index.run_ids.add(run.run_id)
+        if self._runs_by_document is not None:
+            for doc_id in sorted(document_ids):
+                self._runs_by_document.setdefault(doc_id, []).append(run.run_id)
 
     def add_examples(
         self,
@@ -267,17 +341,33 @@ class CorpusStore:
         identically from different records.
         """
         written = 0
-        batch: list[dict[str, Any]] = []
         for example in examples:
+            if example.document_id not in self._index.document_hashes:
+                raise StoreError(f"unknown document {example.document_id!r}")
+            for rid in (example.run_id, generation_run_id):
+                if rid is not None:
+                    header = next(self._rows_for("annotation_runs", "run_id", rid), None)
+                    if header is None:
+                        raise StoreError(f"unknown run {rid!r}")
+                    if "document_ids" in header:
+                        belongs = example.document_id in header["document_ids"]
+                    else:
+                        if self._runs_by_document is None:
+                            self._index_run_documents()
+                        belongs = rid in self._runs_by_document.get(example.document_id, ())
+                    if not belongs:
+                        raise StoreError(f"run {rid!r} does not annotate {example.document_id!r}")
+            problems = example.check()
+            if problems:
+                raise StoreError("invalid example: " + "; ".join(problems))
             row = encode_qa_example(example, generation_run_id=generation_run_id)
             key = _example_key(row)
             if deduplicate:
                 if key in self._index.example_keys:
                     continue
-                self._index.example_keys.add(key)
-            batch.append(row)
+            self._append("qa_examples", [row])
+            self._index.example_keys.add(key)
             written += 1
-        self._append("qa_examples", batch)
         return written
 
     def publish_version(
@@ -286,12 +376,21 @@ class CorpusStore:
         *,
         notes: str = "",
         generator_version: str = GENERATOR_VERSION,
+        build_config: Mapping[str, Any] | None = None,
     ) -> dict[str, Any]:
         """Record what the store currently contains, under a name.
 
         The content hash covers every table, so two versions with the same
         hash are the same corpus and a changed hash proves something moved.
         """
+        digest = self.content_hash()
+        for previous in self.read("dataset_versions"):
+            if previous["version_id"] == version_id:
+                same_config = build_config is None or previous.get("build_config") == dict(build_config)
+                if (previous["content_hash"] == digest
+                        and previous["generator_version"] == generator_version and same_config):
+                    return previous
+                raise StoreError(f"version {version_id!r} already names different content")
         counts = {table: self.count(table) for table in TABLES}
         manifest = encode_dataset_version(
             version_id=version_id,
@@ -300,9 +399,11 @@ class CorpusStore:
             generator_version=generator_version,
             run_ids=sorted(self._index.run_ids),
             counts=counts,
-            content_hash=self.content_hash(),
+            content_hash=digest,
             notes=notes,
         )
+        if build_config is not None:
+            manifest["build_config"] = dict(build_config)
         self._append("dataset_versions", [manifest])
         return manifest
 
@@ -315,62 +416,81 @@ class CorpusStore:
             path = self.path_for(table)
             digest.update(table.encode("utf-8"))
             if path.exists():
-                digest.update(path.read_bytes())
+                with path.open("rb") as stream:
+                    for block in iter(lambda: stream.read(1024 * 1024), b""):
+                        digest.update(block)
         return digest.hexdigest()
 
     # -- reading -----------------------------------------------------------
 
     def documents(self, *, split: str | None = None) -> Iterator[Document]:
         """Stream documents, with their passages and utterances attached."""
-        passages: dict[str, list[Passage]] = {}
-        for row in self.read("passages"):
-            passages.setdefault(row["document_id"], []).append(decode_passage(row))
-        utterances: dict[str, list[Utterance]] = {}
-        for row in self.read("utterances"):
-            utterances.setdefault(row["document_id"], []).append(decode_utterance(row))
-
-        from dataclasses import replace
-
         for row in self.read("documents"):
             if split is not None and row.get("document_split") != split:
                 continue
-            document = decode_document(row)
-            yield replace(
-                document,
-                passages=tuple(passages.get(document.document_id, ())),
-                utterances=tuple(utterances.get(document.document_id, ())),
-            )
+            yield self._document_from_row(row)
+
+    def _document_from_row(self, row: Mapping[str, Any]) -> Document:
+        doc = decode_document(row)
+        return replace(doc,
+            passages=tuple(decode_passage(p) for p in self._rows_for("passages", "document_id", doc.document_id)),
+            utterances=tuple(decode_utterance(u) for u in self._rows_for("utterances", "document_id", doc.document_id)),
+        )
 
     def document(self, document_id: str) -> Document | None:
-        for document in self.documents():
-            if document.document_id == document_id:
-                return document
-        return None
+        row = next(self._rows_for("documents", "document_id", document_id), None)
+        return self._document_from_row(row) if row is not None else None
 
     def runs(self, *, document_id: str | None = None) -> Iterator[AnnotationRun]:
         """Stream annotation runs, reassembled from their rows."""
-        spans: dict[str, list[dict[str, Any]]] = {}
-        for row in self.read("spans"):
-            if document_id is not None and row.get("document_id") != document_id:
-                continue
-            spans.setdefault(row["run_id"], []).append(row)
-        relations: dict[str, list[dict[str, Any]]] = {}
-        for row in self.read("relations"):
-            relations.setdefault(row["run_id"], []).append(row)
-        dialogue: dict[str, list[dict[str, Any]]] = {}
-        for row in self.read("dialogue"):
-            dialogue.setdefault(row["run_id"], []).append(row)
-
-        for header in self.read("annotation_runs"):
+        headers = self.read("annotation_runs")
+        if document_id is not None:
+            if self._runs_by_document is None:
+                self._index_run_documents()
+            headers = (row for rid in self._runs_by_document.get(document_id, ())
+                       for row in self._rows_for("annotation_runs", "run_id", rid))
+        for header in headers:
             run_id = header["run_id"]
-            if document_id is not None and run_id not in spans:
+            if document_id is not None and "document_ids" in header and document_id not in header["document_ids"]:
                 continue
+            spans = list(self._rows_for("spans", "run_id", run_id))
+            dialogue = list(self._rows_for("dialogue", "run_id", run_id))
+            relations = list(self._rows_for("relations", "run_id", run_id))
+            if document_id is not None:
+                spans = [s for s in spans if s["document_id"] == document_id]
+                doc = self.document(document_id)
+                utterance_ids = {u.utterance_id for u in doc.utterances} if doc else set()
+                dialogue = [d for d in dialogue if d["utterance_id"] in utterance_ids]
+                if not spans and not dialogue and document_id not in header.get("document_ids", ()):
+                    continue
+                ids = {s["id"] for s in spans}
+                relations = [r for r in relations if r["source_id"] in ids and r["target_id"] in ids]
             yield decode_run(
-                header,
-                spans.get(run_id, []),
-                relations.get(run_id, []),
-                dialogue.get(run_id, []),
+                header, spans, relations, dialogue,
             )
+
+    def _index_run_documents(self) -> None:
+        membership: dict[str, set[str]] = {}
+        legacy: set[str] = set()
+        order: dict[str, int] = {}
+        for index, header in enumerate(self.read("annotation_runs")):
+            rid = header["run_id"]
+            order[rid] = index
+            if "document_ids" not in header:
+                legacy.add(rid)
+            for doc_id in header.get("document_ids", ()):
+                membership.setdefault(doc_id, set()).add(rid)
+        if legacy:
+            for row in self.read("spans"):
+                if row["run_id"] in legacy:
+                    membership.setdefault(row["document_id"], set()).add(row["run_id"])
+            owners = {u["utterance_id"]: u["document_id"] for u in self.read("utterances")}
+            for row in self.read("dialogue"):
+                doc_id = owners.get(row["utterance_id"])
+                if row["run_id"] in legacy and doc_id is not None:
+                    membership.setdefault(doc_id, set()).add(row["run_id"])
+        self._runs_by_document = {doc_id: sorted(ids, key=order.__getitem__)
+                                  for doc_id, ids in membership.items()}
 
     def examples(self, *, split: str | None = None) -> Iterator[Any]:
         """Stream QA examples, optionally restricted to one split."""
@@ -416,6 +536,17 @@ def _example_key(row: Mapping[str, Any]) -> str:
             )
         )
     )
+
+
+def _document_identity(document: Document | None) -> str | None:
+    """Compare persisted content, including JSON-normalized metadata."""
+    if document is None:
+        return None
+    return json.dumps({
+        "document": encode_document(document),
+        "passages": [encode_passage(p) for p in document.passages],
+        "utterances": [encode_utterance(u) for u in document.utterances],
+    }, ensure_ascii=False, sort_keys=True)
 
 
 def _now() -> str:

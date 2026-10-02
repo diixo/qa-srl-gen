@@ -204,6 +204,7 @@ def _encode_mention(item: EntityMention, run_id: str) -> dict[str, Any]:
         "labels": _labels(item.labels),
         "head_token": item.head_token,
         "normalized_form": item.normalized_form,
+        "type_grounded": item.type_grounded,
         "confidence": item.confidence,
         "source": item.source,
         "review_status": str(item.review_status),
@@ -219,11 +220,13 @@ def _encode_predicate(item: Predicate, run_id: str) -> dict[str, Any]:
         "span": encode_span(item.span),
         "exact_text": item.exact_text,
         "lemma": item.lemma,
-        "predicate_type": str(item.predicate_type),
+        "predicate_type": str(item.predicate_type) if item.predicate_type else None,
+        "extra_labels": _labels(item.extra_labels),
+        "omitted_slots": list(item.omitted_slots),
         "tense": item.tense,
         "aspect": item.aspect,
         "voice": item.voice,
-        "polarity": str(item.polarity),
+        "polarity": str(item.polarity) if item.polarity else None,
         "modality": item.modality,
         "confidence": item.confidence,
         "source": item.source,
@@ -267,17 +270,22 @@ def _decode_span_record(data: Mapping[str, Any]):
             labels=_label_set(data.get("labels")),
             head_token=data.get("head_token"),
             normalized_form=data.get("normalized_form"),
+            type_grounded=bool(data.get("type_grounded", True)),
             **common,
         )
     if kind == "predicate":
         return Predicate(
             predicate_id=data["id"],
             lemma=data["lemma"],
-            predicate_type=Label(data.get("predicate_type", "ACTION")),
+            predicate_type=(Label(data.get("predicate_type", "ACTION"))
+                            if data.get("predicate_type", "ACTION") else None),
+            extra_labels=_label_set(data.get("extra_labels")),
+            omitted_slots=tuple(data.get("omitted_slots", ())),
             tense=data.get("tense"),
             aspect=data.get("aspect"),
             voice=data.get("voice"),
-            polarity=Polarity(data.get("polarity", "POSITIVE")),
+            polarity=(Polarity(data.get("polarity", "POSITIVE"))
+                      if data.get("polarity", "POSITIVE") else None),
             modality=data.get("modality"),
             **common,
         )
@@ -298,7 +306,7 @@ def _encode_relation(edge: RelationEdge, run_id: str) -> dict[str, Any]:
     return {
         "run_id": run_id,
         "source_id": edge.source_id,
-        "relation": str(edge.relation),
+        "relation": str(edge.relation) if edge.relation else None,
         "target_id": edge.target_id,
         "question": edge.question,
         "confidence": edge.confidence,
@@ -309,7 +317,7 @@ def _encode_relation(edge: RelationEdge, run_id: str) -> dict[str, Any]:
 def _decode_relation(data: Mapping[str, Any]) -> RelationEdge:
     return RelationEdge(
         source_id=data["source_id"],
-        relation=Relation(data["relation"]),
+        relation=Relation(data["relation"]) if data.get("relation") else None,
         target_id=data["target_id"],
         question=data.get("question"),
         confidence=data.get("confidence"),

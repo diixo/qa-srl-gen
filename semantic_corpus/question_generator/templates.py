@@ -38,7 +38,7 @@ as *Who is visited the city?* The passive wording is still produced, by
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from typing import Iterable, Mapping
 
 from ..documents import (
@@ -207,6 +207,8 @@ class ParadigmResolver:
     def __call__(self, lemma: str) -> InflectedForms:
         if lemma in self.known:
             return self.known[lemma]
+        if lemma == "do":
+            return InflectedForms("do", "does", "doing", "did", "done")
         if self.lexicon is not None:
             paradigm = self.lexicon.paradigm(lemma)
             if paradigm is not None:
@@ -234,7 +236,8 @@ def _verb_words(
     frame = VerbFrame(
         verb_inflected_forms=resolver(predicate.lemma),
         structure=ArgStructure(args={}, is_passive=is_passive),
-        tense=predicate.tense if predicate.tense in _TENSES else "past",
+        tense=(predicate.modality if predicate.modality in _TENSES
+               else predicate.tense if predicate.tense in _TENSES else "past"),
         is_perfect="perfect" in aspect,
         is_progressive="progressive" in aspect,
         is_negated=is_negated,
@@ -341,6 +344,9 @@ def build_views(
 
     views = []
     for predicate in run.predicates:
+        # A QA-SRL bank supplies syntactic question slots, not these semantics.
+        if predicate.predicate_type is None or predicate.polarity is None:
+            continue
         by_relation = {
             relation: tuple(found)
             for relation, found in grouped.get(predicate.predicate_id, {}).items()
@@ -504,13 +510,14 @@ def atomic_questions(
 
         # "What did Anna do?" — the whole event, answered by the clause.
         if agent is not None:
-            aux = _verb_words(
-                predicate, resolver, subject_present=True, passive=False
-            )[0]
+            aux, *rest = _verb_words(
+                replace(predicate, lemma="do"), resolver,
+                subject_present=True, passive=False
+            )
             examples.append(
                 QAExample(
                     context=body,
-                    question=_question(["What", aux, _inline(agent), "do"]),
+                    question=_question(["What", aux, _inline(agent), *rest]),
                     answer=phrase_answer(_clause(view, resolver)),
                     kind=QAKind.ATOMIC,
                     document_id=document.document_id,
@@ -584,6 +591,13 @@ def passive_paraphrase_questions(
     return examples
 
 
+def type_is_grounded(run: AnnotationRun, mention: EntityMention) -> bool:
+    """Use stated types, including an unambiguous introduction elsewhere."""
+    candidates = [m for m in run.mentions if m.exact_text == mention.exact_text]
+    types = {tuple(sorted(map(str, m.labels.entity_labels))) for m in candidates}
+    return len(types) == 1 and any(m.type_grounded for m in candidates)
+
+
 def entity_type_questions(
     document: Document, run: AnnotationRun, *, context: str | None = None
 ) -> list[QAExample]:
@@ -597,7 +611,7 @@ def entity_type_questions(
     examples: list[QAExample] = []
     for mention in run.mentions:
         entity_label = next(iter(mention.labels.entity_labels), None)
-        if entity_label is None:
+        if entity_label is None or not type_is_grounded(run, mention):
             continue
         examples.append(
             QAExample(
@@ -691,7 +705,7 @@ def ontology_questions(
     examples: list[QAExample] = []
     for mention in run.mentions:
         type_name = mention.normalized_form
-        if not type_name or type_name not in hierarchy:
+        if not type_is_grounded(run, mention) or not type_name or type_name not in hierarchy:
             continue
         ancestors = hierarchy.ancestors(type_name)
         if len(ancestors) < 2:
@@ -871,16 +885,13 @@ def polarity_questions(
     for view in build_views(run, document):
         if view.agent is None:
             continue
-        verdict = (
-            "It denies that it happened."
-            if view.is_negated
-            else "It states that it happened."
-        )
+        clause = sentence_case(_clause(view, resolver))
+        verdict = "Negative." if view.is_negated else "Affirmative."
         examples.append(
             QAExample(
                 context=body,
-                question="Does the text say that this happened, or that it did not?",
-                answer=f"{verdict} {sentence_case(_clause(view, resolver))}.",
+                question=f'Is the statement "{clause}" affirmative or negative?',
+                answer=f"{verdict} {clause}.",
                 kind=QAKind.SPEECH_ACT,
                 document_id=document.document_id,
                 run_id=run.run_id,
@@ -895,10 +906,12 @@ def polarity_questions(
 
 
 def compound_questions(
-    document: Document, run: AnnotationRun, *, context: str | None = None
+    document: Document, run: AnnotationRun, *, context: str | None = None,
+    resolver: ParadigmResolver | None = None,
 ) -> list[QAExample]:
     """One question covering several arguments at once."""
     body = context if context is not None else document.text
+    resolver = resolver or ParadigmResolver()
     examples: list[QAExample] = []
     for view in build_views(run, document):
         agent, theme = view.agent, view.theme
@@ -911,8 +924,8 @@ def compound_questions(
             QAExample(
                 context=body,
                 question=(
-                    f"Who {view.predicate.exact_text} {_inline(theme)}, "
-                    f"and {wh} did it happen?"
+                    f"Who {' '.join(active_verb_words(view.predicate, resolver))} "
+                    f"{_inline(theme)}, and {wh}?"
                 ),
                 answer=phrase_answer(
                     f"{sentence_case(_inline(agent))}, {preposition} {_inline(adjunct)}"

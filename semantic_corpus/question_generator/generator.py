@@ -27,7 +27,7 @@ cannot be compared with itself.
 from __future__ import annotations
 
 import random
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from typing import Iterable, Mapping, Sequence
 
 from ..documents import AnnotationRun, Document, Passage
@@ -250,7 +250,28 @@ class QuestionGenerator:
 
         produced: list[QAExample] = []
         produced += atomic_questions(document, run, resolver=resolver, context=context)
-        produced += compound_questions(document, run, context=context)
+        produced += compound_questions(document, run, resolver=resolver, context=context)
+        # Preserve native bank questions when semantic roles are unknown.
+        untyped = {p.predicate_id for p in run.predicates if p.predicate_type is None}
+        mentions = {m.mention_id: m for m in run.mentions}
+        native_answers = {}
+        for edge in run.relations:
+            mention = mentions.get(edge.source_id)
+            if edge.target_id in untyped and edge.question and mention is not None:
+                native_answers.setdefault((edge.target_id, edge.question), {})[mention.span] = mention
+        # The bridge stores alternatives in descending vote order. Select the
+        # same primary answer as bank_qa_examples, retaining the others as
+        # alternatives rather than treating them as contradictory examples.
+        for (predicate_id, question), by_span in native_answers.items():
+            primary, *alternatives = by_span.values()
+            produced.append(QAExample(
+                context=context if context is not None else document.text,
+                question=question, answer=phrase_answer(primary.exact_text),
+                kind=QAKind.ATOMIC, document_id=document.document_id,
+                run_id=run.run_id, evidence=(primary.span,),
+                metadata={"predicate_id": predicate_id,
+                          "alternative_answers": [m.exact_text for m in alternatives]},
+            ))
         produced += entity_type_questions(document, run, context=context)
         produced += ontology_questions(document, run, hierarchy, context=context)
         produced += property_questions(document, run, hierarchy, context=context)
@@ -293,10 +314,23 @@ class QuestionGenerator:
         produced: list[QAExample] = []
         for passage in document.passages:
             narrowed = _restrict(run, passage)
+            offset = -passage.span.start_char
+            utterances = tuple(replace(u, span=u.span.shifted(offset))
+                               for u in document.utterances if passage.span.contains(u.span))
+            local_document = replace(document, text=passage.span.text_in(document.text),
+                                     passages=(), utterances=utterances)
+            utterance_ids = {u.utterance_id for u in utterances}
+            narrowed = replace(
+                narrowed,
+                mentions=tuple(replace(m, span=m.span.shifted(offset)) for m in narrowed.mentions),
+                predicates=tuple(replace(p, span=p.span.shifted(offset)) for p in narrowed.predicates),
+                properties=tuple(replace(p, span=p.span.shifted(offset)) for p in narrowed.properties),
+                dialogue=tuple(d for d in narrowed.dialogue if d.utterance_id in utterance_ids),
+            )
             if len(narrowed) == 0:
                 continue
             produced += self.for_document(
-                document, narrowed, context=passage.span.text_in(document.text)
+                local_document, narrowed, context=local_document.text
             )
         return self._finish(produced)
 
@@ -315,7 +349,14 @@ class QuestionGenerator:
                 continue
             seen.add(key)
             out.append(example)
-        return out
+        # Identical wording can refer to different events in a document.
+        # Do not turn that ambiguity into contradictory single-answer targets.
+        answers: dict[tuple[str, str], set[tuple[bool, str]]] = {}
+        for e in out:
+            answers.setdefault((e.context, e.question), set()).add(
+                (e.answerable, e.answer if e.answerable else "")
+            )
+        return [e for e in out if len(answers[e.context, e.question]) == 1]
 
 
 def _restrict(run: AnnotationRun, passage: Passage) -> AnnotationRun:
@@ -333,6 +374,8 @@ def _restrict(run: AnnotationRun, passage: Passage) -> AnnotationRun:
         | {p.predicate_id for p in predicates}
         | {p.property_id for p in properties}
     )
+    properties = tuple(p for p in properties if p.target_id is None or p.target_id in kept)
+    kept = {m.mention_id for m in mentions} | {p.predicate_id for p in predicates} | {p.property_id for p in properties}
     relations = tuple(
         edge
         for edge in run.relations

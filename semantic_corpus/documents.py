@@ -104,6 +104,8 @@ class TextSpan:
 
     def check(self, text: str, expected: str) -> None:
         """Raise :class:`SpanError` unless this span covers *expected*."""
+        if self.end_char > len(text):
+            raise SpanError(f"span end {self.end_char} exceeds text length {len(text)}")
         found = self.text_in(text)
         if found != expected:
             raise SpanError(
@@ -278,6 +280,8 @@ class EntityMention:
     confidence: float | None = None
     source: str = "unknown"
     review_status: ReviewStatus = ReviewStatus.UNREVIEWED
+    # Synthetic knowledge is not necessarily stated in the surface text.
+    type_grounded: bool = True
 
     def __post_init__(self) -> None:
         problems = self.labels.problems()
@@ -307,21 +311,29 @@ class Predicate:
     span: TextSpan
     exact_text: str
     lemma: str
-    predicate_type: Label = Label.ACTION
+    predicate_type: Label | None = Label.ACTION
     tense: str | None = None
     aspect: str | None = None
     voice: str | None = None
-    polarity: Polarity = Polarity.POSITIVE
+    polarity: Polarity | None = Polarity.POSITIVE
     modality: str | None = None
     confidence: float | None = None
     source: str = "unknown"
     review_status: ReviewStatus = ReviewStatus.UNREVIEWED
+    extra_labels: LabelSet = field(default_factory=LabelSet)
+    omitted_slots: tuple[str, ...] = ()
 
     def __post_init__(self) -> None:
-        if self.predicate_type not in (Label.ACTION, Label.STATE):
+        if self.predicate_type not in (None, Label.ACTION, Label.STATE):
             raise ValueError(
                 f"predicate_type must be ACTION or STATE, got {self.predicate_type}"
             )
+        if self.labels.problems():
+            raise ValueError("; ".join(self.labels.problems()))
+
+    @property
+    def labels(self) -> LabelSet:
+        return self.extra_labels | (() if self.predicate_type is None else (self.predicate_type,))
 
     def validate_against(self, document: Document) -> None:
         document.check_span(self.span, self.exact_text)
@@ -363,7 +375,7 @@ class RelationEdge:
     """
 
     source_id: str
-    relation: Relation
+    relation: Relation | None
     target_id: str
     question: str | None = None
     confidence: float | None = None
@@ -460,12 +472,17 @@ class AnnotationRun:
             if identifier in seen:
                 problems.append(f"duplicate annotation id {identifier!r}")
             seen.add(identifier)
+            if item.document_id != document.document_id:
+                problems.append(f"{identifier}: belongs to document {item.document_id!r}, not {document.document_id!r}")
             try:
                 item.validate_against(document)
             except SpanError as error:
                 problems.append(f"{identifier}: {error}")
 
         known = self.ids()
+        for prop in self.properties:
+            if prop.target_id is not None and prop.target_id not in known:
+                problems.append(f"property target {prop.target_id!r} is not annotated")
         for edge in self.relations:
             if edge.source_id not in known:
                 problems.append(f"relation source {edge.source_id!r} is not annotated")

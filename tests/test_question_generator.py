@@ -471,12 +471,12 @@ def test_polarity_questions_report_assertion_or_denial():
         document, run, resolver=ParadigmResolver(known=DEFAULT_PARADIGMS)
     )
     assert produced
-    assert produced[0].answer.startswith("It denies")
+    assert produced[0].answer.startswith("Negative.")
 
     affirmative = to_canonical(
         next(iter(Generator(seed=7).generate(1))), document_id="aff"
     )
-    assert polarity_questions(*affirmative)[0].answer.startswith("It states")
+    assert polarity_questions(*affirmative)[0].answer.startswith("Affirmative.")
 
 
 def _with_theme(form: str, seed: int = 5):

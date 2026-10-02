@@ -12,7 +12,7 @@ one carries over.
 
 | Module | Files | Lines | Disposition |
 |---|---:|---:|---|
-| `qasrl/` | 21 | 3 184 | **the core** — ported, see table below |
+| `qasrl/` | 21 | 3 184 | **the core** — partly ported, see table below |
 | `qasrl-bank/` | 14 | 729 | document/index metadata — partly deferred |
 | `qasrl-bank-service/` | 6 | 394 | HTTP document service — out of scope per handoff |
 | `qasrl-crowd/` | 36 | 4 768 | Mechanical Turk crowdsourcing — out of scope |
@@ -99,11 +99,19 @@ this data and is simpler, but it cannot say what may legally follow a prefix —
 so `Autocomplete` has no basis to be ported onto. That remains the main
 structural gap.
 
-**No `Frame` object.** Upstream, slots are a *projection* of a typed
+**Slots remain the parser's entry point.** Upstream, slots are a *projection* of a typed
 `Frame` + `answerSlot`; parsing produces the frame and the slots are derived.
-Here slots are primary and the frame is implicit. This is why rules 1–4 above
-had to be restated as slot-level invariants: they are consequences of frame
-well-formedness that cannot be expressed as per-slot vocabularies.
+Python now has a typed `qasrl_core.frame.Frame` and `frame_from_slots`;
+slots → frame → slots is covered by the bank checks. The parser still returns
+slots first. Full upstream variant enumeration remains a porting task.
+
+## Implementation fixes versus further porting
+
+The implementation audit and fixes recorded in [STATUS_RU.md](STATUS_RU.md)
+are a separate workstream. The semantic ontology, synthetic generator,
+annotation pipeline, question generator and JSONL store are project-specific
+Python code, not translations of the Scala repository. Fixing their correctness
+does not complete the missing Scala components listed above.
 
 ## Divergence between the released data and current `master`
 
@@ -121,8 +129,8 @@ differences are visible:
   `prep="_", obj2="to do something"`, which is not an `obj2` value that occurs
   anywhere in the bank.
 
-Anyone later porting `QuestionTemplate` or `ClauseResolution` should expect
-them to be written against the newer convention.
+Further work on `QuestionTemplate` parity or `ClauseResolution` must account
+for their newer upstream convention.
 
 ## Remaining mismatches
 

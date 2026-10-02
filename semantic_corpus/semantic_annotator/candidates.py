@@ -170,7 +170,7 @@ def tokenize(
     for match in _TOKEN.finditer(text):
         word = match.group()
         start = match.start() + offset
-        parts = CONTRACTIONS.get(word.lower()) if split_contractions else None
+        parts = CONTRACTIONS.get(word.lower().replace("’", "'")) if split_contractions else None
         if parts and len(parts[0]) + len(parts[1]) == len(word):
             head_end = start + len(parts[0])
             tokens.append(Token(word[: len(parts[0])], start, head_end, len(tokens)))
@@ -274,7 +274,7 @@ def extract_candidates(
     for index, token in enumerate(tokens):
         if index in consumed:
             continue
-        lowered = token.text.lower()
+        lowered = token.text.lower().replace("’", "'")
         span = TextSpan(token.start_char, token.end_char, index, index + 1)
 
         # Discourse markers are checked before the function-word filter:
@@ -284,7 +284,7 @@ def extract_candidates(
         marker = marker_for(
             lowered,
             turn_initial=index == 0,
-            followed_by_comma=after in ",;:!",
+            followed_by_comma=bool(after) and after in ",;:!.?",
             stands_alone=alone,
         )
         if marker is not None:

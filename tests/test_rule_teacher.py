@@ -191,7 +191,8 @@ def test_candidates_report_the_ranked_lemma_first(resources):
 
 def test_position_decides_whether_a_word_is_a_marker():
     """The handoff's rule: 'Good.' is approval, 'a good car' is a property."""
-    assert marker_for("good", turn_initial=True, followed_by_comma=False, stands_alone=False)
+    assert marker_for("good", turn_initial=True, followed_by_comma=False, stands_alone=False) is None
+    assert marker_for("good", turn_initial=True, followed_by_comma=True, stands_alone=False)
     assert marker_for("good", turn_initial=False, followed_by_comma=False, stands_alone=True)
     assert (
         marker_for("good", turn_initial=False, followed_by_comma=False, stands_alone=False)

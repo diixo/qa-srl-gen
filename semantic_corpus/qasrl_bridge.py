@@ -19,9 +19,8 @@ said whether it is a physical object or an abstract one. So mentions come
 out with an empty label set, which is the honest record — an empty set means
 "not annotated", and anything else would be this module inventing types.
 
-The normalised role is derived where the question grammar determines it, and
-left out where it does not: *why* and *how* questions have no counterpart in
-the relation inventory, so those keep their question and get no edge. The
+The normalised role is derived only for explicit location/time questions.
+Other questions keep their edge with an unknown (null) normalised role. The
 handoff's rule is that the question is the primary record and the role is
 the derived one, which is exactly this ordering.
 
@@ -117,12 +116,10 @@ def sentence_to_document(
 def relation_for(
     label: QuestionLabel, entry: VerbEntry
 ) -> Relation | None:
-    """The normalised role a question asks about, when the grammar fixes it.
+    """Normalize only explicit location/time questions.
 
-    Derived from the slots through the typed frame, so this agrees with the
-    question rather than guessing from its wh-word. ``EXPERIENCER_OF`` is
-    used instead of ``AGENT_OF`` for stative predicates: the subject of
-    *know* is not an agent.
+    Subject/object position and a preposition do not determine a semantic
+    role: "to Kyiv" is not a recipient, and a passive subject can be one.
     """
     try:
         _frame, answer_slot = frame_from_slots(
@@ -131,42 +128,10 @@ def relation_for(
     except ValueError:
         return None
 
-    # Voice decides what the subject is. In *What can be seen?* the subject
-    # is the thing seen, not the seer, so reading SUBJ as an agent would
-    # label every passive question backwards.
-    if answer_slot == SUBJ:
-        if _frame.is_passive:
-            return Relation.THEME_OF
-        stative = entry.verb_inflected_forms.stem in STATIVE_VERBS
-        return Relation.EXPERIENCER_OF if stative else Relation.AGENT_OF
-    if answer_slot == OBJ:
-        return Relation.THEME_OF
-    if answer_slot == OBJ2:
-        argument = _frame.args.get(OBJ2)
-        if (
-            _frame.is_passive
-            and isinstance(argument, Prep)
-            and argument.preposition.split()[0] == "by"
-        ):
-            # The demoted agent of a passive: *Who was it given by?*
-            stative = entry.verb_inflected_forms.stem in STATIVE_VERBS
-            return Relation.EXPERIENCER_OF if stative else Relation.AGENT_OF
-        return _relation_for_obj2(_frame)
     if answer_slot.is_adverbial and answer_slot.wh:
         return _ADVERBIAL_RELATIONS.get(answer_slot.wh)
-    return None
-
-
-def _relation_for_obj2(frame) -> Relation | None:
-    argument = frame.args.get(OBJ2)
-    if isinstance(argument, Locative):
+    if answer_slot == OBJ2 and isinstance(_frame.args.get(OBJ2), Locative):
         return Relation.LOCATION_OF
-    if isinstance(argument, Prep):
-        if argument.preposition.split()[0] == "to":
-            return Relation.RECIPIENT_OF
-        return Relation.THEME_OF
-    if isinstance(argument, Noun):
-        return Relation.THEME_OF
     return None
 
 
@@ -203,15 +168,12 @@ def sentence_to_run(
                 span=TextSpan(verb_span.start_char, verb_span.end_char),
                 exact_text=sentence.sentence_tokens[entry.verb_index],
                 lemma=entry.verb_inflected_forms.stem,
-                predicate_type=(
-                    Label.STATE
-                    if entry.verb_inflected_forms.stem in STATIVE_VERBS
-                    else Label.ACTION
-                ),
+                predicate_type=None,
+                polarity=None,
                 # The bank records tense per question, not per clause, so a
                 # single value for the predicate would be a fabrication.
                 tense=None,
-                confidence=1.0,
+                confidence=None,
                 source=BANK_SOURCE,
                 review_status=status,
             )
@@ -239,23 +201,22 @@ def sentence_to_run(
                             exact_text=char_span.text_in(document.text),
                             # The bank never says what kind of thing this is.
                             labels=LabelSet(frozenset()),
-                            confidence=min(1.0, votes / max(1, len(label.answer_judgments))),
+                            confidence=votes / max(1, len({j.source_id for j in label.answer_judgments})),
                             source=BANK_SOURCE,
                             review_status=status,
                         )
                     )
                 relation = relation_for(label, entry)
-                if relation is not None:
-                    relations.append(
-                        RelationEdge(
-                            source_id=mention_id,
-                            relation=relation,
-                            target_id=predicate_id,
-                            question=label.question_string,
-                            confidence=1.0,
-                            source=BANK_SOURCE,
-                        )
+                relations.append(
+                    RelationEdge(
+                        source_id=mention_id,
+                        relation=relation,
+                        target_id=predicate_id,
+                        question=label.question_string,
+                        confidence=None,
+                        source=BANK_SOURCE,
                     )
+                )
 
     return AnnotationRun(
         run_id=run_id,

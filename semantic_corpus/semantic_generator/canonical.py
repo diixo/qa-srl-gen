@@ -116,6 +116,7 @@ def to_annotation_run(
         confidence=1.0,
         source=GENERATOR_SOURCE,
         review_status=ReviewStatus.VERIFIED,
+        omitted_slots=tuple(sorted(realized.omitted_slots)),
     )
 
     mentions: list[EntityMention] = []
@@ -154,6 +155,10 @@ def to_annotation_run(
                 exact_text=mention.text,
                 labels=mention.labels,
                 normalized_form=_normalized_form(mention.slot, situation),
+                type_grounded=(
+                    Label.NAMED_ENTITY not in mention.labels
+                    or bool(situation.bindings[mention.slot.split(':')[0]].appositive)
+                ),
                 confidence=1.0,
                 source=GENERATOR_SOURCE,
                 review_status=ReviewStatus.VERIFIED,
@@ -247,7 +252,7 @@ def iter_canonical(
         )
 
 
-def _shift(item, offset: int, suffix: str):
+def _shift(item, offset: int, suffix: str, document_id: str):
     """Move an annotation into a combined document, renaming its id."""
     from dataclasses import replace as _replace
 
@@ -259,7 +264,7 @@ def _shift(item, offset: int, suffix: str):
     return _replace(
         item,
         span=item.span.shifted(offset),
-        document_id=suffix,
+        document_id=document_id,
         **{field_name: f"{suffix}#{getattr(item, field_name)}"},
     )
 
@@ -292,12 +297,15 @@ def combine(
     omitted: list[str] = []
 
     for index, (piece, run) in enumerate(pieces):
+        if run.ontology_version != pieces[0][1].ontology_version:
+            raise ValueError("cannot combine different ontology versions")
         if index:
             cursor += len(separator)
         offset = cursor
         texts.append(piece.text)
         cursor += len(piece.text)
         tag = f"{document_id}#s{index}"
+        renamed = {}
 
         for group, sink in (
             (run.mentions, mentions),
@@ -305,7 +313,9 @@ def combine(
             (run.properties, properties),
         ):
             for item in group:
-                moved = _shift(item, offset, tag)
+                moved = _shift(item, offset, tag, document_id)
+                if isinstance(moved, Property) and moved.target_id is not None:
+                    moved = replace(moved, target_id=f"{tag}#{moved.target_id}")
                 identifier = next(
                     getattr(moved, name)
                     for name in ("mention_id", "predicate_id", "property_id")
@@ -341,10 +351,10 @@ def combine(
     )
     merged = AnnotationRun(
         run_id=run_id or f"{document_id}-generated",
-        ontology_version=ONTOLOGY_VERSION,
+        ontology_version=pieces[0][1].ontology_version,
         model_name=GENERATOR_SOURCE,
         prompt_version="n/a",
-        synthetic=True,
+        synthetic=all(run.synthetic for _, run in pieces),
     ).extended(
         mentions=mentions,
         predicates=predicates,

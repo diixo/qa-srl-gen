@@ -131,13 +131,13 @@ def marker_for(
 
     The handoff is explicit that context decides: ``Good.`` is approval,
     *It is a good car* is a property. A word in the table is read as a
-    marker only when it opens the turn, is set off by a comma, or is the
-    whole turn — the three positions where it cannot be modifying anything.
+    marker only as a whole turn or a separated turn opener. Initial
+    position alone also admits ordinary modifiers, such as "Good cars".
     """
     entry = DISCOURSE_MARKERS.get(word.lower())
     if entry is None:
         return None
-    if stands_alone or turn_initial or followed_by_comma:
+    if stands_alone or (turn_initial and followed_by_comma):
         return entry
     return None
 

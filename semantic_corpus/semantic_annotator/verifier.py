@@ -22,7 +22,7 @@ on it both survive.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field, replace
+from dataclasses import dataclass, field, fields, replace
 from typing import Iterable, Mapping, Sequence
 
 from ..documents import (
@@ -79,17 +79,44 @@ class AgreementReport:
         return len(self.agreed) / total if total else 1.0
 
 
-def _key(item: EntityMention | Predicate | Property) -> tuple[int, int, str]:
-    """What counts as "the same annotation" across two passes.
+def _key(item) -> tuple:
+    """All semantic fields, excluding per-run identity and provenance."""
+    ignored = {"mention_id", "predicate_id", "property_id", "target_id",
+               "confidence", "source", "review_status"}
+    return (type(item).__name__, tuple(
+        (f.name, getattr(item, f.name)) for f in fields(item) if f.name not in ignored
+    ))
 
-    Position plus label set. Deliberately not the identifier, which is
-    per-run, and not the confidence, which is not comparable between models.
-    """
-    if isinstance(item, Predicate):
-        labels = str(item.predicate_type)
-    else:
-        labels = str(item.labels)
-    return (item.span.start_char, item.span.end_char, labels)
+
+def _identity(item) -> tuple[str, str]:
+    if hasattr(item, "utterance_id"):
+        return ("dialogue", item.utterance_id)
+    return ("span", next(getattr(item, name) for name in
+                        ("mention_id", "predicate_id", "property_id") if hasattr(item, name)))
+
+
+def _semantic_keys(run: AnnotationRun) -> dict[tuple[str, str], tuple]:
+    items = (*run.mentions, *run.predicates, *run.properties)
+    base = {_identity(item)[1]: _key(item) for item in items}
+    if len(base) != len(items):
+        raise ValueError("cannot compare a run with duplicate annotation IDs")
+    # Resolve references by meaning; identifiers differ between passes.
+    keys = {}
+    for item in items:
+        ident = _identity(item)[1]
+        links = frozenset(
+            (base.get(e.source_id, ("missing", e.source_id)), e.relation,
+             base.get(e.target_id, ("missing", e.target_id)), e.question)
+            for e in run.relations if ident in (e.source_id, e.target_id)
+        )
+        target = getattr(item, "target_id", None)
+        keys[_identity(item)] = (base[ident], base.get(target, ("missing", target)) if target else None, links)
+    for d in run.dialogue:
+        ident = _identity(d)
+        if ident in keys:
+            raise ValueError("cannot compare a run with duplicate dialogue annotations")
+        keys[ident] = _key(d)
+    return keys
 
 
 def verify_structure(run: AnnotationRun, document: Document) -> StructuralReport:
@@ -133,54 +160,20 @@ def verify_independently(
     and compared against a third pass later.
     """
     second_id = run_id or f"{run.run_id}-verify"
-    results: list[AlignmentResult] = []
-    passages = document.passages or (None,)
-    for passage in passages:
-        request = request_for(document, passage, ())
-        response = teacher.annotate(request)
-        results.append(
-            align_response(
-                response,
-                document,
-                passage,
-                run_id=f"{second_id}#{getattr(passage, 'passage_id', 'all')}",
-                source=getattr(teacher, "name", "teacher"),
-                status=ReviewStatus.UNREVIEWED,
-            )
-        )
-
-    second = AnnotationRun(
-        run_id=second_id,
-        ontology_version=run.ontology_version,
-        model_name=getattr(teacher, "name", "teacher"),
-        prompt_version=run.prompt_version,
-        synthetic=run.synthetic,
-    )
-    for result in results:
-        second = second.extended(
-            mentions=result.mentions,
-            predicates=result.predicates,
-            properties=result.properties,
-            relations=result.relations,
-        )
-
-    first_keys = {
-        _key(item): item
-        for item in (*run.mentions, *run.predicates, *run.properties)
-    }
-    second_keys = {
-        _key(item): item
-        for item in (*second.mentions, *second.predicates, *second.properties)
-    }
-    agreed = sorted(first_keys.keys() & second_keys.keys())
+    from .pipeline import annotate_document
+    outcome = annotate_document(document, teacher, run_id=second_id,
+                                status=ReviewStatus.UNREVIEWED)
+    if not outcome.ok:
+        raise ValueError(str(outcome.structure))
+    second = outcome.run
+    if run.ontology_version != second.ontology_version:
+        raise ValueError("cannot compare different ontology versions")
+    first_keys = set(_semantic_keys(run).values())
+    second_keys = set(_semantic_keys(second).values())
     report = AgreementReport(
-        agreed=tuple(f"{a}-{b}:{c}" for a, b, c in agreed),
-        only_first=tuple(
-            f"{a}-{b}:{c}" for a, b, c in sorted(first_keys.keys() - second_keys.keys())
-        ),
-        only_second=tuple(
-            f"{a}-{b}:{c}" for a, b, c in sorted(second_keys.keys() - first_keys.keys())
-        ),
+        agreed=tuple(sorted(map(repr, first_keys & second_keys))),
+        only_first=tuple(sorted(map(repr, first_keys - second_keys))),
+        only_second=tuple(sorted(map(repr, second_keys - first_keys))),
     )
     return second, report
 
@@ -195,12 +188,18 @@ def promote_agreed(
     them away would quietly bias the corpus towards whatever two models
     happen to share.
     """
-    confirmed = {
-        _key(item) for item in (*second.mentions, *second.predicates, *second.properties)
-    }
+    if run.ontology_version != second.ontology_version:
+        raise ValueError("cannot compare different ontology versions")
+    second_keys = _semantic_keys(second)
+    rejected = {_identity(item) for item in
+                (*second.mentions, *second.predicates, *second.properties, *second.dialogue)
+                if item.review_status == ReviewStatus.REJECTED}
+    confirmed = {key for ident, key in second_keys.items() if ident not in rejected}
+    first_keys = _semantic_keys(run)
 
     def promote(item):
-        if _key(item) in confirmed:
+        ident = _identity(item)
+        if first_keys[ident] in confirmed and item.review_status != ReviewStatus.REJECTED:
             return replace(item, review_status=ReviewStatus.VERIFIED)
         return item
 
@@ -210,4 +209,5 @@ def promote_agreed(
         mentions=tuple(promote(m) for m in run.mentions),
         predicates=tuple(promote(p) for p in run.predicates),
         properties=tuple(promote(p) for p in run.properties),
+        dialogue=tuple(promote(d) for d in run.dialogue),
     )

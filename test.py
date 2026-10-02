@@ -1,21 +1,27 @@
+"""Count records in a local sentence corpus without network dependencies."""
+
+import argparse
+import gzip
 import json
-import re
-from collections import Counter
-
-from datasets import load_dataset
+from pathlib import Path
 
 
-DATASET_NAME = "aitetic/bookcorpus"
-SPLIT = "train"
+def count_sentences(path: Path) -> int:
+    opener = gzip.open if path.suffix == ".gz" else open
+    count = 0
+    with opener(path, "rt", encoding="utf-8") as stream:
+        for line in stream:
+            if line.strip():
+                json.loads(line)
+                count += 1
+    return count
 
 
-
-def main():
-
-    print("Loading dataset...")
-    dataset = load_dataset(DATASET_NAME, split=SPLIT)
-    total_sentences = len(dataset)
-    print(total_sentences)
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("path", type=Path, nargs="?", default=Path("data/eng-base.jsonl"))
+    args = parser.parse_args()
+    print(count_sentences(args.path))
 
 
 if __name__ == "__main__":

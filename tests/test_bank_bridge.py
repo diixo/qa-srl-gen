@@ -58,7 +58,8 @@ def test_predicates_keep_their_lemma_and_position(sentences):
     for predicate in run.predicates:
         assert predicate.lemma
         assert predicate.span.text_in(document.text) == predicate.exact_text
-        assert predicate.predicate_type in (Label.ACTION, Label.STATE)
+        assert predicate.predicate_type is None
+        assert predicate.polarity is None
 
 
 def test_mentions_carry_no_invented_entity_type(sentences):
@@ -81,8 +82,8 @@ def test_the_question_is_kept_on_the_relation(sentences):
     assert found
 
 
-def test_the_subject_of_a_passive_is_a_theme_not_an_agent():
-    """*What can be seen?* asks about the thing seen."""
+def test_passive_syntax_does_not_invent_a_semantic_role():
+    """The question survives even when its role needs semantic annotation."""
     import gzip
     import json
 
@@ -126,7 +127,8 @@ def test_the_subject_of_a_passive_is_a_theme_not_an_agent():
         }
     )
     _document, run = sentence_to_canonical(sentence)
-    assert [str(e.relation) for e in run.relations] == ["THEME_OF"]
+    assert [e.relation for e in run.relations] == [None]
+    assert run.relations[0].question == "What can be seen?"
 
 
 def test_a_span_needs_agreement_to_be_kept(sentences):

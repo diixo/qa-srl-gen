@@ -253,11 +253,11 @@ class QuestionLabel:
 
     def span_votes(self) -> dict[Span, int]:
         """How many accepting annotators highlighted each span."""
-        votes: dict[Span, int] = {}
+        voters: dict[Span, set[str]] = {}
         for judgment in self.valid_judgments:
             for span in judgment.spans:
-                votes[span] = votes.get(span, 0) + 1
-        return votes
+                voters.setdefault(span, set()).add(judgment.source_id)
+        return {span: len(sources) for span, sources in voters.items()}
 
     @classmethod
     def from_json(cls, data: Mapping[str, Any]) -> "QuestionLabel":

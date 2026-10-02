@@ -1,7 +1,8 @@
 # qa-srl-gen — semantic corpus toolkit
 
-Python core of QA-SRL plus, in later stages, a generator of semantic training
-corpora. This repository implements **all five stages** of the handoff: the QA-SRL
+Python QA-SRL core plus a generator of semantic training corpora. The repository
+has modules for the five stages of the handoff, with the limitations recorded in
+[STATUS_RU.md](STATUS_RU.md) and [NOT_PORTED.md](NOT_PORTED.md): the QA-SRL
 core (`semantic_corpus/qasrl_core`), the canonical document representation
 (`semantic_corpus/documents.py`), the ontology (`semantic_corpus/ontology`),
 the semantic generator (`semantic_corpus/semantic_generator`), the semantic
@@ -15,7 +16,7 @@ No installation, no virtualenv, no build system: the package sits at the
 repository root and imports directly. Python 3.10+, standard library only.
 
 ```bash
-python -m pytest                       # 81 tests
+python -m pytest -q
 python -m semantic_corpus.cli --help
 ```
 
@@ -62,6 +63,19 @@ python -m semantic_corpus.cli --help
 | `exporters/bio.py` | the lossy BIO/BILOU projection, with its cost counted |
 | `exporters/report.py` | class distribution and leakage |
 | `cli.py` | `inspect`, `roundtrip`, `validate`, `lookup`, `frames`, `generate`, `ambiguity`, `ingest`, `candidates`, `annotate`, `questions`, `build`, `report` |
+
+Generator version `0.2.0` fixes annotation integrity, contextual answerability,
+verb-chain questions and duplicate builds. Existing `jsonl-v1` records remain
+readable; old exports must be regenerated into a fresh store to obtain corrected
+training data. New records preserve predicate extra labels, omitted slots and
+whether a synthetic entity type is stated in the text. Unknown bank predicate
+types, polarity and semantic roles are stored as `null`; native questions remain.
+
+`build` can be repeated with the same configuration and version. Changed input
+under an existing document ID is rejected; use a new prefix and version for a
+different build. Storage supports one writer and does not provide crash-atomic
+transactions across its JSONL files. Text and annotation reads stream; in-memory
+identity and offset indexes grow with record count.
 
 ## Short example
 

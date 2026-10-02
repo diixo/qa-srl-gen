@@ -113,6 +113,15 @@ class ProposedAnnotation:
     target_text: str | None = None
     question: str | None = None
     confidence: float | None = None
+    target_occurrence: int = 0
+    tense: str | None = None
+    aspect: str | None = None
+    voice: str | None = None
+    modality: str | None = None
+
+    def __post_init__(self):
+        if self.occurrence < 0 or self.target_occurrence < 0:
+            raise ValueError("occurrences must be nonnegative")
 
     @classmethod
     def from_json(cls, data: Mapping[str, Any]) -> "ProposedAnnotation":
@@ -133,6 +142,9 @@ class ProposedAnnotation:
             target_text=data.get("target_text"),
             question=data.get("question"),
             confidence=data.get("confidence"),
+            target_occurrence=int(data.get("target_occurrence", 0)),
+            tense=data.get("tense"), aspect=data.get("aspect"),
+            voice=data.get("voice"), modality=data.get("modality"),
         )
 
 

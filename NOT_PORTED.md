@@ -21,8 +21,8 @@ What the original `TemplateStateMachine` additionally does, and this does not:
    time, keeping every live branch, and can report the legal continuations of
    any prefix. The Python parser instead locates the inflected verb and
    enumerates the readings around it. Same answers on this data, but nothing
-   here can answer "what may follow *What might have*?". **This is the one
-   remaining structural gap**, and it is why `Autocomplete` cannot be ported.
+   here can answer "what may follow *What might have*?". This gap blocks an
+   equivalent incremental `Autocomplete` implementation.
 2. **Sentence-conditioned preposition sets.** The inventory of 72 prepositions
    is ported, but upstream narrows it per question: the candidate set is the
    prepositions occurring in the sentence being annotated, plus adjacent
@@ -42,7 +42,7 @@ What the original `TemplateStateMachine` additionally does, and this does not:
 
 ## 2. Components from the Scala project not ported
 
-Deliberately out of scope per the handoff, confirmed by the audit:
+Remaining porting work (separate from implementation fixes):
 
 * `Autocomplete.scala` — blocked on gap 1 above;
 * `labeling/ClauseResolution.scala` — slots to clausal frames;
@@ -50,6 +50,9 @@ Deliberately out of scope per the handoff, confirmed by the audit:
 * `labeling/QuestionLabelMapper.scala` — an arrow abstraction with no useful
   Python counterpart;
 * `data/Dataset.scala`'s filter/merge algebra (streaming reads are ported);
+
+Excluded application infrastructure:
+
 * `qasrl-crowd/`, `qasrl-crowd-example/` — Mechanical Turk pipeline;
 * `qasrl-bank-service/` — HTTP document service;
 * `apps/` — browser, reformatting and alignment CLIs.
@@ -69,15 +72,15 @@ Deliberately out of scope per the handoff, confirmed by the audit:
 
 ## 4. Later stages of the handoff
 
-All five stages are implemented. Storage is JSONL rather than SQLite: the
-user ruled out both SQLite and Parquet, overriding the handoff.
+Modules for all five stages exist; this is not full handoff coverage or a
+complete Scala port. Current limitations and the implementation-fix results are
+in [STATUS_RU.md](STATUS_RU.md). Storage is JSONL rather than SQLite: the user
+ruled out both SQLite and Parquet, overriding the handoff.
 
 ## 5. Repository hygiene
 
-* `test.py` at the repository root calls `datasets.load_dataset` from Hugging
-  Face, which the handoff forbids outright. It is unrelated to this package
-  and was left untouched; it needs removing or rewriting against a non-HF
-  source.
+* `test.py` now counts records in local JSONL/JSONL.GZ files with the standard
+  library. Its Hugging Face dependency and automatic download were removed.
 * `qasrl_v2.py` at the root is the earlier flattening prototype. Its logic is
   now covered by `bank_reader` plus `QuestionLabel.span_votes`, but it is
   still the only thing that writes the flat export, so it was left in place.

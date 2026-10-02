@@ -26,7 +26,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Iterable, Iterator, Literal, Mapping, Sequence
 
-from ..documents import AnnotationRun, Document, EntityMention, Predicate, TextSpan
+from ..documents import AnnotationRun, Document, EntityMention, Predicate, Property, TextSpan
 from ..ontology import Label
 from ..semantic_annotator.candidates import tokenize
 from .jsonl import write_jsonl
@@ -45,11 +45,12 @@ class BioReport:
     tagged_spans: int = 0
     dropped_overlapping: int = 0
     dropped_labels: int = 0
+    dropped_unrepresentable: int = 0
     dropped_examples: list[str] = field(default_factory=list)
 
     @property
     def is_lossless(self) -> bool:
-        return self.dropped_overlapping == 0 and self.dropped_labels == 0
+        return self.dropped_overlapping == 0 and self.dropped_labels == 0 and self.dropped_unrepresentable == 0
 
     def note(self, message: str) -> None:
         if len(self.dropped_examples) < 20:
@@ -65,7 +66,7 @@ class BioReport:
         return (
             head
             + f"; dropped {self.dropped_overlapping} overlapping spans and "
-            f"{self.dropped_labels} extra labels"
+            f"{self.dropped_labels} extra labels, {self.dropped_unrepresentable} unrepresentable spans"
         )
 
 
@@ -87,17 +88,13 @@ class Tagging:
         }
 
 
-def _span_label(item: EntityMention | Predicate) -> Label | None:
-    if isinstance(item, Predicate):
-        return item.predicate_type
+def _span_label(item: EntityMention | Predicate | Property) -> Label | None:
     for label in item.labels.ordered:
         return label
     return None
 
 
-def _extra_labels(item: EntityMention | Predicate) -> int:
-    if isinstance(item, Predicate):
-        return 0
+def _extra_labels(item: EntityMention | Predicate | Property) -> int:
     return max(0, len(item.labels) - 1)
 
 
@@ -110,12 +107,14 @@ def tag_document(
 ) -> Tagging:
     """Project one run onto a per-token tag sequence."""
     report = report if report is not None else BioReport()
+    if scheme not in ("BIO", "BILOU"):
+        raise ValueError(f"unknown scheme {scheme!r}")
     tokens = tokenize(document.text)
     tags = ["O"] * len(tokens)
     report.documents += 1
     report.tokens += len(tokens)
 
-    annotated: list[EntityMention | Predicate] = [*run.mentions, *run.predicates]
+    annotated = [*run.mentions, *run.predicates, *run.properties]
     # Longer spans first; ties broken by position so the result is stable.
     annotated.sort(key=lambda a: (-(len(a.span)), a.span.start_char))
 
@@ -123,6 +122,8 @@ def tag_document(
     for item in annotated:
         label = _span_label(item)
         if label is None:
+            report.dropped_unrepresentable += 1
+            report.note(f"{document.document_id}: {item.exact_text!r} has no known label")
             continue
         covered = [
             index
@@ -130,7 +131,10 @@ def tag_document(
             if token.start_char >= item.span.start_char
             and token.end_char <= item.span.end_char
         ]
-        if not covered:
+        if (not covered or tokens[covered[0]].start_char != item.span.start_char
+                or tokens[covered[-1]].end_char != item.span.end_char):
+            report.dropped_unrepresentable += 1
+            report.note(f"{document.document_id}: {item.exact_text!r} is not token aligned")
             continue
         if any(occupied[index] for index in covered):
             report.dropped_overlapping += 1

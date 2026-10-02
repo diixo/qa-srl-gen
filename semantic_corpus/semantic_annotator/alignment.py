@@ -24,7 +24,7 @@ span says.
 from __future__ import annotations
 
 import re
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from typing import Iterable, Iterator, Sequence
 
 from ..documents import (
@@ -36,7 +36,7 @@ from ..documents import (
     RelationEdge,
     TextSpan,
 )
-from ..ontology import Label, LabelSet, Relation, ReviewStatus
+from ..ontology import Label, LabelSet, Polarity, Relation, ReviewStatus
 from .teacher import ProposedAnnotation, TeacherResponse
 
 __all__ = [
@@ -95,6 +95,8 @@ def locate(
     *window* restricts the search to a passage, which both speeds it up and
     stops a quote matching an identical string elsewhere in the document.
     """
+    if occurrence < 0:
+        raise LocationError("occurrence must be nonnegative")
     if not quote or not quote.strip():
         raise LocationError("the quote is empty")
 
@@ -239,6 +241,10 @@ def align_response(
                     exact_text=exact_text,
                     lemma=annotation.lemma or exact_text.lower(),
                     predicate_type=predicate_label,
+                    extra_labels=LabelSet(labels.labels - {predicate_label}),
+                    polarity=Polarity.NEGATIVE if annotation.negated else Polarity.POSITIVE,
+                    tense=annotation.tense, aspect=annotation.aspect,
+                    voice=annotation.voice, modality=annotation.modality,
                     confidence=annotation.confidence,
                     source=source,
                     review_status=status,
@@ -261,6 +267,9 @@ def align_response(
     relations = tuple(
         _align_relations(response.annotations, by_text, source, rejected)
     )
+    targets = {edge.source_id: edge.target_id for edge in relations
+               if edge.relation is Relation.PROPERTY_OF}
+    properties = [replace(p, target_id=targets.get(p.property_id)) for p in properties]
 
     result = AlignmentResult(
         mentions=tuple(mentions),
@@ -293,7 +302,7 @@ def _align_relations(
                 Rejection(annotation, f"relation {annotation.relation} has no target")
             )
             continue
-        target_id = by_text.get((annotation.target_text, 0))
+        target_id = by_text.get((annotation.target_text, annotation.target_occurrence))
         if target_id is None:
             rejected.append(
                 Rejection(
