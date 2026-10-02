@@ -5,7 +5,7 @@ balanced set needs every template family at once, and putting the driver
 inside any one of them would make them import each other. It is not in the
 handoff's file list.
 
-Two properties are enforced here rather than left to the caller:
+Three properties are enforced here rather than left to the caller:
 
 **Context travels with the question.** Splitting a sentence into eight
 questions is wanted; detaching them from the text that makes their answers
@@ -16,32 +16,41 @@ on.
 **Nothing is emitted that cannot be checked.** Each example goes through
 :meth:`~.answers.QAExample.check` before it is yielded, so a template bug
 surfaces at generation time rather than inside a training run.
+
+**The mix is controllable.** Left alone, the templates produce whatever the
+record happens to support, which skews heavily towards whichever family fires
+most often. :meth:`QuestionGenerator.balance` imposes a target mix
+deterministically, because a corpus whose composition drifts between runs
+cannot be compared with itself.
 """
 
 from __future__ import annotations
 
 import random
 from dataclasses import dataclass, field
-from typing import Iterable, Iterator, Sequence
+from typing import Iterable, Mapping, Sequence
 
 from ..documents import AnnotationRun, Document, Passage
-from ..ontology import MarkerFunction, SpeechAct, TypeHierarchy, load_default_hierarchy
+from ..ontology import TypeHierarchy, load_default_hierarchy
 from ..qasrl_core.inflections import InflectionLexicon
 from ..qasrl_core.models import InflectedForms
-from .answers import QAExample, QAKind, phrase_answer, sentence_case
+from .answers import QAExample, QAKind, phrase_answer
 from .negatives import no_answer_questions
 from .paraphrases import paraphrase
 from .templates import (
     ParadigmResolver,
     atomic_questions,
     compound_questions,
+    contextual_questions,
     entity_type_questions,
     ontology_questions,
+    passive_paraphrase_questions,
+    polarity_questions,
     property_questions,
     yes_no_questions,
 )
 
-__all__ = ["QuestionGenerator", "dialogue_act_questions"]
+__all__ = ["QuestionGenerator", "dialogue_act_questions", "balance"]
 
 
 def dialogue_act_questions(
@@ -67,38 +76,58 @@ def dialogue_act_questions(
         index = order[utterance.utterance_id]
         first = document.utterances[max(0, index - context_turns)]
         context = document.text[first.span.start_char : utterance.span.end_char]
-        turn_text = utterance.text_in(document)
+        turn = utterance.text_in(document)
+
+        def example(question: str, answer: str, **meta) -> QAExample:
+            return QAExample(
+                context=context,
+                question=question,
+                answer=phrase_answer(answer),
+                kind=QAKind.SPEECH_ACT,
+                document_id=document.document_id,
+                run_id=run.run_id,
+                evidence=(utterance.span,),
+                metadata={"utterance_id": utterance.utterance_id, **meta},
+            )
 
         if annotation.speech_acts:
             examples.append(
-                QAExample(
-                    context=context,
-                    question=f'What is the speaker doing when they say "{turn_text}"?',
-                    answer=phrase_answer(
-                        _list_phrase([_readable(a) for a in annotation.speech_acts])
-                    ),
-                    kind=QAKind.SPEECH_ACT,
-                    document_id=document.document_id,
-                    run_id=run.run_id,
-                    evidence=(utterance.span,),
-                    metadata={"utterance_id": utterance.utterance_id},
+                example(
+                    f'What is the speaker doing when they say "{turn}"?',
+                    _list_phrase([_readable(a) for a in annotation.speech_acts]),
+                    aspect="speech_act",
                 )
             )
         if annotation.marker_functions:
             examples.append(
-                QAExample(
-                    context=context,
-                    question=f'What does "{turn_text}" express?',
-                    answer=phrase_answer(
-                        _list_phrase(
-                            [_readable(f) for f in annotation.marker_functions]
-                        )
-                    ),
-                    kind=QAKind.SPEECH_ACT,
-                    document_id=document.document_id,
-                    run_id=run.run_id,
-                    evidence=(utterance.span,),
-                    metadata={"marker": True},
+                example(
+                    f'What does "{turn}" express?',
+                    _list_phrase([_readable(f) for f in annotation.marker_functions]),
+                    aspect="marker",
+                )
+            )
+        if annotation.stance is not None:
+            examples.append(
+                example(
+                    f'What stance does the speaker take in "{turn}"?',
+                    _readable(annotation.stance),
+                    aspect="stance",
+                )
+            )
+        if annotation.polarity is not None:
+            examples.append(
+                example(
+                    f'Is "{turn}" affirmative or negative?',
+                    _readable(annotation.polarity),
+                    aspect="polarity",
+                )
+            )
+        if annotation.mood is not None:
+            examples.append(
+                example(
+                    f'Is "{turn}" a statement, a question, or a command?',
+                    _readable(annotation.mood),
+                    aspect="mood",
                 )
             )
     return examples
@@ -112,6 +141,70 @@ def _list_phrase(items: Sequence[str]) -> str:
     if len(items) == 1:
         return items[0]
     return ", ".join(items[:-1]) + " and " + items[-1]
+
+
+def balance(
+    examples: Sequence[QAExample],
+    *,
+    seed: int = 0,
+    max_per_kind: Mapping[QAKind, int] | int | None = None,
+    no_answer_share: float | None = None,
+    max_total: int | None = None,
+) -> list[QAExample]:
+    """Impose a target mix on a set of examples, deterministically.
+
+    Selection is a seeded shuffle within each kind, so the same input and
+    seed always give the same subset — a corpus whose composition moved
+    between runs could not be compared with an earlier version of itself.
+
+    ``no_answer_share`` caps unanswerable examples at that fraction of the
+    result. Too few and the model never learns to decline; too many and it
+    learns to decline by default, which is the more damaging of the two
+    because it looks like caution.
+    """
+    if no_answer_share is not None and not 0.0 <= no_answer_share <= 1.0:
+        raise ValueError("no_answer_share must be a fraction")
+
+    rng = random.Random(seed)
+    by_kind: dict[QAKind, list[QAExample]] = {}
+    for example in examples:
+        by_kind.setdefault(example.kind, []).append(example)
+    for group in by_kind.values():
+        rng.shuffle(group)
+
+    def cap_for(kind: QAKind) -> int | None:
+        if max_per_kind is None:
+            return None
+        if isinstance(max_per_kind, int):
+            return max_per_kind
+        return max_per_kind.get(kind)
+
+    kept: list[QAExample] = []
+    for kind in sorted(by_kind, key=lambda k: k.value):
+        cap = cap_for(kind)
+        group = by_kind[kind]
+        kept.extend(group if cap is None else group[:cap])
+
+    if no_answer_share is not None:
+        answerable = [e for e in kept if e.answerable]
+        refusals = [e for e in kept if not e.answerable]
+        if no_answer_share == 0:
+            allowed = 0
+        elif answerable:
+            # n / (n + a) = share  ->  n = a * share / (1 - share)
+            allowed = (
+                len(refusals)
+                if no_answer_share >= 1.0
+                else int(len(answerable) * no_answer_share / (1 - no_answer_share))
+            )
+        else:
+            allowed = len(refusals)
+        kept = answerable + refusals[:allowed]
+
+    kept.sort(key=lambda e: (e.document_id, e.kind.value, e.question))
+    if max_total is not None:
+        kept = kept[:max_total]
+    return kept
 
 
 @dataclass(frozen=True, slots=True)
@@ -152,7 +245,12 @@ class QuestionGenerator:
         produced += ontology_questions(document, run, hierarchy, context=context)
         produced += property_questions(document, run, hierarchy, context=context)
         produced += yes_no_questions(document, run, resolver=resolver, context=context)
+        produced += polarity_questions(document, run, resolver=resolver, context=context)
         produced += dialogue_act_questions(document, run)
+        if context is None:
+            # Cross-sentence examples carry their own, wider context, so they
+            # make no sense inside a single-passage window.
+            produced += contextual_questions(document, run)
 
         if self.include_negatives:
             produced += no_answer_questions(
@@ -164,15 +262,16 @@ class QuestionGenerator:
                 context=context,
             )
         if self.include_paraphrases:
+            produced += passive_paraphrase_questions(
+                document, run, resolver=resolver, context=context
+            )
             produced += [
                 variant for example in list(produced) for variant in paraphrase(example)
             ]
 
         return self._finish(produced)
 
-    def for_passages(
-        self, document: Document, run: AnnotationRun
-    ) -> list[QAExample]:
+    def for_passages(self, document: Document, run: AnnotationRun) -> list[QAExample]:
         """Generate per passage, so each example carries only its own window.
 
         Used for long documents, where showing the whole text as context

@@ -63,6 +63,13 @@ class Entity:
     #: disambiguated for a reader, and an ambiguity test built on it would be
     #: testing nothing.
     appositive: str | None = None
+    #: The descriptive head inside this entity's own text, decomposed.
+    #: ``a red ball`` carries ``red``; storing it apart from the surface form
+    #: is what lets a question ask about the degree separately, which an
+    #: opaque string could not support.
+    property_head: str | None = None
+    property_degree: str | None = None
+    property_negated: bool = False
 
     def __post_init__(self) -> None:
         problems = self.labels.problems()
@@ -100,6 +107,8 @@ def _common(
     label: Label,
     type_name: str | None = None,
     preposition: str | None = None,
+    property_head: str | None = None,
+    property_degree: str | None = None,
 ) -> Entity:
     return Entity(
         text,
@@ -107,6 +116,8 @@ def _common(
         type_name,
         is_named=False,
         adjunct_preposition=preposition,
+        property_head=property_head,
+        property_degree=property_degree,
     )
 
 
@@ -282,23 +293,27 @@ _AMBIGUOUS: tuple[tuple[str, tuple[Label, str], tuple[Label, str]], ...] = (
     ("Austin", (Label.LOCATION, "a city in Texas"), (Label.PERSON, "the new driver")),
 )
 
-_COMMON_NOUNS: tuple[tuple[str, Label, str], ...] = (
-    ("the dog", Label.ANIMAL, "dog"),
-    ("the cat", Label.ANIMAL, "cat"),
-    ("the horse", Label.ANIMAL, "horse"),
-    ("the woman", Label.PERSON, "woman"),
-    ("the mechanic", Label.PERSON, "profession"),
-    ("the teacher", Label.PERSON, "profession"),
-    ("a red ball", Label.PHYSICAL_OBJECT, "toy"),
-    ("a book", Label.PHYSICAL_OBJECT, "document"),
-    ("an old car", Label.PHYSICAL_OBJECT, "car"),
-    ("the table", Label.PHYSICAL_OBJECT, "furniture"),
-    ("the city", Label.LOCATION, "city"),
-    ("the village", Label.LOCATION, "village"),
-    ("the company", Label.ORGANIZATION, "company"),
-    ("the university", Label.ORGANIZATION, "university"),
-    ("a plan", Label.ABSTRACT_ENTITY, "notion"),
-    ("an idea", Label.ABSTRACT_ENTITY, "notion"),
+#: ``(text, label, type, property head, degree)``. The property is the
+#: adjective already inside the surface form, recorded rather than re-parsed.
+_COMMON_NOUNS: tuple[tuple[str, Label, str, str | None, str | None], ...] = (
+    ("the dog", Label.ANIMAL, "dog", None, None),
+    ("the cat", Label.ANIMAL, "cat", None, None),
+    ("the horse", Label.ANIMAL, "horse", None, None),
+    ("the woman", Label.PERSON, "woman", None, None),
+    ("the mechanic", Label.PERSON, "profession", None, None),
+    ("the teacher", Label.PERSON, "profession", None, None),
+    ("a red ball", Label.PHYSICAL_OBJECT, "toy", "red", None),
+    ("a very large ball", Label.PHYSICAL_OBJECT, "toy", "large", "very"),
+    ("a book", Label.PHYSICAL_OBJECT, "document", None, None),
+    ("an old car", Label.PHYSICAL_OBJECT, "car", "old", None),
+    ("a small blue car", Label.PHYSICAL_OBJECT, "car", "blue", None),
+    ("the table", Label.PHYSICAL_OBJECT, "furniture", None, None),
+    ("the city", Label.LOCATION, "city", None, None),
+    ("the village", Label.LOCATION, "village", None, None),
+    ("the company", Label.ORGANIZATION, "company", None, None),
+    ("the university", Label.ORGANIZATION, "university", None, None),
+    ("a plan", Label.ABSTRACT_ENTITY, "notion", None, None),
+    ("an idea", Label.ABSTRACT_ENTITY, "notion", None, None),
 )
 
 _EMOTIONS: tuple[tuple[str, str], ...] = (
@@ -363,7 +378,7 @@ def default_pool(hierarchy: TypeHierarchy | None = None) -> EntityPool:
             pool.add(_named(text, label))
             pool.add(_named(text, label, appositive=appositive))
 
-    for text, label, type_name in _COMMON_NOUNS:
+    for text, label, type_name, head, degree in _COMMON_NOUNS:
         if hierarchy is not None and type_name in hierarchy:
             labels = hierarchy.labels_of(type_name)
             if label not in labels:
@@ -371,7 +386,9 @@ def default_pool(hierarchy: TypeHierarchy | None = None) -> EntityPool:
                     f"{text!r} is declared {label} but the ontology says "
                     f"{type_name} is {labels}"
                 )
-        pool.add(_common(text, label, type_name))
+        if head is not None and head not in text:
+            raise ValueError(f"{text!r} does not contain its property head {head!r}")
+        pool.add(_common(text, label, type_name, None, head, degree))
 
     for text, type_name in _EMOTIONS:
         pool.add(

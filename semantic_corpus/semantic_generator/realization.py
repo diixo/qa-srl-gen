@@ -17,7 +17,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Mapping
 
-from ..ontology import NAMEDNESS_LABELS, LabelSet, Relation
+from ..ontology import NAMEDNESS_LABELS, Label, LabelSet, Relation
 from ..qasrl_core.frame import ArgStructure, Frame as VerbFrame
 from ..qasrl_core.models import InflectedForms
 from .frames import SemanticFrame, SurfacePattern
@@ -246,6 +246,24 @@ def realize(
         relations.append(
             RelationEdge(slot_name, slots[slot_name].role, frame.lemma)
         )
+        if entity.property_head:
+            # The adjective is inside the entity's own span, so its offsets
+            # are found within what was just written rather than appended.
+            offset = written.find(entity.property_head)
+            if offset >= 0:
+                head_start = start + offset
+                mentions.append(
+                    MentionSpan(
+                        f"{slot_name}:property",
+                        entity.property_head,
+                        head_start,
+                        head_start + len(entity.property_head),
+                        LabelSet.of(Label.PROPERTY),
+                    )
+                )
+                relations.append(
+                    RelationEdge(slot_name, Relation.PROPERTY_OF, entity.property_head)
+                )
         if entity.appositive:
             # ``Rex, a German shepherd,`` — the gloss is what makes the
             # reading recoverable from the sentence rather than from the

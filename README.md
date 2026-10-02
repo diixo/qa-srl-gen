@@ -234,6 +234,20 @@ anything annotated it. So inferences that read meaning into silence apply
 only to synthetic runs, where the record is complete by construction. For
 annotated runs they return nothing.
 
+**Polarity is respected.** A negated clause is asked about in the
+affirmative and answered *No.*, never *Yes.*, and the justifying clause is
+rebuilt from the verb chain — the predicate's own token is only the bare
+stem once do-support has split it.
+
+Paraphrases come in two kinds. Regular expressions handle shapes they fully
+recognise; voice alternation is done through the frame, because turning
+*What did Anna give to Rex?* into *What was given to Rex by Anna?* means
+rebuilding the verb chain rather than rewriting words.
+
+`balance()` imposes a target mix — a cap per kind and a ceiling on the share
+of refusals — deterministically, so two runs of the same corpus can be
+compared.
+
 `python -m semantic_corpus.cli questions --count 3 --prompts` prints the
 decoder-only layout, with the loss computed over `<answer>` alone.
 

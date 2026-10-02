@@ -15,6 +15,7 @@ because these facts are true by construction rather than by agreement.
 
 from __future__ import annotations
 
+from dataclasses import replace
 from typing import Iterable, Sequence
 
 from ..documents import (
@@ -35,6 +36,7 @@ __all__ = [
     "to_annotation_run",
     "to_canonical",
     "iter_canonical",
+    "combine",
     "GENERATOR_SOURCE",
 ]
 
@@ -125,13 +127,18 @@ def to_annotation_run(
         by_slot[mention.slot] = identifier
         span = TextSpan(mention.start_char, mention.end_char)
         if Label.PROPERTY in mention.labels:
+            owner = mention.slot.rsplit(":", 1)[0]
+            entity = situation.bindings.get(owner)
             properties.append(
                 Property(
                     property_id=identifier,
                     document_id=document.document_id,
                     span=span,
                     exact_text=mention.text,
-                    head=mention.text,
+                    head=entity.property_head if entity else mention.text,
+                    target_id=f"{document.document_id}#{owner}",
+                    degree=entity.property_degree if entity else None,
+                    negated=entity.property_negated if entity else False,
                     labels=mention.labels,
                     confidence=1.0,
                     source=GENERATOR_SOURCE,
@@ -164,6 +171,12 @@ def to_annotation_run(
             target_id = by_slot.get(f"{edge.source_slot}:appositive")
             if target_id is None:
                 continue
+        elif edge.relation is Relation.PROPERTY_OF:
+            # A property points at the entity it describes, not at the verb.
+            target_id = by_slot.get(f"{edge.source_slot}:property")
+            if target_id is None:
+                continue
+            source_id, target_id = target_id, source_id
         else:
             target_id = predicate_id
         relations.append(
@@ -232,3 +245,115 @@ def iter_canonical(
             split=split,
             random_seed=random_seed,
         )
+
+
+def _shift(item, offset: int, suffix: str):
+    """Move an annotation into a combined document, renaming its id."""
+    from dataclasses import replace as _replace
+
+    field_name = next(
+        name
+        for name in ("mention_id", "predicate_id", "property_id")
+        if hasattr(item, name)
+    )
+    return _replace(
+        item,
+        span=item.span.shifted(offset),
+        document_id=suffix,
+        **{field_name: f"{suffix}#{getattr(item, field_name)}"},
+    )
+
+
+def combine(
+    pieces: Sequence[tuple[Document, AnnotationRun]],
+    *,
+    document_id: str,
+    separator: str = " ",
+    run_id: str | None = None,
+    split: str | None = None,
+) -> tuple[Document, AnnotationRun]:
+    """Join several one-sentence documents into one multi-sentence document.
+
+    Questions whose answer needs two sentences cannot exist while every
+    generated document is a single sentence. Joining them is not cosmetic:
+    all offsets are shifted into the combined text and re-checked, so the
+    merged record stays exactly as verifiable as the pieces were.
+    """
+    if not pieces:
+        raise ValueError("nothing to combine")
+
+    texts: list[str] = []
+    cursor = 0
+    mentions: list[EntityMention] = []
+    predicates: list[Predicate] = []
+    properties: list[Property] = []
+    relations: list[RelationEdge] = []
+    renamed: dict[str, str] = {}
+    omitted: list[str] = []
+
+    for index, (piece, run) in enumerate(pieces):
+        if index:
+            cursor += len(separator)
+        offset = cursor
+        texts.append(piece.text)
+        cursor += len(piece.text)
+        tag = f"{document_id}#s{index}"
+
+        for group, sink in (
+            (run.mentions, mentions),
+            (run.predicates, predicates),
+            (run.properties, properties),
+        ):
+            for item in group:
+                moved = _shift(item, offset, tag)
+                identifier = next(
+                    getattr(moved, name)
+                    for name in ("mention_id", "predicate_id", "property_id")
+                    if hasattr(moved, name)
+                )
+                original = next(
+                    getattr(item, name)
+                    for name in ("mention_id", "predicate_id", "property_id")
+                    if hasattr(item, name)
+                )
+                renamed[original] = identifier
+                sink.append(moved)
+
+        for edge in run.relations:
+            source = renamed.get(edge.source_id)
+            target = renamed.get(edge.target_id)
+            if source and target:
+                relations.append(
+                    replace(edge, source_id=source, target_id=target)
+                )
+        omitted.extend(str(s) for s in (piece.metadata.get("omitted_slots") or ()))
+
+    combined = Document(
+        document_id=document_id,
+        text=separator.join(texts),
+        source=GENERATOR_SOURCE,
+        license="generated",
+        split=split,
+        metadata={
+            "sentences": len(pieces),
+            "omitted_slots": sorted(set(omitted)),
+        },
+    )
+    merged = AnnotationRun(
+        run_id=run_id or f"{document_id}-generated",
+        ontology_version=ONTOLOGY_VERSION,
+        model_name=GENERATOR_SOURCE,
+        prompt_version="n/a",
+        synthetic=True,
+    ).extended(
+        mentions=mentions,
+        predicates=predicates,
+        properties=properties,
+        relations=relations,
+    )
+    problems = merged.validate_against(combined)
+    if problems:
+        raise AssertionError(
+            "combining moved an annotation off its text: " + "; ".join(problems)
+        )
+    return combined, merged

@@ -86,7 +86,7 @@ def omitted_argument_questions(
     resolver = resolver or ParadigmResolver()
     body = context if context is not None else document.text
     examples: list[QAExample] = []
-    for view in build_views(run):
+    for view in build_views(run, document):
         theme = view.theme
         active = " ".join(active_verb_words(view.predicate, resolver))
         for slot in omitted:
@@ -131,7 +131,7 @@ def missing_role_questions(
         return []
     body = context if context is not None else document.text
     examples: list[QAExample] = []
-    for view in build_views(run):
+    for view in build_views(run, document):
         for relation, question in _MISSING_ROLE_QUESTIONS.items():
             if view.by_relation.get(relation):
                 continue

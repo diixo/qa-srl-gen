@@ -383,3 +383,289 @@ def test_passage_mode_keeps_each_example_to_its_own_window():
     for example in produced:
         assert example.context in text
         assert "ran to the gate" not in example.context
+
+
+# ---------------------------------------------------------------------------
+# Fixes and additions made after the first pass over stage 4
+# ---------------------------------------------------------------------------
+
+
+def negated_situation():
+    from semantic_corpus.semantic_generator import Features, realize
+
+    generator = Generator(seed=3)
+    situation = generator.sample_situation(
+        features=Features(tense="past", is_negated=True)
+    )
+    return to_canonical(realize(situation, None), document_id="neg")
+
+
+def test_a_negated_clause_is_answered_no_not_yes():
+    """Confirming a negation is nonsense; the polar question goes affirmative."""
+    document, run = negated_situation()
+    assert str(run.predicates[0].polarity) == "NEGATIVE"
+    produced = yes_no_questions(
+        document, run, resolver=ParadigmResolver(known=DEFAULT_PARADIGMS)
+    )
+    assert produced
+    for example in produced:
+        assert not example.question.lower().startswith("didn")
+        assert example.answer.startswith("No. ")
+
+
+def test_a_clause_is_rebuilt_from_the_verb_chain_not_the_surface_token():
+    """In *didn't visit* the predicate token is only the bare stem."""
+    document, run = negated_situation()
+    produced = atomic_questions(
+        document, run, resolver=ParadigmResolver(known=DEFAULT_PARADIGMS)
+    )
+    event = [e for e in produced if e.metadata.get("relation") == "EVENT"]
+    assert event
+    assert "didn" in event[0].answer
+    assert not event[0].answer.endswith("visit.")
+
+
+def test_a_bare_locative_object_is_not_an_adjunct():
+    """*visited Vustal* has no preposition, so no answer may invent one."""
+    document, run = negated_situation()
+    assert "visit" in document.text
+    produced = atomic_questions(
+        document, run, resolver=ParadigmResolver(known=DEFAULT_PARADIGMS)
+    )
+    answers = [e.answer for e in produced]
+    assert not any(a.startswith("In ") for a in answers), answers
+    assert "Vustal." in answers
+
+
+def test_the_passive_paraphrase_rebuilds_the_verb_chain():
+    from semantic_corpus.question_generator import passive_paraphrase_questions
+
+    document, run = to_canonical(
+        next(iter(Generator(seed=7).generate(1))), document_id="p"
+    )
+    produced = passive_paraphrase_questions(
+        document, run, resolver=ParadigmResolver(known=DEFAULT_PARADIGMS)
+    )
+    assert produced
+    questions = [e.question for e in produced]
+    assert any(q.startswith("By whom") for q in questions)
+    assert any(" by " in q for q in questions)
+    for example in produced:
+        assert example.kind is QAKind.PARAPHRASE
+        assert example.check() == []
+
+
+def test_polarity_questions_report_assertion_or_denial():
+    from semantic_corpus.question_generator import polarity_questions
+
+    document, run = negated_situation()
+    produced = polarity_questions(
+        document, run, resolver=ParadigmResolver(known=DEFAULT_PARADIGMS)
+    )
+    assert produced
+    assert produced[0].answer.startswith("It denies")
+
+    affirmative = to_canonical(
+        next(iter(Generator(seed=7).generate(1))), document_id="aff"
+    )
+    assert polarity_questions(*affirmative)[0].answer.startswith("It states")
+
+
+def _with_theme(form: str, seed: int = 5):
+    from dataclasses import replace as _replace
+
+    from semantic_corpus.semantic_generator import realize
+    from semantic_corpus.semantic_generator.frames import frame_by_lemma
+
+    generator = Generator(seed=seed)
+    entity = generator.pool.readings(form)[0]
+    situation = generator.sample_situation(frame_by_lemma("give"))
+    situation = _replace(situation, bindings={**situation.bindings, "theme": entity})
+    return to_canonical(realize(situation, "ditransitive"), document_id="pr")
+
+
+def test_properties_are_generated_and_asked_about_by_degree():
+    document, run = _with_theme("a very large ball")
+    assert run.properties
+    prop = run.properties[0]
+    assert (prop.head, prop.degree) == ("large", "very")
+    assert prop.target_id
+    assert run.validate_against(document) == []
+
+    produced = {
+        e.question: e.answer
+        for e in QuestionGenerator(paradigms=DEFAULT_PARADIGMS).for_document(document, run)
+        if e.kind is QAKind.PROPERTY
+    }
+    # The subject must not give the answer away.
+    assert "What size was the ball?" in produced
+    assert produced["To what degree was the ball large?"] == "Very large."
+
+
+def test_the_handoff_colour_example():
+    document, run = _with_theme("a red ball")
+    produced = {
+        e.question: e.answer
+        for e in QuestionGenerator(paradigms=DEFAULT_PARADIGMS).for_document(document, run)
+    }
+    assert produced["What colour was the ball?"] == "Red."
+
+
+# -- multi-sentence documents and contextual questions ---------------------
+
+
+def two_sentence_document():
+    """One sentence glosses a name; the next uses it bare."""
+    from dataclasses import replace as _replace
+
+    from semantic_corpus.semantic_generator import realize
+    from semantic_corpus.semantic_generator.canonical import combine
+    from semantic_corpus.semantic_generator.frames import frame_by_lemma
+
+    generator = Generator(seed=2)
+    glossed = [e for e in generator.pool.readings("Rex") if e.appositive][0]
+    bare = [
+        e
+        for e in generator.pool.readings("Rex")
+        if not e.appositive and e.entity_label == glossed.entity_label
+    ][0]
+    give = frame_by_lemma("give")
+    pieces = []
+    for index, entity in enumerate((glossed, bare)):
+        situation = generator.sample_situation(give, exclude_forms={"Rex"})
+        situation = _replace(
+            situation, bindings={**situation.bindings, "recipient": entity}
+        )
+        pieces.append(
+            to_canonical(realize(situation, "ditransitive"), document_id=f"p{index}")
+        )
+    return combine(pieces, document_id="multi")
+
+
+def test_combining_sentences_keeps_every_offset_valid():
+    document, run = two_sentence_document()
+    assert document.text.count(".") == 2
+    assert run.validate_against(document) == []
+    assert run.synthetic
+
+
+def test_a_contextual_question_needs_the_earlier_sentence():
+    from semantic_corpus.question_generator import contextual_questions
+
+    document, run = two_sentence_document()
+    produced = contextual_questions(document, run)
+    assert produced
+    example = produced[0]
+    assert example.kind is QAKind.CONTEXTUAL
+    assert "a German shepherd" in example.context
+    assert example.context.count(".") >= 2
+    assert example.answer == "Animal."
+
+
+def test_a_self_explaining_mention_is_not_a_contextual_question():
+    """If the later mention carries its own gloss, no context is needed."""
+    from semantic_corpus.question_generator import contextual_questions
+    from semantic_corpus.semantic_generator.canonical import combine
+
+    generator = Generator(seed=2)
+    pair = next(iter(generator.ambiguity_pairs()))
+    document, run = combine(
+        [to_canonical(pair.left, document_id="a"), to_canonical(pair.right, document_id="b")],
+        document_id="both",
+    )
+    # Both sentences gloss the name and disagree about its type, so carrying
+    # the type across would produce an answer the text contradicts.
+    assert contextual_questions(document, run) == []
+
+
+# -- balancing -------------------------------------------------------------
+
+
+def corpus_examples(count: int = 25):
+    generator = Generator(seed=21)
+    questions = QuestionGenerator(
+        paradigms=DEFAULT_PARADIGMS,
+        ambiguous_forms=generator.pool.ambiguous_forms(),
+        seed=1,
+    )
+    produced = []
+    for index, realized in enumerate(generator.generate(count)):
+        document, run = to_canonical(realized, document_id=f"g{index}")
+        produced += questions.for_document(document, run)
+    return produced
+
+
+def test_balancing_is_deterministic():
+    from semantic_corpus.question_generator import balance
+
+    examples = corpus_examples()
+    first = balance(examples, seed=4, max_per_kind=3)
+    second = balance(examples, seed=4, max_per_kind=3)
+    assert [e.question for e in first] == [e.question for e in second]
+    assert [e.question for e in balance(examples, seed=5, max_per_kind=3)] != [
+        e.question for e in first
+    ]
+
+
+def test_balancing_caps_each_kind():
+    from collections import Counter
+
+    from semantic_corpus.question_generator import balance
+
+    kept = balance(corpus_examples(), seed=1, max_per_kind=4)
+    counts = Counter(e.kind for e in kept)
+    assert counts
+    assert all(count <= 4 for count in counts.values())
+
+
+def test_balancing_controls_the_refusal_share():
+    from semantic_corpus.question_generator import balance
+
+    examples = corpus_examples()
+    kept = balance(examples, seed=1, no_answer_share=0.2)
+    refusals = [e for e in kept if not e.answerable]
+    assert refusals, "some refusals must survive"
+    assert len(refusals) / len(kept) <= 0.25
+    assert all(e.answerable for e in balance(examples, seed=1, no_answer_share=0.0))
+
+
+def test_balancing_rejects_an_impossible_share():
+    from semantic_corpus.question_generator import balance
+
+    with pytest.raises(ValueError, match="fraction"):
+        balance([], no_answer_share=1.5)
+
+
+# -- dialogue stance, polarity and mood ------------------------------------
+
+
+def test_dialogue_questions_cover_stance_polarity_and_mood():
+    from semantic_corpus.documents import Utterance
+    from semantic_corpus.ontology import Mood, Polarity, Stance
+
+    text = "Did you finish it?\nNo, not yet."
+    document = Document(
+        "d",
+        text,
+        utterances=(
+            Utterance("u0", "d", 0, "A", TextSpan(0, 18)),
+            Utterance("u1", "d", 1, "B", TextSpan(19, len(text))),
+        ),
+    )
+    run = AnnotationRun(run_id="r").extended(
+        dialogue=[
+            DialogueAnnotation(
+                utterance_id="u1",
+                speech_acts=(SpeechAct.ANSWER,),
+                polarity=Polarity.NEGATIVE,
+                stance=Stance.OPPOSED,
+                mood=Mood.DECLARATIVE,
+            )
+        ]
+    )
+    produced = {e.metadata.get("aspect"): e for e in dialogue_act_questions(document, run)}
+    assert {"speech_act", "polarity", "stance", "mood"} <= set(produced)
+    assert produced["stance"].answer == "Opposed."
+    assert produced["polarity"].answer == "Negative."
+    for example in produced.values():
+        assert "Did you finish it?" in example.context
