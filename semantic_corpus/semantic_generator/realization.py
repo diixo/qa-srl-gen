@@ -17,7 +17,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Mapping
 
-from ..ontology import LabelSet, Relation
+from ..ontology import NAMEDNESS_LABELS, LabelSet, Relation
 from ..qasrl_core.frame import ArgStructure, Frame as VerbFrame
 from ..qasrl_core.models import InflectedForms
 from .frames import SemanticFrame, SurfacePattern
@@ -253,13 +253,15 @@ def realize(
             builder.attach(",")
             gloss, gloss_start, gloss_end = builder.add(entity.appositive)
             builder.attach(",")
+            # The gloss says what kind of thing the entity is, so it carries
+            # the type but not the namedness: "the new mechanic" is not a name.
             mentions.append(
                 MentionSpan(
                     f"{slot_name}:appositive",
                     gloss,
                     gloss_start,
                     gloss_end,
-                    entity.labels,
+                    LabelSet(entity.labels.labels - NAMEDNESS_LABELS),
                 )
             )
             relations.append(

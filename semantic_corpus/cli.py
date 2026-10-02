@@ -13,6 +13,7 @@ Commands
 ``ingest``     read source texts into documents, with splits and passages
 ``candidates`` show what candidate extraction proposes for a text
 ``annotate``   run the annotator against an HTTP teacher
+``questions``  generate QA examples from generated situations
 """
 
 from __future__ import annotations
@@ -269,6 +270,39 @@ def cmd_annotate(args: argparse.Namespace) -> int:
     return 1 if failures else 0
 
 
+def cmd_questions(args: argparse.Namespace) -> int:
+    from .question_generator import QuestionGenerator
+    from .semantic_generator import Generator
+    from .semantic_generator.canonical import to_canonical
+    from .semantic_generator.generator import DEFAULT_PARADIGMS
+
+    generator = Generator(seed=args.seed, split=args.split)
+    questions = QuestionGenerator(
+        paradigms=DEFAULT_PARADIGMS,
+        ambiguous_forms=generator.pool.ambiguous_forms(),
+        seed=args.seed,
+        include_paraphrases=not args.no_paraphrases,
+    )
+    produced = 0
+    for index, realized in enumerate(generator.generate(args.count)):
+        document, run = to_canonical(realized, document_id=f"gen-{index:05d}")
+        examples = questions.for_document(document, run)
+        if args.prompts:
+            for example in examples:
+                print(example.to_prompt())
+                print()
+        else:
+            print(document.text)
+            for example in examples:
+                flag = "" if example.answerable else "   [unanswerable]"
+                print(f"  [{str(example.kind):11s}] {example.question}"
+                      f"  ->  {example.answer}{flag}")
+            print()
+        produced += len(examples)
+    print(f"{produced} examples from {args.count} situations")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="semantic-corpus", description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
@@ -341,6 +375,15 @@ def build_parser() -> argparse.ArgumentParser:
     annotate.add_argument("--limit", type=int, default=0)
     annotate.add_argument("--show", type=int, default=5)
     annotate.set_defaults(func=cmd_annotate)
+
+    questions = sub.add_parser("questions", help="generate QA examples")
+    questions.add_argument("--count", type=int, default=5)
+    questions.add_argument("--seed", type=int, default=0)
+    questions.add_argument("--split", choices=("train", "dev", "test"), default=None)
+    questions.add_argument("--no-paraphrases", action="store_true")
+    questions.add_argument("--prompts", action="store_true",
+                           help="print the decoder-only training layout")
+    questions.set_defaults(func=cmd_questions)
 
     return parser
 

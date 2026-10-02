@@ -71,8 +71,9 @@ Deliberately out of scope per the handoff, confirmed by the audit:
 
 ## 4. Later stages of the handoff
 
-Stages 3–5 are untouched: semantic annotator, question generator, SQLite
-storage and exporters. Stage 2 (ontology and semantic generator) is done.
+Stage 5 is untouched: storage and exporters. Stages 0–4 are done. Storage
+will be JSONL: the user has ruled out both SQLite and Parquet, overriding the
+handoff.
 
 ## 5. Repository hygiene
 

@@ -1,11 +1,12 @@
 # qa-srl-gen — semantic corpus toolkit
 
 Python core of QA-SRL plus, in later stages, a generator of semantic training
-corpora. This repository currently implements **stages 0–3**: the QA-SRL core
+corpora. This repository currently implements **stages 0–4**: the QA-SRL core
 (`semantic_corpus/qasrl_core`), the canonical document representation
 (`semantic_corpus/documents.py`), the ontology (`semantic_corpus/ontology`),
-the semantic generator (`semantic_corpus/semantic_generator`) and the
-semantic annotator (`semantic_corpus/semantic_annotator`). The full plan lives in
+the semantic generator (`semantic_corpus/semantic_generator`), the semantic
+annotator (`semantic_corpus/semantic_annotator`) and the question generator
+(`semantic_corpus/question_generator`). The full plan lives in
 [HANDOFF_SEMANTIC_CORPUS_RU.md](HANDOFF_SEMANTIC_CORPUS_RU.md).
 
 No installation, no virtualenv, no build system: the package sits at the
@@ -42,7 +43,12 @@ python -m semantic_corpus.cli --help
 | `semantic_annotator/teacher.py` | the provider-agnostic adapter protocol |
 | `semantic_annotator/alignment.py` | quoted spans → verified offsets, with rejections |
 | `semantic_annotator/verifier.py` | structural checks and an independent second pass |
-| `cli.py` | `inspect`, `roundtrip`, `validate`, `lookup`, `frames`, `generate`, `ambiguity`, `ingest`, `candidates`, `annotate` |
+| `semantic_generator/canonical.py` | generated sentence → `Document` + `AnnotationRun` |
+| `question_generator/templates.py` | questions per relation, label and type |
+| `question_generator/negatives.py` | genuinely unanswerable questions |
+| `question_generator/paraphrases.py` | conservative, deterministic rewordings |
+| `question_generator/answers.py` | the `QAExample` record and answer wording |
+| `cli.py` | `inspect`, `roundtrip`, `validate`, `lookup`, `frames`, `generate`, `ambiguity`, `ingest`, `candidates`, `annotate`, `questions` |
 
 ## Short example
 
@@ -186,6 +192,51 @@ second one, formed without seeing the first, and `promote_agreed` marks what
 both passes found as `VERIFIED`. What only one pass found keeps its status —
 a single disagreement is evidence, not a verdict.
 
+## Generating questions
+
+Both inputs converge on one shape first — a `Document` plus an
+`AnnotationRun` — so the question generator never needs to know whether the
+facts were invented or annotated:
+
+```python
+from semantic_corpus.question_generator import QuestionGenerator
+from semantic_corpus.semantic_generator import Generator
+from semantic_corpus.semantic_generator.canonical import to_canonical
+from semantic_corpus.semantic_generator.generator import DEFAULT_PARADIGMS
+
+generator = Generator(seed=11)
+questions = QuestionGenerator(paradigms=DEFAULT_PARADIGMS, seed=1)
+
+for index, realized in enumerate(generator.generate(5)):
+    document, run = to_canonical(realized, document_id=f"gen-{index}")
+    for example in questions.for_document(document, run):
+        print(example.question, "->", example.answer)
+```
+
+```text
+Who gave a red ball to Rex?        -> Anna.
+What did Anna give to Rex?         -> A red ball.
+Where did Anna give a red ball?    -> In Kyiv.
+What did Anna do?                  -> Anna gave a red ball to Rex.
+What kind of entity is Rex?        -> Animal.
+Is Kyiv a location?                -> Yes. Kyiv is a city, and every city is a location.
+```
+
+The generator invents no ground truth: every answer is a span something else
+already recorded. Verb forms come from the same chain builder as the bank, so
+*Who gave...?* keeps its finite verb while *What did Anna give?* gets
+do-support, and an agentless passive is asked about in the active voice —
+the record says `given`, the question says *gave*.
+
+**Negatives are earned, not assumed.** Absence from a record is not absence
+from the text: *On Monday, Anna gave Rex a ball* has a time whether or not
+anything annotated it. So inferences that read meaning into silence apply
+only to synthetic runs, where the record is complete by construction. For
+annotated runs they return nothing.
+
+`python -m semantic_corpus.cli questions --count 3 --prompts` prints the
+decoder-only layout, with the loss computed over `<answer>` alone.
+
 ## How the question template works
 
 A question is seven slots, concatenated in a fixed order, with `_` meaning
@@ -278,6 +329,11 @@ Reported rather than silently tolerated:
 * `semantic_annotator/ingestion.py` and `pipeline.py` are likewise not in the
   list: reading sources is step 1 of the stage, and the pipeline is the
   wiring that keeps the other four modules independently testable.
+* `question_generator/generator.py` and `semantic_generator/canonical.py` are
+  the same pattern: a driver that needs every template family at once, and
+  the bridge that lets generated and annotated records share one shape.
+* Storage will be JSONL. The handoff specifies SQLite; the user has ruled out
+  both SQLite and Parquet.
 
 ## Project status and what is missing
 

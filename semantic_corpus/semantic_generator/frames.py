@@ -227,7 +227,7 @@ OWN = SemanticFrame(
     lemma="own",
     predicate_type=Label.STATE,
     slots=(
-        FrameSlot("owner", Relation.STATE_OF, _AGENTIVE),
+        FrameSlot("owner", Relation.EXPERIENCER_OF, _AGENTIVE),
         FrameSlot("possession", Relation.THEME_OF, _THING, excludes=_NO_EMOTION),
     ),
     patterns=(
