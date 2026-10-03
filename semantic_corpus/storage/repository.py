@@ -31,6 +31,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+from collections import OrderedDict
 from dataclasses import dataclass, replace
 from datetime import datetime, timezone
 from functools import lru_cache
@@ -63,6 +64,7 @@ __all__ = ["CorpusStore", "StoreError", "DuplicateDocument", "SplitConflict"]
 GENERATOR_VERSION = "0.2.0"
 
 _MANIFEST = "manifest.json"
+_RECENT_WRITES = 128
 
 
 class StoreError(RuntimeError):
@@ -110,6 +112,10 @@ class CorpusStore:
         self._offsets: dict[tuple[str, str], dict[Any, list[int]]] = {}
         self._runs_by_document: dict[str, list[str]] | None = None
         self._index = self._build_index()
+        # Avoid opening just-written files again during validate/store loops.
+        # Fingerprints, not mutable Document objects, retain the accepted identity.
+        self._recent_document_fingerprints: OrderedDict[str, str] = OrderedDict()
+        self._recent_run_documents: OrderedDict[str, frozenset[str]] = OrderedDict()
 
     # -- manifest ----------------------------------------------------------
 
@@ -270,12 +276,14 @@ class CorpusStore:
                 )
             return False
 
+        fingerprint = sha256_of(_document_identity(document))
         self._append("documents", [encode_document(document)])
         self._append("passages", [encode_passage(p) for p in document.passages])
         self._append("utterances", [encode_utterance(u) for u in document.utterances])
         self._index.hashes[digest] = document.document_id
         self._index.splits[document.document_id] = document.split
         self._index.document_hashes[document.document_id] = digest
+        _remember_written(self._recent_document_fingerprints, document.document_id, fingerprint)
         return True
 
     def add_run(self, run: AnnotationRun, document: Document | None = None) -> None:
@@ -301,19 +309,33 @@ class CorpusStore:
         provided_stored = None
         if document is not None:
             document_ids.add(document.document_id)
-            provided_stored = self.document(document.document_id)
-            if _document_identity(provided_stored) != _document_identity(document):
+            identity = _document_identity(document)
+            fingerprint = self._recent_document_fingerprints.get(document.document_id)
+            if fingerprint is not None:
+                unchanged = fingerprint == sha256_of(identity)
+                provided_stored = document
+            else:
+                provided_stored = self.document(document.document_id)
+                unchanged = _document_identity(provided_stored) == identity
+            if not unchanged:
                 raise StoreError("run document must already be stored unchanged")
-        owners_by_utterance: dict[str, list[str]] = {}
+        # The validated document already identifies its own utterances. Use
+        # the global offset index to detect collisions even on this fast path.
+        known_utterances = ({u.utterance_id for u in provided_stored.utterances}
+                            if provided_stored is not None else set())
+        owner_reads: set[str] = set()
+        if run.dialogue:
+            utterance_index = self._offset_index("utterances", "utterance_id")
+            for annotation in run.dialogue:
+                uid = annotation.utterance_id
+                if len(utterance_index.get(uid, ())) != 1:
+                    raise StoreError(f"unknown or ambiguous utterance {uid!r}")
+                if uid not in known_utterances:
+                    owner_reads.add(uid)
         for row in self._rows_for_many(
-            "utterances", "utterance_id", (d.utterance_id for d in run.dialogue),
+            "utterances", "utterance_id", owner_reads,
         ):
-            owners_by_utterance.setdefault(row["utterance_id"], []).append(row["document_id"])
-        for d in run.dialogue:
-            owners = owners_by_utterance.get(d.utterance_id, ())
-            if len(owners) != 1:
-                raise StoreError(f"unknown or ambiguous utterance {d.utterance_id!r}")
-            document_ids.add(owners[0])
+            document_ids.add(row["document_id"])
         for doc_id in document_ids:
             stored = (provided_stored if document is not None and doc_id == document.document_id
                       else self.document(doc_id))
@@ -347,6 +369,7 @@ class CorpusStore:
         for table, table_rows in rows.items():
             self._append(table, table_rows)
         self._index.run_ids.add(run.run_id)
+        _remember_written(self._recent_run_documents, run.run_id, frozenset(document_ids))
         if self._runs_by_document is not None:
             for doc_id in sorted(document_ids):
                 self._runs_by_document.setdefault(doc_id, []).append(run.run_id)
@@ -374,6 +397,8 @@ class CorpusStore:
         """
         @lru_cache(maxsize=128)
         def run_documents(rid: str) -> frozenset[str] | None:
+            if rid in self._recent_run_documents:
+                return self._recent_run_documents[rid]
             header = next(self._rows_for("annotation_runs", "run_id", rid), None)
             if header is None:
                 raise StoreError(f"unknown run {rid!r}")
@@ -570,6 +595,14 @@ class _Missing:
 
 
 _MISSING = _Missing()
+
+
+def _remember_written(cache: OrderedDict, key: str, value: Any) -> None:
+    """Keep only a bounded window of successfully appended records."""
+    cache[key] = value
+    cache.move_to_end(key)
+    if len(cache) > _RECENT_WRITES:
+        cache.popitem(last=False)
 
 
 def _example_key(row: Mapping[str, Any]) -> str:

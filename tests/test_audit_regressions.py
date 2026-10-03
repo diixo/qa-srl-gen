@@ -664,6 +664,9 @@ def test_batch_caches_run_headers_but_checks_each_documents_membership(tmp_path,
     store.add_document(doc)
     store.add_document(Document("other", "Rex left."))
     store.add_run(AnnotationRun("r"), doc)
+    # A reopened store has no cache of recent writes; the batch cache still
+    # prevents repeated header reads for existing on-disk runs.
+    store = CorpusStore(tmp_path)
     original = store._rows_for
     calls = []
 

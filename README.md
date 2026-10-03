@@ -83,6 +83,12 @@ different build. Storage supports one writer and does not provide crash-atomic
 transactions across its JSONL files. Text and annotation reads stream; in-memory
 identity and offset indexes grow with record count.
 
+The writer keeps bounded caches for the last 128 stored document fingerprints
+and run memberships, avoiding immediate disk rereads during annotation/QA
+storage. Reopened stores fall back to indexed file reads. Document fingerprints
+include metadata, passages and utterances; ownership and immutability checks
+remain in place. Profiling results and limits are in [STATUS_RU.md](STATUS_RU.md).
+
 ## Short example
 
 The upstream core is adapted from Scala commit `16ab4949`; the source/API map,
