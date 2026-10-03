@@ -53,7 +53,7 @@ class WorkspaceTests(TestCase):
         return job
 
     def test_all_navigation_pages_render_real_data(self):
-        for route in ('main', 'jobs', 'workers', 'corpora', 'pools', 'slots', *SECTIONS):
+        for route in ('workspace', 'jobs', 'workers', 'corpora', 'pools', 'slots', *SECTIONS):
             with self.subTest(route=route):
                 response = self.client.get(reverse('app_main:' + route))
                 self.assertEqual(response.status_code, 200)

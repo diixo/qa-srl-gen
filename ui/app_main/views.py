@@ -31,7 +31,7 @@ SECTIONS = {
     'tools': ('Tools', 'Annotation candidates, verb forms and proposals to expand the entity pool.', ['candidates', 'lookup', 'mining']),
 }
 NAV = [
-    ('Workspace', [('main', 'Overview', 'dashboard'), ('pipeline', 'New job', 'play_circle'),
+    ('Workspace', [('workspace', 'Overview', 'dashboard'), ('pipeline', 'New job', 'play_circle'),
         ('jobs', 'Job history', 'history'), ('workers', 'Workers and queue', 'memory')]),
     ('Pipeline', [('ingestion', 'Sources and import', 'upload_file'), ('annotation', 'Annotation', 'edit_note'),
         ('questions', 'QA generation', 'question_answer'), ('exports', 'Export', 'file_download'),
@@ -50,8 +50,13 @@ def page(request, template, **context):
 
 @require_safe
 def main(request):
+    return page(request, 'index.html', title='Home')
+
+
+@require_safe
+def workspace(request):
     rows = Job.objects.all()
-    return page(request, 'workspace.html', title='Overview', recent=rows[:8],
+    return page(request, 'workspace.html', title='Workspace', recent=rows[:8],
         running=rows.filter(status=Job.Status.RUNNING).count(),
         queued=rows.filter(status=Job.Status.QUEUED).count(),
         completed=rows.filter(status=Job.Status.SUCCEEDED).count(),
