@@ -34,7 +34,6 @@ import json
 from collections import OrderedDict
 from dataclasses import dataclass, replace
 from datetime import datetime, timezone
-from functools import lru_cache
 from pathlib import Path
 from tempfile import SpooledTemporaryFile
 from typing import Any, Iterable, Iterator, Mapping
@@ -115,7 +114,13 @@ class CorpusStore:
         # Avoid opening just-written files again during validate/store loops.
         # Fingerprints, not mutable Document objects, retain the accepted identity.
         self._recent_document_fingerprints: OrderedDict[str, str] = OrderedDict()
-        self._recent_run_documents: OrderedDict[str, frozenset[str]] = OrderedDict()
+        # Which documents each run covers, for every run written or looked up
+        # this session; ``None`` marks a legacy header without document_ids.
+        # Unbounded on purpose: a build writes every run before adding any
+        # QA, so a window of recent runs would miss on nearly every lookup
+        # and reopen the runs file once per run. One small frozenset per run
+        # is the same order of memory as the run-ID index already kept.
+        self._run_documents: dict[str, frozenset[str] | None] = {}
 
     # -- manifest ----------------------------------------------------------
 
@@ -161,15 +166,27 @@ class CorpusStore:
             raise StoreError(f"unknown table {table!r}") from None
 
     def _append(self, table: str, rows: Iterable[Mapping[str, Any]]) -> int:
+        return self._append_encoded(table, (_encode_row(row) for row in rows))
+
+    def _append_encoded(self, table: str, lines: Iterable[bytes]) -> int:
+        """Append lines already encoded by :func:`_encode_row`.
+
+        A caller that has validated a batch by serializing it hands over the
+        bytes as they are, rather than having them parsed and serialized a
+        second time. A line is decoded only when an offset index over this
+        table is live and needs the row's key.
+        """
+        indexes = [(key, index) for (indexed_table, key), index in self._offsets.items()
+                   if indexed_table == table]
         path = self.path_for(table)
         count = 0
         with path.open("ab") as stream:
-            for row in rows:
-                data = (json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n").encode("utf-8")
+            for data in lines:
                 offset = stream.tell()
                 stream.write(data)
-                for (indexed_table, key), index in self._offsets.items():
-                    if indexed_table == table:
+                if indexes:
+                    row = json.loads(data)
+                    for key, index in indexes:
                         index.setdefault(row.get(key), []).append(offset)
                 count += 1
         return count
@@ -369,7 +386,7 @@ class CorpusStore:
         for table, table_rows in rows.items():
             self._append(table, table_rows)
         self._index.run_ids.add(run.run_id)
-        _remember_written(self._recent_run_documents, run.run_id, frozenset(document_ids))
+        self._run_documents[run.run_id] = frozenset(document_ids)
         if self._runs_by_document is not None:
             for doc_id in sorted(document_ids):
                 self._runs_by_document.setdefault(doc_id, []).append(run.run_id)
@@ -395,16 +412,16 @@ class CorpusStore:
         As with other writes, this is not a transaction against I/O failures
         or process crashes during the final append.
         """
-        @lru_cache(maxsize=128)
         def run_documents(rid: str) -> frozenset[str] | None:
-            if rid in self._recent_run_documents:
-                return self._recent_run_documents[rid]
+            if rid in self._run_documents:
+                return self._run_documents[rid]
             header = next(self._rows_for("annotation_runs", "run_id", rid), None)
             if header is None:
                 raise StoreError(f"unknown run {rid!r}")
-            if "document_ids" in header:
-                return frozenset(header["document_ids"])
-            return None  # Legacy headers need the document membership index.
+            # Legacy headers (None) need the document membership index.
+            documents = frozenset(header["document_ids"]) if "document_ids" in header else None
+            self._run_documents[rid] = documents
+            return documents
 
         batch_keys: set[str] = set()
         written = 0
@@ -431,14 +448,15 @@ class CorpusStore:
                 if deduplicate and (key in self._index.example_keys or key in batch_keys):
                     continue
                 try:
-                    data = (json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n").encode("utf-8")
+                    data = _encode_row(row)
                 except (TypeError, ValueError, UnicodeError) as error:
                     raise StoreError(f"invalid example: cannot serialize JSON: {error}") from error
                 staged.write(data)
                 batch_keys.add(key)
             if batch_keys:
                 staged.seek(0)
-                written = self._append("qa_examples", (json.loads(line) for line in staged))
+                # The staged bytes are what gets written: no second encode.
+                written = self._append_encoded("qa_examples", staged)
                 self._index.example_keys.update(batch_keys)
         return written
 
@@ -595,6 +613,11 @@ class _Missing:
 
 
 _MISSING = _Missing()
+
+
+def _encode_row(row: Mapping[str, Any]) -> bytes:
+    """The one serialization of a stored row, so every writer agrees byte for byte."""
+    return (json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n").encode("utf-8")
 
 
 def _remember_written(cache: OrderedDict, key: str, value: Any) -> None:
