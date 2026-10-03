@@ -25,12 +25,14 @@ complement is written; see SCALA_TO_PYTHON.md.
 from __future__ import annotations
 
 from dataclasses import dataclass, field, replace
-from typing import Mapping
+from types import MappingProxyType
+from typing import Any, Generic, Mapping, TypeVar
 
 from .inflections import BE_FORMS, DO_FORMS, HAVE_FORMS
 from .models import InflectedForms, QuestionSlots, VerbForm
 from .question_slots import EMPTY, SILENT_PREP
-from .state_machine import BARE_COMPLEMENT_OBJ2, MODAL_TENSES, TENSES
+from .state_machine import ADVERBIAL_WH, BARE_COMPLEMENT_OBJ2, MODAL_TENSES
+from .tense import NonFinite, Tense
 
 __all__ = [
     "Argument",
@@ -48,6 +50,8 @@ __all__ = [
     "MAIN_AUX_VERBS",
     "frame_from_slots",
     "frames_are_equivalent",
+    "ALL_ADV_SLOTS",
+    "ArgumentValue",
 ]
 
 
@@ -83,6 +87,44 @@ class Argument:
     @property
     def wh(self) -> str | None:
         raise NotImplementedError
+
+    @property
+    def is_noun(self) -> bool:
+        return isinstance(self, Noun)
+
+    @property
+    def is_prep(self) -> bool:
+        return isinstance(self, Prep)
+
+    @property
+    def is_locative(self) -> bool:
+        return isinstance(self, Locative)
+
+    def to_json(self) -> dict[str, Any]:
+        """Circe's tagged ``Argument`` encoding (rather than bare ``Noun``)."""
+        if isinstance(self, Noun):
+            return {"Noun": {"isAnimate": self.is_animate}}
+        if isinstance(self, Prep):
+            return {"Prep": {"preposition": self.preposition,
+                             "objOpt": ({"isAnimate": self.obj.is_animate}
+                                        if self.obj is not None else None)}}
+        if isinstance(self, Locative):
+            return {"Locative": {}}
+        raise TypeError(f"unknown argument type: {type(self).__name__}")
+
+    @staticmethod
+    def from_json(data: Mapping[str, Any]) -> "Argument":
+        if len(data) != 1:
+            raise ValueError(f"expected one tagged argument, got {data!r}")
+        if "Noun" in data:
+            return Noun(data["Noun"]["isAnimate"])
+        if "Prep" in data:
+            value = data["Prep"]
+            obj = value.get("objOpt")
+            return Prep(value["preposition"], None if obj is None else Noun(obj["isAnimate"]))
+        if "Locative" in data:
+            return LOCATIVE
+        raise ValueError(f"unknown argument tag: {next(iter(data))!r}")
 
 
 @dataclass(frozen=True, slots=True)
@@ -168,6 +210,24 @@ class ArgumentSlot:
     def is_adverbial(self) -> bool:
         return self.kind == "adv"
 
+    @classmethod
+    def from_string(cls, value: str) -> "ArgumentSlot | None":
+        if value in ("subj", "obj", "obj2"):
+            return cls(value)
+        if value.lower() in ADVERBIAL_WH:
+            return cls("adv", value.lower())
+        return None
+
+    @classmethod
+    def from_json(cls, value: str) -> "ArgumentSlot":
+        slot = cls.from_string(value)
+        if slot is None:
+            raise ValueError(f"unknown argument slot: {value!r}")
+        return slot
+
+    def to_json(self) -> str:
+        return str(self)
+
 
 SUBJ = ArgumentSlot("subj")
 OBJ = ArgumentSlot("obj")
@@ -179,6 +239,9 @@ def adv(wh: str) -> ArgumentSlot:
     return ArgumentSlot("adv", wh)
 
 
+ALL_ADV_SLOTS = tuple(adv(wh) for wh in ("when", "where", "why", "how", "how long", "how much"))
+
+
 # ---------------------------------------------------------------------------
 # Argument structure and frame
 # ---------------------------------------------------------------------------
@@ -188,10 +251,18 @@ def adv(wh: str) -> ArgumentSlot:
 class ArgStructure:
     """Which positions the predicate has, and whether the clause is passive."""
 
-    args: Mapping[ArgumentSlot, Argument] = field(default_factory=dict)
+    args: Mapping[ArgumentSlot, Argument | None] = field(default_factory=dict)
     is_passive: bool = False
 
-    def with_arg(self, slot: ArgumentSlot, argument: Argument) -> "ArgStructure":
+    def __post_init__(self) -> None:
+        # Scala's DependentMap is immutable. Copy before wrapping so mutations
+        # of a caller's input dictionary cannot invalidate a Frame's hash.
+        object.__setattr__(self, "args", MappingProxyType(dict(self.args)))
+
+    def __hash__(self) -> int:
+        return hash((frozenset(self.args.items()), self.is_passive))
+
+    def with_arg(self, slot: ArgumentSlot, argument: Argument | None) -> "ArgStructure":
         return replace(self, args={**self.args, slot: argument})
 
     def get(self, slot: ArgumentSlot) -> Argument | None:
@@ -199,7 +270,7 @@ class ArgStructure:
 
     def forget_animacy(self) -> "ArgStructure":
         """Collapse ``someone``/``something`` so structures can be compared."""
-        new: dict[ArgumentSlot, Argument] = {}
+        new: dict[ArgumentSlot, Argument | None] = {}
         for slot, argument in self.args.items():
             if isinstance(argument, Noun):
                 new[slot] = Noun(False)
@@ -218,6 +289,37 @@ class ArgStructure:
             out.add(slot)
         return out
 
+    def to_json(self) -> dict[str, Any]:
+        args: dict[str, Any] = {}
+        for slot, argument in self.args.items():
+            if slot.is_adverbial:
+                args[str(slot)] = None  # Scala Unit is JSON null.
+            elif slot in (SUBJ, OBJ):
+                assert isinstance(argument, Noun)
+                args[str(slot)] = {"isAnimate": argument.is_animate}
+            else:
+                assert argument is not None
+                args[str(slot)] = argument.to_json()
+        return {"args": args, "isPassive": self.is_passive}
+
+    @classmethod
+    def from_json(cls, data: Mapping[str, Any]) -> "ArgStructure":
+        args: dict[ArgumentSlot, Argument | None] = {}
+        for key, value in data["args"].items():
+            slot = ArgumentSlot.from_json(key)
+            if slot.is_adverbial:
+                args[slot] = None
+            elif slot in (SUBJ, OBJ):
+                args[slot] = Noun(value["isAnimate"])
+            else:
+                args[slot] = Argument.from_json(value)
+        return cls(args, data["isPassive"])
+
+    def __str__(self) -> str:
+        from .question_template import GENERIC_FORMS
+
+        return Frame(GENERIC_FORMS, self, tense="present").clauses()[0]
+
 
 #: Words that may be fronted out of the verb stack into ``aux``
 #: (``SlotBasedLabel.mainAuxVerbs``). ``mightn't`` is listed upstream but the
@@ -228,6 +330,20 @@ MAIN_AUX_VERBS: frozenset[str] = frozenset(
     + [w + "n't" for w in _NEG_CONTRACTIBLE]
     + ["can", "will", "can't", "won't"]
 )
+
+
+_A = TypeVar("_A")
+
+
+@dataclass(frozen=True, slots=True)
+class ArgumentValue(Generic[_A]):
+    """An inserted value in ``gen_clauses_with_args`` (Scala ``Right``).
+
+    Literal grammar tokens are plain strings. Wrapping inserted values keeps
+    them distinct even when an argument value itself is a string.
+    """
+
+    value: _A
 
 
 @dataclass(frozen=True, slots=True)
@@ -242,11 +358,14 @@ class Frame:
     is_negated: bool = False
 
     def __post_init__(self) -> None:
-        if self.tense not in TENSES:
-            raise ValueError(f"unknown tense {self.tense!r}; expected one of {TENSES}")
+        try:
+            tense = Tense(self.tense)
+        except ValueError:
+            raise ValueError(f"unknown tense {self.tense!r}") from None
+        object.__setattr__(self, "tense", tense.value)
 
     @property
-    def args(self) -> Mapping[ArgumentSlot, Argument]:
+    def args(self) -> Mapping[ArgumentSlot, Argument | None]:
         return self.structure.args
 
     @property
@@ -257,8 +376,37 @@ class Frame:
     def is_modal(self) -> bool:
         return self.tense in MODAL_TENSES
 
-    def with_arg(self, slot: ArgumentSlot, argument: Argument) -> "Frame":
+    @property
+    def is_finite(self) -> bool:
+        return NonFinite.from_string(self.tense) is None
+
+    def with_arg(self, slot: ArgumentSlot, argument: Argument | None) -> "Frame":
         return replace(self, structure=self.structure.with_arg(slot, argument))
+
+    @classmethod
+    def empty(cls, forms: InflectedForms) -> "Frame":
+        return cls(forms)
+
+    def to_json(self) -> dict[str, Any]:
+        return {
+            "verbInflectedForms": self.verb_inflected_forms.to_json(),
+            "structure": self.structure.to_json(),
+            "tense": self.tense,
+            "isPerfect": self.is_perfect,
+            "isProgressive": self.is_progressive,
+            "isNegated": self.is_negated,
+        }
+
+    @classmethod
+    def from_json(cls, data: Mapping[str, Any]) -> "Frame":
+        return cls(
+            InflectedForms.from_json(data["verbInflectedForms"]),
+            ArgStructure.from_json(data["structure"]),
+            tense=data["tense"],
+            is_perfect=data["isPerfect"],
+            is_progressive=data["isProgressive"],
+            is_negated=data["isNegated"],
+        )
 
     # -- the verb chain ----------------------------------------------------
 
@@ -296,6 +444,23 @@ class Frame:
             if paradigm is not None:
                 stack[0] = paradigm.get(form)
 
+        if self.tense == "gerund":
+            # Scala intentionally suppresses a progressive above a passive,
+            # and adds a progressive auxiliary only under a perfect gerund.
+            if self.is_passive:
+                mod_form(VerbForm.PAST_PARTICIPLE)
+                stack.insert(0, "be")
+            if self.is_progressive and not self.is_passive and self.is_perfect:
+                mod_form(VerbForm.PRESENT_PARTICIPLE)
+                stack.insert(0, "be")
+            if self.is_perfect:
+                mod_form(VerbForm.PAST_PARTICIPLE)
+                stack.insert(0, "have")
+            mod_form(VerbForm.PRESENT_PARTICIPLE)
+            if self.is_negated:
+                stack.insert(0, "not")
+            return stack
+
         if self.is_passive:
             mod_form(VerbForm.PAST_PARTICIPLE)
             stack.insert(0, "be")
@@ -310,7 +475,7 @@ class Frame:
 
         if self.is_modal:
             stack[:0] = self._modal_tokens()
-        else:
+        elif self.is_finite:
             finite = (
                 VerbForm.PAST if self.tense == "past" else VerbForm.PRESENT_SINGULAR_3RD
             )
@@ -322,11 +487,16 @@ class Frame:
                     stack[0] = stack[0] + "n't"
             else:
                 mod_form(finite)
+        else:
+            if self.tense == "to":
+                stack.insert(0, "to")
+            if self.is_negated:
+                stack.insert(0, "not")
         return stack
 
     def split_verb_stack_if_necessary(self, stack: list[str]) -> list[str]:
         """Introduce ``do``-support so that something can be fronted."""
-        if len(stack) > 1 or self.is_modal:
+        if len(stack) > 1 or self.is_modal or not self.is_finite:
             return list(stack)
         paradigm = self._paradigm_for(stack[0], self.verb_inflected_forms)
         head = "did" if self.tense == "past" else "does"
@@ -343,6 +513,10 @@ class Frame:
             return VerbForm.PAST_PARTICIPLE
         if self.is_modal or self.is_negated or subject_present:
             return VerbForm.STEM
+        if self.tense in ("bare", "to"):
+            return VerbForm.STEM
+        if self.tense == "gerund":
+            return VerbForm.PRESENT_PARTICIPLE
         return VerbForm.PAST if self.tense == "past" else VerbForm.PRESENT_SINGULAR_3RD
 
     # -- projection to slots -----------------------------------------------
@@ -418,6 +592,27 @@ class Frame:
             return argument.preposition, EMPTY
         return argument.preposition, " ".join(argument.placeholder)
 
+    def to_slots_upstream(self, answer_slot: ArgumentSlot) -> QuestionSlots:
+        """Upstream 16ab4949's complement split, with an abstract verb form.
+
+        ``to_slots`` preserves the released Bank 2.0 convention. The upstream
+        labeling API instead places ``to do``/``to doing`` in ``obj2`` and
+        joins it to a following placeholder (e.g. ``to do something``).
+        """
+        slots = self.to_slots(answer_slot)
+        argument = self.args.get(OBJ2)
+        if not isinstance(argument, Prep) or (argument.obj is None and answer_slot != OBJ2):
+            return slots
+        words = argument.preposition.split()
+        if not words or words[-1] not in BARE_COMPLEMENT_OBJ2:
+            return slots
+        count = 2 if len(words) > 1 and words[-2] == "to" else 1
+        prep = " ".join(words[:-count]) or EMPTY
+        obj2 = " ".join(words[-count:])
+        if answer_slot != OBJ2:
+            obj2 += " " + " ".join(argument.placeholder)
+        return replace(slots, prep=prep, obj2=obj2)
+
     # -- rendering ---------------------------------------------------------
 
     def question(self, answer_slot: ArgumentSlot) -> str:
@@ -448,6 +643,106 @@ class Frame:
                 words.extend(argument.gap.split())
             words.extend(argument.placeholder)
         return " ".join(words)
+
+    # -- upstream's nondeterministic rendering -----------------------------
+
+    def _necessary_noun(
+        self, slot: ArgumentSlot, arg_values: Mapping[ArgumentSlot, _A]
+    ) -> list[list[str | ArgumentValue[_A]]]:
+        argument = self.args.get(slot)
+        if argument is None:
+            return [["someone"], ["something"]]
+        if slot in arg_values:
+            return [[ArgumentValue(arg_values[slot])]]
+        return [list(argument.placeholder)]
+
+    @staticmethod
+    def get_ungap(gap: str | None) -> list[str]:
+        """Remove complement ``do``/``doing`` when inserting a real value."""
+        return [] if gap is None else [w for w in gap.split() if w not in ("do", "doing")]
+
+    def _render_arg(
+        self, slot: ArgumentSlot, arg_values: Mapping[ArgumentSlot, _A]
+    ) -> list[str | ArgumentValue[_A]]:
+        argument = self.args.get(slot)
+        if argument is None:
+            return []
+        if slot in arg_values:
+            return self.get_ungap(argument.gap) + [ArgumentValue(arg_values[slot])]
+        return ([argument.gap] if argument.gap is not None else []) + argument.placeholder
+
+    def gen_clauses_with_args(
+        self, arg_values: Mapping[ArgumentSlot, _A]
+    ) -> list[list[str | ArgumentValue[_A]]]:
+        """All clauses, retaining the boundaries and types of inserted values.
+
+        An unspecified subject branches into ``someone`` and ``something``;
+        the upstream routine does not infer its animacy from other arguments.
+        """
+        tail = (self.get_verb_stack() + self._render_arg(OBJ, arg_values)
+                + self._render_arg(OBJ2, arg_values))
+        return [subject + tail for subject in self._necessary_noun(SUBJ, arg_values)]
+
+    def clauses_with_args(self, arg_values: Mapping[ArgumentSlot, str]) -> list[str]:
+        return [" ".join(token.value if isinstance(token, ArgumentValue) else token
+                         for token in tokens)
+                for tokens in self.gen_clauses_with_args(arg_values)]
+
+    def clauses(self) -> list[str]:
+        """Upstream ``clauses``; unlike ``clause``, fills a missing subject."""
+        return self.clauses_with_args({})
+
+    def clauses_with_arg_markers(self) -> list[list[str | ArgumentValue[ArgumentSlot]]]:
+        return self.gen_clauses_with_args({slot: slot for slot in self.args})
+
+    def questions_for_slot(self, slot: ArgumentSlot) -> list[str]:
+        """All upstream renderings, including missing-noun alternatives."""
+        return self.questions_for_slot_with_args(slot, {})
+
+    def questions_for_slot_with_args(
+        self, slot: ArgumentSlot | None, arg_values: Mapping[ArgumentSlot, str]
+    ) -> list[str]:
+        """Render a wh-question, or an inverted question when slot is ``None``.
+
+        The optional answer slot and inserted arguments follow Scala's
+        ``questionsForSlotWithArgs``. An absent subject or queried object
+        branches across the two animate/inanimate placeholders; querying an
+        absent or objectless second argument produces no questions.
+        """
+        if slot is None:
+            prefixes = [[]]
+        elif slot in (SUBJ, OBJ):
+            argument = self.args.get(slot)
+            whs = ["Who", "What"] if argument is None else [argument.wh.capitalize()]
+            prefixes = [[wh] for wh in whs]
+        elif slot == OBJ2:
+            argument = self.args.get(OBJ2)
+            if argument is None or argument.wh is None:
+                return []
+            prefixes = [[argument.wh.capitalize()]]
+        elif slot.is_adverbial:
+            prefixes = [[slot.wh.capitalize()]]
+        else:
+            raise ValueError(f"unknown argument slot: {slot!r}")
+
+        if slot == SUBJ:
+            cores = [self.get_verb_stack()]
+        else:
+            stack = self.split_verb_stack_if_necessary(self.get_verb_stack())
+            cores = [[stack[0]] + subj + stack[1:]
+                     for subj in self._necessary_noun(SUBJ, arg_values)]
+
+        tail: list[str | ArgumentValue[str]] = []
+        for arg_slot in (OBJ, OBJ2):
+            if slot == arg_slot:
+                argument = self.args.get(arg_slot)
+                if argument is not None and argument.gap is not None:
+                    tail.append(argument.gap)
+            else:
+                tail.extend(self._render_arg(arg_slot, arg_values))
+        return [" ".join(token.value if isinstance(token, ArgumentValue) else token
+                         for token in prefix + core + tail) + "?"
+                for prefix in prefixes for core in cores]
 
 
 def _split_bare_complement(preposition: str) -> tuple[str, str]:

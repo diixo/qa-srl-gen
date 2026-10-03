@@ -168,10 +168,10 @@ class CorpusStore:
                 count += 1
         return count
 
-    def _rows_for(self, table: str, key: str, value: Any) -> Iterator[dict[str, Any]]:
+    def _offset_index(self, table: str, key: str) -> dict[Any, list[int]]:
         index_key = (table, key)
-        path = self.path_for(table)
         if index_key not in self._offsets:
+            path = self.path_for(table)
             index: dict[Any, list[int]] = {}
             if path.exists():
                 with path.open("rb") as stream:
@@ -184,9 +184,31 @@ class CorpusStore:
                             row = json.loads(line)
                             index.setdefault(row.get(key), []).append(offset)
             self._offsets[index_key] = index
-        offsets = self._offsets[index_key].get(value, ())
+        return self._offsets[index_key]
+
+    def _rows_for(self, table: str, key: str, value: Any) -> Iterator[dict[str, Any]]:
+        offsets = self._offset_index(table, key).get(value, ())
         if offsets:
-            with path.open("rb") as stream:
+            with self.path_for(table).open("rb") as stream:
+                for offset in offsets:
+                    stream.seek(offset)
+                    yield json.loads(stream.readline())
+
+    def _rows_for_many(
+        self, table: str, key: str, values: Iterable[Any],
+    ) -> Iterator[dict[str, Any]]:
+        """Read selected rows through one handle, in file order.
+
+        Only the requested offsets are collected. Distinct rows sharing the
+        same key are retained, so callers can still detect ambiguous IDs.
+        """
+        values = set(values)
+        if not values:
+            return
+        index = self._offset_index(table, key)
+        offsets = sorted(offset for value in values for offset in index.get(value, ()))
+        if offsets:
+            with self.path_for(table).open("rb") as stream:
                 for offset in offsets:
                     stream.seek(offset)
                     yield json.loads(stream.readline())
@@ -276,25 +298,33 @@ class CorpusStore:
                         (*run.mentions, *run.predicates, *run.properties)}
         if len(run.ids()) != len(run.mentions) + len(run.predicates) + len(run.properties):
             raise StoreError("run contains duplicate annotation IDs")
+        provided_stored = None
         if document is not None:
             document_ids.add(document.document_id)
-            if _document_identity(self.document(document.document_id)) != _document_identity(document):
+            provided_stored = self.document(document.document_id)
+            if _document_identity(provided_stored) != _document_identity(document):
                 raise StoreError("run document must already be stored unchanged")
+        owners_by_utterance: dict[str, list[str]] = {}
+        for row in self._rows_for_many(
+            "utterances", "utterance_id", (d.utterance_id for d in run.dialogue),
+        ):
+            owners_by_utterance.setdefault(row["utterance_id"], []).append(row["document_id"])
         for d in run.dialogue:
-            owners = list(self._rows_for("utterances", "utterance_id", d.utterance_id))
+            owners = owners_by_utterance.get(d.utterance_id, ())
             if len(owners) != 1:
                 raise StoreError(f"unknown or ambiguous utterance {d.utterance_id!r}")
-            document_ids.add(owners[0]["document_id"])
+            document_ids.add(owners[0])
         for doc_id in document_ids:
-            stored = self.document(doc_id)
+            stored = (provided_stored if document is not None and doc_id == document.document_id
+                      else self.document(doc_id))
             if stored is None:
                 raise StoreError(f"unknown document {doc_id!r}")
+            utterance_ids = {u.utterance_id for u in stored.utterances}
             subset = replace(run,
                 mentions=tuple(m for m in run.mentions if m.document_id == doc_id),
                 predicates=tuple(p for p in run.predicates if p.document_id == doc_id),
                 properties=tuple(p for p in run.properties if p.document_id == doc_id),
-                dialogue=tuple(d for d in run.dialogue if d.utterance_id in
-                               {u.utterance_id for u in stored.utterances}),
+                dialogue=tuple(d for d in run.dialogue if d.utterance_id in utterance_ids),
             )
             ids = {m.mention_id for m in subset.mentions} | {p.predicate_id for p in subset.predicates} | {p.property_id for p in subset.properties}
             subset = replace(subset, relations=tuple(e for e in run.relations

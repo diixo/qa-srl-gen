@@ -9,16 +9,18 @@ inventory and the auxiliary-chain grammar implemented in
 `semantic_corpus/qasrl_core/` originate in that project and in the paper
 *Large-Scale QA-SRL Parsing* (Fitzgerald, Michael, He, Zettlemoyer, ACL 2018).
 
-**Nature of the adaptation.** No Scala source was copied. The modules here
-were first written from the published format specification
+**Nature of the adaptation.** The modules here were first written from the
+published format specification
 (<https://github.com/uwnlp/qasrl-bank/blob/master/FORMAT.md>), the paper, and
 the released QA-SRL Bank 2.0 data. The upstream source was then audited at
 commit `16ab4949` (2023-09-22) and the grammar corrected against it; the
-rules carried over from `TemplateStateMachine`, `Frame`, `QuestionProcessor`
-and `SlotBasedLabel` are documented file by file in SCALA_TO_PYTHON.md. The
-implementations are reimplementations, not translations. Field names, slot
-names and verb-form keys are kept identical to the originals for
-compatibility.
+rules carried over from the source are documented file by file in
+SCALA_TO_PYTHON.md. The subsequent port directly adapts algorithms and models
+from the core grammar, frame rendering, labeling, dataset operations, Bank
+metadata/provenance and QANom reformatting into Python. Field names, slot names
+and verb-form keys are kept compatible with the originals. These adaptations
+remain subject to the upstream MIT notice below; the local reference source
+and test corpus are kept under ignored `artifacts/`.
 
 The upstream project is MIT licensed. Its notice:
 

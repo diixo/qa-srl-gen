@@ -26,11 +26,13 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Iterable, Iterator
 
-from .models import Sentence, Span
+from .models import InflectedForms, QuestionSlots, Sentence, Span
+from .dataset import ConsolidatedSentence
 
 __all__ = [
     "read_jsonl",
     "read_bank",
+    "read_consolidated_bank",
     "iter_question_labels",
     "QaTextQuestion",
     "QaTextPredicate",
@@ -65,6 +67,12 @@ def read_bank(path: Path | str) -> Iterator[Sentence]:
         yield Sentence.from_json(record)
 
 
+def read_consolidated_bank(path: Path | str) -> Iterator[ConsolidatedSentence]:
+    """Stream the consolidated Bank schema, including nonPredicates."""
+    for record in read_jsonl(path):
+        yield ConsolidatedSentence.from_json(record)
+
+
 def iter_question_labels(paths: Iterable[Path | str]) -> Iterator[tuple[Sentence, Any, Any]]:
     """Stream ``(sentence, verb_entry, question_label)`` across several files."""
     for path in paths:
@@ -95,6 +103,38 @@ class QaTextQuestion:
         words = [w for slot in self.slots if slot != "_" for w in slot.split()]
         sentence = " ".join(words)
         return sentence[:1].upper() + sentence[1:] + "?"
+
+    def to_question_slots_all(self, forms: InflectedForms) -> tuple[QuestionSlots, ...]:
+        """Convert raw slots using a supplied paradigm without guessing forms.
+
+        Preserve the legacy slot boundaries. Each compatible verb form is
+        checked against the grammar; no matching analysis returns an empty
+        tuple. Answer strings are not guessed into token spans.
+        """
+        from .validation import check_slots
+        from .question_slots import BARE_COMPLEMENT_OBJ2
+
+        wh, aux, subj, verb, obj, prep, obj2 = self.slots
+        words = verb.lower().split()
+        if not words:
+            return ()
+        if prep == "_" and obj2 in BARE_COMPLEMENT_OBJ2:
+            prep = ""
+        out = []
+        for form in forms.forms_for(words[-1]):
+            slots = QuestionSlots(wh.lower(), aux, subj, " ".join((*words[:-1], form.value)), obj, prep, obj2)
+            if not check_slots(slots):
+                out.append(slots)
+        return tuple(out)
+
+    def to_question_slots(self, forms: InflectedForms) -> QuestionSlots:
+        """Return the unique typed analysis, or raise on invalid/ambiguous data."""
+        analyses = self.to_question_slots_all(forms)
+        if not analyses:
+            raise ValueError(f"No valid typed slot analysis for {self.text!r} with paradigm {forms.stem!r}")
+        if len(analyses) != 1:
+            raise ValueError(f"Ambiguous verb form for {self.text!r}; use to_question_slots_all()")
+        return analyses[0]
 
 
 @dataclass(frozen=True, slots=True)

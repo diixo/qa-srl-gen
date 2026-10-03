@@ -9,9 +9,9 @@ Bank format reference: https://github.com/uwnlp/qasrl-bank/blob/master/FORMAT.md
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from enum import Enum
-from typing import Any, Iterator, Mapping, Sequence
+from typing import Any, Callable, Iterator, Mapping, Sequence
 
 __all__ = [
     "VerbForm",
@@ -43,6 +43,19 @@ class VerbForm(str, Enum):
 
 #: Order in which slots are concatenated to form the surface question.
 SLOT_ORDER: tuple[str, ...] = ("wh", "aux", "subj", "verb", "obj", "prep", "obj2")
+
+
+def _rendered_slot_fields(value: str, separator: str) -> dict[str, str]:
+    """Read exactly seven rendered fields; separators are literal in Python."""
+    if not separator:
+        raise ValueError("slot separator must not be empty")
+    fields = value.split(separator)
+    if len(fields) != len(SLOT_ORDER):
+        raise ValueError(f"expected seven question slots, got {len(fields)}")
+    fields = [field.lower() if field else "_" for field in fields]
+    if fields[0] == "_" or fields[3] == "_":
+        raise ValueError("wh and verb slots must be filled")
+    return dict(zip(SLOT_ORDER, fields))
 
 
 @dataclass(frozen=True, slots=True)
@@ -225,6 +238,38 @@ class QuestionSlots:
     def to_json(self) -> dict[str, str]:
         return {name: value for name, value in self}
 
+    def slot_strings(self, render_verb: Callable[[VerbForm], str] | None = None) -> tuple[str, ...]:
+        """Render seven fields, optionally instantiating the abstract verb."""
+        fields = self.to_json()
+        if render_verb is not None:
+            fields["verb"] = " ".join((*self.verb_prefix, render_verb(self.verb_form)))
+        return tuple(value.lower() for value in fields.values())
+
+    def render_with_separator(self, separator: str, *,
+                              render_verb: Callable[[VerbForm], str] | None = None) -> str:
+        if not separator:
+            raise ValueError("slot separator must not be empty")
+        return separator.join(self.slot_strings(render_verb))
+
+    @classmethod
+    def from_rendered_string(cls, value: str, separator: str, *,
+                             read_verb: Callable[[str], VerbForm | str] | None = None) -> "QuestionSlots":
+        """Decode rendered fields; supply read_verb for surface-to-form lookup.
+
+        Empty optional fields normalize to ``_`` as upstream. For the lossless
+        released Bank codec (including silent prep), use ``from_json`` instead.
+        """
+        fields = _rendered_slot_fields(value, separator)
+        words = fields["verb"].split(" ")
+        if read_verb is None:
+            form = next((form for form in VerbForm if form.value.lower() == words[-1]), None)
+            if form is None:
+                raise ValueError(f"unknown verb form: {words[-1]!r}")
+        else:
+            form = VerbForm(read_verb(words[-1]))
+        fields["verb"] = " ".join((*words[:-1], form.value))
+        return cls.from_json(fields)
+
 
 @dataclass(frozen=True, slots=True)
 class QuestionLabel:
@@ -239,6 +284,34 @@ class QuestionLabel:
     is_passive: bool
     answer_judgments: tuple[AnswerJudgment, ...] = ()
     question_sources: tuple[str, ...] = ()
+
+    def combine_with_like(self, other: "QuestionLabel") -> "QuestionLabel":
+        """Union judgments and sources of the same question, or raise ValueError.
+
+        Unlike the upstream typo ``isPassive != isPassive``, both passive
+        flags are compared. Judgment equality treats spans as a set, as Scala
+        does, while retaining the first record's JSON ordering.
+        """
+        fields = (
+            "question_string", "question_slots", "tense", "is_perfect",
+            "is_progressive", "is_negated", "is_passive",
+        )
+        differing = [name for name in fields if getattr(self, name) != getattr(other, name)]
+        if differing:
+            raise ValueError("Can only combine like questions; different " + ", ".join(differing))
+        judgments: list[AnswerJudgment] = []
+        seen: set[tuple[str, bool, frozenset[Span]]] = set()
+        for judgment in (*self.answer_judgments, *other.answer_judgments):
+            key = (judgment.source_id, judgment.is_valid,
+                   frozenset(judgment.spans) if judgment.is_valid else frozenset())
+            if key not in seen:
+                seen.add(key)
+                judgments.append(judgment)
+        return replace(
+            self,
+            question_sources=tuple(dict.fromkeys((*self.question_sources, *other.question_sources))),
+            answer_judgments=tuple(judgments),
+        )
 
     @property
     def valid_judgments(self) -> tuple[AnswerJudgment, ...]:
@@ -302,6 +375,18 @@ class VerbEntry:
     def __iter__(self) -> Iterator[QuestionLabel]:
         return iter(self.question_labels.values())
 
+    def combine_with_like(self, other: "VerbEntry") -> "VerbEntry":
+        """Combine compatible entries, failing if any shared question conflicts."""
+        if (self.verb_index, self.verb_inflected_forms) != (other.verb_index, other.verb_inflected_forms):
+            raise ValueError("Can only combine same verb index and inflected forms")
+        labels = {}
+        for key in sorted(self.question_labels.keys() | other.question_labels.keys()):
+            if key in self.question_labels and key in other.question_labels:
+                labels[key] = self.question_labels[key].combine_with_like(other.question_labels[key])
+            else:
+                labels[key] = self.question_labels[key] if key in self.question_labels else other.question_labels[key]
+        return replace(self, question_labels=labels)
+
     @classmethod
     def from_json(cls, data: Mapping[str, Any]) -> "VerbEntry":
         return cls(
@@ -346,6 +431,21 @@ class Sentence:
         for entry in self.verb_entries.values():
             for label in entry.question_labels.values():
                 yield entry, label
+
+    def combine_with_like(self, other: "Sentence") -> "Sentence":
+        """Strict merge, including token identity and unknown JSON fields.
+
+        This convenience method supplements Scala's Dataset.merge; it raises
+        instead of returning that operation's recoverable diagnostics.
+        """
+        from .dataset import Dataset
+
+        if self.sentence_id != other.sentence_id:
+            raise ValueError("Can only combine same sentence ID")
+        result = Dataset({self.sentence_id: self}).merge(Dataset({other.sentence_id: other}))
+        if result.failures:
+            raise ValueError(result.failures[0].message)
+        return result.dataset.sentences[self.sentence_id]
 
     @classmethod
     def from_json(cls, data: Mapping[str, Any]) -> "Sentence":

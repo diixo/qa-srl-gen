@@ -4,15 +4,17 @@ Every check returns a list of human-readable problems instead of raising, so a
 caller scanning a corpus can count and classify defects rather than stopping at
 the first one. :func:`check_sentence` wraps the lot for a whole sentence.
 
-The slot checks are grammar-driven: the legal ``(aux, verb)`` inventory comes
-from :mod:`.state_machine`, not from a hand-written table, so the validator and
-the renderer can never drift apart.
+The default ``bank`` dialect retains the released Bank 2.0 slot conventions.
+The explicit ``upstream`` dialect checks the newer SlotBasedLabel projection
+against the incremental template grammar, including its complement slots.
+The two conventions are never silently converted into one another.
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Iterable, Sequence
+from functools import lru_cache
+from typing import Iterable, Literal, Sequence
 
 from .models import (
     AnswerJudgment,
@@ -39,6 +41,7 @@ from .state_machine import (
 )
 
 _PREP_WORDS = PREPOSITIONS | BARE_COMPLEMENT_OBJ2
+SlotDialect = Literal["bank", "upstream"]
 
 __all__ = [
     "Problem",
@@ -50,6 +53,7 @@ __all__ = [
     "validate_sentence",
     "count_problems",
     "ValidationError",
+    "SlotDialect",
 ]
 
 
@@ -69,8 +73,58 @@ class Problem:
         return f"[{self.code}] {self.where + ': ' if self.where else ''}{self.message}"
 
 
-def check_slots(slots: QuestionSlots, where: str = "") -> list[Problem]:
-    """Check one slot bundle against the closed vocabularies and the grammar."""
+def _check_dialect(dialect: SlotDialect) -> None:
+    if dialect not in ("bank", "upstream"):
+        raise ValueError(f"Unknown slot dialect: {dialect!r}; expected 'bank' or 'upstream'")
+
+
+# Distinct synthetic surface forms prevent accidental ambiguity (as with put)
+# when validating an abstract VerbForm without a real predicate paradigm.
+_VALIDATION_FORMS = InflectedForms(
+    "qasrlverb", "qasrlverbs", "qasrlverbing", "qasrlverbed", "qasrlverbparticiple",
+)
+
+
+@lru_cache(maxsize=1024)
+def _upstream_frames(slots: QuestionSlots) -> tuple:
+    """Find complete analyses whose upstream projection is exactly *slots*."""
+    from .clause_resolution import question_prepositions
+    from .question_processor import AggregatedInvalidState, CompleteState, QuestionProcessor
+    from .template_state_machine import TemplateStateMachine
+
+    question = render_question(slots, _VALIDATION_FORMS)
+    processor = QuestionProcessor(TemplateStateMachine(
+        (), _VALIDATION_FORMS, prepositions=question_prepositions(question),
+    ))
+    states = processor.process_string_fully(question)
+    if isinstance(states, AggregatedInvalidState):
+        return ()
+    return tuple(state.frame for state in states if isinstance(state, CompleteState)
+                 and state.frame.to_slots_upstream(state.answer_slot) == slots)
+
+
+def _check_upstream_slots(slots: QuestionSlots, where: str) -> list[Problem]:
+    for name, value in slots:
+        if not isinstance(value, str):
+            return [Problem("slot-type", f"{name} must be a string", where)]
+    try:
+        slots.verb_form
+    except ValueError:
+        return [Problem("verb-form", f"verb={slots.verb!r} does not end in a verb form", where)]
+    if not _upstream_frames(slots):
+        return [Problem(
+            "upstream-slots",
+            "slots are not an exact upstream SlotBasedLabel projection of a complete question",
+            where,
+        )]
+    return []
+
+
+def check_slots(slots: QuestionSlots, where: str = "", *, dialect: SlotDialect = "bank") -> list[Problem]:
+    """Check slots in the explicitly selected convention (Bank by default)."""
+    _check_dialect(dialect)
+    if dialect == "upstream":
+        return _check_upstream_slots(slots, where)
     problems: list[Problem] = []
 
     for name, vocabulary in SLOT_VOCABULARIES.items():
@@ -171,13 +225,16 @@ def check_question_label(
     forms: InflectedForms,
     sentence_tokens: Sequence[str],
     where: str = "",
+    *,
+    dialect: SlotDialect = "bank",
 ) -> list[Problem]:
     """Check a question: slots, rendering, stored features, judgments, spans."""
-    problems = check_slots(label.question_slots, where)
+    slot_problems = check_slots(label.question_slots, where, dialect=dialect)
+    problems = list(slot_problems)
 
     try:
         rendered = render_question(label.question_slots, forms)
-    except (ValueError, KeyError) as error:
+    except (ValueError, KeyError, TypeError, AttributeError) as error:
         problems.append(Problem("render", f"cannot render slots: {error}", where))
     else:
         if rendered != label.question_string:
@@ -202,11 +259,15 @@ def check_question_label(
             label.is_passive,
             label.is_negated,
         )
+        if dialect == "bank":
+            features = features_for_chain(label.question_slots.aux, label.question_slots.verb)
+        elif not slot_problems:
+            features = _upstream_frames(label.question_slots)
+        else:
+            features = ()
         derivable = {
             (f.tense, f.is_perfect, f.is_progressive, f.is_passive, f.is_negated)
-            for f in features_for_chain(
-                label.question_slots.aux, label.question_slots.verb
-            )
+            for f in features
         }
         if derivable and stored not in derivable:
             problems.append(
@@ -254,9 +315,10 @@ def _check_judgment(
 
 
 def check_verb_entry(
-    entry: VerbEntry, sentence_tokens: Sequence[str], where: str = ""
+    entry: VerbEntry, sentence_tokens: Sequence[str], where: str = "", *, dialect: SlotDialect = "bank",
 ) -> list[Problem]:
     """Check one predicate: its index, and every question asked about it."""
+    _check_dialect(dialect)
     problems: list[Problem] = []
     if not 0 <= entry.verb_index < len(sentence_tokens):
         problems.append(
@@ -281,14 +343,15 @@ def check_verb_entry(
             )
         problems.extend(
             check_question_label(
-                label, entry.verb_inflected_forms, sentence_tokens, location
+                label, entry.verb_inflected_forms, sentence_tokens, location, dialect=dialect,
             )
         )
     return problems
 
 
-def check_sentence(sentence: Sentence) -> list[Problem]:
+def check_sentence(sentence: Sentence, *, dialect: SlotDialect = "bank") -> list[Problem]:
     """Run every check over a sentence and return all problems found."""
+    _check_dialect(dialect)
     problems: list[Problem] = []
     if not sentence.sentence_tokens:
         problems.append(
@@ -304,13 +367,13 @@ def check_sentence(sentence: Sentence) -> list[Problem]:
                     location,
                 )
             )
-        problems.extend(check_verb_entry(entry, sentence.sentence_tokens, location))
+        problems.extend(check_verb_entry(entry, sentence.sentence_tokens, location, dialect=dialect))
     return problems
 
 
-def validate_sentence(sentence: Sentence) -> Sentence:
+def validate_sentence(sentence: Sentence, *, dialect: SlotDialect = "bank") -> Sentence:
     """Return *sentence* unchanged, or raise :class:`ValidationError`."""
-    problems = check_sentence(sentence)
+    problems = check_sentence(sentence, dialect=dialect)
     if problems:
         joined = "\n  ".join(str(p) for p in problems)
         raise ValidationError(f"{sentence.sentence_id}: {len(problems)} problem(s):\n  {joined}")

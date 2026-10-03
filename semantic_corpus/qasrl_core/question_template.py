@@ -28,11 +28,14 @@ filler, not of the question's shape.
 from __future__ import annotations
 
 from dataclasses import dataclass, replace
-from typing import Any, Mapping
+from typing import TYPE_CHECKING, Any, Mapping
 
 from .models import InflectedForms, QuestionSlots, VerbForm
 from .question_renderer import render_question
 from .question_slots import EMPTY, SILENT_PREP
+
+if TYPE_CHECKING:
+    from .clausal_question import ClausalQuestion
 
 __all__ = [
     "QuestionTemplate",
@@ -66,6 +69,27 @@ class QuestionTemplate:
     obj2: str | None = None
 
     # -- construction ------------------------------------------------------
+
+    @classmethod
+    def from_clausal_question(cls, question: "ClausalQuestion") -> "QuestionTemplate":
+        """Render and reparse a clausal question with upstream slot preference.
+
+        Re-parsing matters for ambiguous objects: Scala's implementation uses
+        ``getVerbTenseAbstractedSlotsForQuestion`` rather than projecting the
+        supplied frame directly. It also fills missing nouns via Frame's
+        alternatives and chooses the first question, just as upstream does.
+        """
+        from .slot_based_label import get_verb_tense_abstracted_slots_for_question
+
+        questions = question.frame.questions_for_slot(question.slot)
+        if not questions:
+            raise ValueError(f"no question for argument slot {question.slot}")
+        slots = get_verb_tense_abstracted_slots_for_question(
+            (), question.frame.verb_inflected_forms, questions,
+        )[0]
+        if slots is None:
+            raise ValueError(f"question is outside the QA-SRL grammar: {questions[0]!r}")
+        return cls.from_slots(slots)
 
     @classmethod
     def from_slots(cls, slots: QuestionSlots) -> "QuestionTemplate":
@@ -140,12 +164,12 @@ class QuestionTemplate:
     @classmethod
     def from_json(cls, data: Mapping[str, Any]) -> "QuestionTemplate":
         return cls(
-            wh=str(data["abst-wh"]),
+            wh=str(data["abst-wh"]).lower(),
             has_subj=data["abst-subj"] != EMPTY,
             is_passive=data["abst-verb"] == "verb[pss]",
             has_obj=data["abst-obj"] != EMPTY,
-            prep=None if data["prep"] == EMPTY else str(data["prep"]),
-            obj2=None if data["abst-obj2"] == EMPTY else str(data["abst-obj2"]),
+            prep=None if data["prep"] == EMPTY else str(data["prep"]).lower(),
+            obj2=None if data["abst-obj2"] == EMPTY else str(data["abst-obj2"]).lower(),
         )
 
 
@@ -164,7 +188,8 @@ def normalize_adverbials(template: QuestionTemplate) -> QuestionTemplate:
 def normalize_to_active(template: QuestionTemplate) -> QuestionTemplate:
     """Rewrite a passive shape as the active one that asks the same thing.
 
-    A faithful port of upstream's case analysis. The cases are not derivable
+    Adapts upstream's case analysis, correcting its Option/string comparison
+    for passive ``by`` phrases. The cases are not derivable
     from a general rule: a passive drops its agent, strands its preposition
     or promotes its object depending on which argument is questioned, so
     each combination is handled explicitly. Upstream's worked examples::

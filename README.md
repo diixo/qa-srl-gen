@@ -32,6 +32,12 @@ python -m semantic_corpus.cli --help
 | `qasrl_core/question_renderer.py` | slots → surface question |
 | `qasrl_core/question_parser.py` | surface question → slots |
 | `qasrl_core/frame.py` | the typed argument structure the slots are a projection of |
+| `qasrl_core/tense.py`, `clausal_question.py` | finite/nonfinite tenses, frame variants, clausal questions and JSON |
+| `qasrl_core/template_state_machine.py`, `question_processor.py`, `autocomplete.py` | incremental grammar, prefix continuation and question suggestions |
+| `qasrl_core/slot_based_label.py`, `question_label_mapper.py` | contextual/composable mappings to abstract and surface slots |
+| `qasrl_core/clause_resolution.py`, `discrete_label.py` | ambiguity resolution and syntactic labels |
+| `qasrl_core/dataset.py`, `bank_index.py`, `bank_sources.py` | dataset filters/merges, consolidated annotations, metadata and provenance |
+| `qasrl_core/qanom.py` | typed QANom JSONL/gzip, raw annotation reformatting and partition loading |
 | `qasrl_core/validation.py` | invariant checks over slots, spans and sentences |
 | `ontology/models.py` | the label inventory: multi-label spans, speech acts, relations |
 | `ontology/hierarchy.py` | type inheritance (`city → LOCATION`) and the candidate lexicon |
@@ -78,6 +84,34 @@ transactions across its JSONL files. Text and annotation reads stream; in-memory
 identity and offset indexes grow with record count.
 
 ## Short example
+
+The upstream core is adapted from Scala commit `16ab4949`; the source/API map,
+deliberate differences and verification limits are in
+[SCALA_TO_PYTHON.md](SCALA_TO_PYTHON.md). Application services and browser/MTurk
+infrastructure remain excluded. The search parser below retains the Bank 2.0
+slot convention. Incremental parsing and upstream labeling use a separate API:
+
+```python
+from semantic_corpus.qasrl_core import (
+    InflectedForms, TemplateStateMachine, QuestionProcessor, Autocomplete,
+    get_discrete_labels,
+)
+
+forms = InflectedForms("give", "gives", "giving", "gave", "given")
+processor = QuestionProcessor(TemplateStateMachine(["Pat", "gave", "a", "book"], forms))
+prefix = processor.process_string("What did someone")
+completed = processor.advance(prefix, " give?")
+assert completed.valid_states[0].is_complete
+suggestions = Autocomplete(processor)("What did someone")
+assert str(get_discrete_labels([], forms, ["What did someone give?"])[0]) == "obj/-"
+```
+
+For QANom, `read_qanom(path)` reads reformatted records and
+`reprocess_qanom(path, lexicon)` streams raw records through the upstream
+conversion. Validate their complement slots with
+`check_sentence(sentence, dialect="upstream")` from `qasrl_core.validation`.
+`Dataset.merge(other)` returns both `dataset` and `failures`; inspect failures
+before using the partially merged dataset. No new runtime dependencies are needed.
 
 ```python
 from semantic_corpus.qasrl_core.bank_reader import read_bank
