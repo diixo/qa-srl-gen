@@ -102,7 +102,7 @@ Bank convention; use the new processor/resolver and
 
 ## Verification and limits
 
-- Final integrated suite: **599 passed** (`python -m pytest -q`), including
+- Core-port integration checkpoint: **599 passed** (`python -m pytest -q`), including
   197 new tests; compilation, public exports and the README example also pass.
 - All **13,616** questions from upstream `qasrl/test/resources/question-strings.txt`
   parse and reproduce their original question through `Frame.questions_for_slot`.
