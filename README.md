@@ -1,6 +1,32 @@
 # qa-srl-gen — semantic corpus toolkit
 
 
+#### Run django-server:
+```bash
+py ui/manage.py runserver
+```
+
+
+#### Create repository structure
+```bash
+django-admin startproject ui
+```
+
+```bash
+cd ui
+```
+
+```bash
+py manage.py startapp app_main
+```
+
+- DB migrations with migrates:
+```bash
+py ui/manage.py makemigrations
+py ui/manage.py migrate
+```
+
+
 ## Local web interface
 
 The English-language Django interface manages the corpus pipeline from a sidebar: synthetic
@@ -31,10 +57,14 @@ selected as another job's input. There is no automatic retry after interruption.
 Existing CLI stores under `data/` and `artifacts/` are visible in the corpus
 browser; external CLI writes should be finished before using them as UI inputs.
 
-Corpora remain JSONL. Django's SQLite database under `artifacts/ui/` stores only
-queue/control metadata; the original uploaded `ui/db.sqlite3` is not modified.
-`CORPUS_UI_ROOT` can override the runtime directory. Use the same value for the
-server, migrations and worker. The UI is a local operator tool, with CSRF checks
+Corpora remain JSONL. Django uses `ui/db.sqlite3` for the persistent queue,
+worker settings and Django's own tables. Results, uploads and pool versions
+are stored under `artifacts/ui/`. `CORPUS_UI_ROOT` overrides that artifact
+directory; it does not change the database path. Use the same value for the
+server and worker. Removing `artifacts/` while the server and worker are stopped
+removes output files and uploads but preserves job history and database tables.
+If `ui/db.sqlite3` itself is removed, run `python ui/manage.py migrate` to create
+empty tables again. The UI is a local operator tool, with CSRF checks
 and no user-account access control; public/network deployment is not configured.
 Uploaded source files and pool versions are limited to 20 MB; place larger
 source files under `data/`. Pool coverage counts individual slot candidates,

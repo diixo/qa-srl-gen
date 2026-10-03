@@ -83,7 +83,8 @@ WSGI_APPLICATION = 'ui.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': CORPUS_UI_ROOT / 'db.sqlite3',
+        # Keep persistent Django state separate from generated corpus files.
+        'NAME': BASE_DIR / 'db.sqlite3',
         'OPTIONS': {'timeout': 20},
     }
 }
