@@ -1,5 +1,14 @@
 # qa-srl-gen — semantic corpus toolkit
 
+
+Run django-server:
+```bash
+py ui/manage.py runserver
+```
+
+
+## Core
+
 Python QA-SRL core plus a generator of semantic training corpora. The repository
 has modules for the five stages of the handoff, with the limitations recorded in
 [STATUS_RU.md](STATUS_RU.md) and [NOT_PORTED.md](NOT_PORTED.md): the QA-SRL
