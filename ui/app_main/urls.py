@@ -1,11 +1,13 @@
 
 from django.urls import path
+from django.views.generic import RedirectView
 from . import views
 
 app_name = "app_main"
 
 urlpatterns = [
-    path("", views.main, name="main"),
+    path("", RedirectView.as_view(pattern_name="app_main:main", permanent=False)),
+    path("workspace", views.main, name="main"),
     path("report", views.report, name="report"),
     path('jobs', views.jobs, name='jobs'),
     path('jobs/<uuid:pk>', views.job_detail, name='job'),

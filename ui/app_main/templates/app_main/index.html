@@ -1,15 +1,16 @@
 
 {% extends "app_main/base.html" %}
 
+{% block meta %}
+<title>Title</title>
+<meta property="og:title" content="Title">
+<meta name="description" content="Description">
+<meta property="og:description" content="Description">
+{% endblock %}
+
 {% block content %}
-<div class="page-heading"><div><p class="eyebrow">SEMANTIC CORPUS TOOLKIT</p><h1>Workspace</h1><p class="text-secondary">Generate, annotate and validate training corpora.</p></div><a class="btn btn-primary" href="{% url 'app_main:pipeline' %}">+ New job</a></div>
-<div class="row g-3 mb-4">
-  <div class="col-6 col-xl-3"><a class="metric-card" href="{% url 'app_main:workers' %}"><span>Running</span><strong>{{ running }}</strong><small>occupied process slots</small></a></div>
-  <div class="col-6 col-xl-3"><a class="metric-card" href="{% url 'app_main:jobs' %}?status=queued"><span>Queued</span><strong>{{ queued }}</strong><small>waiting to start</small></a></div>
-  <div class="col-6 col-xl-3"><a class="metric-card" href="{% url 'app_main:jobs' %}?status=succeeded"><span>Completed</span><strong>{{ completed }}</strong><small>{{ failed }} failed jobs</small></a></div>
-  <div class="col-6 col-xl-3"><a class="metric-card" href="{% url 'app_main:corpora' %}"><span>Corpora</span><strong>{{ stores|length }}</strong><small>local stores</small></a></div>
-</div>
-<section class="panel mb-4"><h2>Data pipeline</h2><div class="pipeline-path"><a href="{% url 'app_main:ingestion' %}"><b>01</b> Import / generation</a><span>→</span><a href="{% url 'app_main:annotation' %}"><b>02</b> Annotation</a><span>→</span><a href="{% url 'app_main:questions' %}"><b>03</b> QA</a><span>→</span><a href="{% url 'app_main:exports' %}"><b>04</b> Export</a><span>→</span><a href="{% url 'app_main:quality' %}"><b>05</b> Quality</a></div></section>
-<section class="panel mb-4"><div class="d-flex justify-content-between align-items-center mb-3"><h2 class="mb-0">Recent jobs</h2><a href="{% url 'app_main:jobs' %}">View all jobs →</a></div>{% include 'app_main/includes/jobs_table.html' with jobs=recent %}</section>
-<section class="panel mb-4"><div class="d-flex justify-content-between"><h2>Generator resources</h2><a href="{% url 'app_main:slots' %}">Slot coverage →</a></div><div class="row g-3">{% for split in monitor.splits %}<div class="col-md-4"><div class="resource-tile"><span class="badge text-bg-light">{{ split.name }}</span><strong>{{ split.forms }} surface forms</strong><span class="text-secondary">{{ split.entities }} typed entities</span></div></div>{% endfor %}</div><p class="small text-secondary mt-3 mb-0">{{ monitor.frames|length }} frames · {{ monitor.slots|length }} slots · {{ monitor.ambiguous|length }} ambiguous forms</p></section>
+
+<h3 class="fw-bold mt-5 text-center">SRL-gen</h3>
+<p class="text-muted mb-2 text-center">semantic corpus toolkit</p>
+
 {% endblock %}

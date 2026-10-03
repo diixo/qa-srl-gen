@@ -51,7 +51,7 @@ def page(request, template, **context):
 @require_safe
 def main(request):
     rows = Job.objects.all()
-    return page(request, 'index.html', title='Overview', recent=rows[:8],
+    return page(request, 'workspace.html', title='Overview', recent=rows[:8],
         running=rows.filter(status=Job.Status.RUNNING).count(),
         queued=rows.filter(status=Job.Status.QUEUED).count(),
         completed=rows.filter(status=Job.Status.SUCCEEDED).count(),

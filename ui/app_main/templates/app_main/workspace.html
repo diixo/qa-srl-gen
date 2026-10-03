@@ -1,0 +1,68 @@
+
+{% extends "app_main/base.html" %}
+{% load static %}
+
+{% block extra_style %}
+<link rel="stylesheet" href="{% static 'app_main/css/workspace.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="page-heading">
+    <div>
+        <p class="eyebrow">SEMANTIC CORPUS TOOLKIT</p>
+        <h1>Workspace</h1>
+        <p class="text-secondary">Generate, annotate and validate training corpora.</p>
+    </div>
+    <a class="btn btn-primary" href="{% url 'app_main:pipeline' %}">+ New job</a>
+</div>
+<section class="workspace-stats" aria-label="Pipeline overview">
+  <article class="workspace-stat workspace-stat--running">
+    <div class="workspace-stat__heading">
+      <h2>Running</h2>
+      <span class="workspace-stat__icon material-icons" aria-hidden="true">memory</span>
+    </div>
+    <strong class="workspace-stat__value">{{ running }}</strong>
+    <p class="workspace-stat__description">Occupied process slots</p>
+    <div class="workspace-stat__footer">
+      <a class="workspace-stat__link" href="{% url 'app_main:workers' %}">View workers <span class="material-icons" aria-hidden="true">arrow_forward</span></a>
+    </div>
+  </article>
+  <article class="workspace-stat workspace-stat--queued">
+    <div class="workspace-stat__heading">
+      <h2>Queued</h2>
+      <span class="workspace-stat__icon material-icons" aria-hidden="true">schedule</span>
+    </div>
+    <strong class="workspace-stat__value">{{ queued }}</strong>
+    <p class="workspace-stat__description">Jobs waiting to start</p>
+    <div class="workspace-stat__footer">
+      <a class="workspace-stat__link" href="{% url 'app_main:jobs' %}?status=queued">View queue <span class="material-icons" aria-hidden="true">arrow_forward</span></a>
+    </div>
+  </article>
+  <article class="workspace-stat workspace-stat--completed">
+    <div class="workspace-stat__heading">
+      <h2>Completed</h2>
+      <span class="workspace-stat__icon material-icons" aria-hidden="true">task_alt</span>
+    </div>
+    <strong class="workspace-stat__value">{{ completed }}</strong>
+    <p class="workspace-stat__description">Successfully finished jobs</p>
+    <div class="workspace-stat__footer">
+      <a class="workspace-stat__link" href="{% url 'app_main:jobs' %}?status=succeeded">View completed <span class="material-icons" aria-hidden="true">arrow_forward</span></a>
+      <a class="workspace-stat__failures {% if failed %}has-failures{% endif %}" href="{% url 'app_main:jobs' %}?status=failed" aria-label="View failed jobs: {{ failed }}">{{ failed }} failed</a>
+    </div>
+  </article>
+  <article class="workspace-stat workspace-stat--corpora">
+    <div class="workspace-stat__heading">
+      <h2>Corpora</h2>
+      <span class="workspace-stat__icon material-icons" aria-hidden="true">storage</span>
+    </div>
+    <strong class="workspace-stat__value">{{ stores|length }}</strong>
+    <p class="workspace-stat__description">Local corpus stores</p>
+    <div class="workspace-stat__footer">
+      <a class="workspace-stat__link" href="{% url 'app_main:corpora' %}">Browse corpora <span class="material-icons" aria-hidden="true">arrow_forward</span></a>
+    </div>
+  </article>
+</section>
+<section class="panel mb-4"><h2>Data pipeline</h2><div class="pipeline-path"><a href="{% url 'app_main:ingestion' %}"><b>01</b> Import / generation</a><span>→</span><a href="{% url 'app_main:annotation' %}"><b>02</b> Annotation</a><span>→</span><a href="{% url 'app_main:questions' %}"><b>03</b> QA</a><span>→</span><a href="{% url 'app_main:exports' %}"><b>04</b> Export</a><span>→</span><a href="{% url 'app_main:quality' %}"><b>05</b> Quality</a></div></section>
+<section class="panel mb-4"><div class="d-flex justify-content-between align-items-center mb-3"><h2 class="mb-0">Recent jobs</h2><a href="{% url 'app_main:jobs' %}">View all jobs →</a></div>{% include 'app_main/includes/jobs_table.html' with jobs=recent %}</section>
+<section class="panel mb-4"><div class="d-flex justify-content-between"><h2>Generator resources</h2><a href="{% url 'app_main:slots' %}">Slot coverage →</a></div><div class="row g-3">{% for split in monitor.splits %}<div class="col-md-4"><div class="resource-tile"><span class="badge text-bg-light">{{ split.name }}</span><strong>{{ split.forms }} surface forms</strong><span class="text-secondary">{{ split.entities }} typed entities</span></div></div>{% endfor %}</div><p class="small text-secondary mt-3 mb-0">{{ monitor.frames|length }} frames · {{ monitor.slots|length }} slots · {{ monitor.ambiguous|length }} ambiguous forms</p></section>
+{% endblock %}

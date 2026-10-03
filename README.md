@@ -18,7 +18,7 @@ python ui/manage.py migrate
 python ui/manage.py runserver 127.0.0.1:8000
 ```
 
-Open `http://127.0.0.1:8000/`. Submitting a job starts the worker automatically.
+Open `http://127.0.0.1:8000/workspace`. Submitting a job starts the worker automatically.
 The Workers page controls concurrency, pauses dispatch after current jobs finish,
 and resumes the queue. Job pages show progress, logs, cancellation, retries,
 quality findings and downloadable results. The worker stops after 60 idle seconds.
