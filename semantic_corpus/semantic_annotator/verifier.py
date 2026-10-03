@@ -18,24 +18,30 @@ may well have been right.
 Nothing is ever edited in place. Verification produces a *new*
 :class:`~..documents.AnnotationRun`, so the original claim and the judgment
 on it both survive.
+
+**Agreement is strict, and the strictness cascades one level.** Two passes
+agree on an annotation only when every semantic field matches — not just its
+span and type — *and* every relation touching it matches, where the far end
+of each relation is compared by its own full semantic key. So if the passes
+disagree about a predicate's tense, the arguments attached to that predicate
+are not verified either, even when their spans and roles agree. That is
+deliberate: "Anna is the agent of *gave*" and "Anna is the agent of *will
+give*" are different claims. The cost is that agreement rates against a real
+second teacher will be lower than a span-level comparison would suggest;
+read the :class:`AgreementReport` with that in mind.
 """
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field, fields, replace
-from typing import Iterable, Mapping, Sequence
+from dataclasses import dataclass, fields, replace
+from typing import TYPE_CHECKING
 
-from ..documents import (
-    AnnotationRun,
-    Document,
-    EntityMention,
-    Predicate,
-    Property,
-    TextSpan,
-)
+from ..documents import AnnotationRun, Document, TextSpan
 from ..ontology import ReviewStatus
-from .alignment import AlignmentResult, align_response
-from .teacher import Teacher, TeacherRequest, request_for
+from .teacher import Teacher
+
+if TYPE_CHECKING:
+    from .candidates import CandidateResources
 
 __all__ = [
     "StructuralReport",
@@ -150,7 +156,7 @@ def verify_independently(
     document: Document,
     teacher: Teacher,
     *,
-    passage_index: Mapping[str, object] | None = None,
+    resources: "CandidateResources | None" = None,
     run_id: str | None = None,
 ) -> tuple[AnnotationRun, AgreementReport]:
     """Re-annotate with *teacher* and compare, without showing it the first pass.
@@ -158,10 +164,17 @@ def verify_independently(
     Returns the second run and the comparison. The second run is a complete
     annotation in its own right, not a diff, so it can be stored, inspected
     and compared against a third pass later.
+
+    Pass the same *resources* the first pass used. Candidates are dictionary
+    proposals, not the first pass's answers, so sharing them keeps the
+    passes independent — while withholding them would hand the second
+    teacher less evidence than the first had, and any disagreement would
+    then measure the asymmetry rather than the annotation.
     """
     second_id = run_id or f"{run.run_id}-verify"
     from .pipeline import annotate_document
     outcome = annotate_document(document, teacher, run_id=second_id,
+                                resources=resources,
                                 status=ReviewStatus.UNREVIEWED)
     if not outcome.ok:
         raise ValueError(str(outcome.structure))

@@ -24,9 +24,9 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Iterable, Iterator, Literal, Mapping, Sequence
+from typing import Any, Iterable, Iterator, Literal
 
-from ..documents import AnnotationRun, Document, EntityMention, Predicate, Property, TextSpan
+from ..documents import AnnotationRun, Document, EntityMention, Predicate, Property
 from ..ontology import Label
 from ..semantic_annotator.candidates import tokenize
 from .jsonl import write_jsonl

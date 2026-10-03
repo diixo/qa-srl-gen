@@ -48,6 +48,7 @@ __all__ = [
     "Candidate",
     "CandidateResources",
     "tokenize",
+    "opens_sentence",
     "extract_candidates",
     "rank_lemmas",
     "FUNCTION_WORDS",
@@ -216,6 +217,20 @@ def _capital_is_positional(document: Document, span: TextSpan) -> bool:
     return not before or before[-1] in '.!?"\u2019\u201d'
 
 
+def opens_sentence(text: str, tokens: Sequence[Token], index: int, offset: int = 0) -> bool:
+    """Whether ``tokens[index]`` starts a sentence of *text*.
+
+    This is what ``marker_for(turn_initial=...)`` means: *Well, fine. Okay,
+    let's go.* opens with two markers, not one. The candidate extractor and
+    the rule teacher both ask, so they share this one definition. *offset*
+    is where *text* starts in the coordinates the tokens use.
+    """
+    if index == 0:
+        return True
+    gap = text[tokens[index - 1].end_char - offset : tokens[index].start_char - offset]
+    return any(mark in gap for mark in ".!?")
+
+
 def _tag_counts(word: str, resources: CandidateResources) -> dict[str, int]:
     counts: dict[str, int] = {}
     for tag in resources.postags.get(word.lower(), ()):
@@ -283,7 +298,7 @@ def extract_candidates(
         after = document.text[token.end_char : token.end_char + 1]
         marker = marker_for(
             lowered,
-            turn_initial=index == 0,
+            turn_initial=opens_sentence(text, tokens, index, offset),
             followed_by_comma=bool(after) and after in ",;:!.?",
             stands_alone=alone,
         )

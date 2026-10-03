@@ -522,9 +522,26 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: Sequence[str] | None = None) -> int:
+    """Run one command. Store refusals propagate, so callers can catch them."""
     args = build_parser().parse_args(argv)
     return int(args.func(args))
 
 
+def _run_from_shell() -> int:
+    """:func:`main` for a terminal: a refused write is a message, not a traceback.
+
+    A :class:`~.storage.StoreError` here is the store doing its job — an
+    existing version, an immutable document — so the user needs the reason
+    and the exit status, not a stack trace into the storage layer.
+    """
+    from .storage.repository import StoreError
+
+    try:
+        return main()
+    except StoreError as error:
+        print(f"error: {error}", file=sys.stderr)
+        return 2
+
+
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit(_run_from_shell())

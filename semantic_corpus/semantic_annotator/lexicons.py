@@ -23,6 +23,8 @@ what the dictionary alone got wrong:
 
 from __future__ import annotations
 
+import re
+
 from ..ontology import MarkerForm, MarkerFunction, SpeechAct
 
 __all__ = [
@@ -32,11 +34,13 @@ __all__ = [
     "CONTRACTIONS",
     "NEGATION_TOKENS",
     "GREETINGS",
+    "GREETING_TIMES",
+    "REASSURANCES",
     "FAREWELLS",
     "THANKS",
     "APOLOGIES",
     "marker_for",
-    "SPEECH_ACT_CUES",
+    "SPEECH_ACT_PATTERNS",
 ]
 
 #: Verbs denoting a situation rather than an event. The handoff's rule is
@@ -131,8 +135,10 @@ def marker_for(
 
     The handoff is explicit that context decides: ``Good.`` is approval,
     *It is a good car* is a property. A word in the table is read as a
-    marker only as a whole turn or a separated turn opener. Initial
+    marker only as a whole turn or a separated sentence opener. Initial
     position alone also admits ordinary modifiers, such as "Good cars".
+    *turn_initial* means the word opens a sentence of the turn, not only
+    the turn itself — see ``candidates.opens_sentence``.
     """
     entry = DISCOURSE_MARKERS.get(word.lower())
     if entry is None:
@@ -194,19 +200,57 @@ NEGATION_TOKENS: frozenset[str] = frozenset(
     {"not", "n't", "never", "no", "none", "nothing", "nobody", "nowhere", "neither"}
 )
 
-GREETINGS: frozenset[str] = frozenset(
-    {"hello", "hi", "hey", "morning", "afternoon", "evening", "greetings"}
+#: Words that greet on their own at the start of a clause.
+GREETINGS: frozenset[str] = frozenset({"hello", "hi", "hey", "greetings"})
+#: Times of day that greet only after "good": *Good morning* greets,
+#: *Afternoon tea is ready* does not.
+GREETING_TIMES: frozenset[str] = frozenset({"morning", "afternoon", "evening"})
+FAREWELLS: frozenset[str] = frozenset({"bye", "goodbye", "farewell", "cheerio"})
+#: Openings that thank. Multi-word entries are matched as phrases.
+THANKS: frozenset[str] = frozenset({"thanks", "thank you", "thankyou", "i thank you"})
+#: Openings that apologise. "I am sorry" counts; "I am not sorry" does not,
+#: because the phrase must match from the start of the clause.
+APOLOGIES: frozenset[str] = frozenset(
+    {
+        "sorry",
+        "apologies",
+        "i apologise",
+        "i apologize",
+        "i am sorry",
+        "i'm sorry",
+        "i am so sorry",
+        "i'm so sorry",
+        "i am very sorry",
+        "i'm very sorry",
+    }
 )
-FAREWELLS: frozenset[str] = frozenset(
-    {"bye", "goodbye", "farewell", "cheerio"}
-)
-THANKS: frozenset[str] = frozenset({"thanks", "thank", "thankyou"})
-APOLOGIES: frozenset[str] = frozenset({"sorry", "apologies", "apologise", "apologize"})
+#: Whole-clause reassurances.
+REASSURANCES: frozenset[str] = frozenset({"no problem", "no worries"})
 
-#: Surface cues that settle a speech act on their own.
-SPEECH_ACT_CUES: dict[str, SpeechAct] = {
-    **{word: SpeechAct.GREETING for word in GREETINGS},
-    **{word: SpeechAct.FAREWELL for word in FAREWELLS},
-    **{word: SpeechAct.THANKING for word in THANKS},
-    **{word: SpeechAct.APOLOGY for word in APOLOGIES},
-}
+
+def _phrases(words: frozenset[str]) -> str:
+    """An alternation that matches any entry as a whole-word phrase.
+
+    Longest first, so "i am so sorry" is tried before "i am sorry" and the
+    shorter entry cannot win on a prefix.
+    """
+    ordered = sorted(words, key=lambda w: (-len(w), w))
+    return "|".join(re.escape(w) for w in ordered)
+
+
+#: Speech acts settled by how a clause *opens*. Each pattern is anchored to
+#: the start of a clause, which is what keeps reported or negated mentions
+#: out: *She said sorry* and *I am not sorry* are not apologies. Built from
+#: the sets above, so they are the only place the words are listed.
+SPEECH_ACT_PATTERNS: tuple[tuple[SpeechAct, "re.Pattern[str]"], ...] = (
+    (
+        SpeechAct.GREETING,
+        re.compile(
+            rf"^(?:{_phrases(GREETINGS)})\b|^good (?:{_phrases(GREETING_TIMES)})\b"
+        ),
+    ),
+    (SpeechAct.FAREWELL, re.compile(rf"^(?:{_phrases(FAREWELLS)})\b")),
+    (SpeechAct.THANKING, re.compile(rf"^(?:{_phrases(THANKS)})\b")),
+    (SpeechAct.APOLOGY, re.compile(rf"^(?:{_phrases(APOLOGIES)})\b")),
+    (SpeechAct.REASSURANCE, re.compile(rf"^(?:{_phrases(REASSURANCES)})(?:[,.!]|$)")),
+)

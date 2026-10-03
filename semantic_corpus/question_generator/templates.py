@@ -47,11 +47,12 @@ from ..documents import (
     EntityMention,
     Predicate,
     Property,
+    RelationEdge,
     TextSpan,
 )
 from ..ontology import Label, Relation, TypeHierarchy, load_default_hierarchy
 from ..qasrl_core.frame import ArgStructure, Frame as VerbFrame
-from ..qasrl_core.inflections import InflectionLexicon
+from ..qasrl_core.inflections import DO_FORMS, InflectionLexicon
 from ..qasrl_core.models import InflectedForms
 from ..qasrl_core.state_machine import PREPOSITIONS
 from .answers import QAExample, QAKind, phrase_answer, sentence_case
@@ -72,6 +73,7 @@ __all__ = [
     "polarity_questions",
     "compound_questions",
     "passive_paraphrase_questions",
+    "native_questions",
     "AGENT_RELATIONS",
     "THEME_RELATIONS",
     "ADJUNCT_RELATIONS",
@@ -207,8 +209,8 @@ class ParadigmResolver:
     def __call__(self, lemma: str) -> InflectedForms:
         if lemma in self.known:
             return self.known[lemma]
-        if lemma == "do":
-            return InflectedForms("do", "does", "doing", "did", "done")
+        if lemma == DO_FORMS.stem:
+            return DO_FORMS
         if self.lexicon is not None:
             paradigm = self.lexicon.paradigm(lemma)
             if paradigm is not None:
@@ -591,6 +593,65 @@ def passive_paraphrase_questions(
     return examples
 
 
+def native_questions(
+    document: Document,
+    run: AnnotationRun,
+    *,
+    context: str | None = None,
+) -> list[QAExample]:
+    """Questions a person already wrote, kept as they were.
+
+    QA-SRL Bank relations carry their annotator's question but no semantic
+    role and no typed predicate, so no template can reword them — and none
+    should. Each distinct question becomes one example. When annotators
+    accepted several spans, the one with the highest agreement is the answer
+    and the rest are kept as ``alternative_answers``: they are other correct
+    answers, not contradictions. Agreement is read from each edge's
+    ``confidence`` explicitly when every answer has it. Older runs lack
+    that field and already store answers in descending vote order; preserve
+    that order if any agreement is unknown instead of treating it as zero.
+    """
+    untyped = {p.predicate_id: p for p in run.predicates if p.predicate_type is None}
+    mentions = {m.mention_id: m for m in run.mentions}
+    grouped: dict[tuple[str, str], list[tuple[RelationEdge, EntityMention]]] = {}
+    for edge in run.relations:
+        mention = mentions.get(edge.source_id)
+        if edge.target_id in untyped and edge.question and mention is not None:
+            grouped.setdefault((edge.target_id, edge.question), []).append((edge, mention))
+
+    body = context if context is not None else document.text
+    examples: list[QAExample] = []
+    for (predicate_id, question), answers in grouped.items():
+        if all(edge.confidence is not None for edge, _ in answers):
+            answers.sort(
+                key=lambda pair: (
+                    -pair[0].confidence,
+                    pair[1].span.start_char,
+                    pair[1].span.end_char,
+                )
+            )
+        (best_edge, best), *rest = answers
+        examples.append(
+            QAExample(
+                context=body,
+                question=question,
+                answer=phrase_answer(best.exact_text),
+                kind=QAKind.ATOMIC,
+                document_id=document.document_id,
+                run_id=run.run_id,
+                evidence=(best.span,),
+                metadata={
+                    "predicate_id": predicate_id,
+                    "predicate": untyped[predicate_id].lemma,
+                    "agreement": best_edge.confidence,
+                    "source": best_edge.source,
+                    "alternative_answers": [m.exact_text for _, m in rest],
+                },
+            )
+        )
+    return examples
+
+
 def type_is_grounded(run: AnnotationRun, mention: EntityMention) -> bool:
     """Use stated types, including an unambiguous introduction elsewhere."""
     candidates = [m for m in run.mentions if m.exact_text == mention.exact_text]
@@ -909,14 +970,21 @@ def compound_questions(
     document: Document, run: AnnotationRun, *, context: str | None = None,
     resolver: ParadigmResolver | None = None,
 ) -> list[QAExample]:
-    """One question covering several arguments at once."""
+    """One question covering several arguments at once.
+
+    Not asked about a negated event. *Who didn't give a ball, and where?*
+    asks for the location of something that did not happen, and the adjunct
+    of a negated clause is ambiguous in scope besides: in *Anna didn't give
+    Rex a ball in Kyiv* the negation may deny only the *in Kyiv* — she gave
+    it somewhere else — so answering *in Kyiv* could be exactly wrong.
+    """
     body = context if context is not None else document.text
     resolver = resolver or ParadigmResolver()
     examples: list[QAExample] = []
     for view in build_views(run, document):
         agent, theme = view.agent, view.theme
         adjuncts = view.adjuncts()
-        if agent is None or theme is None or not adjuncts:
+        if agent is None or theme is None or not adjuncts or view.is_negated:
             continue
         relation, adjunct, preposition = adjuncts[0]
         wh = _WH_FOR_ADJUNCT[relation].lower()

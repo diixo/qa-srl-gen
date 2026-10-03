@@ -284,11 +284,14 @@ MOVE = SemanticFrame(
             subject="agent",
             complements=(Complement("theme"), Complement("destination", "to")),
         ),
+        # Not an omission: in *Austin moves to Paris* the mover is also what
+        # moves, so the theme is expressed — as the subject. Declaring it
+        # omitted licensed "What was moved? -> The text does not say", which
+        # the sentence itself answers.
         SurfacePattern(
             "intransitive",
             subject="agent",
             complements=(Complement("destination", "to"),),
-            omits=frozenset({"theme"}),
         ),
     ),
     adjuncts=(("time", "on"),),

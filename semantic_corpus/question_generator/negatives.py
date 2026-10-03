@@ -27,10 +27,10 @@ and negatives must come from explicit evidence instead.
 from __future__ import annotations
 
 import random
-from typing import Iterable, Sequence
+from typing import Iterable
 
 from ..documents import AnnotationRun, Document
-from ..ontology import Label, Relation
+from ..ontology import Relation
 from .answers import NO_ANSWER_REPLIES, QAExample, QAKind
 from .templates import (
     ParadigmResolver,

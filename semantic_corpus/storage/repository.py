@@ -33,17 +33,12 @@ import hashlib
 import json
 from dataclasses import dataclass, replace
 from datetime import datetime, timezone
+from functools import lru_cache
 from pathlib import Path
-from typing import Any, Iterable, Iterator, Mapping, Sequence
+from tempfile import SpooledTemporaryFile
+from typing import Any, Iterable, Iterator, Mapping
 
-from ..documents import (
-    AnnotationRun,
-    Document,
-    ONTOLOGY_VERSION,
-    Passage,
-    Utterance,
-    sha256_of,
-)
+from ..documents import AnnotationRun, Document, ONTOLOGY_VERSION, sha256_of
 from .schema import (
     STORE_FORMAT,
     TABLES,
@@ -339,35 +334,57 @@ class CorpusStore:
         documents are deduplicated before annotation, examples after
         generation, because two templates can word the same question
         identically from different records.
+
+        Validate and serialize the whole batch before appending anything.
+        Staged JSONL spills to disk above 1 MiB; only deduplication hashes
+        grow with the batch, not example objects or their contexts. Input,
+        validation and serialization errors leave the store unchanged.
+        As with other writes, this is not a transaction against I/O failures
+        or process crashes during the final append.
         """
+        @lru_cache(maxsize=128)
+        def run_documents(rid: str) -> frozenset[str] | None:
+            header = next(self._rows_for("annotation_runs", "run_id", rid), None)
+            if header is None:
+                raise StoreError(f"unknown run {rid!r}")
+            if "document_ids" in header:
+                return frozenset(header["document_ids"])
+            return None  # Legacy headers need the document membership index.
+
+        batch_keys: set[str] = set()
         written = 0
-        for example in examples:
-            if example.document_id not in self._index.document_hashes:
-                raise StoreError(f"unknown document {example.document_id!r}")
-            for rid in (example.run_id, generation_run_id):
-                if rid is not None:
-                    header = next(self._rows_for("annotation_runs", "run_id", rid), None)
-                    if header is None:
-                        raise StoreError(f"unknown run {rid!r}")
-                    if "document_ids" in header:
-                        belongs = example.document_id in header["document_ids"]
-                    else:
-                        if self._runs_by_document is None:
-                            self._index_run_documents()
-                        belongs = rid in self._runs_by_document.get(example.document_id, ())
-                    if not belongs:
-                        raise StoreError(f"run {rid!r} does not annotate {example.document_id!r}")
-            problems = example.check()
-            if problems:
-                raise StoreError("invalid example: " + "; ".join(problems))
-            row = encode_qa_example(example, generation_run_id=generation_run_id)
-            key = _example_key(row)
-            if deduplicate:
-                if key in self._index.example_keys:
+        with SpooledTemporaryFile(max_size=1024 * 1024, mode="w+b") as staged:
+            for example in examples:
+                if example.document_id not in self._index.document_hashes:
+                    raise StoreError(f"unknown document {example.document_id!r}")
+                for rid in (example.run_id, generation_run_id):
+                    if rid is not None:
+                        document_ids = run_documents(rid)
+                        if document_ids is not None:
+                            belongs = example.document_id in document_ids
+                        else:
+                            if self._runs_by_document is None:
+                                self._index_run_documents()
+                            belongs = rid in self._runs_by_document.get(example.document_id, ())
+                        if not belongs:
+                            raise StoreError(f"run {rid!r} does not annotate {example.document_id!r}")
+                problems = example.check()
+                if problems:
+                    raise StoreError("invalid example: " + "; ".join(problems))
+                row = encode_qa_example(example, generation_run_id=generation_run_id)
+                key = _example_key(row)
+                if deduplicate and (key in self._index.example_keys or key in batch_keys):
                     continue
-            self._append("qa_examples", [row])
-            self._index.example_keys.add(key)
-            written += 1
+                try:
+                    data = (json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n").encode("utf-8")
+                except (TypeError, ValueError, UnicodeError) as error:
+                    raise StoreError(f"invalid example: cannot serialize JSON: {error}") from error
+                staged.write(data)
+                batch_keys.add(key)
+            if batch_keys:
+                staged.seek(0)
+                written = self._append("qa_examples", (json.loads(line) for line in staged))
+                self._index.example_keys.update(batch_keys)
         return written
 
     def publish_version(

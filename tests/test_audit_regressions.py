@@ -115,16 +115,26 @@ def test_event_questions_keep_the_entire_verb_chain(features, expected):
     assert expected in {e.question for e in examples}
 
 
-def test_compound_question_keeps_negation():
-    doc, run = generated(tense="past", is_negated=True)
-    # Add a grounded adjunct, independently of random optional arguments.
+def _with_kyiv(doc, run):
+    """Add a grounded locative adjunct, independent of random optional slots."""
     doc = replace(doc, text=doc.text[:-1] + " in Kyiv.")
     start = doc.text.rindex("Kyiv")
     kyiv = EntityMention("kyiv", doc.document_id, TextSpan(start, start + 4), "Kyiv", LabelSet.of(Label.LOCATION))
     run = replace(run, mentions=run.mentions + (kyiv,),
                   relations=run.relations + (RelationEdge("kyiv", Relation.LOCATION_OF, run.predicates[0].predicate_id),))
+    return doc, run
+
+
+def test_compound_question_keeps_the_verb_chain():
+    doc, run = _with_kyiv(*generated(tense="will"))
     examples = compound_questions(doc, run, resolver=ParadigmResolver(known=DEFAULT_PARADIGMS))
-    assert examples and all("didn't give" in e.question for e in examples)
+    assert examples and all("will give" in e.question for e in examples)
+
+
+def test_no_compound_question_about_a_negated_event():
+    """It would ask where a non-event happened, under ambiguous negation scope."""
+    doc, run = _with_kyiv(*generated(tense="past", is_negated=True))
+    assert compound_questions(doc, run, resolver=ParadigmResolver(known=DEFAULT_PARADIGMS)) == []
 
 
 def test_future_polarity_does_not_assert_a_past_event():
@@ -524,3 +534,181 @@ def test_published_version_rejects_changed_configuration(tmp_path):
     store.publish_version("v1", build_config={"seed": 1})
     with pytest.raises(StoreError):
         store.publish_version("v1", build_config={"seed": 2})
+
+
+def test_a_rejected_example_writes_none_of_its_batch(tmp_path):
+    store = CorpusStore(tmp_path)
+    store.add_document(Document("d", "Anna left."))
+    good = QAExample("Anna left.", "Who left?", "Anna.", document_id="d")
+    bad = QAExample("Anna left.", "Who left?", "Anna.", document_id="missing")
+    with pytest.raises(StoreError, match="unknown document"):
+        store.add_examples([good, bad])
+    assert store.count("qa_examples") == 0
+    assert store.add_examples([good, good]) == 1
+
+
+def test_independent_verification_sees_the_same_resources(monkeypatch):
+    from semantic_corpus.semantic_annotator import pipeline
+    from semantic_corpus.semantic_annotator.candidates import CandidateResources
+    document = dialogue_document()
+    resources = CandidateResources()
+    run = annotate_document(document, RuleBasedTeacher(), run_id="r1", resources=resources).run
+    seen = {}
+    original = pipeline.annotate_document
+    def spy(*args, **kwargs):
+        seen.update(kwargs)
+        return original(*args, **kwargs)
+    monkeypatch.setattr(pipeline, "annotate_document", spy)
+    verify_independently(run, document, RuleBasedTeacher(), resources=resources)
+    assert seen["resources"] is resources
+
+
+@pytest.mark.parametrize("text, act, expected", [
+    ("Good morning, sir.", SpeechAct.GREETING, True),
+    ("Afternoon tea is ready.", SpeechAct.GREETING, False),
+    ("I'm so sorry.", SpeechAct.APOLOGY, True),
+    ("I am not sorry.", SpeechAct.APOLOGY, False),
+    ("She said sorry.", SpeechAct.APOLOGY, False),
+    ("Thank you so much.", SpeechAct.THANKING, True),
+    ("No problem.", SpeechAct.REASSURANCE, True),
+    ("No problem was found.", SpeechAct.REASSURANCE, False),
+    ("Fine. Bye!", SpeechAct.FAREWELL, True),
+])
+def test_speech_act_cues_come_from_the_lexicon(text, act, expected):
+    assert (act in classify_turn(text).speech_acts) is expected
+
+
+def test_candidates_and_teacher_agree_on_sentence_openers():
+    from semantic_corpus.semantic_annotator.candidates import extract_candidates
+    text = "Fine. Well, let's go."
+    proposed = {c.exact_text for c in extract_candidates(Document("d", text))
+                if Label.DISCOURSE_MARKER in c.proposed_labels}
+    taught = {marker[0] for marker in classify_turn(text).markers}
+    assert "Well" in proposed
+    assert proposed == taught
+
+
+def test_the_shell_entry_reports_a_refused_write_without_a_traceback(monkeypatch, capsys):
+    from semantic_corpus import cli
+    def refuse(argv=None):
+        raise StoreError("version 'v1' exists; use a new version")
+    monkeypatch.setattr(cli, "main", refuse)
+    assert cli._run_from_shell() == 2
+    assert capsys.readouterr().err == "error: version 'v1' exists; use a new version\n"
+
+
+@pytest.mark.parametrize("invalid", ["path", "cycle", "surrogate"])
+def test_unserializable_example_leaves_batch_and_dedup_index_unchanged(tmp_path, invalid):
+    store = CorpusStore(tmp_path)
+    store.add_document(Document("d", "Anna left."))
+    good = QAExample("Anna left.", "Who left?", "Anna.", document_id="d")
+    value = {"path": tmp_path, "surrogate": "\ud800", "cycle": {}}[invalid]
+    if invalid == "cycle":
+        value["self"] = value
+    bad = replace(good, question="What happened?", metadata={"value": value})
+    before = store.content_hash()
+    with pytest.raises(StoreError, match="cannot serialize JSON"):
+        store.add_examples(iter([good, bad]))
+    assert store.content_hash() == before
+    assert store.count("qa_examples") == 0
+    assert store.add_examples([good]) == 1
+    assert store.add_examples([good]) == 0
+    assert CorpusStore(tmp_path).add_examples([good]) == 0
+
+
+def test_example_iterator_failure_does_not_write_its_prefix(tmp_path):
+    store = CorpusStore(tmp_path)
+    store.add_document(Document("d", "Anna left."))
+    good = QAExample("Anna left.", "Who left?", "Anna.", document_id="d")
+
+    def broken_input():
+        yield good
+        raise ValueError("upstream failed")
+
+    before = store.content_hash()
+    with pytest.raises(ValueError, match="upstream failed"):
+        store.add_examples(broken_input())
+    assert store.content_hash() == before
+    assert store.add_examples([good]) == 1
+
+
+def test_example_batch_releases_payloads_before_consuming_the_whole_input(tmp_path):
+    import gc
+    import weakref
+
+    class Payload(str):
+        pass
+
+    store = CorpusStore(tmp_path)
+    store.add_document(Document("d", "Anna left."))
+    references = []
+
+    def examples():
+        for index in range(40):
+            payload = Payload("x" * 65536)
+            references.append(weakref.ref(payload))
+            yield QAExample("Anna left.", f"Who left in case {index}?", "Anna.",
+                            document_id="d", metadata={"payload": payload})
+            gc.collect()
+            # At most the current and previous record may still be live.
+            assert sum(ref() is not None for ref in references) <= 2
+
+    assert store.add_examples(examples()) == 40
+    assert store.count("qa_examples") == 40
+    assert all(len(e.metadata["payload"]) == 65536 for e in store.examples())
+
+
+def test_batch_caches_run_headers_but_checks_each_documents_membership(tmp_path, monkeypatch):
+    store = CorpusStore(tmp_path)
+    doc = Document("d", "Anna left.")
+    store.add_document(doc)
+    store.add_document(Document("other", "Rex left."))
+    store.add_run(AnnotationRun("r"), doc)
+    original = store._rows_for
+    calls = []
+
+    def counted(table, key, value):
+        if table == "annotation_runs":
+            calls.append(value)
+        return original(table, key, value)
+
+    monkeypatch.setattr(store, "_rows_for", counted)
+    good = QAExample(doc.text, "Who left?", "Anna.", document_id="d", run_id="r")
+    assert store.add_examples([good, good], generation_run_id="r") == 1
+    assert calls == ["r"]
+    calls.clear()
+    bad = replace(good, document_id="other")
+    before = store.content_hash()
+    with pytest.raises(StoreError, match="does not annotate"):
+        store.add_examples([good, bad], generation_run_id="r")
+    assert calls == ["r"]
+    assert store.content_hash() == before
+
+
+@pytest.mark.parametrize("agreement", ["legacy", "explicit", "partial"])
+def test_native_answers_keep_vote_order_across_store_versions(tmp_path, agreement):
+    from semantic_corpus.qasrl_core.models import Span
+    from semantic_corpus.qasrl_bridge import sentence_to_canonical
+    from semantic_corpus.question_generator.templates import native_questions
+
+    sentence = bank_destination()
+    entry = sentence.verb_entries["1"]
+    label = next(iter(entry.question_labels.values()))
+    judges = tuple(replace(j, spans=(Span(3, 4), Span(2, 4))) for j in label.answer_judgments)
+    judges += (replace(judges[0], source_id="third", spans=(Span(3, 4),)),)
+    label = replace(label, answer_judgments=judges)
+    sentence = replace(sentence, verb_entries={"1": replace(entry, question_labels={label.question_string: label})})
+    doc, run = sentence_to_canonical(sentence)
+    if agreement == "legacy":
+        run = replace(run, relations=tuple(replace(e, confidence=None) for e in run.relations))
+    elif agreement == "partial":
+        run = replace(run, relations=(replace(run.relations[0], confidence=None), *run.relations[1:]))
+    else:
+        # Explicit agreement must win even when record order is reversed.
+        run = replace(run, relations=tuple(reversed(run.relations)))
+    store = CorpusStore(tmp_path)
+    store.add_document(doc)
+    store.add_run(run, doc)
+    example, = native_questions(doc, next(store.runs()))
+    assert example.answer == "Kyiv."
+    assert example.metadata["alternative_answers"] == ["to Kyiv"]

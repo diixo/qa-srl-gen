@@ -43,6 +43,7 @@ from .templates import (
     compound_questions,
     contextual_questions,
     entity_type_questions,
+    native_questions,
     ontology_questions,
     passive_paraphrase_questions,
     polarity_questions,
@@ -251,27 +252,7 @@ class QuestionGenerator:
         produced: list[QAExample] = []
         produced += atomic_questions(document, run, resolver=resolver, context=context)
         produced += compound_questions(document, run, resolver=resolver, context=context)
-        # Preserve native bank questions when semantic roles are unknown.
-        untyped = {p.predicate_id for p in run.predicates if p.predicate_type is None}
-        mentions = {m.mention_id: m for m in run.mentions}
-        native_answers = {}
-        for edge in run.relations:
-            mention = mentions.get(edge.source_id)
-            if edge.target_id in untyped and edge.question and mention is not None:
-                native_answers.setdefault((edge.target_id, edge.question), {})[mention.span] = mention
-        # The bridge stores alternatives in descending vote order. Select the
-        # same primary answer as bank_qa_examples, retaining the others as
-        # alternatives rather than treating them as contradictory examples.
-        for (predicate_id, question), by_span in native_answers.items():
-            primary, *alternatives = by_span.values()
-            produced.append(QAExample(
-                context=context if context is not None else document.text,
-                question=question, answer=phrase_answer(primary.exact_text),
-                kind=QAKind.ATOMIC, document_id=document.document_id,
-                run_id=run.run_id, evidence=(primary.span,),
-                metadata={"predicate_id": predicate_id,
-                          "alternative_answers": [m.exact_text for m in alternatives]},
-            ))
+        produced += native_questions(document, run, context=context)
         produced += entity_type_questions(document, run, context=context)
         produced += ontology_questions(document, run, hierarchy, context=context)
         produced += property_questions(document, run, hierarchy, context=context)

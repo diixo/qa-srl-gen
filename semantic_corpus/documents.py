@@ -29,7 +29,7 @@ import hashlib
 import re
 from dataclasses import dataclass, field, replace
 from datetime import datetime, timezone
-from typing import Iterable, Iterator, Mapping, Sequence
+from typing import Iterable, Iterator, Mapping
 
 from .ontology import (
     Label,

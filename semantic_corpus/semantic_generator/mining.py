@@ -33,7 +33,7 @@ from pathlib import Path
 from typing import Iterable, Iterator, Mapping, Sequence
 
 from ..ontology import Label, LabelSet
-from .substitutions import Entity, EntityPool, entity_to_json
+from .substitutions import Entity
 
 __all__ = [
     "Proposal",

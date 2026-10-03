@@ -27,7 +27,7 @@ not.
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Any, Iterable, Iterator, Mapping, Sequence
+from typing import Any, Iterable, Iterator, Mapping
 
 from ..question_generator.answers import QAExample
 from .jsonl import write_jsonl

@@ -17,7 +17,7 @@ from __future__ import annotations
 
 import re
 from dataclasses import replace
-from typing import Callable, Iterable, Iterator, Sequence
+from typing import Iterable, Iterator
 
 from .answers import QAExample, QAKind
 

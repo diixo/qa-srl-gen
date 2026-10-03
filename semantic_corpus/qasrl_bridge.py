@@ -31,9 +31,8 @@ concerned, and every offset is measured against it.
 
 from __future__ import annotations
 
-from dataclasses import replace
 from pathlib import Path
-from typing import Iterable, Iterator, Mapping, Sequence
+from typing import Iterator, Mapping, Sequence
 
 from .documents import (
     AnnotationRun,
@@ -43,22 +42,11 @@ from .documents import (
     Predicate,
     RelationEdge,
     TextSpan,
-    iter_sentence_spans,
 )
-from .ontology import Label, LabelSet, Relation, ReviewStatus
+from .ontology import LabelSet, Relation, ReviewStatus
 from .qasrl_core.bank_reader import read_bank
-from .qasrl_core.frame import (
-    OBJ,
-    OBJ2,
-    SUBJ,
-    ArgumentSlot,
-    Locative,
-    Noun,
-    Prep,
-    frame_from_slots,
-)
-from .qasrl_core.models import QuestionLabel, Sentence, Span, VerbEntry
-from .semantic_annotator.lexicons import STATIVE_VERBS
+from .qasrl_core.frame import OBJ2, Locative, frame_from_slots
+from .qasrl_core.models import QuestionLabel, Sentence, VerbEntry
 
 __all__ = [
     "BANK_SOURCE",
@@ -180,6 +168,7 @@ def sentence_to_run(
         )
 
         for label in entry.question_labels.values():
+            judges = len({j.source_id for j in label.answer_judgments})
             for answer, votes in sorted(
                 label.span_votes().items(), key=lambda kv: (-kv[1], kv[0])
             ):
@@ -201,7 +190,10 @@ def sentence_to_run(
                             exact_text=char_span.text_in(document.text),
                             # The bank never says what kind of thing this is.
                             labels=LabelSet(frozenset()),
-                            confidence=votes / max(1, len({j.source_id for j in label.answer_judgments})),
+                            # One span can answer several questions with
+                            # different agreement, so agreement lives on the
+                            # question's edge, not on the shared mention.
+                            confidence=None,
                             source=BANK_SOURCE,
                             review_status=status,
                         )
@@ -213,7 +205,9 @@ def sentence_to_run(
                         relation=relation,
                         target_id=predicate_id,
                         question=label.question_string,
-                        confidence=None,
+                        # Share of distinct annotators who chose this span
+                        # for this question: what the bank actually measured.
+                        confidence=votes / max(1, judges),
                         source=BANK_SOURCE,
                     )
                 )
@@ -257,48 +251,25 @@ def bank_qa_examples(
     These need no template: a human wrote the question and other humans
     voted on the answer. That makes them the only atomic QA in the project
     whose wording was not produced by a rule.
+
+    A thin wrapper: the examples are read off the canonical run by
+    :func:`~.question_generator.templates.native_questions`, the same code
+    the question generator uses, so the two can never disagree.
     """
-    from .question_generator.answers import QAExample, QAKind, phrase_answer
+    from .question_generator.templates import native_questions
 
     document = document or sentence_to_document(sentence)
-    spans = token_spans(sentence.sentence_tokens)
-    examples = []
-    for entry, label in sentence.question_labels():
-        accepted = [
-            (span, votes)
-            for span, votes in sorted(
-                label.span_votes().items(), key=lambda kv: (-kv[1], kv[0])
-            )
-            if votes >= min_votes and span.fits(sentence.sentence_tokens)
-        ]
-        if not accepted:
-            continue
-        best, votes = accepted[0]
-        char_span = TextSpan(spans[best.start].start_char, spans[best.end - 1].end_char)
-        examples.append(
-            QAExample(
-                context=document.text,
-                question=label.question_string,
-                answer=phrase_answer(char_span.text_in(document.text)),
-                kind=QAKind.ATOMIC,
-                document_id=document.document_id,
-                run_id=run_id,
-                evidence=(char_span,),
-                metadata={
-                    "predicate": entry.verb_inflected_forms.stem,
-                    "predicate_index": entry.verb_index,
-                    "votes": votes,
-                    "judgments": len(label.answer_judgments),
-                    "source": BANK_SOURCE,
-                    "alternative_answers": [
-                        TextSpan(
-                            spans[s.start].start_char, spans[s.end - 1].end_char
-                        ).text_in(document.text)
-                        for s, _ in accepted[1:]
-                    ],
-                },
-            )
-        )
+    run = sentence_to_run(
+        sentence,
+        document,
+        run_id=run_id or f"{document.document_id}-bank",
+        min_votes=min_votes,
+    )
+    examples = native_questions(document, run)
+    if run_id is None:
+        from dataclasses import replace as _replace
+
+        examples = [_replace(e, run_id=None) for e in examples]
     return examples
 
 

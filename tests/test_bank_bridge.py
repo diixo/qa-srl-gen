@@ -150,7 +150,10 @@ def test_the_bank_yields_qa_examples_written_by_people(sentences):
             assert example.check() == []
             assert example.kind is QAKind.ATOMIC
             assert example.context == document.text
-            assert example.metadata["votes"] >= 2
+            # Agreement is the share of distinct annotators behind the answer;
+            # min_votes has already removed anything only one person chose.
+            assert 0.0 < example.metadata["agreement"] <= 1.0
+            assert example.metadata["source"] == BANK_SOURCE
             # The answer must be a span of the sentence, not a paraphrase.
             assert example.answer.rstrip(".").lower() in document.text.lower()
             total += 1
@@ -272,3 +275,12 @@ def test_templates_compress_the_bank(bank_dev):
     assert len(raw) < questions / 10
     assert len(active) < len(raw)
     assert len(adverbial) < len(active)
+
+
+def test_agreement_belongs_to_the_answer_not_the_mention(sentences):
+    """A mention can answer several questions with different agreement,
+    so the share of annotators is kept on each relation, not the span."""
+    for sentence in sentences:
+        _document, run = sentence_to_canonical(sentence)
+        assert all(mention.confidence is None for mention in run.mentions)
+        assert all(0.0 < edge.confidence <= 1.0 for edge in run.relations)

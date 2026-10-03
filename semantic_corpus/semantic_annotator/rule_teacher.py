@@ -29,21 +29,12 @@ dialogue and you get dialogue-act annotations and nothing else.
 from __future__ import annotations
 
 import re
-from dataclasses import dataclass, field
-from typing import Iterable, Sequence
+from dataclasses import dataclass
+from typing import Iterable
 
 from ..ontology import MarkerFunction, Mood, Polarity, SpeechAct, Stance
-from .candidates import FUNCTION_WORDS, tokenize
-from .lexicons import (
-    APOLOGIES,
-    DISCOURSE_MARKERS,
-    FAREWELLS,
-    GREETINGS,
-    NEGATION_TOKENS,
-    SPEECH_ACT_CUES,
-    THANKS,
-    marker_for,
-)
+from .candidates import opens_sentence, tokenize
+from .lexicons import NEGATION_TOKENS, SPEECH_ACT_PATTERNS, marker_for
 from .teacher import ProposedAnnotation, TeacherRequest, TeacherResponse
 
 __all__ = ["RuleBasedTeacher", "classify_turn", "TurnReading"]
@@ -123,7 +114,7 @@ def classify_turn(text: str, *, is_reply: bool = False) -> TurnReading:
         after = stripped[token.end_char : token.end_char + 1]
         entry = marker_for(
             token.text.lower(),
-            turn_initial=index == 0 or bool(re.search(r"[.!?]", stripped[tokens[index-1].end_char:token.start_char])),
+            turn_initial=opens_sentence(stripped, tokens, index),
             followed_by_comma=bool(after) and after in ",;:!.?",
             stands_alone=alone,
         )
@@ -142,16 +133,9 @@ def classify_turn(text: str, *, is_reply: bool = False) -> TurnReading:
     normalized = stripped.lower().replace("’", "'")
     for clause in re.split(r"[.!?]+\s*", normalized):
         clause = clause.strip()
-        if re.match(r"^(hello|hi|hey|greetings)\b|^good (morning|afternoon|evening)\b", clause):
-            acts.append(SpeechAct.GREETING)
-        if re.match(r"^(bye|goodbye|farewell|cheerio)\b", clause):
-            acts.append(SpeechAct.FAREWELL)
-        if re.match(r"^(thanks\b|thank you\b|thankyou\b|i thank you\b)", clause):
-            acts.append(SpeechAct.THANKING)
-        if re.match(r"^(sorry\b|apologies\b|i(?: am|'m) (?:so |very )?sorry\b|i apologi[sz]e\b)", clause):
-            acts.append(SpeechAct.APOLOGY)
-        if re.match(r"^no problem(?:[,.!]|$)", clause):
-            acts.append(SpeechAct.REASSURANCE)
+        for act, pattern in SPEECH_ACT_PATTERNS:
+            if pattern.match(clause):
+                acts.append(act)
     if mood is not Mood.INTERROGATIVE and content:
         if content[0] in _IMPERATIVE_OPENERS:
             mood = Mood.IMPERATIVE

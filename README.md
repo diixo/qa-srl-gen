@@ -201,6 +201,18 @@ d1: 8 annotations from 8 candidates, 3 rejected
 
 ### Annotating without a model
 
+To run the local DailyDialog train corpus through annotation, storage, SFT,
+BIO and validation, choose a new output directory:
+
+```bash
+python scripts/run_dailydialog.py --out artifacts/dailydialog-train
+```
+
+Use `--limit 50` for a smoke run. The script keeps the source train split,
+deduplicates before annotation, and records stage timings, input and code
+hashes in `summary.json`. Outputs stay under the ignored `artifacts/`
+directory. See [STATUS_RU.md](STATUS_RU.md) for the latest full-run results.
+
 `RuleBasedTeacher` decides the part of the task that surface form really
 settles — mood from punctuation, polarity from negation, speech acts from
 interrogatives, imperatives and a closed cue list, discourse markers from a
@@ -210,9 +222,9 @@ cannot read, and rubber-stamping the candidate layer would record guesses as
 fact. `RuleBasedTeacher.covers` says so, so an empty mention list reads as
 "not attempted" rather than "none found".
 
-Over all of `dailydialog-train.jsonl` — 11 118 dialogues, 81 869 turns, about
-five minutes — it yields 81 869 dialogue annotations and **271 168 training
-examples with nothing spent**:
+The full `dailydialog-train.jsonl` run on 2026-10-03 reads 11 118 dialogues,
+keeps 10 402 after deduplication, annotates 81 869 turns and stores
+**266 379 speech-act QA examples**, using no external model:
 
 ```text
 <context>
