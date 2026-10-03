@@ -75,8 +75,8 @@ def run_worker(*, once=False, idle_seconds=60):
         Worker.objects.filter(pk=1).update(pid=os.getpid(), heartbeat=timezone.now())
         # Never silently retry a partially written corpus after a supervisor crash.
         Job.objects.filter(status=Job.Status.RUNNING).update(
-            status=Job.Status.FAILED, phase='Прерванный запуск', finished_at=timezone.now(),
-            error='Воркер был прерван. Создайте новый запуск; результат может быть неполным.', pid=None)
+            status=Job.Status.FAILED, phase='Interrupted job', finished_at=timezone.now(),
+            error='The worker was interrupted. Create a new job; the output may be incomplete.', pid=None)
         children = {}
         idle_since = time.monotonic()
         try:
@@ -93,7 +93,7 @@ def run_worker(*, once=False, idle_seconds=60):
                         log.close()
                         finish(job_id, Job.Status.CANCELLED if cancelled else
                                Job.Status.SUCCEEDED if code == 0 else Job.Status.FAILED,
-                               '' if code == 0 or cancelled else f'Процесс завершился с кодом {code}. Подробности в логе.')
+                               '' if code == 0 or cancelled else f'Process exited with code {code}. See the log for details.')
                         del children[slot]
                 if not worker.stop_requested:
                     for slot in range(1, max(1, min(worker.capacity, 4)) + 1):
@@ -107,7 +107,7 @@ def run_worker(*, once=False, idle_seconds=60):
                         claimed = Job.objects.filter(pk=job.pk, status=Job.Status.QUEUED,
                                                      cancel_requested=False).update(
                             status=Job.Status.RUNNING, started_at=timezone.now(), slot=slot,
-                            phase='Подготовка', processed=0, total=0)
+                            phase='Preparing', processed=0, total=0)
                         if not claimed:
                             continue
                         log = None
@@ -139,5 +139,5 @@ def run_worker(*, once=False, idle_seconds=60):
                     process.terminate()
                 process.wait(timeout=10)
                 log.close()
-                finish(job_id, Job.Status.FAILED, 'Воркер остановлен во время выполнения.')
+                finish(job_id, Job.Status.FAILED, 'The worker stopped during execution.')
             Worker.objects.filter(pk=1).update(pid=None, heartbeat=timezone.now())

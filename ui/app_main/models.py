@@ -5,29 +5,29 @@ from django.utils import timezone
 
 
 OPERATIONS = [
-    ('build', 'Синтетический корпус'), ('dailydialog', 'DailyDialog: полный цикл'),
-    ('ingest', 'Импорт текстов / диалогов'), ('bank', 'Импорт QA-SRL Bank'),
-    ('annotate', 'Аннотация корпуса'), ('questions', 'Генерация QA'),
-    ('export', 'Экспорт SFT / BIO'), ('report', 'Отчёт и проверка корпуса'),
-    ('validate', 'Валидация QA-SRL Bank'), ('roundtrip', 'Round-trip вопросов'),
-    ('candidates', 'Поиск кандидатов'), ('lookup', 'Глагольные формы'),
-    ('mining', 'Кандидаты в пул сущностей'),
+    ('build', 'Synthetic corpus'), ('dailydialog', 'DailyDialog: full pipeline'),
+    ('ingest', 'Text / dialogue import'), ('bank', 'QA-SRL Bank import'),
+    ('annotate', 'Corpus annotation'), ('questions', 'QA generation'),
+    ('export', 'SFT / BIO export'), ('report', 'Corpus report and validation'),
+    ('validate', 'QA-SRL Bank validation'), ('roundtrip', 'Question round-trip'),
+    ('candidates', 'Candidate extraction'), ('lookup', 'Verb forms'),
+    ('mining', 'Entity pool proposals'),
 ]
 
 
 class Job(models.Model):
     class Status(models.TextChoices):
-        QUEUED = 'queued', 'В очереди'
-        RUNNING = 'running', 'Выполняется'
-        SUCCEEDED = 'succeeded', 'Завершён'
-        FAILED = 'failed', 'Ошибка'
-        CANCELLED = 'cancelled', 'Отменён'
+        QUEUED = 'queued', 'Queued'
+        RUNNING = 'running', 'Running'
+        SUCCEEDED = 'succeeded', 'Completed'
+        FAILED = 'failed', 'Failed'
+        CANCELLED = 'cancelled', 'Cancelled'
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     operation = models.CharField(max_length=24, choices=OPERATIONS)
     config = models.JSONField(default=dict)
     status = models.CharField(max_length=16, choices=Status.choices, default=Status.QUEUED)
-    phase = models.CharField(max_length=200, default='Ожидание свободного слота')
+    phase = models.CharField(max_length=200, default='Waiting for an available slot')
     processed = models.PositiveIntegerField(default=0)
     total = models.PositiveIntegerField(default=0)
     metrics = models.JSONField(default=dict)

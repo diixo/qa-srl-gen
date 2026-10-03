@@ -3,7 +3,7 @@
 
 ## Local web interface
 
-The Django interface manages the corpus pipeline from a sidebar: synthetic
+The English-language Django interface manages the corpus pipeline from a sidebar: synthetic
 generation, DailyDialog, text/dialogue and QA-SRL Bank import, annotation with
 rules or an HTTP teacher, QA generation, SFT/BIO export, quality reports,
 Bank validation, round-trip checks, candidate extraction and entity mining.

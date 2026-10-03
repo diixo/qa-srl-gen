@@ -16,9 +16,9 @@ def data_path(value, *, directory=False):
     roots = [(settings.REPO_ROOT / name).resolve() for name in ('data', 'artifacts')]
     roots.append(settings.CORPUS_UI_ROOT.resolve())
     if not any(path.is_relative_to(root) for root in roots):
-        raise ValueError('Путь должен находиться в data/ или artifacts/.')
+        raise ValueError('The path must be inside data/ or artifacts/.')
     if not (path.is_dir() if directory else path.is_file()):
-        raise ValueError('Файл или каталог не найден.')
+        raise ValueError('File or directory not found.')
     return path
 
 
@@ -69,12 +69,12 @@ def stores():
 def store_path(value):
     path = data_path(value, directory=True)
     if read_json(path / 'manifest.json', {}).get('store_format') != 'jsonl-v1':
-        raise ValueError('Выберите хранилище с manifest.json формата jsonl-v1.')
+        raise ValueError('Select a store with a jsonl-v1 manifest.json.')
     # A live or interrupted output is not a stable input to another job.
     from .models import Job
     for job in Job.objects.exclude(status=Job.Status.SUCCEEDED).only('id'):
         if path.is_relative_to(job_root(job).resolve()):
-            raise ValueError('Результат этого запуска ещё не завершён успешно.')
+            raise ValueError('This job has not completed successfully.')
     return path
 
 
@@ -89,14 +89,14 @@ def table_page(path, table, offset=0, size=30):
 
 def pool_choices():
     root = settings.CORPUS_UI_ROOT / 'pools'
-    return [('', 'Встроенный пул')] + [(relative(p), p.stem) for p in sorted(root.glob('*.json'))]
+    return [('', 'Built-in pool')] + [(relative(p), p.stem) for p in sorted(root.glob('*.json'))]
 
 
 def get_pool(value=''):
     if not value:
         return default_pool()
     if value not in dict(pool_choices()):
-        raise ValueError('Неизвестный пул сущностей.')
+        raise ValueError('Unknown entity pool.')
     from semantic_corpus.ontology import load_default_hierarchy
     return load_pool(data_path(value), load_default_hierarchy())
 

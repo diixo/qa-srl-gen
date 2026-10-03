@@ -54,7 +54,7 @@ class DailyDialogOutput:
                 Job.objects.filter(pk=self.job.pk).update(processed=int(match[1]), total=self.total,
                     metrics={'qa': int(match[2])})
             elif line.startswith('Annotation complete;'):
-                Job.objects.filter(pk=self.job.pk).update(phase='DailyDialog: экспорт и проверка')
+                Job.objects.filter(pk=self.job.pk).update(phase='DailyDialog: export and validation')
         return len(text)
 
     def flush(self):
@@ -62,7 +62,7 @@ class DailyDialogOutput:
 
 
 def export_store(store, out, config, progress):
-    progress('Экспорт SFT')
+    progress('Exporting SFT')
     count = export_sft(store.examples(), out / 'sft.jsonl')
 
     def pairs():
@@ -73,21 +73,21 @@ def export_store(store, out, config, progress):
             if latest is not None:
                 yield doc, latest
 
-    progress('Экспорт BIO / BILOU', qa=count)
+    progress('Exporting BIO / BILOU', qa=count)
     bio = export_bio(pairs(), out / 'bio.jsonl', scheme=config.get('scheme', 'BIO'))
     print(f'SFT: {count}; BIO: {bio}', flush=True)
     return count
 
 
 def quality_report(store, out, config, progress):
-    progress('Проверка целостности и утечек')
+    progress('Checking integrity and leakage')
     held_out = (get_pool(config.get('pool', '')).split('test').surface_forms
                 if config.get('operation') == 'build' else ())
     report = build_report(store, held_out_names=held_out)
     write_report(report, out / 'report.json')
     print(report, flush=True)
     if not report.is_clean:
-        raise ValueError('Проверка выявила проблемы. Откройте report.json и лог запуска.')
+        raise ValueError('Validation found issues. Open report.json and the job log.')
 
 
 def execute(job):
@@ -96,7 +96,7 @@ def execute(job):
     out.mkdir(parents=True, exist_ok=True)
     (out / 'config.json').write_text(json.dumps(c, ensure_ascii=False, indent=2), encoding='utf-8')
     progress = Progress(job)
-    progress('Подготовка')
+    progress('Preparing')
     operation = job.operation
     limit = c.get('limit')
 
@@ -106,16 +106,16 @@ def execute(job):
                     '--seed', str(c['seed']), '--context-turns', str(c['context_turns'])]
         if limit:
             sys.argv += ['--limit', str(limit)]
-        progress('DailyDialog: аннотация → QA → экспорт → проверка')
+        progress('DailyDialog: annotation → QA → export → validation')
         try:
             with redirect_stdout(DailyDialogOutput(sys.stdout, job, limit or 0)):
                 runpy.run_path(str(settings.REPO_ROOT / 'scripts/run_dailydialog.py'), run_name='__main__')
         except SystemExit as error:
             if error.code not in (None, 0):
-                raise ValueError(f'DailyDialog завершился с кодом {error.code}') from error
+                raise ValueError(f'DailyDialog exited with code {error.code}') from error
         summary = json.loads((out / 'result/summary.json').read_text(encoding='utf-8'))
         counts = summary['counts']
-        progress('DailyDialog завершён', counts['documents'], counts['documents'], qa=counts['stored_qa'])
+        progress('DailyDialog completed', counts['documents'], counts['documents'], qa=counts['stored_qa'])
         return
 
     if operation in ('validate', 'roundtrip', 'lookup', 'candidates'):
@@ -131,13 +131,13 @@ def execute(job):
             argv += ['--text', c['text'], '--verbose']
         progress(dict(Job._meta.get_field('operation').choices)[operation])
         if main(argv):
-            raise ValueError('Проверка выявила проблемы; подробности в логе.')
+            raise ValueError('Validation found issues; see the log for details.')
         return
 
     if operation == 'mining':
         from semantic_corpus.semantic_annotator import ingest
         from semantic_corpus.semantic_generator.mining import mine_entities, write_proposals
-        progress('Поиск кандидатов в пул')
+        progress('Mining entity pool proposals')
         documents = ingest([data_path(c['source'])])
         report = mine_entities((doc.text for doc in islice(documents, limit)), min_support=2)
         write_proposals(report, out / 'proposals.json')
@@ -151,7 +151,7 @@ def execute(job):
         return
 
     if operation in ('annotate', 'questions'):
-        progress('Создание независимой копии корпуса')
+        progress('Creating an independent copy of the corpus')
         # Regeneration must honour the new balance settings even if the source
         # already has QA. The source itself remains untouched.
         ignored = shutil.ignore_patterns('qa_examples.jsonl', 'dataset_versions.jsonl') if operation == 'questions' else None
@@ -173,7 +173,7 @@ def execute(job):
                     max_per_kind=c.get('max_per_kind'), no_answer_share=c.get('no_answer_share'))
                 qa += store.add_examples(examples, generation_run_id=run.run_id)
             processed = i
-            progress('Генерация → аннотации → QA', i, c['count'], qa=qa)
+            progress('Generation → annotations → QA', i, c['count'], qa=qa)
     elif operation == 'bank':
         from semantic_corpus.qasrl_bridge import iter_bank_canonical
         from semantic_corpus.question_generator.templates import native_questions
@@ -182,7 +182,7 @@ def execute(job):
                 store.add_run(run, doc)
                 qa += store.add_examples(native_questions(doc, run), generation_run_id=run.run_id)
             processed += 1
-            progress('Импорт Bank → аннотации → QA', processed, limit or 0, qa=qa)
+            progress('Bank import → annotations → QA', processed, limit or 0, qa=qa)
     elif operation == 'ingest':
         from semantic_corpus.semantic_annotator import ingest, read_dialogue_jsonl, segment_dialogue
         source = data_path(c['source'])
@@ -191,7 +191,7 @@ def execute(job):
         for doc in islice(documents, limit):
             store.add_document(doc)
             processed += 1
-            progress('Импорт и дедупликация документов', processed, limit or 0)
+            progress('Importing and deduplicating documents', processed, limit or 0)
     elif operation == 'annotate':
         from semantic_corpus.semantic_annotator import CandidateResources, RuleBasedTeacher, HttpTeacher, annotate_document
         from semantic_corpus.ontology import Label
@@ -206,7 +206,7 @@ def execute(job):
             store.add_run(outcome.run, doc)
             qa += store.add_examples(questions.for_document(doc, outcome.run), generation_run_id=outcome.run.run_id)
             processed += 1
-            progress('Аннотация → QA', processed, limit or 0, qa=qa, rejected=len(outcome.rejected))
+            progress('Annotation → QA', processed, limit or 0, qa=qa, rejected=len(outcome.rejected))
     elif operation == 'questions':
         for doc in islice(store.documents(), limit):
             latest = None
@@ -217,12 +217,12 @@ def execute(job):
                     max_per_kind=c.get('max_per_kind'), no_answer_share=c.get('no_answer_share'))
                 qa += store.add_examples(examples, generation_run_id=latest.run_id)
             processed += 1
-            progress('Генерация QA', processed, limit or 0, qa=qa)
+            progress('QA generation', processed, limit or 0, qa=qa)
     else:
-        raise ValueError(f'Неизвестная операция: {operation}')
-    progress('Сохранение версии', processed, processed, qa=qa)
+        raise ValueError(f'Unknown operation: {operation}')
+    progress('Saving the dataset version', processed, processed, qa=qa)
     store.publish_version(str(job.pk), build_config=c)
     if operation != 'ingest':
         export_store(store, out, c, progress)
     quality_report(store, out, c, progress)
-    progress('Обработка завершена', processed, processed, qa=qa)
+    progress('Processing complete', processed, processed, qa=qa)

@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="ru" data-bs-theme="light">
+<html lang="en" data-bs-theme="light">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Semantic corpus toolkit" />
 
-    <title>{{ title|default:'Обзор' }} · SRL-gen</title>
+    <title>{{ title|default:'Overview' }} · SRL-gen</title>
 
         {% block meta %}
         {% endblock %}
@@ -100,8 +100,8 @@
           class="form-control w-100 rounded-0 border-0"
           type="text"
           name="q"
-          placeholder="Найти корпус…"
-          aria-label="Найти корпус"
+          placeholder="Find a corpus…"
+          aria-label="Find a corpus"
         />
       </form>
     </header>
@@ -142,7 +142,7 @@
               {% endfor %}
               <a class="worker-indicator mt-auto" href="{% url 'app_main:workers' %}">
                 <span class="status-dot {% if worker_online %}online{% endif %}"></span>
-                {% if worker_online %}Воркер подключён{% else %}Воркер не запущен{% endif %}
+                {% if worker_online %}Worker online{% else %}Worker offline{% endif %}
               </a>
             </div>
           </div>

@@ -22,22 +22,22 @@ from .worker import start_worker
 
 
 SECTIONS = {
-    'pipeline': ('Новый запуск', 'От генерации или исходного корпуса до QA, экспорта и проверки качества.', None),
-    'ingestion': ('Источники и импорт', 'Тексты, диалоги и QA-SRL Bank. Каждый импорт создаёт новый корпус.', ['ingest', 'bank', 'dailydialog']),
-    'annotation': ('Аннотация', 'Новый проход учителя и генерация вопросов в независимой копии корпуса.', ['annotate']),
-    'questions': ('Генерация QA', 'Вопросы по последней аннотации каждого документа, балансировка и экспорт.', ['questions']),
-    'exports': ('Экспорт', 'SFT, BIO / BILOU и отчёт качества из сохранённых аннотаций.', ['export']),
-    'quality': ('Качество и валидация', 'Целостность, распределения, утечки между split и round-trip вопросов.', ['report', 'validate', 'roundtrip']),
-    'tools': ('Инструменты', 'Кандидаты разметки, глагольные формы и предложения для расширения пула.', ['candidates', 'lookup', 'mining']),
+    'pipeline': ('New job', 'From generation or a source corpus to QA, export and quality checks.', None),
+    'ingestion': ('Sources and import', 'Texts, dialogues and QA-SRL Bank. Each import creates a new corpus.', ['ingest', 'bank', 'dailydialog']),
+    'annotation': ('Annotation', 'Run a new teacher pass and generate questions in an independent copy of the corpus.', ['annotate']),
+    'questions': ('QA generation', 'Generate questions from the latest annotations for each document, balance and export.', ['questions']),
+    'exports': ('Export', 'SFT, BIO / BILOU and a quality report from stored annotations.', ['export']),
+    'quality': ('Quality and validation', 'Integrity, distributions, leakage across splits and question round-trip checks.', ['report', 'validate', 'roundtrip']),
+    'tools': ('Tools', 'Annotation candidates, verb forms and proposals to expand the entity pool.', ['candidates', 'lookup', 'mining']),
 }
 NAV = [
-    ('Рабочее пространство', [('main', 'Обзор', 'dashboard'), ('pipeline', 'Новый запуск', 'play_circle'),
-        ('jobs', 'История запусков', 'history'), ('workers', 'Воркеры и очередь', 'memory')]),
-    ('Пайплайн', [('ingestion', 'Источники и импорт', 'upload_file'), ('annotation', 'Аннотация', 'edit_note'),
-        ('questions', 'Генерация QA', 'question_answer'), ('exports', 'Экспорт', 'file_download'),
-        ('quality', 'Качество', 'verified')]),
-    ('Данные и ресурсы', [('corpora', 'Корпуса', 'storage'), ('pools', 'Пулы сущностей', 'category'),
-        ('slots', 'Фреймы и слоты', 'account_tree'), ('tools', 'Инструменты', 'build')]),
+    ('Workspace', [('main', 'Overview', 'dashboard'), ('pipeline', 'New job', 'play_circle'),
+        ('jobs', 'Job history', 'history'), ('workers', 'Workers and queue', 'memory')]),
+    ('Pipeline', [('ingestion', 'Sources and import', 'upload_file'), ('annotation', 'Annotation', 'edit_note'),
+        ('questions', 'QA generation', 'question_answer'), ('exports', 'Export', 'file_download'),
+        ('quality', 'Quality', 'verified')]),
+    ('Data and resources', [('corpora', 'Corpora', 'storage'), ('pools', 'Entity pools', 'category'),
+        ('slots', 'Frames and slots', 'account_tree'), ('tools', 'Tools', 'build')]),
 ]
 
 
@@ -51,7 +51,7 @@ def page(request, template, **context):
 @require_safe
 def main(request):
     rows = Job.objects.all()
-    return page(request, 'index.html', title='Обзор', recent=rows[:8],
+    return page(request, 'index.html', title='Overview', recent=rows[:8],
         running=rows.filter(status=Job.Status.RUNNING).count(),
         queued=rows.filter(status=Job.Status.QUEUED).count(),
         completed=rows.filter(status=Job.Status.SUCCEEDED).count(),
@@ -69,7 +69,7 @@ def operation(request, section='pipeline'):
         try:
             start_worker()
         except OSError as error:
-            messages.error(request, f'Запуск сохранён в очереди, но воркер не стартовал: {error}')
+            messages.error(request, f'The job was queued, but the worker could not start: {error}')
         return redirect('app_main:job', pk=job.pk)
     return page(request, 'operation.html', nav_active=section, title=title, description=description,
                 form=form, section=section, sources=catalog.sources() if section == 'ingestion' else None)
@@ -81,7 +81,7 @@ def jobs(request):
     status = request.GET.get('status', '')
     if status in Job.Status.values:
         rows = rows.filter(status=status)
-    return page(request, 'jobs.html', title='История запусков',
+    return page(request, 'jobs.html', title='Job history',
         jobs=Paginator(rows, 30).get_page(request.GET.get('page')), statuses=Job.Status.choices, selected=status)
 
 
@@ -138,7 +138,7 @@ def job_status(request, pk):
 def cancel_job(request, pk):
     job = get_object_or_404(Job, pk=pk)
     Job.objects.filter(pk=pk, status=Job.Status.QUEUED).update(
-        status=Job.Status.CANCELLED, phase='Отменён', cancel_requested=True, finished_at=timezone.now())
+        status=Job.Status.CANCELLED, phase='Cancelled', cancel_requested=True, finished_at=timezone.now())
     Job.objects.filter(pk=pk, status=Job.Status.RUNNING).update(cancel_requested=True)
     return redirect('app_main:job', pk=job.pk)
 
@@ -147,17 +147,17 @@ def cancel_job(request, pk):
 def retry_job(request, pk):
     previous = get_object_or_404(Job, pk=pk)
     if previous.active:
-        messages.error(request, 'Сначала завершите или отмените текущий запуск.')
+        messages.error(request, 'Finish or cancel the active job first.')
         return redirect('app_main:job', pk=pk)
     form = JobForm(previous.config)
     if not form.is_valid():
-        messages.error(request, 'Параметры больше не действительны. Создайте запуск с актуальными источниками.')
+        messages.error(request, 'These settings are no longer valid. Create a job with current sources.')
         return redirect('app_main:pipeline')
     job = Job.objects.create(operation=previous.operation, config=form.cleaned_data)
     try:
         start_worker()
     except OSError as error:
-        messages.error(request, f'Запуск в очереди: {error}')
+        messages.error(request, f'Job queued: {error}')
     return redirect('app_main:job', pk=job.pk)
 
 
@@ -165,7 +165,7 @@ def retry_job(request, pk):
 def workers(request):
     worker = Worker.objects.filter(pk=1).first() or Worker()
     running = {j.slot: j for j in Job.objects.filter(status=Job.Status.RUNNING) if j.slot}
-    return page(request, 'workers.html', title='Воркеры и очередь', worker=worker,
+    return page(request, 'workers.html', title='Workers and queue', worker=worker,
         slots=[dict(number=n, job=running.get(n)) for n in range(1, max([worker.capacity, *running.keys()]) + 1)],
         queue=Job.objects.filter(status=Job.Status.QUEUED).order_by('created_at')[:30])
 
@@ -181,10 +181,10 @@ def worker_control(request):
                 raise ValueError
             Worker.objects.filter(pk=1).update(capacity=capacity)
         except ValueError:
-            messages.error(request, 'Выберите от 1 до 4 вычислительных слотов.')
+            messages.error(request, 'Choose between 1 and 4 process slots.')
     elif action == 'stop':
         Worker.objects.filter(pk=1).update(stop_requested=True)
-        messages.info(request, 'Воркер завершит текущие задания и остановит выдачу новых.')
+        messages.info(request, 'The worker will finish active jobs and stop dispatching new ones.')
     elif action == 'start':
         Worker.objects.filter(pk=1).update(stop_requested=False)
         try:
@@ -200,7 +200,7 @@ def corpora(request):
     query = request.GET.get('q', '').strip().lower()
     if query:
         rows = [r for r in rows if query in r['path'].lower()]
-    return page(request, 'corpora.html', title='Корпуса', stores=Paginator(rows, 30).get_page(request.GET.get('page')), query=query)
+    return page(request, 'corpora.html', title='Corpora', stores=Paginator(rows, 30).get_page(request.GET.get('page')), query=query)
 
 
 @require_safe
@@ -209,16 +209,16 @@ def corpus(request):
         path = catalog.data_path(request.GET.get('store', ''), directory=True)
         meta = catalog.read_json(path / 'manifest.json', {})
         if meta.get('store_format') != 'jsonl-v1':
-            raise ValueError('Нет манифеста корпуса.')
+            raise ValueError('Corpus manifest not found.')
         table = request.GET.get('table', 'documents')
         if table not in TABLES:
-            raise ValueError('Неизвестная таблица.')
+            raise ValueError('Unknown table.')
         offset = max(0, int(request.GET.get('offset', 0)))
         rows, more = catalog.table_page(path, table, offset)
         tables = [dict(name=name, size=(path / file).stat().st_size if (path / file).exists() else 0)
                   for name, file in TABLES.items()]
     except (ValueError, OSError) as error:
-        return page(request, 'error.html', title='Корпус недоступен', error=str(error))
+        return page(request, 'error.html', title='Corpus unavailable', error=str(error))
     return page(request, 'corpus.html', title=path.name, nav_active='corpora', store=catalog.relative(path),
         tables=tables, table=table, rows=[json.dumps(r, ensure_ascii=False, indent=2) for r in rows],
         offset=offset, previous=max(0, offset - 30), next=offset + 30, more=more)
@@ -230,7 +230,7 @@ def pools(request):
     try:
         monitor = catalog.pool_monitor(value)
     except ValueError as error:
-        return page(request, 'error.html', title='Пул недоступен', error=str(error))
+        return page(request, 'error.html', title='Pool unavailable', error=str(error))
     pool = monitor['pool']
     q = request.GET.get('q', '').strip().lower()
     split = request.GET.get('split', '')
@@ -238,7 +238,7 @@ def pools(request):
                  gloss=e.appositive, split=pool.split_of(e.text)) for e in pool]
     rows = [r for r in rows if (not q or q in r['text'].lower() or q in r['labels'].lower())
             and (not split or split == r['split'])]
-    return page(request, 'pools.html', title='Пулы сущностей', monitor=monitor, pool_choices=catalog.pool_choices(),
+    return page(request, 'pools.html', title='Entity pools', monitor=monitor, pool_choices=catalog.pool_choices(),
         selected_pool=value, entities=Paginator(rows, 40).get_page(request.GET.get('page')), query=q, selected_split=split)
 
 
@@ -248,8 +248,8 @@ def slots(request):
     try:
         monitor = catalog.pool_monitor(value)
     except ValueError as error:
-        return page(request, 'error.html', title='Пул недоступен', error=str(error))
-    return page(request, 'slots.html', title='Фреймы и слоты', monitor=monitor,
+        return page(request, 'error.html', title='Pool unavailable', error=str(error))
+    return page(request, 'slots.html', title='Frames and slots', monitor=monitor,
                 pool_choices=catalog.pool_choices(), selected_pool=value)
 
 
@@ -259,11 +259,11 @@ def upload(request):
     is_pool = request.POST.get('kind') == 'pool'
     destination = 'app_main:pools' if is_pool else 'app_main:ingestion'
     if not file or file.size > 20 * 1024 * 1024:
-        messages.error(request, 'Выберите файл размером до 20 МБ.')
+        messages.error(request, 'Select a file up to 20 MB.')
         return redirect(destination)
     suffix = Path(file.name).suffix.lower()
     if suffix not in (('.json',) if is_pool else ('.txt', '.jsonl', '.qa')):
-        messages.error(request, 'Неподдерживаемое расширение файла.')
+        messages.error(request, 'Unsupported file extension.')
         return redirect(destination)
     folder = settings.CORPUS_UI_ROOT / ('pools' if is_pool else 'uploads')
     folder.mkdir(parents=True, exist_ok=True)
@@ -276,13 +276,13 @@ def upload(request):
         if is_pool:
             payload = catalog.read_json(target)
             if not isinstance(payload, dict) or not isinstance(payload.get('entities'), list):
-                raise ValueError('Ожидается JSON с массивом entities.')
+                raise ValueError('Expected a JSON object with an entities array.')
             if not len(load_pool(target, load_default_hierarchy())):
-                raise ValueError('Пул не содержит сущностей.')
-        messages.success(request, f'Файл {file.name} сохранён: {catalog.relative(target)}')
+                raise ValueError('The pool contains no entities.')
+        messages.success(request, f'File {file.name} saved: {catalog.relative(target)}')
     except (ValueError, KeyError, TypeError, AttributeError) as error:
         target.unlink(missing_ok=True)
-        messages.error(request, f'Некорректный файл: {error}')
+        messages.error(request, f'Invalid file: {error}')
     return redirect(destination)
 
 
