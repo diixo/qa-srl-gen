@@ -70,6 +70,10 @@ python -m pytest -q
 python -m semantic_corpus.cli --help
 ```
 
+The upstream grammar conformance test uses the bundled reference corpus in
+[`tests/fixtures/upstream-qasrl/`](tests/fixtures/upstream-qasrl/README.md).
+It runs without `artifacts/`, network access or a Scala runtime.
+
 ## What works today
 
 | Module | Purpose |

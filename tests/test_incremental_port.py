@@ -168,12 +168,9 @@ def test_real_bank_questions_are_accepted(bank_dev):
     assert count > 100
 
 
-def test_upstream_questions_exact_ambiguity_histogram(repo_root):
-    """Optional local upstream conformance corpus; no download during tests."""
-    path = (repo_root / "artifacts/upstream-qasrl/qasrl-16ab4949"
-            / "qasrl/test/resources/question-strings.txt")
-    if not path.exists():
-        pytest.skip("upstream reference corpus not available")
+def test_upstream_questions_exact_ambiguity_histogram(fixtures_dir):
+    """Required, vendored upstream corpus; no artifacts or network access."""
+    path = fixtures_dir / "upstream-qasrl/question-strings.txt"
     forms = InflectedForms("stem", "presentsingular3rd", "presentparticiple", "past", "pastparticiple")
     histogram = Counter()
     questions = path.read_text(encoding="utf-8").splitlines()

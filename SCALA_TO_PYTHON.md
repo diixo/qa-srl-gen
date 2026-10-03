@@ -3,8 +3,10 @@
 Source: [julianmichael/qasrl](https://github.com/julianmichael/qasrl/tree/16ab4949)
 at **16ab4949** (2023-09-22), MIT, Copyright (c) 2017 Julian Michael.
 Updated 2026-10-03. The upstream source was read without modification; its local
-reference copy is under ignored `artifacts/upstream-qasrl/`. Attribution and
-the MIT notice are in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+reference copy is under ignored `artifacts/upstream-qasrl/`. The required grammar
+test corpus is bundled separately in `tests/fixtures/upstream-qasrl/`, with its
+upstream revision, checksum and license. Attribution and the MIT notice are in
+[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
 The current port covers the core grammar, frame/label operations, dataset
 operations, Bank metadata and QANom reformatting. It is not a literal port of
@@ -108,8 +110,9 @@ Bank convention; use the new processor/resolver and
   parse and reproduce their original question through `Frame.questions_for_slot`.
   The exact upstream ambiguity histogram is **10,882 × 1**, **2,599 × 2**,
   **135 × 3** readings.
-- The corpus test uses the pinned reference file under `artifacts/upstream-qasrl/`
-  when available, and skips without a network request when it is absent.
+- The corpus test uses the pinned reference file under `tests/fixtures/upstream-qasrl/`.
+  It requires the bundled fixture, runs without network access or `artifacts/`,
+  and fails if the fixture is missing.
 - Finite/nonfinite rendering, all 48 nonfinite feature bundles, substitutions,
   incremental resume, autocomplete, context resolution, dataset conflicts,
   source formats and real Bank index data have targeted tests.

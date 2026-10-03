@@ -19,8 +19,11 @@ SCALA_TO_PYTHON.md. The subsequent port directly adapts algorithms and models
 from the core grammar, frame rendering, labeling, dataset operations, Bank
 metadata/provenance and QANom reformatting into Python. Field names, slot names
 and verb-form keys are kept compatible with the originals. These adaptations
-remain subject to the upstream MIT notice below; the local reference source
-and test corpus are kept under ignored `artifacts/`.
+remain subject to the upstream MIT notice below. The unmodified, committed
+upstream test resource `qasrl/test/resources/question-strings.txt` is bundled
+under `tests/fixtures/upstream-qasrl/`, with its original license and provenance.
+The full local reference source remains under ignored `artifacts/` and is not
+required to run the conformance test.
 
 The upstream project is MIT licensed. Its notice:
 
