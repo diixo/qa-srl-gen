@@ -1,11 +1,52 @@
 # qa-srl-gen — semantic corpus toolkit
 
 
-Run django-server:
+## Local web interface
+
+The Django interface manages the corpus pipeline from a sidebar: synthetic
+generation, DailyDialog, text/dialogue and QA-SRL Bank import, annotation with
+rules or an HTTP teacher, QA generation, SFT/BIO export, quality reports,
+Bank validation, round-trip checks, candidate extraction and entity mining.
+It also provides corpus/table browsing, entity-pool uploads, train/dev/test
+coverage of all frame slots, and a persistent queue with 1–4 local process slots.
+
+From the repository root:
+
 ```bash
-py ui/manage.py runserver
+python -m pip install -r ui/requirements.txt
+python ui/manage.py migrate
+python ui/manage.py runserver 127.0.0.1:8000
 ```
 
+Open `http://127.0.0.1:8000/`. Submitting a job starts the worker automatically.
+The Workers page controls concurrency, pauses dispatch after current jobs finish,
+and resumes the queue. Job pages show progress, logs, cancellation, retries,
+quality findings and downloadable results. The worker stops after 60 idle seconds.
+It can also be run explicitly with `python ui/manage.py pipeline_worker --once`.
+
+Each job writes to a fresh `artifacts/ui/jobs/<id>/` directory. Annotation works
+on a copy; QA regeneration copies annotations and rebuilds QA so the selected
+balance settings apply. Failed/cancelled output can be inspected but cannot be
+selected as another job's input. There is no automatic retry after interruption.
+Existing CLI stores under `data/` and `artifacts/` are visible in the corpus
+browser; external CLI writes should be finished before using them as UI inputs.
+
+Corpora remain JSONL. Django's SQLite database under `artifacts/ui/` stores only
+queue/control metadata; the original uploaded `ui/db.sqlite3` is not modified.
+`CORPUS_UI_ROOT` can override the runtime directory. Use the same value for the
+server, migrations and worker. The UI is a local operator tool, with CSRF checks
+and no user-account access control; public/network deployment is not configured.
+Uploaded source files and pool versions are limited to 20 MB; place larger
+source files under `data/`. Pool coverage counts individual slot candidates,
+not all possible joint assignments. HTTP annotation sends the selected text to
+the configured teacher; offline rules cover dialogue acts only.
+
+UI validation is separate from the dependency-free core tests:
+
+```bash
+python ui/manage.py check
+python ui/manage.py test app_main
+```
 
 ## Core
 
@@ -21,8 +62,8 @@ annotator (`semantic_corpus/semantic_annotator`), the question generator
 (`semantic_corpus/exporters`). The full plan lives in
 [HANDOFF_SEMANTIC_CORPUS_RU.md](HANDOFF_SEMANTIC_CORPUS_RU.md).
 
-No installation, no virtualenv, no build system: the package sits at the
-repository root and imports directly. Python 3.10+, standard library only.
+The core package sits at the repository root and imports directly, without a
+build system. Python 3.10+, standard library only; the optional web UI needs Django.
 
 ```bash
 python -m pytest -q

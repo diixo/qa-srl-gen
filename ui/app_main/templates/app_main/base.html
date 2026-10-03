@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="en" data-bs-theme="light">
+<html lang="ru" data-bs-theme="light">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Semantic corpus toolkit" />
 
-    <title>SRL-gen toolkit</title>
+    <title>{{ title|default:'Обзор' }} · SRL-gen</title>
 
         {% block meta %}
         {% endblock %}
@@ -61,13 +61,12 @@
       <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 d-flex justify-content-center align-items-center"
         href="{% url 'app_main:main' %}"
       >
-        <img src="/static/app_main/logos/logo-dxc-new.svg" 
-            class="img-fluid" alt="brand-logo" style="height:24px;" title="App-template">
+        <span class="brand-mark">S</span><span class="ms-2 fw-bold">SRL-gen</span>
       </a>
       <ul class="navbar-nav flex-row d-md-none">
         <li class="nav-item text-nowrap">
           <button
-            class="nav-link px-3 text-white"
+            class="nav-link px-3 text-dark"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarSearch"
@@ -82,7 +81,7 @@
         </li>
         <li class="nav-item text-nowrap">
           <button
-            class="nav-link px-3 text-white"
+            class="nav-link px-3 text-dark"
             type="button"
             data-bs-toggle="offcanvas"
             data-bs-target="#sidebarMenu"
@@ -96,14 +95,15 @@
           </button>
         </li>
       </ul>
-      <div id="navbarSearch" class="navbar-search w-100 collapse">
+      <form id="navbarSearch" class="navbar-search w-100 collapse" action="{% url 'app_main:corpora' %}" method="get">
         <input
           class="form-control w-100 rounded-0 border-0"
           type="text"
-          placeholder="Search"
-          aria-label="Search"
+          name="q"
+          placeholder="Найти корпус…"
+          aria-label="Найти корпус"
         />
-      </div>
+      </form>
     </header>
     <div class="container-fluid">
       <div class="row">
@@ -115,7 +115,7 @@
             aria-labelledby="sidebarMenuLabel"
           >
             <div class="offcanvas-header shadow-sm">
-              <h5 class="offcanvas-title" id="sidebarMenuLabel">APP-template</h5>
+              <h5 class="offcanvas-title" id="sidebarMenuLabel">SRL-gen</h5>
               <button
                 type="button"
                 class="btn-close"
@@ -127,52 +127,28 @@
 
             <div class="offcanvas-body d-md-flex flex-column p-3 overflow-y-auto">
 
-              {% with u=request.resolver_match.url_name %}
-              <ul class="nav flex-column">
-
+              {% for group, items in navigation %}
+              <h6 class="sidebar-heading px-2 mt-3 mb-2 text-body-secondary text-uppercase">{{ group }}</h6>
+              <ul class="nav flex-column gap-1 mb-2">
+                {% for route, label, icon in items %}
                 <li class="nav-item">
-                  <a class="nav-link d-flex align-items-center gap-2 {% if u == 'report' %}active{% endif %}"
-                    href="{% url 'app_main:report' %}">
-                    <span class="material-icons">add_chart</span>
-                    Report
+                  <a class="nav-link d-flex align-items-center gap-2 {% if nav_active == route %}active{% endif %}"
+                     {% if nav_active == route %}aria-current="page"{% endif %} href="{% url 'app_main:'|add:route %}">
+                    <span class="material-icons" aria-hidden="true">{{ icon }}</span>{{ label }}
                   </a>
                 </li>
+                {% endfor %}
               </ul>
-
-              <h6
-                class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase"
-              >
-                <span>Saved</span>
-
-              </h6>
-              <ul class="nav flex-column">
-                <li class="nav-item">
-                  <a class="nav-link d-flex align-items-center gap-2" href="#">
-                    <span class="material-icons">article</span>
-                    Last used
-                  </a>
-                </li>
-              </ul>
-              <hr class="my-3" />
-              <ul class="nav flex-column mb-auto">
-                <li class="nav-item">
-                  <a class="nav-link d-flex align-items-center gap-2" href="#">
-                    <span class="material-icons">miscellaneous_services</span>
-                    Settings
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link d-flex align-items-center gap-2" href="#">
-                    <span class="material-icons">logout</span>
-                    Sign out
-                  </a>
-                </li>
-              </ul>
-              {% endwith %}
+              {% endfor %}
+              <a class="worker-indicator mt-auto" href="{% url 'app_main:workers' %}">
+                <span class="status-dot {% if worker_online %}online{% endif %}"></span>
+                {% if worker_online %}Воркер подключён{% else %}Воркер не запущен{% endif %}
+              </a>
             </div>
           </div>
         </div>
         <main class="col-md-9 col-lg-10 ms-sm-auto px-md-4 d-flex flex-column bg-body-tertiary">
+        {% for message in messages %}<div class="alert {% if message.tags == 'error' %}alert-danger{% else %}alert-info{% endif %} mt-3" role="alert">{{ message }}</div>{% endfor %}
         {% block content %}
         {% endblock %}
         </main>
@@ -181,6 +157,7 @@
 
     {% load static %}
     <script src="{% static 'app_main/assets/js/bootstrap.bundle.min.js' %}" class="astro-vvvwv3sm"></script>
+    <script src="{% static 'app_main/js/pipeline.js' %}" defer></script>
 
   </body>
 </html>

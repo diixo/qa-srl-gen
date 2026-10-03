@@ -1,0 +1,5 @@
+{% extends 'app_main/base.html' %}
+{% block content %}<div class="page-heading"><div><p class="eyebrow">ХРАНИЛИЩЕ</p><h1>{{ title }}</h1><p class="text-secondary text-break">{{ store }}</p></div></div>
+<div class="d-flex gap-2 flex-wrap mb-4">{% for item in tables %}<a class="btn btn-sm {% if item.name == table %}btn-primary{% else %}btn-outline-secondary{% endif %}" href="?store={{ store|urlencode }}&table={{ item.name }}">{{ item.name }} <small>· {{ item.size|filesizeformat }}</small></a>{% endfor %}</div>
+<section class="panel mb-3"><h2>{{ table }} · с записи {{ offset|add:1 }}</h2>{% for row in rows %}<details class="record"><summary>Запись {{ forloop.counter|add:offset }}</summary><pre class="json-record">{{ row }}</pre></details>{% empty %}<p class="empty-state">Записей пока нет.</p>{% endfor %}</section>
+<div class="pagination-row">{% if offset %}<a href="?store={{ store|urlencode }}&table={{ table }}&offset={{ previous }}">← Назад</a>{% endif %}<span>До 30 записей на странице</span>{% if more %}<a href="?store={{ store|urlencode }}&table={{ table }}&offset={{ next }}">Далее →</a>{% endif %}</div>{% endblock %}

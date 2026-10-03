@@ -1,0 +1,1 @@
+<label for="pool-select" class="visually-hidden">Пул сущностей</label><select class="form-select" id="pool-select" name="pool">{% for value, label in pool_choices %}<option value="{{ value }}" {% if value == selected_pool %}selected{% endif %}>{{ label }}</option>{% endfor %}</select>

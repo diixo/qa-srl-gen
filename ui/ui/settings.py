@@ -10,10 +10,16 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+import os
+import sys
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+REPO_ROOT = BASE_DIR.parent
+sys.path.insert(0, str(REPO_ROOT))
+CORPUS_UI_ROOT = Path(os.environ.get('CORPUS_UI_ROOT', REPO_ROOT / 'artifacts' / 'ui'))
+CORPUS_UI_ROOT.mkdir(parents=True, exist_ok=True)
 
 
 # Quick-start development settings - unsuitable for production
@@ -76,7 +82,8 @@ WSGI_APPLICATION = 'ui.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': CORPUS_UI_ROOT / 'db.sqlite3',
+        'OPTIONS': {'timeout': 20},
     }
 }
 
@@ -103,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'UTC'
 
@@ -115,7 +122,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
