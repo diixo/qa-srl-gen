@@ -299,14 +299,23 @@ def test_bio_reports_predicate_extra_labels_and_unknown_labels():
     assert report.dropped_unrepresentable == 1
 
 
-def test_build_deduplicates_atomically_and_can_repeat(tmp_path):
+def test_build_deduplicates_atomically_and_can_repeat(tmp_path, monkeypatch):
     from semantic_corpus.cli import main
+    from semantic_corpus.semantic_generator import DEFAULT_FRAMES
+    original = Generator.generate_per_frame
+
+    def with_duplicate(self, count):
+        rows = list(original(self, count))
+        yield from rows
+        yield rows[0]
+
+    monkeypatch.setattr(Generator, 'generate_per_frame', with_duplicate)
     root, out = tmp_path / "store", tmp_path / "export"
-    args = ["build", "--store", str(root), "--out", str(out), "--count", "100", "--seed", "42"]
+    args = ["build", "--store", str(root), "--out", str(out), "--count", "12", "--seed", "42"]
     assert main(args) == 0
     store = CorpusStore(root)
     count = store.count("documents")
-    assert count < 100  # This seed reproduces the content duplicate.
+    assert count == 12 * len(DEFAULT_FRAMES)  # The injected duplicate must not create an orphan run.
     assert store.count("annotation_runs") == count
     documents = {d.document_id for d in store.documents()}
     assert all(r["document_id"] in documents for r in store.read("spans"))
@@ -684,7 +693,9 @@ def test_batch_caches_run_headers_but_checks_each_documents_membership(tmp_path,
     before = store.content_hash()
     with pytest.raises(StoreError, match="does not annotate"):
         store.add_examples([good, bad], generation_run_id="r")
-    assert calls == ["r"]
+    # The store caches membership across batches, but still rejects a
+    # document that does not belong to this run without rereading its header.
+    assert calls == []
     assert store.content_hash() == before
 
 

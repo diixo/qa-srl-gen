@@ -158,6 +158,8 @@ def retry_job(request, pk):
     if not form.is_valid():
         messages.error(request, 'These settings are no longer valid. Create a job with current sources.')
         return redirect('app_main:pipeline')
+    if previous.operation == 'build':
+        form.cleaned_data['count_scope'] = previous.config.get('count_scope', 'total')
     job = Job.objects.create(operation=previous.operation, config=form.cleaned_data)
     try:
         start_worker()

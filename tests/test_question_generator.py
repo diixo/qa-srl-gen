@@ -391,9 +391,11 @@ def test_passage_mode_keeps_each_example_to_its_own_window():
 
 
 def negated_situation():
-    from semantic_corpus.semantic_generator import Features, realize
+    from semantic_corpus.semantic_generator import Features, frame_by_lemma, realize
 
-    generator = Generator(seed=3)
+    # These regressions require a bare locative object, regardless of which
+    # other frames are registered in the default generator.
+    generator = Generator(seed=3, frames=(frame_by_lemma("visit"),))
     situation = generator.sample_situation(
         features=Features(tense="past", is_negated=True)
     )

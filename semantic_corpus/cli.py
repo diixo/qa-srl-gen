@@ -175,7 +175,7 @@ def cmd_generate(args: argparse.Namespace) -> int:
     from .semantic_generator import Generator
 
     generator = Generator(seed=args.seed, split=args.split)
-    for realized in generator.generate(args.count):
+    for realized in generator.generate_per_frame(args.count):
         print(realized.text)
         if args.spans:
             for mention in realized.mentions:
@@ -275,7 +275,7 @@ def cmd_annotate(args: argparse.Namespace) -> int:
 def cmd_questions(args: argparse.Namespace) -> int:
     from .question_generator import QuestionGenerator
     from .semantic_generator import Generator
-    from .semantic_generator.canonical import to_canonical
+    from .semantic_generator.canonical import iter_canonical
     from .semantic_generator.generator import DEFAULT_PARADIGMS
 
     generator = Generator(seed=args.seed, split=args.split)
@@ -286,8 +286,8 @@ def cmd_questions(args: argparse.Namespace) -> int:
         include_paraphrases=not args.no_paraphrases,
     )
     produced = 0
-    for index, realized in enumerate(generator.generate(args.count)):
-        document, run = to_canonical(realized, document_id=f"gen-{index:05d}")
+    for document, run in iter_canonical(generator.generate_per_frame(args.count),
+                                       split=args.split, random_seed=args.seed, per_frame_ids=True):
         examples = questions.for_document(document, run)
         if args.prompts:
             for example in examples:
@@ -301,7 +301,8 @@ def cmd_questions(args: argparse.Namespace) -> int:
                       f"  ->  {example.answer}{flag}")
             print()
         produced += len(examples)
-    print(f"{produced} examples from {args.count} situations")
+    print(f"{produced} examples from {args.count * len(generator.frames)} situations "
+          f"({args.count} per frame)")
     return 0
 
 
@@ -309,7 +310,7 @@ def cmd_build(args: argparse.Namespace) -> int:
     from .exporters import build_report, export_bio, export_sft, write_report
     from .question_generator import QuestionGenerator, balance
     from .semantic_generator import Generator
-    from .semantic_generator.canonical import to_canonical
+    from .semantic_generator.canonical import iter_canonical
     from .semantic_generator.generator import DEFAULT_PARADIGMS
     from .storage import CorpusStore
     from .storage.repository import GENERATOR_VERSION, StoreError
@@ -326,6 +327,7 @@ def cmd_build(args: argparse.Namespace) -> int:
     # any document is appended, including conflicts late in the batch.
     build_config = {key: getattr(args, key) for key in
                     ("seed", "split", "prefix", "count", "max_per_kind", "no_answer_share")}
+    build_config['count_scope'] = 'per_frame'
     previous = next((v for v in store.versions() if v["version_id"] == args.version), None)
     if previous is not None and previous.get("build_config") != build_config:
         raise StoreError(f"version {args.version!r} exists; use a new version")
@@ -336,9 +338,11 @@ def cmd_build(args: argparse.Namespace) -> int:
         raise StoreError(f"version {args.version!r} names different content or generator; use a new version")
     known_content = {r["source_hash"]: r.get("document_split") for r in store.read("documents")}
     known_runs = {r["run_id"] for r in store.read("annotation_runs")}
-    for index, realized in enumerate(generator.generate(args.count)):
-        document, run = to_canonical(realized, document_id=f"{args.prefix}-{index:06d}",
-                                   split=args.split, random_seed=args.seed)
+    def generated_pairs():
+        return iter_canonical(generator.generate_per_frame(args.count), prefix=args.prefix,
+                              split=args.split, random_seed=args.seed, per_frame_ids=True)
+
+    for document, run in generated_pairs():
         existing = store.document(document.document_id)
         if existing is not None and existing != document:
             raise StoreError(f"document {document.document_id!r} is immutable; use a new prefix")
@@ -350,14 +354,7 @@ def cmd_build(args: argparse.Namespace) -> int:
             # Content duplicates can legitimately have skipped identifiers.
             if document.sha256 not in known_content:
                 raise StoreError(f"version {args.version!r} exists; use a new version")
-    generator = Generator(seed=args.seed, split=args.split)
-    for index, realized in enumerate(generator.generate(args.count)):
-        document, run = to_canonical(
-            realized,
-            document_id=f"{args.prefix}-{index:06d}",
-            split=args.split,
-            random_seed=args.seed,
-        )
+    for document, run in generated_pairs():
         if not store.add_document(document) and store.document(document.document_id) is None:
             continue
         if run.run_id not in known_runs:
@@ -417,6 +414,13 @@ def cmd_report(args: argparse.Namespace) -> int:
     return 0 if report.is_clean else 1
 
 
+def _positive_count(value: str) -> int:
+    count = int(value)
+    if count < 1:
+        raise argparse.ArgumentTypeError("count per frame must be at least 1")
+    return count
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="semantic-corpus", description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
@@ -449,7 +453,8 @@ def build_parser() -> argparse.ArgumentParser:
     frames.set_defaults(func=cmd_frames)
 
     generate = sub.add_parser("generate", help="generate sentences from frames")
-    generate.add_argument("--count", type=int, default=10)
+    generate.add_argument("--count", type=_positive_count, default=10,
+                          help="distinct situations per frame (total = count × number of frames)")
     generate.add_argument("--seed", type=int, default=0)
     generate.add_argument("--split", choices=("train", "dev", "test"), default=None)
     generate.add_argument("--spans", action="store_true", help="show spans and relations")
@@ -491,7 +496,8 @@ def build_parser() -> argparse.ArgumentParser:
     annotate.set_defaults(func=cmd_annotate)
 
     questions = sub.add_parser("questions", help="generate QA examples")
-    questions.add_argument("--count", type=int, default=5)
+    questions.add_argument("--count", type=_positive_count, default=5,
+                           help="distinct situations per frame, before QA generation")
     questions.add_argument("--seed", type=int, default=0)
     questions.add_argument("--split", choices=("train", "dev", "test"), default=None)
     questions.add_argument("--no-paraphrases", action="store_true")
@@ -502,7 +508,8 @@ def build_parser() -> argparse.ArgumentParser:
     build = sub.add_parser("build", help="generate, store, export and report")
     build.add_argument("--store", type=Path, default=Path("build/store"))
     build.add_argument("--out", type=Path, default=Path("build/export"))
-    build.add_argument("--count", type=int, default=100)
+    build.add_argument("--count", type=_positive_count, default=100,
+                       help="distinct situations per frame (total = count × number of frames)")
     build.add_argument("--seed", type=int, default=0)
     build.add_argument("--split", choices=("train", "dev", "test"), default="train")
     build.add_argument("--prefix", default="gen")

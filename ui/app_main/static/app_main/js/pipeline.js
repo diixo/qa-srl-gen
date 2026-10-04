@@ -21,15 +21,22 @@
   };
   if (form) {
     const operation = form.querySelector('[name=operation]');
+    const count = form.querySelector('[name=count]');
     const update = () => {
       const visible = new Set(['operation', ...(fields[operation.value] || [])]);
       form.querySelectorAll('[data-field]').forEach(el => {
         el.hidden = !visible.has(el.dataset.field);
         el.querySelectorAll('input, select, textarea').forEach(input => { input.disabled = el.hidden; });
       });
-      form.querySelector('[data-operation-hint]').textContent = hints[operation.value] || 'The job runs in the background. Find its results and log in Job history.';
+      let hint = hints[operation.value] || 'The job runs in the background. Find its results and log in Job history.';
+      if (operation.value === 'build' && count.value && count.validity.valid) {
+        const frames = Number(count.dataset.frameCount);
+        hint = `${count.value} per frame × ${frames} frames = ${(Number(count.value) * frames).toLocaleString('en-US')} situations. ${hint}`;
+      }
+      form.querySelector('[data-operation-hint]').textContent = hint;
     };
     operation.addEventListener('change', update);
+    count.addEventListener('input', update);
     update();
     form.addEventListener('submit', () => { form.querySelector('button[type=submit]').disabled = true; });
   }

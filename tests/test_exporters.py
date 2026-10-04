@@ -342,7 +342,18 @@ def test_generate_store_export_report(tmp_path):
     ]
     bio = export_bio(pairs, tmp_path / "bio.jsonl")
     assert bio.documents == 15
-    assert bio.dropped_overlapping == 0
+    # Generated properties ("red" in "a red ball") are nested inside their
+    # entities. BIO keeps the full entity and reports each lost property.
+    # Their presence depends on sampling, not on the export's correctness.
+    for _, run in pairs:
+        mentions = {mention.mention_id: mention for mention in run.mentions}
+        for prop in run.properties:
+            owner = mentions[prop.target_id]
+            assert owner.span.start_char <= prop.span.start_char
+            assert prop.span.end_char <= owner.span.end_char
+    assert bio.dropped_overlapping == sum(len(run.properties) for _, run in pairs)
+    assert bio.tagged_spans == sum(len(run.mentions) + len(run.predicates) for _, run in pairs)
+    assert bio.dropped_unrepresentable == 0
 
     report = build_report(store)
     assert report.is_clean

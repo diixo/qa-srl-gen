@@ -1,5 +1,7 @@
 from django import forms
 
+from semantic_corpus.semantic_generator import DEFAULT_FRAMES
+
 from . import catalog
 from .models import OPERATIONS
 
@@ -10,7 +12,7 @@ class JobForm(forms.Form):
     store = forms.ChoiceField(label='Source corpus', required=False)
     input_format = forms.ChoiceField(label='Text format', choices=[
         ('text', 'TXT / JSONL with a text field'), ('dialogue', 'JSONL: list of dialogue turns')])
-    count = forms.IntegerField(label='Number of situations', min_value=1, max_value=1000000, initial=100)
+    count = forms.IntegerField(label='Situations per frame', min_value=1, max_value=1000000, initial=100)
     limit = forms.IntegerField(label='Input document limit', min_value=1, required=False,
                               help_text='Leave blank to process the entire input corpus.')
     seed = forms.IntegerField(label='Seed', initial=42, min_value=0, max_value=2147483647)
@@ -32,6 +34,11 @@ class JobForm(forms.Form):
         self.fields['source'].choices = [('', 'Select a file')] + [(s['path'], s['path']) for s in catalog.sources()]
         self.fields['store'].choices = [('', 'Select a corpus')] + [(s['path'], s['path']) for s in catalog.stores()]
         self.fields['pool'].choices = catalog.pool_choices()
+        self.fields['count'].widget.attrs['data-frame-count'] = len(DEFAULT_FRAMES)
+        self.fields['count'].help_text = (
+            f'Distinct situations for each of {len(DEFAULT_FRAMES)} frames. '
+            'Total = this value × number of frames. Each situation produces multiple QA examples. '
+            'If the selected pool is too small, reduce this value or expand the pool.')
         # Defaults apply to options hidden for the selected operation as well.
         for name in ('count', 'seed', 'split', 'input_format', 'context_turns', 'scheme', 'teacher'):
             self.fields[name].required = False
@@ -46,6 +53,8 @@ class JobForm(forms.Form):
             if data.get(key) in (None, ''):
                 data[key] = value
         operation = data.get('operation')
+        if operation == 'build':
+            data['count_scope'] = 'per_frame'
         if operation in ('ingest', 'bank', 'dailydialog', 'validate', 'roundtrip', 'mining'):
             if not data.get('source'):
                 self.add_error('source', 'Select a source file.')

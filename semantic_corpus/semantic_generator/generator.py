@@ -1,7 +1,8 @@
 """Deterministic sampling of situations from frames and entity pools.
 
-Everything random here goes through one :class:`random.Random`, seeded by the
-caller, so a run is reproducible from ``(seed, split, frames, pool)`` alone.
+Everything random here goes through seeded :class:`random.Random` instances.
+Per-frame generation uses an independent stream for each lemma, so adding a
+frame does not change the situations generated for existing frames.
 That is a hard requirement from the handoff and it is also what makes a
 held-out test set trustworthy: if generation drifted between runs, the claim
 that a name was never trained on could not be checked.
@@ -14,6 +15,7 @@ three would make them import each other in a cycle.
 from __future__ import annotations
 
 import random
+from hashlib import sha256
 from dataclasses import dataclass, replace
 from typing import Iterable, Iterator, Sequence
 
@@ -141,7 +143,7 @@ class Generator:
         )
 
     def generate(self, count: int) -> Iterator[RealizedSituation]:
-        """Yield *count* realised sentences, one pattern each."""
+        """Legacy stream: yield *count* sentences total, choosing frames randomly."""
         produced = 0
         attempts = 0
         while produced < count:
@@ -163,6 +165,61 @@ class Generator:
             except BindingError:
                 continue
             produced += 1
+
+    def generate_per_frame(self, count: int) -> Iterator[RealizedSituation]:
+        """Yield *count* distinct sentence texts for each configured frame.
+
+        Each call starts independent streams derived from ``(seed, lemma)``.
+        With unchanged frame definitions, pool and sampling settings, adding
+        or reordering frames preserves each frame's output. Increasing count
+        extends its existing sequence. This does not consume the legacy RNG.
+
+        Sampling is bounded: an insufficient pool raises an error instead of
+        silently returning fewer sentences. Partial results may precede it.
+        """
+        from .transforms import pattern_variants
+
+        if count < 0:
+            raise ValueError("count per frame must be non-negative")
+        lemmas = [frame.lemma for frame in self.frames]
+        if len(set(lemmas)) != len(lemmas):
+            raise ValueError("per-frame generation requires unique frame lemmas")
+        if count and not self.frames:
+            raise ValueError("no frames configured")
+        if not count:
+            return
+        for frame in self.frames:
+            self.forms_for(frame)
+            seed = int.from_bytes(
+                sha256(f"per-frame-v1:{self.seed}:{frame.lemma}".encode("utf-8")).digest(),
+                "big",
+            )
+            # self.pool already contains the selected split; do not split it again.
+            sampler = Generator(seed=seed, frames=(frame,), pool=self.pool,
+                                hierarchy=self.hierarchy, paradigms=self.paradigms,
+                                optional_slot_probability=self.optional_slot_probability)
+            seen: set[str] = set()
+            for _ in range(count * 20 + 100):
+                try:
+                    situation = sampler.sample_situation(frame)
+                    patterns = pattern_variants(situation)
+                    if not patterns:
+                        continue
+                    realized = realize(situation, sampler._rng.choice(patterns))
+                except (LookupError, BindingError):
+                    continue
+                if realized.text in seen:
+                    continue
+                seen.add(realized.text)
+                yield realized
+                if len(seen) == count:
+                    break
+            else:
+                raise RuntimeError(
+                    f"frame {frame.lemma!r}: generated {len(seen)}/{count} distinct "
+                    "situations within the sampling limit; reduce count or expand "
+                    "the entity pool for the selected split"
+                )
 
     # -- deliberate ambiguity ---------------------------------------------
 

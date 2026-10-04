@@ -15,7 +15,7 @@ from django.conf import settings
 from semantic_corpus.exporters import build_report, export_bio, export_sft, write_report
 from semantic_corpus.question_generator import QuestionGenerator, balance
 from semantic_corpus.semantic_generator import Generator
-from semantic_corpus.semantic_generator.canonical import to_canonical
+from semantic_corpus.semantic_generator.canonical import iter_canonical, to_canonical
 from semantic_corpus.semantic_generator.generator import DEFAULT_PARADIGMS
 from semantic_corpus.storage import CorpusStore
 
@@ -165,15 +165,27 @@ def execute(job):
     qa = 0
     processed = 0
     if operation == 'build':
-        for i, realized in enumerate(generator.generate(c['count']), 1):
-            doc, run = to_canonical(realized, document_id=f'ui-{i:06d}', split=c['split'], random_seed=c['seed'])
+        scope = c.get('count_scope', 'total')
+        if scope == 'per_frame':
+            total = c['count'] * len(generator.frames)
+            pairs = iter_canonical(generator.generate_per_frame(c['count']), prefix='ui',
+                                   split=c['split'], random_seed=c['seed'], per_frame_ids=True)
+        elif scope == 'total':
+            # Jobs saved before per-frame quotas retain their original count and IDs.
+            total = c['count']
+            pairs = (to_canonical(realized, document_id=f'ui-{i:06d}', split=c['split'], random_seed=c['seed'])
+                     for i, realized in enumerate(generator.generate(c['count']), 1))
+        else:
+            raise ValueError(f'Unknown count scope: {scope!r}')
+        progress('Generation → annotations → QA', 0, total, qa=qa)
+        for i, (doc, run) in enumerate(pairs, 1):
             if store.add_document(doc):
                 store.add_run(run, doc)
                 examples = balance(questions.for_document(doc, run), seed=c['seed'],
                     max_per_kind=c.get('max_per_kind'), no_answer_share=c.get('no_answer_share'))
                 qa += store.add_examples(examples, generation_run_id=run.run_id)
             processed = i
-            progress('Generation → annotations → QA', i, c['count'], qa=qa)
+            progress('Generation → annotations → QA', i, total, qa=qa)
     elif operation == 'bank':
         from semantic_corpus.qasrl_bridge import iter_bank_canonical
         from semantic_corpus.question_generator.templates import native_questions

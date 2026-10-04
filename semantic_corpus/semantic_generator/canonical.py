@@ -15,6 +15,7 @@ because these facts are true by construction rather than by agreement.
 
 from __future__ import annotations
 
+from collections import Counter
 from dataclasses import replace
 from typing import Iterable, Sequence
 
@@ -241,12 +242,23 @@ def iter_canonical(
     prefix: str = "gen",
     split: str | None = None,
     random_seed: int | None = None,
+    per_frame_ids: bool = False,
 ):
-    """Convert a stream of realisations, numbering the documents."""
+    """Convert realisations, optionally numbering independently per lemma.
+
+    Per-frame IDs keep annotations and seeded QA stable when other frames
+    are added or the requested number of situations changes.
+    """
+    counts: Counter[str] = Counter()
     for index, realized in enumerate(realizations):
+        document_id = f"{prefix}-{index:06d}"
+        if per_frame_ids:
+            lemma = realized.situation.frame.lemma
+            counts[lemma] += 1
+            document_id = f"{prefix}-{lemma}-{counts[lemma]:06d}"
         yield to_canonical(
             realized,
-            document_id=f"{prefix}-{index:06d}",
+            document_id=document_id,
             split=split,
             random_seed=random_seed,
         )

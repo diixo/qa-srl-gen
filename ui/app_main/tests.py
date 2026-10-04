@@ -2,6 +2,7 @@ import json
 import io
 import shutil
 import tempfile
+from collections import Counter
 from pathlib import Path
 from unittest.mock import Mock, patch
 
@@ -12,6 +13,7 @@ from django.urls import reverse
 from django.utils import timezone
 
 from semantic_corpus.documents import Document
+from semantic_corpus.semantic_generator import DEFAULT_FRAMES
 from semantic_corpus.storage import CorpusStore
 
 from . import catalog
@@ -68,6 +70,7 @@ class WorkspaceTests(TestCase):
         job = Job.objects.get()
         self.assertRedirects(response, reverse('app_main:job', args=[job.pk]))
         self.assertEqual(job.config['count'], 4)
+        self.assertEqual(job.config['count_scope'], 'per_frame')
         self.assertEqual(job.config['seed'], 42)
         self.assertEqual(job.status, Job.Status.QUEUED)
         start.assert_called_once()
@@ -100,6 +103,10 @@ class WorkspaceTests(TestCase):
         job = self.execute()
         root = catalog.job_root(job)
         store = CorpusStore(root / 'store', create=False)
+        self.assertEqual(Counter(d.metadata['frame'] for d in store.documents()),
+                         {f.lemma: 3 for f in DEFAULT_FRAMES})
+        job.refresh_from_db()
+        self.assertEqual((job.processed, job.total), (3 * len(DEFAULT_FRAMES),) * 2)
         self.assertGreater(store.count('qa_examples'), 0)
         self.assertTrue((root / 'sft.jsonl').is_file())
         self.assertFalse(json.loads((root / 'report.json').read_text())['integrity_issues'])
@@ -263,5 +270,35 @@ class WorkspaceTests(TestCase):
         response = self.client.post(reverse('app_main:retry_job', args=[job.pk]))
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Job.objects.count(), 2)
+        self.assertEqual(Job.objects.exclude(pk=job.pk).get().config['count_scope'], 'per_frame')
         self.assertEqual(CorpusStore(catalog.job_root(job) / 'store').content_hash(), before)
+        start.assert_called_once()
+
+    def test_quota_label_and_frame_multiplier_render_in_new_job_form(self):
+        response = self.client.get(reverse('app_main:pipeline'))
+        self.assertContains(response, 'Situations per frame')
+        self.assertContains(response, f'data-frame-count="{len(DEFAULT_FRAMES)}"')
+        self.assertContains(response, 'Each situation produces multiple QA examples.')
+
+    @patch('app_main.views.start_worker')
+    def test_legacy_queued_job_and_retry_keep_total_count_and_document_ids(self, start):
+        config = self.config()
+        config.pop('count_scope')
+        job = Job.objects.create(operation='build', config=config, status=Job.Status.RUNNING)
+        with patch('sys.stdout', new_callable=io.StringIO):
+            execute(job)
+        job.refresh_from_db()
+        self.assertEqual((job.processed, job.total), (3, 3))
+        store = CorpusStore(catalog.job_root(job) / 'store')
+        expected = {doc.document_id: doc.text for doc in store.documents()}
+        self.assertEqual(set(expected), {'ui-000001', 'ui-000002', 'ui-000003'})
+        job.status = Job.Status.SUCCEEDED
+        job.save(update_fields=['status'])
+        self.client.post(reverse('app_main:retry_job', args=[job.pk]))
+        retried = Job.objects.exclude(pk=job.pk).get()
+        self.assertEqual(retried.config['count_scope'], 'total')
+        with patch('sys.stdout', new_callable=io.StringIO):
+            execute(retried)
+        self.assertEqual({d.document_id: d.text for d in CorpusStore(catalog.job_root(retried) / 'store').documents()},
+                         expected)
         start.assert_called_once()

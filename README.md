@@ -154,11 +154,25 @@ It runs without `artifacts/`, network access or a Scala runtime.
 | `exporters/report.py` | class distribution and leakage |
 | `cli.py` | `inspect`, `roundtrip`, `validate`, `lookup`, `frames`, `generate`, `ambiguity`, `ingest`, `candidates`, `annotate`, `questions`, `build`, `report` |
 
-Generator version `0.3.0` adds literal purchases of physical goods (`buy`):
+Generator version `0.4.0` makes the UI's **Situations per frame** field and
+`--count` in `generate`, `questions` and `build` a quota for **each frame**.
+For eight frames, `100` requests 800 distinct situation texts, before QA generation.
+The UI shows the total before submission and in job progress. Small pools may
+exhaust the bounded sampler: reduce the quota or expand the selected split's pool.
+Failed UI jobs may contain partial data and do not publish a completed version.
+
+Each lemma has an independent seeded stream and document numbering. Adding or
+reordering frames preserves existing frames' texts, IDs and QA when definitions,
+pool and generation/QA settings stay unchanged. Increasing the quota extends
+each sequence. Use `Generator.generate_per_frame(count)` for this behavior;
+`Generator.generate(count)` retains the legacy total-count random-frame stream.
+Saved UI jobs without `count_scope` and their retries retain the old total limit.
+Use a fresh store for builds with the new generator version.
+
+Version `0.3.0` added literal purchases of physical goods (`buy`):
 a person or organization buys an object, optionally at a location and time.
 Active, passive and agentless passive patterns are supported. Sellers and prices
-are not modeled by this frame. The added frame changes seeded sampling;
-use a fresh store for builds made with this version.
+are not modeled by this frame. The added frame changed legacy seeded sampling.
 
 Version `0.2.0` fixed annotation integrity, contextual answerability,
 verb-chain questions and duplicate builds. Existing `jsonl-v1` records remain
@@ -476,19 +490,11 @@ One command runs the whole pipeline — generate, store, export, report:
 python -m semantic_corpus.cli build --count 100 --seed 42 --no-answer-share 0.15
 ```
 
-```text
-stored 30 documents, 473 examples (version v1, b2ef8d35151b)
-sft: 473 records
-bio: 30 documents, 176 tokens, 113 spans tagged; dropped 0 overlapping spans
-     and 54 extra labels
-
-ontology v1  content b2ef8d35151b
-documents: train=30
-examples:  train=473
-kinds:     atomic=97, entity_type=83, no_answer=43, ontology=25, paraphrase=160, ...
-refusals:  10.6%
-leakage:   none
-```
+This creates 100 situations per frame (800 documents in a fresh store with
+the current eight frames), then exports QA to `sft.jsonl`, token annotations to
+`bio.jsonl`, and validation results to `report.json`. QA counts depend on the
+generated annotations and balancing options. The version manifest records
+`count_scope: "per_frame"` so the quota's unit is explicit.
 
 The store is a directory of append-only JSONL files — SQLite and Parquet are
 both ruled out, and JSONL is the only option that needs no dependency. Four
