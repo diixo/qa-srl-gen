@@ -139,7 +139,7 @@ class SemanticFrame:
 
 
 # ---------------------------------------------------------------------------
-# The starter frames named in the handoff
+# Built-in frames
 # ---------------------------------------------------------------------------
 
 _ANIMATE = frozenset({Label.PERSON, Label.ANIMAL})
@@ -354,7 +354,39 @@ SAY = SemanticFrame(
 )
 
 
-DEFAULT_FRAMES: tuple[SemanticFrame, ...] = (GIVE, VISIT, OWN, FEEL, MOVE, SEE, SAY)
+BUY = SemanticFrame(
+    lemma="buy",
+    predicate_type=Label.ACTION,
+    slots=(
+        FrameSlot("agent", Relation.AGENT_OF, _AGENTIVE),
+        # Literal purchases of physical goods; abstract/idiomatic senses of
+        # "buy" (buy an idea, buy time) need their own selection constraints.
+        FrameSlot("theme", Relation.THEME_OF, frozenset({Label.PHYSICAL_OBJECT})),
+        _LOCATION_ADJUNCT,
+        _TIME_ADJUNCT,
+    ),
+    patterns=(
+        SurfacePattern(
+            "transitive", subject="agent", complements=(Complement("theme"),)
+        ),
+        SurfacePattern(
+            "passive",
+            subject="theme",
+            complements=(Complement("agent", "by"),),
+            is_passive=True,
+        ),
+        SurfacePattern(
+            "passive_agentless",
+            subject="theme",
+            is_passive=True,
+            omits=frozenset({"agent"}),
+        ),
+    ),
+    adjuncts=(("location", "in"), ("time", "on")),
+)
+
+
+DEFAULT_FRAMES: tuple[SemanticFrame, ...] = (GIVE, VISIT, OWN, FEEL, MOVE, SEE, SAY, BUY)
 
 
 def frame_by_lemma(lemma: str, frames: Iterable[SemanticFrame] = DEFAULT_FRAMES):

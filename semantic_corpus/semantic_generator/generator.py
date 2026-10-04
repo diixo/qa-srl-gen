@@ -41,6 +41,7 @@ DEFAULT_PARADIGMS: dict[str, InflectedForms] = {
     "move": InflectedForms("move", "moves", "moving", "moved", "moved"),
     "see": InflectedForms("see", "sees", "seeing", "saw", "seen"),
     "say": InflectedForms("say", "says", "saying", "said", "said"),
+    "buy": InflectedForms("buy", "buys", "buying", "bought", "bought"),
 }
 
 

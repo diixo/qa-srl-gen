@@ -125,7 +125,7 @@ It runs without `artifacts/`, network access or a Scala runtime.
 | `qasrl_core/validation.py` | invariant checks over slots, spans and sentences |
 | `ontology/models.py` | the label inventory: multi-label spans, speech acts, relations |
 | `ontology/hierarchy.py` | type inheritance (`city → LOCATION`) and the candidate lexicon |
-| `semantic_generator/frames.py` | typed frames for `give`, `visit`, `own`, `feel`, `move`, `see`, `say` |
+| `semantic_generator/frames.py` | typed frames for `give`, `visit`, `own`, `feel`, `move`, `see`, `say`, `buy` |
 | `semantic_generator/substitutions.py` | entity pools, real and invented names, held-out splits |
 | `semantic_generator/realization.py` | situation → sentence, with exact spans and relations |
 | `semantic_generator/transforms.py` | tense, voice, negation and modality variation |
@@ -154,7 +154,13 @@ It runs without `artifacts/`, network access or a Scala runtime.
 | `exporters/report.py` | class distribution and leakage |
 | `cli.py` | `inspect`, `roundtrip`, `validate`, `lookup`, `frames`, `generate`, `ambiguity`, `ingest`, `candidates`, `annotate`, `questions`, `build`, `report` |
 
-Generator version `0.2.0` fixes annotation integrity, contextual answerability,
+Generator version `0.3.0` adds literal purchases of physical goods (`buy`):
+a person or organization buys an object, optionally at a location and time.
+Active, passive and agentless passive patterns are supported. Sellers and prices
+are not modeled by this frame. The added frame changes seeded sampling;
+use a fresh store for builds made with this version.
+
+Version `0.2.0` fixed annotation integrity, contextual answerability,
 verb-chain questions and duplicate builds. Existing `jsonl-v1` records remain
 readable; old exports must be regenerated into a fresh store to obtain corrected
 training data. New records preserve predicate extra labels, omitted slots and
