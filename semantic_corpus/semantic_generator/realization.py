@@ -17,7 +17,8 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Mapping
 
-from ..ontology import NAMEDNESS_LABELS, Label, LabelSet, Relation
+from ..ontology import NAMEDNESS_LABELS, Label, LabelSet, Relation, TypeHierarchy
+from ..agreement import verb_words
 from ..qasrl_core.frame import ArgStructure, Frame as VerbFrame
 from ..qasrl_core.models import InflectedForms
 from .frames import SemanticFrame, SurfacePattern
@@ -66,6 +67,7 @@ class Situation:
     bindings: Mapping[str, Entity]
     forms: InflectedForms
     features: Features = field(default_factory=Features)
+    hierarchy: TypeHierarchy | None = field(default=None, repr=False, compare=False)
 
     def validate(self) -> list[str]:
         """Type errors in the bindings, as messages."""
@@ -76,11 +78,14 @@ class Situation:
             if slot is None:
                 problems.append(f"{self.frame.lemma} has no slot {name!r}")
                 continue
-            if not slot.accepts(entity.labels.labels):
+            if not slot.accepts(entity.labels.labels, type_name=entity.type_name,
+                                hierarchy=self.hierarchy):
                 allowed = ", ".join(sorted(l.value for l in slot.types))
+                if slot.group_types:
+                    allowed += "; GROUP subtypes: " + ", ".join(sorted(slot.group_types))
                 problems.append(
                     f"slot {name!r} accepts {allowed}, but {entity.text!r} is "
-                    f"{entity.labels}"
+                    f"{entity.labels} (type={entity.type_name!r})"
                 )
         for slot in self.frame.required_slots:
             if slot.name not in self.bindings:
@@ -290,7 +295,7 @@ def realize(
 
     # The predicate is the last word of the chain; the auxiliaries in front
     # of it are grammatical, not referential, so only the last gets a span.
-    stack = verb_frame.get_verb_stack()
+    stack = verb_words(verb_frame, plural=situation.bindings[chosen.subject].number == "plural")
     head_text, head_start, head_end = "", 0, 0
     for word in stack:
         head_text, head_start, head_end = builder.add(word)

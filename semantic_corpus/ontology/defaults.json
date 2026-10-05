@@ -38,6 +38,10 @@
     "university": { "parent": "institution" },
     "agency": { "parent": "institution" },
 
+    "human_group": { "parent": "GROUP" },
+    "animal_group": { "parent": "GROUP" },
+    "physical_object_group": { "parent": "GROUP" },
+
     "artifact": { "parent": "PHYSICAL_OBJECT" },
     "vehicle": { "parent": "artifact" },
     "car": { "parent": "vehicle" },
@@ -88,6 +92,14 @@
     "company": ["company"],
     "university": ["university"],
     "agency": ["agency"],
+
+    "family": ["human_group"],
+    "crew": ["human_group"],
+    "team": ["human_group", "institution"],
+    "crowd": ["human_group"],
+    "herd": ["animal_group"],
+    "flock": ["animal_group"],
+    "bundle": ["physical_object_group"],
 
     "car": ["car"],
     "ship": ["ship"],

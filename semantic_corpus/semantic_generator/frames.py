@@ -17,7 +17,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Iterable, Mapping
 
-from ..ontology import Label, Relation
+from ..ontology import Label, Relation, TypeHierarchy, load_default_hierarchy
 
 __all__ = [
     "FrameSlot",
@@ -41,18 +41,34 @@ class FrameSlot:
     #: ``give`` takes an abstract theme (*gave an idea*) but not an emotional
     #: one (*gave sadness*), and emotions are abstract entities.
     excludes: frozenset[Label] = frozenset()
+    #: Empty means any GROUP; otherwise its subtype must match this tree branch.
+    group_types: frozenset[str] = frozenset()
 
-    def accepts(self, labels: Iterable[Label]) -> bool:
+    def accepts(
+        self, labels: Iterable[Label], *, type_name: str | None = None,
+        hierarchy: TypeHierarchy | None = None,
+    ) -> bool:
         present = frozenset(labels)
         if present & self.excludes:
             return False
-        return bool(self.types & present)
+        if not self.types & present:
+            return False
+        if Label.GROUP in present and self.group_types:
+            hierarchy = hierarchy or load_default_hierarchy()
+            return bool(
+                type_name and type_name in hierarchy
+                and hierarchy.is_a(type_name, Label.GROUP)
+                and any(hierarchy.is_a(type_name, allowed) for allowed in self.group_types)
+            )
+        return True
 
     def __str__(self) -> str:
         kinds = " | ".join(sorted(label.value for label in self.types))
         text = f"{self.name} = {kinds}"
         if self.excludes:
             text += " except " + " | ".join(sorted(l.value for l in self.excludes))
+        if self.group_types:
+            text += "; GROUP: " + " | ".join(sorted(self.group_types))
         return text + (", optional" if self.optional else "")
 
 
@@ -142,9 +158,12 @@ class SemanticFrame:
 # Built-in frames
 # ---------------------------------------------------------------------------
 
-_ANIMATE = frozenset({Label.PERSON, Label.ANIMAL})
-_AGENTIVE = frozenset({Label.PERSON, Label.ORGANIZATION})
-_THING = frozenset({Label.PHYSICAL_OBJECT, Label.ABSTRACT_ENTITY})
+_ANIMATE = frozenset({Label.PERSON, Label.ANIMAL, Label.GROUP})
+_AGENTIVE = frozenset({Label.PERSON, Label.ORGANIZATION, Label.GROUP})
+_THING = frozenset({Label.PHYSICAL_OBJECT, Label.ABSTRACT_ENTITY, Label.GROUP})
+_HUMAN_GROUP = frozenset({"human_group"})
+_ANIMATE_GROUP = frozenset({"human_group", "animal_group"})
+_OBJECT_GROUP = frozenset({"physical_object_group"})
 _PLACE = frozenset({Label.LOCATION})
 _WHEN = frozenset({Label.DATE, Label.TIME})
 _NO_EMOTION = frozenset({Label.EMOTION})
@@ -157,13 +176,14 @@ GIVE = SemanticFrame(
     lemma="give",
     predicate_type=Label.ACTION,
     slots=(
-        FrameSlot("agent", Relation.AGENT_OF, _AGENTIVE),
+        FrameSlot("agent", Relation.AGENT_OF, _AGENTIVE, group_types=_HUMAN_GROUP),
         FrameSlot(
             "recipient",
             Relation.RECIPIENT_OF,
-            frozenset({Label.PERSON, Label.ANIMAL, Label.ORGANIZATION}),
+            _ANIMATE | _AGENTIVE, group_types=_ANIMATE_GROUP,
         ),
-        FrameSlot("theme", Relation.THEME_OF, _THING, excludes=_NO_EMOTION),
+        FrameSlot("theme", Relation.THEME_OF, _THING, excludes=_NO_EMOTION,
+                  group_types=_OBJECT_GROUP),
         _LOCATION_ADJUNCT,
         _TIME_ADJUNCT,
     ),
@@ -200,7 +220,7 @@ VISIT = SemanticFrame(
     lemma="visit",
     predicate_type=Label.ACTION,
     slots=(
-        FrameSlot("visitor", Relation.AGENT_OF, _ANIMATE),
+        FrameSlot("visitor", Relation.AGENT_OF, _ANIMATE, group_types=_ANIMATE_GROUP),
         FrameSlot(
             "destination",
             Relation.LOCATION_OF,
@@ -227,8 +247,9 @@ OWN = SemanticFrame(
     lemma="own",
     predicate_type=Label.STATE,
     slots=(
-        FrameSlot("owner", Relation.EXPERIENCER_OF, _AGENTIVE),
-        FrameSlot("possession", Relation.THEME_OF, _THING, excludes=_NO_EMOTION),
+        FrameSlot("owner", Relation.EXPERIENCER_OF, _AGENTIVE, group_types=_HUMAN_GROUP),
+        FrameSlot("possession", Relation.THEME_OF, _THING, excludes=_NO_EMOTION,
+                  group_types=_OBJECT_GROUP),
     ),
     patterns=(
         SurfacePattern(
@@ -248,7 +269,7 @@ FEEL = SemanticFrame(
     lemma="feel",
     predicate_type=Label.STATE,
     slots=(
-        FrameSlot("experiencer", Relation.EXPERIENCER_OF, _ANIMATE),
+        FrameSlot("experiencer", Relation.EXPERIENCER_OF, _ANIMATE, group_types=_ANIMATE_GROUP),
         FrameSlot("emotion", Relation.STATE_OF, frozenset({Label.EMOTION})),
         FrameSlot("cause", Relation.THEME_OF, _THING, optional=True),
     ),
@@ -271,7 +292,8 @@ MOVE = SemanticFrame(
     lemma="move",
     predicate_type=Label.ACTION,
     slots=(
-        FrameSlot("agent", Relation.AGENT_OF, _AGENTIVE | _ANIMATE),
+        FrameSlot("agent", Relation.AGENT_OF, _AGENTIVE | _ANIMATE,
+                  group_types=_ANIMATE_GROUP),
         FrameSlot(
             "theme", Relation.THEME_OF, _THING, optional=True, excludes=_NO_EMOTION
         ),
@@ -302,7 +324,7 @@ SEE = SemanticFrame(
     lemma="see",
     predicate_type=Label.STATE,
     slots=(
-        FrameSlot("experiencer", Relation.EXPERIENCER_OF, _ANIMATE),
+        FrameSlot("experiencer", Relation.EXPERIENCER_OF, _ANIMATE, group_types=_ANIMATE_GROUP),
         FrameSlot(
             "stimulus",
             Relation.THEME_OF,
@@ -330,14 +352,15 @@ SAY = SemanticFrame(
     lemma="say",
     predicate_type=Label.ACTION,
     slots=(
-        FrameSlot("speaker", Relation.AGENT_OF, _AGENTIVE),
+        FrameSlot("speaker", Relation.AGENT_OF, _AGENTIVE, group_types=_HUMAN_GROUP),
         FrameSlot(
             "message",
             Relation.THEME_OF,
             frozenset({Label.ABSTRACT_ENTITY}),
             excludes=_NO_EMOTION,
         ),
-        FrameSlot("addressee", Relation.RECIPIENT_OF, _ANIMATE, optional=True),
+        FrameSlot("addressee", Relation.RECIPIENT_OF, _ANIMATE, optional=True,
+                  group_types=_ANIMATE_GROUP),
         _TIME_ADJUNCT,
     ),
     patterns=(
@@ -358,10 +381,11 @@ BUY = SemanticFrame(
     lemma="buy",
     predicate_type=Label.ACTION,
     slots=(
-        FrameSlot("agent", Relation.AGENT_OF, _AGENTIVE),
+        FrameSlot("agent", Relation.AGENT_OF, _AGENTIVE, group_types=_HUMAN_GROUP),
         # Literal purchases of physical goods; abstract/idiomatic senses of
         # "buy" (buy an idea, buy time) need their own selection constraints.
-        FrameSlot("theme", Relation.THEME_OF, frozenset({Label.PHYSICAL_OBJECT})),
+        FrameSlot("theme", Relation.THEME_OF, frozenset({Label.PHYSICAL_OBJECT, Label.GROUP}),
+                  group_types=_OBJECT_GROUP),
         _LOCATION_ADJUNCT,
         _TIME_ADJUNCT,
     ),

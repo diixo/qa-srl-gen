@@ -205,6 +205,7 @@ def _encode_mention(item: EntityMention, run_id: str) -> dict[str, Any]:
         "head_token": item.head_token,
         "normalized_form": item.normalized_form,
         "type_grounded": item.type_grounded,
+        **({"number": item.number} if item.number is not None else {}),
         "confidence": item.confidence,
         "source": item.source,
         "review_status": str(item.review_status),
@@ -271,6 +272,7 @@ def _decode_span_record(data: Mapping[str, Any]):
             head_token=data.get("head_token"),
             normalized_form=data.get("normalized_form"),
             type_grounded=bool(data.get("type_grounded", True)),
+            number=data.get("number"),
             **common,
         )
     if kind == "predicate":

@@ -207,6 +207,22 @@ class WorkspaceTests(TestCase):
         self.assertIn('EMOTION', give_theme['excludes'])
         self.assertTrue(all(c > 0 for c in give_theme['counts']))
 
+    def test_pool_coverage_respects_group_subtypes(self):
+        from semantic_corpus.semantic_generator import EntityPool
+        from semantic_corpus.semantic_generator.substitutions import entity_from_json
+        pool = EntityPool(entity_from_json(row) for row in [
+            {'text': 'the team', 'labels': ['GROUP'], 'type': 'human_group'},
+            {'text': 'a herd', 'labels': ['GROUP'], 'type': 'animal_group'},
+            {'text': 'a bundle', 'labels': ['GROUP'], 'type': 'physical_object_group'},
+            {'text': 'an unknown group', 'labels': ['GROUP']},
+        ])
+        with patch.object(catalog, 'get_pool', return_value=pool):
+            data = catalog.pool_monitor()
+        slots = {(s['frame'], s['name']): s for s in data['slots']}
+        self.assertEqual(sum(slots['buy', 'agent']['counts']), 1)
+        self.assertEqual(sum(slots['buy', 'theme']['counts']), 1)
+        self.assertEqual(slots['buy', 'agent']['group_types'], 'human_group')
+
     def test_worker_settings_and_paused_queue(self):
         self.client.post(reverse('app_main:worker_control'), {'action': 'capacity', 'capacity': 4})
         self.assertEqual(Worker.objects.get().capacity, 4)

@@ -297,6 +297,13 @@ def test_a_repeated_pair_under_different_contexts_is_not_fatal(tmp_path):
     assert report.to_json()["repeated_qa_count"] == 1
 
 
+def test_held_out_names_require_whole_phrase_matches(tmp_path):
+    store = CorpusStore(tmp_path / "phrases")
+    store.add_document(Document("a", "An Indian met a blogger in North America.", split="train"))
+    report = build_report(store, held_out_names=["India", "a blog", "America"])
+    assert [(f.kind, f.key) for f in report.leakage] == [("held-out-name", "America")]
+
+
 def test_a_run_under_another_ontology_is_reported(tmp_path):
     store = CorpusStore(tmp_path / "s")
     store.add_document(Document("a", "One.", split="train"))

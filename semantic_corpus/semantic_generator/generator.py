@@ -122,11 +122,11 @@ class Generator:
             if slot.optional and self._rng.random() >= self.optional_slot_probability:
                 continue
             try:
-                entity = self.pool.sample(
-                    slot.types,
+                entity = self.pool.sample_slot(
+                    slot,
                     self._rng,
                     exclude=used if distinct else (),
-                    exclude_labels=slot.excludes,
+                    hierarchy=self.hierarchy,
                 )
             except LookupError:
                 if slot.optional:
@@ -140,6 +140,7 @@ class Generator:
             bindings=bindings,
             forms=self.forms_for(frame),
             features=features or Features(tense=self._rng.choice(("past", "present"))),
+            hierarchy=self.hierarchy,
         )
 
     def generate(self, count: int) -> Iterator[RealizedSituation]:
@@ -269,7 +270,8 @@ class Generator:
             for slot in frame.slots:
                 if slot.optional or slot.name in frame.adjunct_slots:
                     continue
-                if slot.accepts(entity.labels.labels):
+                if slot.accepts(entity.labels.labels, type_name=entity.type_name,
+                                hierarchy=self.hierarchy):
                     return frame, slot.name
         return None
 

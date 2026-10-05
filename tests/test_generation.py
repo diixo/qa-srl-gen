@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import replace
+import re
 
 import pytest
 
@@ -269,7 +270,9 @@ def test_held_out_names_never_appear_in_training():
     held_out = Generator(seed=5, split="test").pool.surface_forms
     assert held_out
     for name in held_out:
-        assert not any(name in sentence for sentence in train), name
+        # A held-out "America" must not match the distinct word "American".
+        pattern = re.compile(r"(?<!\w)" + re.escape(name) + r"(?!\w)")
+        assert not any(pattern.search(sentence) for sentence in train), name
 
 
 def test_splits_partition_the_pool():

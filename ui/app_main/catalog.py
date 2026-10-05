@@ -7,6 +7,7 @@ from pathlib import Path
 from django.conf import settings
 
 from semantic_corpus.semantic_generator import DEFAULT_FRAMES, default_pool
+from semantic_corpus.ontology import load_default_hierarchy
 from semantic_corpus.semantic_generator.substitutions import load_pool
 from semantic_corpus.storage import TABLES
 
@@ -103,13 +104,15 @@ def get_pool(value=''):
 
 def pool_monitor(value=''):
     pool = get_pool(value)
+    hierarchy = load_default_hierarchy()
     partitions = {name: pool.split(name) for name in ('train', 'dev', 'test')}
     slots = []
     for frame in DEFAULT_FRAMES:
         for slot in frame.slots:
-            counts = [len(part.matching(slot.types, slot.excludes)) for part in partitions.values()]
+            counts = [len(part.matching_slot(slot, hierarchy)) for part in partitions.values()]
             slots.append(dict(frame=frame.lemma, name=slot.name, role=str(slot.role),
                 types=', '.join(sorted(map(str, slot.types))),
+                group_types=', '.join(sorted(slot.group_types)),
                 excludes=', '.join(sorted(map(str, slot.excludes))), optional=slot.optional,
                 counts=counts, empty=any(c == 0 for c in counts)))
     return dict(pool=pool, slots=slots, frames=DEFAULT_FRAMES,

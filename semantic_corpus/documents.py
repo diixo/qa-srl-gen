@@ -282,8 +282,12 @@ class EntityMention:
     review_status: ReviewStatus = ReviewStatus.UNREVIEWED
     # Synthetic knowledge is not necessarily stated in the surface text.
     type_grounded: bool = True
+    # Optional for imported/older records; synthetic pools specify agreement.
+    number: str | None = None
 
     def __post_init__(self) -> None:
+        if self.number not in (None, "singular", "plural"):
+            raise ValueError("mention number must be singular, plural or None")
         problems = self.labels.problems()
         if problems:
             raise ValueError(f"{self.exact_text!r}: {'; '.join(problems)}")

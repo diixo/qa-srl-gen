@@ -441,7 +441,7 @@ def test_a_bare_locative_object_is_not_an_adjunct():
         for m in run.mentions
         if m.exact_text in document.text.split("visit")[-1]
     )
-    assert f"{destination}." in answers, answers
+    assert f"{destination[:1].upper()}{destination[1:]}." in answers, answers
     assert not any(
         a.startswith("In ") and destination in a for a in answers
     ), answers

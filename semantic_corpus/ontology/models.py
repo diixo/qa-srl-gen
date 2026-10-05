@@ -47,6 +47,7 @@ class Label(str, Enum):
     PERSON = "PERSON"
     ANIMAL = "ANIMAL"
     ORGANIZATION = "ORGANIZATION"
+    GROUP = "GROUP"
     LOCATION = "LOCATION"
     PHYSICAL_OBJECT = "PHYSICAL_OBJECT"
     ABSTRACT_ENTITY = "ABSTRACT_ENTITY"
@@ -75,6 +76,7 @@ ENTITY_LABELS: frozenset[Label] = frozenset(
         Label.PERSON,
         Label.ANIMAL,
         Label.ORGANIZATION,
+        Label.GROUP,
         Label.LOCATION,
         Label.PHYSICAL_OBJECT,
         Label.ABSTRACT_ENTITY,

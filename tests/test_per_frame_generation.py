@@ -1,6 +1,7 @@
 """Per-frame quotas, stable records and the synthetic CLI contract."""
 
 from collections import Counter, defaultdict
+from dataclasses import replace
 
 import pytest
 
@@ -51,7 +52,9 @@ def test_document_ids_annotations_and_qa_are_stable_across_frame_additions():
                                       ambiguous_forms=generator.pool.ambiguous_forms())
         pairs = iter_canonical(generator.generate_per_frame(count), prefix='stable',
                                split='train', random_seed=13, per_frame_ids=True)
-        return {doc.document_id: (doc, run, questions.for_document(doc, run)) for doc, run in pairs}
+        # Provenance timestamps describe each execution; generated content must repeat.
+        return {doc.document_id: (doc, replace(run, created_at=""), questions.for_document(doc, run))
+                for doc, run in pairs}
 
     old = records(DEFAULT_FRAMES[:-1], 3)
     new = records(DEFAULT_FRAMES[::-1], 5)

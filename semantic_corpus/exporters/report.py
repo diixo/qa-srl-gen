@@ -23,6 +23,7 @@ Nothing here modifies the store. A report is a reading.
 from __future__ import annotations
 
 from collections import Counter
+import re
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Iterable
@@ -159,6 +160,12 @@ def build_report(
     text_by_hash: dict[str, list[tuple[str, str | None]]] = {}
     split_of: dict[str, str | None] = {}
     held_out_names = tuple(name for name in held_out_names if name)
+    # Match a whole surface phrase, not "India" inside "Indian" or
+    # "a blog" inside "a blogger". Longer names such as North America count.
+    held_out_patterns = {
+        name: re.compile(r"(?<!\w)" + re.escape(name) + r"(?!\w)")
+        for name in held_out_names
+    }
     found_names: set[str] = set()
     run_ids = {h["run_id"] for h in store.read("annotation_runs")}
     orphan_counts: Counter = Counter()
@@ -171,7 +178,8 @@ def build_report(
             (row["document_id"], split)
         )
         if split == "train":
-            found_names.update(name for name in held_out_names if name in row["text"])
+            found_names.update(name for name, pattern in held_out_patterns.items()
+                               if pattern.search(row["text"]))
 
     # Same text in two splits: the failure an id-based check cannot see.
     for digest, entries in text_by_hash.items():

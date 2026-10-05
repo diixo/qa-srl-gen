@@ -27,7 +27,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable, Mapping, Sequence
 
-from ..ontology import Label, LabelSet, TypeHierarchy
+from ..ontology import Label, LabelSet, TypeHierarchy, load_default_hierarchy
+from .frames import FrameSlot
 
 __all__ = [
     "Entity",
@@ -77,8 +78,11 @@ class Entity:
     property_head: str | None = None
     property_degree: str | None = None
     property_negated: bool = False
+    number: str = "singular"
 
     def __post_init__(self) -> None:
+        if self.number not in ("singular", "plural"):
+            raise ValueError(f"{self.text!r}: number must be singular or plural")
         problems = self.labels.problems()
         if problems:
             raise ValueError(f"{self.text!r}: {'; '.join(problems)}")
@@ -190,6 +194,25 @@ class EntityPool:
     def readings(self, text: str) -> tuple[Entity, ...]:
         """All entries sharing a surface form — the ambiguity of that name."""
         return tuple(e for e in self._entities if e.text == text)
+
+    def matching_slot(
+        self, slot: FrameSlot, hierarchy: TypeHierarchy | None = None,
+    ) -> tuple[Entity, ...]:
+        """Slot coverage including GROUP subtype restrictions."""
+        hierarchy = hierarchy or load_default_hierarchy()
+        return tuple(e for e in self._entities if slot.accepts(
+            e.labels.labels, type_name=e.type_name, hierarchy=hierarchy,
+        ))
+
+    def sample_slot(
+        self, slot: FrameSlot, rng: random.Random, *,
+        hierarchy: TypeHierarchy | None = None, exclude: Iterable[str] = (),
+    ) -> Entity:
+        banned = set(exclude)
+        choices = [e for e in self.matching_slot(slot, hierarchy) if e.text not in banned]
+        if not choices:
+            raise LookupError(f"no entity in the pool matches {slot}")
+        return rng.choice(choices)
 
     def ambiguous_forms(self) -> tuple[str, ...]:
         """Surface forms with readings under more than one entity label."""
@@ -326,6 +349,7 @@ def entity_from_json(row: Mapping[str, object]) -> Entity:
         appositive=row.get("appositive"),  # type: ignore[arg-type]
         property_head=row.get("property_head"),  # type: ignore[arg-type]
         property_degree=row.get("property_degree"),  # type: ignore[arg-type]
+        number=row.get("number", "singular"),  # type: ignore[arg-type]
     )
 
 
@@ -342,6 +366,7 @@ def entity_to_json(entity: Entity) -> dict[str, object]:
         ("appositive", entity.appositive),
         ("property_head", entity.property_head),
         ("property_degree", entity.property_degree),
+        ("number", entity.number if entity.number != "singular" else None),
     ):
         if value:
             row[key] = value

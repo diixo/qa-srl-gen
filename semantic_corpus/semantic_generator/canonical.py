@@ -156,6 +156,8 @@ def to_annotation_run(
                 exact_text=mention.text,
                 labels=mention.labels,
                 normalized_form=_normalized_form(mention.slot, situation),
+                number=(situation.bindings[mention.slot].number
+                        if mention.slot in situation.bindings else None),
                 type_grounded=(
                     Label.NAMED_ENTITY not in mention.labels
                     or bool(situation.bindings[mention.slot.split(':')[0]].appositive)

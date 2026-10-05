@@ -35,6 +35,7 @@ from .answers import NO_ANSWER_REPLIES, QAExample, QAKind
 from .templates import (
     ParadigmResolver,
     _inline,
+    _copula,
     active_verb_words,
     build_views,
     type_is_grounded,
@@ -198,7 +199,7 @@ def underdetermined_type_questions(
         examples.append(
             QAExample(
                 context=body,
-                question=f"What kind of entity is {mention.exact_text}?",
+                question=f"What kind of entity {_copula(mention)} {mention.exact_text}?",
                 answer=_reply(rng),
                 kind=QAKind.NO_ANSWER,
                 answerable=False,

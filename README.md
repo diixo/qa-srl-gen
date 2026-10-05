@@ -154,12 +154,19 @@ It runs without `artifacts/`, network access or a Scala runtime.
 | `exporters/report.py` | class distribution and leakage |
 | `cli.py` | `inspect`, `roundtrip`, `validate`, `lookup`, `frames`, `generate`, `ambiguity`, `ingest`, `candidates`, `annotate`, `questions`, `build`, `report` |
 
-Generator version `0.4.0` makes the UI's **Situations per frame** field and
-`--count` in `generate`, `questions` and `build` a quota for **each frame**.
+Since generator version `0.4.0`, the UI's **Situations per frame** field and
+`--count` in `generate`, `questions` and `build` specify a quota for **each frame**.
 For eight frames, `100` requests 800 distinct situation texts, before QA generation.
 The UI shows the total before submission and in job progress. Small pools may
 exhaust the bounded sampler: reduce the quota or expand the selected split's pool.
 Failed UI jobs may contain partial data and do not publish a completed version.
+
+Generator version `0.5.0` adds the `GROUP` entity label with `human_group`,
+`animal_group` and `physical_object_group` subtypes. Slot constraints distinguish
+groups of people from groups of objects. Pool entries may specify
+`"number": "plural"` (for example, `the police`); omitted number means singular.
+Agreement is preserved in generated sentences, stored mentions and questions.
+Older stores remain readable; rebuild generated datasets to use the new pool.
 
 Each lemma has an independent seeded stream and document numbering. Adding or
 reordering frames preserves existing frames' texts, IDs and QA when definitions,

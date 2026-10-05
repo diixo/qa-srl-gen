@@ -51,6 +51,7 @@ from ..documents import (
     TextSpan,
 )
 from ..ontology import Label, Relation, TypeHierarchy, load_default_hierarchy
+from ..agreement import verb_words
 from ..qasrl_core.frame import ArgStructure, Frame as VerbFrame
 from ..qasrl_core.inflections import DO_FORMS, InflectionLexicon
 from ..qasrl_core.models import InflectedForms
@@ -137,10 +138,17 @@ def _article(word: str) -> str:
 
 
 def _wh_for(mention: EntityMention) -> str:
+    if Label.GROUP in mention.labels:
+        return "Which group"
     return "Who" if mention.labels.labels & _ANIMATE_LABELS else "What"
 
 
-def _readable(label: Label) -> str:
+def _copula(mention: EntityMention | None, *, past: bool = False) -> str:
+    plural = mention is not None and mention.number == "plural"
+    return ("were" if plural else "was") if past else ("are" if plural else "is")
+
+
+def _readable(label: Label | str) -> str:
     """``PHYSICAL_OBJECT`` as a phrase a question can contain."""
     return str(label).lower().replace("_", " ")
 
@@ -225,6 +233,7 @@ def _verb_words(
     subject_present: bool,
     negated: bool | None = None,
     passive: bool | None = None,
+    subject: EntityMention | None = None,
 ) -> list[str]:
     """The verb sequence, with do-support where English needs it.
 
@@ -244,10 +253,8 @@ def _verb_words(
         is_progressive="progressive" in aspect,
         is_negated=is_negated,
     )
-    stack = frame.get_verb_stack()
-    if subject_present:
-        stack = frame.split_verb_stack_if_necessary(stack)
-    return stack
+    return verb_words(frame, plural=subject is not None and subject.number == "plural",
+                      question=subject_present)
 
 
 def active_verb_words(predicate: Predicate, resolver: ParadigmResolver) -> list[str]:
@@ -386,7 +393,7 @@ def _clause(view: ArgumentView, resolver: ParadigmResolver) -> str:
     answer *Yavin visit Vustal.*
     """
     words = _verb_words(
-        view.predicate, resolver, subject_present=False, passive=False
+        view.predicate, resolver, subject_present=False, passive=False, subject=view.agent
     )
     parts = [
         _inline(view.agent),
@@ -456,7 +463,7 @@ def atomic_questions(
         # Any other argument: the subject is spelled out, so do-support appears.
         if theme is not None and agent is not None:
             aux, *rest = _verb_words(
-                predicate, resolver, subject_present=True, passive=False
+                predicate, resolver, subject_present=True, passive=False, subject=agent
             )
             examples.append(
                 example(
@@ -476,7 +483,7 @@ def atomic_questions(
 
         if recipient is not None and agent is not None:
             aux, *rest = _verb_words(
-                predicate, resolver, subject_present=True, passive=False
+                predicate, resolver, subject_present=True, passive=False, subject=agent
             )
             examples.append(
                 example(
@@ -499,7 +506,7 @@ def atomic_questions(
             wh = _WH_FOR_ADJUNCT[relation]
             if agent is not None:
                 aux, *rest = _verb_words(
-                    predicate, resolver, subject_present=True, passive=False
+                    predicate, resolver, subject_present=True, passive=False, subject=agent
                 )
                 question = _question([wh, aux, _inline(agent), *rest, _inline(theme)])
             else:
@@ -514,7 +521,7 @@ def atomic_questions(
         if agent is not None:
             aux, *rest = _verb_words(
                 replace(predicate, lemma="do"), resolver,
-                subject_present=True, passive=False
+                subject_present=True, passive=False, subject=agent
             )
             examples.append(
                 QAExample(
@@ -574,13 +581,14 @@ def passive_paraphrase_questions(
 
         # Agent questioned: the passive subject is spelled out.
         aux, *rest = _verb_words(
-            view.predicate, resolver, subject_present=True, passive=True
+            view.predicate, resolver, subject_present=True, passive=True, subject=theme
         )
         examples.append(
             QAExample(
                 context=body,
                 question=_question(
-                    ["By whom", aux, _inline(theme), *rest, _to_phrase(recipient)]
+                    ["By which group" if Label.GROUP in agent.labels else "By whom",
+                     aux, _inline(theme), *rest, _to_phrase(recipient)]
                 ),
                 answer=phrase_answer(agent.exact_text),
                 kind=QAKind.PARAPHRASE,
@@ -677,7 +685,7 @@ def entity_type_questions(
         examples.append(
             QAExample(
                 context=body,
-                question=f"What kind of entity is {_inline(mention)}?",
+                question=f"What kind of entity {_copula(mention)} {_inline(mention)}?",
                 answer=phrase_answer(_readable(entity_label)),
                 kind=QAKind.ENTITY_TYPE,
                 document_id=document.document_id,
@@ -737,7 +745,7 @@ def contextual_questions(document: Document, run: AnnotationRun) -> list[QAExamp
         examples.append(
             QAExample(
                 context=context,
-                question=f"What kind of entity is {_inline(mention)}?",
+                question=f"What kind of entity {_copula(mention)} {_inline(mention)}?",
                 answer=phrase_answer(_readable(label)),
                 kind=QAKind.CONTEXTUAL,
                 document_id=document.document_id,
@@ -772,17 +780,18 @@ def ontology_questions(
         if len(ancestors) < 2:
             continue
         top = ancestors[-1]
-        if ancestors[1] == top:
+        if ancestors[1] == top and top != Label.GROUP.value:
             continue
         top_words = _readable(top)
+        type_words = _readable(type_name)
         subject = sentence_case(_inline(mention))
         examples.append(
             QAExample(
                 context=body,
-                question=f"Is {_inline(mention)} {_article(top_words)} {top_words}?",
+                question=f"{_copula(mention).capitalize()} {_inline(mention)} {_article(top_words)} {top_words}?",
                 answer=(
-                    f"Yes. {subject} is {_article(type_name)} {type_name}, "
-                    f"and every {type_name} is {_article(top_words)} {top_words}."
+                    f"Yes. {subject} {_copula(mention)} {_article(type_words)} {type_words}, "
+                    f"and every {type_words} is {_article(top_words)} {top_words}."
                 ),
                 kind=QAKind.ONTOLOGY,
                 document_id=document.document_id,
@@ -847,7 +856,7 @@ def property_questions(
         examples.append(
             QAExample(
                 context=body,
-                question=f"What {kind_word} was {subject}?",
+                question=f"What {kind_word} {_copula(target, past=True)} {subject}?",
                 answer=phrase_answer(prop.exact_text),
                 kind=QAKind.PROPERTY,
                 document_id=document.document_id,
@@ -864,7 +873,7 @@ def property_questions(
             examples.append(
                 QAExample(
                     context=body,
-                    question=f"To what degree was {subject} {prop.head}?",
+                    question=f"To what degree {_copula(target, past=True)} {subject} {prop.head}?",
                     answer=phrase_answer(
                         _degree_answer(prop.head, prop.degree, prop.negated)
                     ),
@@ -904,6 +913,7 @@ def yes_no_questions(
             subject_present=True,
             negated=False,
             passive=False,
+            subject=agent,
         )
         examples.append(
             QAExample(
@@ -992,7 +1002,7 @@ def compound_questions(
             QAExample(
                 context=body,
                 question=(
-                    f"Who {' '.join(active_verb_words(view.predicate, resolver))} "
+                    f"{_wh_for(agent)} {' '.join(active_verb_words(view.predicate, resolver))} "
                     f"{_inline(theme)}, and {wh}?"
                 ),
                 answer=phrase_answer(
