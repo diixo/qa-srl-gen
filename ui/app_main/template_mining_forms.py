@@ -7,13 +7,14 @@ from .template_mining import resolve_source_path, source_file_suffix
 
 class TemplateMiningForm(forms.Form):
     text = forms.CharField(
-        label='English text',
+        label='',
         required=False,
         strip=False,
         max_length=500000,
         widget=forms.Textarea(attrs={
-            'rows': 9,
+            'rows': 16,
             'class': 'form-control',
+            'aria-label': 'English text',
             'placeholder': 'She picked up the book.\nThey visited a beautiful city.',
         }),
         help_text='Each non-empty line becomes one source record. '

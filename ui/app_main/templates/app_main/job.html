@@ -84,6 +84,29 @@
     </p>
 {% endif %}
 
+{% if mined_summary %}
+    <section class="panel mb-4">
+        <h2>Mined template QA</h2>
+        <div class="row g-3">
+            <div class="col-md-4">Annotated documents: <strong>{{ mined_summary.annotated_documents|default:0 }}</strong></div>
+            <div class="col-md-4">QA examples: <strong>{{ mined_summary.qa_examples|default:0 }}</strong></div>
+            <div class="col-md-4">Pending or partial: <strong>{{ mined_summary.pending_documents|default:0 }}</strong></div>
+        </div>
+        <p class="small text-secondary mt-3 mb-0">Mined annotations and QA are automatic candidates with UNREVIEWED status. Unsupported clauses remain available for further annotation.</p>
+        <p class="small text-secondary mt-2 mb-0">Candidate QA are included in SFT. BIO/BILOU export requires full annotation of these documents.</p>
+        {% if mined_summary.skip_reasons %}
+            <details class="mt-3">
+                <summary>Skipped clause reasons</summary>
+                <ul class="mt-2 mb-0">
+                    {% for reason, count in mined_summary.skip_reasons.items %}
+                        <li>{{ reason }}: {{ count }}</li>
+                    {% endfor %}
+                </ul>
+            </details>
+        {% endif %}
+    </section>
+{% endif %}
+
 {% if quality %}
     <section class="panel mb-4">
         <h2>Result quality</h2>

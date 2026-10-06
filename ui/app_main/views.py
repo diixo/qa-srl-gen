@@ -165,6 +165,13 @@ def job_detail(request, pk):
         except (OSError, ValueError):
             continue
     published_bank = ''
+    try:
+        generation_summary = catalog.read_json(catalog.job_root(job) / 'generation-summary.json', {})
+    except (OSError, ValueError):
+        generation_summary = {}
+    mined_summary = generation_summary.get('mined') if isinstance(generation_summary, dict) else None
+    if not isinstance(mined_summary, dict) or 'annotated_documents' not in mined_summary:
+        mined_summary = None  # Historical jobs did not run template semantics.
     if job.operation == 'template_mining':
         published_path = settings.REPO_ROOT / 'data/mined-templates' / str(job.pk)
         try:
@@ -176,6 +183,7 @@ def job_detail(request, pk):
     return page(request, 'job.html', title=job.get_operation_display(), nav_active='jobs', job=job,
         log=log_tail(job), files=artifacts(job), reports=reports,
         quality=quality, result_store=store, published_bank=published_bank,
+        mined_summary=mined_summary,
         config_json=json.dumps(job.config, ensure_ascii=False, indent=2))
 
 

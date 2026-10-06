@@ -37,7 +37,7 @@
                 </tbody>
             </table>
         </div>
-        <p class="small text-secondary mb-0">Alternative readings can overlap the primary inventories. Mined syntax remains UNREVIEWED; its generated documents need semantic annotation before QA and training export. Curated frames produce verified annotations and QA directly. Full source occurrences remain available for auditing.</p>
+        <p class="small text-secondary mb-0">Alternative readings can overlap the primary inventories. Synthetic corpus derives semantic candidates and QA from supported mined clauses; these remain UNREVIEWED. Unsupported clauses are reported for further annotation. Curated frames produce verified annotations and QA directly. Full source occurrences remain available for auditing.</p>
     {% else %}
         <p class="text-warning mb-0">Mined resources are {{ monitor.resources.status }}. {{ monitor.resources.error }} Restore them to include mined templates, or explicitly set Examples per mined template to 0 in Synthetic corpus.</p>
     {% endif %}

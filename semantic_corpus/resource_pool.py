@@ -146,6 +146,10 @@ class BuiltInPool:
         result = {"resource_scope": RESOURCE_SCOPE, "entities_sha256": fingerprint(entities),
                   "frames": [frame.lemma for frame in self.frames]}
         if include_mined:
+            from .template_semantics import VERSION
+            result['template_semantics'] = VERSION
+            path = self.repo_root / 'data/wiktionary/en_verb_inflections.txt'
+            result['semantic_inflections_sha256'] = sha256(path.read_bytes()).hexdigest() if path.is_file() else None
             result.update(bank_manifest_sha256=fingerprint(self.bank.manifest),
                           bank_source_sha256=self.bank.manifest.get("source_sha256"),
                           mined_split_policy=SPLIT_POLICY)
@@ -160,8 +164,8 @@ class BuiltInPool:
                         adjective=None, recombine=False, stats=None, progress=None):
         """Render all selected patterns, then keep the requested stable split.
 
-        The quota applies before split filtering and store deduplication. These
-        documents deliberately have no AnnotationRun until semantic annotation.
+        The quota applies before split filtering and store deduplication.
+        Use mined_records to additionally derive semantic candidates and QA.
         """
         if count < 0:
             raise ValueError("examples per mined template cannot be negative")
@@ -205,3 +209,18 @@ class BuiltInPool:
             raise ValueError("no templates match the selection")
         if progress:
             progress(dict(stats))
+
+    @cached_property
+    def template_annotator(self):
+        from .qasrl_core.inflections import load_inflections
+        from .template_semantics import TemplateAnnotator
+        path = self.repo_root / 'data/wiktionary/en_verb_inflections.txt'
+        lexicon = load_inflections(path) if path.is_file() else None
+        return TemplateAnnotator(entities=self.entities, frames=self.frames,
+                                 paradigms=self.paradigms, lexicon=lexicon)
+
+    def mined_records(self, **options):
+        """Render and annotate the same stream, preserving unsupported records."""
+        for document in self.mined_documents(**options):
+            result = self.template_annotator.annotate(document, seed=options.get('seed', 0))
+            yield result.document, result.run

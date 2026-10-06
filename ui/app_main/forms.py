@@ -14,7 +14,7 @@ class JobForm(forms.Form):
     store = forms.ChoiceField(label='Source corpus', required=False)
     input_format = forms.ChoiceField(label='Text format', choices=[
         ('text', 'TXT / JSONL with a text field'), ('dialogue', 'JSONL: list of dialogue turns')])
-    count = forms.IntegerField(label='Situations per frame', min_value=1, max_value=1000000, initial=100)
+    count = forms.IntegerField(label='Situations per frame', min_value=1, max_value=1000000, initial=20)
     template_count = forms.IntegerField(label='Examples per mined template', min_value=0, max_value=1000000,
         initial=1, required=False,
         help_text='Every mined template is included. Set 0 to skip mined templates. '
@@ -34,7 +34,7 @@ class JobForm(forms.Form):
     no_answer_share = forms.FloatField(label='Maximum unanswerable share', min_value=0, max_value=1, required=False)
     teacher = forms.ChoiceField(label='Teacher', choices=[('rules', 'Rules (offline)'), ('http', 'HTTP teacher')])
     pending_only = forms.BooleanField(label='Only documents awaiting annotation', initial=True, required=False,
-        help_text='Preserve existing annotations and apply the document limit only to documents without an annotation run.')
+        help_text='Annotate documents without a run and incomplete mined annotations. Preserve completed runs.')
     teacher_url = forms.URLField(label='HTTP teacher URL', required=False, assume_scheme='http')
     model = forms.CharField(label='Model name', initial='http-teacher', required=False, max_length=100)
     text = forms.CharField(label='Text / verbs', widget=forms.Textarea(attrs={'rows': 5}), required=False, max_length=50000)

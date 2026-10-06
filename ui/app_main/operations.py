@@ -180,12 +180,30 @@ def _execute_exports(job, out, c, progress):
 def _execute_corpus(job, out, c, progress):
     operation = job.operation
     limit = c.get('limit')
+    annotation_ids = None
     if operation in ('annotate', 'questions'):
         progress('Creating an independent copy of the corpus')
-        # Regeneration must honour the new balance settings even if the source
-        # already has QA. The source itself remains untouched.
-        ignored = shutil.ignore_patterns('qa_examples.jsonl', 'dataset_versions.jsonl') if operation == 'questions' else None
-        shutil.copytree(store_path(c['store']), out / 'store', ignore=ignored)
+        source_path = store_path(c['store'])
+        if operation == 'annotate':
+            from semantic_corpus.template_semantics import needs_annotation
+            source = CorpusStore(source_path, create=False)
+            documents = source.documents()
+            if c.get('pending_only', False):
+                documents = (doc for doc in documents
+                             if needs_annotation(doc, source.runs(document_id=doc.document_id)))
+            annotation_ids = {doc.document_id for doc in islice(documents, limit)}
+        # Build a fresh QA table before opening the new store. Old candidates
+        # must neither survive reannotation nor win deduplication over teacher
+        # QA with identical wording. Keep the exact rows of untouched documents,
+        # including generation-run provenance. Historical runs stay in the copy.
+        ignored = shutil.ignore_patterns('qa_examples.jsonl', 'dataset_versions.jsonl')
+        shutil.copytree(source_path, out / 'store', ignore=ignored)
+        if annotation_ids is not None and (source_path / 'qa_examples.jsonl').is_file():
+            with (source_path / 'qa_examples.jsonl').open('rb') as source_qa, \
+                    (out / 'store/qa_examples.jsonl').open('xb') as retained_qa:
+                for row in source_qa:
+                    if row.strip() and json.loads(row)['document_id'] not in annotation_ids:
+                        retained_qa.write(row)
     store = CorpusStore(out / 'store')
     generator = None
     resources = None
@@ -233,6 +251,7 @@ def _execute_corpus(job, out, c, progress):
             processed = i
             progress('Generation → annotations → QA', i, total, qa=qa)
         if resources is not None:
+            from semantic_corpus.template_semantics import accumulate_coverage
             build_summary['curated_generated'] = processed
             build_summary['curated_duplicates'] = processed - build_summary['curated_stored']
             mined = build_summary['mined']
@@ -240,16 +259,24 @@ def _execute_corpus(job, out, c, progress):
                 progress('Generating from the built-in mined templates', stats['rendered'],
                          stored=mined['stored'], split_excluded=stats['split_excluded'], qa=qa)
             progress('Generating from the built-in mined templates')
-            for doc in resources.mined_documents(count=c.get('template_count', 1), seed=c['seed'],
+            for doc, run in resources.mined_records(count=c.get('template_count', 1), seed=c['seed'],
                     split=c['split'], lemma=c.get('template_verb') or None,
                     adjective=c.get('template_adjective') or None,
                     recombine=c.get('recombine', False), stats=mined, progress=mined_progress):
                 if store.add_document(doc):
                     mined['stored'] += 1
+                    added_qa = 0
+                    if run is not None:
+                        store.add_run(run, doc)
+                        examples = balance(questions.for_document(doc, run), seed=c['seed'],
+                            max_per_kind=c.get('max_per_kind'), no_answer_share=c.get('no_answer_share'))
+                        added_qa = store.add_examples(examples, generation_run_id=run.run_id)
+                        qa += added_qa
+                    accumulate_coverage(mined, doc, run, added_qa)
                 else:
                     mined['duplicates'] += 1
             processed += mined['rendered']
-            build_summary.update(qa_examples=qa, pending_annotation=mined['stored'])
+            build_summary.update(qa_examples=qa, pending_annotation=mined.get('pending_documents', 0))
             (out / 'generation-summary.json').write_text(
                 json.dumps(build_summary, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     elif operation == 'bank':
@@ -276,13 +303,8 @@ def _execute_corpus(job, out, c, progress):
         resources = CandidateResources.load(wiktionary_dir=str(settings.REPO_ROOT / 'data/wiktionary'))
         teacher = RuleBasedTeacher() if c['teacher'] == 'rules' else HttpTeacher(
             c['teacher_url'], name=c['model'], labels=[str(label) for label in Label])
-        documents = store.documents()
-        if c.get('pending_only', False):
-            # A unified build already contains verified curated runs. Apply
-            # the limit to pending documents, without replacing those runs.
-            documents = (doc for doc in documents
-                         if next(store.runs(document_id=doc.document_id), None) is None)
-        for doc in islice(documents, limit):
+        documents = (doc for doc in store.documents() if doc.document_id in annotation_ids)
+        for doc in documents:
             outcome = annotate_document(doc, teacher, run_id=f'{job.pk}-{processed}', resources=resources,
                                         random_seed=c['seed'])
             if not outcome.ok:

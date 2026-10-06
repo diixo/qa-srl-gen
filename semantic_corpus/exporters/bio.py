@@ -47,12 +47,14 @@ class BioReport:
     dropped_labels: int = 0
     dropped_unrepresentable: int = 0
     lost_predicate_links: int = 0
+    skipped_mined_candidates: int = 0
     dropped_examples: list[str] = field(default_factory=list)
 
     @property
     def is_lossless(self) -> bool:
         return (self.dropped_overlapping == 0 and self.dropped_labels == 0
-                and self.dropped_unrepresentable == 0 and self.lost_predicate_links == 0)
+                and self.dropped_unrepresentable == 0 and self.lost_predicate_links == 0
+                and self.skipped_mined_candidates == 0)
 
     def note(self, message: str) -> None:
         if len(self.dropped_examples) < 20:
@@ -69,7 +71,8 @@ class BioReport:
             head
             + f"; dropped {self.dropped_overlapping} overlapping spans and "
             f"{self.dropped_labels} extra labels, {self.dropped_unrepresentable} unrepresentable spans, "
-            f"{self.lost_predicate_links} links between predicate parts"
+            f"{self.lost_predicate_links} links between predicate parts; "
+            f"skipped {self.skipped_mined_candidates} mined candidate documents"
         )
 
 
@@ -195,7 +198,15 @@ def export_bio(
     report = BioReport()
 
     def rows() -> Iterator[dict[str, Any]]:
+        from ..template_semantics import SOURCE
         for document, run in pairs:
+            if run.model_name == SOURCE:
+                # Extractive QA can use a known argument without assigning
+                # every token an entity/event type. BIO cannot express that
+                # uncertainty: unlabelled tokens would become false O targets.
+                report.skipped_mined_candidates += 1
+                report.note(f"{document.document_id}: mined candidates need full annotation before BIO export")
+                continue
             yield tag_document(document, run, scheme=scheme, report=report).to_json()
 
     write_jsonl(path, rows())

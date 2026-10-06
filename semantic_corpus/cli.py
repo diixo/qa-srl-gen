@@ -310,6 +310,7 @@ def cmd_build(args: argparse.Namespace) -> int:
     from .storage import CorpusStore
     from .storage.repository import GENERATOR_VERSION, StoreError
     from .resource_pool import BuiltInPool, RESOURCE_SCOPE
+    from .template_semantics import accumulate_coverage, needs_annotation
 
     resources = BuiltInPool()
     resource_metadata = resources.metadata(include_mined=args.template_count > 0)
@@ -346,8 +347,8 @@ def cmd_build(args: argparse.Namespace) -> int:
                               split=args.split, random_seed=args.seed, per_frame_ids=True)
 
     mined_stats = dict(stored=0, duplicates=0)
-    def mined_documents(stats=None):
-        return resources.mined_documents(count=args.template_count, seed=args.seed,
+    def mined_records(stats=None):
+        return resources.mined_records(count=args.template_count, seed=args.seed,
             split=args.split, lemma=args.template_verb, adjective=args.template_adjective,
             recombine=args.recombine, stats=stats)
 
@@ -376,7 +377,7 @@ def cmd_build(args: argparse.Namespace) -> int:
     # Validate the whole selected mined stream before appending either kind of
     # document. In particular, a late impossible per-template quota must not
     # leave a partly built corpus. The bank is streamed twice, never held in RAM.
-    for document in mined_documents():
+    for document, run in mined_records():
         existing = store.document(document.document_id)
         if existing is not None and existing != document:
             raise StoreError(f"mined document {document.document_id!r} is immutable")
@@ -384,6 +385,8 @@ def cmd_build(args: argparse.Namespace) -> int:
             raise StoreError("duplicate text cannot cross splits")
         if previous is not None and existing is None and document.sha256 not in known_content:
             raise StoreError(f"version {args.version!r} exists; use a new version")
+        if existing is None and run is not None and run.run_id in known_runs:
+            raise StoreError(f"run {run.run_id!r} already exists; use a new prefix")
     for document, run in generated_pairs():
         summary['curated_generated'] += 1
         added = store.add_document(document)
@@ -403,11 +406,23 @@ def cmd_build(args: argparse.Namespace) -> int:
             )
         store.add_examples(examples, generation_run_id=run.run_id)
 
-    for document in mined_documents(mined_stats):
-        if store.add_document(document):
+    for document, run in mined_records(mined_stats):
+        added = store.add_document(document)
+        if added:
             mined_stats['stored'] += 1
         else:
             mined_stats['duplicates'] += 1
+        if not added and store.document(document.document_id) is None:
+            continue
+        examples = []
+        if run is not None:
+            if run.run_id not in known_runs:
+                store.add_run(run, document)
+                known_runs.add(run.run_id)
+            examples = balance(questions.for_document(document, run), seed=args.seed,
+                max_per_kind=args.max_per_kind or None, no_answer_share=args.no_answer_share)
+            store.add_examples(examples, generation_run_id=run.run_id)
+        accumulate_coverage(mined_stats, document, run, len(examples))
 
     version = store.publish_version(args.version, notes=args.notes, build_config=build_config)
     print(f"stored {version['counts']['documents']} documents, "
@@ -419,7 +434,7 @@ def cmd_build(args: argparse.Namespace) -> int:
     summary.update(qa_examples=store.count('qa_examples'),
                    pending_annotation=sum(1 for document in store.documents(split=args.split)
                        if document.metadata.get('resource_pool') == 'built-in'
-                       and next(store.runs(document_id=document.document_id), None) is None))
+                       and needs_annotation(document, store.runs(document_id=document.document_id))))
     (out / 'generation-summary.json').write_text(
         json.dumps(summary, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     print(f"mined: {mined_stats['rendered']} candidates, "

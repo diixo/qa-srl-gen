@@ -74,10 +74,12 @@ parser and lemmatizer. Set `CORPUS_MINING_MODEL` to its package name or director
 or use the detected installed `en_core_web_sm` / cached model under
 `artifacts/models/spacy-en-*/en_core_web_sm/en_core_web_sm-*`. The UI does not
 download models automatically. Validation checks structural completeness;
-mined syntax remains `UNREVIEWED` and needs semantic annotation before QA export.
+mined syntax remains `UNREVIEWED`. Synthetic corpus derives semantic candidates
+and extractive QA from supported clauses without another NLP or HTTP call.
 
 Each job writes to a fresh `artifacts/ui/jobs/<id>/` directory. Annotation works
-on a copy; QA regeneration copies annotations and rebuilds QA so the selected
+on a copy and replaces QA for reannotated documents, preserving other documents'
+QA and historical annotation runs. QA regeneration copies annotations and rebuilds QA so the selected
 balance settings apply. Failed/cancelled output can be inspected but cannot be
 selected as another job's input. There is no automatic retry after interruption.
 Existing CLI stores under `data/` and `artifacts/` are visible in the corpus
@@ -258,17 +260,42 @@ forces test membership. With the same entity pool and split policy, a mined text
 keeps its split across seeds and jobs. This does not guarantee disjoint templates
 or vocabulary.
 
-Manual-frame documents have annotations and produce QA/SFT/BIO immediately.
-Mined documents enter the **same store** as `UNREVIEWED`, retaining their syntax
-and provenance. They need semantic annotation, for example through HTTP teacher,
-before QA generation and export. Missing annotations are not exported as
-all-`O` BIO training examples. Adding resources to the pool does not turn parser
-decisions or dictionary alternatives into verified semantic roles.
+Manual-frame documents have verified annotations and produce QA/SFT/BIO immediately.
+Mined documents enter the **same store**, retaining their syntax and provenance.
+`template_semantics.py` converts supported saved dependencies into an
+`AnnotationRun` and extractive QA during Synthetic corpus / CLI `build`.
+It supports finite active clauses, passive clauses with or without an agent,
+direct and supported prepositional recipients, particles (including separated
+ones), the curated governed-preposition patterns, auxiliaries and simple
+attributive properties. It works with the existing eng-base bank without
+re-mining it or running spaCy. Support is structural, not restricted to the
+fourteen manual frame lemmas.
+
+These automatic annotations and their QA retain `UNREVIEWED` status and
+`annotation_source=template_semantics`; they are candidates for review, not gold.
+Unknown entity types and predicate senses stay unspecified. Clauses with missing
+dependency information, unresolved inflections, complex complements, conditionals,
+unsupported modality or negative quantifier scope remain pending. Partial
+documents retain supported QA and report the omitted clauses. This does not
+claim full semantic coverage of every source sentence or validate the meaning
+of recombined fillers. `generation-summary.json` and the job page show annotated
+documents, QA counts, pending/partial documents and skip reasons. Documents
+without annotations are not exported as all-`O` BIO examples.
+
+Mined candidate QA are included in SFT. Automatic mined runs are excluded from
+BIO/BILOU export and counted in `skipped_mined_candidates`: unknown types and
+unanalysed spans must not become false `O` targets. For BIO, run Corpus annotation
+with **Only documents awaiting annotation** disabled to also annotate the
+documents that already have complete candidate QA. Manual-frame BIO is unchanged.
 
 New **Corpus annotation** jobs default to **Only documents awaiting annotation**.
 This preserves the existing curated runs and applies the document limit after
-selecting documents with no annotation run. Disable it for intentional
+selecting documents with no annotation run or an incomplete automatic mined run.
+Disable it for intentional
 reannotation; saved historical jobs keep their previous behavior.
+
+Build identity includes the inflection dictionary checksum used by mined
+semantics, so changing that dictionary requires a new dataset version.
 
 For direct template inspection, the low-level `template-generate` command remains
 available without spaCy:

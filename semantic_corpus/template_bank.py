@@ -90,7 +90,7 @@ class CorpusTemplate:
             groups.append({**group, "head_span": spans.get(group["head_slot"]), "constructions": variants})
         attributes = [{**a, "span": spans[a["slot"]],
                        "target_span": spans.get(a["target_slot"])} for a in self.record.get("attributes", ())]
-        return {"template_id": self.template_id, "text": result, "bindings": values,
+        return {"template_id": self.template_id, "text": result, "bindings": values, "slots": self.slots,
                 "spans": spans, "verbs": list(self.verbs),
                 "predicate_groups": groups, "attributes": attributes,
                 "review_status": "UNREVIEWED"}

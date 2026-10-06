@@ -14,7 +14,7 @@
     <div class="col-xl-9">
         <section class="panel">
             <h2>Mine new resources</h2>
-            <p class="text-secondary">Paste text, choose a source file, or use both. All supplied records are processed.</p>
+            <p class="text-secondary">Paste ENGLISH text, choose a source file, or use both. All supplied records are processed.</p>
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% if form.non_field_errors %}
@@ -22,7 +22,6 @@
                 {% endif %}
 
                 <div class="mb-4">
-                    <label class="form-label" for="{{ form.text.id_for_label }}">{{ form.text.label }}</label>
                     {{ form.text }}
                     <div class="form-text">{{ form.text.help_text }}</div>
                     <div class="text-danger small">{{ form.text.errors }}</div>
@@ -67,7 +66,7 @@
             <p>Published templates are available in Synthetic corpus through the shared Built-in pool.</p>
             <p class="small text-secondary mb-0">
                 Automatic syntax remains <strong>UNREVIEWED</strong> after validation.
-                Generated documents need semantic annotation before QA generation and training export.
+                Synthetic corpus derives semantic candidates and QA from supported templates; unsupported clauses remain pending for further annotation.
             </p>
         </section>
     </div>

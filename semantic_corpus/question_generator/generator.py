@@ -245,6 +245,9 @@ class QuestionGenerator:
         context: str | None = None,
     ) -> list[QAExample]:
         """Every example this document and run support, deduplicated."""
+        from ..template_semantics import SOURCE, questions_for_run
+        if run.model_name == SOURCE:
+            return self._finish(questions_for_run(document, run, context=context))
         rng = random.Random(f"{self.seed}:{document.document_id}")
         hierarchy = self._hierarchy()
         resolver = self.resolver
