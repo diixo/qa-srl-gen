@@ -357,6 +357,11 @@ main {
   letter-spacing: -.04em;
   margin-bottom: 8px;
 }
+.entity-component-heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
 .page-heading p:last-child { margin-bottom: 0; }
 .eyebrow {
   font-size: .68rem;
@@ -380,7 +385,10 @@ main {
   color: #263344;
   text-decoration: none;
 }
-.metric-card strong { font-size: 2rem; letter-spacing: -.06em; }
+.metric-card strong {
+  font-size: 1.5rem;
+  letter-spacing: -.06em;
+}
 .metric-card span, .metric-card small { color: #697583; font-size: .82rem; }
 a.metric-card:hover { border-color: #1971c2; }
 .pipeline-path {

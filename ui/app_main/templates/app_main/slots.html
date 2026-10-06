@@ -70,7 +70,9 @@
 </section>
 
 <section class="panel mb-4">
-    <h2>Curated surface patterns</h2>
+    <div class="d-flex flex-wrap justify-content-between align-items-baseline gap-2 mb-3">
+        <h2 class="mb-0">Handwritten sentence patterns ({{ monitor.pattern_count }})</h2>
+    </div>
     {% for frame in monitor.frames %}
         <details class="record">
             <summary>{{ frame.lemma }} · {{ frame.predicate_type }} · {{ frame.patterns|length }} patterns</summary>

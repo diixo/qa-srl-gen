@@ -127,5 +127,6 @@ def pool_monitor(value=''):
                 excludes=', '.join(sorted(map(str, slot.excludes))), optional=slot.optional,
                 counts=counts, empty=any(c == 0 for c in counts)))
     return dict(pool=pool, slots=slots, frames=resources.frames, resources=resources.summary(),
+        pattern_count=sum(len(frame.patterns) for frame in resources.frames),
         splits=[dict(name=name, entities=len(part), forms=len(part.surface_forms))
                 for name, part in partitions.items()], ambiguous=pool.ambiguous_forms())
