@@ -1,0 +1,121 @@
+{% extends 'app_main/base.html' %}
+
+{% block content %}
+<div class="page-heading">
+    <div>
+        <p class="eyebrow">DATA AND RESOURCES</p>
+        <h1>{{ title }}</h1>
+        <p class="text-secondary">Extract sentence templates, verbs, adjectives and verb constructions from English texts.</p>
+    </div>
+    <a class="btn btn-outline-primary" href="{% url 'app_main:pools' %}">View Built-in pool</a>
+</div>
+
+<div class="row g-4 mb-4">
+    <div class="col-xl-9">
+        <section class="panel">
+            <h2>Mine new resources</h2>
+            <p class="text-secondary">Paste text, choose a source file, or use both. All supplied records are processed.</p>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger" role="alert">{{ form.non_field_errors }}</div>
+                {% endif %}
+
+                <div class="mb-4">
+                    <label class="form-label" for="{{ form.text.id_for_label }}">{{ form.text.label }}</label>
+                    {{ form.text }}
+                    <div class="form-text">{{ form.text.help_text }}</div>
+                    <div class="text-danger small">{{ form.text.errors }}</div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label" for="{{ form.source_file.id_for_label }}">{{ form.source_file.label }}</label>
+                    {{ form.source_file }}
+                    <div class="form-text">{{ form.source_file.help_text }}</div>
+                    <div class="text-danger small">{{ form.source_file.errors }}</div>
+                </div>
+
+                <div class="form-check">
+                    {{ form.publish_to_pool }}
+                    <label class="form-check-label" for="{{ form.publish_to_pool.id_for_label }}">
+                        {{ form.publish_to_pool.label }}
+                    </label>
+                </div>
+                <div class="form-text">{{ form.publish_to_pool.help_text }}</div>
+                <div class="text-danger small">{{ form.publish_to_pool.errors }}</div>
+
+                <button class="btn btn-primary mt-4 px-3" type="submit">
+                    Queue mining job <span aria-hidden="true">&rarr;</span>
+                </button>
+            </form>
+        </section>
+    </div>
+
+    <div class="col-xl-3">
+        <section class="panel mb-3">
+            <h2>What happens next</h2>
+            <ol class="ps-3 mb-3">
+                <li class="mb-2">Compile all source records into templates and lexical inventories.</li>
+                <li class="mb-2">Validate source coverage, text reconstruction and token spans.</li>
+                <li>Add the validated bank to Built-in pool if selected.</li>
+            </ol>
+            <p class="text-secondary">The job page shows progress, logs and output files. Mining runs in the existing worker queue.</p>
+            <a href="{% url 'app_main:workers' %}">View process slots &rarr;</a>
+        </section>
+        <section class="panel">
+            <h2>Using the results</h2>
+            <p>Published templates are available in Synthetic corpus through the shared Built-in pool.</p>
+            <p class="small text-secondary mb-0">
+                Automatic syntax remains <strong>UNREVIEWED</strong> after validation.
+                Generated documents need semantic annotation before QA generation and training export.
+            </p>
+        </section>
+    </div>
+</div>
+
+<section class="panel mb-4">
+    <div class="d-flex flex-wrap align-items-start justify-content-between gap-3 mb-3">
+        <h2 class="mb-0">Current mined resources</h2>
+        <a href="{% url 'app_main:slots' %}">View sentence patterns &rarr;</a>
+    </div>
+    <p class="small text-secondary">
+        Source banks: {{ resources.source_banks|default:0 }}.
+        Counts are summed across banks; shared lemmas and templates can appear in more than one bank.
+    </p>
+    <div class="row g-3">
+        <div class="col-md-4">
+            <div class="metric-card">
+                <span>Mined templates</span>
+                <strong>{{ resources.templates|floatformat:'0g' }}</strong>
+                <small>available in Built-in pool</small>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="metric-card">
+                <span>Verb entries</span>
+                <strong>{{ resources.verbs|floatformat:'0g' }}</strong>
+                <small>lemmas and observed forms</small>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="metric-card">
+                <span>Adjective entries</span>
+                <strong>{{ resources.adjectives|floatformat:'0g' }}</strong>
+                <small>lemmas and observed forms</small>
+            </div>
+        </div>
+    </div>
+    {% if not resources.available %}
+        <p class="text-secondary mt-3 mb-0">Mined resources are {{ resources.status }}. {{ resources.error }}</p>
+    {% endif %}
+</section>
+
+<section class="panel">
+    <h2>Recent mining jobs</h2>
+    {% if mining_jobs %}
+        {% include 'app_main/includes/jobs_table.html' with jobs=mining_jobs %}
+    {% else %}
+        <p class="text-secondary mb-0">No template mining jobs yet. Submit text or a source file above to get started.</p>
+    {% endif %}
+</section>
+{% endblock %}

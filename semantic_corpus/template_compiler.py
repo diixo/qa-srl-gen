@@ -222,7 +222,8 @@ class WordInventory:
                 _write(stream, row)
 
 
-def build_bank(source, output, work, nlp, *, wiktionary, wordnet=None, previous=None, field="example", limit=None):
+def build_bank(source, output, work, nlp, *, wiktionary, wordnet=None, previous=None, field="example", limit=None,
+               batch_size=512, progress=None):
     source, output, work = Path(source), Path(output), Path(work)
     output.mkdir(parents=True, exist_ok=False)
     work.mkdir(parents=True, exist_ok=False)
@@ -251,6 +252,9 @@ def build_bank(source, output, work, nlp, *, wiktionary, wordnet=None, previous=
 
     save("building")
     try:
+        if progress:
+            progress("Compiling templates, verbs and adjectives", 0)
+
         def texts():
             with source.open("rb") as stream:
                 for number, line in enumerate(stream, 1):
@@ -267,7 +271,7 @@ def build_bank(source, output, work, nlp, *, wiktionary, wordnet=None, previous=
         with ExitStack() as stack:
             shards = {}
             ledger_stream = None
-            for doc, provenance in nlp.pipe(texts(), as_tuples=True, batch_size=512):
+            for doc, provenance in nlp.pipe(texts(), as_tuples=True, batch_size=batch_size):
                 if counts["compiled_records"] % 10000 == 0:
                     if ledger_stream is not None:
                         ledger_stream.close()
@@ -281,6 +285,8 @@ def build_bank(source, output, work, nlp, *, wiktionary, wordnet=None, previous=
                 _write(shards[key], {"template": template, "source": provenance})
                 _write(ledger_stream, ledger)
                 counts["compiled_records"] += 1
+                if progress and counts["compiled_records"] % batch_size == 0:
+                    progress("Compiling templates, verbs and adjectives", counts["compiled_records"])
                 counts["roundtrips_verified"] += 1
                 counts["tokens_audited"] += len(ledger["tokens"])
                 statuses[ledger["analysis_status"]] += 1
@@ -319,6 +325,8 @@ def build_bank(source, output, work, nlp, *, wiktionary, wordnet=None, previous=
 
         # Consolidate one partition at a time: memory does not scale with all
         # distinct templates or all original sentences at once.
+        if progress:
+            progress("Consolidating mined inventories", counts["compiled_records"])
         for shard in sorted(work.glob("*.jsonl.gz")):
             rows = {}
             for item in read_rows(shard):

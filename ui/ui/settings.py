@@ -20,6 +20,7 @@ REPO_ROOT = BASE_DIR.parent
 sys.path.insert(0, str(REPO_ROOT))
 CORPUS_UI_ROOT = Path(os.environ.get('CORPUS_UI_ROOT', REPO_ROOT / 'artifacts' / 'ui'))
 CORPUS_UI_ROOT.mkdir(parents=True, exist_ok=True)
+CORPUS_MINING_MODEL = os.environ.get('CORPUS_MINING_MODEL', '')
 
 
 # Quick-start development settings - unsuitable for production

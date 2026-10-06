@@ -19,6 +19,7 @@ urlpatterns = [
     path('corpora', views.corpora, name='corpora'),
     path('corpora/view', views.corpus, name='corpus'),
     path('pools', views.pools, name='pools'),
+    path('template-mining', views.template_mining, name='template_mining'),
     path('slots', views.slots, name='slots'),
     path('upload', views.upload, name='upload'),
 ]

@@ -1,4 +1,7 @@
 from django import forms
+from django.conf import settings
+
+from semantic_corpus.template_bank import TemplateBank
 
 from . import catalog
 from .operation_registry import OperationRegistry
@@ -43,7 +46,7 @@ class JobForm(forms.Form):
         # Old template jobs remain executable and retryable, but new generation
         # always starts from Synthetic corpus and the shared resource pool.
         if operations is None:
-            choices = [(code, label) for code, label in choices if code != 'templates']
+            choices = [(code, label) for code, label in choices if code not in ('templates', 'template_mining')]
         self.fields['operation'].choices = choices
         self.fields['source'].choices = [('', 'Select a file')] + [(s['path'], s['path']) for s in catalog.sources()]
         self.fields['store'].choices = [('', 'Select a corpus')] + [(s['path'], s['path']) for s in catalog.stores()]
@@ -91,7 +94,11 @@ class JobForm(forms.Form):
                 self.add_error('template_count', 'Historical template jobs require at least one example per template.')
             try:
                 if template_count > 0:
-                    catalog.get_resources().bank
+                    if operation == 'templates':
+                        # Historical template jobs name the original bank only.
+                        TemplateBank(settings.REPO_ROOT / 'data/eng-base-templates')
+                    else:
+                        catalog.get_resources().banks
             except (OSError, ValueError) as error:
                 remedy = ('Restore them or set Examples per mined template to 0.' if operation == 'build'
                           else 'Restore them to retry this historical job.')

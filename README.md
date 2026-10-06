@@ -50,6 +50,32 @@ and resumes the queue. Job pages show progress, logs, cancellation, retries,
 quality findings and downloadable results. The worker stops after 60 idle seconds.
 It can also be run explicitly with `python ui/manage.py pipeline_worker --once`.
 
+**Data and resources → Template mining** (`/template-mining`) adds resources to
+the shared Built-in pool. Paste English text (up to 500,000 characters), choose
+a UTF-8 `.txt`, `.jsonl` or `.jsonl.gz` file from your computer using the file
+picker, or use both inputs. The file is uploaded when you queue the job.
+Each nonempty pasted/TXT line is one record; JSONL records provide `example` or
+`text`. Uploaded files are saved under `CORPUS_UI_ROOT/uploads/` with unique
+names and retained for background processing and retries. Both inputs are
+combined and processed in full, without sampling.
+
+The page queues a background job that compiles templates, verbs, adjectives and
+multiword constructions, then independently validates the bank. The default
+**Add validated results to Built-in pool** option publishes an immutable
+component in `data/mined-templates/<job-id>/`, including the source snapshot and
+occurrence ledger. Existing `data/eng-base-templates/` files stay intact; new
+Synthetic corpus jobs use all published components through the same pool. Turn
+the option off to keep the result only in the job's output directory. Resource
+counts sum entries across source banks and may include overlapping patterns or
+lemmas; generated identical texts are deduplicated by the corpus store.
+
+Mining requires `requirements-mining.txt` and a local English spaCy model with a
+parser and lemmatizer. Set `CORPUS_MINING_MODEL` to its package name or directory,
+or use the detected installed `en_core_web_sm` / cached model under
+`artifacts/models/spacy-en-*/en_core_web_sm/en_core_web_sm-*`. The UI does not
+download models automatically. Validation checks structural completeness;
+mined syntax remains `UNREVIEWED` and needs semantic annotation before QA export.
+
 Each job writes to a fresh `artifacts/ui/jobs/<id>/` directory. Annotation works
 on a copy; QA regeneration copies annotations and rebuilds QA so the selected
 balance settings apply. Failed/cancelled output can be inspected but cannot be
@@ -63,6 +89,8 @@ are stored under `artifacts/ui/`. `CORPUS_UI_ROOT` overrides that artifact
 directory; it does not change the database path. Use the same value for the
 server and worker. Removing `artifacts/` while the server and worker are stopped
 removes output files and uploads but preserves job history and database tables.
+Published template components under `data/mined-templates/` also survive;
+unpublished mining results and models cached under `artifacts/` do not.
 If `ui/db.sqlite3` itself is removed, run `python ui/manage.py migrate` to create
 empty tables again. The UI is a local operator tool, with CSRF checks
 and no user-account access control; public/network deployment is not configured.
@@ -205,9 +233,10 @@ of these expressions. The Slots page shows their actual word-order templates.
 CLI `build`. `BuiltInPool` in `semantic_corpus/resource_pool.py` provides access
 to typed entities, the fourteen manual frames, verb forms, adjectives,
 constructions, lexical alternatives and all mined templates. The existing files
-stay in `semantic_corpus/semantic_generator/entities.json` and
-`data/eng-base-templates/`; their different structures do not require separate
-generation operations or flattening everything into entity entries.
+stay in `semantic_corpus/semantic_generator/entities.json`,
+`data/eng-base-templates/` and published components under `data/mined-templates/`;
+their different structures do not require separate generation operations or
+flattening everything into entity entries.
 
 The source-derived bank covers every record of `data/eng-base.jsonl`, including
 adjective slots and lexical alternatives. All observed bindings and source
@@ -218,8 +247,9 @@ selected mined template, default 1, with 0 explicitly disabling mined templates.
 CLI `--template-verb` and `--template-adjective` can narrow the mined selection.
 New UI jobs use the entire bank. A custom Entity pool replaces typed entities only.
 
-The default mined quota traverses all **595,350 templates** in new UI jobs
-before split filtering and deduplication. It does not promise that every
+The default mined quota traverses all **595,350 templates** from eng-base plus
+templates from every published component in new UI jobs before split filtering
+and deduplication. It does not promise that every
 candidate belongs to the selected split or has a semantic annotation.
 `generation-summary.json` reports candidates, split skips, duplicates, stored
 documents and documents awaiting annotation. Mined texts receive a deterministic

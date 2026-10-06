@@ -17,6 +17,7 @@ from .documents import Document
 from .semantic_generator import DEFAULT_FRAMES, default_pool
 from .semantic_generator.generator import DEFAULT_PARADIGMS
 from .template_bank import TemplateBank, fingerprint, read_rows
+from .template_registry import registered_banks
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 RESOURCE_SCOPE = "built_in_v1"
@@ -56,52 +57,83 @@ class BuiltInPool:
 
     @cached_property
     def bank(self):
-        return TemplateBank(self.repo_root / "data" / "eng-base-templates")
+        """Primary component, retained for compatibility with older callers."""
+        path = self.repo_root / "data" / "eng-base-templates"
+        if (path / "manifest.json").exists() or not self.registered_banks:
+            return TemplateBank(path)
+        return self.registered_banks[0]
+
+    @cached_property
+    def registered_banks(self):
+        return registered_banks(self.repo_root)
+
+    @cached_property
+    def banks(self):
+        """Stable component snapshot for one job or page request.
+
+        Template identities can occur in several sources with different local
+        fillers. Keep every source entry; the corpus store deduplicates texts.
+        """
+        primary = self.bank
+        return (primary, *(bank for bank in self.registered_banks if bank.path != primary.path))
 
     def templates(self, **filters):
-        return self.bank.templates(**filters)
+        for bank in self.banks:
+            yield from bank.templates(**filters)
 
     def verbs(self):
-        return self.bank.verbs()
+        for bank in self.banks:
+            yield from bank.verbs()
 
     def adjectives(self):
-        return self.bank.adjectives()
+        for bank in self.banks:
+            yield from bank.adjectives()
+
+    def _inventory(self, name):
+        for bank in self.banks:
+            yield from read_rows(bank.path / f"{name}.jsonl.gz")
 
     def constructions(self):
-        return read_rows(self.bank.path / "constructions.jsonl.gz")
+        return self._inventory("constructions")
 
     def verb_alternatives(self):
-        return read_rows(self.bank.path / "verb_alternatives.jsonl.gz")
+        return self._inventory("verb_alternatives")
 
     def adjective_alternatives(self):
-        return read_rows(self.bank.path / "adjective_alternatives.jsonl.gz")
+        return self._inventory("adjective_alternatives")
 
     def occurrences(self):
-        for path in sorted((self.bank.path / "occurrences").glob("*.jsonl.gz")):
-            yield from read_rows(path)
+        for bank in self.banks:
+            for path in sorted((bank.path / "occurrences").glob("*.jsonl.gz")):
+                yield from read_rows(path)
 
     def summary(self):
         """Small monitoring view; no decompression of inventories on page GET."""
         result = dict(entities=len(self.entities), frames=len(self.frames),
                       available=False, status="missing", templates=0, verbs=0,
                       adjectives=0, constructions=0, verb_alternatives=0,
-                      adjective_alternatives=0, records=0)
+                      adjective_alternatives=0, records=0, source_banks=0, banks=[],
+                      counts_are_component_entries=True)
         try:
-            bank = self.bank
+            banks = self.banks
         except (OSError, ValueError) as error:
             result.update(status="missing" if isinstance(error, FileNotFoundError) else "invalid",
                           error=str(error))
             return result
-        counts = bank.manifest.get("counts", {})
-        for field, key in (("templates", "templates"), ("verbs", "verb_lemmas"),
-                           ("adjectives", "adjective_lemmas"), ("constructions", "constructions"),
-                           ("verb_alternatives", "verb_alternative_lemmas"),
-                           ("adjective_alternatives", "adjective_alternative_forms"),
-                           ("records", "compiled_records")):
-            result[field] = counts.get(key, 0)
-        result.update(available=True, status="complete", path=str(bank.path),
-                      source_sha256=bank.manifest.get("source_sha256"),
-                      model=bank.manifest.get("model", {}))
+        for bank in banks:
+            counts = bank.manifest.get("counts", {})
+            for field, key in (("templates", "templates"), ("verbs", "verb_lemmas"),
+                               ("adjectives", "adjective_lemmas"), ("constructions", "constructions"),
+                               ("verb_alternatives", "verb_alternative_lemmas"),
+                               ("adjective_alternatives", "adjective_alternative_forms"),
+                               ("records", "compiled_records")):
+                result[field] += counts.get(key, 0)
+            result["banks"].append({"id": bank.path.name, "path": str(bank.path),
+                                    "source_sha256": bank.manifest.get("source_sha256"),
+                                    "counts": counts})
+        result.update(available=True, status="complete", source_banks=len(banks),
+                      path=str(self.bank.path), source_sha256=self.bank.manifest.get("source_sha256"),
+                      model=self.bank.manifest.get("model", {}))
         return result
 
     def metadata(self, *, include_mined=True):
@@ -117,6 +149,11 @@ class BuiltInPool:
             result.update(bank_manifest_sha256=fingerprint(self.bank.manifest),
                           bank_source_sha256=self.bank.manifest.get("source_sha256"),
                           mined_split_policy=SPLIT_POLICY)
+            banks = self.banks
+            if len(banks) > 1 or self.registered_banks:
+                result["bank_components"] = [
+                    {"id": bank.path.name, "manifest_sha256": fingerprint(bank.manifest),
+                     "source_sha256": bank.manifest.get("source_sha256")} for bank in banks]
         return result
 
     def mined_documents(self, *, count=1, seed=0, split="train", lemma=None,
@@ -134,26 +171,37 @@ class BuiltInPool:
         stats.update(rendered=0, split_excluded=0, eligible=0)
         if count == 0:
             return
-        identity = fingerprint(self.bank.manifest)
         held_out = _name_pattern(self.entities.split("test").surface_forms)
-        for row in self.bank.generate(count=count, seed=seed, lemma=lemma,
-                                      adjective=adjective, recombine=recombine):
-            stats["rendered"] += 1
-            selected = _mined_split(row["text"], held_out) == split
-            if selected:
-                stats["eligible"] += 1
-            else:
-                stats["split_excluded"] += 1
-            if progress and stats["rendered"] % 1000 == 0:
-                progress(dict(stats))
-            if not selected:
+        for bank in self.banks:
+            identity = fingerprint(bank.manifest)
+            if adjective is not None and not any(row["lemma"] == adjective for row in bank.adjectives()):
                 continue
-            key = fingerprint([identity, row["template_id"], row["bindings"], recombine])
-            yield Document(
-                document_id=f"mined-{key}", text=row["text"], source="eng-base-templates", split=split,
-                metadata={**{key: value for key, value in row.items() if key != "text"},
-                          "resource_pool": "built-in", "bank_manifest_sha256": identity,
-                          "bank_source_sha256": self.bank.manifest.get("source_sha256"),
-                          "recombined": recombine, "split_policy": SPLIT_POLICY})
+            try:
+                for row in bank.generate(count=count, seed=seed, lemma=lemma,
+                                         adjective=adjective, recombine=recombine):
+                    stats["rendered"] += 1
+                    selected = _mined_split(row["text"], held_out) == split
+                    if selected:
+                        stats["eligible"] += 1
+                    else:
+                        stats["split_excluded"] += 1
+                    if progress and stats["rendered"] % 1000 == 0:
+                        progress(dict(stats))
+                    if not selected:
+                        continue
+                    key = fingerprint([identity, row["template_id"], row["bindings"], recombine])
+                    source = ("eng-base-templates" if bank.path.name == "eng-base-templates"
+                              else f"mined-templates/{bank.path.name}")
+                    yield Document(
+                        document_id=f"mined-{key}", text=row["text"], source=source, split=split,
+                        metadata={**{key: value for key, value in row.items() if key != "text"},
+                                  "resource_pool": "built-in", "bank_manifest_sha256": identity,
+                                  "bank_source_sha256": bank.manifest.get("source_sha256"),
+                                  "recombined": recombine, "split_policy": SPLIT_POLICY})
+            except ValueError as error:
+                if str(error) != "no templates match the selection":
+                    raise
+        if not stats["rendered"]:
+            raise ValueError("no templates match the selection")
         if progress:
             progress(dict(stats))

@@ -18,6 +18,8 @@ from semantic_corpus.ontology import load_default_hierarchy
 from . import catalog
 from .forms import JobForm
 from .models import Job, Worker
+from .template_mining import save_source_upload
+from .template_mining_forms import TemplateMiningForm
 from .worker import start_worker
 
 
@@ -37,6 +39,7 @@ NAV = [
         ('questions', 'QA generation', 'question_answer'), ('exports', 'Export', 'file_download'),
         ('quality', 'Quality', 'verified')]),
     ('Data and resources', [('corpora', 'Corpora', 'storage'), ('pools', 'Built-in pool', 'category'),
+        ('template_mining', 'Template mining', 'manage_search'),
         ('slots', 'Frames and slots', 'account_tree'), ('tools', 'Tools', 'build')]),
 ]
 
@@ -80,6 +83,36 @@ def operation(request, section='pipeline'):
                 form=form, section=section, sources=catalog.sources() if section == 'ingestion' else None)
 
 
+@require_http_methods(['GET', 'POST'])
+def template_mining(request):
+    form = TemplateMiningForm(request.POST if request.method == 'POST' else None,
+                              request.FILES if request.method == 'POST' else None)
+    if request.method == 'POST' and form.is_valid():
+        config = {**form.cleaned_data, 'operation': 'template_mining'}
+        uploaded = config.pop('source_file')
+        saved_path = None
+        try:
+            if uploaded is not None:
+                saved_path = save_source_upload(uploaded)
+                config.update(source_path=str(saved_path), source_name=uploaded.name)
+        except OSError as error:
+            form.add_error('source_file', f'Could not save the uploaded file: {error}')
+        else:
+            try:
+                job = Job.objects.create(operation='template_mining', config=config)
+            except Exception:
+                if saved_path is not None:
+                    saved_path.unlink(missing_ok=True)
+                raise
+            try:
+                start_worker()
+            except OSError as error:
+                messages.error(request, f'The job was queued, but the worker could not start: {error}')
+            return redirect('app_main:job', pk=job.pk)
+    return page(request, 'template_mining.html', title='Template mining', form=form,
+        mining_jobs=Job.objects.filter(operation='template_mining')[:10], resources=catalog.resource_summary())
+
+
 @require_safe
 def jobs(request):
     rows = Job.objects.all()
@@ -96,7 +129,8 @@ def artifacts(job):
         return []
     return [dict(name=p.relative_to(root).as_posix(), size=p.stat().st_size) for p in sorted(root.rglob('*'))
             if p.is_file() and p.resolve().is_relative_to(root.resolve())
-            and p.suffix in ('.json', '.jsonl', '.log', '.txt')]
+            and 'work' not in p.relative_to(root).parts
+            and p.suffix in ('.json', '.jsonl', '.gz', '.log', '.txt')]
 
 
 def log_tail(job):
@@ -113,7 +147,7 @@ def job_detail(request, pk):
     job = get_object_or_404(Job, pk=pk)
     reports = []
     quality = None
-    for name in ('report.json', 'result/report.json', 'result/summary.json'):
+    for name in ('report.json', 'result/report.json', 'result/summary.json', 'mining_summary.json'):
         try:
             report_data = catalog.read_json(catalog.job_root(job) / name)
             if report_data:
@@ -122,10 +156,27 @@ def job_detail(request, pk):
                     quality = report_data
         except (ValueError, OSError):
             pass
-    store = next((catalog.relative(p.parent) for p in catalog.job_root(job).rglob('manifest.json')), '')
+    store = ''
+    for manifest in catalog.job_root(job).rglob('manifest.json'):
+        try:
+            if catalog.read_json(manifest, {}).get('store_format') == 'jsonl-v1':
+                store = catalog.relative(manifest.parent)
+                break
+        except (OSError, ValueError):
+            continue
+    published_bank = ''
+    if job.operation == 'template_mining':
+        published_path = settings.REPO_ROOT / 'data/mined-templates' / str(job.pk)
+        try:
+            publication = catalog.read_json(published_path / 'publication.json', {})
+            if publication.get('bank_id') == str(job.pk):
+                published_bank = catalog.relative(published_path)
+        except (OSError, ValueError):
+            pass
     return page(request, 'job.html', title=job.get_operation_display(), nav_active='jobs', job=job,
         log=log_tail(job), files=artifacts(job), reports=reports,
-        quality=quality, result_store=store, config_json=json.dumps(job.config, ensure_ascii=False, indent=2))
+        quality=quality, result_store=store, published_bank=published_bank,
+        config_json=json.dumps(job.config, ensure_ascii=False, indent=2))
 
 
 @require_safe
@@ -154,11 +205,19 @@ def retry_job(request, pk):
     if previous.active:
         messages.error(request, 'Finish or cancel the active job first.')
         return redirect('app_main:job', pk=pk)
-    form = JobForm({**previous.config, 'operation': previous.operation},
-                   operations=[previous.operation], resource_scope=previous.config.get('resource_scope'))
+    if previous.operation == 'template_mining':
+        form = TemplateMiningForm(previous.config, source_path=previous.config.get('source_path', ''))
+    else:
+        form = JobForm({**previous.config, 'operation': previous.operation},
+                       operations=[previous.operation], resource_scope=previous.config.get('resource_scope'))
     if not form.is_valid():
         messages.error(request, 'These settings are no longer valid. Create a job with current sources.')
-        return redirect('app_main:pipeline')
+        return redirect('app_main:template_mining' if previous.operation == 'template_mining' else 'app_main:pipeline')
+    form.cleaned_data['operation'] = previous.operation
+    if previous.operation == 'template_mining':
+        form.cleaned_data.pop('source_file')
+        if 'source_name' in previous.config:
+            form.cleaned_data['source_name'] = previous.config['source_name']
     if previous.operation == 'build':
         form.cleaned_data['count_scope'] = previous.config.get('count_scope', 'total')
     if previous.operation in ('build', 'templates'):
@@ -304,7 +363,7 @@ def download(request, pk, name):
     job = get_object_or_404(Job, pk=pk)
     root = catalog.job_root(job).resolve()
     path = (root / name).resolve()
-    if not path.is_relative_to(root) or not path.is_file() or path.suffix not in ('.json', '.jsonl', '.txt', '.log'):
+    if not path.is_relative_to(root) or not path.is_file() or path.suffix not in ('.json', '.jsonl', '.gz', '.txt', '.log'):
         raise Http404
     return FileResponse(path.open('rb'), as_attachment=True, filename=path.name)
 

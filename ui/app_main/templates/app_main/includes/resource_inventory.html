@@ -4,7 +4,10 @@
             <h2>Built-in pool resources</h2>
             <p class="text-secondary mb-0">Synthetic corpus uses curated frames and the complete mined template inventory from this shared pool.</p>
         </div>
-        <a class="btn btn-outline-primary" href="{% url 'app_main:pipeline' %}">New job</a>
+        <div class="d-flex gap-2">
+            <a class="btn btn-outline-primary" href="{% url 'app_main:template_mining' %}">Mine templates</a>
+            <a class="btn btn-outline-primary" href="{% url 'app_main:pipeline' %}">New job</a>
+        </div>
     </div>
     <div class="row g-3 mb-3">
         <div class="col-sm-6 col-lg-3">
@@ -17,10 +20,11 @@
             <div class="metric-card"><span>Mined templates</span><strong>{{ monitor.resources.templates|floatformat:'0g' }}</strong><small>executable surface patterns</small></div>
         </div>
         <div class="col-sm-6 col-lg-3">
-            <div class="metric-card"><span>Source records</span><strong>{{ monitor.resources.records|floatformat:'0g' }}</strong><small>eng-base.jsonl records processed</small></div>
+            <div class="metric-card"><span>Source records</span><strong>{{ monitor.resources.records|floatformat:'0g' }}</strong><small>records processed across source banks</small></div>
         </div>
     </div>
     {% if monitor.resources.available %}
+        <p class="small text-secondary">Source banks: {{ monitor.resources.source_banks|default:1 }}. Inventory counts sum entries across banks; the same pattern or lemma can occur in multiple sources.</p>
         <div class="table-responsive">
             <table class="table mb-3">
                 <thead><tr><th>Mined inventory</th><th>Entries</th></tr></thead>

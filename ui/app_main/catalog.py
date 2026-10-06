@@ -47,6 +47,7 @@ def sources():
         rows.extend(dict(path=relative(p), size=p.stat().st_size) for p in sorted(root.rglob('*'))
                     if p.is_file() and p.name.endswith(('.txt', '.jsonl', '.jsonl.gz', '.qa'))
                     and not p.is_relative_to(settings.REPO_ROOT / 'data/eng-base-templates')
+                    and not p.is_relative_to(settings.REPO_ROOT / 'data/mined-templates')
                     and p.resolve().is_relative_to(root.resolve()))
     return rows
 

@@ -23,6 +23,7 @@ from semantic_corpus.storage import CorpusStore
 from .catalog import data_path, get_pool, job_root, store_path
 from .models import Job
 from .operation_registry import OperationRegistry
+from .template_mining import execute_template_mining
 
 
 class Progress:
@@ -331,6 +332,7 @@ HANDLERS = {
     'candidates': _execute_cli,
     'lookup': _execute_cli,
     'mining': _execute_mining,
+    'template_mining': execute_template_mining,
 }
 
 

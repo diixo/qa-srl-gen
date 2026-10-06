@@ -12,5 +12,6 @@
     {"code": "roundtrip", "label": "Question round-trip"},
     {"code": "candidates", "label": "Candidate extraction"},
     {"code": "lookup", "label": "Verb forms"},
-    {"code": "mining", "label": "Entity pool proposals"}
+    {"code": "mining", "label": "Entity pool proposals"},
+    {"code": "template_mining", "label": "Template mining"}
 ]
