@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "source_sha256": "14e128add93c10f448154b692ddae8452b07b96518c53fa159a8ca2d90a27ff9",
+  "templates": 595350,
+  "attested_roundtrips": 736040,
+  "source_records": 736040,
+  "token_spans": 6006982,
+  "verbs_occurrences": 1565428,
+  "adjectives_occurrences": 264718
+}
