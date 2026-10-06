@@ -138,6 +138,13 @@ class EntityPool:
     def __init__(self, entities: Iterable[Entity] = ()) -> None:
         self._entities: list[Entity] = []
         self._seen: set[Entity] = set()
+        self._readings: dict[str, list[Entity]] = {}
+        self._surface_forms: tuple[str, ...] | None = None
+        # Index whole-word phrases once. Rank preserves the original pool-order
+        # tie-break when equally short contained forms both match a name.
+        self._split_forms: dict[tuple[str, ...], tuple[int, int, str]] = {}
+        self._split_word_lengths: set[int] = set()
+        self._split_keys: dict[str, str] = {}
         for entity in entities:
             self.add(entity)
 
@@ -152,6 +159,19 @@ class EntityPool:
             return
         self._seen.add(entity)
         self._entities.append(entity)
+        if entity.text not in self._readings:
+            rank = len(self._readings)
+            self._readings[entity.text] = []
+            self._surface_forms = None
+            words = tuple(entity.text.split())
+            candidate = (len(entity.text), rank, entity.text)
+            previous = self._split_forms.get(words)
+            if previous is None or candidate < previous:
+                self._split_forms[words] = candidate
+            self._split_word_lengths.add(len(words))
+            # A new shorter form can change the split key of existing names.
+            self._split_keys.clear()
+        self._readings[entity.text].append(entity)
 
     def extend(self, entities: Iterable[Entity]) -> None:
         for entity in entities:
@@ -169,7 +189,9 @@ class EntityPool:
 
     @property
     def surface_forms(self) -> tuple[str, ...]:
-        return tuple(dict.fromkeys(e.text for e in self._entities))
+        if self._surface_forms is None:
+            self._surface_forms = tuple(self._readings)
+        return self._surface_forms
 
     # -- selection ---------------------------------------------------------
 
@@ -193,7 +215,7 @@ class EntityPool:
 
     def readings(self, text: str) -> tuple[Entity, ...]:
         """All entries sharing a surface form — the ambiguity of that name."""
-        return tuple(e for e in self._entities if e.text == text)
+        return tuple(self._readings.get(text, ()))
 
     def matching_slot(
         self, slot: FrameSlot, hierarchy: TypeHierarchy | None = None,
@@ -217,8 +239,8 @@ class EntityPool:
     def ambiguous_forms(self) -> tuple[str, ...]:
         """Surface forms with readings under more than one entity label."""
         out = []
-        for text in self.surface_forms:
-            labels = {e.entity_label for e in self.readings(text)}
+        for text, readings in self._readings.items():
+            labels = {e.entity_label for e in readings}
             if len(labels) > 1:
                 out.append(text)
         return tuple(out)
@@ -259,19 +281,22 @@ class EntityPool:
         a whole word inherits that form's split, and the shortest member of
         such a group decides for all of them.
         """
-        words = text.split()
-        best = text
-        for other in self.surface_forms:
-            if other == text or len(other) >= len(best):
-                continue
-            other_words = other.split()
-            span = len(other_words)
-            if any(
-                words[i : i + span] == other_words
-                for i in range(len(words) - span + 1)
-            ):
-                best = other
-        return best
+        if text in self._split_keys:
+            return self._split_keys[text]
+        words = tuple(text.split())
+        # Only strictly shorter forms may replace text. The sentinel rank -1
+        # excludes same-length candidates without changing insertion-order ties.
+        best = (len(text), -1, text)
+        for size in self._split_word_lengths:
+            for start in range(len(words) - size + 1):
+                candidate = self._split_forms.get(words[start:start + size])
+                if candidate is not None and candidate < best:
+                    best = candidate
+        # Keep the cache bounded by pool size even when callers look up arbitrary
+        # external text. Shares/salt remain separate inputs to split_of.
+        if text in self._readings:
+            self._split_keys[text] = best[2]
+        return best[2]
 
     def split(
         self,
