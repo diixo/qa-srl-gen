@@ -231,8 +231,9 @@ def test_absence_from_an_annotated_record_is_not_a_refusal(annotated):
 
 
 def test_a_synthetic_record_is_complete_so_silence_means_absence():
+    from semantic_corpus.semantic_generator import Features, frame_by_lemma, realize
     generator = Generator(seed=11)
-    realized = next(iter(generator.generate(1)))
+    realized = realize(generator.sample_situation(frame_by_lemma("own"), features=Features(tense="past")))
     document, run = to_canonical(realized, document_id="g")
     assert run.synthetic
     produced = missing_role_questions(document, run)
@@ -497,7 +498,7 @@ def _with_theme(form: str, seed: int = 5):
 def test_properties_are_generated_and_asked_about_by_degree():
     document, run = _with_theme("a very large ball")
     assert run.properties
-    prop = run.properties[0]
+    prop = next(p for p in run.properties if p.target_id == f"{document.document_id}#theme")
     assert (prop.head, prop.degree) == ("large", "very")
     assert prop.target_id
     assert run.validate_against(document) == []

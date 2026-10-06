@@ -154,13 +154,13 @@ def retry_job(request, pk):
     if previous.active:
         messages.error(request, 'Finish or cancel the active job first.')
         return redirect('app_main:job', pk=pk)
-    form = JobForm(previous.config)
+    form = JobForm({**previous.config, 'operation': previous.operation})
     if not form.is_valid():
         messages.error(request, 'These settings are no longer valid. Create a job with current sources.')
         return redirect('app_main:pipeline')
     if previous.operation == 'build':
         form.cleaned_data['count_scope'] = previous.config.get('count_scope', 'total')
-    job = Job.objects.create(operation=previous.operation, config=form.cleaned_data)
+    job = Job.objects.create(operation=form.cleaned_data['operation'], config=form.cleaned_data)
     try:
         start_worker()
     except OSError as error:
@@ -257,7 +257,8 @@ def slots(request):
     except ValueError as error:
         return page(request, 'error.html', title='Pool unavailable', error=str(error))
     return page(request, 'slots.html', title='Frames and slots', monitor=monitor,
-                pool_choices=catalog.pool_choices(), selected_pool=value)
+                pool_choices=catalog.pool_choices(), selected_pool=value,
+                template_bank=catalog.read_json(settings.REPO_ROOT / 'data/eng-base-templates/manifest.json', {}))
 
 
 @require_POST

@@ -96,7 +96,7 @@ def omitted_argument_questions(
         if len(run.predicates) != 1:
             continue
         theme = view.theme
-        active = " ".join(active_verb_words(view.predicate, resolver))
+        active = " ".join(active_verb_words(view.predicate, resolver, theme))
         for slot in omitted:
             if slot != "agent" or view.predicate.voice != "passive":
                 continue
@@ -106,7 +106,7 @@ def omitted_argument_questions(
             question = template.format(
                 verb=active,
                 participle=view.predicate.exact_text,
-                theme=_inline(theme),
+                theme="",
             )
             question = " ".join(question.split())
             examples.append(

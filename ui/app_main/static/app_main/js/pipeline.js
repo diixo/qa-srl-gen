@@ -3,6 +3,7 @@
   const form = document.querySelector('[data-operation-form]');
   const fields = {
     build: ['count', 'seed', 'split', 'pool', 'scheme', 'max_per_kind', 'no_answer_share'],
+    templates: ['template_count', 'template_verb', 'template_adjective', 'recombine', 'seed', 'split'],
     dailydialog: ['source', 'limit', 'seed', 'context_turns'],
     ingest: ['source', 'input_format', 'limit', 'split', 'context_turns', 'seed'],
     bank: ['source', 'split', 'limit', 'scheme', 'seed'],
@@ -13,6 +14,7 @@
     candidates: ['text'], lookup: ['text'], mining: ['source', 'limit'],
   };
   const hints = {
+    templates: 'Render every matching corpus template into JSONL and a document store. Automatic syntax stays unreviewed. Use Corpus annotation next to obtain semantic labels and QA.',
     build: 'Generation → stored annotations → QA → SFT / BIO → quality report.',
     dailydialog: 'Offline RuleBasedTeacher pass for dialogue acts. Entity types and predicate senses need a different teacher. Uses the original train split.',
     ingest: 'TXT / JSONL: splits are assigned deterministically per document. Dialogues use the selected split.',

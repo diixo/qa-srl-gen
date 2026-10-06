@@ -44,6 +44,10 @@ DEFAULT_PARADIGMS: dict[str, InflectedForms] = {
     "see": InflectedForms("see", "sees", "seeing", "saw", "seen"),
     "say": InflectedForms("say", "says", "saying", "said", "said"),
     "buy": InflectedForms("buy", "buys", "buying", "bought", "bought"),
+    "pick": InflectedForms("pick", "picks", "picking", "picked", "picked"),
+    "put": InflectedForms("put", "puts", "putting", "put", "put"),
+    "get": InflectedForms("get", "gets", "getting", "got", "gotten"),
+    "look": InflectedForms("look", "looks", "looking", "looked", "looked"),
 }
 
 
@@ -93,7 +97,7 @@ class Generator:
 
     def forms_for(self, frame: SemanticFrame) -> InflectedForms:
         try:
-            return self.paradigms[frame.lemma]
+            return self.paradigms[frame.head_lemma or frame.lemma]
         except KeyError:
             raise KeyError(
                 f"no paradigm registered for {frame.lemma!r}; pass one in "

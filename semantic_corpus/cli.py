@@ -160,13 +160,8 @@ def cmd_frames(args: argparse.Namespace) -> int:
             continue
         print(frame)
         for pattern in frame.patterns:
-            parts = [f"{{{pattern.subject}}}", f"<{frame.lemma}>"]
-            for complement in pattern.complements:
-                if complement.preposition:
-                    parts.append(complement.preposition)
-                parts.append(f"{{{complement.slot}}}")
             flag = " [passive]" if pattern.is_passive else ""
-            print(f"  {pattern.name:20s} {' '.join(parts)}.{flag}")
+            print(f"  {pattern.name:20s} {frame.pattern_template(pattern)}.{flag}")
         print()
     return 0
 
@@ -525,7 +520,32 @@ def build_parser() -> argparse.ArgumentParser:
     report.add_argument("--out", type=Path, default=None)
     report.set_defaults(func=cmd_report)
 
+    from .template_bank import DEFAULT_BANK
+    templates = sub.add_parser("template-generate", help="render the full mined surface-template bank")
+    templates.add_argument("--bank", type=Path, default=DEFAULT_BANK)
+    templates.add_argument("--out", type=Path, required=True)
+    templates.add_argument("--count", type=_positive_count, default=1,
+                           help="distinct examples per selected template (default: 1, all templates)")
+    templates.add_argument("--seed", type=int, default=0)
+    templates.add_argument("--verb", help="lemma or multiword construction, e.g. 'pick up'")
+    templates.add_argument("--adjective", help="adjective lemma, e.g. 'beautiful'")
+    templates.add_argument("--template-id")
+    templates.add_argument("--recombine", action="store_true",
+                           help="independently combine observed slot fillers; requires review")
+    templates.set_defaults(func=cmd_template_generate)
+
     return parser
+
+
+def cmd_template_generate(args: argparse.Namespace) -> int:
+    from .template_bank import TemplateBank, generate_file
+    bank = TemplateBank(args.bank)
+    count = generate_file(bank, args.out, count=args.count, seed=args.seed,
+                          lemma=args.verb, adjective=args.adjective, template_id=args.template_id,
+                          recombine=args.recombine,
+                          progress=lambda n: print(f"Rendered {n:,} templates", flush=True))
+    print(f"Wrote {count:,} examples to {args.out}")
+    return 0
 
 
 def main(argv: Sequence[str] | None = None) -> int:

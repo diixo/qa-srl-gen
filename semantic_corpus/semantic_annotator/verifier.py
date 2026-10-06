@@ -136,6 +136,8 @@ def verify_structure(run: AnnotationRun, document: Document) -> StructuralReport
         spans.append((mention.mention_id, mention.span))
     for predicate in run.predicates:
         spans.append((predicate.predicate_id, predicate.span))
+        spans.extend((f"{predicate.predicate_id}:part{i}", part.span)
+                     for i, part in enumerate(predicate.parts))
     for prop in run.properties:
         spans.append((prop.property_id, prop.span))
 

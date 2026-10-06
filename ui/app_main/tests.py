@@ -138,6 +138,43 @@ class WorkspaceTests(TestCase):
         self.assertTrue(examples)
         self.assertTrue(all(e.run_id for e in examples))
 
+    def test_template_operation_keeps_adjective_spans_and_unreviewed_provenance(self):
+        import gzip
+        from semantic_corpus.template_bank import FORMAT, fingerprint, read_rows
+        bank = self.root / 'data/eng-base-templates'
+        (bank / 'templates').mkdir(parents=True)
+        record = dict(parts=[{'literal': 'A '}, {'slot': 'a0'}, {'literal': ' book.'}],
+            slots={'a0': {'kind': 'adjective', 'pos': 'ADJ', 'tag': 'JJ'}}, verbs=[], constructions=[],
+            predicate_groups=[], attributes=[{'slot': 'a0', 'target_slot': None, 'degree': ['Pos']}],
+            adjective_lemmas=['beautiful'], defaults={'a0': 'beautiful'},
+            attested_bindings=[{'a0': 'beautiful'}], fillers={'a0': ['beautiful']})
+        record['template_id'] = fingerprint(record)
+        (bank / 'manifest.json').write_text(json.dumps({
+            'format': FORMAT, 'status': 'complete', 'source_sha256': '0' * 64}), encoding='utf-8')
+        for path, row in ((bank / 'templates' / (record['template_id'][:2] + '.jsonl.gz'), record),
+                          (bank / 'adjectives.jsonl.gz', {'lemma': 'beautiful', 'forms': {'beautiful': 1}})):
+            with gzip.open(path, 'wt', encoding='utf-8') as stream:
+                stream.write(json.dumps(row) + '\n')
+        self.assertFalse(any('eng-base-templates/' in s['path'] for s in catalog.sources()))
+        job = self.execute('templates', template_adjective='Beautiful')
+        root = catalog.job_root(job)
+        row, = read_rows(root / 'generated.jsonl.gz')
+        self.assertEqual(row['text'], 'A beautiful book.')
+        self.assertEqual(row['spans']['a0'], [2, 11])
+        store = CorpusStore(root / 'store', create=False)
+        document, = store.documents()
+        self.assertEqual(document.metadata['review_status'], 'UNREVIEWED')
+        self.assertEqual(document.metadata['bank_source_sha256'], '0' * 64)
+        self.assertEqual(store.count('annotation_runs'), 0)
+        self.assertEqual(store.count('qa_examples'), 0)
+        job.refresh_from_db()
+        self.assertEqual((job.processed, job.total), (1, 1))
+
+    def test_template_job_requires_completed_bank(self):
+        form = JobForm({'operation': 'templates'})
+        self.assertFalse(form.is_valid())
+        self.assertIn('operation', form.errors)
+
     def test_bank_validation_and_mining_adapters(self):
         self.execute('validate', source='data/bank.jsonl', limit=1)
         self.execute('roundtrip', source='data/bank.jsonl', limit=1)

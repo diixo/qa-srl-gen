@@ -52,6 +52,7 @@ __all__ = [
     "Document",
     "EntityMention",
     "Predicate",
+    "PredicatePart",
     "Property",
     "RelationEdge",
     "DialogueAnnotation",
@@ -302,6 +303,19 @@ class EntityMention:
 
 
 @dataclass(frozen=True, slots=True)
+class PredicatePart:
+    """A lexical particle or governed preposition, possibly away from the head."""
+
+    text: str
+    span: TextSpan
+    kind: str = "particle"
+
+    def __post_init__(self) -> None:
+        if self.kind not in ("particle", "preposition") or not self.text.strip():
+            raise ValueError("predicate part requires text and particle/preposition kind")
+
+
+@dataclass(frozen=True, slots=True)
 class Predicate:
     """A predicate mention with its grammatical features.
 
@@ -326,6 +340,9 @@ class Predicate:
     review_status: ReviewStatus = ReviewStatus.UNREVIEWED
     extra_labels: LabelSet = field(default_factory=LabelSet)
     omitted_slots: tuple[str, ...] = ()
+    head_lemma: str | None = None
+    parts: tuple[PredicatePart, ...] = ()
+    allows_passive: bool = True
 
     def __post_init__(self) -> None:
         if self.predicate_type not in (None, Label.ACTION, Label.STATE):
@@ -334,6 +351,9 @@ class Predicate:
             )
         if self.labels.problems():
             raise ValueError("; ".join(self.labels.problems()))
+        if self.parts and (not self.head_lemma or self.lemma != " ".join(
+                (self.head_lemma, *(part.text.lower() for part in self.parts)))):
+            raise ValueError("predicate lemma must match its head and lexical parts")
 
     @property
     def labels(self) -> LabelSet:
@@ -341,6 +361,17 @@ class Predicate:
 
     def validate_against(self, document: Document) -> None:
         document.check_span(self.span, self.exact_text)
+        spans = [self.span]
+        for part in self.parts:
+            document.check_span(part.span, part.text)
+            if any(part.span.start_char < other.end_char and other.start_char < part.span.end_char
+                   for other in spans):
+                raise ValueError("predicate parts must not overlap")
+            spans.append(part.span)
+
+    def shifted(self, offset: int) -> "Predicate":
+        return replace(self, span=self.span.shifted(offset), parts=tuple(
+            replace(part, span=part.span.shifted(offset)) for part in self.parts))
 
 
 @dataclass(frozen=True, slots=True)

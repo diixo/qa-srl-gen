@@ -9,6 +9,18 @@
     </div>
 </div>
 
+{% if template_bank %}
+<section class="panel mb-4 p-4">
+    <h2>Corpus template bank</h2>
+    <p>Status: {{ template_bank.status }} · {{ template_bank.counts.compiled_records|default:0 }} source records processed.</p>
+    {% if template_bank.status == 'complete' %}
+        <p>{{ template_bank.counts.templates }} executable templates · {{ template_bank.counts.verb_lemmas }} verb lemmas · {{ template_bank.counts.adjective_lemmas }} adjective lemmas.</p>
+        <p>In New job, select “Corpus templates: verbs and adjectives” to use the full bank. Automatic analyses remain unreviewed; generated documents can be sent to Corpus annotation.</p>
+        <a class="btn btn-outline-primary" href="{% url 'app_main:pipeline' %}">New job</a>
+    {% endif %}
+</section>
+{% endif %}
+
 <form method="get" class="d-flex gap-2 mb-4">
     {% include 'app_main/includes/pool_select.html' %}
     <button class="btn btn-outline-primary">Apply</button>
@@ -72,12 +84,9 @@
         <details class="record">
             <summary>{{ frame.lemma }} · {{ frame.predicate_type }} · {{ frame.patterns|length }} patterns</summary>
             <ul class="mt-3">
-                {% for pattern in frame.patterns %}
+                {% for pattern in frame.pattern_descriptions %}
                     <li>
-                        <strong>{{ pattern.name }}</strong>: {{ pattern.subject }} → {{ frame.lemma }}
-                        {% for complement in pattern.complements %}
-                            → {{ complement.preposition|default:'' }} {{ complement.slot }}
-                        {% endfor %}
+                        <strong>{{ pattern.name }}</strong>: <code>{{ pattern.template }}</code>
                         {% if pattern.is_passive %}
                             <span class="badge text-bg-light">passive</span>
                         {% endif %}

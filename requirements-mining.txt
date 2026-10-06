@@ -1,0 +1,4 @@
+# Optional: syntax_mining and template_compiler. Rendering a compiled bank needs no spaCy.
+spacy>=3.8,<3.9
+# Install separately, or pass an extracted model directory via --model.
+# https://github.com/explosion/spacy-models/releases/tag/en_core_web_sm-3.8.0

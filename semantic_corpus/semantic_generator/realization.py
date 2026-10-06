@@ -17,6 +17,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Mapping
 
+from ..documents import PredicatePart, TextSpan
 from ..ontology import NAMEDNESS_LABELS, Label, LabelSet, Relation, TypeHierarchy
 from ..agreement import verb_words
 from ..qasrl_core.frame import ArgStructure, Frame as VerbFrame
@@ -127,6 +128,7 @@ class RealizedSituation:
     predicate: MentionSpan
     relations: tuple[RelationEdge, ...]
     omitted_slots: frozenset[str] = field(default_factory=frozenset)
+    predicate_parts: tuple[PredicatePart, ...] = ()
 
     def mention(self, slot: str) -> MentionSpan | None:
         for span in self.mentions:
@@ -144,6 +146,9 @@ class RealizedSituation:
                     f"{span.text!r} but the sentence has "
                     f"{self.text[span.start_char:span.end_char]!r}"
                 )
+        for part in self.predicate_parts:
+            if self.text[part.span.start_char:part.span.end_char] != part.text:
+                problems.append(f"invalid predicate part span: {part}")
         return problems
 
     def __str__(self) -> str:
@@ -238,12 +243,21 @@ def realize(
     builder = _Builder()
     mentions: list[MentionSpan] = []
     relations: list[RelationEdge] = []
+    predicate_parts: list[PredicatePart] = []
     slots = frame.slot_map
+
+    def lexical_part(text: str, kind: str) -> None:
+        written, start, end = builder.add(text)
+        predicate_parts.append(PredicatePart(written, TextSpan(start, end), kind))
 
     def place(slot_name: str, preposition: str | None = None) -> None:
         entity = situation.bindings[slot_name]
         if preposition:
-            builder.add(preposition)
+            if (preposition == frame.object_preposition
+                    and slots[slot_name].role in (Relation.THEME_OF, Relation.PATIENT_OF)):
+                lexical_part(preposition, "preposition")
+            else:
+                builder.add(preposition)
         written, start, end = builder.add(entity.text)
         mentions.append(
             MentionSpan(slot_name, written, start, end, entity.labels)
@@ -300,11 +314,28 @@ def realize(
     for word in stack:
         head_text, head_start, head_end = builder.add(word)
 
+    particle_after = chosen.particle_after
+    # English object pronouns require separation: pick it up, never pick up it.
+    if frame.particles and not chosen.is_passive and not frame.object_preposition:
+        for complement in chosen.complements:
+            entity = situation.bindings.get(complement.slot)
+            if (not complement.preposition and entity is not None
+                    and entity.text.lower() in {"it", "him", "her", "them", "me", "us", "you"}):
+                particle_after = complement.slot
+    if particle_after is None:
+        for particle in frame.particles:
+            lexical_part(particle, "particle")
+    if chosen.is_passive and frame.object_preposition:
+        lexical_part(frame.object_preposition, "preposition")
+
     adjunct_names = frame.adjunct_slots
     for complement in chosen.complements:
         if complement.slot in adjunct_names:
             continue
         place(complement.slot, complement.preposition)
+        if complement.slot == particle_after:
+            for particle in frame.particles:
+                lexical_part(particle, "particle")
 
     for name, default_preposition in frame.adjuncts:
         if name not in situation.bindings or name in chosen.omits:
@@ -330,6 +361,7 @@ def realize(
         predicate=predicate,
         relations=tuple(relations),
         omitted_slots=frozenset(chosen.omits),
+        predicate_parts=tuple(predicate_parts),
     )
     # These offsets are load-bearing downstream, so the invariant is checked
     # on every sentence rather than trusted.

@@ -304,7 +304,7 @@ class QuestionGenerator:
             narrowed = replace(
                 narrowed,
                 mentions=tuple(replace(m, span=m.span.shifted(offset)) for m in narrowed.mentions),
-                predicates=tuple(replace(p, span=p.span.shifted(offset)) for p in narrowed.predicates),
+                predicates=tuple(p.shifted(offset) for p in narrowed.predicates),
                 properties=tuple(replace(p, span=p.span.shifted(offset)) for p in narrowed.properties),
                 dialogue=tuple(d for d in narrowed.dialogue if d.utterance_id in utterance_ids),
             )
@@ -348,7 +348,8 @@ def _restrict(run: AnnotationRun, passage: Passage) -> AnnotationRun:
         return passage.span.contains(item.span)
 
     mentions = tuple(m for m in run.mentions if inside(m))
-    predicates = tuple(p for p in run.predicates if inside(p))
+    predicates = tuple(p for p in run.predicates if inside(p)
+                       and all(passage.span.contains(part.span) for part in p.parts))
     properties = tuple(p for p in run.properties if inside(p))
     kept = (
         {m.mention_id for m in mentions}

@@ -2,6 +2,7 @@
 
 from .frames import (
     DEFAULT_FRAMES,
+    PHRASAL_FRAMES,
     Complement,
     FrameSlot,
     SemanticFrame,
@@ -31,6 +32,7 @@ from .transforms import (
 
 __all__ = [
     "DEFAULT_FRAMES",
+    "PHRASAL_FRAMES",
     "Complement",
     "FrameSlot",
     "SemanticFrame",

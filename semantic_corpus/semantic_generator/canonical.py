@@ -102,6 +102,9 @@ def to_annotation_run(
         span=TextSpan(realized.predicate.start_char, realized.predicate.end_char),
         exact_text=realized.predicate.text,
         lemma=frame.lemma,
+        head_lemma=frame.head_lemma,
+        parts=realized.predicate_parts,
+        allows_passive=frame.allows_passive,
         predicate_type=frame.predicate_type,
         tense=situation.features.tense,
         aspect=_aspect(realized),
@@ -275,6 +278,9 @@ def _shift(item, offset: int, suffix: str, document_id: str):
         for name in ("mention_id", "predicate_id", "property_id")
         if hasattr(item, name)
     )
+    if isinstance(item, Predicate):
+        return _replace(item.shifted(offset), document_id=document_id,
+                        predicate_id=f"{suffix}#{item.predicate_id}")
     return _replace(
         item,
         span=item.span.shifted(offset),

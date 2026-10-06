@@ -359,7 +359,9 @@ def test_generate_store_export_report(tmp_path):
             assert owner.span.start_char <= prop.span.start_char
             assert prop.span.end_char <= owner.span.end_char
     assert bio.dropped_overlapping == sum(len(run.properties) for _, run in pairs)
-    assert bio.tagged_spans == sum(len(run.mentions) + len(run.predicates) for _, run in pairs)
+    part_count = sum(len(predicate.parts) for _, run in pairs for predicate in run.predicates)
+    assert bio.tagged_spans == sum(len(run.mentions) + len(run.predicates) for _, run in pairs) + part_count
+    assert bio.lost_predicate_links == part_count
     assert bio.dropped_unrepresentable == 0
 
     report = build_report(store)

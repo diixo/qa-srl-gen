@@ -44,8 +44,11 @@ These applications and their infrastructure remain outside this Python port:
 ## Project-specific work beyond the port
 
 Modules for all five handoff stages exist, but not every requirement is complete.
-The limitations of the seven-frame generator, rule-based teacher, QA templates,
+The limitations of the fourteen-frame generator, rule-based teacher, QA templates,
 discontinuous semantic spans and JSONL storage are in [STATUS_RU.md](STATUS_RU.md).
+The full source-derived verb/adjective template bank is a separate Python feature,
+available through `template-generate` and the UI. Its automatic syntax is not
+equivalent to hand-verified semantic frames or a Scala feature left to port.
 SQLite, Parquet and Hugging Face remain excluded by user instruction.
 
 `qasrl_v2.py` remains the older flat-export prototype. Wiktionary's old Python 2

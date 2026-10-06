@@ -60,7 +60,7 @@ __all__ = ["CorpusStore", "StoreError", "DuplicateDocument", "SplitConflict"]
 
 #: Bumped when the generator's output changes in a way that matters for
 #: reproducibility. Recorded on every dataset version.
-GENERATOR_VERSION = "0.5.0"
+GENERATOR_VERSION = "0.6.0"
 
 _MANIFEST = "manifest.json"
 _RECENT_WRITES = 128

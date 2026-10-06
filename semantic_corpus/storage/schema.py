@@ -34,6 +34,7 @@ from ..documents import (
     ONTOLOGY_VERSION,
     Passage,
     Predicate,
+    PredicatePart,
     Property,
     RelationEdge,
     TextSpan,
@@ -221,6 +222,10 @@ def _encode_predicate(item: Predicate, run_id: str) -> dict[str, Any]:
         "span": encode_span(item.span),
         "exact_text": item.exact_text,
         "lemma": item.lemma,
+        **({"head_lemma": item.head_lemma,
+            "parts": [{"text": part.text, "span": encode_span(part.span), "kind": part.kind}
+                      for part in item.parts]} if item.head_lemma or item.parts else {}),
+        **({"allows_passive": False} if not item.allows_passive else {}),
         "predicate_type": str(item.predicate_type) if item.predicate_type else None,
         "extra_labels": _labels(item.extra_labels),
         "omitted_slots": list(item.omitted_slots),
@@ -279,6 +284,10 @@ def _decode_span_record(data: Mapping[str, Any]):
         return Predicate(
             predicate_id=data["id"],
             lemma=data["lemma"],
+            head_lemma=data.get("head_lemma"),
+            parts=tuple(PredicatePart(part["text"], decode_span(part["span"]), part["kind"])
+                        for part in data.get("parts", ())),
+            allows_passive=data.get("allows_passive", True),
             predicate_type=(Label(data.get("predicate_type", "ACTION"))
                             if data.get("predicate_type", "ACTION") else None),
             extra_labels=_label_set(data.get("extra_labels")),

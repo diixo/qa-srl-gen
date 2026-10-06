@@ -71,6 +71,26 @@ source files under `data/`. Pool coverage counts individual slot candidates,
 not all possible joint assignments. HTTP annotation sends the selected text to
 the configured teacher; offline rules cover dialogue acts only.
 
+Operation codes, labels and their display order live in
+[`ui/app_main/operations.json`](ui/app_main/operations.json).
+`OperationRegistry` loads and validates this catalogue independently of Django
+model fields. `Job.operation` stores a plain string; catalogue edits no longer
+generate migrations. The form and executor both reject unknown operations and
+operations without a registered Python handler. Historical jobs still display
+their code if the operation has been removed from the catalogue.
+
+To add an operation, add its `code`/`label` entry to the JSON array, implement
+and register a handler in `operations.HANDLERS`, and add any required form
+validation and field/hint configuration in `static/app_main/js/pipeline.js`.
+Codes use lowercase letters, digits and underscores, start with a letter and
+contain at most 24 characters. Restart the server and worker after catalogue
+edits: each process caches its validated registry.
+
+The one-time `0003_operation_registry` migration removes the old field choices
+from Django's migration state; its table-schema SQL is a no-op. Apply it through
+the usual `python ui/manage.py migrate`. Future operation-catalogue changes
+need no migration.
+
 UI validation is separate from the dependency-free core tests:
 
 ```bash
@@ -125,7 +145,10 @@ It runs without `artifacts/`, network access or a Scala runtime.
 | `qasrl_core/validation.py` | invariant checks over slots, spans and sentences |
 | `ontology/models.py` | the label inventory: multi-label spans, speech acts, relations |
 | `ontology/hierarchy.py` | type inheritance (`city → LOCATION`) and the candidate lexicon |
-| `semantic_generator/frames.py` | typed frames for `give`, `visit`, `own`, `feel`, `move`, `see`, `say`, `buy` |
+| `semantic_generator/frames.py` | 14 typed frames, including six multiword predicates |
+| `syntax_mining.py` | optional full-corpus verb, construction and template inventory with source evidence |
+| `template_compiler.py`, `template_bank.py` | full-corpus executable surface patterns, verbs, adjectives and lexical alternatives; model-free bank rendering |
+| `template_validation.py` | independent source/ledger/inventory validation and rendering of every compiled template |
 | `semantic_generator/substitutions.py` | entity pools, real and invented names, held-out splits |
 | `semantic_generator/realization.py` | situation → sentence, with exact spans and relations |
 | `semantic_generator/transforms.py` | tense, voice, negation and modality variation |
@@ -156,7 +179,7 @@ It runs without `artifacts/`, network access or a Scala runtime.
 
 Since generator version `0.4.0`, the UI's **Situations per frame** field and
 `--count` in `generate`, `questions` and `build` specify a quota for **each frame**.
-For eight frames, `100` requests 800 distinct situation texts, before QA generation.
+For fourteen frames, `100` requests 1400 distinct situation texts, before QA generation.
 The UI shows the total before submission and in job progress. Small pools may
 exhaust the bounded sampler: reduce the quota or expand the selected split's pool.
 Failed UI jobs may contain partial data and do not publish a completed version.
@@ -167,6 +190,49 @@ groups of people from groups of objects. Pool entries may specify
 `"number": "plural"` (for example, `the police`); omitted number means singular.
 Agreement is preserved in generated sentences, stored mentions and questions.
 Older stores remain readable; rebuild generated datasets to use the new pool.
+
+Version `0.6.0` adds `pick up`, `put down`, `give up`, `get up`, `look after`
+and `put up with`. Frames distinguish particles from governed prepositions;
+only the head verb inflects. Separable particles support both noun-object orders
+and obligatory pronoun separation (`pick it up`). Canonical predicates retain
+each lexical part's exact span, so `picked the book up` never labels the book
+as part of the action. JSONL preserves these links; BIO/BILOU reports their loss.
+The six frames cover explicit senses and argument structures, not every sense
+of these expressions. The Slots page shows their actual word-order templates.
+
+The complete source-derived bank is separate from these fourteen manually typed
+frames: `data/eng-base-templates/` covers every record of `data/eng-base.jsonl`,
+including adjective slots and lexical alternatives. It preserves all observed
+bindings and source occurrences, without a top-N cutoff. Render it without spaCy:
+
+```bash
+python -m semantic_corpus.cli template-generate --out artifacts/templates-all.jsonl.gz
+python -m semantic_corpus.cli template-generate --adjective beautiful --out artifacts/beautiful.jsonl
+python -m semantic_corpus.cli template-generate --verb "pick up" --out artifacts/pick-up.jsonl
+```
+
+`--count` is a distinct-example quota **per selected template**, default 1.
+Default generation uses attested combinations; `--recombine` explicitly enables
+new combinations of observed fillers that require review. In the UI, use
+**Corpus templates: verbs and adjectives** in New job. Results include JSONL
+and a document store for subsequent annotation. Automatic syntax is marked
+`UNREVIEWED`; it does not create verified semantic roles or gold QA by itself.
+The bank survives removal of `artifacts/`; `manifest.json` and `validation.json`
+record coverage and independent verification. All adjective forms, comparison
+morphology, source evidence and possible participial readings are retained.
+
+To inventory a source corpus, install the optional `requirements-mining.txt`
+and an English spaCy parser model, then run:
+
+```bash
+python -m semantic_corpus.syntax_mining data/eng-base.jsonl --output artifacts/eng-base-syntax --model en_core_web_sm
+```
+
+This processes every record, retaining verb forms, syntactic templates, multiword
+construction candidates, counts and source examples. A compressed occurrence
+ledger and input SHA-256 make observations traceable. Outputs are unreviewed
+parser observations, not automatically approved semantic frames. Details and
+file descriptions are in [HOWTO.md](HOWTO.md#извлечение-шаблонов-из-eng-basejsonl).
 
 Each lemma has an independent seeded stream and document numbering. Adding or
 reordering frames preserves existing frames' texts, IDs and QA when definitions,
@@ -497,8 +563,8 @@ One command runs the whole pipeline — generate, store, export, report:
 python -m semantic_corpus.cli build --count 100 --seed 42 --no-answer-share 0.15
 ```
 
-This creates 100 situations per frame (800 documents in a fresh store with
-the current eight frames), then exports QA to `sft.jsonl`, token annotations to
+This creates 100 situations per frame (1400 documents in a fresh store with
+the current fourteen frames), then exports QA to `sft.jsonl`, token annotations to
 `bio.jsonl`, and validation results to `report.json`. QA counts depend on the
 generated annotations and balancing options. The version manifest records
 `count_scope: "per_frame"` so the quota's unit is explicit.
@@ -645,3 +711,23 @@ Reported rather than silently tolerated:
 MIT. The data formats, the question template and the auxiliary-chain grammar
 originate in [julianmichael/qasrl](https://github.com/julianmichael/qasrl);
 see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
+## Knowledges
+
+1. https://arxiv.org/pdf/2004.15006
+
+2. https://arxiv.org/pdf/2205.11413
+
+3. https://arxiv.org/pdf/1909.05855
+
+4. https://arxiv.org/pdf/1909.05858
+
+5. https://aclanthology.org/D15-1076.pdf
+
+6. https://aclanthology.org/D15-1044.pdf
+
+7. https://aclanthology.org/D16-1059.pdf
+
+8. https://aclanthology.org/P19-1630.pdf
+
+9. https://aclanthology.org/P18-1191.pdf

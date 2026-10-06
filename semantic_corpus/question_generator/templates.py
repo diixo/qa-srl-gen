@@ -234,6 +234,7 @@ def _verb_words(
     negated: bool | None = None,
     passive: bool | None = None,
     subject: EntityMention | None = None,
+    object_mention: EntityMention | None = None,
 ) -> list[str]:
     """The verb sequence, with do-support where English needs it.
 
@@ -245,7 +246,7 @@ def _verb_words(
     is_passive = predicate.voice == "passive" if passive is None else passive
     is_negated = str(predicate.polarity) == "NEGATIVE" if negated is None else negated
     frame = VerbFrame(
-        verb_inflected_forms=resolver(predicate.lemma),
+        verb_inflected_forms=resolver(predicate.head_lemma or predicate.lemma),
         structure=ArgStructure(args={}, is_passive=is_passive),
         tense=(predicate.modality if predicate.modality in _TENSES
                else predicate.tense if predicate.tense in _TENSES else "past"),
@@ -253,17 +254,25 @@ def _verb_words(
         is_progressive="progressive" in aspect,
         is_negated=is_negated,
     )
-    return verb_words(frame, plural=subject is not None and subject.number == "plural",
-                      question=subject_present)
+    words = verb_words(frame, plural=subject is not None and subject.number == "plural",
+                       question=subject_present)
+    tail = [part.text.lower() for part in predicate.parts]
+    obj = _inline(object_mention)
+    if (obj.lower() in {"it", "him", "her", "them", "me", "us", "you"}
+            and tail and all(part.kind == "particle" for part in predicate.parts)):
+        return [*words, obj, *tail]
+    return [*words, *tail, *([obj] if obj else [])]
 
 
-def active_verb_words(predicate: Predicate, resolver: ParadigmResolver) -> list[str]:
+def active_verb_words(predicate: Predicate, resolver: ParadigmResolver,
+                      object_mention: EntityMention | None = None) -> list[str]:
     """The verb as it would read in the active voice, subject questioned.
 
     Needed to ask about an agent the passive dropped: the record says
     ``given``, but the question has to say *Who gave ...?*
     """
-    return _verb_words(predicate, resolver, subject_present=False, passive=False)
+    return _verb_words(predicate, resolver, subject_present=False, passive=False,
+                       object_mention=object_mention)
 
 
 # ---------------------------------------------------------------------------
@@ -393,12 +402,12 @@ def _clause(view: ArgumentView, resolver: ParadigmResolver) -> str:
     answer *Yavin visit Vustal.*
     """
     words = _verb_words(
-        view.predicate, resolver, subject_present=False, passive=False, subject=view.agent
+        view.predicate, resolver, subject_present=False, passive=False, subject=view.agent,
+        object_mention=view.theme,
     )
     parts = [
         _inline(view.agent),
         *words,
-        _inline(view.theme),
         _to_phrase(view.recipient),
     ]
     for _, mention, preposition in view.adjuncts():
@@ -448,12 +457,12 @@ def atomic_questions(
         # The subject is the gap: no auxiliary is fronted, the verb stays finite.
         if agent is not None:
             words = _verb_words(
-                predicate, resolver, subject_present=False, passive=False
+                predicate, resolver, subject_present=False, passive=False, object_mention=theme
             )
             examples.append(
                 example(
                     _question(
-                        [_wh_for(agent), *words, _inline(theme), _to_phrase(recipient)]
+                        [_wh_for(agent), *words, _to_phrase(recipient)]
                     ),
                     agent,
                     relation="AGENT_OF",
@@ -483,7 +492,8 @@ def atomic_questions(
 
         if recipient is not None and agent is not None:
             aux, *rest = _verb_words(
-                predicate, resolver, subject_present=True, passive=False, subject=agent
+                predicate, resolver, subject_present=True, passive=False, subject=agent,
+                object_mention=theme,
             )
             examples.append(
                 example(
@@ -493,7 +503,6 @@ def atomic_questions(
                             aux,
                             _inline(agent),
                             *rest,
-                            _inline(theme),
                             "to",
                         ]
                     ),
@@ -506,9 +515,10 @@ def atomic_questions(
             wh = _WH_FOR_ADJUNCT[relation]
             if agent is not None:
                 aux, *rest = _verb_words(
-                    predicate, resolver, subject_present=True, passive=False, subject=agent
+                    predicate, resolver, subject_present=True, passive=False, subject=agent,
+                    object_mention=theme,
                 )
-                question = _question([wh, aux, _inline(agent), *rest, _inline(theme)])
+                question = _question([wh, aux, _inline(agent), *rest])
             else:
                 question = f"{wh} did this happen?"
             examples.append(
@@ -520,7 +530,7 @@ def atomic_questions(
         # "What did Anna do?" — the whole event, answered by the clause.
         if agent is not None:
             aux, *rest = _verb_words(
-                replace(predicate, lemma="do"), resolver,
+                replace(predicate, lemma="do", head_lemma=None, parts=()), resolver,
                 subject_present=True, passive=False, subject=agent
             )
             examples.append(
@@ -531,7 +541,7 @@ def atomic_questions(
                     kind=QAKind.ATOMIC,
                     document_id=document.document_id,
                     run_id=run.run_id,
-                    evidence=(predicate.span,),
+                    evidence=(predicate.span, *(part.span for part in predicate.parts)),
                     metadata={"predicate": predicate.lemma, "relation": "EVENT"},
                 )
             )
@@ -559,7 +569,7 @@ def passive_paraphrase_questions(
 
     for view in build_views(run, document):
         agent, theme, recipient = view.agent, view.theme, view.recipient
-        if agent is None or theme is None:
+        if agent is None or theme is None or not view.predicate.allows_passive:
             continue
 
         # Theme questioned: it is the passive subject, so it is the gap.
@@ -914,11 +924,12 @@ def yes_no_questions(
             negated=False,
             passive=False,
             subject=agent,
+            object_mention=theme,
         )
         examples.append(
             QAExample(
                 context=body,
-                question=_question([aux, _inline(agent), *rest, _inline(theme)]),
+                question=_question([aux, _inline(agent), *rest]),
                 answer=(
                     ("No. " if view.is_negated else "Yes. ")
                     + sentence_case(_clause(view, resolver))
@@ -927,7 +938,7 @@ def yes_no_questions(
                 kind=QAKind.YES_NO,
                 document_id=document.document_id,
                 run_id=run.run_id,
-                evidence=(view.predicate.span,),
+                evidence=(view.predicate.span, *(part.span for part in view.predicate.parts)),
                 metadata={
                     "predicate": view.predicate.lemma,
                     "polarity": str(view.predicate.polarity),
@@ -966,7 +977,7 @@ def polarity_questions(
                 kind=QAKind.SPEECH_ACT,
                 document_id=document.document_id,
                 run_id=run.run_id,
-                evidence=(view.predicate.span,),
+                evidence=(view.predicate.span, *(part.span for part in view.predicate.parts)),
                 metadata={
                     "polarity": str(view.predicate.polarity),
                     "predicate": view.predicate.lemma,
@@ -1002,8 +1013,7 @@ def compound_questions(
             QAExample(
                 context=body,
                 question=(
-                    f"{_wh_for(agent)} {' '.join(active_verb_words(view.predicate, resolver))} "
-                    f"{_inline(theme)}, and {wh}?"
+                    f"{_wh_for(agent)} {' '.join(active_verb_words(view.predicate, resolver, theme))}, and {wh}?"
                 ),
                 answer=phrase_answer(
                     f"{sentence_case(_inline(agent))}, {preposition} {_inline(adjunct)}"

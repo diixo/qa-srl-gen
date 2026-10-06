@@ -3,16 +3,7 @@ import uuid
 from django.db import models
 from django.utils import timezone
 
-
-OPERATIONS = [
-    ('build', 'Synthetic corpus'), ('dailydialog', 'DailyDialog: full pipeline'),
-    ('ingest', 'Text / dialogue import'), ('bank', 'QA-SRL Bank import'),
-    ('annotate', 'Corpus annotation'), ('questions', 'QA generation'),
-    ('export', 'SFT / BIO export'), ('report', 'Corpus report and validation'),
-    ('validate', 'QA-SRL Bank validation'), ('roundtrip', 'Question round-trip'),
-    ('candidates', 'Candidate extraction'), ('lookup', 'Verb forms'),
-    ('mining', 'Entity pool proposals'),
-]
+from .operation_registry import OperationRegistry
 
 
 class Job(models.Model):
@@ -24,7 +15,7 @@ class Job(models.Model):
         CANCELLED = 'cancelled', 'Cancelled'
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    operation = models.CharField(max_length=24, choices=OPERATIONS)
+    operation = models.CharField(max_length=24)
     config = models.JSONField(default=dict)
     status = models.CharField(max_length=16, choices=Status.choices, default=Status.QUEUED)
     phase = models.CharField(max_length=200, default='Waiting for an available slot')
@@ -41,6 +32,9 @@ class Job(models.Model):
 
     class Meta:
         ordering = ['-created_at']
+
+    def get_operation_display(self):
+        return OperationRegistry.default().label(self.operation)
 
     @property
     def active(self):

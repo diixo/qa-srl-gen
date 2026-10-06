@@ -25,6 +25,7 @@ __all__ = [
     "SurfacePattern",
     "SemanticFrame",
     "DEFAULT_FRAMES",
+    "PHRASAL_FRAMES",
     "frame_by_lemma",
 ]
 
@@ -92,6 +93,8 @@ class SurfacePattern:
     #: its agent entirely, which is the only way to generate a sentence whose
     #: agent genuinely cannot be recovered.
     omits: frozenset[str] = field(default_factory=frozenset)
+    #: A separable particle follows this complement instead of the verb.
+    particle_after: str | None = None
 
     def mentioned(self) -> frozenset[str]:
         return frozenset({self.subject} | {c.slot for c in self.complements})
@@ -108,6 +111,10 @@ class SemanticFrame:
     #: Adjunct slots are optional by construction and realise as trailing
     #: prepositional phrases, independent of the chosen pattern.
     adjuncts: tuple[tuple[str, str], ...] = ()
+    head_lemma: str | None = None
+    particles: tuple[str, ...] = ()
+    object_preposition: str | None = None
+    allows_passive: bool = True
 
     def __post_init__(self) -> None:
         if self.predicate_type not in (Label.ACTION, Label.STATE):
@@ -119,7 +126,24 @@ class SemanticFrame:
         if len(names) != len(set(names)):
             raise ValueError(f"{self.lemma}: duplicate slot names in {names}")
         known = set(names)
+        tail = (*self.particles, *((self.object_preposition,) if self.object_preposition else ()))
+        if tail and (not self.head_lemma or self.lemma != " ".join((self.head_lemma, *tail))):
+            raise ValueError("multiword lemma must match head, particles and object preposition")
         for pattern in self.patterns:
+            if self.object_preposition and not pattern.is_passive:
+                governed = [c for c in pattern.complements
+                            if c.preposition == self.object_preposition
+                            and self.slot_map.get(c.slot)
+                            and self.slot_map[c.slot].role in (Relation.THEME_OF, Relation.PATIENT_OF)]
+                if len(governed) != 1 or pattern.particle_after is not None:
+                    raise ValueError(f"{self.lemma}: pattern needs one governed object after the particles")
+            if pattern.is_passive and not self.allows_passive:
+                raise ValueError(f"{self.lemma}: passive pattern is not licensed")
+            if pattern.particle_after is not None:
+                if (not self.particles or pattern.is_passive or pattern.particle_after in self.adjunct_slots
+                        or pattern.particle_after not in {c.slot for c in pattern.complements}
+                        or any(c.slot == pattern.particle_after and c.preposition for c in pattern.complements)):
+                    raise ValueError(f"{self.lemma}: invalid particle placement")
             missing = pattern.mentioned() - known
             if missing:
                 raise ValueError(
@@ -147,6 +171,26 @@ class SemanticFrame:
             if pattern.name == name:
                 return pattern
         raise KeyError(f"{self.lemma} has no pattern {name!r}")
+
+    def pattern_template(self, pattern: SurfacePattern) -> str:
+        """A readable word-order skeleton, shared by the CLI and dashboard."""
+        parts = [f"{{{pattern.subject}}}", f"<{self.head_lemma or self.lemma}>"]
+        if pattern.particle_after is None:
+            parts.extend(self.particles)
+        if pattern.is_passive and self.object_preposition:
+            parts.append(self.object_preposition)
+        for complement in pattern.complements:
+            if complement.preposition:
+                parts.append(complement.preposition)
+            parts.append(f"{{{complement.slot}}}")
+            if complement.slot == pattern.particle_after:
+                parts.extend(self.particles)
+        return " ".join(parts)
+
+    @property
+    def pattern_descriptions(self) -> tuple[dict, ...]:
+        return tuple({"name": p.name, "template": self.pattern_template(p),
+                      "is_passive": p.is_passive} for p in self.patterns)
 
     def __str__(self) -> str:
         lines = [f"{self.lemma}: predicate_type = {self.predicate_type}"]
@@ -410,7 +454,52 @@ BUY = SemanticFrame(
 )
 
 
-DEFAULT_FRAMES: tuple[SemanticFrame, ...] = (GIVE, VISIT, OWN, FEEL, MOVE, SEE, SAY, BUY)
+def _particle_transitive(head: str, particle: str) -> SemanticFrame:
+    return SemanticFrame(
+        lemma=f"{head} {particle}", head_lemma=head, particles=(particle,),
+        predicate_type=Label.ACTION,
+        slots=(FrameSlot("agent", Relation.AGENT_OF, _AGENTIVE, group_types=_HUMAN_GROUP),
+               FrameSlot("theme", Relation.THEME_OF, frozenset({Label.PHYSICAL_OBJECT}))),
+        patterns=(
+            SurfacePattern("joined", "agent", (Complement("theme"),)),
+            SurfacePattern("separated", "agent", (Complement("theme"),), particle_after="theme"),
+            SurfacePattern("passive", "theme", (Complement("agent", "by"),), is_passive=True),
+            SurfacePattern("passive_agentless", "theme", is_passive=True, omits=frozenset({"agent"})),
+        ),
+    )
+
+
+def _particle_intransitive(head: str, particle: str) -> SemanticFrame:
+    return SemanticFrame(
+        lemma=f"{head} {particle}", head_lemma=head, particles=(particle,),
+        predicate_type=Label.ACTION, allows_passive=False,
+        slots=(FrameSlot("agent", Relation.AGENT_OF, _ANIMATE, group_types=_ANIMATE_GROUP),),
+        patterns=(SurfacePattern("intransitive", "agent"),),
+    )
+
+
+PICK_UP = _particle_transitive("pick", "up")
+PUT_DOWN = _particle_transitive("put", "down")
+GIVE_UP = _particle_intransitive("give", "up")
+GET_UP = _particle_intransitive("get", "up")
+LOOK_AFTER = SemanticFrame(
+    lemma="look after", head_lemma="look", object_preposition="after",
+    predicate_type=Label.ACTION,
+    slots=(FrameSlot("agent", Relation.AGENT_OF, _AGENTIVE, group_types=_HUMAN_GROUP),
+           FrameSlot("theme", Relation.THEME_OF, _ANIMATE, group_types=_ANIMATE_GROUP)),
+    patterns=(SurfacePattern("prepositional", "agent", (Complement("theme", "after"),)),
+              SurfacePattern("passive", "theme", (Complement("agent", "by"),), is_passive=True)),
+)
+PUT_UP_WITH = SemanticFrame(
+    lemma="put up with", head_lemma="put", particles=("up",), object_preposition="with",
+    predicate_type=Label.ACTION, allows_passive=False,
+    slots=(FrameSlot("agent", Relation.AGENT_OF, _ANIMATE, group_types=_ANIMATE_GROUP),
+           FrameSlot("theme", Relation.THEME_OF, _ANIMATE, group_types=_ANIMATE_GROUP)),
+    patterns=(SurfacePattern("prepositional", "agent", (Complement("theme", "with"),)),),
+)
+
+PHRASAL_FRAMES = (PICK_UP, PUT_DOWN, GIVE_UP, GET_UP, LOOK_AFTER, PUT_UP_WITH)
+DEFAULT_FRAMES: tuple[SemanticFrame, ...] = (GIVE, VISIT, OWN, FEEL, MOVE, SEE, SAY, BUY, *PHRASAL_FRAMES)
 
 
 def frame_by_lemma(lemma: str, frames: Iterable[SemanticFrame] = DEFAULT_FRAMES):

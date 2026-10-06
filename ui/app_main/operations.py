@@ -1,5 +1,6 @@
 """UI adapters around the existing corpus APIs; every write has a fresh output."""
 
+import gzip
 import json
 import re
 import runpy
@@ -21,6 +22,7 @@ from semantic_corpus.storage import CorpusStore
 
 from .catalog import data_path, get_pool, job_root, store_path
 from .models import Job
+from .operation_registry import OperationRegistry
 
 
 class Progress:
@@ -90,66 +92,93 @@ def quality_report(store, out, config, progress):
         raise ValueError('Validation found issues. Open report.json and the job log.')
 
 
-def execute(job):
-    c = job.config
-    out = job_root(job)
-    out.mkdir(parents=True, exist_ok=True)
-    (out / 'config.json').write_text(json.dumps(c, ensure_ascii=False, indent=2), encoding='utf-8')
-    progress = Progress(job)
-    progress('Preparing')
+def _execute_templates(job, out, c, progress):
+    from semantic_corpus.documents import Document
+    from semantic_corpus.template_bank import TemplateBank
+    bank = TemplateBank(settings.REPO_ROOT / 'data/eng-base-templates')
+    store = CorpusStore(out / 'store')
+    processed = stored = 0
+    rows = bank.generate(count=c.get('template_count', 1), seed=c['seed'],
+        lemma=c.get('template_verb') or None, adjective=c.get('template_adjective') or None,
+        recombine=c.get('recombine', False))
+    progress('Rendering corpus templates')
+    with gzip.open(out / 'generated.jsonl.gz', 'xt', encoding='utf-8') as stream:
+        for processed, row in enumerate(rows, 1):
+            stream.write(json.dumps(row, ensure_ascii=False) + '\n')
+            stored += store.add_document(Document(f'template-{processed:08d}', row['text'],
+                source='eng-base-templates', split=c['split'], metadata={
+                    **{key: value for key, value in row.items() if key != 'text'},
+                    'bank_source_sha256': bank.manifest['source_sha256'],
+                    'recombined': c.get('recombine', False)}))
+            progress('Rendering corpus templates', processed, stored=stored)
+    store.publish_version(str(job.pk), build_config={**c, 'bank_source_sha256': bank.manifest['source_sha256']})
+    quality_report(store, out, c, progress)
+    progress('Templates rendered; corpus ready for annotation', processed, processed, stored=stored)
+    return
+
+
+def _execute_dailydialog(job, out, c, progress):
+    limit = c.get('limit')
+    source = data_path(c['source'])
+    sys.argv = ['run_dailydialog.py', '--input', str(source), '--out', str(out / 'result'),
+                '--seed', str(c['seed']), '--context-turns', str(c['context_turns'])]
+    if limit:
+        sys.argv += ['--limit', str(limit)]
+    progress('DailyDialog: annotation → QA → export → validation')
+    try:
+        with redirect_stdout(DailyDialogOutput(sys.stdout, job, limit or 0)):
+            runpy.run_path(str(settings.REPO_ROOT / 'scripts/run_dailydialog.py'), run_name='__main__')
+    except SystemExit as error:
+        if error.code not in (None, 0):
+            raise ValueError(f'DailyDialog exited with code {error.code}') from error
+    summary = json.loads((out / 'result/summary.json').read_text(encoding='utf-8'))
+    counts = summary['counts']
+    progress('DailyDialog completed', counts['documents'], counts['documents'], qa=counts['stored_qa'])
+    return
+
+
+def _execute_cli(job, out, c, progress):
     operation = job.operation
     limit = c.get('limit')
-
-    if operation == 'dailydialog':
-        source = data_path(c['source'])
-        sys.argv = ['run_dailydialog.py', '--input', str(source), '--out', str(out / 'result'),
-                    '--seed', str(c['seed']), '--context-turns', str(c['context_turns'])]
+    from semantic_corpus.cli import main
+    argv = [operation]
+    if operation in ('validate', 'roundtrip'):
+        argv += [str(data_path(c['source']))]
         if limit:
-            sys.argv += ['--limit', str(limit)]
-        progress('DailyDialog: annotation → QA → export → validation')
-        try:
-            with redirect_stdout(DailyDialogOutput(sys.stdout, job, limit or 0)):
-                runpy.run_path(str(settings.REPO_ROOT / 'scripts/run_dailydialog.py'), run_name='__main__')
-        except SystemExit as error:
-            if error.code not in (None, 0):
-                raise ValueError(f'DailyDialog exited with code {error.code}') from error
-        summary = json.loads((out / 'result/summary.json').read_text(encoding='utf-8'))
-        counts = summary['counts']
-        progress('DailyDialog completed', counts['documents'], counts['documents'], qa=counts['stored_qa'])
-        return
+            argv += ['--limit', str(limit)]
+    elif operation == 'lookup':
+        argv += c['text'].split()
+    else:
+        argv += ['--text', c['text'], '--verbose']
+    progress(OperationRegistry.default().require(operation).label)
+    if main(argv):
+        raise ValueError('Validation found issues; see the log for details.')
+    return
 
-    if operation in ('validate', 'roundtrip', 'lookup', 'candidates'):
-        from semantic_corpus.cli import main
-        argv = [operation]
-        if operation in ('validate', 'roundtrip'):
-            argv += [str(data_path(c['source']))]
-            if limit:
-                argv += ['--limit', str(limit)]
-        elif operation == 'lookup':
-            argv += c['text'].split()
-        else:
-            argv += ['--text', c['text'], '--verbose']
-        progress(dict(Job._meta.get_field('operation').choices)[operation])
-        if main(argv):
-            raise ValueError('Validation found issues; see the log for details.')
-        return
 
-    if operation == 'mining':
-        from semantic_corpus.semantic_annotator import ingest
-        from semantic_corpus.semantic_generator.mining import mine_entities, write_proposals
-        progress('Mining entity pool proposals')
-        documents = ingest([data_path(c['source'])])
-        report = mine_entities((doc.text for doc in islice(documents, limit)), min_support=2)
-        write_proposals(report, out / 'proposals.json')
-        return
+def _execute_mining(job, out, c, progress):
+    limit = c.get('limit')
+    from semantic_corpus.semantic_annotator import ingest
+    from semantic_corpus.semantic_generator.mining import mine_entities, write_proposals
+    progress('Mining entity pool proposals')
+    documents = ingest([data_path(c['source'])])
+    report = mine_entities((doc.text for doc in islice(documents, limit)), min_support=2)
+    write_proposals(report, out / 'proposals.json')
+    return
 
-    if operation in ('export', 'report'):
-        store = CorpusStore(store_path(c['store']), create=False)
-        if operation == 'export':
-            export_store(store, out, c, progress)
-        quality_report(store, out, c, progress)
-        return
 
+def _execute_exports(job, out, c, progress):
+    operation = job.operation
+    store = CorpusStore(store_path(c['store']), create=False)
+    if operation == 'export':
+        export_store(store, out, c, progress)
+    quality_report(store, out, c, progress)
+    return
+
+
+def _execute_corpus(job, out, c, progress):
+    operation = job.operation
+    limit = c.get('limit')
     if operation in ('annotate', 'questions'):
         progress('Creating an independent copy of the corpus')
         # Regeneration must honour the new balance settings even if the source
@@ -238,3 +267,42 @@ def execute(job):
         export_store(store, out, c, progress)
     quality_report(store, out, c, progress)
     progress('Processing complete', processed, processed, qa=qa)
+
+
+# Explicit Python handlers keep JSON as metadata, never executable import paths.
+HANDLERS = {
+    'build': _execute_corpus,
+    'dailydialog': _execute_dailydialog,
+    'templates': _execute_templates,
+    'ingest': _execute_corpus,
+    'bank': _execute_corpus,
+    'annotate': _execute_corpus,
+    'questions': _execute_corpus,
+    'export': _execute_exports,
+    'report': _execute_exports,
+    'validate': _execute_cli,
+    'roundtrip': _execute_cli,
+    'candidates': _execute_cli,
+    'lookup': _execute_cli,
+    'mining': _execute_mining,
+}
+
+
+def validate_operation(code):
+    operation = OperationRegistry.default().require(code)
+    if not callable(HANDLERS.get(code)):
+        raise ValueError(f'No handler registered for operation: {code!r}')
+    return operation
+
+
+def execute(job):
+    operation = validate_operation(job.operation)
+    c = job.config
+    if c.get('operation', operation.code) != operation.code:
+        raise ValueError('Job configuration operation does not match the job operation.')
+    out = job_root(job)
+    out.mkdir(parents=True, exist_ok=True)
+    (out / 'config.json').write_text(json.dumps(c, ensure_ascii=False, indent=2), encoding='utf-8')
+    progress = Progress(job)
+    progress('Preparing')
+    HANDLERS[operation.code](job, out, c, progress)

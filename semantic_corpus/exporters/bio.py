@@ -22,7 +22,7 @@ Resolution rules, in order:
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from pathlib import Path
 from typing import Any, Iterable, Iterator, Literal
 
@@ -46,11 +46,13 @@ class BioReport:
     dropped_overlapping: int = 0
     dropped_labels: int = 0
     dropped_unrepresentable: int = 0
+    lost_predicate_links: int = 0
     dropped_examples: list[str] = field(default_factory=list)
 
     @property
     def is_lossless(self) -> bool:
-        return self.dropped_overlapping == 0 and self.dropped_labels == 0 and self.dropped_unrepresentable == 0
+        return (self.dropped_overlapping == 0 and self.dropped_labels == 0
+                and self.dropped_unrepresentable == 0 and self.lost_predicate_links == 0)
 
     def note(self, message: str) -> None:
         if len(self.dropped_examples) < 20:
@@ -66,7 +68,8 @@ class BioReport:
         return (
             head
             + f"; dropped {self.dropped_overlapping} overlapping spans and "
-            f"{self.dropped_labels} extra labels, {self.dropped_unrepresentable} unrepresentable spans"
+            f"{self.dropped_labels} extra labels, {self.dropped_unrepresentable} unrepresentable spans, "
+            f"{self.lost_predicate_links} links between predicate parts"
         )
 
 
@@ -115,6 +118,14 @@ def tag_document(
     report.tokens += len(tokens)
 
     annotated = [*run.mentions, *run.predicates, *run.properties]
+    for predicate in run.predicates:
+        for part in predicate.parts:
+            # Separate spans avoid labelling the intervening object as ACTION.
+            annotated.append(replace(predicate, span=part.span, exact_text=part.text,
+                                     lemma=part.text, head_lemma=None, parts=()))
+        if predicate.parts:
+            report.lost_predicate_links += len(predicate.parts)
+            report.note(f"{document.document_id}: BIO cannot retain links between predicate parts")
     # Longer spans first; ties broken by position so the result is stable.
     annotated.sort(key=lambda a: (-(len(a.span)), a.span.start_char))
 

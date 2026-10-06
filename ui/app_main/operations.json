@@ -1,0 +1,16 @@
+[
+    {"code": "build", "label": "Synthetic corpus"},
+    {"code": "dailydialog", "label": "DailyDialog: full pipeline"},
+    {"code": "templates", "label": "Corpus templates: verbs and adjectives"},
+    {"code": "ingest", "label": "Text / dialogue import"},
+    {"code": "bank", "label": "QA-SRL Bank import"},
+    {"code": "annotate", "label": "Corpus annotation"},
+    {"code": "questions", "label": "QA generation"},
+    {"code": "export", "label": "SFT / BIO export"},
+    {"code": "report", "label": "Corpus report and validation"},
+    {"code": "validate", "label": "QA-SRL Bank validation"},
+    {"code": "roundtrip", "label": "Question round-trip"},
+    {"code": "candidates", "label": "Candidate extraction"},
+    {"code": "lookup", "label": "Verb forms"},
+    {"code": "mining", "label": "Entity pool proposals"}
+]
