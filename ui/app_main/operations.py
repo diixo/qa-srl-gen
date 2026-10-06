@@ -187,9 +187,23 @@ def _execute_corpus(job, out, c, progress):
         shutil.copytree(store_path(c['store']), out / 'store', ignore=ignored)
     store = CorpusStore(out / 'store')
     generator = None
+    resources = None
+    build_summary = None
     if operation == 'build':
-        generator = Generator(seed=c['seed'], split=c['split'], pool=get_pool(c.get('pool', '')))
-    questions = QuestionGenerator(seed=c['seed'], paradigms=DEFAULT_PARADIGMS,
+        from semantic_corpus.resource_pool import BuiltInPool, RESOURCE_SCOPE
+        if c.get('resource_scope') not in (None, 'curated_v1', RESOURCE_SCOPE):
+            raise ValueError(f"Unknown resource scope: {c['resource_scope']!r}")
+        if c.get('resource_scope') == RESOURCE_SCOPE:
+            resources = BuiltInPool(settings.REPO_ROOT, entities=get_pool(c.get('pool', '')))
+            c = {**c, 'resource_pool': resources.metadata(include_mined=c.get('template_count', 1) > 0)}
+            generator = Generator(seed=c['seed'], split=c['split'], pool=resources.entities,
+                                  frames=resources.frames, paradigms=resources.paradigms)
+            build_summary = dict(curated_generated=0, curated_stored=0, curated_duplicates=0,
+                                 mined=dict(stored=0, duplicates=0), resource_pool=c['resource_pool'])
+        else:
+            # Saved jobs retain the resource scope they were created with.
+            generator = Generator(seed=c['seed'], split=c['split'], pool=get_pool(c.get('pool', '')))
+    questions = QuestionGenerator(seed=c['seed'], paradigms=generator.paradigms if generator else DEFAULT_PARADIGMS,
         ambiguous_forms=generator.pool.ambiguous_forms() if generator else ())
     qa = 0
     processed = 0
@@ -209,12 +223,34 @@ def _execute_corpus(job, out, c, progress):
         progress('Generation → annotations → QA', 0, total, qa=qa)
         for i, (doc, run) in enumerate(pairs, 1):
             if store.add_document(doc):
+                if build_summary is not None:
+                    build_summary['curated_stored'] += 1
                 store.add_run(run, doc)
                 examples = balance(questions.for_document(doc, run), seed=c['seed'],
                     max_per_kind=c.get('max_per_kind'), no_answer_share=c.get('no_answer_share'))
                 qa += store.add_examples(examples, generation_run_id=run.run_id)
             processed = i
             progress('Generation → annotations → QA', i, total, qa=qa)
+        if resources is not None:
+            build_summary['curated_generated'] = processed
+            build_summary['curated_duplicates'] = processed - build_summary['curated_stored']
+            mined = build_summary['mined']
+            def mined_progress(stats):
+                progress('Generating from the built-in mined templates', stats['rendered'],
+                         stored=mined['stored'], split_excluded=stats['split_excluded'], qa=qa)
+            progress('Generating from the built-in mined templates')
+            for doc in resources.mined_documents(count=c.get('template_count', 1), seed=c['seed'],
+                    split=c['split'], lemma=c.get('template_verb') or None,
+                    adjective=c.get('template_adjective') or None,
+                    recombine=c.get('recombine', False), stats=mined, progress=mined_progress):
+                if store.add_document(doc):
+                    mined['stored'] += 1
+                else:
+                    mined['duplicates'] += 1
+            processed += mined['rendered']
+            build_summary.update(qa_examples=qa, pending_annotation=mined['stored'])
+            (out / 'generation-summary.json').write_text(
+                json.dumps(build_summary, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     elif operation == 'bank':
         from semantic_corpus.qasrl_bridge import iter_bank_canonical
         from semantic_corpus.question_generator.templates import native_questions
@@ -239,7 +275,13 @@ def _execute_corpus(job, out, c, progress):
         resources = CandidateResources.load(wiktionary_dir=str(settings.REPO_ROOT / 'data/wiktionary'))
         teacher = RuleBasedTeacher() if c['teacher'] == 'rules' else HttpTeacher(
             c['teacher_url'], name=c['model'], labels=[str(label) for label in Label])
-        for doc in islice(store.documents(), limit):
+        documents = store.documents()
+        if c.get('pending_only', False):
+            # A unified build already contains verified curated runs. Apply
+            # the limit to pending documents, without replacing those runs.
+            documents = (doc for doc in documents
+                         if next(store.runs(document_id=doc.document_id), None) is None)
+        for doc in islice(documents, limit):
             outcome = annotate_document(doc, teacher, run_id=f'{job.pk}-{processed}', resources=resources,
                                         random_seed=c['seed'])
             if not outcome.ok:
@@ -266,7 +308,11 @@ def _execute_corpus(job, out, c, progress):
     if operation != 'ingest':
         export_store(store, out, c, progress)
     quality_report(store, out, c, progress)
-    progress('Processing complete', processed, processed, qa=qa)
+    metrics = {'qa': qa}
+    if build_summary is not None:
+        metrics.update(pending_annotation=build_summary['pending_annotation'],
+                       mined_stored=build_summary['mined']['stored'])
+    progress('Processing complete', processed, processed, **metrics)
 
 
 # Explicit Python handlers keep JSON as metadata, never executable import paths.

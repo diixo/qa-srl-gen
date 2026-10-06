@@ -302,18 +302,22 @@ def cmd_questions(args: argparse.Namespace) -> int:
 
 
 def cmd_build(args: argparse.Namespace) -> int:
+    import json
     from .exporters import build_report, export_bio, export_sft, write_report
     from .question_generator import QuestionGenerator, balance
     from .semantic_generator import Generator
     from .semantic_generator.canonical import iter_canonical
-    from .semantic_generator.generator import DEFAULT_PARADIGMS
     from .storage import CorpusStore
     from .storage.repository import GENERATOR_VERSION, StoreError
+    from .resource_pool import BuiltInPool, RESOURCE_SCOPE
 
+    resources = BuiltInPool()
+    resource_metadata = resources.metadata(include_mined=args.template_count > 0)
     store = CorpusStore(args.store)
-    generator = Generator(seed=args.seed, split=args.split)
+    generator = Generator(seed=args.seed, split=args.split, pool=resources.entities,
+                          frames=resources.frames, paradigms=resources.paradigms)
     questions = QuestionGenerator(
-        paradigms=DEFAULT_PARADIGMS,
+        paradigms=resources.paradigms,
         ambiguous_forms=generator.pool.ambiguous_forms(),
         seed=args.seed,
     )
@@ -323,6 +327,9 @@ def cmd_build(args: argparse.Namespace) -> int:
     build_config = {key: getattr(args, key) for key in
                     ("seed", "split", "prefix", "count", "max_per_kind", "no_answer_share")}
     build_config['count_scope'] = 'per_frame'
+    build_config.update(resource_scope=RESOURCE_SCOPE, resource_pool=resource_metadata,
+                        template_count=args.template_count, template_verb=args.template_verb,
+                        template_adjective=args.template_adjective, recombine=args.recombine)
     previous = next((v for v in store.versions() if v["version_id"] == args.version), None)
     if previous is not None and previous.get("build_config") != build_config:
         raise StoreError(f"version {args.version!r} exists; use a new version")
@@ -331,11 +338,21 @@ def cmd_build(args: argparse.Namespace) -> int:
         or previous["content_hash"] != store.content_hash()
     ):
         raise StoreError(f"version {args.version!r} names different content or generator; use a new version")
-    known_content = {r["source_hash"]: r.get("document_split") for r in store.read("documents")}
+    known_content = {r["source_hash"]: (r.get("document_split"), r["document_id"])
+                     for r in store.read("documents")}
     known_runs = {r["run_id"] for r in store.read("annotation_runs")}
     def generated_pairs():
         return iter_canonical(generator.generate_per_frame(args.count), prefix=args.prefix,
                               split=args.split, random_seed=args.seed, per_frame_ids=True)
+
+    mined_stats = dict(stored=0, duplicates=0)
+    def mined_documents(stats=None):
+        return resources.mined_documents(count=args.template_count, seed=args.seed,
+            split=args.split, lemma=args.template_verb, adjective=args.template_adjective,
+            recombine=args.recombine, stats=stats)
+
+    summary = dict(curated_generated=0, curated_stored=0, curated_duplicates=0,
+                   mined=mined_stats, resource_pool=resource_metadata)
 
     for document, run in generated_pairs():
         existing = store.document(document.document_id)
@@ -343,14 +360,35 @@ def cmd_build(args: argparse.Namespace) -> int:
             raise StoreError(f"document {document.document_id!r} is immutable; use a new prefix")
         if existing is None and run.run_id in known_runs:
             raise StoreError(f"run {run.run_id!r} already exists; use a new prefix")
-        if document.sha256 in known_content and known_content[document.sha256] != document.split:
+        duplicate = known_content.get(document.sha256)
+        if duplicate is not None and duplicate[0] != document.split:
             raise StoreError("duplicate text cannot cross splits")
+        if (duplicate is not None and duplicate[1] != document.document_id
+                and next(store.runs(document_id=duplicate[1]), None) is None):
+            raise StoreError(
+                f"curated text already exists as unannotated document {duplicate[1]!r}; "
+                "use a fresh store or annotate the existing source document before rebuilding"
+            )
         if previous is not None and existing is None:
             # Content duplicates can legitimately have skipped identifiers.
             if document.sha256 not in known_content:
                 raise StoreError(f"version {args.version!r} exists; use a new version")
+    # Validate the whole selected mined stream before appending either kind of
+    # document. In particular, a late impossible per-template quota must not
+    # leave a partly built corpus. The bank is streamed twice, never held in RAM.
+    for document in mined_documents():
+        existing = store.document(document.document_id)
+        if existing is not None and existing != document:
+            raise StoreError(f"mined document {document.document_id!r} is immutable")
+        if document.sha256 in known_content and known_content[document.sha256][0] != document.split:
+            raise StoreError("duplicate text cannot cross splits")
+        if previous is not None and existing is None and document.sha256 not in known_content:
+            raise StoreError(f"version {args.version!r} exists; use a new version")
     for document, run in generated_pairs():
-        if not store.add_document(document) and store.document(document.document_id) is None:
+        summary['curated_generated'] += 1
+        added = store.add_document(document)
+        summary['curated_stored' if added else 'curated_duplicates'] += 1
+        if not added and store.document(document.document_id) is None:
             continue
         if run.run_id not in known_runs:
             store.add_run(run, document)
@@ -365,12 +403,28 @@ def cmd_build(args: argparse.Namespace) -> int:
             )
         store.add_examples(examples, generation_run_id=run.run_id)
 
+    for document in mined_documents(mined_stats):
+        if store.add_document(document):
+            mined_stats['stored'] += 1
+        else:
+            mined_stats['duplicates'] += 1
+
     version = store.publish_version(args.version, notes=args.notes, build_config=build_config)
     print(f"stored {version['counts']['documents']} documents, "
           f"{version['counts']['qa_examples']} examples "
           f"(version {version['version_id']}, {version['content_hash'][:12]})")
 
     out = Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
+    summary.update(qa_examples=store.count('qa_examples'),
+                   pending_annotation=sum(1 for document in store.documents(split=args.split)
+                       if document.metadata.get('resource_pool') == 'built-in'
+                       and next(store.runs(document_id=document.document_id), None) is None))
+    (out / 'generation-summary.json').write_text(
+        json.dumps(summary, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+    print(f"mined: {mined_stats['rendered']} candidates, "
+          f"{mined_stats['split_excluded']} outside {args.split}, "
+          f"{summary['pending_annotation']} stored documents awaiting annotation")
     written = export_sft(store.examples(split=args.split), out / "sft.jsonl")
     print(f"sft: {written} records -> {out / 'sft.jsonl'}")
     def stored_pairs():
@@ -384,10 +438,8 @@ def cmd_build(args: argparse.Namespace) -> int:
     print(f"bio: {bio}")
 
     # Names held out for the unseen-names test must not be in training text.
-    from .semantic_generator import default_pool
-
     held_out = (
-        list(default_pool().split("test").surface_forms)
+        list(resources.entities.split("test").surface_forms)
         if args.split == "train"
         else []
     )
@@ -413,6 +465,13 @@ def _positive_count(value: str) -> int:
     count = int(value)
     if count < 1:
         raise argparse.ArgumentTypeError("count per frame must be at least 1")
+    return count
+
+
+def _nonnegative_count(value: str) -> int:
+    count = int(value)
+    if count < 0:
+        raise argparse.ArgumentTypeError("count must be nonnegative")
     return count
 
 
@@ -513,6 +572,14 @@ def build_parser() -> argparse.ArgumentParser:
     build.add_argument("--scheme", choices=("BIO", "BILOU"), default="BIO")
     build.add_argument("--max-per-kind", type=int, default=0)
     build.add_argument("--no-answer-share", type=float, default=None)
+    build.add_argument("--template-count", type=_nonnegative_count, default=1,
+                       help="examples per mined template before split filtering; 0 disables mined output")
+    build.add_argument("--template-verb", type=lambda value: value.strip().lower(),
+                       help="optional mined verb or phrasal verb lemma")
+    build.add_argument("--template-adjective", type=lambda value: value.strip().lower(),
+                       help="optional mined adjective lemma")
+    build.add_argument("--recombine", action="store_true",
+                       help="combine observed mined slot fillers; outputs remain UNREVIEWED")
     build.set_defaults(func=cmd_build)
 
     report = sub.add_parser("report", help="distribution and leakage of a store")

@@ -1,0 +1,43 @@
+<section class="panel mb-4">
+    <div class="d-flex flex-wrap align-items-start justify-content-between gap-3 mb-3">
+        <div>
+            <h2>Built-in pool resources</h2>
+            <p class="text-secondary mb-0">Synthetic corpus uses curated frames and the complete mined template inventory from this shared pool.</p>
+        </div>
+        <a class="btn btn-outline-primary" href="{% url 'app_main:pipeline' %}">New job</a>
+    </div>
+    <div class="row g-3 mb-3">
+        <div class="col-sm-6 col-lg-3">
+            <div class="metric-card"><span>Entities</span><strong>{{ monitor.resources.entities|floatformat:'0g' }}</strong><small>active entity component</small></div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="metric-card"><span>Curated frames</span><strong>{{ monitor.resources.frames|floatformat:'0g' }}</strong><small>verified semantic roles</small></div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="metric-card"><span>Mined templates</span><strong>{{ monitor.resources.templates|floatformat:'0g' }}</strong><small>executable surface patterns</small></div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="metric-card"><span>Source records</span><strong>{{ monitor.resources.records|floatformat:'0g' }}</strong><small>eng-base.jsonl records processed</small></div>
+        </div>
+    </div>
+    {% if monitor.resources.available %}
+        <div class="table-responsive">
+            <table class="table mb-3">
+                <thead><tr><th>Mined inventory</th><th>Entries</th></tr></thead>
+                <tbody>
+                    <tr><td>Verb lemmas and forms</td><td>{{ monitor.resources.verbs|floatformat:'0g' }}</td></tr>
+                    <tr><td>Adjective lemmas and forms</td><td>{{ monitor.resources.adjectives|floatformat:'0g' }}</td></tr>
+                    <tr><td>Verb constructions, including phrasal verbs</td><td>{{ monitor.resources.constructions|floatformat:'0g' }}</td></tr>
+                    <tr><td>Alternative verb lemmas</td><td>{{ monitor.resources.verb_alternatives|floatformat:'0g' }}</td></tr>
+                    <tr><td>Alternative adjective / participle entries</td><td>{{ monitor.resources.adjective_alternatives|floatformat:'0g' }}</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="small text-secondary mb-0">Alternative readings can overlap the primary inventories. Mined syntax remains UNREVIEWED; its generated documents need semantic annotation before QA and training export. Curated frames produce verified annotations and QA directly. Full source occurrences remain available for auditing.</p>
+    {% else %}
+        <p class="text-warning mb-0">Mined resources are {{ monitor.resources.status }}. {{ monitor.resources.error }} Restore them to include mined templates, or explicitly set Examples per mined template to 0 in Synthetic corpus.</p>
+    {% endif %}
+    {% if selected_pool %}
+        <p class="small text-secondary mt-3 mb-0">The uploaded pool replaces the entity component only. The shared frames and mined inventories remain available.</p>
+    {% endif %}
+</section>

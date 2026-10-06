@@ -146,6 +146,7 @@ It runs without `artifacts/`, network access or a Scala runtime.
 | `ontology/models.py` | the label inventory: multi-label spans, speech acts, relations |
 | `ontology/hierarchy.py` | type inheritance (`city → LOCATION`) and the candidate lexicon |
 | `semantic_generator/frames.py` | 14 typed frames, including six multiword predicates |
+| `resource_pool.py` | centralized Built-in pool: typed entities, manual frames and the complete mined template/lexical bank |
 | `syntax_mining.py` | optional full-corpus verb, construction and template inventory with source evidence |
 | `template_compiler.py`, `template_bank.py` | full-corpus executable surface patterns, verbs, adjectives and lexical alternatives; model-free bank rendering |
 | `template_validation.py` | independent source/ledger/inventory validation and rendering of every compiled template |
@@ -200,10 +201,47 @@ as part of the action. JSONL preserves these links; BIO/BILOU reports their loss
 The six frames cover explicit senses and argument structures, not every sense
 of these expressions. The Slots page shows their actual word-order templates.
 
-The complete source-derived bank is separate from these fourteen manually typed
-frames: `data/eng-base-templates/` covers every record of `data/eng-base.jsonl`,
-including adjective slots and lexical alternatives. It preserves all observed
-bindings and source occurrences, without a top-N cutoff. Render it without spaCy:
+**Built-in pool** is the shared resource catalogue for **Synthetic corpus** and
+CLI `build`. `BuiltInPool` in `semantic_corpus/resource_pool.py` provides access
+to typed entities, the fourteen manual frames, verb forms, adjectives,
+constructions, lexical alternatives and all mined templates. The existing files
+stay in `semantic_corpus/semantic_generator/entities.json` and
+`data/eng-base-templates/`; their different structures do not require separate
+generation operations or flattening everything into entity entries.
+
+The source-derived bank covers every record of `data/eng-base.jsonl`, including
+adjective slots and lexical alternatives. All observed bindings and source
+occurrences are retained without a top-N cutoff. New Synthetic corpus jobs and
+CLI `build` use the bank by default alongside the manual frames. `--count` remains
+the quota per manual frame; `--template-count` is a separate candidate quota per
+selected mined template, default 1, with 0 explicitly disabling mined templates.
+CLI `--template-verb` and `--template-adjective` can narrow the mined selection.
+New UI jobs use the entire bank. A custom Entity pool replaces typed entities only.
+
+The default mined quota traverses all **595,350 templates** in new UI jobs
+before split filtering and deduplication. It does not promise that every
+candidate belongs to the selected split or has a semantic annotation.
+`generation-summary.json` reports candidates, split skips, duplicates, stored
+documents and documents awaiting annotation. Mined texts receive a deterministic
+80/10/10 split from their hash; a whole, case-sensitive held-out test-entity phrase
+forces test membership. With the same entity pool and split policy, a mined text
+keeps its split across seeds and jobs. This does not guarantee disjoint templates
+or vocabulary.
+
+Manual-frame documents have annotations and produce QA/SFT/BIO immediately.
+Mined documents enter the **same store** as `UNREVIEWED`, retaining their syntax
+and provenance. They need semantic annotation, for example through HTTP teacher,
+before QA generation and export. Missing annotations are not exported as
+all-`O` BIO training examples. Adding resources to the pool does not turn parser
+decisions or dictionary alternatives into verified semantic roles.
+
+New **Corpus annotation** jobs default to **Only documents awaiting annotation**.
+This preserves the existing curated runs and applies the document limit after
+selecting documents with no annotation run. Disable it for intentional
+reannotation; saved historical jobs keep their previous behavior.
+
+For direct template inspection, the low-level `template-generate` command remains
+available without spaCy:
 
 ```bash
 python -m semantic_corpus.cli template-generate --out artifacts/templates-all.jsonl.gz
@@ -211,12 +249,11 @@ python -m semantic_corpus.cli template-generate --adjective beautiful --out arti
 python -m semantic_corpus.cli template-generate --verb "pick up" --out artifacts/pick-up.jsonl
 ```
 
-`--count` is a distinct-example quota **per selected template**, default 1.
-Default generation uses attested combinations; `--recombine` explicitly enables
-new combinations of observed fillers that require review. In the UI, use
-**Corpus templates: verbs and adjectives** in New job. Results include JSONL
-and a document store for subsequent annotation. Automatic syntax is marked
-`UNREVIEWED`; it does not create verified semantic roles or gold QA by itself.
+For this low-level command, `--count` is a distinct-example quota **per selected
+template**, default 1. Default generation uses attested combinations;
+`--recombine` explicitly enables new combinations of observed fillers that
+require grammatical and semantic review. In the UI, use **Synthetic corpus**;
+the separate Corpus templates operation is retained only for legacy jobs.
 The bank survives removal of `artifacts/`; `manifest.json` and `validation.json`
 record coverage and independent verification. All adjective forms, comparison
 morphology, source evidence and possible participial readings are retained.
@@ -563,11 +600,18 @@ One command runs the whole pipeline — generate, store, export, report:
 python -m semantic_corpus.cli build --count 100 --seed 42 --no-answer-share 0.15
 ```
 
-This creates 100 situations per frame (1400 documents in a fresh store with
-the current fourteen frames), then exports QA to `sft.jsonl`, token annotations to
-`bio.jsonl`, and validation results to `report.json`. QA counts depend on the
-generated annotations and balancing options. The version manifest records
-`count_scope: "per_frame"` so the quota's unit is explicit.
+This creates 100 situations per manual frame (1400 with the current fourteen
+frames) and, by default, one candidate per mined template. Only mined candidates
+assigned to the selected split are stored, and duplicate texts are deduplicated.
+This is a large build: use `--template-verb` or `--template-adjective` to narrow
+the mined selection, or `--template-count 0` for a manual-frame-only smoke run.
+
+The annotated portion exports QA to `sft.jsonl` and token annotations to
+`bio.jsonl`; unreviewed mined documents remain in the same store for subsequent
+semantic annotation. `generation-summary.json` records generation and pending
+annotation counts; `report.json` contains quality checks. QA counts depend on
+available annotations and balancing options. The version manifest records
+`count_scope: "per_frame"` so the manual quota's unit is explicit.
 
 The store is a directory of append-only JSONL files — SQLite and Parquet are
 both ruled out, and JSONL is the only option that needs no dependency. Four

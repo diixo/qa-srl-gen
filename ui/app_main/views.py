@@ -36,7 +36,7 @@ NAV = [
     ('Pipeline', [('ingestion', 'Sources and import', 'upload_file'), ('annotation', 'Annotation', 'edit_note'),
         ('questions', 'QA generation', 'question_answer'), ('exports', 'Export', 'file_download'),
         ('quality', 'Quality', 'verified')]),
-    ('Data and resources', [('corpora', 'Corpora', 'storage'), ('pools', 'Entity pools', 'category'),
+    ('Data and resources', [('corpora', 'Corpora', 'storage'), ('pools', 'Built-in pool', 'category'),
         ('slots', 'Frames and slots', 'account_tree'), ('tools', 'Tools', 'build')]),
 ]
 
@@ -154,12 +154,18 @@ def retry_job(request, pk):
     if previous.active:
         messages.error(request, 'Finish or cancel the active job first.')
         return redirect('app_main:job', pk=pk)
-    form = JobForm({**previous.config, 'operation': previous.operation})
+    form = JobForm({**previous.config, 'operation': previous.operation},
+                   operations=[previous.operation], resource_scope=previous.config.get('resource_scope'))
     if not form.is_valid():
         messages.error(request, 'These settings are no longer valid. Create a job with current sources.')
         return redirect('app_main:pipeline')
     if previous.operation == 'build':
         form.cleaned_data['count_scope'] = previous.config.get('count_scope', 'total')
+    if previous.operation in ('build', 'templates'):
+        # Retrying a saved job keeps its selection; new jobs have no filters.
+        for name in ('template_verb', 'template_adjective'):
+            if name in previous.config:
+                form.cleaned_data[name] = previous.config[name]
     job = Job.objects.create(operation=form.cleaned_data['operation'], config=form.cleaned_data)
     try:
         start_worker()
@@ -245,7 +251,7 @@ def pools(request):
                  gloss=e.appositive, split=pool.split_of(e.text)) for e in pool]
     rows = [r for r in rows if (not q or q in r['text'].lower() or q in r['labels'].lower())
             and (not split or split == r['split'])]
-    return page(request, 'pools.html', title='Entity pools', monitor=monitor, pool_choices=catalog.pool_choices(),
+    return page(request, 'pools.html', title='Built-in pool', monitor=monitor, pool_choices=catalog.pool_choices(),
         selected_pool=value, entities=Paginator(rows, 40).get_page(request.GET.get('page')), query=q, selected_split=split)
 
 
@@ -257,8 +263,7 @@ def slots(request):
     except ValueError as error:
         return page(request, 'error.html', title='Pool unavailable', error=str(error))
     return page(request, 'slots.html', title='Frames and slots', monitor=monitor,
-                pool_choices=catalog.pool_choices(), selected_pool=value,
-                template_bank=catalog.read_json(settings.REPO_ROOT / 'data/eng-base-templates/manifest.json', {}))
+                pool_choices=catalog.pool_choices(), selected_pool=value)
 
 
 @require_POST

@@ -2,12 +2,12 @@
 (() => {
   const form = document.querySelector('[data-operation-form]');
   const fields = {
-    build: ['count', 'seed', 'split', 'pool', 'scheme', 'max_per_kind', 'no_answer_share'],
-    templates: ['template_count', 'template_verb', 'template_adjective', 'recombine', 'seed', 'split'],
+    build: ['count', 'template_count', 'recombine', 'seed', 'split', 'pool', 'scheme', 'max_per_kind', 'no_answer_share'],
+    templates: ['template_count', 'recombine', 'seed', 'split'],
     dailydialog: ['source', 'limit', 'seed', 'context_turns'],
     ingest: ['source', 'input_format', 'limit', 'split', 'context_turns', 'seed'],
     bank: ['source', 'split', 'limit', 'scheme', 'seed'],
-    annotate: ['store', 'teacher', 'teacher_url', 'model', 'limit', 'seed', 'scheme'],
+    annotate: ['store', 'pending_only', 'teacher', 'teacher_url', 'model', 'limit', 'seed', 'scheme'],
     questions: ['store', 'limit', 'seed', 'scheme', 'max_per_kind', 'no_answer_share'],
     export: ['store', 'scheme'], report: ['store'],
     validate: ['source', 'limit'], roundtrip: ['source', 'limit'],
@@ -15,15 +15,16 @@
   };
   const hints = {
     templates: 'Render every matching corpus template into JSONL and a document store. Automatic syntax stays unreviewed. Use Corpus annotation next to obtain semantic labels and QA.',
-    build: 'Generation → stored annotations → QA → SFT / BIO → quality report.',
+    build: 'Built-in pool supplies curated frames and mined templates. Curated situations produce verified QA and SFT / BIO exports; mined documents retain unreviewed syntax and need semantic annotation before training export.',
     dailydialog: 'Offline RuleBasedTeacher pass for dialogue acts. Entity types and predicate senses need a different teacher. Uses the original train split.',
     ingest: 'TXT / JSONL: splits are assigned deterministically per document. Dialogues use the selected split.',
-    annotate: 'Rules annotate dialogue acts. HTTP teacher sends text from the selected corpus to the specified URL.',
+    annotate: 'Only documents awaiting annotation preserves existing annotations; the limit applies after this selection. Rules annotate dialogue acts. Use an HTTP teacher for semantic labels and roles.',
     mining: 'Proposals are saved with supporting examples. Review them before adding them to the pool.',
   };
   if (form) {
     const operation = form.querySelector('[name=operation]');
     const count = form.querySelector('[name=count]');
+    const templateCount = form.querySelector('[name=template_count]');
     const update = () => {
       const visible = new Set(['operation', ...(fields[operation.value] || [])]);
       form.querySelectorAll('[data-field]').forEach(el => {
@@ -33,12 +34,21 @@
       let hint = hints[operation.value] || 'The job runs in the background. Find its results and log in Job history.';
       if (operation.value === 'build' && count.value && count.validity.valid) {
         const frames = Number(count.dataset.frameCount);
-        hint = `${count.value} per frame × ${frames} frames = ${(Number(count.value) * frames).toLocaleString('en-US')} situations. ${hint}`;
+        const curated = `${count.value} per frame × ${frames} curated frames = ${(Number(count.value) * frames).toLocaleString('en-US')} situations.`;
+        const perTemplate = Number(templateCount.value === '' ? 1 : templateCount.value);
+        let mined;
+        if (perTemplate === 0) {
+          mined = 'Mined templates are explicitly skipped.';
+        } else {
+          const templates = Number(templateCount.dataset.templateCount);
+          mined = `${perTemplate.toLocaleString('en-US')} per mined template × ${templates.toLocaleString('en-US')} templates = ${(perTemplate * templates).toLocaleString('en-US')} candidates before split filtering and deduplication.`;
+        }
+        hint = `${curated} ${mined} ${hint}`;
       }
       form.querySelector('[data-operation-hint]').textContent = hint;
     };
     operation.addEventListener('change', update);
-    count.addEventListener('input', update);
+    [count, templateCount].forEach(input => input.addEventListener('input', update));
     update();
     form.addEventListener('submit', () => { form.querySelector('button[type=submit]').disabled = true; });
   }

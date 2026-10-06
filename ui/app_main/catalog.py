@@ -6,10 +6,11 @@ from pathlib import Path
 
 from django.conf import settings
 
-from semantic_corpus.semantic_generator import DEFAULT_FRAMES, default_pool
+from semantic_corpus.semantic_generator import default_pool
 from semantic_corpus.ontology import load_default_hierarchy
 from semantic_corpus.semantic_generator.substitutions import load_pool
 from semantic_corpus.storage import TABLES
+from semantic_corpus.resource_pool import BuiltInPool
 
 
 def data_path(value, *, directory=False):
@@ -103,12 +104,21 @@ def get_pool(value=''):
     return load_pool(data_path(value), load_default_hierarchy())
 
 
+def get_resources(value=''):
+    return BuiltInPool(repo_root=settings.REPO_ROOT, entities=get_pool(value))
+
+
+def resource_summary(value=''):
+    return get_resources(value).summary()
+
+
 def pool_monitor(value=''):
-    pool = get_pool(value)
+    resources = get_resources(value)
+    pool = resources.entities
     hierarchy = load_default_hierarchy()
     partitions = {name: pool.split(name) for name in ('train', 'dev', 'test')}
     slots = []
-    for frame in DEFAULT_FRAMES:
+    for frame in resources.frames:
         for slot in frame.slots:
             counts = [len(part.matching_slot(slot, hierarchy)) for part in partitions.values()]
             slots.append(dict(frame=frame.lemma, name=slot.name, role=str(slot.role),
@@ -116,6 +126,6 @@ def pool_monitor(value=''):
                 group_types=', '.join(sorted(slot.group_types)),
                 excludes=', '.join(sorted(map(str, slot.excludes))), optional=slot.optional,
                 counts=counts, empty=any(c == 0 for c in counts)))
-    return dict(pool=pool, slots=slots, frames=DEFAULT_FRAMES,
+    return dict(pool=pool, slots=slots, frames=resources.frames, resources=resources.summary(),
         splits=[dict(name=name, entities=len(part), forms=len(part.surface_forms))
                 for name, part in partitions.items()], ambiguous=pool.ambiguous_forms())

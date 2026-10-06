@@ -1,7 +1,4 @@
 from django import forms
-from django.conf import settings
-
-from semantic_corpus.semantic_generator import DEFAULT_FRAMES
 
 from . import catalog
 from .operation_registry import OperationRegistry
@@ -15,38 +12,49 @@ class JobForm(forms.Form):
     input_format = forms.ChoiceField(label='Text format', choices=[
         ('text', 'TXT / JSONL with a text field'), ('dialogue', 'JSONL: list of dialogue turns')])
     count = forms.IntegerField(label='Situations per frame', min_value=1, max_value=1000000, initial=100)
-    template_count = forms.IntegerField(label='Examples per template', min_value=1, max_value=1000000,
-        initial=1, required=False, help_text='Every matching template is included. Start with 1; many templates have only one attested example.')
-    template_verb = forms.CharField(label='Verb or phrasal verb', required=False, max_length=200,
-        help_text='Optional lemma, for example buy or pick up. Leave blank for all verbs.')
-    template_adjective = forms.CharField(label='Adjective', required=False, max_length=200,
-        help_text='Optional lemma, for example beautiful. Leave blank for all adjectives.')
+    template_count = forms.IntegerField(label='Examples per mined template', min_value=0, max_value=1000000,
+        initial=1, required=False,
+        help_text='Every mined template is included. Set 0 to skip mined templates. '
+                  'Quota is before split filtering and deduplication. '
+                  'Many templates have only one attested example.')
     recombine = forms.BooleanField(label='Recombine observed slot fillers', required=False,
         help_text='Creates new combinations that need grammatical and semantic review. Unchecked: use attested combinations.')
     limit = forms.IntegerField(label='Input document limit', min_value=1, required=False,
                               help_text='Leave blank to process the entire input corpus.')
     seed = forms.IntegerField(label='Seed', initial=42, min_value=0, max_value=2147483647)
     split = forms.ChoiceField(label='Split', choices=[(s, s) for s in ('train', 'dev', 'test')])
-    pool = forms.ChoiceField(label='Entity pool', required=False)
+    pool = forms.ChoiceField(label='Entity component', required=False,
+        help_text='Built-in entities or an uploaded replacement. Frames and mined resources remain in the shared Built-in pool.')
     context_turns = forms.IntegerField(label='Context: preceding turns', initial=2, min_value=0, max_value=100)
     scheme = forms.ChoiceField(label='Export tagging scheme', choices=[('BIO', 'BIO'), ('BILOU', 'BILOU')])
     max_per_kind = forms.IntegerField(label='Maximum QA per kind per document', min_value=1, required=False)
     no_answer_share = forms.FloatField(label='Maximum unanswerable share', min_value=0, max_value=1, required=False)
     teacher = forms.ChoiceField(label='Teacher', choices=[('rules', 'Rules (offline)'), ('http', 'HTTP teacher')])
+    pending_only = forms.BooleanField(label='Only documents awaiting annotation', initial=True, required=False,
+        help_text='Preserve existing annotations and apply the document limit only to documents without an annotation run.')
     teacher_url = forms.URLField(label='HTTP teacher URL', required=False, assume_scheme='http')
     model = forms.CharField(label='Model name', initial='http-teacher', required=False, max_length=100)
     text = forms.CharField(label='Text / verbs', widget=forms.Textarea(attrs={'rows': 5}), required=False, max_length=50000)
 
-    def __init__(self, *args, operations=None, **kwargs):
+    def __init__(self, *args, operations=None, resource_scope='built_in_v1', **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['operation'].choices = OperationRegistry.default().choices(operations)
+        self.resource_scope = resource_scope
+        choices = OperationRegistry.default().choices(operations)
+        # Old template jobs remain executable and retryable, but new generation
+        # always starts from Synthetic corpus and the shared resource pool.
+        if operations is None:
+            choices = [(code, label) for code, label in choices if code != 'templates']
+        self.fields['operation'].choices = choices
         self.fields['source'].choices = [('', 'Select a file')] + [(s['path'], s['path']) for s in catalog.sources()]
         self.fields['store'].choices = [('', 'Select a corpus')] + [(s['path'], s['path']) for s in catalog.stores()]
         self.fields['pool'].choices = catalog.pool_choices()
-        self.fields['count'].widget.attrs['data-frame-count'] = len(DEFAULT_FRAMES)
+        self.resources = catalog.resource_summary()
+        frame_count = self.resources['frames']
+        self.fields['count'].widget.attrs['data-frame-count'] = frame_count
+        self.fields['template_count'].widget.attrs['data-template-count'] = self.resources['templates']
         self.fields['count'].help_text = (
-            f'Distinct situations for each of {len(DEFAULT_FRAMES)} frames. '
-            'Total = this value × number of frames. Each situation produces multiple QA examples. '
+            f'Distinct situations for each of {frame_count} curated frames. '
+            'Total = this value times the number of frames. Each situation produces multiple QA examples. '
             'If the selected pool is too small, reduce this value or expand the pool.')
         # Defaults apply to options hidden for the selected operation as well.
         for name in ('count', 'seed', 'split', 'input_format', 'context_turns', 'scheme', 'teacher'):
@@ -73,14 +81,22 @@ class JobForm(forms.Form):
         operation = data.get('operation')
         if operation == 'build':
             data['count_scope'] = 'per_frame'
-        if operation == 'templates':
-            from semantic_corpus.template_bank import TemplateBank
+            if self.resource_scope is not None:
+                data['resource_scope'] = self.resource_scope
+        uses_mined_templates = (operation == 'templates' or
+                                (operation == 'build' and self.resource_scope == 'built_in_v1'))
+        if uses_mined_templates:
+            template_count = data['template_count']
+            if operation == 'templates' and template_count == 0:
+                self.add_error('template_count', 'Historical template jobs require at least one example per template.')
             try:
-                TemplateBank(settings.REPO_ROOT / 'data/eng-base-templates')
+                if template_count > 0:
+                    catalog.get_resources().bank
             except (OSError, ValueError) as error:
-                self.add_error('operation', f'The compiled template bank is not available: {error}')
-            for name in ('template_verb', 'template_adjective'):
-                data[name] = data.get(name, '').strip().lower()
+                remedy = ('Restore them or set Examples per mined template to 0.' if operation == 'build'
+                          else 'Restore them to retry this historical job.')
+                self.add_error('template_count',
+                    f'The mined resources in Built-in pool are not available: {error}. {remedy}')
         if operation in ('ingest', 'bank', 'dailydialog', 'validate', 'roundtrip', 'mining'):
             if not data.get('source'):
                 self.add_error('source', 'Select a source file.')

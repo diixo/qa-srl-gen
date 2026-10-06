@@ -117,7 +117,8 @@ def test_cli_generate_and_questions_use_per_frame_counts(capsys):
 
 def test_cli_build_persists_equal_quotas_and_count_units(tmp_path):
     root = tmp_path / 'store'
-    args = ['build', '--store', str(root), '--out', str(tmp_path / 'out'), '--count', '3']
+    args = ['build', '--store', str(root), '--out', str(tmp_path / 'out'), '--count', '3',
+            '--template-count', '0']
     assert main(args) == 0
     store = CorpusStore(root, create=False)
     assert Counter(d.metadata['frame'] for d in store.documents()) == {f.lemma: 3 for f in DEFAULT_FRAMES}
@@ -134,7 +135,8 @@ def test_cli_preflight_does_not_write_partial_corpus_when_quota_cannot_be_met(tm
     monkeypatch.setattr(Generator, 'generate_per_frame', fail_after_one)
     root = tmp_path / 'store'
     with pytest.raises(RuntimeError, match='quota unavailable'):
-        main(['build', '--store', str(root), '--out', str(tmp_path / 'out'), '--count', '2'])
+        main(['build', '--store', str(root), '--out', str(tmp_path / 'out'), '--count', '2',
+              '--template-count', '0'])
     store = CorpusStore(root, create=False)
     assert store.count('documents') == store.count('annotation_runs') == store.count('qa_examples') == 0
     assert not store.versions()

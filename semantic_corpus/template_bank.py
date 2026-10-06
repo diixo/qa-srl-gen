@@ -126,8 +126,11 @@ class TemplateBank:
     def __init__(self, path=DEFAULT_BANK):
         self.path = Path(path)
         self.manifest = json.loads((self.path / "manifest.json").read_text(encoding="utf-8"))
-        if self.manifest.get("format") != FORMAT or self.manifest.get("status") != "complete":
+        if (not isinstance(self.manifest, dict) or self.manifest.get("format") != FORMAT
+                or self.manifest.get("status") != "complete"):
             raise ValueError("a complete corpus-templates-v1 bank is required")
+        if not isinstance(self.manifest.get("counts", {}), dict):
+            raise ValueError("template bank counts must be a JSON object")
 
     def templates(self, *, lemma=None, adjective=None, template_id=None):
         if template_id is not None and (len(template_id) != 64 or

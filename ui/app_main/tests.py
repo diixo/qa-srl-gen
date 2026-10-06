@@ -41,7 +41,11 @@ class WorkspaceTests(TestCase):
         self.store.add_document(Document('d', 'Anna visited Kyiv.', split='train'))
 
     def config(self, operation='build', **extra):
-        form = JobForm(dict(operation=operation, count=3, seed=42, split='train', **extra))
+        config = dict(operation=operation, count=3, seed=42, split='train')
+        if operation == 'build':
+            config['template_count'] = 0
+        config.update(extra)
+        form = JobForm(config, operations=[operation])
         self.assertTrue(form.is_valid(), form.errors)
         return form.cleaned_data
 
@@ -66,7 +70,8 @@ class WorkspaceTests(TestCase):
 
     @patch('app_main.views.start_worker')
     def test_post_queues_and_redirects_to_persistent_job(self, start):
-        response = self.client.post(reverse('app_main:pipeline'), {'operation': 'build', 'count': 4})
+        response = self.client.post(reverse('app_main:pipeline'),
+                                    {'operation': 'build', 'count': 4, 'template_count': 0})
         job = Job.objects.get()
         self.assertRedirects(response, reverse('app_main:job', args=[job.pk]))
         self.assertEqual(job.config['count'], 4)
@@ -156,7 +161,7 @@ class WorkspaceTests(TestCase):
             with gzip.open(path, 'wt', encoding='utf-8') as stream:
                 stream.write(json.dumps(row) + '\n')
         self.assertFalse(any('eng-base-templates/' in s['path'] for s in catalog.sources()))
-        job = self.execute('templates', template_adjective='Beautiful')
+        job = self.execute('templates')
         root = catalog.job_root(job)
         row, = read_rows(root / 'generated.jsonl.gz')
         self.assertEqual(row['text'], 'A beautiful book.')
@@ -171,9 +176,9 @@ class WorkspaceTests(TestCase):
         self.assertEqual((job.processed, job.total), (1, 1))
 
     def test_template_job_requires_completed_bank(self):
-        form = JobForm({'operation': 'templates'})
+        form = JobForm({'operation': 'templates'}, operations=['templates'])
         self.assertFalse(form.is_valid())
-        self.assertIn('operation', form.errors)
+        self.assertIn('template_count', form.errors)
 
     def test_bank_validation_and_mining_adapters(self):
         self.execute('validate', source='data/bank.jsonl', limit=1)

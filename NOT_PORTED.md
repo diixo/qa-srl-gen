@@ -1,6 +1,6 @@
 # Remaining exclusions and coverage limits
 
-Updated 2026-10-03. The missing core components previously listed here have
+Updated 2026-10-06. The missing core components previously listed here have
 been implemented: incremental grammar/processor, autocomplete, nonfinite Frame
 variants, clause resolution, discrete labels, label mappers, Dataset filter/merge,
 Bank metadata and QANom reformatting. See [SCALA_TO_PYTHON.md](SCALA_TO_PYTHON.md)
@@ -44,11 +44,14 @@ These applications and their infrastructure remain outside this Python port:
 ## Project-specific work beyond the port
 
 Modules for all five handoff stages exist, but not every requirement is complete.
-The limitations of the fourteen-frame generator, rule-based teacher, QA templates,
+The limitations of the fourteen manually annotated frames, rule-based teacher, QA templates,
 discontinuous semantic spans and JSONL storage are in [STATUS_RU.md](STATUS_RU.md).
-The full source-derived verb/adjective template bank is a separate Python feature,
-available through `template-generate` and the UI. Its automatic syntax is not
-equivalent to hand-verified semantic frames or a Scala feature left to port.
+The full source-derived verb/adjective template bank is part of the centralized
+Built-in pool used by Synthetic corpus and CLI `build`. It expands generated
+text coverage beyond those fourteen frames, while its documents remain
+`UNREVIEWED` until semantic annotation. Automatic syntax is not equivalent to
+hand-verified semantic roles or a Scala feature left to port. The low-level
+`template-generate` command remains available for direct inspection.
 SQLite, Parquet and Hugging Face remain excluded by user instruction.
 
 `qasrl_v2.py` remains the older flat-export prototype. Wiktionary's old Python 2

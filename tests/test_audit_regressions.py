@@ -311,7 +311,8 @@ def test_build_deduplicates_atomically_and_can_repeat(tmp_path, monkeypatch):
 
     monkeypatch.setattr(Generator, 'generate_per_frame', with_duplicate)
     root, out = tmp_path / "store", tmp_path / "export"
-    args = ["build", "--store", str(root), "--out", str(out), "--count", "12", "--seed", "42"]
+    args = ["build", "--store", str(root), "--out", str(out), "--count", "12",
+            "--template-count", "0", "--seed", "42"]
     assert main(args) == 0
     store = CorpusStore(root)
     count = store.count("documents")
@@ -519,7 +520,8 @@ def test_build_checks_generator_version_before_appending_qa(tmp_path, monkeypatc
     from semantic_corpus.cli import main
     from semantic_corpus.storage.repository import GENERATOR_VERSION
     root = tmp_path / "store"
-    args = ["build", "--store", str(root), "--out", str(tmp_path / "out"), "--count", "1"]
+    args = ["build", "--store", str(root), "--out", str(tmp_path / "out"), "--count", "1",
+            "--template-count", "0"]
     assert main(args) == 0
     store = CorpusStore(root)
     manifest = store.versions()[0]

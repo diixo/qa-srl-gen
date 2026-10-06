@@ -7,6 +7,12 @@ NLP model, counts and coverage against the earlier verb/template catalogue.
 every attested template binding. These files are usable after the manifest
 reaches `complete`.
 
+These files belong to the centralized **Built-in pool**, accessed through
+`semantic_corpus.resource_pool.BuiltInPool` alongside typed entities and manual
+semantic frames. **Synthetic corpus** and CLI `build` use the mined templates
+by default. Keeping separate files for different resource structures does not
+require a separate generation operation.
+
 The bank is an automatic analysis, marked **UNREVIEWED**. It preserves parser
 decisions and dictionary alternatives separately, including ambiguous verb/
 adjective readings and participles. Complete record coverage does not imply
@@ -28,7 +34,20 @@ homographs and possible participles are alternatives, not extra confirmed
 adjective occurrences. Templates include nonverbal records and explicit
 alternative analyses for bare commands missed by the parser.
 
-Render every template, or filter by lemma (run from the repository root):
+Use **New job → Synthetic corpus → Built-in pool** for the combined corpus.
+**Situations per frame** controls manual-frame examples; **Examples per mined template**
+controls candidates per mined template, default 1. New UI jobs use the
+entire bank; 0 explicitly disables mined candidates. All 595,350 templates are
+visited at the default quota, before split filtering and deduplication.
+`generation-summary.json` records the resulting counts and pending annotations.
+Manual-frame annotations produce QA/SFT/BIO immediately; mined documents retain
+`UNREVIEWED` and need semantic annotation before they can contribute those labels.
+For the next **Corpus annotation** job, keep **Only documents awaiting annotation**
+enabled so existing manual-frame annotations are preserved. Its document limit
+applies after selecting documents without an annotation run.
+
+For direct inspection, render every template or filter by lemma with the
+low-level command (run from the repository root):
 
 ```bash
 python -m semantic_corpus.cli template-generate --out artifacts/all-templates.jsonl.gz
@@ -38,16 +57,16 @@ python -m semantic_corpus.cli template-generate --verb "pick up" --out artifacts
 
 `--count` is a quota per template, default 1. Generation uses attested combinations
 unless `--recombine` is explicitly requested. Recombined text needs grammatical
-and semantic review. Output files must be new. In Django use **New job → Corpus
-templates: verbs and adjectives**; the resulting document store is an input to
-**Corpus annotation**. The runtime does not need spaCy or a WordNet download.
+and semantic review. Output files must be new. The runtime does not need spaCy
+or a WordNet download. The old Corpus templates operation is kept only for
+legacy jobs; use Synthetic corpus for new jobs.
 
 Read the adjective inventory in Python:
 
 ```python
-from semantic_corpus.template_bank import TemplateBank
+from semantic_corpus.resource_pool import BuiltInPool
 
-for adjective in TemplateBank().adjectives():
+for adjective in BuiltInPool().adjectives():
     print(adjective["lemma"], adjective["forms"], adjective["morphology"])
 ```
 
