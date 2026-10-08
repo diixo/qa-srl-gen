@@ -1,0 +1,115 @@
+{% extends 'app_main/base.html' %}
+
+{% block content %}
+<div class="page-heading">
+    <div>
+        <p class="eyebrow">PIPELINE</p>
+        <h1>{{ title }}</h1>
+        <p class="text-secondary">Generate English dialogues for training conversation memory and contextual responses.</p>
+    </div>
+    <a class="btn btn-outline-primary" href="{% url 'app_main:jobs' %}">View job history</a>
+</div>
+
+<div class="row g-4 mb-4">
+    <div class="col-xl-9">
+        <section class="panel">
+            <h2>Generate a chat dataset</h2>
+            <p class="text-secondary">Use {{ task_count }} dialogue tasks with known facts, memory updates and reference answers. Names and places come from Built-in entities.</p>
+            <form method="post" data-chat-dataset-form data-task-count="{{ task_count }}">
+                {% csrf_token %}
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger" role="alert">{{ form.non_field_errors }}</div>
+                {% endif %}
+
+                <div class="row g-4 mb-4">
+                    {% for field in form %}
+                        {% if field.name != 'include_metadata' %}
+                            <div class="col-md-6">
+                                <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                {{ field }}
+                                <div class="form-text">{{ field.help_text }}</div>
+                                <div class="text-danger small">{{ field.errors }}</div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+                <p class="small text-secondary">Each quota applies to every task. With {{ task_count }} tasks, 200 training dialogues per task produces {% widthratio task_count 1 200 %} training dialogues.</p>
+                <div class="row g-3 mb-3" aria-live="polite" aria-atomic="true">
+                    <div class="col-sm-4">
+                        <div class="metric-card">
+                            <span>Training</span>
+                            <strong data-chat-count="train">{{ preview.train|default_if_none:'—' }}</strong>
+                            <small>dialogues</small>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="metric-card">
+                            <span>Validation</span>
+                            <strong data-chat-count="validation">{{ preview.validation|default_if_none:'—' }}</strong>
+                            <small>dialogues</small>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="metric-card">
+                            <span>Test</span>
+                            <strong data-chat-count="test">{{ preview.test|default_if_none:'—' }}</strong>
+                            <small>dialogues</small>
+                        </div>
+                    </div>
+                </div>
+                <p class="mb-0"><strong data-chat-count="total">{{ preview.total|default_if_none:'—' }}</strong> dialogues in total. History and memory datasets contain the same dialogues; memory-update examples are exported separately.</p>
+
+                <div class="form-check mt-4">
+                    {{ form.include_metadata }}
+                    <label class="form-check-label" for="{{ form.include_metadata.id_for_label }}">{{ form.include_metadata.label }}</label>
+                </div>
+                <div class="form-text">{{ form.include_metadata.help_text }}</div>
+                <div class="text-danger small">{{ form.include_metadata.errors }}</div>
+
+                <button class="btn btn-primary mt-4 px-3" type="submit">
+                    Queue generation job <span aria-hidden="true">&rarr;</span>
+                </button>
+            </form>
+        </section>
+    </div>
+
+    <div class="col-xl-3">
+        <section class="panel mb-3">
+            <h2>What you get</h2>
+            <dl class="mb-0">
+                <dt>Memory</dt>
+                <dd class="text-secondary">Train natural responses using the known conversation state.</dd>
+                <dt>History</dt>
+                <dd class="text-secondary">Train the same responses using the preceding dialogue.</dd>
+                <dt>Extraction</dt>
+                <dd class="text-secondary mb-0">Train memory updates after each user message.</dd>
+            </dl>
+        </section>
+        <section class="panel">
+            <h2>What happens next</h2>
+            <p>The job runs in the worker queue. Follow its progress, then download all files as a ZIP or choose individual files.</p>
+            <p class="small text-secondary">Generation runs locally without a language model. The result is a training dataset; model training is a separate step.</p>
+            <a href="{% url 'app_main:workers' %}">View process slots &rarr;</a>
+        </section>
+    </div>
+</div>
+
+<section class="panel mb-4">
+    <h2>Included dialogue tasks ({{ task_count }})</h2>
+    <ul class="row gy-2 mb-0 ps-4">
+        {% for label in task_labels %}
+            <li class="col-md-6">{{ label }}</li>
+        {% endfor %}
+    </ul>
+</section>
+
+<section class="panel">
+    <h2>Recent chat dataset jobs</h2>
+    {% if chat_jobs %}
+        {% include 'app_main/includes/jobs_table.html' with jobs=chat_jobs %}
+    {% else %}
+        <p class="text-secondary mb-0">No chat dataset jobs yet. Choose the sizes above to create your first dataset.</p>
+    {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,236 @@
+"""Streaming chat exports, paired response tasks and a separate delta task."""
+
+from __future__ import annotations
+
+from collections import Counter
+from contextlib import ExitStack
+from dataclasses import asdict
+import hashlib
+import json
+from pathlib import Path
+import re
+from tempfile import TemporaryDirectory
+import unicodedata
+from typing import Callable
+
+from ..semantic_generator.substitutions import ENTITIES_PATH
+from .generator import GENERATOR_VERSION, TASKS, DialogueGenerator, fingerprint
+from .models import Episode, SCHEMA_VERSION, Transition
+
+PROMPT_VERSION = "dialogue-prompts-v1"
+RESPONSE_SYSTEM = (
+    "You are a friendly AI personal assistant. Reply briefly and naturally to the latest user message. "
+    "Use only the supplied conversation context. If information is missing, say you don't know; "
+    "if a reference is ambiguous, ask for clarification. A wish or suggestion is not a completed action. "
+    "This chat cannot send messages, set reminders or use external tools."
+)
+EXTRACT_SYSTEM = (
+    "Update conversation memory from the latest user message. Return only a JSON object with "
+    "add, replace and invalidate arrays. Each new fact has id, subject, relation, value, evidence, "
+    "polarity (positive/negative) and modality (asserted/desired). Each evidence item has turn_id "
+    "and an exact quote. Each replacement has old_id and fact. invalidate contains active fact IDs. "
+    "Relations in this pilot: location, meeting_day, feeling, visited, selection, completed_break, drink. "
+    "Keep subjects and asserted/desired claims separate. Suggestions are not completed actions. "
+    "Questions and acknowledgements add no facts. Unresolved references add no facts. "
+    "Use the supplied next_fact_id for additions and increment it for further facts."
+)
+
+
+def _json(value: object) -> str:
+    return json.dumps(value, ensure_ascii=False, separators=(",", ":"))
+
+
+def _messages(system: str, prompt: str, target: str) -> list[dict[str, str]]:
+    # Exactly one assistant target in both response views: equal loss scope.
+    return [{"role": "system", "content": system}, {"role": "user", "content": prompt},
+            {"role": "assistant", "content": target}]
+
+
+def response_row(episode: Episode, view: str) -> dict:
+    if view == "history":
+        context = "Conversation so far:\n" + "\n".join(
+            f"{turn.role.title()}: {turn.text}" for turn in episode.turns[:-1])
+    elif view == "memory":
+        # Semantic memory is supplied by the simulator, not an extracted model.
+        facts = [{key: value for key, value in asdict(fact).items() if key != "evidence"}
+                 for fact in episode.memory.facts]
+        memory = {"facts": facts, "assistant_actions": [asdict(a) for a in episode.memory.assistant_actions]}
+        previous = episode.turns[-2].text if len(episode.turns) > 1 else "(none)"
+        context = "Conversation memory:\n" + _json(memory) + "\nLast assistant message: " + previous
+    else:
+        raise ValueError(f"Unknown response view: {view}")
+    prompt = context + "\nLatest user message: " + episode.turns[-1].text
+    return {"id": episode.id, "scenario_key": episode.scenario_key, "task": episode.task,
+            "messages": _messages(RESPONSE_SYSTEM, prompt, episode.answer)}
+
+
+def extraction_row(episode: Episode, transition: Transition) -> dict:
+    facts = (*transition.before.facts, *transition.before.retired)
+    next_id = max((int(f.id[1:]) for f in facts), default=0) + 1
+    previous = asdict(transition.previous_assistant) if transition.previous_assistant else None
+    prompt = _json({"state_before": transition.before.prompt_data(), "next_fact_id": f"f{next_id}",
+                    "last_assistant": previous, "user_turn": asdict(transition.turn)})
+    return {"id": episode.id + ":" + transition.turn.id, "scenario_key": episode.scenario_key,
+            "task": episode.task,
+            "messages": _messages(EXTRACT_SYSTEM, prompt, _json(asdict(transition.delta)))}
+
+
+def prompt_key(row: dict) -> str:
+    """Match the trainer's case/punctuation-insensitive prompt deduplication."""
+    text = row["messages"][1]["content"]
+    normalized = " ".join(re.findall(r"\w+", unicodedata.normalize("NFKC", text).casefold()))
+    return fingerprint(normalized)
+
+
+def _sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for block in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def _training_report(path: Path | None, seed: int) -> dict | None:
+    if path is None:
+        return None
+    source = json.loads(path.read_text(encoding="utf-8"))
+    settings = source["settings"]
+    digest = source["chat_template_sha256"]
+    if (not isinstance(settings["model"], str) or not settings["model"].strip()
+            or type(settings["max_tokens"]) is not int or settings["max_tokens"] <= 0
+            or not isinstance(digest, str) or re.fullmatch(r"[0-9a-f]{64}", digest) is None):
+        raise ValueError("Invalid model, max_tokens or chat_template_sha256 in training report")
+    return {"settings": {"model": settings["model"], "max_tokens": settings["max_tokens"], "seed": seed},
+            "chat_template_sha256": digest, "token_validation": "deferred_to_training_loader",
+            "tokenizer_contract_source_sha256": _sha256(path)}
+
+
+def build_dialogue_dataset(out: Path, *, train: int = 200, validation: int = 20,
+                           test: int = 20, seed: int = 42,
+                           include_metadata: bool = True,
+                           training_report: Path | None = None,
+                           progress: Callable[[str, int, int], None] | None = None) -> dict:
+    """Write *count per task* for each split into a new directory.
+
+    Memory/history are paired final-answer examples. Extraction transitions
+    are deduplicated independently. No tokenizer, model, network or DB is used.
+    Disabling metadata exports only messages in training rows; internal grouping,
+    validation and the episode audit records retain their identifiers.
+    An optional existing trainer report supplies its tokenizer contract; the
+    training loader must still validate token lengths before loading weights.
+    """
+    counts = {"train": train, "validation": validation, "test": test}
+    if any(type(count) is not int or count <= 0 for count in counts.values()):
+        raise ValueError("All split quotas must be positive integers per task")
+    if type(include_metadata) is not bool:
+        raise ValueError("include_metadata must be a boolean")
+    out = Path(out)
+    if out.exists():
+        raise FileExistsError(f"Choose a new output directory: {out}")
+    report = _training_report(training_report, seed)
+    generator = DialogueGenerator(seed=seed)
+    total = sum(counts.values()) * len(TASKS)
+    processed = 0
+    views = ("history", "memory", "extraction")
+    seen: dict[str, dict[str, tuple[str, str]]] = {view: {} for view in views}
+    scenario_splits: dict[str, str] = {}
+    manifest = {"schema_version": SCHEMA_VERSION, "generator_version": GENERATOR_VERSION,
+                "prompt_version": PROMPT_VERSION, "seed": seed, "quota_per_task": counts,
+                "include_metadata": include_metadata,
+                "tasks": list(TASKS), "splits": {}, "resources": {},
+                "split_policy": "held-out pool names; one realization per distinct event plan",
+                "shared_between_splits": ["task families", "surface patterns", "common vocabulary"],
+                "memory_source": "scenario simulator (oracle)",
+                "review_status": "synthetic pilot; inspect before large-scale training",
+                "training_report_supplied": report is not None}
+    for path in [ENTITIES_PATH, *sorted(Path(__file__).parent.glob("*.py"))]:
+        manifest["resources"][path.name] = _sha256(path)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    # Failure never publishes a half-finished dataset or overwrites an old one.
+    with TemporaryDirectory(prefix=".dialogue-build-", dir=out.parent) as temporary:
+        staging = Path(temporary) / "dataset"
+        staging.mkdir()
+        for view in views:
+            (staging / view).mkdir()
+        for split, count in counts.items():
+            stats = {"episodes": 0, "by_task": {}, "actions": Counter(),
+                     "extraction_rows": 0, "extraction_duplicates": 0, "delta_operations": Counter()}
+            with ExitStack() as stack:
+                audit = stack.enter_context((staging / f"{split}.episodes.jsonl").open("w", encoding="utf-8", newline="\n"))
+                writers = {view: stack.enter_context((staging / view / f"{split}.json").open(
+                    "w", encoding="utf-8", newline="\n")) for view in views}
+                written = Counter()
+                for writer in writers.values():
+                    writer.write("[\n")
+
+                def write(view: str, row: dict) -> bool:
+                    key = prompt_key(row)
+                    target = row["messages"][-1]["content"]
+                    previous = seen[view].get(key)
+                    if previous is not None:
+                        if previous != (split, target):
+                            raise ValueError(f"Prompt leakage or conflicting targets in {view}/{split}")
+                        return False
+                    seen[view][key] = (split, target)
+                    payload = row if include_metadata else {"messages": row["messages"]}
+                    formatted = json.dumps(payload, ensure_ascii=False, indent=2)
+                    writers[view].write((",\n" if written[view] else "")
+                                        + "  " + formatted.replace("\n", "\n  "))
+                    written[view] += 1
+                    return True
+
+                for task in TASKS:
+                    accepted = 0
+                    phase = f"Generating {split}: {task.replace('_', ' ')}"
+                    if progress:
+                        progress(phase, processed, total)
+                    # Resampling has a bound; quotas are not silently reduced.
+                    for episode in generator.generate(task, count * 20, split=split):
+                        rows = {view: response_row(episode, view) for view in ("history", "memory")}
+                        for view, row in rows.items():
+                            previous = seen[view].get(prompt_key(row))
+                            if previous is not None and previous != (split, episode.answer):
+                                raise ValueError(f"Prompt leakage or conflicting targets in {view}/{split}")
+                        if any(prompt_key(rows[view]) in seen[view] for view in rows):
+                            continue
+                        if episode.scenario_key in scenario_splits:
+                            raise ValueError("Repeated scenario across tasks or splits")
+                        scenario_splits[episode.scenario_key] = split
+                        for view, row in rows.items():
+                            write(view, row)
+                        for transition in episode.transitions:
+                            if write("extraction", extraction_row(episode, transition)):
+                                delta = transition.delta
+                                stats["delta_operations"].update({"add": len(delta.add), "replace": len(delta.replace),
+                                                                  "invalidate": len(delta.invalidate),
+                                                                  "no_change": int(delta == type(delta)())})
+                            else:
+                                stats["extraction_duplicates"] += 1
+                        audit.write(_json(asdict(episode)) + "\n")
+                        stats["episodes"] += 1
+                        stats["actions"][episode.expected_action] += 1
+                        accepted += 1
+                        processed += 1
+                        if progress and (accepted % 25 == 0 or accepted == count):
+                            progress(phase, processed, total)
+                        if accepted == count:
+                            break
+                    if accepted != count:
+                        raise ValueError(f"{task}/{split}: only {accepted}/{count} unique prompts")
+                    stats["by_task"][task] = accepted
+                for writer in writers.values():
+                    writer.write("\n]\n")
+                stats["extraction_rows"] = written["extraction"]
+            manifest["splits"][split] = stats
+        if progress:
+            progress("Checking dataset files", processed, total)
+        if report is not None:
+            for view in views:
+                payload = {**report, "dataset_view": view, "generator_version": GENERATOR_VERSION,
+                           "source_manifest": "../manifest.json"}
+                (staging / view / "report.json").write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+        manifest["files"] = {path.relative_to(staging).as_posix(): _sha256(path)
+                             for path in sorted(staging.rglob("*")) if path.is_file()}
+        (staging / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        staging.rename(out)
+    return manifest

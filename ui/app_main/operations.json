@@ -13,5 +13,6 @@
     {"code": "candidates", "label": "Candidate extraction"},
     {"code": "lookup", "label": "Verb forms"},
     {"code": "mining", "label": "Entity pool proposals"},
-    {"code": "template_mining", "label": "Template mining"}
+    {"code": "template_mining", "label": "Template mining"},
+    {"code": "chat_dataset", "label": "Chat dataset"}
 ]

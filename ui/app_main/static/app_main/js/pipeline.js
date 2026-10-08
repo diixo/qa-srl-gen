@@ -1,5 +1,24 @@
 /* Local UI: bounded polling and operation-specific controls. */
 (() => {
+  const chatForm = document.querySelector('[data-chat-dataset-form]');
+  if (chatForm) {
+    const splits = ['train', 'validation', 'test'];
+    const updateChatCounts = () => {
+      const counts = splits.map(split => {
+        const input = chatForm.elements.namedItem(split);
+        const count = input.value !== '' && input.validity.valid
+          ? Number(input.value) * Number(chatForm.dataset.taskCount) : null;
+        chatForm.querySelector(`[data-chat-count="${split}"]`).textContent =
+          count === null ? '—' : count.toLocaleString('en-US');
+        return count;
+      });
+      chatForm.querySelector('[data-chat-count="total"]').textContent = counts.includes(null)
+        ? '—' : counts.reduce((sum, value) => sum + value, 0).toLocaleString('en-US');
+    };
+    splits.forEach(split => chatForm.elements.namedItem(split).addEventListener('input', updateChatCounts));
+    updateChatCounts();
+    chatForm.addEventListener('submit', () => { chatForm.querySelector('button[type=submit]').disabled = true; });
+  }
   const form = document.querySelector('[data-operation-form]');
   const fields = {
     build: ['count', 'template_count', 'recombine', 'seed', 'split', 'pool', 'scheme', 'max_per_kind', 'no_answer_share'],

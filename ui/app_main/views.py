@@ -16,6 +16,7 @@ from semantic_corpus.semantic_generator.substitutions import load_pool
 from semantic_corpus.ontology import load_default_hierarchy
 
 from . import catalog
+from .chat_dataset import ChatDatasetForm, TASKS, TASK_LABELS
 from .forms import JobForm
 from .models import Job, Worker
 from .template_mining import save_source_upload
@@ -35,7 +36,8 @@ SECTIONS = {
 NAV = [
     ('Workspace', [('workspace', 'Overview', 'dashboard'), ('pipeline', 'New job', 'play_circle'),
         ('jobs', 'Job history', 'history'), ('workers', 'Workers and queue', 'memory')]),
-    ('Pipeline', [('ingestion', 'Sources and import', 'upload_file'), ('annotation', 'Annotation', 'edit_note'),
+    ('Pipeline', [('chat_dataset', 'Chat dataset', 'quickreply'),
+        ('ingestion', 'Sources and import', 'upload_file'), ('annotation', 'Annotation', 'edit_note'),
         ('questions', 'QA generation', 'question_answer'), ('exports', 'Export', 'file_download'),
         ('quality', 'Quality', 'verified')]),
     ('Data and resources', [('corpora', 'Corpora', 'storage'), ('pools', 'Built-in pool', 'category'),
@@ -81,6 +83,22 @@ def operation(request, section='pipeline'):
         return redirect('app_main:job', pk=job.pk)
     return page(request, 'operation.html', nav_active=section, title=title, description=description,
                 form=form, section=section, sources=catalog.sources() if section == 'ingestion' else None)
+
+
+@require_http_methods(['GET', 'POST'])
+def chat_dataset(request):
+    form = ChatDatasetForm(request.POST if request.method == 'POST' else None)
+    if request.method == 'POST' and form.is_valid():
+        job = Job.objects.create(operation='chat_dataset', config={**form.cleaned_data, 'operation': 'chat_dataset'})
+        try:
+            start_worker()
+        except OSError as error:
+            messages.error(request, f'The job was queued, but the worker could not start: {error}')
+        return redirect('app_main:job', pk=job.pk)
+    return page(request, 'chat_dataset.html', title='Chat dataset', form=form,
+                preview=form.preview(), task_count=len(TASKS),
+                task_labels=[TASK_LABELS.get(task, task.replace('_', ' ').capitalize()) for task in TASKS],
+                chat_jobs=Job.objects.filter(operation='chat_dataset')[:10])
 
 
 @require_http_methods(['GET', 'POST'])
@@ -130,7 +148,7 @@ def artifacts(job):
     return [dict(name=p.relative_to(root).as_posix(), size=p.stat().st_size) for p in sorted(root.rglob('*'))
             if p.is_file() and p.resolve().is_relative_to(root.resolve())
             and 'work' not in p.relative_to(root).parts
-            and p.suffix in ('.json', '.jsonl', '.gz', '.log', '.txt')]
+            and p.suffix in ('.json', '.jsonl', '.gz', '.log', '.txt', '.zip')]
 
 
 def log_tail(job):
@@ -172,6 +190,12 @@ def job_detail(request, pk):
     mined_summary = generation_summary.get('mined') if isinstance(generation_summary, dict) else None
     if not isinstance(mined_summary, dict) or 'annotated_documents' not in mined_summary:
         mined_summary = None  # Historical jobs did not run template semantics.
+    chat_summary = None
+    if job.operation == 'chat_dataset':
+        try:
+            chat_summary = catalog.read_json(catalog.job_root(job) / 'dataset/manifest.json')
+        except (OSError, ValueError):
+            pass
     if job.operation == 'template_mining':
         published_path = settings.REPO_ROOT / 'data/mined-templates' / str(job.pk)
         try:
@@ -183,7 +207,8 @@ def job_detail(request, pk):
     return page(request, 'job.html', title=job.get_operation_display(), nav_active='jobs', job=job,
         log=log_tail(job), files=artifacts(job), reports=reports,
         quality=quality, result_store=store, published_bank=published_bank,
-        mined_summary=mined_summary,
+        mined_summary=mined_summary, chat_summary=chat_summary,
+        chat_archive=job.operation == 'chat_dataset' and (catalog.job_root(job) / 'chat-dataset.zip').is_file(),
         config_json=json.dumps(job.config, ensure_ascii=False, indent=2))
 
 
@@ -215,12 +240,15 @@ def retry_job(request, pk):
         return redirect('app_main:job', pk=pk)
     if previous.operation == 'template_mining':
         form = TemplateMiningForm(previous.config, source_path=previous.config.get('source_path', ''))
+    elif previous.operation == 'chat_dataset':
+        form = ChatDatasetForm.from_config(previous.config)
     else:
         form = JobForm({**previous.config, 'operation': previous.operation},
                        operations=[previous.operation], resource_scope=previous.config.get('resource_scope'))
     if not form.is_valid():
         messages.error(request, 'These settings are no longer valid. Create a job with current sources.')
-        return redirect('app_main:template_mining' if previous.operation == 'template_mining' else 'app_main:pipeline')
+        route = {'template_mining': 'template_mining', 'chat_dataset': 'chat_dataset'}.get(previous.operation, 'pipeline')
+        return redirect('app_main:' + route)
     form.cleaned_data['operation'] = previous.operation
     if previous.operation == 'template_mining':
         form.cleaned_data.pop('source_file')
@@ -371,7 +399,7 @@ def download(request, pk, name):
     job = get_object_or_404(Job, pk=pk)
     root = catalog.job_root(job).resolve()
     path = (root / name).resolve()
-    if not path.is_relative_to(root) or not path.is_file() or path.suffix not in ('.json', '.jsonl', '.gz', '.txt', '.log'):
+    if not path.is_relative_to(root) or not path.is_file() or path.suffix not in ('.json', '.jsonl', '.gz', '.txt', '.log', '.zip'):
         raise Http404
     return FileResponse(path.open('rb'), as_attachment=True, filename=path.name)
 

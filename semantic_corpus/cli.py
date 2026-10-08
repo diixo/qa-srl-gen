@@ -616,7 +616,34 @@ def build_parser() -> argparse.ArgumentParser:
                            help="independently combine observed slot fillers; requires review")
     templates.set_defaults(func=cmd_template_generate)
 
+    dialogue = sub.add_parser("dialogue-build", help="build controlled dialogue and memory training tasks")
+    dialogue.add_argument("--out", type=Path, required=True)
+    dialogue.add_argument("--train", type=_positive_count, default=200, help="training episodes per task")
+    dialogue.add_argument("--validation", type=_positive_count, default=20, help="validation episodes per task")
+    dialogue.add_argument("--test", type=_positive_count, default=20, help="test episodes per task")
+    dialogue.add_argument("--seed", type=int, default=42)
+    dialogue.add_argument("--no-metadata", dest="include_metadata", action="store_false",
+                          help="export only messages in training JSON records")
+    dialogue.add_argument("--training-report", type=Path,
+                          help="existing trainer report.json supplying the tokenizer contract")
+    dialogue.set_defaults(func=cmd_dialogue_build)
+
     return parser
+
+
+def cmd_dialogue_build(args: argparse.Namespace) -> int:
+    from .dialogue_generator import build_dialogue_dataset
+    try:
+        manifest = build_dialogue_dataset(args.out, train=args.train, validation=args.validation,
+                                         test=args.test, seed=args.seed, include_metadata=args.include_metadata,
+                                         training_report=args.training_report)
+    except (ValueError, OSError, KeyError, TypeError) as error:
+        print(f"error: {error}", file=sys.stderr)
+        return 2
+    for split, stats in manifest["splits"].items():
+        print(f"{split}: {stats['episodes']} paired response examples; {stats['extraction_rows']} memory updates")
+    print(f"Dataset: {args.out}")
+    return 0
 
 
 def cmd_template_generate(args: argparse.Namespace) -> int:

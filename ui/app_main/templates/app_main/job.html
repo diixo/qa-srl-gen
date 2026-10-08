@@ -107,6 +107,49 @@
     </section>
 {% endif %}
 
+{% if chat_summary %}
+    <section class="panel mb-4">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-3">
+            <h2 class="mb-0">Chat dataset results</h2>
+            <div class="d-flex flex-wrap gap-2">
+                <a class="btn btn-outline-primary" href="{% url 'app_main:chat_dataset' %}">New chat dataset</a>
+                {% if chat_archive %}
+                    <a class="btn btn-primary" href="{% url 'app_main:download' job.pk 'chat-dataset.zip' %}">Download dataset ZIP</a>
+                {% endif %}
+            </div>
+        </div>
+        <p class="text-secondary">History and memory contain paired dialogues with the same reference answers. Extraction contains separate memory-update examples.</p>
+        <div class="table-responsive">
+            <table class="table align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>Split</th>
+                        <th class="text-end">Dialogues per response dataset</th>
+                        <th class="text-end">Memory updates</th>
+                        <th>Download</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for split, counts in chat_summary.splits.items %}
+                        <tr>
+                            <td>{{ split|capfirst }}</td>
+                            <td class="text-end">{{ counts.episodes }}</td>
+                            <td class="text-end">{{ counts.extraction_rows }}</td>
+                            <td>
+                                <div class="d-flex flex-wrap gap-3">
+                                    <a href="{% url 'app_main:download' job.pk 'dataset/memory/'|add:split|add:'.json' %}">Memory</a>
+                                    <a href="{% url 'app_main:download' job.pk 'dataset/history/'|add:split|add:'.json' %}">History</a>
+                                    <a href="{% url 'app_main:download' job.pk 'dataset/extraction/'|add:split|add:'.json' %}">Extraction</a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endif %}
+
 {% if quality %}
     <section class="panel mb-4">
         <h2>Result quality</h2>

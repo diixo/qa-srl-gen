@@ -21,6 +21,7 @@ from semantic_corpus.semantic_generator.generator import DEFAULT_PARADIGMS
 from semantic_corpus.storage import CorpusStore
 
 from .catalog import data_path, get_pool, job_root, store_path
+from .chat_dataset import execute_chat_dataset
 from .models import Job
 from .operation_registry import OperationRegistry
 from .template_mining import execute_template_mining
@@ -355,6 +356,7 @@ HANDLERS = {
     'lookup': _execute_cli,
     'mining': _execute_mining,
     'template_mining': execute_template_mining,
+    'chat_dataset': execute_chat_dataset,
 }
 
 

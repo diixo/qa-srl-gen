@@ -20,6 +20,7 @@ urlpatterns = [
     path('corpora/view', views.corpus, name='corpus'),
     path('pools', views.pools, name='pools'),
     path('template-mining', views.template_mining, name='template_mining'),
+    path('chat-dataset', views.chat_dataset, name='chat_dataset'),
     path('slots', views.slots, name='slots'),
     path('upload', views.upload, name='upload'),
 ]

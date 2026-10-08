@@ -50,6 +50,20 @@ and resumes the queue. Job pages show progress, logs, cancellation, retries,
 quality findings and downloadable results. The worker stops after 60 idle seconds.
 It can also be run explicitly with `python ui/manage.py pipeline_worker --once`.
 
+**Pipeline → Chat dataset** (`/chat-dataset`) generates controlled English
+dialogues for chat-model training. Set the training, validation and test quotas
+**per task**, plus the seed. The page shows totals across the twelve tasks before
+submission. Defaults produce 2,400 training, 240 validation and 240 test dialogues.
+The job page shows progress, supports cancellation/retry and provides both
+individual files and a complete `chat-dataset.zip` download. Results under
+`artifacts/ui/jobs/<id>/dataset/` contain paired `history` and `memory` response
+datasets, separate `extraction` examples, episode audit records and a manifest.
+Generation runs locally without a language model; training is a separate step.
+Uncheck **Include metadata** to export training records containing only `messages`
+instead of also including `id`, `scenario_key` and `task`. The choice persists on retry.
+See the [chat dataset guide](semantic_corpus/dialogue_generator/README.md) for
+the export format and the existing chat-trainer's tokenizer contract.
+
 **Data and resources → Template mining** (`/template-mining`) adds resources to
 the shared Built-in pool. Paste English text (up to 500,000 characters), choose
 a UTF-8 `.txt`, `.jsonl` or `.jsonl.gz` file from your computer using the file
@@ -437,6 +451,19 @@ print(render_question(slots, give))
 ```
 
 ## Generating situations
+
+For a separate controlled dialogue-training experiment inspired by bAbI:
+
+```bash
+python -m semantic_corpus.cli dialogue-build --out artifacts/dialogue-pilot --train 200 --validation 20 --test 20 --seed 42
+```
+
+This creates 12 task families with paired history/memory response datasets and
+a separate memory-update dataset, all in `messages` format. Quotas are per task;
+the defaults give 2,400 training, 240 validation and 240 test episodes. Names and
+places come from the existing entity pool. No model or network is needed.
+See [dialogue generation](semantic_corpus/dialogue_generator/README.md) for the
+scenario schema, split limits, files and the existing chat-trainer adapter.
 
 ```python
 from semantic_corpus.semantic_generator import Generator

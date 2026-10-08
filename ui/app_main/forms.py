@@ -46,7 +46,8 @@ class JobForm(forms.Form):
         # Old template jobs remain executable and retryable, but new generation
         # always starts from Synthetic corpus and the shared resource pool.
         if operations is None:
-            choices = [(code, label) for code, label in choices if code not in ('templates', 'template_mining')]
+            choices = [(code, label) for code, label in choices
+                       if code not in ('templates', 'template_mining', 'chat_dataset')]
         self.fields['operation'].choices = choices
         self.fields['source'].choices = [('', 'Select a file')] + [(s['path'], s['path']) for s in catalog.sources()]
         self.fields['store'].choices = [('', 'Select a corpus')] + [(s['path'], s['path']) for s in catalog.stores()]
