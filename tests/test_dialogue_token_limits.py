@@ -126,3 +126,39 @@ def test_uncached_tokenizer_explains_offline_setup(monkeypatch):
     monkeypatch.setattr(hub, 'try_to_load_from_cache', lambda *a, **kw: None)
     with pytest.raises(ValueError, match='GPT-2 tokenizer.json is not cached'):
         token_limits.GPT2TokenCounter()
+
+
+def test_long_attested_quote_fits_ui_budget_after_subject_instructions():
+    """The sole denoise source must still allow explicit yes/no reports at 768."""
+    pytest.importorskip('huggingface_hub')
+    pytest.importorskip('tokenizers')
+    try:
+        tokenizer = token_limits.GPT2TokenCounter()
+    except ValueError as error:
+        if 'is not cached' in str(error):
+            pytest.skip('Optional GPT-2 tokenizer is not cached locally')
+        raise
+    from semantic_corpus.dialogue_generator.generator import _Conversation, _fact
+    from semantic_corpus.dialogue_generator.events import Event, event_statement
+    from semantic_corpus.dialogue_generator.observed_clauses import ObservedClause
+    from semantic_corpus.dialogue_generator.extraction_text import EXTRACT_SYSTEM, render_prompt, render_update
+
+    source = ('Denoising Autoencoder (DAE): Take a partially corrupted input and aim to recover the original, '
+              'undistorted input. Examples of corrupted input include randomly sampling tokens from the input '
+              'and replacing them with "[MASK]" elements, randomly deleting tokens from the input, '
+              'or shuffling sentences in random order.')
+    for status in ('reported', 'denied'):
+        c = _Conversation()
+        c.pair("I'm in the living room. I feel nervous, and I prefer orange juice.", facts=(
+            _fact('user', 'location', 'the living room'), _fact('user', 'feeling', 'nervous'),
+            _fact('user', 'drink', 'orange juice')))
+        initial = Event('@clause', (), observation=ObservedClause(source, 'planned'))
+        c.pair(event_statement(initial, perspective='user'), events=(initial,))
+        final = Event('@clause', (), observation=ObservedClause(source, status))
+        c.pair(event_statement(final, perspective='user'), events=(final,))
+        t = c.transitions[-1]
+        messages = [{'role': 'system', 'content': EXTRACT_SYSTEM},
+                    {'role': 'user', 'content': render_prompt(t.before, t.turn, t.previous_assistant)},
+                    {'role': 'assistant', 'content': render_update(t)}]
+        assert source in messages[1]['content'] and source in messages[2]['content']
+        assert tokenizer.length(messages) <= 768

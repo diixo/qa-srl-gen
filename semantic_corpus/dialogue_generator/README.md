@@ -27,8 +27,9 @@ tokenization contract. The trainer-report adapter below is available through the
 
 **User and assistant only** is checked by default in the UI. It generates
 conversations about the user's own location, feelings, preferences and plans,
-without adding named participants to the generated conversation. Mined source
-sentences may contain names in either profile. Ordinary places
+without adding named speakers to the generated conversation. Mined event subjects
+and source quotations can name other people, animals or objects in either profile;
+the speaker and the subject of a reported event are separate. Ordinary places
 such as `the kitchen` and `the park` replace city names. The `different_people`
 task is excluded: 16 tasks give **3,200 / 320 / 320** episodes with uniform quotas.
 Uncheck it to use the 17-task named-pool scenarios. The UI additionally defaults
@@ -273,8 +274,9 @@ verb list or frequency cutoff. Controlled heads (`can`, `must`, `may`, `be`,
 them as context; they are not selected as unreviewed generated predicates.
 The current primary bank contributes 4,031 working inventory entries. Some are
 parser errors or spelling/form aliases, not distinct English verb senses.
-The current compiler finds compositional candidates for 1,554 entries; 2,477
-have only the quotation-level coverage described below. All remain UNREVIEWED.
+The subject-aware compiler finds compositional candidates for 1,915 entries;
+2,116 retain quotation-only coverage. `mined-coverage.json` records the current
+counts and reasons; these are capabilities, not reviewed senses. All remain UNREVIEWED.
 
 `data/wiktionary/en_verb_inflections.txt` supplies head paradigms. Reverse lookup
 repairs a parser lemma only when observed forms select one dictionary head;
@@ -286,7 +288,7 @@ Two realization levels are explicit in each exported mined record:
 
 | Level | Generation and target |
 | --- | --- |
-| `compositional` | A supported active VP gets dictionary inflection and a user subject. The complete observed complement retains particles/prepositions and word order. `want`, `can`, `must`, `may`, perfect under modality, permission and other licensed scopes do not establish occurrence. An explicit positive/negative past report answers the occurrence question. |
+| `compositional` | A supported active VP gets dictionary inflection and preserves its observed grammatical subject. The complete observed complement retains particles/prepositions and word order. New licensed scopes do not establish occurrence. An explicit positive/negative past report answers the occurrence question. |
 | `attested_quotation` | The entire original sentence is preserved. The dialogue distinguishes reporting that wording from planning, proposing, requiring or denying its use. This does **not** label the embedded action as completed or assign it invented semantic roles. |
 
 Compositional realization requires an unambiguous active subject, one lexical
@@ -298,20 +300,52 @@ Their source slots, dependencies, spans and construction candidates remain in
 head participates, but arbitrary full semantic generation for every head is not
 claimed. A lexical capability report is not a measured model-quality improvement.
 
+Subjects retain a complete supported noun phrase, including determiners,
+possessors and simple modifiers. `I` maps to `user`, `you` to `assistant`;
+`Tom`, `my dog` and `the engines` are not rewritten as `I`. Singular/plural
+agreement is stored separately from entity type. Known unambiguous pool readings
+supply entity labels; otherwise the subject is `UNRESOLVED`. A grammatical
+subject is not automatically a semantic agent. Bare `it` with `rain`, `snow`,
+`hail`, `drizzle`, `sleet` or `thunder` is `IMPERSONAL`, a transport marker for
+weather syntax, not a new ontology type.
+
+New nonperson/unresolved subjects use only `may`, `may not`, `might`, or
+`may have`; they are not given wishes or plans. Person subjects keep existing
+licensed operators, with `let_us` restricted to `user`. Memory switches
+`my`/`your` perspective without losing the subject; event questions preserve it.
+Unresolved `he`/`she`/`they`/`we`/referential `it`, complex noun phrases,
+vocatives (`You grew up, Tom`) and adverbs needing scope analysis remain quotations.
+Embedded operator-chain interpretation, passive roles and parse repair are later
+steps. The added scopes create new examples; they do not reconstruct the source's
+original intent, tense or modal scope. Existing source auxiliaries may be replaced
+by the new scope (for example, `Tom is sleeping` can supply `Tom may sleep`).
+
 The model's text update commands add these forms:
 
 ```text
-MINED sell | today | want | unspecified | present | agent=PERSON:user | complement=UNRESOLVED:a ticket
-MINED sell | today | none | reported | past | agent=PERSON:user | complement=UNRESOLVED:a ticket
+MINED sell | today | want | unspecified | present | subject=PERSON:Tom | number=singular | complement=UNRESOLVED:a ticket
+MINED sell | today | none | reported | past | subject=PERSON:Tom | number=singular | complement=UNRESOLVED:a ticket
+MINED rain | today | may | unspecified | modal | subject=IMPERSONAL:it | number=singular
 QUOTE planned | Anna might have bought a ticket.
 ```
 
 `reported` means a past predication was explicitly reported; it is not a completed
-phase. `UNRESOLVED` is a dialogue transport marker for an intact complement,
+phase. `UNRESOLVED` is a dialogue transport marker for an unknown subject type or intact complement,
 not a new ontology label. `QUOTE` reports wording only. These support contextual
 sources and withdrawal with `MINED_CONTEXT`, `QUOTE_CONTEXT`, `REMOVE_MINED`,
 `REMOVE_QUOTE`. No JSON, internal source IDs or numeric span offsets are required
 in the model's generated answer. With metadata disabled, only `messages` are exported.
+The parser still reads old `agent=PERSON:user` MINED commands; old files are not
+rewritten, and new exports use the explicit `subject` and `number` fields.
+
+To check a new export independently (all three views, Extraction command replay,
+split separation, paired answers, subject coverage and GPT-2 lengths):
+
+```powershell
+python scripts/review_dialogue_subjects.py artifacts/dialogue-mined-subjects-step1 --out artifacts/reviews/dialogue-subjects-step1-validation.json
+```
+
+The audit uses the cached tokenizer and does not train or download a model.
 
 The new task cycles through all available raw heads before repeating any.
 Each head produces a matched yes/no/unknown group. Selection is seeded per head;
@@ -416,9 +450,9 @@ The internal memory and audit keep their structured schema. **Extraction** uses
 the text command contract described below, with lossless conversion to internal
 deltas for the supported pilot scenarios.
 
-The manifest now records `schema_version: dialogue-memory-v5`,
-`prompt_version: dialogue-prompts-v7`, `content_formats.memory: memory-text-v5` and
-`content_formats.extraction: extraction-text-v4`. Generate a new job/directory to get
+The manifest now records `schema_version: dialogue-memory-v6`,
+`prompt_version: dialogue-prompts-v8`, `content_formats.memory: memory-text-v6` and
+`content_formats.extraction: extraction-text-v5`. Generate a new job/directory to get
 the text format; existing output files are not rewritten. Text-based prompt
 deduplication can select different episodes when older prompts differed only
 by internal identifiers. Paired History/Memory targets and split checks remain

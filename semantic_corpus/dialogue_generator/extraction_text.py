@@ -11,8 +11,9 @@ from .actions import ACTION_BY_RELATION
 from .models import AssistantAction, Delta, Evidence, Fact, Memory, Replacement, Turn, apply_delta, EventClaim, EventReplacement
 from .events import Event, EventArgument
 from .observed_clauses import ObservedClause
+from .mined_subjects import MinedSubject
 
-EXTRACTION_TEXT_VERSION = 'extraction-text-v4'
+EXTRACTION_TEXT_VERSION = 'extraction-text-v5'
 PROMPT_PREFIX = 'Current memory:\n'
 STATE_RELATIONS = frozenset(('location', 'meeting_day', 'feeling', 'selection', 'drink'))
 ESCAPES = {'\\': '\\', '|': '|', 'n': '\n', 'r': '\r', 't': '\t'}
@@ -21,7 +22,7 @@ ENCODE_ESCAPES = {value: '\\' + key for key, value in ESCAPES.items()}
 EXTRACT_SYSTEM = (
     'Update memory from the latest user message. Return text commands only, one per line. '
     'SET subject | relation | modality | polarity | value adds or replaces a fact. '
-    'SET_CONTEXT uses the same fields and also cites the last assistant message when resolving a reference. '
+    'SET_CONTEXT uses SET fields and cites the last assistant message for a resolved reference. '
     'REMOVE subject | relation | modality withdraws an existing fact. '
     'Return NO_CHANGE alone when nothing changes. '
     'Relations: location, meeting_day, feeling, selection, drink, visited, bought, called, sent, read, completed_break. '
@@ -36,9 +37,11 @@ EXTRACT_SYSTEM = (
     'Finite can/could/must/may/might use modal tense. Let names a separate permitter=PERSON:value. '
     'Lexical be/have describe states; auxiliary be/have, have_to and be_going_to are scoped operators. '
     'Never infer completion from a wish, need, plan, attempt, start or stop. '
-    'Do not output JSON, IDs or quotations of evidence.'
-    ' MINED uses EVENT fields for dictionary-backed predicates: agent=PERSON:user and optional '
-    'complement=UNRESOLVED:text preserve the whole verb complement. Phase reported means a bare past report, not completion. '
+    'No JSON, IDs or evidence quotations.'
+    ' MINED uses EVENT fields: subject=TYPE:text | number=singular/plural, '
+    'then optional complement=UNRESOLVED:text. Subject is grammatical, not necessarily an agent; '
+    'user/assistant resolve I/you, other noun phrases retain user perspective. Use pool types or UNRESOLVED; '
+    'weather it uses IMPERSONAL. Phase reported is a bare past report, not completion. '
     'QUOTE status | text records reported, denied, desired, planned, suggested, possible, required or permitted wording; '
     'it never confirms the events inside the quotation. Prefix REMOVE_ to withdraw MINED or QUOTE.'
 )
@@ -120,6 +123,7 @@ class EventCommand:
 
 def _event_fields(event: Event) -> tuple[str, ...]:
     return (event.predicate, event.time, '>'.join(event.operators) or 'none', event.phase, event.tense,
+            *((f'subject={event.subject.label}:{event.subject.text}', f'number={event.subject.number}') if event.subject else ()),
             *(f'{arg.role}={arg.label}:{arg.text}' for arg in event.arguments),
             *((f'permitter={event.permitter.label}:{event.permitter.text}',) if event.permitter else ()))
 
@@ -158,23 +162,35 @@ def _parse_event_payload(operation, fields):
         return Event('@clause', (), observation=ObservedClause(fields[1], fields[0]))
     if operation == 'MINED':
         if len(fields) < 6:
-            raise ValueError('MINED needs predicate, time, scope, phase, tense and agent')
+            raise ValueError('MINED needs predicate, time, scope, phase, tense and subject')
         predicate, time, scope, phase, tense, *args = fields
-        roles, permitter = [], None
+        roles, permitter, subject, number = [], None, None, None
         for value in args:
             role, eq, tail = value.partition('=')
+            if role == 'number' and eq:
+                if number is not None:
+                    raise ValueError('Repeated subject number')
+                number = tail
+                continue
             label, colon, text = tail.partition(':')
             if not eq or not colon:
                 raise ValueError('Expected role=TYPE:value')
             arg = EventArgument(role, text, label)
-            if role == 'permitter':
+            if role == 'subject':
+                if subject is not None:
+                    raise ValueError('Repeated subject')
+                subject = (text, label)
+            elif role == 'permitter':
                 if permitter:
                     raise ValueError('Repeated permitter')
                 permitter = arg
             else:
                 roles.append(arg)
+        if (subject is None) != (number is None):
+            raise ValueError('A MINED subject and its number must be supplied together')
         return Event(predicate, tuple(sorted(roles)), time, () if scope == 'none' else tuple(scope.split('>')),
-                     phase, tense, permitter, mined=True)
+                     phase, tense, permitter, mined=True,
+                     subject=MinedSubject(*subject, number) if subject else None)
     return _read_event(fields)
 
 

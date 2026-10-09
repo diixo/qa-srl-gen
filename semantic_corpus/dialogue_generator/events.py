@@ -11,6 +11,7 @@ from ..semantic_generator.frames import frame_by_lemma
 from .verb_operators import MODALS, OPERATORS, Operator, be_form, validate_chain
 from .observed_clauses import ObservedClause
 from .mined_realization import mined_lexeme
+from .mined_subjects import MinedSubject, POSSIBILITY_PROFILES, WEATHER_PREDICATES
 
 
 @dataclass(frozen=True)
@@ -66,8 +67,11 @@ class Event:
     permitter: EventArgument | None = None
     observation: ObservedClause | None = None
     mined: bool = False
+    subject: MinedSubject | None = None
 
     def __post_init__(self):
+        if self.subject is not None and (not self.mined or not isinstance(self.subject, MinedSubject)):
+            raise ValueError('An explicit grammatical subject belongs to a mined event')
         if self.observation is not None:
             if (not isinstance(self.observation, ObservedClause) or self.predicate != '@clause'
                     or self.arguments or self.operators or self.permitter or self.time != 'today'
@@ -104,14 +108,27 @@ class Event:
                 raise ValueError('A reported mined predication requires bare positive/negative past')
             if self.phase == 'unspecified' and self.operators in ((), ('not',)):
                 raise ValueError('A bare mined predication must explicitly use reported phase')
-            if tuple(a.role for a in self.arguments) not in (('agent',), ('agent', 'complement')):
-                raise ValueError('Mined phrases need an agent and optional intact complement')
-            if self.arguments[0].label != 'PERSON' or self.arguments[0].text != 'user':
-                raise ValueError('The reviewed mined realization requires the user as subject')
-            if len(self.arguments) == 2 and (self.arguments[1].label != 'UNRESOLVED' or not self.arguments[1].text.strip()):
+            roles = tuple(a.role for a in self.arguments)
+            if self.subject is None:
+                # Read existing extraction-text-v4 exports without rewriting them.
+                if roles not in (('agent',), ('agent', 'complement')) or self.arguments[0] != EventArgument('agent', 'user', 'PERSON'):
+                    raise ValueError('Legacy mined events require agent=PERSON:user')
+            elif roles not in ((), ('complement',)):
+                raise ValueError('Mined subjects are grammatical subjects, not inferred agents')
+            if any(a.role == 'complement' and (a.label != 'UNRESOLVED' or not a.text.strip()) for a in self.arguments):
                 raise ValueError('A mined complement keeps its unresolved semantic type')
             if any(arg.text != arg.text.strip() for arg in self.arguments):
                 raise ValueError('Mined argument text must be trimmed')
+            if 'let_us' in self.operators and self.agent != 'user':
+                raise ValueError('A let_us proposal requires the user as initiating subject')
+            if self.permitter and self.permitter.text == self.agent:
+                raise ValueError('Self-permission needs an explicit reflexive construction')
+            if self.subject and self.subject.label != 'PERSON':
+                if self.operators not in ((), ('not',), *POSSIBILITY_PROFILES):
+                    raise ValueError('Unreviewed nonperson subjects allow only possibility operators')
+            if self.subject and self.subject.label == 'IMPERSONAL':
+                if self.predicate not in WEATHER_PREDICATES or self.arguments:
+                    raise ValueError('Impersonal it is restricted to bare weather predicates')
             return
         frame = EVENT_BY_LEMMA[self.predicate].frame
         roles = [arg.role for arg in self.arguments]
@@ -139,7 +156,11 @@ class Event:
     def identity(self):
         if self.observation is not None:
             return self.predicate, self.observation.text
-        return (self.predicate, self.arguments, self.time, 'mined') if self.mined else (self.predicate, self.arguments, self.time)
+        if self.mined:
+            # Legacy agent=user and the explicit subject=user name one event.
+            arguments = tuple(arg for arg in self.arguments if arg.role != 'agent')
+            return self.predicate, arguments, self.time, 'mined', self.subject or MinedSubject('user', 'PERSON')
+        return self.predicate, self.arguments, self.time
 
     @property
     def key(self):
@@ -160,6 +181,8 @@ class Event:
 
     @property
     def agent(self):
+        if self.mined and self.subject:
+            return self.subject.text
         if self.observation is not None or self.mined:
             return 'user'
         frame = EVENT_BY_LEMMA[self.predicate].frame
@@ -267,7 +290,8 @@ def _phrase(event: Event, operators: tuple[str, ...], form: str, style: int, sub
     if word is None:
         raise ValueError(f'Unsupported {head} form: {form}')
     if head == 'let':
-        causee = _person(event.agent, perspective, object_case=True)
+        causee = (event.subject.surface(perspective, object_case=True) if event.subject else
+                  _person(event.agent, perspective, object_case=True))
         return word + ' ' + causee + ' ' + _phrase(event, tail, 'base', style, _person(event.agent, perspective), perspective)
     if head in ('be_able_to', 'be_going_to'):
         word += ' able' if head == 'be_able_to' else ' going'
@@ -290,8 +314,10 @@ def event_statement(event: Event, *, perspective='memory', style=0) -> str:
         raise ValueError('Unsupported event rendering')
     if event.observation is not None:
         return event.observation.statement(perspective=perspective, style=style)
-    subject = _person(event.permitter.text if event.permitter else event.agent, perspective)
-    first_or_second = subject in ('I', 'You')
+    subject = (event.subject.surface(perspective, initial=True) if event.subject and not event.permitter else
+               _person(event.permitter.text if event.permitter else event.agent, perspective))
+    agreement = event.subject.agreement(perspective) if event.subject and not event.permitter else subject
+    first_or_second = agreement.lower() in ('i', 'you', 'we', 'they')
     when = ' ' + event.time
     if event.tense == 'future':
         phrase = 'will ' + _phrase(event, event.operators, 'base', style, subject, perspective)
@@ -317,7 +343,7 @@ def event_statement(event: Event, *, perspective='memory', style=0) -> str:
     else:
         form = 'modal' if event.tense == 'modal' else 'past' if event.tense == 'past' else 'present' if first_or_second else 'third'
         # The base form is the finite present for first/second person.
-        phrase = _phrase(event, event.operators, form, style, subject, perspective)
+        phrase = _phrase(event, event.operators, form, style, agreement, perspective)
     if event.operators[:1] == ('let_us',):
         quoted = phrase + when + '.'
         return quoted if perspective == 'user' else 'You proposed: "' + quoted + '"'
@@ -343,7 +369,8 @@ def event_question(event: Event, *, style=0) -> str:
     if event.observation is not None:
         return event.observation.question()
     if event.mined:
-        return f'Did I {_core(event, "base", style)} {event.time}?'
+        subject = event.subject.surface('user') if event.subject else 'I'
+        return f'Did {subject} {_core(event, "base", style)} {event.time}?'
     if event.is_state:
         subject = _person(event.agent, 'user')
         if style >= 3:

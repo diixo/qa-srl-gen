@@ -11,6 +11,7 @@ import re
 
 from ..controlled_verbs import controlled_head
 from ..qasrl_core.inflections import load_inflections
+from .mined_subjects import realize_subject, subject_parts
 
 
 @lru_cache(maxsize=8)
@@ -41,7 +42,7 @@ def mined_lexeme(predicate):
 
 
 def active_phrase(record, head_slot, canonical, paradigms, person_names):
-    """Return a licensed first-person phrase or a reason for attested-only use.
+    """Return a licensed subject + VP or a reason for attested-only use.
 
     No parser is run here. Reject clauses needing control, voice, relative-clause
     or pronoun rewriting. These remain accessible as whole source quotations.
@@ -68,9 +69,6 @@ def active_phrase(record, head_slot, canonical, paradigms, person_names):
         return None, 'passive'
     # Validate every attested binding used with this structural template.
     for binding in record['attested_bindings']:
-        subject = binding[subjects[0]]
-        if subject.lower() not in ('i', 'you') and subject not in person_names:
-            return None, 'unresolved_subject_animacy'
         if binding[head_slot].lower() not in {paradigm[form_key] for paradigm in paradigms}:
             return None, 'observed_form_mismatch'
     parts = record['parts']
@@ -87,6 +85,10 @@ def active_phrase(record, head_slot, canonical, paradigms, person_names):
     if re.search(r'\b(if|unless|although|when|because|who|what|which|where|why|how)\b', before, re.I):
         return None, 'nonassertive_scope'
     tail = ''.join(p.get('literal', record['defaults'].get(p.get('slot'), '')) for p in after).strip().rstrip('.!').strip()
+    if ',' in tail or any(s.get('dependency') == 'vocative' for s in slots.values()):
+        # "You grew up, Tom" addresses Tom, not the assistant. Detached phrases
+        # and comma-separated complements need their own scope/role analysis.
+        return None, 'vocative_or_detached_complement'
     if re.search(r'\b(i|me|my|mine|you|your|yours|his|her|their|he|she|him|they|them|we|us|our|it|its|myself|yourself|himself|herself|itself|themselves|ourselves)\b', tail, re.I):
         return None, 'unresolved_reference'
     if re.search(r'\b(today|yesterday|tomorrow|now|ago|yet|already|ever|never|always|still|again|last|next|previous|monday|tuesday|wednesday|thursday|friday|saturday|sunday|seconds?|minutes?|hours?|days?|nights?|weeks?|months?|years?)\b', tail, re.I):
@@ -111,8 +113,16 @@ def active_phrase(record, head_slot, canonical, paradigms, person_names):
         if not construction['lemma'].startswith(raw_head + ' '):
             return None, 'inconsistent_particle_head'
         predicate = head + construction['lemma'][len(raw_head):]
-    return {'predicate': predicate, 'head_slot': head_slot, 'subject_slot': subjects[0],
-            'tail_parts': after}, None
+    parts, reason = subject_parts(record, subjects[0], head_slot)
+    if reason:
+        return None, reason
+    spec = {'predicate': predicate, 'head_slot': head_slot, 'subject_slot': subjects[0],
+            'subject_parts': parts, 'tail_parts': after}
+    for binding in record['attested_bindings']:
+        _, reason = realize_subject(record, spec, binding, person_names)
+        if reason:
+            return None, reason
+    return spec, None
 
 
 def phrase_tail(spec, bindings):

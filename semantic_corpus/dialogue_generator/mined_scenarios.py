@@ -11,6 +11,7 @@ import random
 from .events import Event, EventArgument, event_question, event_statement
 from .observed_clauses import ObservedClause
 from .models import Episode, Query, answer_query
+from .mined_subjects import POSSIBILITY_PROFILES
 
 PROFILES = (('want',), ('need',), ('plan',), ('not', 'want'), ('want', 'not'),
             ('can',), ('not', 'can'), ('could',), ('not', 'could'),
@@ -49,15 +50,20 @@ def mined_episodes(generator, count, split):
         style = rng.randrange(3)
         profile = rng.choice(PROFILES)
         if spec:
-            args = [EventArgument('agent', 'user', 'PERSON')]
+            subject = spec['subject']
+            if subject.label != 'PERSON':
+                profile = rng.choice(POSSIBILITY_PROFILES)
+            elif subject.text != 'user' and profile == ('let_us',):
+                profile = ('may',)
+            args = []
             if spec['tail']:
                 args.append(EventArgument('complement', spec['tail'], 'UNRESOLVED'))
-            base = Event(spec['predicate'], tuple(args), tense='past', phase='reported', mined=True)
+            base = Event(spec['predicate'], tuple(args), tense='past', phase='reported', mined=True, subject=subject)
             initial = replace(base, phase='unspecified', operators=profile,
                               tense='modal' if any(op in MODALS for op in profile) else 'present',
-                              permitter=EventArgument('permitter', 'assistant', 'PERSON') if 'let' in profile else None)
+                              permitter=EventArgument('permitter', 'user' if subject.text == 'assistant' else 'assistant', 'PERSON') if 'let' in profile else None)
             source = {**source, 'realization': 'compositional',
-                      'note': 'Head and subject are realized anew; intact complements retain observed order and unresolved semantic types.'}
+                      'note': 'The observed grammatical subject is preserved, not assigned an agent role. The head is inflected anew; complements retain observed order and unresolved semantic types.'}
             condition = '>'.join(profile)
             query = Query('mined_occurrence', event=base)
         else:

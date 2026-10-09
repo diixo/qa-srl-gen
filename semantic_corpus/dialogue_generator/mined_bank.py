@@ -20,8 +20,9 @@ from ..resource_pool import BuiltInPool
 from ..template_bank import CorpusTemplate, fingerprint, read_rows
 from ..ontology import Label
 from .mined_realization import active_phrase, phrase_tail
+from .mined_subjects import realize_subject
 
-VERSION = 'dialogue-mined-bank-v3'
+VERSION = 'dialogue-mined-bank-v4'
 
 
 def normalize_verb(row, lexicon):
@@ -58,8 +59,10 @@ class DialogueMinedBank:
         # external edit forgot to update its manifest.
         self.sources = {'version': VERSION, 'controlled_policy': CONTROLLED_VERSION,
                         'person_names_sha256': fingerprint(sorted(self.person_names)),
+                        'entity_types_sha256': fingerprint([(e.text, str(e.labels)) for e in self.pool.entities]),
                         'compiler_sha256': sha256(Path(__file__).read_bytes() +
-                                                 Path(__file__).with_name('mined_realization.py').read_bytes()).hexdigest(),
+                                                 Path(__file__).with_name('mined_realization.py').read_bytes() +
+                                                 Path(__file__).with_name('mined_subjects.py').read_bytes()).hexdigest(),
                         'dictionary_sha256': sha256(self.dictionary.read_bytes()).hexdigest(),
                         'banks': [{'path': str(b.path.resolve()), 'manifest': fingerprint(b.manifest),
                                    'files': [(str(p.relative_to(b.path)), p.stat().st_size, p.stat().st_mtime_ns)
@@ -207,7 +210,13 @@ class DialogueMinedBank:
                            'inflection_source': entry['inflection_source'], 'review_status': 'UNREVIEWED',
                            'source_text': row['text'], 'head_slot': head,
                            'slots': row['slots'], 'spans': row['spans'], 'predicate_groups': row['predicate_groups']}
-        return row, ({**spec, 'tail': phrase_tail(spec, row['bindings'])} if spec else None), info
+        if spec:
+            subject, reason = realize_subject(template.record, spec, row['bindings'], self.person_names, self.pool.entities)
+            if reason:
+                raise ValueError(f'Indexed subject no longer validates: {reason}')
+            spec = {**spec, 'tail': phrase_tail(spec, row['bindings']), 'subject': subject}
+            info['subject'] = asdict(subject)
+        return row, spec, info
 
     def coverage(self, selected):
         selected = set(selected)

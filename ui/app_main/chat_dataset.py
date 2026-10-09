@@ -30,8 +30,8 @@ TASK_LABELS = {
 class ChatDatasetForm(forms.Form):
     user_assistant_only = forms.BooleanField(
         label='User and assistant only', initial=True, required=False,
-        help_text='Conversations about the user. Includes 16 tasks; uncheck to include named participants (17 tasks). '
-                  'Mined source sentences may contain names in either profile.',
+        help_text='User/assistant scenarios (16 tasks); uncheck for named-person scenarios (17 tasks). '
+                  'Mined event subjects and quotations can refer to other people, animals or objects in either profile.',
     )
     train = forms.IntegerField(
         label='Training dialogues per task', initial=200, min_value=1, max_value=1000000,

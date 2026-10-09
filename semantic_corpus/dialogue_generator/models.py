@@ -9,7 +9,7 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass
 from .events import Event, completion_evidence, state_evidence
 
-SCHEMA_VERSION = "dialogue-memory-v5"
+SCHEMA_VERSION = "dialogue-memory-v6"
 
 
 @dataclass(frozen=True)
