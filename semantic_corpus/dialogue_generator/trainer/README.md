@@ -32,6 +32,10 @@ metadata and records containing only `messages`. It never feeds outer IDs or
 task labels to the model. Retain metadata if you want evaluation broken down
 by task; otherwise all examples are reported as `unlabeled`.
 
+To focus on completion reasoning, use the generator's `--contrast-multiplier 3`
+when preparing data; at the same base quotas this produces 3,000 training records.
+See [contrast generation and the frozen challenge](../README.md#contrasts-and-varied-memory).
+
 On its first online run, model/tokenizer files are cached under
 `artifacts/models/huggingface/`. To use an existing local pretrained GPT-2:
 
@@ -80,7 +84,7 @@ Records containing literal control tokens are refused. Examples exceeding
 The selected length must also fit the model's positional embeddings.
 
 Training reads only `train.json` and `validation.json`, checks normalized prompt
-and available scenario-key overlap, and chooses the best trained checkpoint by
+and available scenario/contrast-group overlap, and chooses the best trained checkpoint by
 validation loss. `test.json` is not used to train or select a checkpoint. The
 default effective batch size is 2 × 8 = 16 examples on one device. Automatic
 precision selects BF16 on supported CUDA devices, otherwise FP16 on CUDA, and
@@ -111,11 +115,77 @@ gpt2-memory/
 
 Evaluation output contains `evaluation.json` and `predictions.jsonl` with the
 input, reference answer, generated answer, exact-match result and stop status.
+Diagnostics include counts/confusion by task, answer kind and condition,
+`unknown_false_yes`, and the fraction of complete three-example contrast groups
+whose answers are all correct. Partial groups are reported separately. Answer-kind
+classification uses explicit text prefixes and is not a semantic judge; metadata
+is needed for task/group breakdowns but never enters the model input.
+
+Evaluate the frozen wording challenge by pointing `--data` to its directory:
+
+```powershell
+python -m semantic_corpus.dialogue_generator.trainer evaluate --run artifacts/training/gpt2-memory --data artifacts/dialogue-memory-challenge --out artifacts/training/gpt2-memory-challenge
+```
+
 Exact match trims surrounding whitespace but otherwise compares literally;
 it is a strict baseline, not a semantic correctness score. Examine mistakes and
 per-task counts before drawing conclusions. The synthetic Memory input is still
 the generator's oracle state, so this tests answering from supplied facts, not
 the quality of an automatic memory extractor or an unrestricted chat system.
 
+To compare saved runs on the same frozen files, with separate predictions for
+every model/dataset pair and an aggregate JSON/Markdown table:
+
+```powershell
+python -m semantic_corpus.dialogue_generator.trainer.compare --run baseline=artifacts/training/gpt2-memory-baseline-3ep --run expanded=artifacts/training/gpt2-memory-expanded-v2-6ep --dataset expanded=artifacts/dialogue-gpt2-memory-expanded-v2/memory --dataset challenge=artifacts/dialogue-gpt2-memory-challenge-v2 --out artifacts/training/memory-comparison
+```
+
+Use `--split validation` with ordinary dataset directories for development.
+The default is test; never use the frozen challenge to select a checkpoint or
+adjust generation rules. Increasing training length and expanding data are
+different interventions; keep a same-data, longer-training control.
+
 Architectural/API references: [GPT-2](https://huggingface.co/docs/transformers/v4.56.1/en/model_doc/gpt2)
 and [Trainer](https://huggingface.co/docs/transformers/v4.56.1/en/main_classes/trainer).
+
+## Recorded comparison (2026-10-09)
+
+All runs started independently from the same standard GPT-2 weights with seed 42,
+SFT, learning rate 5e-5, batch 2, accumulation 8, BF16. The baseline used the
+2,200-record Memory dataset from generator revision `cedad85`. Expanded training
+used 3,000 records, with 600 examples in each completion task. Checkpoint selection
+used validation loss. The six-epoch follow-up was decided from validation errors;
+its data matched the three-epoch run byte for byte.
+
+| Training | Expanded test (300) | Unseen wording (180) | Unknown answered yes (60 challenge cases) |
+| --- | --- | --- | --- |
+| Original data, 1 epoch | 247/300 (82.3%) | 67/180 (37.2%) | 59 |
+| Original data, 3 epochs | 278/300 (92.7%) | 134/180 (74.4%) | 44 |
+| Expanded data, 3 epochs | 292/300 (97.3%) | 167/180 (92.8%) | 13 |
+| Expanded data, 6 epochs | 300/300 (100%) | 169/180 (93.9%) | 11 |
+
+The final model is `artifacts/training/gpt2-memory-expanded-v2-6ep/model/`.
+It also answers all 220 original test records correctly. The final checkpoint
+is epoch 6, step 1128; training took 571.8 seconds on the local RTX 3070 Laptop GPU.
+Generate the expanded data with the command below (choose a fresh output path):
+
+```powershell
+python -m semantic_corpus.cli dialogue-build --out artifacts/dialogue-gpt2-memory-expanded-v2 --user-assistant-only --train 200 --validation 20 --test 20 --contrast-multiplier 3 --seed 20261009
+python -m semantic_corpus.dialogue_generator.trainer train --data artifacts/dialogue-gpt2-memory-expanded-v2/memory --out artifacts/training/gpt2-memory-expanded-v2-6ep --model gpt2 --epochs 6 --save-only-model
+```
+
+The combined local report is
+`artifacts/training/gpt2-memory-comparison-20261009/summary.json` (and `summary.md`);
+it links to every evaluation and its predictions. Correct complete challenge
+groups increased from 14/60 for baseline3 to 49/60 for expanded6.
+
+All 11 final mistakes are `accepted:unknown`: choosing an action is mistaken
+for completing it under unseen wording. For example, choosing to send an email
+does not establish that it was sent. Expanded3 instead failed 12 other-object
+and one other-action cases, so aggregate improvement does not mean every
+condition improved. The challenge was not changed to remove these failures.
+This remains a single-seed oracle-memory experiment. Forty challenge groups
+share held-out event plans with the ordinary expanded test; the tests are not
+independent. Action vocabulary/task families are shared with training. Data
+size, variety and epoch-dependent learning-rate schedules also differ, so this
+does not isolate the causal contribution of each change or establish chat quality.

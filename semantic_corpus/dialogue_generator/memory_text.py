@@ -1,11 +1,12 @@
 """Render the pilot's active memory as English context for response training."""
 
 from .models import Fact, Memory
+from .actions import ACTION_BY_RELATION, action_statement
 
-MEMORY_TEXT_VERSION = "memory-text-v1"
+MEMORY_TEXT_VERSION = "memory-text-v2"
 
 
-def _fact_text(fact: Fact) -> str:
+def _fact_text(fact: Fact, style: int = 0) -> str:
     user = fact.subject == "user"
     subject = "You" if user else fact.subject
     possessive = "Your" if user else f"{subject}'s"
@@ -13,18 +14,13 @@ def _fact_text(fact: Fact) -> str:
     if fact.polarity not in ("positive", "negative"):
         raise ValueError(f"Unsupported fact polarity: {fact.polarity}")
     negative = fact.polarity == "negative"
-    if fact.modality == "desired":
-        # The current pilot generates visit wishes. Refuse new combinations
-        # until they have a deliberate rendering instead of dropping modality.
-        if fact.relation != "visited":
-            raise ValueError(f"Unsupported desired relation: {fact.relation}")
-        verb = "want" if user else "wants"
-        return f"{subject} {verb} {'not to' if negative else 'to'} visit {value}."
+    if fact.relation in ACTION_BY_RELATION:
+        return action_statement(ACTION_BY_RELATION[fact.relation], value, subject=subject,
+                                modality=fact.modality, negative=negative, style=style)
     if fact.modality != "asserted":
         raise ValueError(f"Unsupported fact modality: {fact.modality}")
 
     be = "are" if user else "is"
-    have = "have" if user else "has"
     do_not = "do not" if user else "does not"
     not_ = " not" if negative else ""
     if fact.relation == "location":
@@ -37,23 +33,21 @@ def _fact_text(fact: Fact) -> str:
     if fact.relation == "drink":
         verb = f"{do_not} prefer" if negative else "prefer" if user else "prefers"
         return f"{subject} {verb} {value}."
-    if fact.relation == "visited":
-        return f"{subject} {have}{not_} visited {value}."
     if fact.relation == "selection":
         return f"{subject} {'did not choose' if negative else 'chose'} {value}."
-    if fact.relation == "completed_break":
-        return f"{subject} {have}{not_} taken {value}."
     raise ValueError(f"Unsupported fact relation: {fact.relation}")
 
 
-def render_memory(memory: Memory) -> str:
+def render_memory(memory: Memory, *, style: int = 0) -> str:
     """Render state only, without IDs, evidence, retired facts or query hints.
 
     Suggestions and ordered options stay separate from user reports. Missing
     facts remain unknown; this function never invents negative claims for them.
     """
+    if type(style) is not int or style not in range(5):
+        raise ValueError('Unknown memory style')
     lines = ["Known facts:"]
-    lines.extend(f"- {_fact_text(fact)}" for fact in memory.facts)
+    lines.extend(f"- {_fact_text(fact, style)}" for fact in memory.facts)
     if not memory.facts:
         lines.append("- No facts recorded.")
     if memory.assistant_actions:
@@ -65,7 +59,10 @@ def render_memory(memory: Memory) -> str:
             lines.append("- The assistant offered these options, in this order:")
             lines.extend(f"  {index}. {item}" for index, item in enumerate(action.items, 1))
         elif action.kind == "suggestion":
-            lines.extend(f"- The assistant suggested {item}." for item in action.items)
+            patterns = ('The assistant suggested {}.', 'The assistant offered a suggestion: {}.',
+                        'A suggestion from the assistant was: {}.', 'The assistant proposed {}.',
+                        'The assistant recommended {}.')
+            lines.extend('- ' + patterns[style].format(item) for item in action.items)
         else:
             raise ValueError(f"Unsupported assistant action: {action.kind}")
     return "\n".join(lines)

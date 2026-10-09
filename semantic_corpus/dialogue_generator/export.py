@@ -16,9 +16,10 @@ from typing import Callable
 from ..semantic_generator.substitutions import ENTITIES_PATH
 from .generator import GENERATOR_VERSION, DialogueGenerator, fingerprint
 from .memory_text import MEMORY_TEXT_VERSION, render_memory
+from .actions import CONTRAST_TASKS
 from .models import Episode, SCHEMA_VERSION, Transition
 
-PROMPT_VERSION = "dialogue-prompts-v2"
+PROMPT_VERSION = "dialogue-prompts-v3"
 RESPONSE_SYSTEM = (
     "You are a friendly AI personal assistant. Reply briefly and naturally to the latest user message. "
     "Use only the supplied conversation context. If information is missing, say you don't know; "
@@ -28,10 +29,11 @@ RESPONSE_SYSTEM = (
 EXTRACT_SYSTEM = (
     "Update conversation memory from the latest user message. Return only a JSON object with "
     "add, replace and invalidate arrays. Each new fact has id, subject, relation, value, evidence, "
-    "polarity (positive/negative) and modality (asserted/desired). Each evidence item has turn_id "
+    "polarity (positive/negative) and modality (asserted/desired/planned). Each evidence item has turn_id "
     "and an exact quote. Each replacement has old_id and fact. invalidate contains active fact IDs. "
-    "Relations in this pilot: location, meeting_day, feeling, visited, selection, completed_break, drink. "
-    "Keep subjects and asserted/desired claims separate. Suggestions are not completed actions. "
+    "Relations in this pilot: location, meeting_day, feeling, visited, selection, completed_break, drink, "
+    "bought, called, sent, read. "
+    "Keep subjects and asserted/desired/planned claims separate. Suggestions are not completed actions. "
     "Questions and acknowledgements add no facts. Unresolved references add no facts. "
     "Use the supplied next_fact_id for additions and increment it for further facts."
 )
@@ -47,18 +49,23 @@ def _messages(system: str, prompt: str, target: str) -> list[dict[str, str]]:
             {"role": "assistant", "content": target}]
 
 
-def response_row(episode: Episode, view: str) -> dict:
+def response_row(episode: Episode, view: str, *, memory_style: int | None = None) -> dict:
     if view == "history":
         context = "Conversation so far:\n" + "\n".join(
             f"{turn.role.title()}: {turn.text}" for turn in episode.turns[:-1])
     elif view == "memory":
         # Semantic memory is supplied by the simulator, not an extracted model.
         previous = episode.turns[-2].text if len(episode.turns) > 1 else "(none)"
-        context = render_memory(episode.memory) + "\n\nLast assistant message: " + previous
+        style = episode.memory_style if memory_style is None else memory_style
+        context = render_memory(episode.memory, style=style) + "\n\nLast assistant message: " + previous
     else:
         raise ValueError(f"Unknown response view: {view}")
     prompt = context + "\nLatest user message: " + episode.turns[-1].text
-    return {"id": episode.id, "scenario_key": episode.scenario_key, "task": episode.task,
+    metadata = ({'contrast_group': episode.contrast_group, 'condition': episode.condition,
+                 'answer_kind': ('unknown' if episode.expected_action == 'unknown' else
+                                 'no' if episode.answer.startswith('No,') else 'yes')}
+                if episode.contrast_group else {})
+    return {"id": episode.id, "scenario_key": episode.scenario_key, "task": episode.task, **metadata,
             "messages": _messages(RESPONSE_SYSTEM, prompt, episode.answer)}
 
 
@@ -108,8 +115,9 @@ def build_dialogue_dataset(out: Path, *, train: int = 200, validation: int = 20,
                            include_metadata: bool = True,
                            user_assistant_only: bool = False,
                            training_report: Path | None = None,
+                           contrast_multiplier: int = 1,
                            progress: Callable[[str, int, int], None] | None = None) -> dict:
-    """Write *count per task* for each split into a new directory.
+    """Write per-task quotas into a new directory, with optional contrast weighting.
 
     Memory/history are paired plain-text final-answer examples. Extraction transitions
     are deduplicated independently. No tokenizer, model, network or DB is used.
@@ -117,6 +125,8 @@ def build_dialogue_dataset(out: Path, *, train: int = 200, validation: int = 20,
     validation and the episode audit records retain their identifiers.
     user_assistant_only selects 11 tasks without names or third-party facts;
     the default retains the original 12 named-pool tasks.
+    contrast_multiplier scales only the two completion contrast tasks in all
+    splits. Its default of 1 preserves the UI's uniform per-task quotas.
     An optional existing trainer report supplies its tokenizer contract; the
     training loader must still validate token lengths before loading weights.
     """
@@ -125,19 +135,23 @@ def build_dialogue_dataset(out: Path, *, train: int = 200, validation: int = 20,
         raise ValueError("All split quotas must be positive integers per task")
     if type(include_metadata) is not bool:
         raise ValueError("include_metadata must be a boolean")
+    if type(contrast_multiplier) is not int or contrast_multiplier <= 0:
+        raise ValueError('contrast_multiplier must be a positive integer')
     out = Path(out)
     if out.exists():
         raise FileExistsError(f"Choose a new output directory: {out}")
     report = _training_report(training_report, seed)
     generator = DialogueGenerator(seed=seed, user_assistant_only=user_assistant_only)
     tasks = generator.tasks
-    total = sum(counts.values()) * len(tasks)
+    weights = {task: contrast_multiplier if task in CONTRAST_TASKS else 1 for task in tasks}
+    total = sum(counts.values()) * sum(weights.values())
     processed = 0
     views = ("history", "memory", "extraction")
     seen: dict[str, dict[str, tuple[str, str]]] = {view: {} for view in views}
     scenario_splits: dict[str, str] = {}
     manifest = {"schema_version": SCHEMA_VERSION, "generator_version": GENERATOR_VERSION,
                 "prompt_version": PROMPT_VERSION, "seed": seed, "quota_per_task": counts,
+                "task_multipliers": weights,
                 "content_formats": {"history": "history-text-v1", "memory": MEMORY_TEXT_VERSION,
                                     "extraction": "extraction-json-v1"},
                 "include_metadata": include_metadata,
@@ -191,12 +205,13 @@ def build_dialogue_dataset(out: Path, *, train: int = 200, validation: int = 20,
                     return True
 
                 for task in tasks:
+                    task_count = count * weights[task]
                     accepted = 0
                     phase = f"Generating {split}: {task.replace('_', ' ')}"
                     if progress:
                         progress(phase, processed, total)
                     # Resampling has a bound; quotas are not silently reduced.
-                    for episode in generator.generate(task, count * 20, split=split):
+                    for episode in generator.generate(task, task_count * 20, split=split):
                         rows = {view: response_row(episode, view) for view in ("history", "memory")}
                         for view, row in rows.items():
                             previous = seen[view].get(prompt_key(row))
@@ -222,12 +237,12 @@ def build_dialogue_dataset(out: Path, *, train: int = 200, validation: int = 20,
                         stats["actions"][episode.expected_action] += 1
                         accepted += 1
                         processed += 1
-                        if progress and (accepted % 25 == 0 or accepted == count):
+                        if progress and (accepted % 25 == 0 or accepted == task_count):
                             progress(phase, processed, total)
-                        if accepted == count:
+                        if accepted == task_count:
                             break
-                    if accepted != count:
-                        raise ValueError(f"{task}/{split}: only {accepted}/{count} unique prompts")
+                    if accepted != task_count:
+                        raise ValueError(f"{task}/{split}: only {accepted}/{task_count} unique prompts")
                     stats["by_task"][task] = accepted
                 for writer in writers.values():
                     writer.write("\n]\n")

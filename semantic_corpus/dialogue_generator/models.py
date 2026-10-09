@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from dataclasses import asdict, dataclass
 
-SCHEMA_VERSION = "dialogue-memory-v1"
+SCHEMA_VERSION = "dialogue-memory-v2"
 
 
 @dataclass(frozen=True)
@@ -99,7 +99,7 @@ def apply_delta(memory: Memory, delta: Delta, turns: tuple[Turn, ...]) -> Memory
                    (fact.id, fact.subject, fact.relation, fact.value)) or fact.id in seen:
             raise ValueError("New facts need nonempty fields and fresh IDs")
         seen.add(fact.id)
-        if fact.polarity not in ("positive", "negative") or fact.modality not in ("asserted", "desired"):
+        if fact.polarity not in ("positive", "negative") or fact.modality not in ("asserted", "desired", "planned"):
             raise ValueError("Unsupported polarity or modality")
         if not fact.evidence or not any(e.turn_id == turns[-1].id for e in fact.evidence):
             raise ValueError("A new fact needs evidence from the current user turn")
@@ -178,6 +178,9 @@ class Episode:
     answer: str
     expected_action: str
     supporting_ids: tuple[str, ...]
+    contrast_group: str | None = None
+    memory_style: int = 0
+    condition: str | None = None
 
     def validate(self) -> None:
         state = Memory()

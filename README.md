@@ -486,6 +486,13 @@ Generate the dataset first as described in the trainer guide, or supply a new
 UI job's `dataset/memory/` path. Training is CLI-only; no training operation is
 added to the UI.
 
+New Chat dataset exports include matched yes/no/unknown examples for wishes,
+plans and suggestions, covering visits, purchases, calls, messages, reading and
+breaks, with varied Memory wording. CLI `dialogue-build --contrast-multiplier 3`
+increases the two completion-task quotas. The [dialogue guide](semantic_corpus/dialogue_generator/README.md#contrasts-and-varied-memory)
+also describes a frozen test with unseen wording and the trainer's comparison
+reports. Existing files are not rewritten; generate a new dataset to use these changes.
+
 ```python
 from semantic_corpus.semantic_generator import Generator
 

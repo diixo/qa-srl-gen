@@ -2,5 +2,12 @@
 *__pycache__/
 
 # Local corpus stores, exports and run reports.
-/artifacts/
+/artifacts/*
+
+# Keep the expanded Memory dataset available for version control.
+!/artifacts/dialogue-gpt2-memory-expanded-v2/
+/artifacts/dialogue-gpt2-memory-expanded-v2/*
+!/artifacts/dialogue-gpt2-memory-expanded-v2/memory/
+
+!/artifacts/dialogue-gpt2-memory-challenge-v2/
 

@@ -48,13 +48,12 @@ def test_corrections_retire_old_day_and_keep_people_separate():
         assert all(value not in e.answer for value in others)
 
 
-@pytest.mark.parametrize("task,relation", [("desire_vs_done", "visited"),
-                                         ("suggestion_vs_done", "completed_break")])
-def test_wishes_and_advice_do_not_imply_completion(task, relation):
+@pytest.mark.parametrize("task", ["desire_vs_done", "suggestion_vs_done"])
+def test_wishes_and_advice_do_not_imply_completion(task):
     outcomes = Counter()
     for e in DialogueGenerator(seed=42).generate(task, 90, split="train"):
-        completed = e.memory.find("user", relation)
-        if completed is None:
+        completed = e.memory.find("user", e.query.relation)
+        if completed is None or completed.value != e.query.value:
             assert e.expected_action == "unknown"
             assert not e.supporting_ids
             outcomes["unknown"] += 1
@@ -305,8 +304,8 @@ def test_user_only_scenarios_need_no_names_and_keep_context_splits_across_seeds(
 def test_default_sizes_have_no_duplicate_or_cross_split_prompts(tmp_path, user_only):
     manifest = build_dialogue_dataset(tmp_path / 'dataset', user_assistant_only=user_only)
     assert ('entities.json' not in manifest['resources']) == user_only
-    assert manifest['prompt_version'] == 'dialogue-prompts-v2'
-    assert manifest['content_formats'] == {'history': 'history-text-v1', 'memory': 'memory-text-v1',
+    assert manifest['prompt_version'] == 'dialogue-prompts-v3'
+    assert manifest['content_formats'] == {'history': 'history-text-v1', 'memory': 'memory-text-v2',
                                             'extraction': 'extraction-json-v1'}
     for view in ('history', 'memory', 'extraction'):
         seen = set()

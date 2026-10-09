@@ -11,7 +11,7 @@ TASK_LABELS = {
     'correction': 'Correct earlier information',
     'different_people': 'Distinguish different people',
     'negation': 'Understand negation',
-    'desire_vs_done': 'Distinguish wishes from completed actions',
+    'desire_vs_done': 'Distinguish wishes and plans from completed actions',
     'option_reference': 'Resolve first / second option',
     'ambiguous_reference': 'Clarify ambiguous references',
     'unknown': 'Recognize missing information',
@@ -46,7 +46,7 @@ class ChatDatasetForm(forms.Form):
     )
     include_metadata = forms.BooleanField(
         label='Include metadata', initial=True, required=False,
-        help_text='Include id, scenario_key and task in training JSON records. '
+        help_text='Include IDs, task labels and contrast-group details in training JSON records. '
                   'Unchecked: export only messages. This does not change the message content.',
     )
 

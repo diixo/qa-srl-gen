@@ -61,7 +61,7 @@ the job and preserved on retry; older jobs default to including metadata.
 | `correction` | Use the corrected meeting day, retaining the old claim only for audit |
 | `different_people` | Distinguish the user's feeling from another person's feeling (named-pool only) |
 | `negation` | Answer yes or no according to an explicit positive/negative report |
-| `desire_vs_done` | A wish to visit somewhere does not establish a completed visit |
+| `desire_vs_done` | A wish or plan does not establish completion: visit, buy, call, send, read, take a break |
 | `option_reference` | Resolve “the first/second one” using the assistant's options |
 | `ambiguous_reference` | Ask which of two options “that one” refers to |
 | `unknown` | Admit a meeting day is unknown when it was never stated |
@@ -77,9 +77,10 @@ replays updates and checks the answer, IDs, sources, replacements and retirement
 An evidence substring check alone is **not** semantic verification of an external
 extractor's output.
 
-Memory v1 is a deliberately small projection: seven relations (`location`,
-`meeting_day`, `feeling`, `visited`, `selection`, `completed_break`, `drink`). Each
-subject/relation/modality has one active value. `asserted` and `desired` are
+Memory v2 is a deliberately small projection: eleven relations (`location`,
+`meeting_day`, `feeling`, `visited`, `selection`, `completed_break`, `drink`,
+`bought`, `called`, `sent`, `read`). Each
+subject/relation/modality has one active value. `asserted`, `desired` and `planned` are
 separate; positive and negative claims are explicit. Facts describe reports in
 this conversation. Assistant suggestions/options live separately from user facts.
 This is not a general event log: arbitrary tense, multiple visits, quoted beliefs,
@@ -139,8 +140,8 @@ relations/actions fail explicitly instead of silently omitting information.
 The internal memory and **extraction** input/target still use their existing
 structured schema. Text commands for extraction are a later stage.
 
-The manifest now records `prompt_version: dialogue-prompts-v2` and
-`content_formats.memory: memory-text-v1`. Generate a new job/directory to get
+The manifest now records `prompt_version: dialogue-prompts-v3` and
+`content_formats.memory: memory-text-v2`. Generate a new job/directory to get
 the text format; existing output files are not rewritten. Text-based prompt
 deduplication can select different episodes when older prompts differed only
 by internal identifiers. Paired History/Memory targets and split checks remain
@@ -169,6 +170,44 @@ held-out names or contexts and plans, not unseen reasoning tasks or unrestricted
 chat. Keep a separate human-written test set for broader assessment.
 
 ## Local GPT-2 SFT experiment
+
+### Contrasts and varied memory
+
+New exports (including UI jobs) generate `desire_vs_done` and `suggestion_vs_done`
+in matched groups: the context, question and wording style stay fixed while
+confirmation, explicit denial or missing evidence changes the correct answer.
+Groups cover visits, purchases, calls, messages, reading and breaks. They also
+include a different completed action/object and accepting a suggestion without
+reporting completion. The model still receives natural English, without outcome
+labels or group IDs. Three surface families vary the actual Memory input as
+well as the dialogue and question; changing only History would not diversify Memory.
+
+Outer metadata additionally records `contrast_group`, `condition`, `answer_kind`;
+`--no-metadata` removes these too. All members of a group stay in one split,
+across seeds and quotas. Nonmultiples of three can leave the final group partial;
+normal prompt deduplication also takes precedence over retaining a whole group.
+These are controlled reported facts: multiple simultaneous purchases/visits are
+still outside the single-active-value memory model.
+
+For experiments, CLI/API can multiply the quotas for these two tasks:
+
+```powershell
+python -m semantic_corpus.cli dialogue-build --out artifacts/dialogue-memory-expanded --user-assistant-only --train 200 --validation 20 --test 20 --contrast-multiplier 3 --seed 20261009
+python -m semantic_corpus.dialogue_generator.challenge --out artifacts/dialogue-memory-challenge --groups-per-task 30
+```
+
+The first command creates **3000/300/300** response records. The API option is
+`contrast_multiplier=3`; its default is 1, including in the UI, so existing
+per-task quota fields keep their meaning. The manifest records actual task weights.
+The second command freezes **180 test-only** records in `test.json`, with two
+additional memory/question surface families absent from normal training exports.
+It saves data/code hashes and never overwrites a previous challenge. This measures
+unseen wording with shared action vocabulary, not unrestricted chat. Freeze it
+before training and do not tune on its results. It is an evaluation dataset,
+not a new UI generation mode.
+With the same seed as the ordinary dataset, some held-out event plans are
+deliberately shared: this is a paired wording stress test, not an independent
+second sample. Neither its contexts nor its groups enter train/validation.
 
 The optional [GPT-2 trainer](trainer/README.md) fine-tunes the standard pretrained
 model with `transformers.Trainer`, ChatML and loss on assistant answers only.

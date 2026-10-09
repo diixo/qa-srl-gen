@@ -1,0 +1,23 @@
+{
+  "kind": "held-out-memory-surfaces-v1",
+  "seed": 20261009,
+  "groups_per_task": 30,
+  "count": 180,
+  "styles": [
+    3,
+    4
+  ],
+  "split": "test",
+  "test_sha256": "81d3ed49f04c6c6b265fa842c295cce3f8e5d74613af13b699d9e825055f4040",
+  "resources": {
+    "__init__.py": "3b96d5794d4b6da1ad1f62907402fd1e44909cf0ec24cd71369132b38d5b18fe",
+    "actions.py": "ae632566932b646d6fd643b771d1b1e7d5eb387fc039812016da4d518af79f6e",
+    "challenge.py": "4c2251ff0cb865f20ce8bc305160991699f286e9608d725a0681ffc48deb3552",
+    "contrast.py": "b5bd300452affcfbe0677ad13396a4b6f6e930afacce341aef69faaa263a04bf",
+    "export.py": "3b8c7356fcae43b227a88b55be09741fd5d3b98ca984d491c72db8ce54713476",
+    "generator.py": "bae5d4686b1149d453efc2e62745a67d6622693bebbf1fa1cd6d2992dca96e73",
+    "memory_text.py": "befbcf97d28629efdadbc065bc5331ab893b190e7517e28c8acb8fcbac49ed8d",
+    "models.py": "f9ed4328e5da740e0d559168f2136c1693e564c69884b723ddb279af65810009"
+  },
+  "note": "Unseen wording, shared action vocabulary and task families; no training split."
+}

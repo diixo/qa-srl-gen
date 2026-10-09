@@ -19,6 +19,7 @@ from transformers import AutoConfig, GPT2LMHeadModel, GPT2TokenizerFast, Trainer
 
 from .chatml import CHAT_TEMPLATE, FORMAT_VERSION, IM_START, IM_END, PAD, encode_example
 from .data import check_disjoint, file_sha256, load_rows
+from .metrics import AnswerMetrics
 
 
 @dataclass(frozen=True)
@@ -189,6 +190,7 @@ def train(settings: TrainSettings) -> dict:
     _write_json(settings.out / 'run.json', report)
     _write_json(settings.out / 'split_keys.json', {
         split: {'prompts': [row.prompt_key for row in data],
+                'contrast_groups': sorted({row.contrast_group for row in data if row.contrast_group}),
                 'scenarios': sorted({row.scenario_key for row in data if row.scenario_key})}
         for split, data in (('train', rows), ('validation', val_rows))})
     trainer = None
@@ -265,6 +267,8 @@ def evaluate(run: Path, data: Path, out: Path, *, split='test', device='auto', m
     rows = load_rows(path)
     keys = json.loads((run / 'split_keys.json').read_text(encoding='utf-8'))
     for name in (('train', 'validation') if split == 'test' else ('train',)):
+        if set(keys[name].get('contrast_groups', [])) & {row.contrast_group for row in rows if row.contrast_group}:
+            raise ValueError(f'Evaluation contrast group leakage from {name}')
         if set(keys[name]['prompts']) & {row.prompt_key for row in rows} or \
                 set(keys[name]['scenarios']) & {row.scenario_key for row in rows if row.scenario_key}:
             raise ValueError(f'Evaluation leakage from {name}')
@@ -286,6 +290,7 @@ def evaluate(run: Path, data: Path, out: Path, *, split='test', device='auto', m
         target_count += count
     totals = {'count': 0, 'exact_matches': 0, 'ended': 0}
     by_task = {}
+    diagnostics = AnswerMetrics()
     with (out / 'predictions.jsonl').open('w', encoding='utf-8', newline='\n') as stream:
         for index, (row, encoded) in enumerate(zip(rows, examples), 1):
             # Only prompt tokens enter generate(); the reference is never supplied.
@@ -296,6 +301,7 @@ def evaluate(run: Path, data: Path, out: Path, *, split='test', device='auto', m
             ended = bool(answer_ids and answer_ids[-1] == tokenizer.eos_token_id)
             prediction = tokenizer.decode(answer_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)
             target = row.messages[-1]['content']
+            diagnostics.add(target, prediction, task=row.task, condition=row.condition, group=row.contrast_group)
             exact = prediction.strip() == target.strip()
             task = by_task.setdefault(row.task, {'count': 0, 'exact_matches': 0, 'ended': 0})
             for counts in (totals, task):
@@ -304,7 +310,8 @@ def evaluate(run: Path, data: Path, out: Path, *, split='test', device='auto', m
                 counts['ended'] += int(ended)
             stream.write(json.dumps({'record': index, 'task': row.task, 'prompt': row.messages[1]['content'],
                                      'reference': target, 'prediction': prediction, 'exact_match': exact,
-                                     'ended': ended}, ensure_ascii=False) + '\n')
+                                     'ended': ended, 'contrast_group': row.contrast_group,
+                                     'condition': row.condition}, ensure_ascii=False) + '\n')
             if index == 1 or index % 20 == 0 or index == len(rows):
                 print(f'Evaluated {index}/{len(rows)}', flush=True)
     loss = loss_sum / target_count
@@ -312,6 +319,7 @@ def evaluate(run: Path, data: Path, out: Path, *, split='test', device='auto', m
               'model': str(run / 'model'), 'decoding': 'greedy', 'max_new_tokens': max_new_tokens,
               'answer_loss': loss, 'perplexity': math.exp(loss) if loss < 700 else None,
               **totals, 'exact_match_rate': totals['exact_matches'] / totals['count'], 'by_task': by_task,
+              **diagnostics.report(),
               'note': 'Exact match is a strict reference comparison; review predictions for semantic quality.'}
     _write_json(out / 'evaluation.json', report)
     return report

@@ -208,9 +208,14 @@ class ChatDatasetPageTests(TestCase):
         manifest = json.loads((root / 'dataset/manifest.json').read_text(encoding='utf-8'))
         self.assertIs(manifest['include_metadata'], True)
         self.assertIs(manifest['user_assistant_only'], False)
-        self.assertEqual(manifest['content_formats']['memory'], 'memory-text-v1')
+        self.assertEqual(manifest['content_formats']['memory'], 'memory-text-v2')
         rows = json.loads((root / 'dataset/memory/train.json').read_text(encoding='utf-8'))
-        self.assertTrue(all(set(row) == {'messages', 'id', 'scenario_key', 'task'} for row in rows))
+        for row in rows:
+            fields = {'messages', 'id', 'scenario_key', 'task'}
+            if row['task'] in ('desire_vs_done', 'suggestion_vs_done'):
+                fields |= {'contrast_group', 'condition', 'answer_kind'}
+                self.assertIn(row['answer_kind'], ('yes', 'no', 'unknown'))
+            self.assertEqual(set(row), fields)
         for row in rows:
             content = row['messages'][1]['content']
             self.assertTrue(content.startswith('Known facts:\n'))

@@ -17,7 +17,7 @@ from .models import (
     Replacement, Transition, Turn, answer_query, apply_delta,
 )
 
-GENERATOR_VERSION = "dialogue-babi-0.1.0"
+GENERATOR_VERSION = "dialogue-babi-0.2.0"
 TASKS = (
     "recall", "correction", "different_people", "negation", "desire_vs_done",
     "option_reference", "ambiguous_reference", "unknown", "suggestion_vs_done",
@@ -152,8 +152,8 @@ def _scenario(task: str, split: str, rng: random.Random,
         subject = rng.choice(("user", other))
         c.user("How do I feel?" if subject == "user" else f"How does {other} feel?")
         query = Query("lookup", subject=subject, relation="feeling")
-    elif task in ("negation", "desire_vs_done"):
-        done = rng.choice((True, False)) if task == "negation" else rng.choice((True, False, None))
+    elif task == "negation":
+        done = rng.choice((True, False))
         c.pair(f"I want to visit {destination}.", facts=(_fact("user", "visited", destination, desired=True),))
         if done is not None:
             text = (choose(f"I've visited {destination} now.", f"I have now been to {destination}.") if done
@@ -185,20 +185,6 @@ def _scenario(task: str, split: str, rng: random.Random,
                else f"Can you help with my meeting with {other}?")
         c.user(choose("On which day is my meeting?", "What day is that meeting scheduled for?"))
         query = Query("lookup", relation="meeting_day")
-    elif task == "suggestion_vs_done":
-        if context is None:
-            c.user(f"I feel {feeling}. Suggest a break.", facts=(_fact("user", "feeling", feeling),))
-        else:
-            c.user("Suggest a break for me.")
-        suggestion = c.assistant(f"You could take {first}.", action="suggestion", items=(first,))
-        done = rng.choice((True, False, None))
-        if done is None:
-            c.pair(choose("Thanks for the suggestion.", "Okay, thanks."))
-        else:
-            text = f"I've taken {first}." if done else f"I haven't taken {first} yet."
-            c.pair(text, facts=(_fact("user", "completed_break", first, negative=not done),), reference=suggestion)
-        c.user(f"Have I taken {first}?")
-        query = Query("yes_no", relation="completed_break", value=first)
     elif task == "topic_return":
         if context is None:
             c.pair(f"I prefer {drink}.", facts=(_fact("user", "drink", drink),))
@@ -269,6 +255,11 @@ class DialogueGenerator:
         if not isinstance(count, int) or isinstance(count, bool) or count < 0:
             raise ValueError("Count must be a nonnegative integer")
         if not count:
+            return
+        from .actions import CONTRAST_TASKS
+        if task in CONTRAST_TASKS:
+            from .contrast import contrast_episodes
+            yield from contrast_episodes(self, task, count, split)
             return
         if self.user_assistant_only:
             yield from self._generate_user_assistant(task, count, split=split)

@@ -629,6 +629,8 @@ def build_parser() -> argparse.ArgumentParser:
     dialogue.add_argument("--training-report", type=Path,
                           help="existing trainer report.json supplying the tokenizer contract")
     dialogue.set_defaults(func=cmd_dialogue_build)
+    dialogue.add_argument('--contrast-multiplier', type=_positive_count, default=1,
+                          help='multiply quotas for desire_vs_done and suggestion_vs_done')
 
     return parser
 
@@ -639,7 +641,8 @@ def cmd_dialogue_build(args: argparse.Namespace) -> int:
         manifest = build_dialogue_dataset(args.out, train=args.train, validation=args.validation,
                                          test=args.test, seed=args.seed, include_metadata=args.include_metadata,
                                          user_assistant_only=args.user_assistant_only,
-                                         training_report=args.training_report)
+                                         training_report=args.training_report,
+                                         contrast_multiplier=args.contrast_multiplier)
     except (ValueError, OSError, KeyError, TypeError) as error:
         print(f"error: {error}", file=sys.stderr)
         return 2
