@@ -12,26 +12,32 @@ From the repository root:
 python -m semantic_corpus.cli dialogue-build --out artifacts/dialogue-pilot --train 200 --validation 20 --test 20 --seed 42
 ```
 
-Quotas are **per task**: 16 tasks produce 3,200 training, 320 validation and
-320 test episodes. The destination must be new. Generation uses only Python's
-standard library, shared semantic frames and the existing
-`semantic_generator/entities.json`, respecting its named-entity split rules. It does
-not call a model or mine `eng-base.jsonl`.
+Quotas are **per task**: the CLI's 17 tasks produce 3,400 training, 340 validation and
+340 test episodes. The destination must be new. Generation uses Python's standard
+library, shared frames/entities, the published mined banks and Wiktionary forms.
+It reads existing analyses without calling a model or re-mining `eng-base.jsonl`.
 
 In the Django UI, open **Pipeline → Chat dataset** at `/chat-dataset`. The page
 has the same per-task quotas and seed, displays the total sizes, and queues a
 background job. Its job page provides progress, cancellation/retry, split counts,
 individual downloads and `chat-dataset.zip`. The archive contains this directory
 layout at its root; files are also retained in `artifacts/ui/jobs/<id>/dataset/`.
-The UI exports model-independent data. The optional trainer-report adapter below
-is available through the CLI.
+The UI exports text data; its optional length limit checks the GPT-2 ChatML
+tokenization contract. The trainer-report adapter below is available through the CLI.
 
 **User and assistant only** is checked by default in the UI. It generates
 conversations about the user's own location, feelings, preferences and plans,
-without personal names, named cities or facts about other people. Ordinary places
+without adding named participants to the generated conversation. Mined source
+sentences may contain names in either profile. Ordinary places
 such as `the kitchen` and `the park` replace city names. The `different_people`
-task is excluded: 15 tasks give **3,000 / 300 / 300** episodes at the default
-quotas. Uncheck it to use the 16-task named-pool scenarios.
+task is excluded: 16 tasks give **3,200 / 320 / 320** episodes with uniform quotas.
+Uncheck it to use the 17-task named-pool scenarios. The UI additionally defaults
+**Mined training dialogues** to **0**, meaning three training examples per mined
+head. With the current 4,031-entry bank this gives **15,093 / 320 / 320** episodes
+in the user/assistant profile (15,293 / 340 / 340 with named participants).
+The other tasks keep their original quotas. A positive mined quota sets an exact
+count; blank retains the ordinary per-task quota. The CLI equivalent of full
+coverage is `--mined-train 0`; CLI/API defaults preserve uniform quotas.
 
 The CLI and Python API retain the original behavior by default. To select the
 simplified conversations, add `--user-assistant-only` or pass
@@ -53,6 +59,49 @@ in every training JSON record, omitting the top-level `id`, `scenario_key` and
 episode audit JSONL and manifest remain intact. The selected value is saved with
 the job and preserved on retry; older jobs default to including metadata.
 
+## Token limits
+
+**Maximum example tokens (GPT-2)** defaults to **768** in the UI. It counts the
+complete system/user/assistant example, including the answer and ChatML markers,
+in **all three views**. It is not a character/word limit or `max_new_tokens`.
+Blank disables the check; valid limits are 1–1024 for classic GPT-2. CLI/API leave
+it disabled by default; pass `--max-length 768` / `max_length=768` to enable it.
+Older saved UI jobs without this field keep their previous behavior on retry.
+
+Generation replaces a whole candidate dialogue if any Memory/History example
+or any of its Extraction updates exceeds the limit. It never truncates content
+or keeps only part of an episode. Response pairs, update context and requested
+quotas are preserved. Resampling is bounded; if a quota cannot be filled, the
+job fails without publishing a partial dataset. With `--mined-train 0`, already
+covered head/outcome pairs do not displace missing ones. An overly strict limit
+may make full vocabulary coverage impossible; increase it or disable it.
+Resampling can leave partial contrast groups with different contexts; the
+full-coverage setting guarantees three outcomes per head, not one shared
+context for all three after length filtering. Evaluation reports partial groups separately.
+
+The optional counter needs only tokenizer dependencies and cached vocabulary:
+
+```powershell
+python -m pip install -r requirements-tokenization.txt
+python -c "from huggingface_hub import hf_hub_download; hf_hub_download('gpt2', 'tokenizer.json')"
+python -m semantic_corpus.cli dialogue-build --out artifacts/dialogue-limited --user-assistant-only --max-length 768
+```
+
+The second command is a one-time tokenizer download, not a model download.
+Generation itself stays offline and does not load the training engine, PyTorch
+or model weights. It checks the project's `artifacts/models/huggingface` cache
+first, then the standard Hugging Face cache (including `HF_HOME`/`HF_HUB_CACHE`).
+Without a cached tokenizer it gives setup instructions; it never estimates tokens
+from characters. Leaving the field blank preserves dependency-free generation.
+
+`token-lengths.json` records the tokenizer fingerprint, limit, per-view maxima
+of exported examples and rejected-candidate counts per split/task.
+`length-rejections.jsonl` identifies rejected candidates and their lengths.
+Both are downloadable on the completed job page and included in the ZIP.
+The trainer remains separate: pass the same or a larger `--max-length` there,
+using the same GPT-2 tokenizer/ChatML contract. A different tokenizer requires
+its own checks. The CLI trainer still defaults to 512.
+
 ## Tasks
 
 | Task | What the target tests |
@@ -73,6 +122,7 @@ the job and preserved on retry; older jobs default to including metadata.
 | `event_progress` | Distinguish an attempt, start, stop, ongoing action and future report from completion |
 | `event_updates` | Correct or withdraw one event while retaining other objects, participants and time contexts |
 | `event_states` | Distinguish current possession/location from wishes, modal claims and past states |
+| `mined_predicates` | Scoped occurrence reports for licensed mined phrases; reported-wording scope for attested-only source clauses |
 
 The simulator creates the user's assertions and state updates together. Answers
 are derived from the resulting state. Every update carries exact evidence;
@@ -81,7 +131,7 @@ replays updates and checks the answer, IDs, sources, replacements and retirement
 An evidence substring check alone is **not** semantic verification of an external
 extractor's output.
 
-Memory v4 retains the original eleven flat relations (`location`,
+Memory v5 retains the original eleven flat relations (`location`,
 `meeting_day`, `feeling`, `visited`, `selection`, `completed_break`, `drink`,
 `bought`, `called`, `sent`, `read`). Each
 subject/relation/modality has one active value. `asserted`, `desired` and `planned` are
@@ -214,6 +264,102 @@ remain archive/reprocessing APIs; normal Synthetic corpus uses the filtered
 `BuiltInPool`. UI inventory totals describe archived entries, not the number of
 eligible templates. Policy version is recorded in generated document metadata.
 
+## Complete mined-bank connection
+
+`mined_bank.py` indexes **every source template and every working primary verb
+entry**, including registered `/template-mining` additions. There is no top-N
+verb list or frequency cutoff. Controlled heads (`can`, `must`, `may`, `be`,
+`let`, `have`, `go`) keep their manual routing. Source quotations can contain
+them as context; they are not selected as unreviewed generated predicates.
+The current primary bank contributes 4,031 working inventory entries. Some are
+parser errors or spelling/form aliases, not distinct English verb senses.
+The current compiler finds compositional candidates for 1,554 entries; 2,477
+have only the quotation-level coverage described below. All remain UNREVIEWED.
+
+`data/wiktionary/en_verb_inflections.txt` supplies head paradigms. Reverse lookup
+repairs a parser lemma only when observed forms select one dictionary head;
+competing paradigms and unresolved observations stay in the audit. The dictionary
+does not certify a part of speech or choose a meaning. `verb_alternatives` are
+accounted for separately and are never silently promoted from homographs to verbs.
+
+Two realization levels are explicit in each exported mined record:
+
+| Level | Generation and target |
+| --- | --- |
+| `compositional` | A supported active VP gets dictionary inflection and a user subject. The complete observed complement retains particles/prepositions and word order. `want`, `can`, `must`, `may`, perfect under modality, permission and other licensed scopes do not establish occurrence. An explicit positive/negative past report answers the occurrence question. |
+| `attested_quotation` | The entire original sentence is preserved. The dialogue distinguishes reporting that wording from planning, proposing, requiring or denying its use. This does **not** label the embedded action as completed or assign it invented semantic roles. |
+
+Compositional realization requires an unambiguous active subject, one lexical
+predicate, agreement between observed tag and dictionary form, and a complement
+which needs no unresolved pronoun or temporal-scope rewrite. Passive, embedded,
+coordinated, unresolved and other complex cases remain available as quotations.
+Their source slots, dependencies, spans and construction candidates remain in
+`*.episodes.jsonl`. Corpus annotations remain **UNREVIEWED**. Thus every indexed
+head participates, but arbitrary full semantic generation for every head is not
+claimed. A lexical capability report is not a measured model-quality improvement.
+
+The model's text update commands add these forms:
+
+```text
+MINED sell | today | want | unspecified | present | agent=PERSON:user | complement=UNRESOLVED:a ticket
+MINED sell | today | none | reported | past | agent=PERSON:user | complement=UNRESOLVED:a ticket
+QUOTE planned | Anna might have bought a ticket.
+```
+
+`reported` means a past predication was explicitly reported; it is not a completed
+phase. `UNRESOLVED` is a dialogue transport marker for an intact complement,
+not a new ontology label. `QUOTE` reports wording only. These support contextual
+sources and withdrawal with `MINED_CONTEXT`, `QUOTE_CONTEXT`, `REMOVE_MINED`,
+`REMOVE_QUOTE`. No JSON, internal source IDs or numeric span offsets are required
+in the model's generated answer. With metadata disabled, only `messages` are exported.
+
+The new task cycles through all available raw heads before repeating any.
+Each head produces a matched yes/no/unknown group. Selection is seeded per head;
+templates and attested bindings remain available on subsequent cycles. A small
+quota cannot cover the whole inventory. `mined-coverage.json` lists available,
+selected and unselected heads for each split, dictionary provenance and compiler
+rejection reasons. Full coverage (`mined_train=0`) fails before publishing if
+any head was lost during deduplication. It covers heads, not all templates or all
+operator combinations in one dataset. New banks enter the next job automatically.
+The existing manual tasks retain their own rules; this does not substitute an
+arbitrary mined verb into every old task or into a reviewed semantic frame.
+
+```powershell
+python -m semantic_corpus.cli dialogue-build --out artifacts/dialogue-mined --user-assistant-only --train 200 --validation 20 --test 20 --mined-train 0 --seed 20261009
+```
+
+The local full-coverage sample is `artifacts/dialogue-mined-v5-verified/` with
+that seed and those quotas: **15,093 / 320 / 320** paired Memory/History rows
+and **32,064 / 857 / 853** Extraction rows. All 4,031 working inventory entries
+occur in train, including 4,662 compositional and 7,431 quotation examples.
+The compositional sample contains 106 distinct particle/particle-preposition
+predicates (321 episodes). These are source analysis candidates, not a claim
+that every attached preposition is part of a reviewed phrasal-verb sense.
+
+`artifacts/reviews/dialogue-mined-v5-validation.json` records independent checks
+of split separation, paired targets, parsing/applying every text update and GPT-2
+ChatML encoding. Maximum full-record lengths are 357 tokens for Memory, 361 for
+History and 725 for Extraction; the longest Extraction target has 69 tokens.
+Use `--max-length 768` for this Extraction dataset. Other seeds/banks may require
+a different limit. No GPT-2 training or model-quality measurement has been run
+on this dataset. With only 20 mined examples per evaluation split, validation
+and test each cover seven source heads; full training coverage is not a full
+vocabulary benchmark.
+
+The disposable index lives under `artifacts/dialogue-resource-cache/`, keyed by
+source manifests/file signatures, compiler code, routing policy, person-name
+inventory and dictionary hash. Deleting it forces a rebuild. No source archive, registry publication or
+SQL schema is modified. Full vocabulary cycles preload the selected records by
+gzip shard to avoid repeatedly decompressing the same file.
+
+Mined scenarios retain the existing split-separated user context combinations.
+Original source sentences, names, templates and vocabulary may be shared between
+splits; those names do not inherit the manual tasks' held-out-name guarantee.
+Source analyses stay outside model content unless needed for the English clause.
+This remains a controlled distribution, not an unseen-verb benchmark. Audit the
+new token lengths before SFT: source clauses can be longer than the manual tasks,
+and the trainer refuses overlong examples rather than truncating them.
+
 ## Files and training targets
 
 ```text
@@ -270,9 +416,9 @@ The internal memory and audit keep their structured schema. **Extraction** uses
 the text command contract described below, with lossless conversion to internal
 deltas for the supported pilot scenarios.
 
-The manifest now records `schema_version: dialogue-memory-v4`,
-`prompt_version: dialogue-prompts-v6`, `content_formats.memory: memory-text-v4` and
-`content_formats.extraction: extraction-text-v3`. Generate a new job/directory to get
+The manifest now records `schema_version: dialogue-memory-v5`,
+`prompt_version: dialogue-prompts-v7`, `content_formats.memory: memory-text-v5` and
+`content_formats.extraction: extraction-text-v4`. Generate a new job/directory to get
 the text format; existing output files are not rewritten. Text-based prompt
 deduplication can select different episodes when older prompts differed only
 by internal identifiers. Paired History/Memory targets and split checks remain
@@ -362,7 +508,7 @@ earlier text-v1 dataset (before event tasks) remains in
 `artifacts/dialogue-extraction-text-v1/` with 8,057/830/832 extraction examples;
 the original expanded-v2 files with embedded JSON remain unchanged too.
 
-The current controlled-verbs dataset can be generated into a new directory with:
+The previous controlled-verbs revision used these commands (retain its frozen files):
 
 ```powershell
 python -m semantic_corpus.cli dialogue-build --out artifacts/dialogue-controlled-verbs-v4-final --user-assistant-only --train 200 --validation 20 --test 20 --contrast-multiplier 3 --seed 20261009
@@ -429,7 +575,7 @@ python -m semantic_corpus.cli dialogue-build --out artifacts/dialogue-memory-exp
 python -m semantic_corpus.dialogue_generator.challenge --out artifacts/dialogue-memory-challenge --groups-per-task 30
 ```
 
-The first command now creates **3800/380/380** response records. The API option is
+The first command now creates **4000/400/400** response records. The API option is
 `contrast_multiplier=3`; its default is 1, including in the UI, so existing
 per-task quota fields keep their meaning. The manifest records actual task weights.
 The second command now freezes **540 test-only** records across six task families

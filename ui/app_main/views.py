@@ -95,7 +95,11 @@ def chat_dataset(request):
         except OSError as error:
             messages.error(request, f'The job was queued, but the worker could not start: {error}')
         return redirect('app_main:job', pk=job.pk)
-    return page(request, 'chat_dataset.html', title='Chat dataset', form=form,
+    try:
+        mined_count = form.mined_inventory_count()
+    except (OSError, ValueError):
+        mined_count = None
+    return page(request, 'chat_dataset.html', title='Chat dataset', form=form, mined_count=mined_count,
                 preview=form.preview(), task_count=len(form.tasks()),
                 named_task_count=len(TASKS), simple_task_count=len(USER_ASSISTANT_TASKS),
                 task_rows=[{'label': TASK_LABELS[task], 'people_only': task not in USER_ASSISTANT_TASKS,

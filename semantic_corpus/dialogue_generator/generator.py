@@ -8,6 +8,7 @@ from itertools import product
 import json
 import random
 import re
+from functools import cached_property
 from typing import Iterator
 
 from ..ontology import Label
@@ -17,12 +18,13 @@ from .models import (
     Replacement, Transition, Turn, answer_query, apply_delta, EventClaim, EventReplacement,
 )
 
-GENERATOR_VERSION = "dialogue-babi-0.4.0"
+GENERATOR_VERSION = "dialogue-babi-0.5.1"
 TASKS = (
     "recall", "correction", "different_people", "negation", "desire_vs_done",
     "option_reference", "ambiguous_reference", "unknown", "suggestion_vs_done",
     "topic_return", "retraction", "capability",
     "event_scope", "event_progress", "event_updates", "event_states",
+    "mined_predicates",
 )
 USER_ASSISTANT_TASKS = tuple(task for task in TASKS if task != "different_people")
 COMMON_PLACES = (
@@ -260,11 +262,19 @@ class DialogueGenerator:
     """
 
     def __init__(self, *, seed: int = 42, pool: EntityPool | None = None,
-                 user_assistant_only: bool = False) -> None:
+                 user_assistant_only: bool = False, mined_bank=None) -> None:
         self.seed = seed
         self.tasks = dialogue_tasks(user_assistant_only)
         self.user_assistant_only = user_assistant_only
         self.pool = default_pool() if pool is None and not user_assistant_only else pool
+        self._mined_bank = mined_bank
+
+    @cached_property
+    def mined_bank(self):
+        if self._mined_bank is not None:
+            return self._mined_bank
+        from .mined_bank import DialogueMinedBank
+        return DialogueMinedBank()
 
     def generate(self, task: str, count: int, *, split: str) -> Iterator[Episode]:
         if task not in self.tasks or split not in ("train", "validation", "test"):
@@ -272,6 +282,10 @@ class DialogueGenerator:
         if not isinstance(count, int) or isinstance(count, bool) or count < 0:
             raise ValueError("Count must be a nonnegative integer")
         if not count:
+            return
+        if task == 'mined_predicates':
+            from .mined_scenarios import mined_episodes
+            yield from mined_episodes(self, count, split)
             return
         if task in ('event_scope', 'event_progress', 'event_updates', 'event_states'):
             from .event_scenarios import event_episodes

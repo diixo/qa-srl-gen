@@ -9,6 +9,8 @@ from dataclasses import dataclass
 from ..ontology import Label
 from ..semantic_generator.frames import frame_by_lemma
 from .verb_operators import MODALS, OPERATORS, Operator, be_form, validate_chain
+from .observed_clauses import ObservedClause
+from .mined_realization import mined_lexeme
 
 
 @dataclass(frozen=True)
@@ -62,13 +64,21 @@ class Event:
     phase: str = 'unspecified'
     tense: str = 'present'
     permitter: EventArgument | None = None
+    observation: ObservedClause | None = None
+    mined: bool = False
 
     def __post_init__(self):
-        if self.predicate not in EVENT_BY_LEMMA:
+        if self.observation is not None:
+            if (not isinstance(self.observation, ObservedClause) or self.predicate != '@clause'
+                    or self.arguments or self.operators or self.permitter or self.time != 'today'
+                    or self.phase != 'unspecified' or self.tense != 'present' or self.mined):
+                raise ValueError('Observed clauses use their own status, without invented roles/tense/aspect')
+            return
+        if self.predicate not in EVENT_BY_LEMMA and not self.mined:
             raise ValueError(f'Unsupported event predicate: {self.predicate}')
         if not self.time or self.time != self.time.strip():
             raise ValueError('An event needs an explicit time context')
-        if self.phase not in ('unspecified', 'ongoing', 'completed') or self.tense not in ('present', 'past', 'future', 'modal'):
+        if self.phase not in (('unspecified', 'reported') if self.mined else ('unspecified', 'ongoing', 'completed')) or self.tense not in ('present', 'past', 'future', 'modal'):
             raise ValueError('Unsupported event phase or tense')
         validate_chain(self.operators, self.tense, is_state=self.is_state)
         if any(op != 'not' for op in self.operators) and self.phase != 'unspecified':
@@ -77,7 +87,7 @@ class Event:
             raise ValueError('Future does not establish ongoing/completed phase')
         if self.is_state and self.phase != 'unspecified':
             raise ValueError('Location and possession are states, not completed/ongoing actions')
-        if (EVENT_BY_LEMMA[self.predicate].bounded and self.operators in (('have',), ('not', 'have'))):
+        if (self.lexeme.bounded and self.operators in (('have',), ('not', 'have'))):
             raise ValueError('Use completed phase for a bare perfect bounded action')
         if ('let' in self.operators) != (self.permitter is not None):
             raise ValueError('Permissive let requires a separate permitter; other chains cannot carry one')
@@ -86,8 +96,23 @@ class Event:
                     or not self.permitter.text or self.permitter.text != self.permitter.text.strip()):
                 raise ValueError('Let requires a named PERSON permitter argument')
         if (self.tense == 'past' and self.phase == 'unspecified' and self.operators in ((), ('not',))
-                and EVENT_BY_LEMMA[self.predicate].bounded):
+                and self.lexeme.bounded):
             raise ValueError('A bare past bounded action requires an explicit completed phase')
+        if self.mined:
+            self.lexeme  # A real dictionary paradigm, never guessed regular forms.
+            if self.phase == 'reported' and (self.tense != 'past' or self.operators not in ((), ('not',))):
+                raise ValueError('A reported mined predication requires bare positive/negative past')
+            if self.phase == 'unspecified' and self.operators in ((), ('not',)):
+                raise ValueError('A bare mined predication must explicitly use reported phase')
+            if tuple(a.role for a in self.arguments) not in (('agent',), ('agent', 'complement')):
+                raise ValueError('Mined phrases need an agent and optional intact complement')
+            if self.arguments[0].label != 'PERSON' or self.arguments[0].text != 'user':
+                raise ValueError('The reviewed mined realization requires the user as subject')
+            if len(self.arguments) == 2 and (self.arguments[1].label != 'UNRESOLVED' or not self.arguments[1].text.strip()):
+                raise ValueError('A mined complement keeps its unresolved semantic type')
+            if any(arg.text != arg.text.strip() for arg in self.arguments):
+                raise ValueError('Mined argument text must be trimmed')
+            return
         frame = EVENT_BY_LEMMA[self.predicate].frame
         roles = [arg.role for arg in self.arguments]
         if roles != sorted(set(roles)):
@@ -107,11 +132,20 @@ class Event:
             raise ValueError('The current let_us proposal requires the user as its initiating actor')
 
     @property
+    def lexeme(self):
+        return mined_lexeme(self.predicate) if self.mined else EVENT_BY_LEMMA[self.predicate]
+
+    @property
     def identity(self):
-        return self.predicate, self.arguments, self.time
+        if self.observation is not None:
+            return self.predicate, self.observation.text
+        return (self.predicate, self.arguments, self.time, 'mined') if self.mined else (self.predicate, self.arguments, self.time)
 
     @property
     def key(self):
+        if self.observation is not None:
+            status = self.observation.status
+            return self.identity, 'quotation', ('asserted' if status in ('reported', 'denied') else status)
         # One current claim per event and operator path. A correction may change
         # outer polarity/phase/tense. Inner negation changes what is wanted or
         # needed: not(want(X)) and want(not(X)) must coexist, not overwrite.
@@ -120,10 +154,14 @@ class Event:
 
     @property
     def is_state(self):
+        if self.observation is not None or self.mined:
+            return False
         return EVENT_BY_LEMMA[self.predicate].frame.predicate_type == Label.STATE
 
     @property
     def agent(self):
+        if self.observation is not None or self.mined:
+            return 'user'
         frame = EVENT_BY_LEMMA[self.predicate].frame
         role = frame.pattern(EVENT_BY_LEMMA[self.predicate].pattern).subject
         return next(arg.text for arg in self.arguments if arg.role == role)
@@ -135,7 +173,7 @@ def completion_evidence(event: Event) -> str:
     A negated modal is not a negated action. Starting, stopping and attempting
     do not establish completion. Nested success under a wish remains unknown.
     """
-    if event.is_state or event.tense in ('future', 'modal'):
+    if event.observation is not None or event.mined or event.is_state or event.tense in ('future', 'modal'):
         return 'unknown'
     if event.operators in ((), ('not',)) and event.phase == 'completed':
         return 'no' if event.operators else 'yes'
@@ -162,6 +200,11 @@ def state_evidence(event: Event) -> str:
 
 
 def _core(event: Event, form: str, style: int, subject='I') -> str:
+    if event.mined:
+        lexeme = event.lexeme
+        word = lexeme.lemma if form in ('base', 'present') else getattr(lexeme, form)
+        tail = next((a.text for a in event.arguments if a.role == 'complement'), '')
+        return word + (' ' + tail if tail else '')
     lexeme = EVENT_BY_LEMMA[event.predicate]
     frame = lexeme.frame
     pattern = frame.pattern(lexeme.pattern)
@@ -245,11 +288,15 @@ def _phrase(event: Event, operators: tuple[str, ...], form: str, style: int, sub
 def event_statement(event: Event, *, perspective='memory', style=0) -> str:
     if perspective not in ('memory', 'user') or style not in range(5):
         raise ValueError('Unsupported event rendering')
+    if event.observation is not None:
+        return event.observation.statement(perspective=perspective, style=style)
     subject = _person(event.permitter.text if event.permitter else event.agent, perspective)
     first_or_second = subject in ('I', 'You')
     when = ' ' + event.time
     if event.tense == 'future':
         phrase = 'will ' + _phrase(event, event.operators, 'base', style, subject, perspective)
+    elif event.phase == 'reported':
+        phrase = ('did not ' + _core(event, 'base', style)) if event.operators else _core(event, 'past', style)
     elif event.phase == 'ongoing':
         be = ('was' if subject != 'You' else 'were') if event.tense == 'past' else (
             'am' if subject == 'I' else 'are' if subject == 'You' else 'is')
@@ -293,6 +340,10 @@ def event_statement(event: Event, *, perspective='memory', style=0) -> str:
 
 
 def event_question(event: Event, *, style=0) -> str:
+    if event.observation is not None:
+        return event.observation.question()
+    if event.mined:
+        return f'Did I {_core(event, "base", style)} {event.time}?'
     if event.is_state:
         subject = _person(event.agent, 'user')
         if style >= 3:

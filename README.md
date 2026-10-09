@@ -53,7 +53,11 @@ It can also be run explicitly with `python ui/manage.py pipeline_worker --once`.
 **Pipeline → Chat dataset** (`/chat-dataset`) generates controlled English
 dialogues for chat-model training. Set the training, validation and test quotas
 **per task**, plus the seed. The page shows totals across the selected tasks before
-submission. UI defaults use 15 tasks: 3,000 training, 300 validation and 300 test dialogues.
+submission. UI defaults use 16 tasks and cover every mined predicate in training:
+3,000 manual-task dialogues plus three per mined head, with 320 validation and
+320 test dialogues. **Mined training dialogues** controls this separate quota;
+0 requests full coverage, a positive number sets a limit, and blank uses the
+ordinary per-task quota. Source quotations may contain names in either profile.
 The job page shows progress, supports cancellation/retry and provides both
 individual files and a complete `chat-dataset.zip` download. Results under
 `artifacts/ui/jobs/<id>/dataset/` contain paired `history` and `memory` response
@@ -158,6 +162,8 @@ annotator (`semantic_corpus/semantic_annotator`), the question generator
 
 The core package sits at the repository root and imports directly, without a
 build system. Python 3.10+, standard library only; the optional web UI needs Django.
+Optional GPT-2 token limits for chat generation use `requirements-tokenization.txt`
+and a cached tokenizer, without model weights or the training engine.
 
 ```bash
 python -m pytest -q
@@ -468,15 +474,22 @@ For a separate controlled dialogue-training experiment inspired by bAbI:
 python -m semantic_corpus.cli dialogue-build --out artifacts/dialogue-pilot --train 200 --validation 20 --test 20 --seed 42
 ```
 
-This creates 16 task families with paired history/memory response datasets and
+This creates 17 task families with paired history/memory response datasets and
 a separate memory-update dataset, all in `messages` format. Quotas are per task;
-the CLI defaults give 3,200 training, 320 validation and 320 test episodes. Names and
+the CLI defaults give 3,400 training, 340 validation and 340 test episodes. Names and
 places come from the existing entity pool. No model or network is needed.
 For conversations about the user alone, add `--user-assistant-only`: no personal
-names or named places, 15 tasks, and 3,000 / 300 / 300 episodes by default.
+named conversation participants, 16 tasks, and 3,200 / 320 / 320 episodes by default.
+Mined source sentences retain their original vocabulary, including names.
+Add `--mined-train 0` to cover every available mined head in training; this
+overrides the mined task's training quota only. The UI defaults to this full coverage.
 In **Pipeline → Chat dataset**, **User and assistant only** is checked by default;
 uncheck it to include named people. **Include metadata** separately controls the
 top-level IDs and task labels in training records.
+**Maximum example tokens (GPT-2)** defaults to 768 in the UI; blank disables it.
+It checks complete ChatML examples across all views and resamples whole dialogues
+without truncation. CLI equivalent: `dialogue-build --max-length 768`.
+See [tokenizer setup and length reports](semantic_corpus/dialogue_generator/README.md#token-limits).
 Start response training with `memory/`: its message content now uses short
 English facts and ordered assistant options, with natural-language targets.
 `history/` also uses text. New `extraction/` exports use text context and
@@ -490,6 +503,12 @@ does not establish that it happened. Four task families cover scope,
 progress, event corrections and possession/location states. Reviewed grammar
 distinguishes modals, auxiliary be/have, permissive let and prospective going to;
 the original flat-fact tasks remain as controls.
+The `mined_predicates` task reads all published banks and Wiktionary forms.
+Supported active constructions generate new scoped reports; complex or ambiguous
+constructions retain the whole source quotation and test reported wording.
+These two kinds are identified separately as `UNREVIEWED`. This is not a claim
+that every parser lemma has verified semantics. `mined-coverage.json` records
+every inventory head, form recovery, rejected transformations and actual selection.
 See [dialogue generation](semantic_corpus/dialogue_generator/README.md) for the
 scenario schema, split limits, files and the existing chat-trainer adapter.
 

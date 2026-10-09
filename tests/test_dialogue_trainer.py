@@ -90,6 +90,22 @@ def test_special_tokens_template_padding_and_assistant_loss(fixture_model):
     assert torch.count_nonzero(logits.grad[0, len(first.input_ids) - 1:]) == 0
 
 
+def test_generation_token_counter_matches_trainer_chatml(fixture_model, monkeypatch):
+    from semantic_corpus.dialogue_generator.token_limits import GPT2TokenCounter
+    import huggingface_hub
+
+    source = fixture_model[0]
+    monkeypatch.setattr(huggingface_hub, 'try_to_load_from_cache', lambda *a, **kw: str(source / 'tokenizer.json'))
+    counter = GPT2TokenCounter()
+    tokenizer = GPT2TokenizerFast.from_pretrained(source, local_files_only=True)
+    configure_chatml(tokenizer)
+    for place in ('park', 'a café', 'New York', 'room\nnext door'):
+        messages = _row(place)['messages']
+        expected = encode_example(messages, tokenizer, 1024)
+        assert counter.length(messages) == len(expected.input_ids)
+        assert encode_example(messages, counter, 1024).input_ids == expected.input_ids
+
+
 @pytest.mark.parametrize('view', ['memory', 'history', 'extraction'])
 def test_real_trainer_roundtrip_and_held_out_generation(tmp_path, fixture_model, monkeypatch, view):
     source, data = fixture_model

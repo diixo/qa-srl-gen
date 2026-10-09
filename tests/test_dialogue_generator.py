@@ -219,9 +219,11 @@ def test_progress_tracks_all_splits_and_callback_can_abort_publication(tmp_path)
     updates = []
     build_dialogue_dataset(tmp_path / 'complete', train=1, validation=1, test=1,
                            progress=lambda *args: updates.append(args))
-    assert updates[0][1:] == (0, 3 * len(TASKS))
+    assert updates[0] == ('Indexing mined predicates', 0, 0)
+    generation = [row for row in updates if row[2] > 0]
+    assert generation[0][1:] == (0, 3 * len(TASKS))
     assert updates[-1] == ('Checking dataset files', 3 * len(TASKS), 3 * len(TASKS))
-    assert [row[1] for row in updates] == sorted(row[1] for row in updates)
+    assert [row[1] for row in generation] == sorted(row[1] for row in generation)
 
     def cancel(phase, processed, total):
         if phase == 'Checking dataset files':
@@ -231,6 +233,15 @@ def test_progress_tracks_all_splits_and_callback_can_abort_publication(tmp_path)
         build_dialogue_dataset(tmp_path / 'cancelled', train=1, validation=1, test=1, progress=cancel)
     assert not (tmp_path / 'cancelled').exists()
     assert not list(tmp_path.glob('.dialogue-build-*'))
+
+    def cancel_index(phase, processed, total):
+        if phase == 'Indexing mined predicates':
+            raise ValueError('Cancelled during indexing')
+
+    with pytest.raises(ValueError, match='Cancelled during indexing'):
+        build_dialogue_dataset(tmp_path / 'cancelled-index', train=1, validation=1,
+                               test=1, progress=cancel_index)
+    assert not (tmp_path / 'cancelled-index').exists()
 
 
 @pytest.mark.parametrize("user_only", [False, True])
@@ -308,9 +319,9 @@ def test_default_sizes_have_no_duplicate_or_cross_split_prompts(tmp_path, user_o
     manifest = build_dialogue_dataset(tmp_path / 'dataset', user_assistant_only=user_only)
     assert 'entities.json' in manifest['resources']
     assert 'semantic_generator/frames.py' in manifest['resources']
-    assert manifest['prompt_version'] == 'dialogue-prompts-v6'
-    assert manifest['content_formats'] == {'history': 'history-text-v1', 'memory': 'memory-text-v4',
-                                            'extraction': 'extraction-text-v3'}
+    assert manifest['prompt_version'] == 'dialogue-prompts-v7'
+    assert manifest['content_formats'] == {'history': 'history-text-v1', 'memory': 'memory-text-v5',
+                                            'extraction': 'extraction-text-v4'}
     for view in ('history', 'memory', 'extraction'):
         seen = set()
         for split, count in (('train', 200), ('validation', 20), ('test', 20)):

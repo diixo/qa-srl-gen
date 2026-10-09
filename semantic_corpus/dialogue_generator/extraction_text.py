@@ -10,8 +10,9 @@ import re
 from .actions import ACTION_BY_RELATION
 from .models import AssistantAction, Delta, Evidence, Fact, Memory, Replacement, Turn, apply_delta, EventClaim, EventReplacement
 from .events import Event, EventArgument
+from .observed_clauses import ObservedClause
 
-EXTRACTION_TEXT_VERSION = 'extraction-text-v3'
+EXTRACTION_TEXT_VERSION = 'extraction-text-v4'
 PROMPT_PREFIX = 'Current memory:\n'
 STATE_RELATIONS = frozenset(('location', 'meeting_day', 'feeling', 'selection', 'drink'))
 ESCAPES = {'\\': '\\', '|': '|', 'n': '\n', 'r': '\r', 't': '\t'}
@@ -36,6 +37,10 @@ EXTRACT_SYSTEM = (
     'Lexical be/have describe states; auxiliary be/have, have_to and be_going_to are scoped operators. '
     'Never infer completion from a wish, need, plan, attempt, start or stop. '
     'Do not output JSON, IDs or quotations of evidence.'
+    ' MINED uses EVENT fields for dictionary-backed predicates: agent=PERSON:user and optional '
+    'complement=UNRESOLVED:text preserve the whole verb complement. Phase reported means a bare past report, not completion. '
+    'QUOTE status | text records reported, denied, desired, planned, suggested, possible, required or permitted wording; '
+    'it never confirms the events inside the quotation. Prefix REMOVE_ to withdraw MINED or QUOTE.'
 )
 
 
@@ -140,6 +145,39 @@ def _read_event(fields) -> Event:
     return Event(predicate, tuple(sorted(roles)), time, () if scope == 'none' else tuple(scope.split('>')), phase, tense, permitter)
 
 
+def _event_payload(event):
+    if event.observation is not None:
+        return 'QUOTE', (event.observation.status, event.observation.text)
+    return ('MINED' if event.mined else 'EVENT'), _event_fields(event)
+
+
+def _parse_event_payload(operation, fields):
+    if operation == 'QUOTE':
+        if len(fields) != 2:
+            raise ValueError('QUOTE needs status and text')
+        return Event('@clause', (), observation=ObservedClause(fields[1], fields[0]))
+    if operation == 'MINED':
+        if len(fields) < 6:
+            raise ValueError('MINED needs predicate, time, scope, phase, tense and agent')
+        predicate, time, scope, phase, tense, *args = fields
+        roles, permitter = [], None
+        for value in args:
+            role, eq, tail = value.partition('=')
+            label, colon, text = tail.partition(':')
+            if not eq or not colon:
+                raise ValueError('Expected role=TYPE:value')
+            arg = EventArgument(role, text, label)
+            if role == 'permitter':
+                if permitter:
+                    raise ValueError('Repeated permitter')
+                permitter = arg
+            else:
+                roles.append(arg)
+        return Event(predicate, tuple(sorted(roles)), time, () if scope == 'none' else tuple(scope.split('>')),
+                     phase, tense, permitter, mined=True)
+    return _read_event(fields)
+
+
 def parse_commands(text: str) -> tuple[Command | EventCommand, ...]:
     """Reject malformed/contradictory output in full before applying anything."""
     if not isinstance(text, str) or not text.strip():
@@ -149,11 +187,13 @@ def parse_commands(text: str) -> tuple[Command | EventCommand, ...]:
     commands, seen = [], set()
     for line in text.strip().split('\n'):
         operation, separator, payload = line.strip().partition(' ')
-        if not separator or operation not in ('SET', 'SET_CONTEXT', 'REMOVE', 'EVENT', 'EVENT_CONTEXT', 'REMOVE_EVENT'):
+        if not separator or operation not in ('SET', 'SET_CONTEXT', 'REMOVE', 'EVENT', 'EVENT_CONTEXT', 'REMOVE_EVENT',
+                                             'MINED', 'MINED_CONTEXT', 'REMOVE_MINED', 'QUOTE', 'QUOTE_CONTEXT', 'REMOVE_QUOTE'):
             raise ValueError('Expected SET, EVENT, REMOVE, REMOVE_EVENT or NO_CHANGE alone')
         fields = _read_fields(payload)
-        if operation in ('EVENT', 'EVENT_CONTEXT', 'REMOVE_EVENT'):
-            command = EventCommand(operation, _read_event(fields))
+        if operation.startswith(('EVENT', 'MINED', 'QUOTE', 'REMOVE_EVENT', 'REMOVE_MINED', 'REMOVE_QUOTE')):
+            kind = operation.removeprefix('REMOVE_').removesuffix('_CONTEXT')
+            command = EventCommand(operation, _parse_event_payload(kind, fields))
         else:
             if len(fields) != (3 if operation == 'REMOVE' else 5):
                 raise ValueError(f'Wrong number of fields for {operation}')
@@ -177,7 +217,9 @@ def render_prompt(memory: Memory, user_turn: Turn, previous_assistant: Turn | No
         lines.append('(none)')
     if memory.events:
         lines.extend(('', 'Event memory:'))
-        lines.extend(_fields(_event_fields(claim.event)) for claim in memory.events)
+        for claim in memory.events:
+            kind, fields = _event_payload(claim.event)
+            lines.append(('' if kind == 'EVENT' else kind + ' ') + _fields(fields))
     lines.extend(('', 'Assistant actions (earliest first):'))
     for action in memory.assistant_actions:
         if action.kind not in ('options', 'suggestion') or not action.items:
@@ -216,13 +258,13 @@ def decode_update(text: str, memory: Memory, user_turn: Turn,
     for command in parse_commands(text):
         if isinstance(command, EventCommand):
             old = memory.find_event(command.event)
-            if command.operation == 'REMOVE_EVENT':
+            if command.operation.startswith('REMOVE_'):
                 if old is None or old.event != command.event:
                     raise ValueError('REMOVE_EVENT must match an active event exactly')
                 event_remove.append(old.id)
                 continue
             evidence = (Evidence(user_turn.id, user_turn.text),)
-            if command.operation == 'EVENT_CONTEXT':
+            if command.operation.endswith('_CONTEXT'):
                 if previous_assistant is None:
                     raise ValueError('EVENT_CONTEXT requires a previous assistant message')
                 evidence += (Evidence(previous_assistant.id, previous_assistant.text),)
@@ -287,12 +329,14 @@ def render_update(transition) -> str:
             operation = 'EVENT_CONTEXT'
         else:
             raise ValueError('Text events support full current/previous-turn evidence only')
-        lines.append(operation + ' ' + _fields(_event_fields(claim.event)))
+        kind, fields = _event_payload(claim.event)
+        lines.append(operation.replace('EVENT', kind) + ' ' + _fields(fields))
     active_events = {claim.id: claim for claim in transition.before.events}
     for claim_id in transition.delta.event_invalidate:
         if claim_id not in active_events:
             raise ValueError('Cannot remove an inactive event')
-        lines.append('REMOVE_EVENT ' + _fields(_event_fields(active_events[claim_id].event)))
+        kind, fields = _event_payload(active_events[claim_id].event)
+        lines.append('REMOVE_' + kind + ' ' + _fields(fields))
     text = '\n'.join(lines) if lines else 'NO_CHANGE'
     if decode_update(text, transition.before, transition.turn, previous) != transition.delta:
         raise ValueError('Text update cannot preserve the original delta')
@@ -318,7 +362,10 @@ def parse_prompt(text: str) -> tuple[Memory, Turn, Turn | None]:
     if '\n\nEvent memory:\n' in facts_text:
         facts_text, events_text = facts_text.split('\n\nEvent memory:\n', 1)
         for index, line in enumerate(events_text.split('\n'), 1):
-            events.append(EventClaim(f'e{index}', _read_event(_read_fields(line)), ()))
+            kind, _, tail = line.partition(' ')
+            if kind not in ('QUOTE', 'MINED'):
+                kind, tail = 'EVENT', line
+            events.append(EventClaim(f'e{index}', _parse_event_payload(kind, _read_fields(tail)), ()))
     if len({claim.key for claim in events}) != len(events):
         raise ValueError('Conflicting active events in prompt')
     if facts_text != '(none)':

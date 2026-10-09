@@ -1,1 +1,1 @@
-"""Optional command-line GPT-2 training; never imported by the generator or UI."""
+"""CLI-only training engine, with pure ChatML helpers shared by length checks."""

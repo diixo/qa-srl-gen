@@ -4,6 +4,7 @@
   if (chatForm) {
     const splits = ['train', 'validation', 'test'];
     const userOnly = chatForm.elements.namedItem('user_assistant_only');
+    const minedInput = chatForm.elements.namedItem('mined_train');
     const updateChatCounts = () => {
       const taskCount = Number(userOnly.checked ? chatForm.dataset.simpleTaskCount : chatForm.dataset.namedTaskCount);
       chatForm.dataset.taskCount = String(taskCount);
@@ -11,8 +12,14 @@
       document.querySelectorAll('[data-chat-people-only]').forEach(el => { el.hidden = userOnly.checked; });
       const counts = splits.map(split => {
         const input = chatForm.elements.namedItem(split);
-        const count = input.value !== '' && input.validity.valid
+        let count = input.value !== '' && input.validity.valid
           ? Number(input.value) * taskCount : null;
+        if (split === 'train' && count !== null && minedInput.value !== '') {
+          const mined = Number(minedInput.value);
+          const full = chatForm.dataset.minedCount === '' ? null : 3 * Number(chatForm.dataset.minedCount);
+          count = !minedInput.validity.valid || (mined === 0 && full === null)
+            ? null : count - Number(input.value) + (mined === 0 ? full : mined);
+        }
         chatForm.querySelector(`[data-chat-count="${split}"]`).textContent =
           count === null ? '—' : count.toLocaleString('en-US');
         return count;
@@ -22,6 +29,7 @@
     };
     splits.forEach(split => chatForm.elements.namedItem(split).addEventListener('input', updateChatCounts));
     userOnly.addEventListener('change', updateChatCounts);
+    minedInput.addEventListener('input', updateChatCounts);
     updateChatCounts();
     chatForm.addEventListener('submit', () => { chatForm.querySelector('button[type=submit]').disabled = true; });
   }

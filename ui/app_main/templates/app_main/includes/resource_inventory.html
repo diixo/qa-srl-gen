@@ -25,9 +25,7 @@
     </div>
     {% if monitor.resources.available %}
         <p class="small text-secondary">Source banks: {{ monitor.resources.source_banks|default:1 }}. Counts below describe the preserved source archives before generation exclusions; entries can overlap across banks.</p>
-        {% if monitor.resources.controlled_verbs %}
-            <p class="text-secondary">Controlled grammar: <strong>{{ monitor.resources.controlled_verbs|join:', ' }}</strong>. These verbs are excluded as mined predicate heads. Auxiliary uses inside other verb chains remain available. Source archives are preserved.</p>
-        {% endif %}
+
         <div class="table-responsive">
             <table class="table mb-3">
                 <thead><tr><th>Archived mined inventory</th><th>Entries</th></tr></thead>

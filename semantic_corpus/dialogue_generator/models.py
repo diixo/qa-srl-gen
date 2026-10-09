@@ -9,7 +9,7 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass
 from .events import Event, completion_evidence, state_evidence
 
-SCHEMA_VERSION = "dialogue-memory-v4"
+SCHEMA_VERSION = "dialogue-memory-v5"
 
 
 @dataclass(frozen=True)
@@ -191,8 +191,28 @@ class Query:
 
 def answer_query(memory: Memory, query: Query) -> tuple[str, str, tuple[str, ...]]:
     """Reference answer, dialogue action and supporting IDs from visible state."""
-    if query.kind not in ("lookup", "yes_no", "clarify_option", "capability", "event_completion", "event_state"):
+    if query.kind not in ("lookup", "yes_no", "clarify_option", "capability", "event_completion", "event_state", "observed_report", "mined_occurrence"):
         raise ValueError(f"Unsupported query kind: {query.kind}")
+    if query.kind == 'observed_report':
+        if query.event is None or query.event.observation is None:
+            raise ValueError('An observed-report query requires a quoted clause')
+        claim = memory.find_event(query.event)
+        status = claim.event.observation.status if claim else None
+        if status == 'reported':
+            return 'Yes, you reported saying those words.', 'answer', (claim.id,)
+        if status == 'denied':
+            return 'No, you denied saying those words.', 'answer', (claim.id,)
+        return "I don't know; saying those words has not been confirmed.", 'unknown', ()
+    if query.kind == 'mined_occurrence':
+        if query.event is None or not query.event.mined:
+            raise ValueError('A mined-occurrence query requires a mined event')
+        claims = [c for c in memory.events if c.event.identity == query.event.identity
+                  and c.event.phase == 'reported']
+        kinds = {bool(c.event.operators) for c in claims}
+        if len(kinds) != 1:
+            return "I don't know; this has not been confirmed.", 'unknown', ()
+        negative = next(iter(kinds))
+        return ('No, you explicitly denied it.' if negative else 'Yes, you explicitly reported it.'), 'answer', tuple(c.id for c in claims)
     if query.kind == "clarify_option":
         options = next(a for a in reversed(memory.assistant_actions) if a.kind == "options")
         return f"Do you mean {options.items[0]} or {options.items[1]}?", "clarify", (options.source_turn,)
@@ -256,6 +276,7 @@ class Episode:
     contrast_group: str | None = None
     memory_style: int = 0
     condition: str | None = None
+    mined_source: dict | None = None
 
     def validate(self) -> None:
         state = Memory()

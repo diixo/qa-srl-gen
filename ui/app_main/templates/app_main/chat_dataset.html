@@ -15,7 +15,7 @@
         <section class="panel">
             <h2>Generate a chat dataset</h2>
             <p class="text-secondary">Generate conversations with known facts, memory updates and reference answers.</p>
-            <form method="post" data-chat-dataset-form data-task-count="{{ task_count }}" data-named-task-count="{{ named_task_count }}" data-simple-task-count="{{ simple_task_count }}">
+            <form method="post" data-chat-dataset-form data-task-count="{{ task_count }}" data-named-task-count="{{ named_task_count }}" data-simple-task-count="{{ simple_task_count }}" data-mined-count="{{ mined_count|default_if_none:'' }}">
                 {% csrf_token %}
                 {% if form.non_field_errors %}
                     <div class="alert alert-danger" role="alert">{{ form.non_field_errors }}</div>
@@ -41,7 +41,8 @@
                     {% endfor %}
                 </div>
 
-                <p class="small text-secondary">Each quota applies to every enabled task (<span data-chat-task-count>{{ task_count }}</span> tasks). Unique scenarios are finite; generation reports an error if the quota cannot be filled.</p>
+                <p class="small text-secondary">Quotas apply per task (<span data-chat-task-count>{{ task_count }}</span> tasks), with a separate training quota for mined predicates. Full coverage uses three dialogues per available mined head. The dataset includes a coverage report; source analyses remain unreviewed.</p>
+                <p class="small text-secondary">The token limit checks the complete training example in Memory, History and Extraction. If a dialogue does not fit, the generator tries another one. If quotas or full mined coverage cannot be met, the job fails with an explanation.</p>
                 <div class="row g-3 mb-3" aria-live="polite" aria-atomic="true">
                     <div class="col-sm-4">
                         <div class="metric-card">

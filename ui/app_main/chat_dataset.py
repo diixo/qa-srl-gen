@@ -23,18 +23,24 @@ TASK_LABELS = {
     'event_progress': 'Distinguish attempts, progress and completion',
     'event_updates': 'Correct and retract events without losing other actions',
     'event_states': 'Distinguish location and possession from wishes and past states',
+    'mined_predicates': 'Use all mined predicates: compositional events and scoped source quotations',
 }
 
 
 class ChatDatasetForm(forms.Form):
     user_assistant_only = forms.BooleanField(
         label='User and assistant only', initial=True, required=False,
-        help_text='Conversations about the user: no personal names, named places or facts about other people. '
-                  'Includes 15 tasks. Uncheck to include named people and places (16 tasks).',
+        help_text='Conversations about the user. Includes 16 tasks; uncheck to include named participants (17 tasks). '
+                  'Mined source sentences may contain names in either profile.',
     )
     train = forms.IntegerField(
         label='Training dialogues per task', initial=200, min_value=1, max_value=1000000,
         help_text='Examples used to train the model.',
+    )
+    mined_train = forms.IntegerField(
+        label='Mined training dialogues', initial=0, required=False, min_value=0, max_value=1000000,
+        help_text='0 covers every mined predicate with yes/no/unknown examples. A positive value sets a separate quota; '
+                  'blank uses Training dialogues per task. Validation and test keep their per-task quotas.',
     )
     validation = forms.IntegerField(
         label='Validation dialogues per task', initial=20, min_value=1, max_value=1000000,
@@ -47,6 +53,12 @@ class ChatDatasetForm(forms.Form):
     seed = forms.IntegerField(
         label='Seed', initial=42, min_value=0, max_value=2147483647,
         help_text='The same seed and resources reproduce the same dataset.',
+    )
+    max_length = forms.IntegerField(
+        label='Maximum example tokens (GPT-2)', initial=768, required=False, min_value=1, max_value=1024,
+        help_text='Total ChatML length: instructions, context and answer. Applies to all three datasets. '
+                  'Long dialogues are replaced, never truncated. Blank disables the check. '
+                  'Requires the optional tokenizer packages and a cached GPT-2 tokenizer; no model is loaded.',
     )
     include_metadata = forms.BooleanField(
         label='Include metadata', initial=True, required=False,
@@ -69,6 +81,13 @@ class ChatDatasetForm(forms.Form):
     def tasks(self):
         return dialogue_tasks(self.fields['user_assistant_only'].clean(self['user_assistant_only'].value()))
 
+    def clean(self):
+        data = super().clean()
+        for name in ('mined_train', 'max_length'):
+            if data.get(name) is None:
+                data.pop(name, None)
+        return data
+
     def preview(self):
         totals = {}
         for name in ('train', 'validation', 'test'):
@@ -78,8 +97,24 @@ class ChatDatasetForm(forms.Form):
                 totals[name] = None
             else:
                 totals[name] = value * len(self.tasks())
+                if name == 'train':
+                    try:
+                        mined = self.fields['mined_train'].clean(self['mined_train'].value())
+                        if mined == 0:
+                            mined = 3 * self.mined_inventory_count()
+                        if mined is not None:
+                            totals[name] += mined - value
+                    except (forms.ValidationError, OSError, ValueError):
+                        totals[name] = None
         totals['total'] = (sum(totals.values()) if all(value is not None for value in totals.values()) else None)
         return totals
+
+    def mined_inventory_count(self):
+        # Small inventories only. Never decompress the full template bank on GET.
+        from semantic_corpus.resource_pool import BuiltInPool
+        if not hasattr(self, '_mined_inventory_count'):
+            self._mined_inventory_count = len({row['lemma'] for row in BuiltInPool().verbs()})
+        return self._mined_inventory_count
 
 
 def execute_chat_dataset(job, out, config, progress):

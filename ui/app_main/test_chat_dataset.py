@@ -19,6 +19,19 @@ from .operations import execute
 
 
 class ChatDatasetFormTests(SimpleTestCase):
+    def test_token_limit_defaults_validation_and_legacy_config(self):
+        config = {'train': 1, 'validation': 1, 'test': 1, 'seed': 42}
+        self.assertEqual(ChatDatasetForm()['max_length'].value(), 768)
+        for value in ('', 1, 768, 1024):
+            form = ChatDatasetForm({**config, 'max_length': value})
+            self.assertTrue(form.is_valid(), form.errors)
+            self.assertEqual(form.cleaned_data.get('max_length'), value or None)
+        legacy = ChatDatasetForm.from_config(config)
+        self.assertTrue(legacy.is_valid(), legacy.errors)
+        self.assertNotIn('max_length', legacy.cleaned_data)
+        for value in (0, -1, 1025, 'bad', '768.5'):
+            self.assertFalse(ChatDatasetForm({**config, 'max_length': value}).is_valid())
+
     def test_user_only_defaults_and_legacy_jobs_keep_their_task_sets(self):
         config = {'train': 1, 'validation': 1, 'test': 1, 'seed': 42}
         self.assertTrue(ChatDatasetForm()['user_assistant_only'].value())
@@ -47,9 +60,10 @@ class ChatDatasetFormTests(SimpleTestCase):
             self.assertIs(form.cleaned_data['include_metadata'], expected)
 
     def test_defaults_and_invalid_quota_previews(self):
+        mined = ChatDatasetForm().mined_inventory_count() * 3
         self.assertEqual(ChatDatasetForm().preview(), {
-            'train': 200 * len(USER_ASSISTANT_TASKS), 'validation': 20 * len(USER_ASSISTANT_TASKS),
-            'test': 20 * len(USER_ASSISTANT_TASKS), 'total': 240 * len(USER_ASSISTANT_TASKS),
+            'train': 200 * (len(USER_ASSISTANT_TASKS) - 1) + mined, 'validation': 20 * len(USER_ASSISTANT_TASKS),
+            'test': 20 * len(USER_ASSISTANT_TASKS), 'total': 240 * len(USER_ASSISTANT_TASKS) - 200 + mined,
         })
         for value in ('', '0', '-1', '1.5', '1000001', 'bad'):
             with self.subTest(value=value):
@@ -90,6 +104,7 @@ class ChatDatasetPageTests(TestCase):
         self.assertContains(response, 'name="validation"')
         self.assertContains(response, 'name="test"')
         self.assertContains(response, 'name="seed"')
+        self.assertContains(response, 'name="max_length"')
         self.assertContains(response, 'name="include_metadata"')
         self.assertContains(response, 'Include metadata')
         self.assertContains(response, 'plain-text facts')
@@ -166,6 +181,17 @@ class ChatDatasetPageTests(TestCase):
         start.assert_called_once()
 
     @patch('app_main.views.start_worker')
+    def test_token_limit_is_saved_and_preserved_on_retry(self, start):
+        self.client.post(self.url, {**self.config, 'max_length': '768'})
+        previous = Job.objects.get()
+        self.assertEqual(previous.config['max_length'], 768)
+        previous.status = Job.Status.FAILED
+        previous.save(update_fields=['status'])
+        self.client.post(reverse('app_main:retry_job', args=[previous.pk]))
+        retry = Job.objects.exclude(pk=previous.pk).get()
+        self.assertEqual(retry.config, previous.config)
+
+    @patch('app_main.views.start_worker')
     def test_unchecked_metadata_is_saved_and_preserved_on_retry(self, start):
         config = {key: value for key, value in self.config.items() if key != 'include_metadata'}
         self.client.post(self.url, config)
@@ -208,19 +234,22 @@ class ChatDatasetPageTests(TestCase):
         manifest = json.loads((root / 'dataset/manifest.json').read_text(encoding='utf-8'))
         self.assertIs(manifest['include_metadata'], True)
         self.assertIs(manifest['user_assistant_only'], False)
-        self.assertEqual(manifest['content_formats']['memory'], 'memory-text-v4')
-        self.assertEqual(manifest['content_formats']['extraction'], 'extraction-text-v3')
+        self.assertEqual(manifest['content_formats']['memory'], 'memory-text-v5')
+        self.assertEqual(manifest['content_formats']['extraction'], 'extraction-text-v4')
         rows = json.loads((root / 'dataset/memory/train.json').read_text(encoding='utf-8'))
         for row in rows:
             fields = {'messages', 'id', 'scenario_key', 'task'}
             if 'contrast_group' in row:
                 fields |= {'contrast_group', 'condition', 'answer_kind'}
                 self.assertIn(row['answer_kind'], ('yes', 'no', 'unknown'))
+            if row['task'] == 'mined_predicates':
+                fields |= {'source_lemma', 'realization', 'review_status'}
+                self.assertEqual(row['review_status'], 'UNREVIEWED')
             self.assertEqual(set(row), fields)
         for row in rows:
             content = row['messages'][1]['content']
             self.assertTrue(content.startswith('Known facts:\n'))
-            self.assertNotIn('{', content)
+            self.assertFalse(content.startswith('{'))
         with ZipFile(root / 'chat-dataset.zip') as archive:
             self.assertIsNone(archive.testzip())
             self.assertEqual(set(archive.namelist()), set(manifest['files']) | {'manifest.json'})

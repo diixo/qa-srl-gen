@@ -16,6 +16,8 @@ PyTorch with CUDA support is needed for GPU training. The default `auto` device
 uses CUDA when available and otherwise CPU. The tested package versions are
 PyTorch 2.8.0 and Transformers 4.56.1. Only this optional trainer uses Hugging Face;
 the corpus generator and Django UI do not import these dependencies.
+Optional generation-time token limits use the smaller `requirements-tokenization.txt`
+dependency set and a cached tokenizer; they do not load this training engine.
 
 ## Prepare and train
 
@@ -27,14 +29,17 @@ python -m semantic_corpus.cli dialogue-build --out artifacts/dialogue-gpt2-memor
 python -m semantic_corpus.dialogue_generator.trainer train --mode sft --model gpt2 --data artifacts/dialogue-gpt2-memory/memory --out artifacts/training/gpt2-memory --epochs 3 --batch-size 2 --accumulation 8
 ```
 
-Both output directories must be new. The first command produces 3,000 training,
-300 validation and 300 test examples. The trainer accepts both records with
+Both output directories must be new. The first command produces 3,200 training,
+320 validation and 320 test examples. Add `--mined-train 0` to the generator
+command for complete mined-head coverage in training; UI jobs use it by default.
+The trainer accepts both records with
 metadata and records containing only `messages`. It never feeds outer IDs or
 task labels to the model. Retain metadata if you want evaluation broken down
 by task; otherwise all examples are reported as `unlabeled`.
 
 To focus on completion reasoning, use the generator's `--contrast-multiplier 3`
-when preparing data; at the same base quotas this produces 3,800 training records.
+when preparing data; at the same base quotas this produces 4,000 training records
+unless the mined training quota is separately overridden.
 See [contrast generation and the frozen challenge](../README.md#contrasts-and-varied-memory).
 
 On its first online run, model/tokenizer files are cached under
@@ -86,6 +91,10 @@ that do not match the selected view are refused.
 Records containing literal control tokens are refused. Examples exceeding
 `--max-length` (default 512) fail explicitly; there is no truncation or packing.
 The selected length must also fit the model's positional embeddings.
+Chat dataset's **Maximum example tokens (GPT-2)** field can enforce this limit
+before export. It defaults to 768 in the UI; pass `--max-length 768` here too.
+The UI setting does not change the trainer's default or the model context size.
+See the generated `token-lengths.json` for the exact tokenizer contract and maxima.
 
 Training reads only `train.json` and `validation.json`, checks normalized prompt
 and available scenario/contrast-group overlap, and chooses the best trained checkpoint by
@@ -96,8 +105,9 @@ FP32 on CPU; `--precision float32` overrides it. This CLI supports one process.
 
 ## Train the text memory updater
 
-Generate a fresh dataset with `extraction-text-v3` (older files are not converted
-in place), then select `extraction/` explicitly:
+New exports use `extraction-text-v4` (older files are not converted
+in place). Select `extraction/` explicitly. The following commands refer to the
+older frozen v3 updater dataset, whose token lengths were measured:
 
 ```powershell
 python -m semantic_corpus.dialogue_generator.trainer train --view extraction --model gpt2 --data artifacts/dialogue-controlled-verbs-v4-final/extraction --out artifacts/training/gpt2-extraction-controlled --epochs 3 --max-length 768 --save-only-model
@@ -115,6 +125,15 @@ change the maximum; the trainer validates every record before training.
 An offline tiny-model integration test covers SFT and reload/evaluation for all
 three views. Use a fresh pretrained checkpoint for each comparison, not the
 already trained Memory checkpoint.
+
+For the new mined-bank sample, use `artifacts/dialogue-mined-v5-verified/extraction`.
+Its 32,064/857/853 records reach 725 GPT-2 ChatML tokens (69 target tokens), so
+`--max-length 768` is sufficient for this frozen sample. The validation report is
+`artifacts/reviews/dialogue-mined-v5-validation.json`. The data has not been used
+for a training run. All 4,031 inventory entries occur in train, but only seven
+are sampled in each evaluation split. Distinguish compositional occurrences
+from quotation tasks when interpreting future metrics; neither coverage nor
+successful command roundtrips establish model quality or reviewed semantics.
 
 The updater predicts `SET`, `SET_CONTEXT`, `REMOVE`, `EVENT`, `EVENT_CONTEXT`,
 `REMOVE_EVENT` or `NO_CHANGE`; code creates
@@ -210,8 +229,8 @@ The final model is `artifacts/training/gpt2-memory-expanded-v2-6ep/model/`.
 It also answers all 220 original test records correctly. The final checkpoint
 is epoch 6, step 1128; training took 571.8 seconds on the local RTX 3070 Laptop GPU.
 The following commands describe that historical run. Its generator revision had
-11 user-only tasks; the current version adds four typed-event tasks and produces
-3,800 records with the same quotas. Use the retained files for a like-for-like
+11 user-only tasks; the current version adds four typed-event tasks and one mined
+task, producing 4,000 records with the same uniform quotas. Use the retained files for a like-for-like
 comparison, or a fresh destination for new data; do not regenerate over old files.
 
 ```powershell

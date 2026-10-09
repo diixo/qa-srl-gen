@@ -23,7 +23,7 @@ def test_all_tasks_roundtrip_updates_including_sources_and_retirements(user_only
             for transition in episode.transitions:
                 row = extraction_row(episode, transition)
                 prompt, target = (message['content'] for message in row['messages'][1:])
-                assert '{' not in prompt + target and '"' not in target
+                assert not target.lstrip().startswith(('{', '['))  # Source quotations may contain punctuation.
                 assert all(key not in prompt + target for key in ('turn_id', 'next_fact_id', 'source_turn'))
                 decoded = decode_update(target, transition.before, transition.turn, transition.previous_assistant)
                 assert decoded == transition.delta
@@ -34,7 +34,7 @@ def test_all_tasks_roundtrip_updates_including_sources_and_retirements(user_only
                 # Evaluation can replay using only information in the input.
                 decode_update(target, visible, user, previous)
                 operations.update(line.partition(' ')[0] for line in target.splitlines())
-    assert operations == {'SET', 'SET_CONTEXT', 'REMOVE', 'NO_CHANGE', 'EVENT', 'REMOVE_EVENT'}
+    assert operations == {'SET', 'SET_CONTEXT', 'REMOVE', 'NO_CHANGE', 'EVENT', 'REMOVE_EVENT', 'MINED', 'QUOTE'}
 
 
 def test_commands_preserve_modality_and_do_not_turn_removal_into_negative_claim():

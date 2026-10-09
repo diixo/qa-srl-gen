@@ -619,13 +619,17 @@ def build_parser() -> argparse.ArgumentParser:
     dialogue = sub.add_parser("dialogue-build", help="build controlled dialogue and memory training tasks")
     dialogue.add_argument("--out", type=Path, required=True)
     dialogue.add_argument("--train", type=_positive_count, default=200, help="training episodes per task")
+    dialogue.add_argument('--mined-train', type=_nonnegative_count, default=None,
+                          help='override mined training quota only; 0 covers all available predicates with yes/no/unknown')
+    dialogue.add_argument('--max-length', type=_positive_count, default=None,
+                          help='maximum complete GPT-2 ChatML example length (1-1024); resample long dialogues without truncation; requires a cached tokenizer')
     dialogue.add_argument("--validation", type=_positive_count, default=20, help="validation episodes per task")
     dialogue.add_argument("--test", type=_positive_count, default=20, help="test episodes per task")
     dialogue.add_argument("--seed", type=int, default=42)
     dialogue.add_argument("--no-metadata", dest="include_metadata", action="store_false",
                           help="export only messages in training JSON records")
     dialogue.add_argument("--user-assistant-only", action="store_true",
-                          help="generate conversations about the user, without named people or places (15 tasks)")
+                          help="generate conversations about the user (16 tasks); mined source sentences may contain names")
     dialogue.add_argument("--training-report", type=Path,
                           help="existing trainer report.json supplying the tokenizer contract")
     dialogue.set_defaults(func=cmd_dialogue_build)
@@ -642,6 +646,8 @@ def cmd_dialogue_build(args: argparse.Namespace) -> int:
                                          test=args.test, seed=args.seed, include_metadata=args.include_metadata,
                                          user_assistant_only=args.user_assistant_only,
                                          training_report=args.training_report,
+                                         mined_train=args.mined_train,
+                                         max_length=args.max_length,
                                          contrast_multiplier=args.contrast_multiplier)
     except (ValueError, OSError, KeyError, TypeError) as error:
         print(f"error: {error}", file=sys.stderr)
