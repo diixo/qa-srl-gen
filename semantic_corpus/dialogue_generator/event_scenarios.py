@@ -7,10 +7,10 @@ import re
 
 from ..ontology import Label
 from ..semantic_generator.substitutions import EntityPool, load_pool
-from .events import EVENT_LEXEMES, Event, EventArgument, event_description, event_question, event_statement
+from .events import EVENT_LEXEMES, ACTION_LEXEMES, STATE_LEXEMES, MODALS, Event, EventArgument, event_description, event_question, event_statement
 from .models import Episode, Query, answer_query
 
-EVENT_TASKS = ('event_scope', 'event_progress', 'event_updates')
+EVENT_TASKS = ('event_scope', 'event_progress', 'event_updates', 'event_states')
 
 # Outer-to-inner scopes. Negative need means lack of necessity, not prohibition;
 # want/not and not/want belong to different claim channels.
@@ -19,8 +19,15 @@ SCOPE_PROFILES = (
     ('not', 'want'), ('want', 'not'), ('not', 'need'), ('need', 'not'),
     ('plan', 'try'), ('want', 'try'), ('need', 'start'),
     ('want', 'manage'), ('not', 'plan'), ('plan', 'not'), ('plan', 'start'),
+    ('can',), ('not', 'can'), ('could',), ('not', 'could'),
+    ('must',), ('must', 'not'), ('may',), ('may', 'not'), ('might',), ('might', 'not'),
+    ('have_to',), ('not', 'have_to'), ('be_able_to',), ('not', 'be_able_to'),
+    ('be_going_to',), ('not', 'be_going_to'), ('want', 'be_able_to'), ('may', 'have_to'),
+    ('may', 'have'), ('must', 'have'), ('might', 'have', 'be'), ('can', 'be'),
+    ('let',), ('not', 'let'), ('want', 'let'), ('let_us',), ('let_us', 'not'),
 )
-PROGRESS_PROFILES = ('ongoing', 'not_ongoing', 'try', 'start', 'stop', 'future', 'try_not', 'start_try')
+PROGRESS_PROFILES = ('ongoing', 'not_ongoing', 'try', 'start', 'stop', 'future', 'try_not', 'start_try', 'have_be')
+STATE_PROFILES = ((), ('want',), ('need',), ('can',), ('may',), ('must',), ('have_to',), ('be_going_to',))
 
 
 class EventSampler:
@@ -42,6 +49,8 @@ class EventSampler:
                     candidates = [e for e in candidates if e.type_name in ('document', 'tool', 'toy')]
                 if lexeme.lemma == 'look after':
                     candidates = [e for e in candidates if e.type_name in ('child', 'dog', 'cat')]
+                if lexeme.lemma == 'have' and role == 'possession':
+                    candidates = [e for e in candidates if e.type_name in ('document', 'tool', 'toy')]
                 if not candidates:
                     raise ValueError(f'No suitable shared-pool fillers for {lexeme.lemma}/{role}')
                 self.choices[lexeme.lemma, role] = tuple(sorted(candidates, key=lambda e: (e.text, str(e.labels))))
@@ -61,7 +70,7 @@ def event_episodes(generator, task, count, split):
     if not hasattr(generator, '_event_sampler'):
         generator._event_sampler = EventSampler(generator.pool if generator.pool is not None else load_pool())
     sampler = generator._event_sampler
-    rng = random.Random(fingerprint(['event-scenarios-v1', generator.seed, task, split]))
+    rng = random.Random(fingerprint(['event-scenarios-v2', generator.seed, task, split]))
     if generator.user_assistant_only:
         contexts = [c for c in product(COMMON_PLACES, FEELINGS, DRINKS) if _context_split(c) == split]
     else:
@@ -72,11 +81,11 @@ def event_episodes(generator, task, count, split):
         if len(names) < 2 or len(places) < 4:
             raise ValueError(f'{split} needs at least two person names and four place names')
         contexts = [(name, place) for name in names for place in places if name != place]
-    profiles = (SCOPE_PROFILES if task == 'event_scope' else PROGRESS_PROFILES if task == 'event_progress'
+    profiles = (STATE_PROFILES if task == 'event_states' else SCOPE_PROFILES if task == 'event_scope' else PROGRESS_PROFILES if task == 'event_progress'
                 else ('correction', 'other_object', 'other_time'))
     # Shuffle the product, not two same-length lists: lockstep cycling would
     # associate each predicate with only one progress profile and leak labels.
-    combinations = list(product(EVENT_LEXEMES, profiles))
+    combinations = list(product(STATE_LEXEMES if task == 'event_states' else ACTION_LEXEMES, profiles))
     rng.shuffle(combinations)
     seen, produced, index = set(), 0, 0
     for _ in range(max(20, count)):
@@ -88,9 +97,24 @@ def event_episodes(generator, task, count, split):
             index += 1
             base = sampler.sample(lexeme, rng)
             style = rng.randrange(3)
-            if task == 'event_scope':
-                initial = replace(base, operators=profile)
+            report_tense = rng.choice(('present', 'past'))
+            if task in ('event_scope', 'event_states'):
+                finite_tense = ('modal' if any(op in MODALS for op in profile) else 'present'
+                                if task == 'event_states' or 'let_us' in profile else
+                                rng.choice(('present', 'past') if 'be_going_to' in profile else ('present', 'past', 'future')))
+                if profile == ('let',) and generator.user_assistant_only and finite_tense == 'present':
+                    # "You let me" has identical present/past wording. Keep one
+                    # interpretation in training instead of arbitrary tense labels.
+                    finite_tense = 'past'
+                initial = replace(base, operators=profile,
+                                  tense=finite_tense,
+                                  permitter=EventArgument('permitter', 'assistant' if generator.user_assistant_only else context[0], 'PERSON')
+                                  if 'let' in profile else None)
                 condition = '>'.join(profile)
+                if task == 'event_states' and not profile:
+                    # Past possession/location does not establish the current state.
+                    initial = replace(base, tense='past')
+                    condition = 'past_state'
             elif task == 'event_progress':
                 condition = profile
                 if profile in ('ongoing', 'not_ongoing'):
@@ -139,8 +163,10 @@ def event_episodes(generator, task, count, split):
                         c.pair('Forget my earlier report about ' + event_description(base, style=style) + '.',
                                event_invalidate=(old.id,))
                 if outcome != 'unknown':
-                    final = replace(base, phase='completed', operators=('not',) if outcome == 'no' else ())
-                    if task != 'event_updates' and style:
+                    final = replace(base, phase='unspecified' if task == 'event_states' else 'completed',
+                                    operators=('not',) if outcome == 'no' else (),
+                                    tense='present' if task == 'event_states' else report_tense)
+                    if task not in ('event_updates', 'event_states') and style:
                         if outcome == 'yes':
                             op = 'manage' if style == 1 and lexeme.bounded else 'finish'
                             final = replace(base, operators=(op,), tense='past')
@@ -151,7 +177,7 @@ def event_episodes(generator, task, count, split):
                     text = event_statement(final, perspective='user', style=style)
                     c.pair(('Correction: ' if task == 'event_updates' else '') + text, events=(final,))
                 c.user(event_question(base, style=style))
-                query = Query('event_completion', event=base)
+                query = Query('event_state' if task == 'event_states' else 'event_completion', event=base)
                 answer, expected, supports = answer_query(c.memory, query)
                 key = fingerprint([group, outcome])
                 episode = Episode(f'dialogue-{key[:24]}-v{style}', task, split, key, tuple(c.turns), tuple(c.transitions),

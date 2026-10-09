@@ -12,8 +12,8 @@ From the repository root:
 python -m semantic_corpus.cli dialogue-build --out artifacts/dialogue-pilot --train 200 --validation 20 --test 20 --seed 42
 ```
 
-Quotas are **per task**: 15 tasks produce 3,000 training, 300 validation and
-300 test episodes. The destination must be new. Generation uses only Python's
+Quotas are **per task**: 16 tasks produce 3,200 training, 320 validation and
+320 test episodes. The destination must be new. Generation uses only Python's
 standard library, shared semantic frames and the existing
 `semantic_generator/entities.json`, respecting its named-entity split rules. It does
 not call a model or mine `eng-base.jsonl`.
@@ -30,8 +30,8 @@ is available through the CLI.
 conversations about the user's own location, feelings, preferences and plans,
 without personal names, named cities or facts about other people. Ordinary places
 such as `the kitchen` and `the park` replace city names. The `different_people`
-task is excluded: 14 tasks give **2,800 / 280 / 280** episodes at the default
-quotas. Uncheck it to use the 15-task named-pool scenarios.
+task is excluded: 15 tasks give **3,000 / 300 / 300** episodes at the default
+quotas. Uncheck it to use the 16-task named-pool scenarios.
 
 The CLI and Python API retain the original behavior by default. To select the
 simplified conversations, add `--user-assistant-only` or pass
@@ -72,6 +72,7 @@ the job and preserved on retry; older jobs default to including metadata.
 | `event_scope` | Separate desire, necessity, intention, decision and nested operator/negation scopes from completion |
 | `event_progress` | Distinguish an attempt, start, stop, ongoing action and future report from completion |
 | `event_updates` | Correct or withdraw one event while retaining other objects, participants and time contexts |
+| `event_states` | Distinguish current possession/location from wishes, modal claims and past states |
 
 The simulator creates the user's assertions and state updates together. Answers
 are derived from the resulting state. Every update carries exact evidence;
@@ -80,13 +81,13 @@ replays updates and checks the answer, IDs, sources, replacements and retirement
 An evidence substring check alone is **not** semantic verification of an external
 extractor's output.
 
-Memory v3 retains the original eleven flat relations (`location`,
+Memory v4 retains the original eleven flat relations (`location`,
 `meeting_day`, `feeling`, `visited`, `selection`, `completed_break`, `drink`,
 `bought`, `called`, `sent`, `read`). Each
 subject/relation/modality has one active value. `asserted`, `desired` and `planned` are
 separate; positive and negative claims are explicit. Facts describe reports in
 this conversation. Assistant suggestions/options live separately from user facts.
-These flat facts remain in the original control tasks. The three `event_*`
+These flat facts remain in the original control tasks. The four `event_*`
 families use a separate typed event store, described below; they can retain
 multiple objects, participants and time contexts without overwriting one another.
 Old dataset files are not migrated or rewritten.
@@ -102,7 +103,8 @@ pool. Broad type compatibility is not enough for plausibility: physical transfer
 uses portable document/tool/toy subtypes, and care uses child/dog/cat subtypes.
 
 Reviewed senses currently cover **buy, visit, give, move, pick up, put down,
-get up, look after**. The renderer inflects the head, preserves particles and
+get up, look after, go**, plus the states **have** (possession) and **be** (location).
+The renderer inflects the head, preserves particles and
 governed prepositions, and supports both `pick up a book` and `pick a book up`.
 Pronoun objects use `pick it up`. Intransitive `get up` has no invented object;
 `give` retains its recipient and `move` its destination.
@@ -126,8 +128,9 @@ desire not to act. Similarly, `not > need` is lack of necessity, while
 `need > not` is rendered as `need to avoid ...`. Chains such as `plan > try`,
 `need > start`, `want > manage` and `start > try` are generated. A success verb
 inside a wish does not establish actual success. The contract accepts up to four
-operators; generation currently samples 16 scope profiles and eight progress
-profiles, crossing each with all eight predicates as quotas allow.
+operators; generation samples 43 scope profiles and nine progress profiles,
+crossing each with all nine action predicates as quotas allow. Eight state
+profiles cover possession and location. A small quota does not cover every pair.
 
 Event identity includes **predicate + every typed participant + time**.
 Different operator paths have separate claim channels. A replacement within a
@@ -136,8 +139,7 @@ channel. Corrections retire the previous claim for audit, and retractions remove
 only the addressed claim. Conflicting completion reports in separate channels
 give an unknown answer rather than an arbitrary yes/no choice.
 
-Limits: active constructions with the same actor throughout the operator chain,
-eight reviewed senses, no quoted beliefs, conditionals or unrestricted passive
+Limits: eleven reviewed predicate senses, no quoted beliefs, conditionals or unrestricted passive
 grammar. Time phrases are exact context keys, not calendar-aware event IDs; two
 identical actions with the same participants and time phrase share a channel.
 GROUP fillers require subtype information not yet present in this compact
@@ -152,6 +154,65 @@ truth rules; adding a word to a list alone is insufficient. Real domain examples
 with roles, context and contrasting intention/attempt/completion readings help
 review these choices. Mined constructions are useful candidates, not certified
 event semantics. No external dataset is required for the current generator.
+
+### Controlled modals, auxiliaries and states
+
+The shared Synthetic corpus generator now has 17 manual frames. New `go`, `have`
+and `be` frames mean motion to a destination, possession and location respectively.
+Their paradigms include `goes/went/gone`, `has/had` and `am/is/are/was/were/been`;
+copular questions use inversion, and the possession/location senses reject
+progressive aspect. Dialogue generation uses these shared slots plus reviewed
+complement grammar in `verb_operators.py` (23 operators, excluding `not`).
+
+| Construction | Representation | Interpretation for the target action/state |
+| --- | --- | --- |
+| `can/could buy`, `cannot buy` | `can`, `could`, `not > can` | Ability/permission/possibility or inability; no completion evidence |
+| `must buy`, `must not buy` | `must`, `must > not` | Obligation/deduction or prohibition; no completion evidence |
+| `may/might buy`, `may not buy` | `may`, `might`, `may > not` | Possibility/permission; no completion evidence |
+| `have to buy`, `do not have to buy` | `have_to`, `not > have_to` | Obligation versus absence of obligation |
+| `was able to buy` | `be_able_to`, past | Conservatively does not confirm execution in this contract |
+| `am/was going to buy` | `be_going_to` | Prospective intention, distinct from motion `go to the park` |
+| `may have bought`, `might have been buying` | `may > have`, `might > have > be` | Perfect/progressive nested under a modal, still no confirmed completion |
+| `Anna let me buy` | `let`, actor `user`, permitter `Anna` | Permission with distinct participants |
+| `Let's buy`, `Let's not buy` | `let_us`, `let_us > not` | A user proposal to the interlocutors; no completion evidence |
+| `I have a book`, `I am in the park` | Bare `have`/`be` state | A reported state, not a completed action |
+
+Finite modals use `tense=modal`: `could` and `might` are explicit forms, not
+automatic replacements for past `can`/`may`. Invalid chains such as `want to can`
+or stacked finite modals are rejected. `must not` differs from `do not have to`.
+Unambiguous negative contractions are sampled; ambiguous `'d`/`'s` are avoided.
+The grammar follows [Cambridge's modal forms](https://dictionary.cambridge.org/us/grammar/british-grammar/modality-forms),
+[let](https://dictionary.cambridge.org/grammar/british-grammar/let) and
+[going to](https://dictionary.cambridge.org/grammar/british-grammar/going-to).
+
+Bare completed bounded actions use phase `completed`, and bare progressives use
+phase `ongoing`; duplicate operator encodings are refused. Nested auxiliary
+`have` and `be` remain separate from lexical possession/location. A past state
+does not establish the current state. Permission claims include the permitter
+in their claim channel, while the underlying target event retains its actor.
+`let_us` currently assumes a user proposal involving the interlocutors; it does
+not encode an arbitrary group. Other operator chains retain the same actor.
+
+These are reviewed senses, not complete polysemy coverage: adjectival/identity
+`be`, experiential/causative `have`, rental `let`, and additional `go` idioms
+need separate semantic rules. Modal ambiguity is retained, not automatically
+resolved into a single permission/ability reading.
+
+### Working mined bank and immutable archives
+
+`controlled_verbs.py` excludes `can`, `must`, `may`, `be`, `let`, `have`, `go`
+and their recognized forms from the **working Built-in mined predicate view**.
+Verb inventories, alternatives and constructions are filtered; a template with
+any controlled lexical/copular head is skipped before generation, including
+embedded heads and multiword predicates headed by these verbs. Auxiliary uses
+inside other predicates (`has bought`, `is moving`, `can buy`) remain eligible.
+
+The policy applies to all published banks and cannot be bypassed by a Built-in
+lemma filter. It does not delete or rewrite `data/eng-base-templates/`, occurrences,
+manifests, or other source components. `TemplateBank` and raw `template-generate`
+remain archive/reprocessing APIs; normal Synthetic corpus uses the filtered
+`BuiltInPool`. UI inventory totals describe archived entries, not the number of
+eligible templates. Policy version is recorded in generated document metadata.
 
 ## Files and training targets
 
@@ -209,9 +270,9 @@ The internal memory and audit keep their structured schema. **Extraction** uses
 the text command contract described below, with lossless conversion to internal
 deltas for the supported pilot scenarios.
 
-The manifest now records `schema_version: dialogue-memory-v3`,
-`prompt_version: dialogue-prompts-v5`, `content_formats.memory: memory-text-v3` and
-`content_formats.extraction: extraction-text-v2`. Generate a new job/directory to get
+The manifest now records `schema_version: dialogue-memory-v4`,
+`prompt_version: dialogue-prompts-v6`, `content_formats.memory: memory-text-v4` and
+`content_formats.extraction: extraction-text-v3`. Generate a new job/directory to get
 the text format; existing output files are not rewritten. Text-based prompt
 deduplication can select different episodes when older prompts differed only
 by internal identifiers. Paired History/Memory targets and split checks remain
@@ -262,9 +323,11 @@ EVENT pick up | today | want>try | unspecified | present | agent=PERSON:user | t
 
 This represents `I want to try to pick up a book today.` It does not report
 completion. Scope `none` means no operator; phases are `unspecified`, `ongoing`,
-`completed`, and tenses are `present`, `past`, `future`. Nontrivial operators use
-`unspecified` phase so phase scope is not silently lost. Future currently supports
-bare actions only. Active events appear in a separate `Event memory:` input block.
+`completed`, and tenses are `present`, `past`, `future`, `modal`. Nontrivial operators use
+`unspecified` phase so phase scope is not silently lost. Future supports bare actions
+and nonmodal operator chains. Permissive `let` appends `permitter=PERSON:...`;
+the actor stays in the base frame role. Active events appear in a separate
+`Event memory:` input block.
 
 `decode_update(text, memory, user_turn, previous_assistant)` allocates fresh
 fact/event IDs and attaches the exact current utterance as evidence. `SET_CONTEXT` / `EVENT_CONTEXT`
@@ -281,7 +344,7 @@ Internal audit IDs, retired facts and full evidence never enter the model input.
 `parse_prompt` reconstructs visible state with local IDs for single-turn
 evaluation; live updates must use the actual stored Memory instead.
 
-Old datasets are retained unchanged. For a new text extraction experiment:
+Old datasets are retained unchanged. The previous event-v3 experiment used:
 
 ```powershell
 python -m semantic_corpus.cli dialogue-build --out artifacts/dialogue-events-v3-final --user-assistant-only --train 200 --validation 20 --test 20 --contrast-multiplier 3 --seed 20261009
@@ -298,6 +361,23 @@ measurement has been performed on these new event records. The
 earlier text-v1 dataset (before event tasks) remains in
 `artifacts/dialogue-extraction-text-v1/` with 8,057/830/832 extraction examples;
 the original expanded-v2 files with embedded JSON remain unchanged too.
+
+The current controlled-verbs dataset can be generated into a new directory with:
+
+```powershell
+python -m semantic_corpus.cli dialogue-build --out artifacts/dialogue-controlled-verbs-v4-final --user-assistant-only --train 200 --validation 20 --test 20 --contrast-multiplier 3 --seed 20261009
+python -m semantic_corpus.dialogue_generator.challenge --out artifacts/dialogue-controlled-verbs-v4-final-challenge --groups-per-task 30 --seed 20261009
+```
+
+The frozen local run contains **3,800/380/380** paired Memory/History records,
+**9,802/1,009/1,008** Extraction records and **540** challenge cases. All command
+targets are parsed/applied, all views are checked for split overlap, and paired
+answers and GPT-2 ChatML lengths are validated in
+`artifacts/reviews/dialogue-controlled-verbs-v4-validation.json`.
+The maxima are 190 tokens for Memory, 214 for History and 559 for Extraction;
+the longest Extraction target is 54 tokens. Use `--max-length 768` for Extraction.
+No model training or quality comparison has been performed on this new dataset.
+The earlier directory without `-final` is an intermediate validation run.
 
 The audit JSONL retains full turns, state before/after each user turn, deltas,
 retired facts, reference query, expected dialogue action and supporting IDs.
@@ -349,10 +429,10 @@ python -m semantic_corpus.cli dialogue-build --out artifacts/dialogue-memory-exp
 python -m semantic_corpus.dialogue_generator.challenge --out artifacts/dialogue-memory-challenge --groups-per-task 30
 ```
 
-The first command now creates **3600/360/360** response records. The API option is
+The first command now creates **3800/380/380** response records. The API option is
 `contrast_multiplier=3`; its default is 1, including in the UI, so existing
 per-task quota fields keep their meaning. The manifest records actual task weights.
-The second command now freezes **450 test-only** records across five task families
+The second command now freezes **540 test-only** records across six task families
 in `test.json`, with two
 additional memory/question surface families absent from normal training exports.
 It saves data/code hashes and never overwrites a previous challenge. This measures

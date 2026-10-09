@@ -52,6 +52,7 @@ from ..documents import (
 )
 from ..ontology import Label, Relation, TypeHierarchy, load_default_hierarchy
 from ..agreement import verb_words
+from ..controlled_verbs import CONTROLLED_PARADIGMS
 from ..qasrl_core.frame import ArgStructure, Frame as VerbFrame
 from ..qasrl_core.inflections import DO_FORMS, InflectionLexicon
 from ..qasrl_core.models import InflectedForms
@@ -217,6 +218,8 @@ class ParadigmResolver:
     def __call__(self, lemma: str) -> InflectedForms:
         if lemma in self.known:
             return self.known[lemma]
+        if lemma in CONTROLLED_PARADIGMS:
+            return CONTROLLED_PARADIGMS[lemma]
         if lemma == DO_FORMS.stem:
             return DO_FORMS
         if self.lexicon is not None:
@@ -415,6 +418,15 @@ def _clause(view: ArgumentView, resolver: ParadigmResolver) -> str:
     return _join(parts)
 
 
+def _required_location(view: ArgumentView) -> str:
+    # These reviewed lexical senses require their locative complement: "Who
+    # is?" and "Is Anna?" would not identify the state under discussion.
+    if (view.predicate.head_lemma or view.predicate.lemma) not in ('be', 'go'):
+        return ''
+    return _join(f'{prep} {_inline(mention)}' for relation, mention, prep in view.adjuncts()
+                 if relation == Relation.LOCATION_OF)
+
+
 # ---------------------------------------------------------------------------
 # Templates
 # ---------------------------------------------------------------------------
@@ -462,7 +474,7 @@ def atomic_questions(
             examples.append(
                 example(
                     _question(
-                        [_wh_for(agent), *words, _to_phrase(recipient)]
+                        [_wh_for(agent), *words, _to_phrase(recipient), _required_location(view)]
                     ),
                     agent,
                     relation="AGENT_OF",
@@ -528,7 +540,7 @@ def atomic_questions(
             )
 
         # "What did Anna do?" — the whole event, answered by the clause.
-        if agent is not None:
+        if agent is not None and (predicate.head_lemma or predicate.lemma) not in ('be', 'have'):
             aux, *rest = _verb_words(
                 replace(predicate, lemma="do", head_lemma=None, parts=()), resolver,
                 subject_present=True, passive=False, subject=agent
@@ -929,7 +941,7 @@ def yes_no_questions(
         examples.append(
             QAExample(
                 context=body,
-                question=_question([aux, _inline(agent), *rest]),
+                question=_question([aux, _inline(agent), *rest, _required_location(view)]),
                 answer=(
                     ("No. " if view.is_negated else "Yes. ")
                     + sentence_case(_clause(view, resolver))

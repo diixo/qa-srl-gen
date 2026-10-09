@@ -20,6 +20,7 @@ from dataclasses import dataclass, replace
 from typing import Iterable, Iterator, Sequence
 
 from ..ontology import Label, TypeHierarchy, load_default_hierarchy
+from ..controlled_verbs import CONTROLLED_PARADIGMS
 from ..qasrl_core.models import InflectedForms
 from .frames import DEFAULT_FRAMES, SemanticFrame
 from .realization import (
@@ -48,6 +49,7 @@ DEFAULT_PARADIGMS: dict[str, InflectedForms] = {
     "put": InflectedForms("put", "puts", "putting", "put", "put"),
     "get": InflectedForms("get", "gets", "getting", "got", "gotten"),
     "look": InflectedForms("look", "looks", "looking", "looked", "looked"),
+    **CONTROLLED_PARADIGMS,
 }
 
 

@@ -53,7 +53,7 @@ It can also be run explicitly with `python ui/manage.py pipeline_worker --once`.
 **Pipeline → Chat dataset** (`/chat-dataset`) generates controlled English
 dialogues for chat-model training. Set the training, validation and test quotas
 **per task**, plus the seed. The page shows totals across the selected tasks before
-submission. UI defaults use 14 tasks: 2,800 training, 280 validation and 280 test dialogues.
+submission. UI defaults use 15 tasks: 3,000 training, 300 validation and 300 test dialogues.
 The job page shows progress, supports cancellation/retry and provides both
 individual files and a complete `chat-dataset.zip` download. Results under
 `artifacts/ui/jobs/<id>/dataset/` contain paired `history` and `memory` response
@@ -189,8 +189,8 @@ It runs without `artifacts/`, network access or a Scala runtime.
 | `qasrl_core/validation.py` | invariant checks over slots, spans and sentences |
 | `ontology/models.py` | the label inventory: multi-label spans, speech acts, relations |
 | `ontology/hierarchy.py` | type inheritance (`city → LOCATION`) and the candidate lexicon |
-| `semantic_generator/frames.py` | 14 typed frames, including six multiword predicates |
-| `resource_pool.py` | centralized Built-in pool: typed entities, manual frames and the complete mined template/lexical bank |
+| `semantic_generator/frames.py` | 17 typed frames, including six multiword predicates and reviewed go/have/be senses |
+| `resource_pool.py` | centralized Built-in pool: typed entities, manual frames and filtered mined templates/inventories |
 | `syntax_mining.py` | optional full-corpus verb, construction and template inventory with source evidence |
 | `template_compiler.py`, `template_bank.py` | full-corpus executable surface patterns, verbs, adjectives and lexical alternatives; model-free bank rendering |
 | `template_validation.py` | independent source/ledger/inventory validation and rendering of every compiled template |
@@ -224,7 +224,7 @@ It runs without `artifacts/`, network access or a Scala runtime.
 
 Since generator version `0.4.0`, the UI's **Situations per frame** field and
 `--count` in `generate`, `questions` and `build` specify a quota for **each frame**.
-For fourteen frames, `100` requests 1400 distinct situation texts, before QA generation.
+For seventeen frames, `100` requests 1700 distinct situation texts, before QA generation.
 The UI shows the total before submission and in job progress. Small pools may
 exhaust the bounded sampler: reduce the quota or expand the selected split's pool.
 Failed UI jobs may contain partial data and do not publish a completed version.
@@ -247,8 +247,8 @@ of these expressions. The Slots page shows their actual word-order templates.
 
 **Built-in pool** is the shared resource catalogue for **Synthetic corpus** and
 CLI `build`. `BuiltInPool` in `semantic_corpus/resource_pool.py` provides access
-to typed entities, the fourteen manual frames, verb forms, adjectives,
-constructions, lexical alternatives and all mined templates. The existing files
+to typed entities, the seventeen manual frames, verb forms, adjectives,
+constructions, lexical alternatives and eligible mined templates. The existing files
 stay in `semantic_corpus/semantic_generator/entities.json`,
 `data/eng-base-templates/` and published components under `data/mined-templates/`;
 their different structures do not require separate generation operations or
@@ -261,10 +261,20 @@ CLI `build` use the bank by default alongside the manual frames. `--count` remai
 the quota per manual frame; `--template-count` is a separate candidate quota per
 selected mined template, default 1, with 0 explicitly disabling mined templates.
 CLI `--template-verb` and `--template-adjective` can narrow the mined selection.
-New UI jobs use the entire bank. A custom Entity pool replaces typed entities only.
+New UI jobs use the eligible working bank. A custom Entity pool replaces typed entities only.
 
-The default mined quota traverses all **595,350 templates** from eng-base plus
-templates from every published component in new UI jobs before split filtering
+The archive retains **595,350 templates** from eng-base. The working policy excludes
+`can`, `must`, `may`, `be`, `let`, `have`, `go` as mined lexical/copular predicates,
+including recognized forms and multiword heads. Auxiliary uses within other
+predicates, such as `has bought` and `is moving`, remain eligible. This leaves
+**371,665 eligible templates** and **4,031 verb inventory entries** in the current
+eng-base component (4,047 archived entries). A template with any excluded lexical
+head is skipped as a whole. No source archive or manifest is rewritten.
+Raw `TemplateBank` / `template-generate` remain available for audit/reprocessing;
+normal Synthetic corpus uses `BuiltInPool`. UI inventory totals are archival.
+
+The default mined quota traverses eligible templates from eng-base plus
+eligible templates from every published component in new UI jobs before split filtering
 and deduplication. It does not promise that every
 candidate belongs to the selected split or has a semantic annotation.
 `generation-summary.json` reports candidates, split skips, duplicates, stored
@@ -283,7 +293,7 @@ direct and supported prepositional recipients, particles (including separated
 ones), the curated governed-preposition patterns, auxiliaries and simple
 attributive properties. It works with the existing eng-base bank without
 re-mining it or running spaCy. Support is structural, not restricted to the
-fourteen manual frame lemmas.
+seventeen manual frame lemmas.
 
 These automatic annotations and their QA retain `UNREVIEWED` status and
 `annotation_source=template_semantics`; they are candidates for review, not gold.
@@ -458,12 +468,12 @@ For a separate controlled dialogue-training experiment inspired by bAbI:
 python -m semantic_corpus.cli dialogue-build --out artifacts/dialogue-pilot --train 200 --validation 20 --test 20 --seed 42
 ```
 
-This creates 15 task families with paired history/memory response datasets and
+This creates 16 task families with paired history/memory response datasets and
 a separate memory-update dataset, all in `messages` format. Quotas are per task;
-the CLI defaults give 3,000 training, 300 validation and 300 test episodes. Names and
+the CLI defaults give 3,200 training, 320 validation and 320 test episodes. Names and
 places come from the existing entity pool. No model or network is needed.
 For conversations about the user alone, add `--user-assistant-only`: no personal
-names or named places, 14 tasks, and 2,800 / 280 / 280 episodes by default.
+names or named places, 15 tasks, and 3,000 / 300 / 300 episodes by default.
 In **Pipeline → Chat dataset**, **User and assistant only** is checked by default;
 uncheck it to include named people. **Include metadata** separately controls the
 top-level IDs and task labels in training records.
@@ -476,8 +486,10 @@ IDs and exact source quotes are handled by code. The outer files remain JSON
 arrays for training. Generate a new dataset to obtain this extraction format.
 Typed events reuse the shared frames and entity pool. They distinguish participants,
 time, operator scope and completion: wanting or attempting to pick something up
-does not establish that it happened. Three new task families cover scope,
-progress and event corrections; the original flat-fact tasks remain as controls.
+does not establish that it happened. Four task families cover scope,
+progress, event corrections and possession/location states. Reviewed grammar
+distinguishes modals, auxiliary be/have, permissive let and prospective going to;
+the original flat-fact tasks remain as controls.
 See [dialogue generation](semantic_corpus/dialogue_generator/README.md) for the
 scenario schema, split limits, files and the existing chat-trainer adapter.
 
@@ -723,7 +735,7 @@ One command runs the whole pipeline — generate, store, export, report:
 python -m semantic_corpus.cli build --count 100 --seed 42 --no-answer-share 0.15
 ```
 
-This creates 100 situations per manual frame (1400 with the current fourteen
+This creates 100 situations per manual frame (1700 with the current seventeen
 frames) and, by default, one candidate per mined template. Only mined candidates
 assigned to the selected split are stored, and duplicate texts are deduplicated.
 This is a large build: use `--template-verb` or `--template-adjective` to narrow

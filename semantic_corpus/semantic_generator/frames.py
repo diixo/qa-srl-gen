@@ -499,7 +499,29 @@ PUT_UP_WITH = SemanticFrame(
 )
 
 PHRASAL_FRAMES = (PICK_UP, PUT_DOWN, GIVE_UP, GET_UP, LOOK_AFTER, PUT_UP_WITH)
-DEFAULT_FRAMES: tuple[SemanticFrame, ...] = (GIVE, VISIT, OWN, FEEL, MOVE, SEE, SAY, BUY, *PHRASAL_FRAMES)
+
+# Reviewed lexical senses. Modal/auxiliary can/must/may, be/have and permissive
+# let take clauses, so they belong to the compositional operator grammar rather
+# than being disguised as ordinary transitive ACTION frames.
+GO = SemanticFrame(
+    lemma='go', predicate_type=Label.ACTION, allows_passive=False,
+    slots=(FrameSlot('agent', Relation.AGENT_OF, _ANIMATE, group_types=_ANIMATE_GROUP),
+           FrameSlot('destination', Relation.LOCATION_OF, _PLACE)),
+    patterns=(SurfacePattern('directional', 'agent', (Complement('destination', 'to'),)),),
+)
+HAVE = SemanticFrame(
+    lemma='have', predicate_type=Label.STATE, allows_passive=False,
+    slots=(FrameSlot('possessor', Relation.EXPERIENCER_OF, _AGENTIVE, group_types=_HUMAN_GROUP),
+           FrameSlot('possession', Relation.THEME_OF, frozenset({Label.PHYSICAL_OBJECT}))),
+    patterns=(SurfacePattern('possession', 'possessor', (Complement('possession'),)),),
+)
+BE = SemanticFrame(
+    lemma='be', predicate_type=Label.STATE, allows_passive=False,
+    slots=(FrameSlot('entity', Relation.EXPERIENCER_OF, _ANIMATE, group_types=_ANIMATE_GROUP),
+           FrameSlot('location', Relation.LOCATION_OF, _PLACE)),
+    patterns=(SurfacePattern('location', 'entity', (Complement('location', 'in'),)),),
+)
+DEFAULT_FRAMES: tuple[SemanticFrame, ...] = (GIVE, VISIT, OWN, FEEL, MOVE, SEE, SAY, BUY, *PHRASAL_FRAMES, GO, HAVE, BE)
 
 
 def frame_by_lemma(lemma: str, frames: Iterable[SemanticFrame] = DEFAULT_FRAMES):

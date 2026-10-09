@@ -2,7 +2,7 @@
     <div class="d-flex flex-wrap align-items-start justify-content-between gap-3 mb-3">
         <div>
             <h2>Built-in pool resources</h2>
-            <p class="text-secondary mb-0">Synthetic corpus uses curated frames and the complete mined template inventory from this shared pool.</p>
+            <p class="text-secondary mb-0">Synthetic corpus uses curated frames and eligible mined templates from this shared pool.</p>
         </div>
         <div class="d-flex gap-2">
             <a class="btn btn-outline-primary" href="{% url 'app_main:template_mining' %}">Mine templates</a>
@@ -17,17 +17,20 @@
             <div class="metric-card"><span>Curated frames</span><strong>{{ monitor.resources.frames|floatformat:'0g' }}</strong><small>verified semantic roles</small></div>
         </div>
         <div class="col-sm-6 col-lg-3">
-            <div class="metric-card"><span>Mined templates</span><strong>{{ monitor.resources.templates|floatformat:'0g' }}</strong><small>executable surface patterns</small></div>
+            <div class="metric-card"><span>Archived mined templates</span><strong>{{ monitor.resources.templates|floatformat:'0g' }}</strong><small>before predicate exclusions</small></div>
         </div>
         <div class="col-sm-6 col-lg-3">
             <div class="metric-card"><span>Source records</span><strong>{{ monitor.resources.records|floatformat:'0g' }}</strong><small>records processed across source banks</small></div>
         </div>
     </div>
     {% if monitor.resources.available %}
-        <p class="small text-secondary">Source banks: {{ monitor.resources.source_banks|default:1 }}. Inventory counts sum entries across banks; the same pattern or lemma can occur in multiple sources.</p>
+        <p class="small text-secondary">Source banks: {{ monitor.resources.source_banks|default:1 }}. Counts below describe the preserved source archives before generation exclusions; entries can overlap across banks.</p>
+        {% if monitor.resources.controlled_verbs %}
+            <p class="text-secondary">Controlled grammar: <strong>{{ monitor.resources.controlled_verbs|join:', ' }}</strong>. These verbs are excluded as mined predicate heads. Auxiliary uses inside other verb chains remain available. Source archives are preserved.</p>
+        {% endif %}
         <div class="table-responsive">
             <table class="table mb-3">
-                <thead><tr><th>Mined inventory</th><th>Entries</th></tr></thead>
+                <thead><tr><th>Archived mined inventory</th><th>Entries</th></tr></thead>
                 <tbody>
                     <tr><td>Verb lemmas and forms</td><td>{{ monitor.resources.verbs|floatformat:'0g' }}</td></tr>
                     <tr><td>Adjective lemmas and forms</td><td>{{ monitor.resources.adjectives|floatformat:'0g' }}</td></tr>

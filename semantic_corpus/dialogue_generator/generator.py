@@ -17,12 +17,12 @@ from .models import (
     Replacement, Transition, Turn, answer_query, apply_delta, EventClaim, EventReplacement,
 )
 
-GENERATOR_VERSION = "dialogue-babi-0.3.0"
+GENERATOR_VERSION = "dialogue-babi-0.4.0"
 TASKS = (
     "recall", "correction", "different_people", "negation", "desire_vs_done",
     "option_reference", "ambiguous_reference", "unknown", "suggestion_vs_done",
     "topic_return", "retraction", "capability",
-    "event_scope", "event_progress", "event_updates",
+    "event_scope", "event_progress", "event_updates", "event_states",
 )
 USER_ASSISTANT_TASKS = tuple(task for task in TASKS if task != "different_people")
 COMMON_PLACES = (
@@ -273,7 +273,7 @@ class DialogueGenerator:
             raise ValueError("Count must be a nonnegative integer")
         if not count:
             return
-        if task in ('event_scope', 'event_progress', 'event_updates'):
+        if task in ('event_scope', 'event_progress', 'event_updates', 'event_states'):
             from .event_scenarios import event_episodes
             yield from event_episodes(self, task, count, split)
             return

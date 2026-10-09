@@ -22,6 +22,7 @@ TASK_LABELS = {
     'event_scope': 'Distinguish scoped intentions, needs and phrasal actions',
     'event_progress': 'Distinguish attempts, progress and completion',
     'event_updates': 'Correct and retract events without losing other actions',
+    'event_states': 'Distinguish location and possession from wishes and past states',
 }
 
 
@@ -29,7 +30,7 @@ class ChatDatasetForm(forms.Form):
     user_assistant_only = forms.BooleanField(
         label='User and assistant only', initial=True, required=False,
         help_text='Conversations about the user: no personal names, named places or facts about other people. '
-                  'Includes 14 tasks. Uncheck to include named people and places (15 tasks).',
+                  'Includes 15 tasks. Uncheck to include named people and places (16 tasks).',
     )
     train = forms.IntegerField(
         label='Training dialogues per task', initial=200, min_value=1, max_value=1000000,

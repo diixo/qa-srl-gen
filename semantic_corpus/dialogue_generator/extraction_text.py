@@ -11,7 +11,7 @@ from .actions import ACTION_BY_RELATION
 from .models import AssistantAction, Delta, Evidence, Fact, Memory, Replacement, Turn, apply_delta, EventClaim, EventReplacement
 from .events import Event, EventArgument
 
-EXTRACTION_TEXT_VERSION = 'extraction-text-v2'
+EXTRACTION_TEXT_VERSION = 'extraction-text-v3'
 PROMPT_PREFIX = 'Current memory:\n'
 STATE_RELATIONS = frozenset(('location', 'meeting_day', 'feeling', 'selection', 'drink'))
 ESCAPES = {'\\': '\\', '|': '|', 'n': '\n', 'r': '\r', 't': '\t'}
@@ -31,7 +31,9 @@ EXTRACT_SYSTEM = (
     'EVENT predicate | time | scope | phase | tense | role=TYPE:value ... records a typed event; '
     'EVENT_CONTEXT also cites the last assistant message. REMOVE_EVENT followed by the same event fields withdraws it. '
     'Scope is outer-to-inner operators separated by >, or none. not negates its child. '
-    'Phase: unspecified, ongoing, completed. Tense: present, past, future. '
+    'Phase: unspecified, ongoing, completed. Tense: present, past, future, modal. '
+    'Finite can/could/must/may/might use modal tense. Let names a separate permitter=PERSON:value. '
+    'Lexical be/have describe states; auxiliary be/have, have_to and be_going_to are scoped operators. '
     'Never infer completion from a wish, need, plan, attempt, start or stop. '
     'Do not output JSON, IDs or quotations of evidence.'
 )
@@ -113,7 +115,8 @@ class EventCommand:
 
 def _event_fields(event: Event) -> tuple[str, ...]:
     return (event.predicate, event.time, '>'.join(event.operators) or 'none', event.phase, event.tense,
-            *(f'{arg.role}={arg.label}:{arg.text}' for arg in event.arguments))
+            *(f'{arg.role}={arg.label}:{arg.text}' for arg in event.arguments),
+            *((f'permitter={event.permitter.label}:{event.permitter.text}',) if event.permitter else ()))
 
 
 def _read_event(fields) -> Event:
@@ -121,13 +124,20 @@ def _read_event(fields) -> Event:
         raise ValueError('An event needs predicate, time, scope, phase, tense and typed arguments')
     predicate, time, scope, phase, tense, *arguments = fields
     roles = []
+    permitter = None
     for argument in arguments:
         role, separator, value = argument.partition('=')
         label, colon, text = value.partition(':')
         if not separator or not colon:
             raise ValueError('Expected role=TYPE:value')
-        roles.append(EventArgument(role, text, label))
-    return Event(predicate, tuple(sorted(roles)), time, () if scope == 'none' else tuple(scope.split('>')), phase, tense)
+        argument = EventArgument(role, text, label)
+        if role == 'permitter':
+            if permitter is not None:
+                raise ValueError('Repeated permitter')
+            permitter = argument
+        else:
+            roles.append(argument)
+    return Event(predicate, tuple(sorted(roles)), time, () if scope == 'none' else tuple(scope.split('>')), phase, tense, permitter)
 
 
 def parse_commands(text: str) -> tuple[Command | EventCommand, ...]:

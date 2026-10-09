@@ -20,7 +20,7 @@ from .actions import CONTRAST_TASKS
 from .extraction_text import EXTRACT_SYSTEM, EXTRACTION_TEXT_VERSION, render_prompt, render_update
 from .models import Episode, SCHEMA_VERSION, Transition
 
-PROMPT_VERSION = "dialogue-prompts-v5"
+PROMPT_VERSION = "dialogue-prompts-v6"
 RESPONSE_SYSTEM = (
     "You are a friendly AI personal assistant. Reply briefly and naturally to the latest user message. "
     "Use only the supplied conversation context. If information is missing, say you don't know; "
@@ -109,8 +109,8 @@ def build_dialogue_dataset(out: Path, *, train: int = 200, validation: int = 20,
     are deduplicated independently. No tokenizer, model, network or DB is used.
     Disabling metadata exports only messages in training rows; internal grouping,
     validation and the episode audit records retain their identifiers.
-    user_assistant_only selects 14 tasks without personal names;
-    the default includes the additional named-people task (15 tasks).
+    user_assistant_only selects 15 tasks without personal names;
+    the default includes the additional named-people task (16 tasks).
     contrast_multiplier scales only the two completion contrast tasks in all
     splits. Its default of 1 preserves the UI's uniform per-task quotas.
     An optional existing trainer report supplies its tokenizer contract; the

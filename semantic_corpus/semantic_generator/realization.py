@@ -73,6 +73,8 @@ class Situation:
     def validate(self) -> list[str]:
         """Type errors in the bindings, as messages."""
         problems: list[str] = []
+        if self.features.is_progressive and self.frame.lemma in ('be', 'have') and self.frame.predicate_type == Label.STATE:
+            problems.append('The reviewed location/possession senses do not support progressive aspect')
         slots = self.frame.slot_map
         for name, entity in self.bindings.items():
             slot = slots.get(name)

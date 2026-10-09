@@ -8,6 +8,7 @@ from dataclasses import dataclass
 
 from ..ontology import Label
 from ..semantic_generator.frames import frame_by_lemma
+from .verb_operators import MODALS, OPERATORS, Operator, be_form, validate_chain
 
 
 @dataclass(frozen=True)
@@ -36,33 +37,13 @@ EVENT_LEXEMES = (
     EventLexeme('put down', 'put', 'puts', 'putting', 'put', 'joined'),
     EventLexeme('get up', 'got', 'gets', 'getting', 'got', 'intransitive'),
     EventLexeme('look after', 'looked', 'looks', 'looking', 'looked', 'prepositional', False),
+    EventLexeme('go', 'went', 'goes', 'going', 'gone', 'directional'),
+    EventLexeme('have', 'had', 'has', 'having', 'had', 'possession', False),
+    EventLexeme('be', 'was', 'is', 'being', 'been', 'location', False),
 )
 EVENT_BY_LEMMA = {item.lemma: item for item in EVENT_LEXEMES}
-
-
-@dataclass(frozen=True)
-class Operator:
-    lemma: str
-    past: str
-    third: str
-    gerund: str
-    complement: str
-    category: str
-
-
-OPERATORS = {item.lemma: item for item in (
-    Operator('want', 'wanted', 'wants', 'wanting', 'to', 'desire'),
-    Operator('need', 'needed', 'needs', 'needing', 'to', 'necessity'),
-    Operator('plan', 'planned', 'plans', 'planning', 'to', 'intention'),
-    Operator('intend', 'intended', 'intends', 'intending', 'to', 'intention'),
-    Operator('decide', 'decided', 'decides', 'deciding', 'to', 'decision'),
-    Operator('try', 'tried', 'tries', 'trying', 'to', 'attempt'),
-    Operator('manage', 'managed', 'manages', 'managing', 'to', 'success'),
-    Operator('fail', 'failed', 'fails', 'failing', 'to', 'failure'),
-    Operator('start', 'started', 'starts', 'starting', 'gerund', 'onset'),
-    Operator('finish', 'finished', 'finishes', 'finishing', 'gerund', 'completion'),
-    Operator('stop', 'stopped', 'stops', 'stopping', 'gerund', 'cessation'),
-)}
+ACTION_LEXEMES = tuple(item for item in EVENT_LEXEMES if item.frame.predicate_type == Label.ACTION)
+STATE_LEXEMES = tuple(item for item in EVENT_LEXEMES if item.frame.predicate_type == Label.STATE)
 
 
 @dataclass(frozen=True, order=True)
@@ -80,28 +61,34 @@ class Event:
     operators: tuple[str, ...] = ()  # Outer to inner; not negates its child.
     phase: str = 'unspecified'
     tense: str = 'present'
+    permitter: EventArgument | None = None
 
     def __post_init__(self):
         if self.predicate not in EVENT_BY_LEMMA:
             raise ValueError(f'Unsupported event predicate: {self.predicate}')
         if not self.time or self.time != self.time.strip():
             raise ValueError('An event needs an explicit time context')
-        if self.phase not in ('unspecified', 'ongoing', 'completed') or self.tense not in ('present', 'past', 'future'):
+        if self.phase not in ('unspecified', 'ongoing', 'completed') or self.tense not in ('present', 'past', 'future', 'modal'):
             raise ValueError('Unsupported event phase or tense')
-        if len(self.operators) > 4 or any(op not in OPERATORS and op != 'not' for op in self.operators):
-            raise ValueError('Unsupported event operator chain')
-        if any(a == b == 'not' for a, b in zip(self.operators, self.operators[1:])):
-            raise ValueError('Repeated adjacent negation is not supported')
+        validate_chain(self.operators, self.tense, is_state=self.is_state)
         if any(op != 'not' for op in self.operators) and self.phase != 'unspecified':
             raise ValueError('Phase belongs to the bare action; operator constructions use unspecified phase')
-        if self.tense == 'future' and (self.operators or self.phase != 'unspecified'):
-            raise ValueError('Only bare future actions are currently supported')
+        if self.tense == 'future' and self.phase != 'unspecified':
+            raise ValueError('Future does not establish ongoing/completed phase')
+        if self.is_state and self.phase != 'unspecified':
+            raise ValueError('Location and possession are states, not completed/ongoing actions')
+        if (EVENT_BY_LEMMA[self.predicate].bounded and self.operators in (('have',), ('not', 'have'))):
+            raise ValueError('Use completed phase for a bare perfect bounded action')
+        if ('let' in self.operators) != (self.permitter is not None):
+            raise ValueError('Permissive let requires a separate permitter; other chains cannot carry one')
+        if self.permitter is not None:
+            if (self.permitter.role != 'permitter' or self.permitter.label != 'PERSON'
+                    or not self.permitter.text or self.permitter.text != self.permitter.text.strip()):
+                raise ValueError('Let requires a named PERSON permitter argument')
         if (self.tense == 'past' and self.phase == 'unspecified' and self.operators in ((), ('not',))
                 and EVENT_BY_LEMMA[self.predicate].bounded):
             raise ValueError('A bare past bounded action requires an explicit completed phase')
         frame = EVENT_BY_LEMMA[self.predicate].frame
-        if frame.predicate_type != Label.ACTION:
-            raise ValueError('Typed event claims require an ACTION frame')
         roles = [arg.role for arg in self.arguments]
         if roles != sorted(set(roles)):
             raise ValueError('Event arguments must have distinct, sorted roles')
@@ -116,6 +103,8 @@ class Event:
             # encode yet; refuse rather than bypass the shared group constraints.
             if label == Label.GROUP or not frame.slot_map[arg.role].accepts((label,)):
                 raise ValueError(f'{arg.role}: incompatible entity type {arg.label}')
+        if 'let_us' in self.operators and self.agent != 'user':
+            raise ValueError('The current let_us proposal requires the user as its initiating actor')
 
     @property
     def identity(self):
@@ -127,7 +116,11 @@ class Event:
         # outer polarity/phase/tense. Inner negation changes what is wanted or
         # needed: not(want(X)) and want(not(X)) must coexist, not overwrite.
         path = self.operators[1:] if self.operators[:1] == ('not',) else self.operators
-        return self.identity, path
+        return self.identity, path, self.permitter
+
+    @property
+    def is_state(self):
+        return EVENT_BY_LEMMA[self.predicate].frame.predicate_type == Label.STATE
 
     @property
     def agent(self):
@@ -142,7 +135,7 @@ def completion_evidence(event: Event) -> str:
     A negated modal is not a negated action. Starting, stopping and attempting
     do not establish completion. Nested success under a wish remains unknown.
     """
-    if event.tense == 'future':
+    if event.is_state or event.tense in ('future', 'modal'):
         return 'unknown'
     if event.operators in ((), ('not',)) and event.phase == 'completed':
         return 'no' if event.operators else 'yes'
@@ -162,7 +155,13 @@ def completion_evidence(event: Event) -> str:
     return 'unknown'
 
 
-def _core(event: Event, form: str, style: int) -> str:
+def state_evidence(event: Event) -> str:
+    if event.is_state and event.tense in ('present', 'past') and event.operators in ((), ('not',)):
+        return 'no' if event.operators else 'yes'
+    return 'unknown'
+
+
+def _core(event: Event, form: str, style: int, subject='I') -> str:
     lexeme = EVENT_BY_LEMMA[event.predicate]
     frame = lexeme.frame
     pattern = frame.pattern(lexeme.pattern)
@@ -170,7 +169,10 @@ def _core(event: Event, form: str, style: int) -> str:
                   for arg in event.arguments)
     if frame.particles and lexeme.pattern == 'joined' and (style % 2 or pronoun):
         pattern = frame.pattern('separated')
-    head = (frame.head_lemma or frame.lemma) if form == 'base' else getattr(lexeme, form)
+    if event.predicate == 'be':
+        head = be_form(form, subject)
+    else:
+        head = (frame.head_lemma or frame.lemma) if form in ('base', 'present') else getattr(lexeme, form)
     parts = [head]
     if pattern.particle_after is None:
         parts.extend(frame.particles)
@@ -184,37 +186,70 @@ def _core(event: Event, form: str, style: int) -> str:
     return ' '.join(parts)
 
 
-def _phrase(event: Event, operators: tuple[str, ...], form: str, style: int) -> str:
+def _person(text, perspective, *, object_case=False):
+    if text == 'user':
+        return ('me' if object_case else 'I') if perspective == 'user' else ('you' if object_case else 'You')
+    if text == 'assistant':
+        return ('you' if object_case else 'You') if perspective == 'user' else ('me' if object_case else 'I')
+    return text
+
+
+def _phrase(event: Event, operators: tuple[str, ...], form: str, style: int, subject='I', perspective='user') -> str:
     if not operators:
-        return _core(event, form, style)
+        return _core(event, form, style, subject)
     head, *tail = operators
     tail = tuple(tail)
     if head == 'not':
+        child = tail[0] if tail else event.predicate
+        auxiliary = child in MODALS or child in ('be', 'be_able_to', 'be_going_to') or child == 'have' and bool(tail)
+        if auxiliary and form in ('past', 'third', 'present', 'modal'):
+            phrase = _phrase(event, tail, form, style, subject, perspective)
+            first, separator, rest = phrase.partition(' ')
+            return ('cannot' if first == 'can' else first + ' not') + (separator + rest if separator else '')
         if form in ('past', 'third', 'present'):
             helper = 'did' if form == 'past' else 'does' if form == 'third' else 'do'
-            return helper + ' not ' + _phrase(event, tail, 'base', style)
-        return 'not ' + _phrase(event, tail, form, style)
+            return helper + ' not ' + _phrase(event, tail, 'base', style, subject, perspective)
+        return 'not ' + _phrase(event, tail, form, style, subject, perspective)
     operator = OPERATORS[head]
-    word = operator.lemma if form in ('base', 'present') else getattr(operator, form)
-    if operator.complement == 'to':
+    if head in MODALS:
+        return head + ' ' + _phrase(event, tail, 'base', style, subject, perspective)
+    if head == 'let_us':
+        return "Let's " + _phrase(event, tail, 'base', style, 'we', perspective)
+    if head in ('be', 'be_able_to', 'be_going_to'):
+        word = be_form(form, subject)
+    elif head == 'have_to':
+        word = 'have' if form in ('base', 'present') else getattr(operator, form)
+    else:
+        word = head if form in ('base', 'present') else (operator.participle or operator.past) if form == 'participle' else getattr(operator, form)
+    if word is None:
+        raise ValueError(f'Unsupported {head} form: {form}')
+    if head == 'let':
+        causee = _person(event.agent, perspective, object_case=True)
+        return word + ' ' + causee + ' ' + _phrase(event, tail, 'base', style, _person(event.agent, perspective), perspective)
+    if head in ('be_able_to', 'be_going_to'):
+        word += ' able' if head == 'be_able_to' else ' going'
+    if operator.complement in ('to', 'have_to', 'be_able_to', 'be_going_to'):
         if tail and tail[0] == 'not':
             if head == 'need':
                 # Avoid the ambiguous modal reading of "need not": this scope
                 # requires non-performance, not absence of necessity.
-                return word + ' to avoid ' + _phrase(event, tail[1:], 'gerund', style)
-            return word + ' not to ' + _phrase(event, tail[1:], 'base', style)
-        return word + ' to ' + _phrase(event, tail, 'base', style)
-    return word + ' ' + _phrase(event, tail, 'gerund', style)
+                return word + ' to avoid ' + _phrase(event, tail[1:], 'gerund', style, subject, perspective)
+            if head in ('have_to', 'be_able_to', 'be_going_to'):
+                return word + ' to ' + _phrase(event, tail, 'base', style, subject, perspective)
+            return word + ' not to ' + _phrase(event, tail[1:], 'base', style, subject, perspective)
+        return word + ' to ' + _phrase(event, tail, 'base', style, subject, perspective)
+    complement_form = 'participle' if operator.complement == 'participle' else 'gerund'
+    return word + ' ' + _phrase(event, tail, complement_form, style, subject, perspective)
 
 
 def event_statement(event: Event, *, perspective='memory', style=0) -> str:
     if perspective not in ('memory', 'user') or style not in range(5):
         raise ValueError('Unsupported event rendering')
-    subject = ('I' if perspective == 'user' else 'You') if event.agent == 'user' else event.agent
+    subject = _person(event.permitter.text if event.permitter else event.agent, perspective)
     first_or_second = subject in ('I', 'You')
     when = ' ' + event.time
     if event.tense == 'future':
-        phrase = 'will ' + _core(event, 'base', style)
+        phrase = 'will ' + _phrase(event, event.operators, 'base', style, subject, perspective)
     elif event.phase == 'ongoing':
         be = ('was' if subject != 'You' else 'were') if event.tense == 'past' else (
             'am' if subject == 'I' else 'are' if subject == 'You' else 'is')
@@ -233,17 +268,43 @@ def event_statement(event: Event, *, perspective='memory', style=0) -> str:
             have = 'have' if first_or_second else 'has'
             phrase = have + (' not finished ' if negative else ' finished ') + _core(event, 'gerund', style)
     else:
-        form = 'past' if event.tense == 'past' else 'present' if first_or_second else 'third'
+        form = 'modal' if event.tense == 'modal' else 'past' if event.tense == 'past' else 'present' if first_or_second else 'third'
         # The base form is the finite present for first/second person.
-        phrase = _phrase(event, event.operators, form if event.operators else ('base' if form == 'present' else form), style)
+        phrase = _phrase(event, event.operators, form, style, subject, perspective)
+    if event.operators[:1] == ('let_us',):
+        quoted = phrase + when + '.'
+        return quoted if perspective == 'user' else 'You proposed: "' + quoted + '"'
     if style >= 3 and perspective == 'memory':
         # Hold-out paraphrases change reporting language, not semantic operators.
         original = event_statement(event, perspective='user', style=style - 3)
-        return f'{subject} reported: "{original}"' if style == 3 else f'{subject} stated: "{original}"'
+        return f'You reported: "{original}"' if style == 3 else f'You stated: "{original}"'
+    if style == 2:
+        # Unambiguous contractions only: 'd and 's could hide had/would/is/has.
+        # May not has no ordinary contracted form and stays explicit.
+        contractions = {'cannot': "can't", 'could not': "couldn't", 'must not': "mustn't",
+                        'is not': "isn't", 'are not': "aren't", 'was not': "wasn't", 'were not': "weren't",
+                        'do not': "don't", 'does not': "doesn't", 'did not': "didn't",
+                        'have not': "haven't", 'has not': "hasn't", 'had not': "hadn't", 'will not': "won't"}
+        for full, short in contractions.items():
+            if phrase == full or phrase.startswith(full + ' '):
+                phrase = short + phrase[len(full):]
+                break
     return subject + ' ' + phrase + when + '.'
 
 
 def event_question(event: Event, *, style=0) -> str:
+    if event.is_state:
+        subject = _person(event.agent, 'user')
+        if style >= 3:
+            form = 'past' if event.tense == 'past' else 'present' if subject in ('I', 'You') else 'third'
+            prefix = 'Is there confirmation that' if style == 3 else 'Can you tell whether'
+            return f'{prefix} {subject} {_core(event, form, style, subject)} {event.time}?'
+        if event.predicate == 'be':
+            be = be_form('past' if event.tense == 'past' else 'present', subject)
+            location = next(arg.text for arg in event.arguments if arg.role == 'location')
+            return f'{be.capitalize()} {subject} in {location} {event.time}?'
+        helper = 'Did' if event.tense == 'past' else 'Do' if subject in ('I', 'You') else 'Does'
+        return f'{helper} {subject} {_core(event, "base", style, subject)} {event.time}?'
     if event.agent != 'user':
         subject, have = event.agent, 'Has'
     else:

@@ -156,7 +156,8 @@ class TemplateBank:
     def adjectives(self):
         return read_rows(self.path / "adjectives.jsonl.gz")
 
-    def generate(self, *, count=1, seed=0, lemma=None, adjective=None, template_id=None, recombine=False):
+    def generate(self, *, count=1, seed=0, lemma=None, adjective=None, template_id=None, recombine=False,
+                 exclude_controlled=False):
         """Exactly count outputs for EVERY selected template; no hidden top-N."""
         if count < 1:
             raise ValueError("count per template must be positive")
@@ -168,6 +169,10 @@ class TemplateBank:
                 raise ValueError(f"no adjective {adjective!r} in the bank")
         found = False
         for template in self.templates(lemma=lemma, adjective=adjective, template_id=template_id):
+            if exclude_controlled:
+                from .controlled_verbs import excluded_predicates
+                if excluded_predicates(template.record):
+                    continue
             found = True
             if not recombine:
                 # Enumerate without replacement: an available binding must not

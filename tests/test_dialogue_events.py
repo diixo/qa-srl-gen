@@ -7,7 +7,7 @@ import pytest
 from semantic_corpus.ontology import Label
 
 from semantic_corpus.dialogue_generator.events import (
-    EVENT_LEXEMES, Event, EventArgument, completion_evidence, event_question, event_statement,
+    EVENT_LEXEMES, ACTION_LEXEMES, STATE_LEXEMES, MODALS, Event, EventArgument, completion_evidence, event_question, event_statement,
 )
 from semantic_corpus.dialogue_generator.event_scenarios import EventSampler, EVENT_TASKS, SCOPE_PROFILES
 from semantic_corpus.dialogue_generator.generator import DialogueGenerator
@@ -87,8 +87,9 @@ def test_shared_pool_fills_every_required_role_and_keeps_selection_constraints()
             assert {arg.role for arg in event.arguments} == lexeme.frame.pattern(lexeme.pattern).mentioned()
             for arg in event.arguments:
                 assert lexeme.frame.slot_map[arg.role].accepts((Label(arg.label),))
-            for profile in SCOPE_PROFILES:
-                candidate = replace(event, operators=profile)
+            for profile in SCOPE_PROFILES if not event.is_state else (('want',), ('may',), ('have_to',)):
+                candidate = replace(event, operators=profile, tense='modal' if any(op in MODALS for op in profile) else 'present',
+                                    permitter=EventArgument('permitter', 'assistant', 'PERSON') if 'let' in profile else None)
                 assert completion_evidence(candidate) == 'unknown'
                 assert event_statement(candidate, perspective='user').endswith('today.')
 
@@ -158,14 +159,14 @@ def test_scenario_groups_roundtrip_events_sources_and_answers(task):
             visible, user, previous = parse_prompt(prompt)
             decode_update(target, visible, user, previous)
         assert 'Reported events' in response_row(episode, 'memory')['messages'][1]['content']
-    assert predicates == {lexeme.lemma for lexeme in EVENT_LEXEMES}
+    assert predicates == {lexeme.lemma for lexeme in (STATE_LEXEMES if task == 'event_states' else ACTION_LEXEMES)}
     for group in groups.values():
         assert len(group) == 3
         assert {e.condition.rsplit(':', 1)[-1] for e in group} == {'yes', 'no', 'unknown'}
         actual = Counter('unknown' if e.expected_action == 'unknown' else 'yes' if e.answer.startswith('Yes') else 'no' for e in group)
         assert actual == {'yes': 1, 'no': 1, 'unknown': 1}
     if task == 'event_scope':
-        assert {'need', 'want', 'plan', 'intend', 'decide', 'not', 'try'} <= operators
+        assert {'not', 'try'} <= operators  # Full operator coverage is checked over the complete cycle below.
 
 
 def test_event_metrics_do_not_ignore_wrong_scope_or_event_identity():
@@ -188,12 +189,14 @@ def test_event_metrics_do_not_ignore_wrong_scope_or_event_identity():
 
 
 def test_scope_sampling_crosses_predicates_and_operators_instead_of_lockstep_pairing():
-    expected = {(lexeme.lemma, profile) for lexeme in EVENT_LEXEMES for profile in SCOPE_PROFILES}
+    expected = {(lexeme.lemma, profile) for lexeme in ACTION_LEXEMES for profile in SCOPE_PROFILES}
     episodes = DialogueGenerator(user_assistant_only=True).generate('event_scope', len(expected) * 3, split='train')
     observed = set()
     for episode in episodes:
         initial = next(t.delta.event_add[0].event for t in episode.transitions if t.delta.event_add)
         observed.add((initial.predicate, initial.operators))
+        if initial.operators == ('let',):
+            assert initial.tense in ('past', 'future')
     assert observed == expected
 
 

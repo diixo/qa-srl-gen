@@ -625,7 +625,7 @@ def build_parser() -> argparse.ArgumentParser:
     dialogue.add_argument("--no-metadata", dest="include_metadata", action="store_false",
                           help="export only messages in training JSON records")
     dialogue.add_argument("--user-assistant-only", action="store_true",
-                          help="generate conversations about the user, without named people or places (11 tasks)")
+                          help="generate conversations about the user, without named people or places (15 tasks)")
     dialogue.add_argument("--training-report", type=Path,
                           help="existing trainer report.json supplying the tokenizer contract")
     dialogue.set_defaults(func=cmd_dialogue_build)

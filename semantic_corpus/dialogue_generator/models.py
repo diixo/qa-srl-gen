@@ -7,9 +7,9 @@ The checker validates references and updates, not arbitrary English semantics.
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
-from .events import Event, completion_evidence
+from .events import Event, completion_evidence, state_evidence
 
-SCHEMA_VERSION = "dialogue-memory-v3"
+SCHEMA_VERSION = "dialogue-memory-v4"
 
 
 @dataclass(frozen=True)
@@ -191,23 +191,29 @@ class Query:
 
 def answer_query(memory: Memory, query: Query) -> tuple[str, str, tuple[str, ...]]:
     """Reference answer, dialogue action and supporting IDs from visible state."""
-    if query.kind not in ("lookup", "yes_no", "clarify_option", "capability", "event_completion"):
+    if query.kind not in ("lookup", "yes_no", "clarify_option", "capability", "event_completion", "event_state"):
         raise ValueError(f"Unsupported query kind: {query.kind}")
     if query.kind == "clarify_option":
         options = next(a for a in reversed(memory.assistant_actions) if a.kind == "options")
         return f"Do you mean {options.items[0]} or {options.items[1]}?", "clarify", (options.source_turn,)
     if query.kind == "capability":
         return "I can't send messages or set reminders in this chat.", "explain_limitation", ()
-    if query.kind == 'event_completion':
+    if query.kind in ('event_completion', 'event_state'):
         if query.event is None:
             raise ValueError('Event completion queries require a typed event')
-        relevant = [(claim, completion_evidence(claim.event)) for claim in memory.events
-                    if claim.event.identity == query.event.identity]
+        is_state = query.kind == 'event_state'
+        evidence = state_evidence if is_state else completion_evidence
+        relevant = [(claim, evidence(claim.event)) for claim in memory.events
+                    if claim.event.identity == query.event.identity
+                    and (not is_state or claim.event.tense == query.event.tense)]
         known = {result for _, result in relevant if result != 'unknown'}
         if len(known) != 1:
-            return "I don't know; completion has not been established.", 'unknown', ()
+            text = "I don't know; that state has not been established." if is_state else "I don't know; completion has not been established."
+            return text, 'unknown', ()
         result = next(iter(known))
         supports = tuple(claim.id for claim, value in relevant if value == result)
+        if is_state:
+            return ('Yes, that state was reported.' if result == 'yes' else 'No, that state was explicitly denied.'), 'answer', supports
         return ('Yes, completion was reported.' if result == 'yes' else 'No, non-completion was reported.'), 'answer', supports
     fact = memory.find(query.subject, query.relation)
     subject = "You" if query.subject == "user" else query.subject

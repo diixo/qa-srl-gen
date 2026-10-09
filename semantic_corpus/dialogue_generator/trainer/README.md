@@ -27,14 +27,14 @@ python -m semantic_corpus.cli dialogue-build --out artifacts/dialogue-gpt2-memor
 python -m semantic_corpus.dialogue_generator.trainer train --mode sft --model gpt2 --data artifacts/dialogue-gpt2-memory/memory --out artifacts/training/gpt2-memory --epochs 3 --batch-size 2 --accumulation 8
 ```
 
-Both output directories must be new. The first command produces 2,800 training,
-280 validation and 280 test examples. The trainer accepts both records with
+Both output directories must be new. The first command produces 3,000 training,
+300 validation and 300 test examples. The trainer accepts both records with
 metadata and records containing only `messages`. It never feeds outer IDs or
 task labels to the model. Retain metadata if you want evaluation broken down
 by task; otherwise all examples are reported as `unlabeled`.
 
 To focus on completion reasoning, use the generator's `--contrast-multiplier 3`
-when preparing data; at the same base quotas this produces 3,600 training records.
+when preparing data; at the same base quotas this produces 3,800 training records.
 See [contrast generation and the frozen challenge](../README.md#contrasts-and-varied-memory).
 
 On its first online run, model/tokenizer files are cached under
@@ -96,19 +96,21 @@ FP32 on CPU; `--precision float32` overrides it. This CLI supports one process.
 
 ## Train the text memory updater
 
-Generate a fresh dataset with `extraction-text-v2` (older files are not converted
+Generate a fresh dataset with `extraction-text-v3` (older files are not converted
 in place), then select `extraction/` explicitly:
 
 ```powershell
-python -m semantic_corpus.dialogue_generator.trainer train --view extraction --model gpt2 --data artifacts/dialogue-events-v3-final/extraction --out artifacts/training/gpt2-extraction-events --epochs 3 --max-length 512 --save-only-model
-python -m semantic_corpus.dialogue_generator.trainer evaluate --run artifacts/training/gpt2-extraction-events --data artifacts/dialogue-events-v3-final/extraction --out artifacts/training/gpt2-extraction-events-test --max-new-tokens 256
+python -m semantic_corpus.dialogue_generator.trainer train --view extraction --model gpt2 --data artifacts/dialogue-controlled-verbs-v4-final/extraction --out artifacts/training/gpt2-extraction-controlled --epochs 3 --max-length 768 --save-only-model
+python -m semantic_corpus.dialogue_generator.trainer evaluate --run artifacts/training/gpt2-extraction-controlled --data artifacts/dialogue-controlled-verbs-v4-final/extraction --out artifacts/training/gpt2-extraction-controlled-test --max-new-tokens 256
 ```
 
 These are training/evaluation commands, not a claim of measured updater quality.
 The existing recorded GPT-2 experiment below still concerns Memory only.
-The frozen event-v3 Extraction files contain 9,400/966/967 records; the maximum
-full ChatML length is 504 GPT-2 tokens and the maximum target is 47 tokens.
-Thus this dataset fits 512 tokens. New quotas, vocabulary or constructions can
+The frozen controlled-verbs-v4 Extraction files contain 9,802/1,009/1,008 records.
+Full ChatML sequences reach 559 GPT-2 tokens (54 target tokens); use 768 for this dataset.
+The report is `artifacts/reviews/dialogue-controlled-verbs-v4-validation.json`.
+The previous event-v3 files remain unchanged (9,400/966/967, maximum 504 tokens).
+New quotas, vocabulary or constructions can
 change the maximum; the trainer validates every record before training.
 An offline tiny-model integration test covers SFT and reload/evaluation for all
 three views. Use a fresh pretrained checkpoint for each comparison, not the
@@ -208,8 +210,8 @@ The final model is `artifacts/training/gpt2-memory-expanded-v2-6ep/model/`.
 It also answers all 220 original test records correctly. The final checkpoint
 is epoch 6, step 1128; training took 571.8 seconds on the local RTX 3070 Laptop GPU.
 The following commands describe that historical run. Its generator revision had
-11 user-only tasks; the current version adds three typed-event tasks and produces
-3,600 records with the same quotas. Use the retained files for a like-for-like
+11 user-only tasks; the current version adds four typed-event tasks and produces
+3,800 records with the same quotas. Use the retained files for a like-for-like
 comparison, or a fresh destination for new data; do not regenerate over old files.
 
 ```powershell

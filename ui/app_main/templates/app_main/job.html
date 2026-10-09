@@ -119,10 +119,10 @@
             </div>
         </div>
         <p class="text-secondary">History and memory contain paired dialogues with the same reference answers. Extraction contains separate memory-update examples.</p>
-        {% if chat_summary.content_formats.memory == 'memory-text-v1' or chat_summary.content_formats.memory == 'memory-text-v2' or chat_summary.content_formats.memory == 'memory-text-v3' %}
+        {% if chat_summary.content_formats.memory == 'memory-text-v1' or chat_summary.content_formats.memory == 'memory-text-v2' or chat_summary.content_formats.memory == 'memory-text-v3' or chat_summary.content_formats.memory == 'memory-text-v4' %}
             <p class="text-secondary">Memory uses plain-text facts and natural answers.</p>
         {% endif %}
-        {% if chat_summary.content_formats.extraction == 'extraction-text-v1' or chat_summary.content_formats.extraction == 'extraction-text-v2' %}
+        {% if chat_summary.content_formats.extraction == 'extraction-text-v1' or chat_summary.content_formats.extraction == 'extraction-text-v2' or chat_summary.content_formats.extraction == 'extraction-text-v3' %}
             <p class="text-secondary">Extraction uses text context and memory-update commands. IDs and evidence are managed by the application.</p>
         {% elif chat_summary.content_formats.extraction == 'extraction-json-v1' %}
             <p class="text-secondary">This older dataset uses JSON inside Extraction messages. Generate a new dataset for text commands.</p>

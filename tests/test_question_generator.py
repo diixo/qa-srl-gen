@@ -450,9 +450,10 @@ def test_a_bare_locative_object_is_not_an_adjunct():
 
 def test_the_passive_paraphrase_rebuilds_the_verb_chain():
     from semantic_corpus.question_generator import passive_paraphrase_questions
+    from semantic_corpus.semantic_generator.frames import GIVE
 
     document, run = to_canonical(
-        next(iter(Generator(seed=7).generate(1))), document_id="p"
+        next(iter(Generator(seed=7, frames=(GIVE,)).generate(1))), document_id="p"
     )
     produced = passive_paraphrase_questions(
         document, run, resolver=ParadigmResolver(known=DEFAULT_PARADIGMS)

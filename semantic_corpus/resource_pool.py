@@ -18,6 +18,7 @@ from .semantic_generator import DEFAULT_FRAMES, default_pool
 from .semantic_generator.generator import DEFAULT_PARADIGMS
 from .template_bank import TemplateBank, fingerprint, read_rows
 from .template_registry import registered_banks
+from .controlled_verbs import CONTROLLED_VERBS, VERSION as CONTROLLED_VERSION, controlled_head, excluded_predicates
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 RESOURCE_SCOPE = "built_in_v1"
@@ -78,12 +79,22 @@ class BuiltInPool:
         return (primary, *(bank for bank in self.registered_banks if bank.path != primary.path))
 
     def templates(self, **filters):
+        self._check_mined_lemma(filters.get('lemma'))
         for bank in self.banks:
-            yield from bank.templates(**filters)
+            for template in bank.templates(**filters):
+                if not excluded_predicates(template.record):
+                    yield template
+
+    @staticmethod
+    def _check_mined_lemma(lemma):
+        if lemma and controlled_head(lemma):
+            raise ValueError(f'{lemma!r} is handled by controlled grammar, not mined predicate selection')
 
     def verbs(self):
         for bank in self.banks:
-            yield from bank.verbs()
+            for row in bank.verbs():
+                if not controlled_head(row['lemma']):
+                    yield row
 
     def adjectives(self):
         for bank in self.banks:
@@ -94,10 +105,10 @@ class BuiltInPool:
             yield from read_rows(bank.path / f"{name}.jsonl.gz")
 
     def constructions(self):
-        return self._inventory("constructions")
+        return (row for row in self._inventory('constructions') if not controlled_head(row['lemma']))
 
     def verb_alternatives(self):
-        return self._inventory("verb_alternatives")
+        return (row for row in self._inventory('verb_alternatives') if not controlled_head(row['lemma']))
 
     def adjective_alternatives(self):
         return self._inventory("adjective_alternatives")
@@ -113,7 +124,8 @@ class BuiltInPool:
                       available=False, status="missing", templates=0, verbs=0,
                       adjectives=0, constructions=0, verb_alternatives=0,
                       adjective_alternatives=0, records=0, source_banks=0, banks=[],
-                      counts_are_component_entries=True)
+                      counts_are_component_entries=True, counts_are_archived=True,
+                      controlled_verbs=list(CONTROLLED_VERBS), controlled_policy=CONTROLLED_VERSION)
         try:
             banks = self.banks
         except (OSError, ValueError) as error:
@@ -144,7 +156,8 @@ class BuiltInPool:
                                   else getattr(entity, field.name))
                      for field in fields(entity)} for entity in self.entities]
         result = {"resource_scope": RESOURCE_SCOPE, "entities_sha256": fingerprint(entities),
-                  "frames": [frame.lemma for frame in self.frames]}
+                  "frames": [frame.lemma for frame in self.frames],
+                  "controlled_verbs": list(CONTROLLED_VERBS), "controlled_policy": CONTROLLED_VERSION}
         if include_mined:
             from .template_semantics import VERSION
             result['template_semantics'] = VERSION
@@ -175,6 +188,7 @@ class BuiltInPool:
         stats.update(rendered=0, split_excluded=0, eligible=0)
         if count == 0:
             return
+        self._check_mined_lemma(lemma)
         held_out = _name_pattern(self.entities.split("test").surface_forms)
         for bank in self.banks:
             identity = fingerprint(bank.manifest)
@@ -182,7 +196,7 @@ class BuiltInPool:
                 continue
             try:
                 for row in bank.generate(count=count, seed=seed, lemma=lemma,
-                                         adjective=adjective, recombine=recombine):
+                                         adjective=adjective, recombine=recombine, exclude_controlled=True):
                     stats["rendered"] += 1
                     selected = _mined_split(row["text"], held_out) == split
                     if selected:
@@ -193,13 +207,14 @@ class BuiltInPool:
                         progress(dict(stats))
                     if not selected:
                         continue
-                    key = fingerprint([identity, row["template_id"], row["bindings"], recombine])
+                    key = fingerprint([identity, CONTROLLED_VERSION, row["template_id"], row["bindings"], recombine])
                     source = ("eng-base-templates" if bank.path.name == "eng-base-templates"
                               else f"mined-templates/{bank.path.name}")
                     yield Document(
                         document_id=f"mined-{key}", text=row["text"], source=source, split=split,
                         metadata={**{key: value for key, value in row.items() if key != "text"},
                                   "resource_pool": "built-in", "bank_manifest_sha256": identity,
+                                  "controlled_policy": CONTROLLED_VERSION,
                                   "bank_source_sha256": bank.manifest.get("source_sha256"),
                                   "recombined": recombine, "split_policy": SPLIT_POLICY})
             except ValueError as error:

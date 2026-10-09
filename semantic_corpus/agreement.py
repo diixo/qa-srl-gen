@@ -10,6 +10,12 @@ def verb_words(frame: Frame, *, plural: bool = False, question: bool = False) ->
     Plurality belongs to surface syntax, not to the semantic GROUP label:
     "the team buys" but "the police buy".
     """
+    # The upstream QA-SRL grammar assumes lexical verbs use do-support. Copular
+    # be instead inverts/negates itself; leave the ported grammar unchanged.
+    if (frame.verb_inflected_forms.stem == 'be' and frame.is_finite and not frame.is_modal
+            and not frame.is_perfect and not frame.is_progressive and not frame.structure.is_passive):
+        word = ('were' if plural else 'was') if frame.tense == 'past' else ('are' if plural else 'is')
+        return [word + ("n't" if frame.is_negated else '')]
     stack = frame.get_verb_stack()
     if question:
         stack = frame.split_verb_stack_if_necessary(stack)
