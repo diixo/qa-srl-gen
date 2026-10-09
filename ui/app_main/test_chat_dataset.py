@@ -10,7 +10,7 @@ from zipfile import ZipFile
 from django.test import Client, SimpleTestCase, TestCase, override_settings
 from django.urls import reverse
 
-from semantic_corpus.dialogue_generator import TASKS
+from semantic_corpus.dialogue_generator import TASKS, USER_ASSISTANT_TASKS
 
 from .catalog import job_root
 from .chat_dataset import ChatDatasetForm
@@ -19,6 +19,21 @@ from .operations import execute
 
 
 class ChatDatasetFormTests(SimpleTestCase):
+    def test_user_only_defaults_and_legacy_jobs_keep_their_task_sets(self):
+        config = {'train': 1, 'validation': 1, 'test': 1, 'seed': 42}
+        self.assertTrue(ChatDatasetForm()['user_assistant_only'].value())
+        for form, expected in (
+            (ChatDatasetForm(config), False),
+            (ChatDatasetForm({**config, 'user_assistant_only': 'on'}), True),
+            (ChatDatasetForm.from_config(config), False),
+            (ChatDatasetForm.from_config({**config, 'user_assistant_only': True}), True),
+        ):
+            self.assertTrue(form.is_valid(), form.errors)
+            self.assertIs(form.cleaned_data['user_assistant_only'], expected)
+            tasks = USER_ASSISTANT_TASKS if expected else TASKS
+            self.assertEqual(form.tasks(), tasks)
+            self.assertEqual(form.preview()['train'], len(tasks))
+
     def test_metadata_defaults_differ_for_new_posts_and_legacy_configs(self):
         config = {'train': 1, 'validation': 1, 'test': 1, 'seed': 42}
         self.assertTrue(ChatDatasetForm()['include_metadata'].value())
@@ -33,8 +48,8 @@ class ChatDatasetFormTests(SimpleTestCase):
 
     def test_defaults_and_invalid_quota_previews(self):
         self.assertEqual(ChatDatasetForm().preview(), {
-            'train': 200 * len(TASKS), 'validation': 20 * len(TASKS),
-            'test': 20 * len(TASKS), 'total': 240 * len(TASKS),
+            'train': 200 * len(USER_ASSISTANT_TASKS), 'validation': 20 * len(USER_ASSISTANT_TASKS),
+            'test': 20 * len(USER_ASSISTANT_TASKS), 'total': 240 * len(USER_ASSISTANT_TASKS),
         })
         for value in ('', '0', '-1', '1.5', '1000001', 'bad'):
             with self.subTest(value=value):
@@ -62,7 +77,8 @@ class ChatDatasetPageTests(TestCase):
         overrides.enable()
         self.addCleanup(overrides.disable)
         self.url = reverse('app_main:chat_dataset')
-        self.config = {'train': 1, 'validation': 1, 'test': 1, 'seed': 42, 'include_metadata': True}
+        self.config = {'train': 1, 'validation': 1, 'test': 1, 'seed': 42,
+                       'include_metadata': True, 'user_assistant_only': False}
 
     @patch('app_main.views.start_worker')
     def test_page_and_sidebar_render_without_queueing(self, start):
@@ -76,11 +92,16 @@ class ChatDatasetPageTests(TestCase):
         self.assertContains(response, 'name="seed"')
         self.assertContains(response, 'name="include_metadata"')
         self.assertContains(response, 'Include metadata')
+        self.assertContains(response, 'plain-text facts')
+        self.assertContains(response, 'Inputs and targets still use JSON')
         self.assertTrue(response.context['form']['include_metadata'].value())
-        self.assertContains(response, f'data-task-count="{len(TASKS)}"')
+        self.assertContains(response, f'data-task-count="{len(USER_ASSISTANT_TASKS)}"')
+        self.assertContains(response, 'User and assistant only')
+        self.assertContains(response, 'data-chat-people-only hidden')
+        self.assertTrue(response.context['form']['user_assistant_only'].value())
         self.assertContains(response, 'aria-current="page"')
         self.assertEqual(response.context['nav_active'], 'chat_dataset')
-        self.assertEqual(len(response.context['task_labels']), len(TASKS))
+        self.assertEqual(sum(not row['hidden'] for row in response.context['task_rows']), len(USER_ASSISTANT_TASKS))
         self.assertEqual(Job.objects.count(), 0)
         start.assert_not_called()
         # A separate page, not an option backed by the generic corpus form.
@@ -121,8 +142,20 @@ class ChatDatasetPageTests(TestCase):
         self.assertContains(response, 'Worker unavailable')
 
     @patch('app_main.views.start_worker')
+    def test_user_only_mode_is_saved_and_preserved_on_retry(self, start):
+        self.client.post(self.url, {**self.config, 'user_assistant_only': 'on'})
+        previous = Job.objects.get()
+        self.assertIs(previous.config['user_assistant_only'], True)
+        previous.status = Job.Status.FAILED
+        previous.save(update_fields=['status'])
+        self.client.post(reverse('app_main:retry_job', args=[previous.pk]))
+        retry = Job.objects.exclude(pk=previous.pk).get()
+        self.assertEqual(retry.config, previous.config)
+
+    @patch('app_main.views.start_worker')
     def test_retry_preserves_chat_settings_in_a_new_job(self, start):
-        legacy_config = {key: value for key, value in self.config.items() if key != 'include_metadata'}
+        legacy_config = {key: value for key, value in self.config.items()
+                         if key not in ('include_metadata', 'user_assistant_only')}
         previous = Job.objects.create(operation='chat_dataset', config={**legacy_config, 'operation': 'build'},
                                       status=Job.Status.FAILED)
         response = self.client.post(reverse('app_main:retry_job', args=[previous.pk]))
@@ -160,7 +193,8 @@ class ChatDatasetPageTests(TestCase):
         start.assert_not_called()
 
     def test_real_generation_shows_results_and_downloads_complete_archive(self):
-        legacy_config = {key: value for key, value in self.config.items() if key != 'include_metadata'}
+        legacy_config = {key: value for key, value in self.config.items()
+                         if key not in ('include_metadata', 'user_assistant_only')}
         job = Job.objects.create(operation='chat_dataset', config=legacy_config, status=Job.Status.RUNNING)
         with patch('sys.stdout', new_callable=io.StringIO):
             execute(job)
@@ -173,8 +207,14 @@ class ChatDatasetPageTests(TestCase):
         root = job_root(job)
         manifest = json.loads((root / 'dataset/manifest.json').read_text(encoding='utf-8'))
         self.assertIs(manifest['include_metadata'], True)
+        self.assertIs(manifest['user_assistant_only'], False)
+        self.assertEqual(manifest['content_formats']['memory'], 'memory-text-v1')
         rows = json.loads((root / 'dataset/memory/train.json').read_text(encoding='utf-8'))
         self.assertTrue(all(set(row) == {'messages', 'id', 'scenario_key', 'task'} for row in rows))
+        for row in rows:
+            content = row['messages'][1]['content']
+            self.assertTrue(content.startswith('Known facts:\n'))
+            self.assertNotIn('{', content)
         with ZipFile(root / 'chat-dataset.zip') as archive:
             self.assertIsNone(archive.testzip())
             self.assertEqual(set(archive.namelist()), set(manifest['files']) | {'manifest.json'})
@@ -182,6 +222,7 @@ class ChatDatasetPageTests(TestCase):
                 self.assertEqual(archive.read(name), (root / 'dataset' / name).read_bytes())
         response = self.client.get(reverse('app_main:job', args=[job.pk]))
         self.assertContains(response, 'Chat dataset results')
+        self.assertContains(response, 'Start with Memory')
         self.assertContains(response, 'Download dataset ZIP')
         self.assertNotContains(response, 'Result quality')
         for name in ('chat-dataset.zip', 'dataset/memory/train.json', 'dataset/history/test.json',
@@ -197,12 +238,16 @@ class ChatDatasetPageTests(TestCase):
         self.assertFalse(status['active'])
 
     def test_worker_and_archive_export_only_messages_when_metadata_is_disabled(self):
-        job = Job.objects.create(operation='chat_dataset', config={**self.config, 'include_metadata': False})
+        job = Job.objects.create(operation='chat_dataset', config={**self.config, 'include_metadata': False,
+                                                                 'user_assistant_only': True})
         with patch('sys.stdout', new_callable=io.StringIO):
             execute(job)
         root = job_root(job)
         manifest = json.loads((root / 'dataset/manifest.json').read_text(encoding='utf-8'))
         self.assertIs(manifest['include_metadata'], False)
+        self.assertIs(manifest['user_assistant_only'], True)
+        self.assertEqual(manifest['tasks'], list(USER_ASSISTANT_TASKS))
+        self.assertEqual(manifest['splits']['train']['episodes'], len(USER_ASSISTANT_TASKS))
         with ZipFile(root / 'chat-dataset.zip') as archive:
             for view in ('history', 'memory', 'extraction'):
                 for split in ('train', 'validation', 'test'):
@@ -211,6 +256,12 @@ class ChatDatasetPageTests(TestCase):
                     rows = json.loads(archive.read(name))
                     self.assertTrue(rows)
                     self.assertTrue(all(set(row) == {'messages'} for row in rows))
+                    if view == 'memory':
+                        for row in rows:
+                            content = row['messages'][1]['content']
+                            self.assertTrue(content.startswith('Known facts:\n'))
+                            self.assertNotIn('turn_id', content)
+                            self.assertNotIn('{', content)
 
     def test_bad_saved_settings_and_cancellation_do_not_publish_results(self):
         for config, cancelled, message in (

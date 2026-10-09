@@ -4,7 +4,7 @@ from zipfile import ZIP_DEFLATED, ZipFile
 
 from django import forms
 
-from semantic_corpus.dialogue_generator import TASKS, build_dialogue_dataset
+from semantic_corpus.dialogue_generator import TASKS, USER_ASSISTANT_TASKS, build_dialogue_dataset, dialogue_tasks
 
 TASK_LABELS = {
     'recall': 'Recall facts',
@@ -23,6 +23,11 @@ TASK_LABELS = {
 
 
 class ChatDatasetForm(forms.Form):
+    user_assistant_only = forms.BooleanField(
+        label='User and assistant only', initial=True, required=False,
+        help_text='Conversations about the user: no personal names, named places or facts about other people. '
+                  'Includes 11 tasks. Uncheck to include named people and places (12 tasks).',
+    )
     train = forms.IntegerField(
         label='Training dialogues per task', initial=200, min_value=1, max_value=1000000,
         help_text='Examples used to train the model.',
@@ -42,7 +47,7 @@ class ChatDatasetForm(forms.Form):
     include_metadata = forms.BooleanField(
         label='Include metadata', initial=True, required=False,
         help_text='Include id, scenario_key and task in training JSON records. '
-                  'Unchecked: export only messages in History, Memory and Extraction files.',
+                  'Unchecked: export only messages. This does not change the message content.',
     )
 
     def __init__(self, *args, **kwargs):
@@ -53,8 +58,12 @@ class ChatDatasetForm(forms.Form):
 
     @classmethod
     def from_config(cls, config):
-        # Jobs saved before the checkbox existed always included metadata.
-        return cls({**config, 'include_metadata': config.get('include_metadata', True)})
+        # Preserve the behavior of jobs saved before these checkboxes existed.
+        return cls({**config, 'include_metadata': config.get('include_metadata', True),
+                    'user_assistant_only': config.get('user_assistant_only', False)})
+
+    def tasks(self):
+        return dialogue_tasks(self.fields['user_assistant_only'].clean(self['user_assistant_only'].value()))
 
     def preview(self):
         totals = {}
@@ -64,7 +73,7 @@ class ChatDatasetForm(forms.Form):
             except forms.ValidationError:
                 totals[name] = None
             else:
-                totals[name] = value * len(TASKS)
+                totals[name] = value * len(self.tasks())
         totals['total'] = (sum(totals.values()) if all(value is not None for value in totals.values()) else None)
         return totals
 

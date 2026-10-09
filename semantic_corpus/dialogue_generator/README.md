@@ -26,6 +26,26 @@ layout at its root; files are also retained in `artifacts/ui/jobs/<id>/dataset/`
 The UI exports model-independent data. The optional trainer-report adapter below
 is available through the CLI.
 
+**User and assistant only** is checked by default in the UI. It generates
+conversations about the user's own location, feelings, preferences and plans,
+without personal names, named cities or facts about other people. Ordinary places
+such as `the kitchen` and `the park` replace city names. The `different_people`
+task is excluded: 11 tasks give **2,200 / 220 / 220** episodes at the default
+quotas. Uncheck it to use the original 12-task named-pool scenarios.
+
+The CLI and Python API retain the original behavior by default. To select the
+simplified conversations, add `--user-assistant-only` or pass
+`user_assistant_only=True` to `build_dialogue_dataset` / `DialogueGenerator`.
+The setting is saved with a UI job and retained on retry; older jobs without it
+keep their named-pool behavior. This changes the scenario content, not the
+History / Memory / Extraction formats or the system instructions.
+
+In simplified conversations, the first user turn provides a location, feeling
+and drink preference. These facts stay available while the conversation tests
+recall, meeting corrections, options and the other tasks. Their combinations
+provide variation without invented names. The vocabulary is finite: an excessive
+quota fails explicitly instead of filling the dataset with duplicate scenarios.
+
 **Include metadata** is checked by default. Uncheck it to export only `messages`
 in every training JSON record, omitting the top-level `id`, `scenario_key` and
 `task` fields. The equivalent CLI flag is `--no-metadata`; the Python API accepts
@@ -37,16 +57,16 @@ the job and preserved on retry; older jobs default to including metadata.
 
 | Task | What the target tests |
 | --- | --- |
-| `recall` | Recall the user's location despite a fact about someone else |
+| `recall` | Recall the user's location from the conversation |
 | `correction` | Use the corrected meeting day, retaining the old claim only for audit |
-| `different_people` | Distinguish the user's feeling from another person's feeling |
+| `different_people` | Distinguish the user's feeling from another person's feeling (named-pool only) |
 | `negation` | Answer yes or no according to an explicit positive/negative report |
 | `desire_vs_done` | A wish to visit somewhere does not establish a completed visit |
 | `option_reference` | Resolve “the first/second one” using the assistant's options |
 | `ambiguous_reference` | Ask which of two options “that one” refers to |
 | `unknown` | Admit a meeting day is unknown when it was never stated |
 | `suggestion_vs_done` | A suggestion/thanks is not evidence of completion; handle yes/no/unknown |
-| `topic_return` | Recover the user's preference after other topics and people's preferences |
+| `topic_return` | Recover the user's preference after discussing another topic |
 | `retraction` | Withdraw a day without inventing a replacement |
 | `capability` | Explain that this chat cannot send messages or set reminders |
 
@@ -84,13 +104,47 @@ are context inside the user message, so one view is not additionally trained on
 all the intermediate “Got it” replies.
 
 - **history:** the preceding dialogue and current request → natural answer.
-- **memory:** simulated current facts, assistant actions, last assistant message
-  and current request → the **same** natural answer. This is oracle memory,
-  not a prediction from a trained extractor.
+- **memory:** simulated current facts rendered as short English sentences,
+  assistant suggestions/ordered options, last assistant message and current
+  request → the **same** natural answer. Message content contains no embedded
+  JSON, fact/turn IDs or evidence objects. This is oracle memory, not a prediction
+  from a trained extractor.
 - **extraction:** state before a user turn, previous assistant message, current
   user turn and next fact ID → JSON delta with `add`, `replace`, `invalidate`.
   Exact repeated transition prompts are deduplicated. This is a separate task;
   do not blindly merge its JSON targets into response training.
+
+For the first training stage, use **memory**. For example, the model's input is:
+
+```text
+Known facts:
+- Your meeting is on Friday.
+- You want to visit the park.
+- You have not visited the park.
+
+Last assistant message: Got it.
+Latest user message: When is my meeting?
+```
+
+The target is `Your meeting is on Friday.` The outer dataset remains a JSON
+array of `messages`; the text seen by the response model is plain English.
+This applies with either value of **Include metadata** and with or without
+named people. Metadata controls only the record's outer fields.
+
+`memory_text.py` renders active facts only. Corrected/withdrawn facts stay in
+the audit, and missing information does not become a negative assertion.
+Wishes, negative reports and completed actions use distinct sentences; assistant
+suggestions are separate, and offered options retain their order. Unsupported
+relations/actions fail explicitly instead of silently omitting information.
+The internal memory and **extraction** input/target still use their existing
+structured schema. Text commands for extraction are a later stage.
+
+The manifest now records `prompt_version: dialogue-prompts-v2` and
+`content_formats.memory: memory-text-v1`. Generate a new job/directory to get
+the text format; existing output files are not rewritten. Text-based prompt
+deduplication can select different episodes when older prompts differed only
+by internal identifiers. Paired History/Memory targets and split checks remain
+enforced.
 
 The audit JSONL retains full turns, state before/after each user turn, deltas,
 retired facts, reference query, expected dialogue action and supporting IDs.
@@ -102,12 +156,17 @@ build. A failed build leaves the requested output directory unpublished.
 Sampling uses independent seeded streams per task and split. Increasing a quota
 extends that stream. One rendering of each distinct event plan is retained;
 all response views and transition examples from an episode keep its split.
-Normalized duplicate prompts and conflicting targets are checked. Names are
-partitioned through the shared entity pool before rendering; **task families,
-sentence patterns, days, feelings and other common vocabulary are shared**.
-Test performance therefore measures this controlled distribution with held-out
-names/plans, not unseen reasoning tasks or unrestricted chat. Keep a separate
-human-written test set for broader assessment.
+Normalized duplicate prompts and conflicting targets are checked. Named-pool
+scenarios partition names through the shared entity pool before rendering.
+Simplified scenarios hash the complete starting `(location, feeling, drink)`
+context into train/validation/test groups (80/10/10 buckets). All tasks and
+surface variants sharing that context stay in one split, independent of seed
+and quotas. This also keeps identical initial memory-update prompts out of
+different splits. It holds out combinations, not individual words.
+**Task families, sentence patterns, days, feelings and other common vocabulary
+are shared**. Test performance measures this controlled distribution with
+held-out names or contexts and plans, not unseen reasoning tasks or unrestricted
+chat. Keep a separate human-written test set for broader assessment.
 
 ## Using the existing `test-llm` trainer
 

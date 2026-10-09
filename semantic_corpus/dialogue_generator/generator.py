@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from dataclasses import asdict
 import hashlib
+from itertools import product
 import json
 import random
 import re
@@ -22,6 +23,13 @@ TASKS = (
     "option_reference", "ambiguous_reference", "unknown", "suggestion_vs_done",
     "topic_return", "retraction", "capability",
 )
+USER_ASSISTANT_TASKS = tuple(task for task in TASKS if task != "different_people")
+COMMON_PLACES = (
+    "the kitchen", "the living room", "the bedroom", "the garden",
+    "the office", "the library", "the park", "the cafe",
+    "the gym", "the classroom", "the supermarket", "the museum",
+    "the station", "the restaurant", "the bookstore", "the hallway",
+)
 DAYS = ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
 FEELINGS = ("tired", "happy", "bored", "excited", "nervous", "relaxed")
 DRINKS = ("tea", "coffee", "water", "orange juice", "hot chocolate", "lemonade")
@@ -31,6 +39,19 @@ ACTIVITIES = ("a short walk", "a music break", "a snack break", "a rest break", 
 def fingerprint(value: object) -> str:
     return hashlib.sha256(json.dumps(value, ensure_ascii=False, sort_keys=True,
                                      separators=(",", ":")).encode("utf-8")).hexdigest()
+
+
+def dialogue_tasks(user_assistant_only: bool = False) -> tuple[str, ...]:
+    if type(user_assistant_only) is not bool:
+        raise ValueError("user_assistant_only must be a boolean")
+    return USER_ASSISTANT_TASKS if user_assistant_only else TASKS
+
+
+def _context_split(context: tuple[str, str, str]) -> str:
+    # Keep an entire starting context in one split, including its extraction
+    # prefix and all later tasks/surface variants. Independent of seed/quotas.
+    bucket = int(fingerprint(["user-assistant-context-v1", context])[:8], 16) % 10
+    return "train" if bucket < 8 else "validation" if bucket == 8 else "test"
 
 
 class _Conversation:
@@ -82,10 +103,15 @@ def _fact(subject: str, relation: str, value: str, *, negative: bool = False,
 
 
 def _scenario(task: str, split: str, rng: random.Random,
-              names: tuple[str, ...], places: tuple[str, ...]) -> Episode:
-    name, other = rng.sample(names, 2)
-    # A name may be both PERSON and LOCATION in the shared pool.
-    place, destination = rng.sample([place for place in places if place not in (name, other)], 2)
+              names: tuple[str, ...], places: tuple[str, ...],
+              context: tuple[str, str, str] | None = None) -> Episode:
+    if context is None:
+        name, other = rng.sample(names, 2)
+        # A name may be both PERSON and LOCATION in the shared pool.
+        place, destination = rng.sample([place for place in places if place not in (name, other)], 2)
+    else:
+        place = context[0]
+        destination = rng.choice([value for value in COMMON_PLACES if value != place])
     day, new_day = rng.sample(DAYS, 2)
     feeling, other_feeling = rng.sample(FEELINGS, 2)
     drink, other_drink = rng.sample(DRINKS, 2)
@@ -93,18 +119,28 @@ def _scenario(task: str, split: str, rng: random.Random,
     variant = rng.randrange(2)
     choose = lambda a, b: (a, b)[variant]
     c = _Conversation()
-    # One irrelevant, explicitly grounded fact tests attention and gives every
-    # task natural held-out vocabulary, including otherwise identical refusals.
-    c.pair(choose(f"My friend {name} is in {place}.", f"{name}, my friend, is currently in {place}."),
-           facts=(_fact(name, "location", place),))
+    if context is None:
+        # Named scenarios use one grounded distractor and held-out vocabulary.
+        c.pair(choose(f"My friend {name} is in {place}.", f"{name}, my friend, is currently in {place}."),
+               facts=(_fact(name, "location", place),))
+    else:
+        place, feeling, drink = context
+        # These user facts stay active throughout the episode. Grouping them
+        # together protects both response views and extraction from split leaks.
+        c.pair(choose(f"I'm in {place}. I feel {feeling}, and I prefer {drink}.",
+                      f"I prefer {drink}. Right now I'm in {place} and feel {feeling}."),
+               facts=(_fact("user", "location", place), _fact("user", "feeling", feeling),
+                      _fact("user", "drink", drink)))
 
     if task == "recall":
-        c.pair(choose(f"I'm in {destination} now.", f"Right now I am in {destination}."),
-               facts=(_fact("user", "location", destination),))
+        if context is None:
+            c.pair(choose(f"I'm in {destination} now.", f"Right now I am in {destination}."),
+                   facts=(_fact("user", "location", destination),))
         c.user(choose("Where am I now?", "Remind me where I am."))
         query = Query("lookup", relation="location")
     elif task == "correction":
-        c.pair(f"My meeting with {other} is on {day}.", facts=(_fact("user", "meeting_day", day),))
+        meeting = "My meeting" if context is not None else f"My meeting with {other}"
+        c.pair(f"{meeting} is on {day}.", facts=(_fact("user", "meeting_day", day),))
         c.pair(choose(f"Correction: it's on {new_day}, not {day}.", f"I got the day wrong. It's {new_day}."),
                facts=(_fact("user", "meeting_day", new_day),))
         c.user(choose("Which day is my meeting?", "Remind me of the corrected meeting day."))
@@ -126,8 +162,11 @@ def _scenario(task: str, split: str, rng: random.Random,
         c.user(choose(f"Have I visited {destination}?", f"Have I already been to {destination}?"))
         query = Query("yes_no", relation="visited", value=destination)
     elif task in ("option_reference", "ambiguous_reference"):
-        c.user(f"I'm visiting {destination} and would like a break. Give me two options.",
-               facts=(_fact("user", "location", destination),))
+        if context is None:
+            c.user(f"I'm visiting {destination} and would like a break. Give me two options.",
+                   facts=(_fact("user", "location", destination),))
+        else:
+            c.user("I'd like a break. Give me two options.")
         offer = c.assistant(f"You could take {first} or {second}, in that order.",
                             action="options", items=(first, second))
         if task == "ambiguous_reference":
@@ -142,11 +181,15 @@ def _scenario(task: str, split: str, rng: random.Random,
             c.user(choose("What did I choose?", "Which option did I pick?"))
             query = Query("lookup", relation="selection")
     elif task == "unknown":
-        c.pair(f"Can you help with my meeting with {other}?")
+        c.pair("Can you help with my meeting?" if context is not None
+               else f"Can you help with my meeting with {other}?")
         c.user(choose("On which day is my meeting?", "What day is that meeting scheduled for?"))
         query = Query("lookup", relation="meeting_day")
     elif task == "suggestion_vs_done":
-        c.user(f"I feel {feeling}. Suggest a break.", facts=(_fact("user", "feeling", feeling),))
+        if context is None:
+            c.user(f"I feel {feeling}. Suggest a break.", facts=(_fact("user", "feeling", feeling),))
+        else:
+            c.user("Suggest a break for me.")
         suggestion = c.assistant(f"You could take {first}.", action="suggestion", items=(first,))
         done = rng.choice((True, False, None))
         if done is None:
@@ -157,21 +200,31 @@ def _scenario(task: str, split: str, rng: random.Random,
         c.user(f"Have I taken {first}?")
         query = Query("yes_no", relation="completed_break", value=first)
     elif task == "topic_return":
-        c.pair(f"I prefer {drink}.", facts=(_fact("user", "drink", drink),))
-        c.pair(f"Changing the subject: {other} prefers {other_drink}.", facts=(_fact(other, "drink", other_drink),))
-        c.pair(f"Also, I'm in {destination} today.", facts=(_fact("user", "location", destination),))
+        if context is None:
+            c.pair(f"I prefer {drink}.", facts=(_fact("user", "drink", drink),))
+            c.pair(f"Changing the subject: {other} prefers {other_drink}.", facts=(_fact(other, "drink", other_drink),))
+            c.pair(f"Also, I'm in {destination} today.", facts=(_fact("user", "location", destination),))
+        else:
+            c.pair(f"Changing the subject: my meeting is on {day}.",
+                   facts=(_fact("user", "meeting_day", day),))
+            c.pair("That's all about the meeting for now.")
         c.user(choose("Back to my drink: what do I prefer?", "Returning to drinks, what was my preference?"))
         query = Query("lookup", relation="drink")
     elif task == "retraction":
-        c.pair(f"My meeting with {other} is on {day}.", facts=(_fact("user", "meeting_day", day),))
+        meeting = "My meeting" if context is not None else f"My meeting with {other}"
+        c.pair(f"{meeting} is on {day}.", facts=(_fact("user", "meeting_day", day),))
         old = c.memory.find("user", "meeting_day")
         c.pair(choose("Forget that day. The meeting date hasn't been decided yet.",
                       "That meeting day was wrong; the date is now undecided."), invalidate=(old.id,))
         c.user(choose("When is my meeting?", "Do you know my meeting day?"))
         query = Query("lookup", relation="meeting_day")
     elif task == "capability":
-        c.pair(f"Can we talk about contacting {other} on {day}?")
-        c.user(choose(f"Send {other} a message for me.", f"Set a reminder to contact {other} on {day}."))
+        if context is None:
+            c.pair(f"Can we talk about contacting {other} on {day}?")
+            c.user(choose(f"Send {other} a message for me.", f"Set a reminder to contact {other} on {day}."))
+        else:
+            c.pair("Can you help me plan my day?")
+            c.user(choose("Set a reminder for me to take a break.", "Remind me to drink some water in an hour."))
         query = Query("capability")
     else:
         raise ValueError(f"Unknown dialogue task: {task}")
@@ -196,22 +249,29 @@ def _scenario(task: str, split: str, rng: random.Random,
 
 
 class DialogueGenerator:
-    """Draw pilot scenarios using named people/places from the existing pool.
+    """Draw named-pool scenarios or conversations about the user alone.
 
-    Task structures and surface families are shared between splits. Names and
-    event plans are held out; this is not an unseen-task or free-chat benchmark.
+    Task structures and surface families are shared between splits. Named
+    entities or user-context combinations and event plans are held out; this
+    is not an unseen-task or free-chat benchmark.
     """
 
-    def __init__(self, *, seed: int = 42, pool: EntityPool | None = None) -> None:
+    def __init__(self, *, seed: int = 42, pool: EntityPool | None = None,
+                 user_assistant_only: bool = False) -> None:
         self.seed = seed
-        self.pool = default_pool() if pool is None else pool
+        self.tasks = dialogue_tasks(user_assistant_only)
+        self.user_assistant_only = user_assistant_only
+        self.pool = default_pool() if pool is None and not user_assistant_only else pool
 
     def generate(self, task: str, count: int, *, split: str) -> Iterator[Episode]:
-        if task not in TASKS or split not in ("train", "validation", "test"):
+        if task not in self.tasks or split not in ("train", "validation", "test"):
             raise ValueError("Unknown task or split")
         if not isinstance(count, int) or isinstance(count, bool) or count < 0:
             raise ValueError("Count must be a nonnegative integer")
         if not count:
+            return
+        if self.user_assistant_only:
+            yield from self._generate_user_assistant(task, count, split=split)
             return
         pool = self.pool.split("dev" if split == "validation" else split)
         # Conservative grammar subset: no titles, determiners or plural names.
@@ -234,3 +294,26 @@ class DialogueGenerator:
             if produced == count:
                 return
         raise ValueError(f"{task}/{split}: exhausted distinct scenarios ({produced}/{count})")
+
+    def _generate_user_assistant(self, task: str, count: int, *, split: str) -> Iterator[Episode]:
+        contexts = [context for context in product(COMMON_PLACES, FEELINGS, DRINKS)
+                    if _context_split(context) == split]
+        rng = random.Random(fingerprint(["user-assistant-v1", self.seed, task, split]))
+        seen: set[str] = set()
+        produced = 0
+        # Visit all contexts before repeating one. Simple tasks have only one
+        # event plan per context; fail explicitly rather than pad with duplicates.
+        rounds = 1 if task in ("recall", "unknown", "capability") else max(20, count * 20 // len(contexts))
+        for _ in range(rounds):
+            rng.shuffle(contexts)
+            for context in contexts:
+                episode = _scenario(task, split, rng, (), (), context=context)
+                if episode.scenario_key in seen:
+                    continue
+                seen.add(episode.scenario_key)
+                yield episode
+                produced += 1
+                if produced == count:
+                    return
+        raise ValueError(f"{task}/{split}: exhausted distinct user-assistant scenarios "
+                         f"({produced}/{count}); reduce the per-task quota")

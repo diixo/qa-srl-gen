@@ -16,7 +16,7 @@ from semantic_corpus.semantic_generator.substitutions import load_pool
 from semantic_corpus.ontology import load_default_hierarchy
 
 from . import catalog
-from .chat_dataset import ChatDatasetForm, TASKS, TASK_LABELS
+from .chat_dataset import ChatDatasetForm, TASKS, USER_ASSISTANT_TASKS, TASK_LABELS
 from .forms import JobForm
 from .models import Job, Worker
 from .template_mining import save_source_upload
@@ -96,8 +96,10 @@ def chat_dataset(request):
             messages.error(request, f'The job was queued, but the worker could not start: {error}')
         return redirect('app_main:job', pk=job.pk)
     return page(request, 'chat_dataset.html', title='Chat dataset', form=form,
-                preview=form.preview(), task_count=len(TASKS),
-                task_labels=[TASK_LABELS.get(task, task.replace('_', ' ').capitalize()) for task in TASKS],
+                preview=form.preview(), task_count=len(form.tasks()),
+                named_task_count=len(TASKS), simple_task_count=len(USER_ASSISTANT_TASKS),
+                task_rows=[{'label': TASK_LABELS[task], 'people_only': task not in USER_ASSISTANT_TASKS,
+                            'hidden': task not in form.tasks()} for task in TASKS],
                 chat_jobs=Job.objects.filter(operation='chat_dataset')[:10])
 
 

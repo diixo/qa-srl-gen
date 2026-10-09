@@ -14,16 +14,23 @@
     <div class="col-xl-9">
         <section class="panel">
             <h2>Generate a chat dataset</h2>
-            <p class="text-secondary">Use {{ task_count }} dialogue tasks with known facts, memory updates and reference answers. Names and places come from Built-in entities.</p>
-            <form method="post" data-chat-dataset-form data-task-count="{{ task_count }}">
+            <p class="text-secondary">Generate conversations with known facts, memory updates and reference answers.</p>
+            <form method="post" data-chat-dataset-form data-task-count="{{ task_count }}" data-named-task-count="{{ named_task_count }}" data-simple-task-count="{{ simple_task_count }}">
                 {% csrf_token %}
                 {% if form.non_field_errors %}
                     <div class="alert alert-danger" role="alert">{{ form.non_field_errors }}</div>
                 {% endif %}
 
+                <div class="form-check mb-1">
+                    {{ form.user_assistant_only }}
+                    <label class="form-check-label" for="{{ form.user_assistant_only.id_for_label }}">{{ form.user_assistant_only.label }}</label>
+                </div>
+                <div class="form-text mb-4">{{ form.user_assistant_only.help_text }}</div>
+                <div class="text-danger small">{{ form.user_assistant_only.errors }}</div>
+
                 <div class="row g-4 mb-4">
                     {% for field in form %}
-                        {% if field.name != 'include_metadata' %}
+                        {% if field.name != 'include_metadata' and field.name != 'user_assistant_only' %}
                             <div class="col-md-6">
                                 <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
                                 {{ field }}
@@ -34,7 +41,7 @@
                     {% endfor %}
                 </div>
 
-                <p class="small text-secondary">Each quota applies to every task. With {{ task_count }} tasks, 200 training dialogues per task produces {% widthratio task_count 1 200 %} training dialogues.</p>
+                <p class="small text-secondary">Each quota applies to every enabled task (<span data-chat-task-count>{{ task_count }}</span> tasks). Unique scenarios are finite; generation reports an error if the quota cannot be filled.</p>
                 <div class="row g-3 mb-3" aria-live="polite" aria-atomic="true">
                     <div class="col-sm-4">
                         <div class="metric-card">
@@ -79,11 +86,11 @@
             <h2>What you get</h2>
             <dl class="mb-0">
                 <dt>Memory</dt>
-                <dd class="text-secondary">Train natural responses using the known conversation state.</dd>
+                <dd class="text-secondary">Start here: train natural responses using plain-text facts and assistant suggestions.</dd>
                 <dt>History</dt>
                 <dd class="text-secondary">Train the same responses using the preceding dialogue.</dd>
                 <dt>Extraction</dt>
-                <dd class="text-secondary mb-0">Train memory updates after each user message.</dd>
+                <dd class="text-secondary mb-0">Separate memory-update task. Inputs and targets still use JSON; reserve this for a later experiment.</dd>
             </dl>
         </section>
         <section class="panel">
@@ -96,10 +103,10 @@
 </div>
 
 <section class="panel mb-4">
-    <h2>Included dialogue tasks ({{ task_count }})</h2>
+    <h2>Included dialogue tasks (<span data-chat-task-count>{{ task_count }}</span>)</h2>
     <ul class="row gy-2 mb-0 ps-4">
-        {% for label in task_labels %}
-            <li class="col-md-6">{{ label }}</li>
+        {% for task in task_rows %}
+            <li class="col-md-6"{% if task.people_only %} data-chat-people-only{% endif %}{% if task.hidden %} hidden{% endif %}>{{ task.label }}</li>
         {% endfor %}
     </ul>
 </section>

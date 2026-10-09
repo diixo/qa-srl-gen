@@ -119,6 +119,9 @@
             </div>
         </div>
         <p class="text-secondary">History and memory contain paired dialogues with the same reference answers. Extraction contains separate memory-update examples.</p>
+        {% if chat_summary.content_formats.memory == 'memory-text-v1' %}
+            <p class="text-secondary">Start with Memory: its message content uses plain-text facts and natural answers. Extraction still uses JSON for the separate memory-update task.</p>
+        {% endif %}
         <div class="table-responsive">
             <table class="table align-middle mb-0">
                 <thead>

@@ -14,10 +14,11 @@ import unicodedata
 from typing import Callable
 
 from ..semantic_generator.substitutions import ENTITIES_PATH
-from .generator import GENERATOR_VERSION, TASKS, DialogueGenerator, fingerprint
+from .generator import GENERATOR_VERSION, DialogueGenerator, fingerprint
+from .memory_text import MEMORY_TEXT_VERSION, render_memory
 from .models import Episode, SCHEMA_VERSION, Transition
 
-PROMPT_VERSION = "dialogue-prompts-v1"
+PROMPT_VERSION = "dialogue-prompts-v2"
 RESPONSE_SYSTEM = (
     "You are a friendly AI personal assistant. Reply briefly and naturally to the latest user message. "
     "Use only the supplied conversation context. If information is missing, say you don't know; "
@@ -52,11 +53,8 @@ def response_row(episode: Episode, view: str) -> dict:
             f"{turn.role.title()}: {turn.text}" for turn in episode.turns[:-1])
     elif view == "memory":
         # Semantic memory is supplied by the simulator, not an extracted model.
-        facts = [{key: value for key, value in asdict(fact).items() if key != "evidence"}
-                 for fact in episode.memory.facts]
-        memory = {"facts": facts, "assistant_actions": [asdict(a) for a in episode.memory.assistant_actions]}
         previous = episode.turns[-2].text if len(episode.turns) > 1 else "(none)"
-        context = "Conversation memory:\n" + _json(memory) + "\nLast assistant message: " + previous
+        context = render_memory(episode.memory) + "\n\nLast assistant message: " + previous
     else:
         raise ValueError(f"Unknown response view: {view}")
     prompt = context + "\nLatest user message: " + episode.turns[-1].text
@@ -108,14 +106,17 @@ def _training_report(path: Path | None, seed: int) -> dict | None:
 def build_dialogue_dataset(out: Path, *, train: int = 200, validation: int = 20,
                            test: int = 20, seed: int = 42,
                            include_metadata: bool = True,
+                           user_assistant_only: bool = False,
                            training_report: Path | None = None,
                            progress: Callable[[str, int, int], None] | None = None) -> dict:
     """Write *count per task* for each split into a new directory.
 
-    Memory/history are paired final-answer examples. Extraction transitions
+    Memory/history are paired plain-text final-answer examples. Extraction transitions
     are deduplicated independently. No tokenizer, model, network or DB is used.
     Disabling metadata exports only messages in training rows; internal grouping,
     validation and the episode audit records retain their identifiers.
+    user_assistant_only selects 11 tasks without names or third-party facts;
+    the default retains the original 12 named-pool tasks.
     An optional existing trainer report supplies its tokenizer contract; the
     training loader must still validate token lengths before loading weights.
     """
@@ -128,22 +129,32 @@ def build_dialogue_dataset(out: Path, *, train: int = 200, validation: int = 20,
     if out.exists():
         raise FileExistsError(f"Choose a new output directory: {out}")
     report = _training_report(training_report, seed)
-    generator = DialogueGenerator(seed=seed)
-    total = sum(counts.values()) * len(TASKS)
+    generator = DialogueGenerator(seed=seed, user_assistant_only=user_assistant_only)
+    tasks = generator.tasks
+    total = sum(counts.values()) * len(tasks)
     processed = 0
     views = ("history", "memory", "extraction")
     seen: dict[str, dict[str, tuple[str, str]]] = {view: {} for view in views}
     scenario_splits: dict[str, str] = {}
     manifest = {"schema_version": SCHEMA_VERSION, "generator_version": GENERATOR_VERSION,
                 "prompt_version": PROMPT_VERSION, "seed": seed, "quota_per_task": counts,
+                "content_formats": {"history": "history-text-v1", "memory": MEMORY_TEXT_VERSION,
+                                    "extraction": "extraction-json-v1"},
                 "include_metadata": include_metadata,
-                "tasks": list(TASKS), "splits": {}, "resources": {},
-                "split_policy": "held-out pool names; one realization per distinct event plan",
+                "user_assistant_only": user_assistant_only,
+                "dialogue_profile": "user-assistant-v1" if user_assistant_only else "named-pool-v1",
+                "tasks": list(tasks), "splits": {}, "resources": {},
+                "split_policy": ("held-out user contexts (location, feeling, drink), hashed 80/10/10; "
+                                 "one realization per distinct event plan" if user_assistant_only else
+                                 "held-out pool names; one realization per distinct event plan"),
                 "shared_between_splits": ["task families", "surface patterns", "common vocabulary"],
                 "memory_source": "scenario simulator (oracle)",
                 "review_status": "synthetic pilot; inspect before large-scale training",
                 "training_report_supplied": report is not None}
-    for path in [ENTITIES_PATH, *sorted(Path(__file__).parent.glob("*.py"))]:
+    resources = sorted(Path(__file__).parent.glob("*.py"))
+    if not user_assistant_only:
+        resources.append(ENTITIES_PATH)
+    for path in resources:
         manifest["resources"][path.name] = _sha256(path)
     out.parent.mkdir(parents=True, exist_ok=True)
     # Failure never publishes a half-finished dataset or overwrites an old one.
@@ -179,7 +190,7 @@ def build_dialogue_dataset(out: Path, *, train: int = 200, validation: int = 20,
                     written[view] += 1
                     return True
 
-                for task in TASKS:
+                for task in tasks:
                     accepted = 0
                     phase = f"Generating {split}: {task.replace('_', ' ')}"
                     if progress:

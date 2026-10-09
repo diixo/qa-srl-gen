@@ -462,6 +462,15 @@ This creates 12 task families with paired history/memory response datasets and
 a separate memory-update dataset, all in `messages` format. Quotas are per task;
 the defaults give 2,400 training, 240 validation and 240 test episodes. Names and
 places come from the existing entity pool. No model or network is needed.
+For conversations about the user alone, add `--user-assistant-only`: no personal
+names or named places, 11 tasks, and 2,200 / 220 / 220 episodes by default.
+In **Pipeline → Chat dataset**, **User and assistant only** is checked by default;
+uncheck it to include named people. **Include metadata** separately controls the
+top-level IDs and task labels in training records.
+Start response training with `memory/`: its message content now uses short
+English facts and ordered assistant options, with natural-language targets.
+`history/` also uses text; `extraction/` remains a separate JSON memory-update
+task for a later stage. Generate a new dataset to obtain the text memory format.
 See [dialogue generation](semantic_corpus/dialogue_generator/README.md) for the
 scenario schema, split limits, files and the existing chat-trainer adapter.
 

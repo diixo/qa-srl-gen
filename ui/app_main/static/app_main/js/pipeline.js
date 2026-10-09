@@ -3,11 +3,16 @@
   const chatForm = document.querySelector('[data-chat-dataset-form]');
   if (chatForm) {
     const splits = ['train', 'validation', 'test'];
+    const userOnly = chatForm.elements.namedItem('user_assistant_only');
     const updateChatCounts = () => {
+      const taskCount = Number(userOnly.checked ? chatForm.dataset.simpleTaskCount : chatForm.dataset.namedTaskCount);
+      chatForm.dataset.taskCount = String(taskCount);
+      document.querySelectorAll('[data-chat-task-count]').forEach(el => { el.textContent = taskCount; });
+      document.querySelectorAll('[data-chat-people-only]').forEach(el => { el.hidden = userOnly.checked; });
       const counts = splits.map(split => {
         const input = chatForm.elements.namedItem(split);
         const count = input.value !== '' && input.validity.valid
-          ? Number(input.value) * Number(chatForm.dataset.taskCount) : null;
+          ? Number(input.value) * taskCount : null;
         chatForm.querySelector(`[data-chat-count="${split}"]`).textContent =
           count === null ? '—' : count.toLocaleString('en-US');
         return count;
@@ -16,6 +21,7 @@
         ? '—' : counts.reduce((sum, value) => sum + value, 0).toLocaleString('en-US');
     };
     splits.forEach(split => chatForm.elements.namedItem(split).addEventListener('input', updateChatCounts));
+    userOnly.addEventListener('change', updateChatCounts);
     updateChatCounts();
     chatForm.addEventListener('submit', () => { chatForm.querySelector('button[type=submit]').disabled = true; });
   }

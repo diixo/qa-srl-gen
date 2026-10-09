@@ -8,7 +8,9 @@ import json
 import pytest
 
 from semantic_corpus.cli import main
-from semantic_corpus.dialogue_generator import TASKS, DialogueGenerator, build_dialogue_dataset
+from semantic_corpus.dialogue_generator import (
+    TASKS, USER_ASSISTANT_TASKS, DialogueGenerator, build_dialogue_dataset, dialogue_tasks,
+)
 from semantic_corpus.dialogue_generator.export import extraction_row, prompt_key, response_row
 from semantic_corpus.dialogue_generator.models import (
     Delta, Evidence, Fact, Memory, Query, Replacement, Turn, answer_query, apply_delta,
@@ -16,9 +18,10 @@ from semantic_corpus.dialogue_generator.models import (
 from semantic_corpus.semantic_generator.substitutions import EntityPool
 
 
-@pytest.mark.parametrize("task", TASKS)
-def test_scenarios_replay_and_only_quote_visible_turns(task):
-    for episode in DialogueGenerator(seed=19).generate(task, 20, split="train"):
+@pytest.mark.parametrize("task,user_only", [(task, False) for task in TASKS]
+                         + [(task, True) for task in USER_ASSISTANT_TASKS])
+def test_scenarios_replay_and_only_quote_visible_turns(task, user_only):
+    for episode in DialogueGenerator(seed=19, user_assistant_only=user_only).generate(task, 20, split="train"):
         episode.validate()
         visible = {}
         for turn in episode.turns:
@@ -170,12 +173,14 @@ def test_exports_keep_targets_out_of_prompts_and_have_equal_loss_scope():
     assert json.loads(row["messages"][-1]["content"]) == json.loads(json.dumps(asdict(transition.delta)))
 
 
-def test_streamed_build_quotas_checksums_prompt_dedup_and_trainer_contract(tmp_path):
+@pytest.mark.parametrize("user_only", [False, True])
+def test_streamed_build_quotas_checksums_prompt_dedup_and_trainer_contract(tmp_path, user_only):
     contract = tmp_path / "trainer.json"
     contract.write_text(json.dumps({"settings": {"model": "local-test-model", "max_tokens": 1024},
                                     "chat_template_sha256": "a" * 64}), encoding="utf-8")
     dest = tmp_path / "dataset"
-    manifest = build_dialogue_dataset(dest, train=3, validation=2, test=2, training_report=contract)
+    settings = dict(train=3, validation=2, test=2, training_report=contract, user_assistant_only=user_only)
+    manifest = build_dialogue_dataset(dest, **settings)
     assert manifest == json.loads((dest / "manifest.json").read_text(encoding="utf-8"))
     for file, checksum in manifest["files"].items():
         assert hashlib.sha256((dest / file).read_bytes()).hexdigest() == checksum
@@ -184,7 +189,7 @@ def test_streamed_build_quotas_checksums_prompt_dedup_and_trainer_contract(tmp_p
         for split, quota in (("train", 3), ("validation", 2), ("test", 2)):
             rows = json.loads((dest / view / f"{split}.json").read_text(encoding="utf-8"))
             if view != "extraction":
-                assert Counter(row["task"] for row in rows) == dict.fromkeys(TASKS, quota)
+                assert Counter(row["task"] for row in rows) == dict.fromkeys(dialogue_tasks(user_only), quota)
             keys = {prompt_key(row) for row in rows}
             assert len(keys) == len(rows)
             assert not keys & previous_keys
@@ -193,7 +198,7 @@ def test_streamed_build_quotas_checksums_prompt_dedup_and_trainer_contract(tmp_p
         assert report["settings"] == {"model": "local-test-model", "max_tokens": 1024, "seed": 42}
         assert report["token_validation"] == "deferred_to_training_loader"
     again = tmp_path / "repeat"
-    assert manifest == build_dialogue_dataset(again, train=3, validation=2, test=2, training_report=contract)
+    assert manifest == build_dialogue_dataset(again, **settings)
     with pytest.raises(FileExistsError):
         build_dialogue_dataset(dest)
     assert manifest == json.loads((dest / "manifest.json").read_text(encoding="utf-8"))
@@ -226,11 +231,13 @@ def test_progress_tracks_all_splits_and_callback_can_abort_publication(tmp_path)
     assert not list(tmp_path.glob('.dialogue-build-*'))
 
 
-def test_omitting_metadata_preserves_training_content_splits_and_audit(tmp_path):
+@pytest.mark.parametrize("user_only", [False, True])
+def test_omitting_metadata_preserves_training_content_splits_and_audit(tmp_path, user_only):
     full = tmp_path / 'full'
     minimal = tmp_path / 'messages-only'
-    before = build_dialogue_dataset(full, train=1, validation=1, test=1)
-    after = build_dialogue_dataset(minimal, train=1, validation=1, test=1, include_metadata=False)
+    settings = dict(train=1, validation=1, test=1, user_assistant_only=user_only)
+    before = build_dialogue_dataset(full, **settings)
+    after = build_dialogue_dataset(minimal, **settings, include_metadata=False)
     assert before['include_metadata'] is True and after['include_metadata'] is False
     assert before['splits'] == after['splits']
     for split in ('train', 'validation', 'test'):
@@ -259,3 +266,65 @@ def test_cli_dialogue_build_and_refusal(tmp_path, capsys):
     assert main(minimal_args + ['--no-metadata']) == 0
     rows = json.loads((tmp_path / 'messages-only/memory/train.json').read_text(encoding='utf-8'))
     assert all(set(row) == {'messages'} for row in rows)
+    minimal_args[2] = str(tmp_path / 'user-only')
+    assert main(minimal_args + ['--no-metadata', '--user-assistant-only']) == 0
+    manifest = json.loads((tmp_path / 'user-only/manifest.json').read_text(encoding='utf-8'))
+    assert manifest['user_assistant_only'] is True
+    assert manifest['tasks'] == list(USER_ASSISTANT_TASKS)
+
+
+def test_user_only_scenarios_need_no_names_and_keep_context_splits_across_seeds(monkeypatch):
+    from semantic_corpus.dialogue_generator import generator as module
+
+    def refuse_pool():
+        raise AssertionError('Simple conversations must not load the named entity pool')
+
+    monkeypatch.setattr(module, 'default_pool', refuse_pool)
+    context_splits = {}
+    for seed in (9, 10):
+        generator = DialogueGenerator(seed=seed, user_assistant_only=True)
+        assert generator.tasks == USER_ASSISTANT_TASKS
+        with pytest.raises(ValueError, match='Unknown task'):
+            list(generator.generate('different_people', 1, split='train'))
+        for split in ('train', 'validation', 'test'):
+            for task in USER_ASSISTANT_TASKS:
+                episodes = list(generator.generate(task, 12, split=split))
+                assert episodes[:5] == list(generator.generate(task, 5, split=split))
+                for episode in episodes:
+                    assert episode.query.subject == 'user'
+                    assert all(f.subject == 'user' for f in (*episode.memory.facts, *episode.memory.retired))
+                    assert all(f.value in module.COMMON_PLACES for f in episode.memory.facts
+                               if f.relation in ('location', 'visited'))
+                    context = tuple((f.relation, f.value) for f in episode.transitions[0].after.facts)
+                    assert context_splits.setdefault(context, split) == split
+                    # No loss of the grouping context through corrections/retractions.
+                    assert all(f in episode.memory.facts for f in episode.transitions[0].after.facts)
+
+
+@pytest.mark.parametrize('user_only', [False, True])
+def test_default_sizes_have_no_duplicate_or_cross_split_prompts(tmp_path, user_only):
+    manifest = build_dialogue_dataset(tmp_path / 'dataset', user_assistant_only=user_only)
+    assert ('entities.json' not in manifest['resources']) == user_only
+    assert manifest['prompt_version'] == 'dialogue-prompts-v2'
+    assert manifest['content_formats'] == {'history': 'history-text-v1', 'memory': 'memory-text-v1',
+                                            'extraction': 'extraction-json-v1'}
+    for view in ('history', 'memory', 'extraction'):
+        seen = set()
+        for split, count in (('train', 200), ('validation', 20), ('test', 20)):
+            rows = json.loads((tmp_path / 'dataset' / view / f'{split}.json').read_text(encoding='utf-8'))
+            if view != 'extraction':
+                assert Counter(row['task'] for row in rows) == dict.fromkeys(dialogue_tasks(user_only), count)
+            keys = {prompt_key(row) for row in rows}
+            assert len(keys) == len(rows)
+            assert not seen & keys
+            seen.update(keys)
+
+
+def test_user_only_exhaustion_refuses_to_pad_or_publish_partial_data(tmp_path):
+    from semantic_corpus.dialogue_generator.generator import COMMON_PLACES, FEELINGS, DRINKS
+
+    impossible = len(COMMON_PLACES) * len(FEELINGS) * len(DRINKS) + 1
+    with pytest.raises(ValueError, match='reduce the per-task quota'):
+        build_dialogue_dataset(tmp_path / 'too-many', train=impossible, validation=1, test=1,
+                               user_assistant_only=True)
+    assert list(tmp_path.iterdir()) == []
