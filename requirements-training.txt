@@ -1,0 +1,4 @@
+# Optional CLI GPT-2 trainer only. The corpus generator and Django UI do not need these.
+torch>=2.6,<3
+transformers==4.56.1
+accelerate>=1.10,<2

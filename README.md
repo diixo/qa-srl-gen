@@ -474,6 +474,18 @@ task for a later stage. Generate a new dataset to obtain the text memory format.
 See [dialogue generation](semantic_corpus/dialogue_generator/README.md) for the
 scenario schema, split limits, files and the existing chat-trainer adapter.
 
+For a local model experiment, the optional [GPT-2 SFT trainer](semantic_corpus/dialogue_generator/trainer/README.md)
+uses pretrained `gpt2`, ChatML and `transformers.Trainer` on plain-text Memory data:
+
+```powershell
+python -m pip install -r requirements-training.txt
+python -m semantic_corpus.dialogue_generator.trainer train --mode sft --model gpt2 --data artifacts/dialogue-gpt2-memory/memory --out artifacts/training/gpt2-memory
+```
+
+Generate the dataset first as described in the trainer guide, or supply a new
+UI job's `dataset/memory/` path. Training is CLI-only; no training operation is
+added to the UI.
+
 ```python
 from semantic_corpus.semantic_generator import Generator
 

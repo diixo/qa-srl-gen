@@ -168,6 +168,14 @@ are shared**. Test performance measures this controlled distribution with
 held-out names or contexts and plans, not unseen reasoning tasks or unrestricted
 chat. Keep a separate human-written test set for broader assessment.
 
+## Local GPT-2 SFT experiment
+
+The optional [GPT-2 trainer](trainer/README.md) fine-tunes the standard pretrained
+model with `transformers.Trainer`, ChatML and loss on assistant answers only.
+It trains on the plain-text `memory/` view and has separate `train` and `evaluate`
+CLI commands. Training is not connected to Django and is never started by
+generating a dataset. Install `requirements-training.txt` only for this component.
+
 ## Using the existing `test-llm` trainer
 
 The `messages` structure matches `train_chat.py`'s `load_training_rows` contract.
