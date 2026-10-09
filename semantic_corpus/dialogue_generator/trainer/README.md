@@ -1,9 +1,10 @@
 # GPT-2 ChatML SFT trainer
 
-An optional **CLI-only** experiment for the generator's plain-text **Memory**
-datasets. It fine-tunes the standard pretrained `gpt2` using
-`transformers.Trainer`. It does not initialize a model from scratch, train on
-Extraction JSON, or register any Django operation.
+An optional **CLI-only** experiment for the generator's text **Memory**,
+**History** and **Extraction** datasets, selected explicitly with `--view`.
+It fine-tunes the standard pretrained `gpt2` using `transformers.Trainer`.
+Memory is the default. Old Extraction JSON is refused. Training is not
+registered as a Django operation.
 
 Install the optional dependencies from the repository root:
 
@@ -26,14 +27,14 @@ python -m semantic_corpus.cli dialogue-build --out artifacts/dialogue-gpt2-memor
 python -m semantic_corpus.dialogue_generator.trainer train --mode sft --model gpt2 --data artifacts/dialogue-gpt2-memory/memory --out artifacts/training/gpt2-memory --epochs 3 --batch-size 2 --accumulation 8
 ```
 
-Both output directories must be new. The first command produces 2,200 training,
-220 validation and 220 test examples. The trainer accepts both records with
+Both output directories must be new. The first command produces 2,800 training,
+280 validation and 280 test examples. The trainer accepts both records with
 metadata and records containing only `messages`. It never feeds outer IDs or
 task labels to the model. Retain metadata if you want evaluation broken down
 by task; otherwise all examples are reported as `unlabeled`.
 
 To focus on completion reasoning, use the generator's `--contrast-multiplier 3`
-when preparing data; at the same base quotas this produces 3,000 training records.
+when preparing data; at the same base quotas this produces 3,600 training records.
 See [contrast generation and the frozen challenge](../README.md#contrasts-and-varied-memory).
 
 On its first online run, model/tokenizer files are cached under
@@ -77,8 +78,11 @@ supervised tokens across accumulated microbatches. Earlier exchanges embedded
 in the user content are context, not additional answer targets.
 
 The trainer requires the generator's three-message `system/user/assistant`
-contract and a prompt beginning with `Known facts:`. Old Memory exports with
-embedded JSON, History exports and Extraction exports are refused in this stage.
+contract. `--view memory` requires `Known facts:`, `--view history` requires
+`Conversation so far:`, and `--view extraction` requires `Current memory:`
+with the text extraction contract. Extraction reference commands must parse
+and apply to the supplied state. Old exports with embedded JSON and datasets
+that do not match the selected view are refused.
 Records containing literal control tokens are refused. Examples exceeding
 `--max-length` (default 512) fail explicitly; there is no truncation or packing.
 The selected length must also fit the model's positional embeddings.
@@ -89,6 +93,42 @@ validation loss. `test.json` is not used to train or select a checkpoint. The
 default effective batch size is 2 × 8 = 16 examples on one device. Automatic
 precision selects BF16 on supported CUDA devices, otherwise FP16 on CUDA, and
 FP32 on CPU; `--precision float32` overrides it. This CLI supports one process.
+
+## Train the text memory updater
+
+Generate a fresh dataset with `extraction-text-v2` (older files are not converted
+in place), then select `extraction/` explicitly:
+
+```powershell
+python -m semantic_corpus.dialogue_generator.trainer train --view extraction --model gpt2 --data artifacts/dialogue-events-v3-final/extraction --out artifacts/training/gpt2-extraction-events --epochs 3 --max-length 512 --save-only-model
+python -m semantic_corpus.dialogue_generator.trainer evaluate --run artifacts/training/gpt2-extraction-events --data artifacts/dialogue-events-v3-final/extraction --out artifacts/training/gpt2-extraction-events-test --max-new-tokens 256
+```
+
+These are training/evaluation commands, not a claim of measured updater quality.
+The existing recorded GPT-2 experiment below still concerns Memory only.
+The frozen event-v3 Extraction files contain 9,400/966/967 records; the maximum
+full ChatML length is 504 GPT-2 tokens and the maximum target is 47 tokens.
+Thus this dataset fits 512 tokens. New quotas, vocabulary or constructions can
+change the maximum; the trainer validates every record before training.
+An offline tiny-model integration test covers SFT and reload/evaluation for all
+three views. Use a fresh pretrained checkpoint for each comparison, not the
+already trained Memory checkpoint.
+
+The updater predicts `SET`, `SET_CONTEXT`, `REMOVE`, `EVENT`, `EVENT_CONTEXT`,
+`REMOVE_EVENT` or `NO_CHANGE`; code creates
+IDs and exact source quotes. The dataset container remains a JSON array of
+`messages`, while message content is text. See the
+[text contract](../README.md#text-extraction-contract) for fields and provenance.
+The view is saved in `run.json`; evaluation uses that view and rejects mismatches.
+History is enabled similarly with `--view history` and its own input/output paths.
+
+Extraction evaluation adds parse/apply validity, order-independent update
+matching (including source mode), active-fact and event-state matching, false changes on
+`NO_CHANGE` examples, and breakdowns by fact/event add/replace/remove/no-change. Invalid
+predictions count as failures. A correct final state can still have wrong source
+mode, so both metrics are retained. These checks use the supplied prior state;
+they do not measure accumulated errors in a rolling conversation. Increase
+`--max-new-tokens` for multi-command answers; outputs are never silently repaired.
 
 ## Evaluate the held-out examples
 
@@ -115,7 +155,7 @@ gpt2-memory/
 
 Evaluation output contains `evaluation.json` and `predictions.jsonl` with the
 input, reference answer, generated answer, exact-match result and stop status.
-Diagnostics include counts/confusion by task, answer kind and condition,
+For Memory/History, diagnostics include counts/confusion by task, answer kind and condition,
 `unknown_false_yes`, and the fraction of complete three-example contrast groups
 whose answers are all correct. Partial groups are reported separately. Answer-kind
 classification uses explicit text prefixes and is not a semantic judge; metadata
@@ -167,7 +207,10 @@ its data matched the three-epoch run byte for byte.
 The final model is `artifacts/training/gpt2-memory-expanded-v2-6ep/model/`.
 It also answers all 220 original test records correctly. The final checkpoint
 is epoch 6, step 1128; training took 571.8 seconds on the local RTX 3070 Laptop GPU.
-Generate the expanded data with the command below (choose a fresh output path):
+The following commands describe that historical run. Its generator revision had
+11 user-only tasks; the current version adds three typed-event tasks and produces
+3,600 records with the same quotas. Use the retained files for a like-for-like
+comparison, or a fresh destination for new data; do not regenerate over old files.
 
 ```powershell
 python -m semantic_corpus.cli dialogue-build --out artifacts/dialogue-gpt2-memory-expanded-v2 --user-assistant-only --train 200 --validation 20 --test 20 --contrast-multiplier 3 --seed 20261009

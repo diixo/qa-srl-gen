@@ -14,14 +14,15 @@ from ..ontology import Label
 from ..semantic_generator.substitutions import EntityPool, default_pool
 from .models import (
     AssistantAction, Delta, Episode, Evidence, Fact, Memory, Query,
-    Replacement, Transition, Turn, answer_query, apply_delta,
+    Replacement, Transition, Turn, answer_query, apply_delta, EventClaim, EventReplacement,
 )
 
-GENERATOR_VERSION = "dialogue-babi-0.2.0"
+GENERATOR_VERSION = "dialogue-babi-0.3.0"
 TASKS = (
     "recall", "correction", "different_people", "negation", "desire_vs_done",
     "option_reference", "ambiguous_reference", "unknown", "suggestion_vs_done",
     "topic_return", "retraction", "capability",
+    "event_scope", "event_progress", "event_updates",
 )
 USER_ASSISTANT_TASKS = tuple(task for task in TASKS if task != "different_people")
 COMMON_PLACES = (
@@ -60,9 +61,11 @@ class _Conversation:
         self.transitions: list[Transition] = []
         self.memory = Memory()
         self.next_fact = 1
+        self.next_event = 1
 
     def user(self, text: str, *, facts: tuple[tuple[str, str, str, str, str], ...] = (),
-             invalidate: tuple[str, ...] = (), reference: Turn | None = None) -> None:
+             invalidate: tuple[str, ...] = (), reference: Turn | None = None,
+             events=(), event_invalidate: tuple[str, ...] = ()) -> None:
         turn = Turn(f"u{len(self.transitions) + 1}", "user", text)
         previous = self.turns[-1] if self.turns else None
         self.turns.append(turn)
@@ -79,7 +82,20 @@ class _Conversation:
                 additions.append(fact)
             else:
                 replacements.append(Replacement(old.id, fact))
-        delta = Delta(tuple(additions), tuple(replacements), invalidate)
+        event_add, event_replace = [], []
+        for event in events:
+            evidence = (Evidence(turn.id, text),)
+            if reference is not None:
+                evidence += (Evidence(reference.id, reference.text),)
+            claim = EventClaim(f'e{self.next_event}', event, evidence)
+            self.next_event += 1
+            old = self.memory.find_event(event)
+            if old is None:
+                event_add.append(claim)
+            else:
+                event_replace.append(EventReplacement(old.id, claim))
+        delta = Delta(tuple(additions), tuple(replacements), invalidate,
+                      tuple(event_add), tuple(event_replace), event_invalidate)
         after = apply_delta(self.memory, delta, tuple(self.turns))
         self.transitions.append(Transition(turn, self.memory, delta, after, previous))
         self.memory = after
@@ -89,7 +105,8 @@ class _Conversation:
         self.turns.append(turn)
         if action is not None:
             self.memory = Memory(self.memory.facts, self.memory.retired,
-                                 self.memory.assistant_actions + (AssistantAction(action, items, turn.id),))
+                                 self.memory.assistant_actions + (AssistantAction(action, items, turn.id),),
+                                 self.memory.events, self.memory.retired_events)
         return turn
 
     def pair(self, text: str, **kwargs) -> None:
@@ -255,6 +272,10 @@ class DialogueGenerator:
         if not isinstance(count, int) or isinstance(count, bool) or count < 0:
             raise ValueError("Count must be a nonnegative integer")
         if not count:
+            return
+        if task in ('event_scope', 'event_progress', 'event_updates'):
+            from .event_scenarios import event_episodes
+            yield from event_episodes(self, task, count, split)
             return
         from .actions import CONTRAST_TASKS
         if task in CONTRAST_TASKS:

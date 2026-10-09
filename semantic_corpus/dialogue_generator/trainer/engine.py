@@ -1,4 +1,4 @@
-"""Optional pretrained GPT-2 SFT using transformers.Trainer, for Memory only."""
+"""Optional pretrained GPT-2 SFT for one explicitly selected dialogue view."""
 
 from dataclasses import asdict, dataclass
 import json
@@ -18,8 +18,8 @@ import transformers
 from transformers import AutoConfig, GPT2LMHeadModel, GPT2TokenizerFast, Trainer, TrainingArguments, set_seed
 
 from .chatml import CHAT_TEMPLATE, FORMAT_VERSION, IM_START, IM_END, PAD, encode_example
-from .data import check_disjoint, file_sha256, load_rows
-from .metrics import AnswerMetrics
+from .data import check_disjoint, file_sha256, load_rows, validate_view
+from .metrics import AnswerMetrics, ExtractionMetrics
 
 
 @dataclass(frozen=True)
@@ -41,8 +41,11 @@ class TrainSettings:
     threads: int = 4
     log_every: int = 10
     save_only_model: bool = False
+    view: str = 'memory'
 
     def validate(self):
+        if self.view not in ('memory', 'history', 'extraction'):
+            raise ValueError('view must be memory, history or extraction')
         for field in ('epochs', 'batch_size', 'accumulation', 'max_length', 'threads', 'log_every'):
             if type(getattr(self, field)) is not int or getattr(self, field) <= 0:
                 raise ValueError(f'{field} must be a positive integer')
@@ -132,12 +135,10 @@ def assistant_loss(outputs, labels, num_items_in_batch=None):
     return loss / count
 
 
-def _encode(rows, tokenizer, max_length, split):
+def _encode(rows, tokenizer, max_length, split, view='memory'):
+    validate_view(rows, view, split)
     encoded = []
     for index, row in enumerate(rows, 1):
-        if not row.messages[1]['content'].startswith('Known facts:\n'):
-            raise ValueError(f'{split}, record {index}: expected plain-text Memory data. '
-                             'Generate a new chat dataset and select its memory/ directory.')
         try:
             encoded.append(encode_example(row.messages, tokenizer, max_length))
         except ValueError as error:
@@ -156,6 +157,8 @@ def train(settings: TrainSettings) -> dict:
     train_path, val_path = settings.data / 'train.json', settings.data / 'validation.json'
     rows, val_rows = load_rows(train_path), load_rows(val_path)
     check_disjoint(rows, val_rows)
+    validate_view(rows, settings.view, 'train')
+    validate_view(val_rows, settings.view, 'validation')
     loading = {'cache_dir': str(settings.cache_dir), 'local_files_only': settings.local_files_only}
     config = AutoConfig.from_pretrained(settings.model, **loading)
     if config.model_type != 'gpt2':
@@ -164,8 +167,8 @@ def train(settings: TrainSettings) -> dict:
         raise ValueError(f'max_length exceeds the GPT-2 context limit ({config.n_positions})')
     tokenizer = GPT2TokenizerFast.from_pretrained(settings.model, **loading)
     configure_chatml(tokenizer)
-    examples = _encode(rows, tokenizer, settings.max_length, 'train')
-    validation = _encode(val_rows, tokenizer, settings.max_length, 'validation')
+    examples = _encode(rows, tokenizer, settings.max_length, 'train', settings.view)
+    validation = _encode(val_rows, tokenizer, settings.max_length, 'validation', settings.view)
     print(f'Validated {len(rows)} train / {len(val_rows)} validation records. Loading pretrained {settings.model}.', flush=True)
     model = GPT2LMHeadModel.from_pretrained(settings.model, **loading)
     model.resize_token_embeddings(len(tokenizer), mean_resizing=False)
@@ -177,7 +180,7 @@ def train(settings: TrainSettings) -> dict:
     model.generation_config.suppress_tokens = list({tokenizer.pad_token_id,
         tokenizer.convert_tokens_to_ids(IM_START), tokenizer.convert_tokens_to_ids('<|endoftext|>')})
     settings.out.mkdir(parents=True, exist_ok=False)
-    report = {'status': 'running', 'mode': 'sft', 'initialization': 'pretrained', 'view': 'memory',
+    report = {'status': 'running', 'mode': 'sft', 'initialization': 'pretrained', 'view': settings.view,
               'trainer': 'transformers.Trainer', 'format': FORMAT_VERSION,
               'loss_scope': 'final assistant answer and im_end only',
               'settings': asdict(settings), 'device': str(device), 'precision': precision,
@@ -262,6 +265,8 @@ def evaluate(run: Path, data: Path, out: Path, *, split='test', device='auto', m
         raise FileExistsError(f'Choose a new evaluation directory: {out}')
     torch.set_num_threads(threads)
     device = _device(device)
+    run_report = json.loads((run / 'run.json').read_text(encoding='utf-8'))
+    view = run_report.get('view', 'memory')
     model, tokenizer = load_run(run, device)
     path = data / f'{split}.json'
     rows = load_rows(path)
@@ -275,7 +280,7 @@ def evaluate(run: Path, data: Path, out: Path, *, split='test', device='auto', m
     all_count = len(rows)
     if limit:
         rows = rows[:limit]
-    examples = _encode(rows, tokenizer, model.config.n_positions, split)
+    examples = _encode(rows, tokenizer, model.config.n_positions, split, view)
     if any(len(row.prompt_ids) + max_new_tokens > model.config.n_positions for row in examples):
         raise ValueError('Prompt plus max_new_tokens exceeds model context; reduce --max-new-tokens')
     out.mkdir(parents=True, exist_ok=False)
@@ -290,7 +295,7 @@ def evaluate(run: Path, data: Path, out: Path, *, split='test', device='auto', m
         target_count += count
     totals = {'count': 0, 'exact_matches': 0, 'ended': 0}
     by_task = {}
-    diagnostics = AnswerMetrics()
+    diagnostics = ExtractionMetrics() if view == 'extraction' else AnswerMetrics()
     with (out / 'predictions.jsonl').open('w', encoding='utf-8', newline='\n') as stream:
         for index, (row, encoded) in enumerate(zip(rows, examples), 1):
             # Only prompt tokens enter generate(); the reference is never supplied.
@@ -301,7 +306,10 @@ def evaluate(run: Path, data: Path, out: Path, *, split='test', device='auto', m
             ended = bool(answer_ids and answer_ids[-1] == tokenizer.eos_token_id)
             prediction = tokenizer.decode(answer_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)
             target = row.messages[-1]['content']
-            diagnostics.add(target, prediction, task=row.task, condition=row.condition, group=row.contrast_group)
+            if view == 'extraction':
+                diagnostics.add(target, prediction, prompt=row.messages[1]['content'])
+            else:
+                diagnostics.add(target, prediction, task=row.task, condition=row.condition, group=row.contrast_group)
             exact = prediction.strip() == target.strip()
             task = by_task.setdefault(row.task, {'count': 0, 'exact_matches': 0, 'ended': 0})
             for counts in (totals, task):
@@ -315,7 +323,7 @@ def evaluate(run: Path, data: Path, out: Path, *, split='test', device='auto', m
             if index == 1 or index % 20 == 0 or index == len(rows):
                 print(f'Evaluated {index}/{len(rows)}', flush=True)
     loss = loss_sum / target_count
-    report = {'split': split, 'source_sha256': file_sha256(path), 'available_records': all_count,
+    report = {'view': view, 'split': split, 'source_sha256': file_sha256(path), 'available_records': all_count,
               'model': str(run / 'model'), 'decoding': 'greedy', 'max_new_tokens': max_new_tokens,
               'answer_loss': loss, 'perplexity': math.exp(loss) if loss < 700 else None,
               **totals, 'exact_match_rate': totals['exact_matches'] / totals['count'], 'by_task': by_task,

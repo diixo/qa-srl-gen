@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 
 from ..export import prompt_key
+from ..extraction_text import PROMPT_PREFIX, decode_update, parse_prompt
 from .chatml import validate_messages
 
 
@@ -65,3 +66,18 @@ def check_disjoint(left: list[Example], right: list[Example]) -> None:
     left_scenarios = {row.scenario_key for row in left if row.scenario_key}
     if left_scenarios & {row.scenario_key for row in right if row.scenario_key}:
         raise ValueError("Scenario leakage between dataset splits")
+
+
+def validate_view(rows: list[Example], view: str, split: str) -> None:
+    prefixes = {'memory': 'Known facts:\n', 'history': 'Conversation so far:\n', 'extraction': PROMPT_PREFIX}
+    if view not in prefixes:
+        raise ValueError(f'Unsupported dataset view: {view}')
+    for index, row in enumerate(rows, 1):
+        try:
+            if not row.messages[1]['content'].startswith(prefixes[view]):
+                raise ValueError(f'expected plain-text {view.title()} data; select a newly generated {view}/ directory')
+            if view == 'extraction':
+                memory, user, previous = parse_prompt(row.messages[1]['content'])
+                decode_update(row.messages[-1]['content'], memory, user, previous)
+        except ValueError as error:
+            raise ValueError(f'{split}, record {index}: {error}') from error

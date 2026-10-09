@@ -5,7 +5,7 @@ import json
 import pytest
 
 from semantic_corpus.dialogue_generator.actions import ACTIONS, CONTRAST_TASKS, action_statement
-from semantic_corpus.dialogue_generator.challenge import build_challenge
+from semantic_corpus.dialogue_generator.challenge import build_challenge, CHALLENGE_TASKS
 from semantic_corpus.dialogue_generator.export import build_dialogue_dataset, response_row
 from semantic_corpus.dialogue_generator.generator import DialogueGenerator
 from semantic_corpus.dialogue_generator.memory_text import render_memory
@@ -61,14 +61,14 @@ def test_export_multiplier_frozen_challenge_and_group_leakage(tmp_path):
     out = tmp_path / 'data'
     result = build_dialogue_dataset(out, train=6, validation=3, test=3,
                                     user_assistant_only=True, contrast_multiplier=3)
-    assert result['splits']['train']['episodes'] == 90
+    assert result['splits']['train']['episodes'] == 6 * (len(DialogueGenerator(user_assistant_only=True).tasks) + 4)
     train, val, test = [load_rows(out / 'memory' / f'{split}.json') for split in ('train', 'validation', 'test')]
     for left, right in ((train, val), (train, test), (val, test)):
         check_disjoint(left, right)
     assert Counter(row.task for row in train)['desire_vs_done'] == 18
     challenge_path = tmp_path / 'challenge'
     report = build_challenge(challenge_path, groups_per_task=6)
-    assert report['count'] == 36
+    assert report['count'] == len(CHALLENGE_TASKS) * 6 * 3
     challenge = load_rows(challenge_path / 'test.json')
     check_disjoint(train, challenge)
     check_disjoint(val, challenge)

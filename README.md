@@ -52,8 +52,8 @@ It can also be run explicitly with `python ui/manage.py pipeline_worker --once`.
 
 **Pipeline → Chat dataset** (`/chat-dataset`) generates controlled English
 dialogues for chat-model training. Set the training, validation and test quotas
-**per task**, plus the seed. The page shows totals across the twelve tasks before
-submission. Defaults produce 2,400 training, 240 validation and 240 test dialogues.
+**per task**, plus the seed. The page shows totals across the selected tasks before
+submission. UI defaults use 14 tasks: 2,800 training, 280 validation and 280 test dialogues.
 The job page shows progress, supports cancellation/retry and provides both
 individual files and a complete `chat-dataset.zip` download. Results under
 `artifacts/ui/jobs/<id>/dataset/` contain paired `history` and `memory` response
@@ -458,19 +458,26 @@ For a separate controlled dialogue-training experiment inspired by bAbI:
 python -m semantic_corpus.cli dialogue-build --out artifacts/dialogue-pilot --train 200 --validation 20 --test 20 --seed 42
 ```
 
-This creates 12 task families with paired history/memory response datasets and
+This creates 15 task families with paired history/memory response datasets and
 a separate memory-update dataset, all in `messages` format. Quotas are per task;
-the defaults give 2,400 training, 240 validation and 240 test episodes. Names and
+the CLI defaults give 3,000 training, 300 validation and 300 test episodes. Names and
 places come from the existing entity pool. No model or network is needed.
 For conversations about the user alone, add `--user-assistant-only`: no personal
-names or named places, 11 tasks, and 2,200 / 220 / 220 episodes by default.
+names or named places, 14 tasks, and 2,800 / 280 / 280 episodes by default.
 In **Pipeline → Chat dataset**, **User and assistant only** is checked by default;
 uncheck it to include named people. **Include metadata** separately controls the
 top-level IDs and task labels in training records.
 Start response training with `memory/`: its message content now uses short
 English facts and ordered assistant options, with natural-language targets.
-`history/` also uses text; `extraction/` remains a separate JSON memory-update
-task for a later stage. Generate a new dataset to obtain the text memory format.
+`history/` also uses text. New `extraction/` exports use text context and
+`SET` / `SET_CONTEXT` / `REMOVE` / `EVENT` / `EVENT_CONTEXT` / `REMOVE_EVENT` /
+`NO_CHANGE` commands inside messages;
+IDs and exact source quotes are handled by code. The outer files remain JSON
+arrays for training. Generate a new dataset to obtain this extraction format.
+Typed events reuse the shared frames and entity pool. They distinguish participants,
+time, operator scope and completion: wanting or attempting to pick something up
+does not establish that it happened. Three new task families cover scope,
+progress and event corrections; the original flat-fact tasks remain as controls.
 See [dialogue generation](semantic_corpus/dialogue_generator/README.md) for the
 scenario schema, split limits, files and the existing chat-trainer adapter.
 
@@ -485,6 +492,10 @@ python -m semantic_corpus.dialogue_generator.trainer train --mode sft --model gp
 Generate the dataset first as described in the trainer guide, or supply a new
 UI job's `dataset/memory/` path. Training is CLI-only; no training operation is
 added to the UI.
+
+To train the updater, select the new dataset's `extraction/` directory and add
+`--view extraction`. Use `--view history` for the history response experiment;
+`--view memory` remains the default. Keep each task in its own training run.
 
 New Chat dataset exports include matched yes/no/unknown examples for wishes,
 plans and suggestions, covering visits, purchases, calls, messages, reading and

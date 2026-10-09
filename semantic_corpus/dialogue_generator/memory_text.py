@@ -2,8 +2,9 @@
 
 from .models import Fact, Memory
 from .actions import ACTION_BY_RELATION, action_statement
+from .events import event_statement
 
-MEMORY_TEXT_VERSION = "memory-text-v2"
+MEMORY_TEXT_VERSION = "memory-text-v3"
 
 
 def _fact_text(fact: Fact, style: int = 0) -> str:
@@ -50,6 +51,9 @@ def render_memory(memory: Memory, *, style: int = 0) -> str:
     lines.extend(f"- {_fact_text(fact, style)}" for fact in memory.facts)
     if not memory.facts:
         lines.append("- No facts recorded.")
+    if memory.events:
+        lines.extend(('', 'Reported events and intentions:'))
+        lines.extend('- ' + event_statement(claim.event, style=style) for claim in memory.events)
     if memory.assistant_actions:
         lines.extend(("", "Assistant suggestions and options (earliest first):"))
     for action in memory.assistant_actions:

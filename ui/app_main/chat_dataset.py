@@ -19,6 +19,9 @@ TASK_LABELS = {
     'topic_return': 'Return to an earlier topic',
     'retraction': 'Withdraw an earlier fact',
     'capability': 'Respect the assistant\'s capabilities',
+    'event_scope': 'Distinguish scoped intentions, needs and phrasal actions',
+    'event_progress': 'Distinguish attempts, progress and completion',
+    'event_updates': 'Correct and retract events without losing other actions',
 }
 
 
@@ -26,7 +29,7 @@ class ChatDatasetForm(forms.Form):
     user_assistant_only = forms.BooleanField(
         label='User and assistant only', initial=True, required=False,
         help_text='Conversations about the user: no personal names, named places or facts about other people. '
-                  'Includes 11 tasks. Uncheck to include named people and places (12 tasks).',
+                  'Includes 14 tasks. Uncheck to include named people and places (15 tasks).',
     )
     train = forms.IntegerField(
         label='Training dialogues per task', initial=200, min_value=1, max_value=1000000,

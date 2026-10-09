@@ -10,6 +10,11 @@ from tempfile import TemporaryDirectory
 from .actions import ACTION_BY_RELATION, CONTRAST_TASKS, action_question
 from .export import _sha256, prompt_key, response_row
 from .generator import DialogueGenerator, fingerprint
+from .event_scenarios import EVENT_TASKS
+from .events import event_question
+from ..semantic_generator.substitutions import ENTITIES_PATH
+
+CHALLENGE_TASKS = (*CONTRAST_TASKS, *EVENT_TASKS)
 
 
 def build_challenge(out: Path, *, groups_per_task=30, seed=20261009):
@@ -20,7 +25,7 @@ def build_challenge(out: Path, *, groups_per_task=30, seed=20261009):
         raise FileExistsError(f'Choose a new challenge directory: {out}')
     rows, seen = [], set()
     generator = DialogueGenerator(seed=seed, user_assistant_only=True)
-    for task in CONTRAST_TASKS:
+    for task in CHALLENGE_TASKS:
         episodes = iter(generator.generate(task, groups_per_task * 60, split='test'))
         accepted = 0
         while accepted < groups_per_task:
@@ -30,7 +35,8 @@ def build_challenge(out: Path, *, groups_per_task=30, seed=20261009):
             style = 3 + int(fingerprint(group[0].contrast_group)[:8], 16) % 2
             candidates = []
             for episode in group:
-                question = action_question(ACTION_BY_RELATION[episode.query.relation], episode.query.value, style)
+                question = (event_question(episode.query.event, style=style) if episode.query.event else
+                            action_question(ACTION_BY_RELATION[episode.query.relation], episode.query.value, style))
                 # The question turn carries no delta. Change its surface consistently
                 # in both the dialogue and transition audit before validation.
                 turn = replace(episode.turns[-1], text=question)
@@ -49,11 +55,14 @@ def build_challenge(out: Path, *, groups_per_task=30, seed=20261009):
         staging = Path(temporary) / 'dataset'
         staging.mkdir()
         (staging / 'test.json').write_text(json.dumps(rows, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-        report = {'kind': 'held-out-memory-surfaces-v1', 'seed': seed, 'groups_per_task': groups_per_task,
+        report = {'kind': 'held-out-memory-surfaces-v2', 'tasks': list(CHALLENGE_TASKS), 'seed': seed, 'groups_per_task': groups_per_task,
                   'count': len(rows), 'styles': [3, 4], 'split': 'test',
                   'test_sha256': _sha256(staging / 'test.json'),
                   'resources': {path.name: _sha256(path) for path in sorted(Path(__file__).parent.glob('*.py'))},
                   'note': 'Unseen wording, shared action vocabulary and task families; no training split.'}
+        report['resources']['entities.json'] = _sha256(ENTITIES_PATH)
+        frame_path = Path(__file__).parent.parent / 'semantic_generator' / 'frames.py'
+        report['resources']['semantic_generator/frames.py'] = _sha256(frame_path)
         (staging / 'manifest.json').write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8')
         staging.rename(out)
     return report

@@ -20,12 +20,19 @@ def main():
     parser.add_argument('--out', type=Path, required=True)
     parser.add_argument('--split', choices=('validation', 'test'), default='test')
     parser.add_argument('--device', choices=('auto', 'cuda', 'cpu'), default='auto')
+    parser.add_argument('--max-new-tokens', type=int, default=64)
     args = parser.parse_args()
+    if args.max_new_tokens <= 0:
+        parser.error('--max-new-tokens must be positive')
     if args.out.exists():
         parser.error('Choose a new comparison directory')
     for entries in (args.run, args.dataset):
         if len(dict(entries)) != len(entries):
             parser.error('Duplicate labels')
+    views = {json.loads((path / 'run.json').read_text(encoding='utf-8')).get('view', 'memory') for _, path in args.run}
+    if len(views) != 1:
+        parser.error('Compare runs trained on the same dataset view')
+    view = views.pop()
     from .engine import evaluate
     from .data import file_sha256
 
@@ -36,21 +43,28 @@ def main():
         for data_name, data_path in args.dataset:
             print(f'Comparing {run_name} / {data_name}', flush=True)
             output = args.out / run_name / data_name
-            report = evaluate(run_path, data_path, output, split=args.split, device=args.device)
+            report = evaluate(run_path, data_path, output, split=args.split, device=args.device,
+                              max_new_tokens=args.max_new_tokens)
             if report['source_sha256'] != frozen[data_name]:
                 raise ValueError(f'Dataset changed during comparison: {data_name}')
             results.append({'run': run_name, 'dataset': data_name, 'evaluation': str(output / 'evaluation.json'),
                             **{key: report[key] for key in ('count', 'exact_matches', 'exact_match_rate',
-                                                           'unknown_count', 'unknown_false_yes', 'answer_loss',
-                                                           'contrast_groups', 'source_sha256')}})
+                                                           'answer_loss', 'source_sha256')},
+                            **({'extraction': report['extraction']} if view == 'extraction' else
+                               {key: report[key] for key in ('unknown_count', 'unknown_false_yes', 'contrast_groups')})})
             (args.out / 'comparison.json').write_text(json.dumps(results, indent=2) + '\n', encoding='utf-8')
-    lines = ['| Model | Dataset | Exact match | Unknown to yes | Whole contrast groups |',
+    detail_header = 'Valid updates | Matching states' if view == 'extraction' else 'Unknown to yes | Whole contrast groups'
+    lines = [f'| Model | Dataset | Exact match | {detail_header} |',
              '| --- | --- | --- | --- | --- |']
     for row in results:
-        groups = row['contrast_groups']
+        if view == 'extraction':
+            stats = row['extraction']
+            details = f"{stats['valid_predictions']}/{row['count']} | {stats['state_matches']}/{row['count']}"
+        else:
+            groups = row['contrast_groups']
+            details = f"{row['unknown_false_yes']}/{row['unknown_count']} | {groups['all_correct']}/{groups['complete']}"
         lines.append(f"| {row['run']} | {row['dataset']} | {row['exact_matches']}/{row['count']} "
-                     f"({row['exact_match_rate']:.1%}) | {row['unknown_false_yes']}/{row['unknown_count']} | "
-                     f"{groups['all_correct']}/{groups['complete']} |")
+                     f"({row['exact_match_rate']:.1%}) | {details} |")
     table = '\n'.join(lines) + '\n'
     (args.out / 'comparison.md').write_text(table, encoding='utf-8')
     print(table)

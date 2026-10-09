@@ -12,10 +12,10 @@ From the repository root:
 python -m semantic_corpus.cli dialogue-build --out artifacts/dialogue-pilot --train 200 --validation 20 --test 20 --seed 42
 ```
 
-Quotas are **per task**: 12 tasks produce 2,400 training, 240 validation and
-240 test episodes. The destination must be new. Generation uses only Python's
-standard library and the named PERSON/LOCATION entries of the existing
-`semantic_generator/entities.json`, respecting its entity split rules. It does
+Quotas are **per task**: 15 tasks produce 3,000 training, 300 validation and
+300 test episodes. The destination must be new. Generation uses only Python's
+standard library, shared semantic frames and the existing
+`semantic_generator/entities.json`, respecting its named-entity split rules. It does
 not call a model or mine `eng-base.jsonl`.
 
 In the Django UI, open **Pipeline → Chat dataset** at `/chat-dataset`. The page
@@ -30,8 +30,8 @@ is available through the CLI.
 conversations about the user's own location, feelings, preferences and plans,
 without personal names, named cities or facts about other people. Ordinary places
 such as `the kitchen` and `the park` replace city names. The `different_people`
-task is excluded: 11 tasks give **2,200 / 220 / 220** episodes at the default
-quotas. Uncheck it to use the original 12-task named-pool scenarios.
+task is excluded: 14 tasks give **2,800 / 280 / 280** episodes at the default
+quotas. Uncheck it to use the 15-task named-pool scenarios.
 
 The CLI and Python API retain the original behavior by default. To select the
 simplified conversations, add `--user-assistant-only` or pass
@@ -69,6 +69,9 @@ the job and preserved on retry; older jobs default to including metadata.
 | `topic_return` | Recover the user's preference after discussing another topic |
 | `retraction` | Withdraw a day without inventing a replacement |
 | `capability` | Explain that this chat cannot send messages or set reminders |
+| `event_scope` | Separate desire, necessity, intention, decision and nested operator/negation scopes from completion |
+| `event_progress` | Distinguish an attempt, start, stop, ongoing action and future report from completion |
+| `event_updates` | Correct or withdraw one event while retaining other objects, participants and time contexts |
 
 The simulator creates the user's assertions and state updates together. Answers
 are derived from the resulting state. Every update carries exact evidence;
@@ -77,14 +80,78 @@ replays updates and checks the answer, IDs, sources, replacements and retirement
 An evidence substring check alone is **not** semantic verification of an external
 extractor's output.
 
-Memory v2 is a deliberately small projection: eleven relations (`location`,
+Memory v3 retains the original eleven flat relations (`location`,
 `meeting_day`, `feeling`, `visited`, `selection`, `completed_break`, `drink`,
 `bought`, `called`, `sent`, `read`). Each
 subject/relation/modality has one active value. `asserted`, `desired` and `planned` are
 separate; positive and negative claims are explicit. Facts describe reports in
 this conversation. Assistant suggestions/options live separately from user facts.
-This is not a general event log: arbitrary tense, multiple visits, quoted beliefs,
-world truth verification and unrestricted conversation are not modeled.
+These flat facts remain in the original control tasks. The three `event_*`
+families use a separate typed event store, described below; they can retain
+multiple objects, participants and time contexts without overwriting one another.
+Old dataset files are not migrated or rewritten.
+
+## Typed actions, scope and completion
+
+`ACTION` remains an ontology label for a predicate. It does not imply execution.
+An `Event` in `events.py` carries the predicate, typed role fillers, explicit time
+context, an outer-to-inner operator chain, phase and tense. `EventClaim` adds
+internal identity and source evidence. Shared `SemanticFrame` slots validate the
+roles/types; `event_scenarios.py` samples eligible common entities from the shared
+pool. Broad type compatibility is not enough for plausibility: physical transfer
+uses portable document/tool/toy subtypes, and care uses child/dog/cat subtypes.
+
+Reviewed senses currently cover **buy, visit, give, move, pick up, put down,
+get up, look after**. The renderer inflects the head, preserves particles and
+governed prepositions, and supports both `pick up a book` and `pick a book up`.
+Pronoun objects use `pick it up`. Intransitive `get up` has no invented object;
+`give` retains its recipient and `move` its destination.
+
+| Operator family | Supported operators | Does the construction establish completion? |
+| --- | --- | --- |
+| Desire / necessity | `want`, `need` | No |
+| Intention / decision | `plan`, `intend`, `decide` | No |
+| Attempt | `try` | No |
+| Onset / cessation | `start`, `stop` | No |
+| Success / failure | `manage`, `fail` | For the reviewed bounded action in the past: yes / no |
+| Completion | `finish` | In the past: yes; `not > finish`: no |
+
+The result means **reported completion**, not independently verified world truth.
+Starting/stopping an activity does not establish its completion. For the reviewed
+`visit` and `look after` senses, an explicit finish is required: past activity
+alone is insufficient. Future actions remain unknown. Uncertainty is not denial.
+
+Scope is preserved: `not > want` means absence of desire; `want > not` means a
+desire not to act. Similarly, `not > need` is lack of necessity, while
+`need > not` is rendered as `need to avoid ...`. Chains such as `plan > try`,
+`need > start`, `want > manage` and `start > try` are generated. A success verb
+inside a wish does not establish actual success. The contract accepts up to four
+operators; generation currently samples 16 scope profiles and eight progress
+profiles, crossing each with all eight predicates as quotas allow.
+
+Event identity includes **predicate + every typed participant + time**.
+Different operator paths have separate claim channels. A replacement within a
+channel can change outer polarity, phase or tense; inner negation changes the
+channel. Corrections retire the previous claim for audit, and retractions remove
+only the addressed claim. Conflicting completion reports in separate channels
+give an unknown answer rather than an arbitrary yes/no choice.
+
+Limits: active constructions with the same actor throughout the operator chain,
+eight reviewed senses, no quoted beliefs, conditionals or unrestricted passive
+grammar. Time phrases are exact context keys, not calendar-aware event IDs; two
+identical actions with the same participants and time phrase share a channel.
+GROUP fillers require subtype information not yet present in this compact
+contract and are rejected. Typed events and legacy flat action facts are not
+automatically reconciled with each other.
+
+To expand vocabulary, add eligible entities to the existing pool. To add a new
+predicate sense, define/reuse its shared frame, register its forms and active
+pattern in `EVENT_LEXEMES`, review filler constraints and completion behavior,
+and add contrast tests. New operators also need scope, complement grammar and
+truth rules; adding a word to a list alone is insufficient. Real domain examples
+with roles, context and contrasting intention/attempt/completion readings help
+review these choices. Mined constructions are useful candidates, not certified
+event semantics. No external dataset is required for the current generator.
 
 ## Files and training targets
 
@@ -110,10 +177,11 @@ all the intermediate “Got it” replies.
   request → the **same** natural answer. Message content contains no embedded
   JSON, fact/turn IDs or evidence objects. This is oracle memory, not a prediction
   from a trained extractor.
-- **extraction:** state before a user turn, previous assistant message, current
-  user turn and next fact ID → JSON delta with `add`, `replace`, `invalidate`.
-  Exact repeated transition prompts are deduplicated. This is a separate task;
-  do not blindly merge its JSON targets into response training.
+- **extraction:** active facts, assistant options/suggestions, previous assistant
+  message and current user message as text → text memory-update commands.
+  No embedded JSON, internal IDs or evidence objects are shown to the model.
+  Repeated transition prompts are deduplicated. This is a separate task;
+  keep updater training separate from natural-answer training.
 
 For the first training stage, use **memory**. For example, the model's input is:
 
@@ -137,15 +205,99 @@ the audit, and missing information does not become a negative assertion.
 Wishes, negative reports and completed actions use distinct sentences; assistant
 suggestions are separate, and offered options retain their order. Unsupported
 relations/actions fail explicitly instead of silently omitting information.
-The internal memory and **extraction** input/target still use their existing
-structured schema. Text commands for extraction are a later stage.
+The internal memory and audit keep their structured schema. **Extraction** uses
+the text command contract described below, with lossless conversion to internal
+deltas for the supported pilot scenarios.
 
-The manifest now records `prompt_version: dialogue-prompts-v3` and
-`content_formats.memory: memory-text-v2`. Generate a new job/directory to get
+The manifest now records `schema_version: dialogue-memory-v3`,
+`prompt_version: dialogue-prompts-v5`, `content_formats.memory: memory-text-v3` and
+`content_formats.extraction: extraction-text-v2`. Generate a new job/directory to get
 the text format; existing output files are not rewritten. Text-based prompt
 deduplication can select different episodes when older prompts differed only
 by internal identifiers. Paired History/Memory targets and split checks remain
 enforced.
+
+## Text extraction contract
+
+`extraction_text.py` provides the renderer, parser and updater adapter. This is
+a compact structured text language, not unrestricted prose. An input can be:
+
+```text
+Current memory:
+user | meeting_day | asserted | positive | Monday
+
+Assistant actions (earliest first):
+(none)
+
+Last assistant message: text: Got it.
+Latest user message: Actually, my meeting is on Friday.
+```
+
+Its assistant target is:
+
+```text
+SET user | meeting_day | asserted | positive | Friday
+```
+
+The field order is `subject | relation | modality | polarity | value`.
+
+| Command | Meaning |
+| --- | --- |
+| `SET subject \| relation \| modality \| polarity \| value` | Add a fact or replace the current fact with that subject/relation/modality |
+| `SET_CONTEXT subject \| relation \| modality \| polarity \| value` | Same update, citing both the user and previous assistant turn for a resolved reference |
+| `REMOVE subject \| relation \| modality` | Withdraw the active fact; absence is not a negative claim |
+| `EVENT predicate \| time \| scope \| phase \| tense \| role=TYPE:value ...` | Add/replace a typed event claim; all selected frame roles are required |
+| `EVENT_CONTEXT` followed by the event fields | Same update, citing the user and previous assistant turn |
+| `REMOVE_EVENT` followed by the exact active event fields | Withdraw that event claim |
+| `NO_CHANGE` | No memory update; this command must be alone |
+
+Multiple updates use one command per line. Wishes/plans remain separate from
+completion: `SET user | bought | desired | positive | a book` does not assert
+that the book was bought. Those legacy relations remain supported. The new event
+families use typed commands instead, for example:
+
+```text
+EVENT pick up | today | want>try | unspecified | present | agent=PERSON:user | theme=PHYSICAL_OBJECT:a book
+```
+
+This represents `I want to try to pick up a book today.` It does not report
+completion. Scope `none` means no operator; phases are `unspecified`, `ongoing`,
+`completed`, and tenses are `present`, `past`, `future`. Nontrivial operators use
+`unspecified` phase so phase scope is not silently lost. Future currently supports
+bare actions only. Active events appear in a separate `Event memory:` input block.
+
+`decode_update(text, memory, user_turn, previous_assistant)` allocates fresh
+fact/event IDs and attaches the exact current utterance as evidence. `SET_CONTEXT` / `EVENT_CONTEXT`
+also attaches the previous assistant utterance. Unknown relations/modalities,
+invalid event roles/types/scopes, malformed fields, conflicting commands and removal of a missing claim are
+rejected atomically. Source recording is not a semantic truth check: an updater
+can still interpret the utterance incorrectly, which evaluation must measure.
+Every exported target is decoded and compared to the original delta, including
+its IDs and evidence, before publication. Unsupported evidence shapes fail
+instead of silently losing provenance.
+
+Fields escape backslash, pipe and line breaks (`\\`, `\|`, `\n`, `\r`, `\t`).
+Internal audit IDs, retired facts and full evidence never enter the model input.
+`parse_prompt` reconstructs visible state with local IDs for single-turn
+evaluation; live updates must use the actual stored Memory instead.
+
+Old datasets are retained unchanged. For a new text extraction experiment:
+
+```powershell
+python -m semantic_corpus.cli dialogue-build --out artifacts/dialogue-events-v3-final --user-assistant-only --train 200 --validation 20 --test 20 --contrast-multiplier 3 --seed 20261009
+```
+
+This configuration produces 3,600/360/360 paired response episodes and
+9,400/966/967 deduplicated Extraction records in the frozen local dataset.
+GPT-2 ChatML encoding uses at most 504 tokens per Extraction record (47 for the
+target), with no truncation. Memory and History maxima are 190 and 215 tokens.
+The validation report is `artifacts/reviews/dialogue-events-v3-validation.json`;
+it checks all three views, split separation and the 450-record wording challenge
+in `artifacts/dialogue-events-v3-challenge/`. No full GPT-2 training/quality
+measurement has been performed on these new event records. The
+earlier text-v1 dataset (before event tasks) remains in
+`artifacts/dialogue-extraction-text-v1/` with 8,057/830/832 extraction examples;
+the original expanded-v2 files with embedded JSON remain unchanged too.
 
 The audit JSONL retains full turns, state before/after each user turn, deltas,
 retired facts, reference query, expected dialogue action and supporting IDs.
@@ -186,8 +338,9 @@ Outer metadata additionally records `contrast_group`, `condition`, `answer_kind`
 `--no-metadata` removes these too. All members of a group stay in one split,
 across seeds and quotas. Nonmultiples of three can leave the final group partial;
 normal prompt deduplication also takes precedence over retaining a whole group.
-These are controlled reported facts: multiple simultaneous purchases/visits are
-still outside the single-active-value memory model.
+These two original tasks retain their single-active-value facts. The new
+`event_*` families use the typed event store and also produce matched
+yes/no/unknown groups, including simultaneous events and nested scope.
 
 For experiments, CLI/API can multiply the quotas for these two tasks:
 
@@ -196,22 +349,25 @@ python -m semantic_corpus.cli dialogue-build --out artifacts/dialogue-memory-exp
 python -m semantic_corpus.dialogue_generator.challenge --out artifacts/dialogue-memory-challenge --groups-per-task 30
 ```
 
-The first command creates **3000/300/300** response records. The API option is
+The first command now creates **3600/360/360** response records. The API option is
 `contrast_multiplier=3`; its default is 1, including in the UI, so existing
 per-task quota fields keep their meaning. The manifest records actual task weights.
-The second command freezes **180 test-only** records in `test.json`, with two
+The second command now freezes **450 test-only** records across five task families
+in `test.json`, with two
 additional memory/question surface families absent from normal training exports.
 It saves data/code hashes and never overwrites a previous challenge. This measures
 unseen wording with shared action vocabulary, not unrestricted chat. Freeze it
 before training and do not tune on its results. It is an evaluation dataset,
 not a new UI generation mode.
+Previously frozen 180-record challenges are retained unchanged.
 With the same seed as the ordinary dataset, some held-out event plans are
 deliberately shared: this is a paired wording stress test, not an independent
 second sample. Neither its contexts nor its groups enter train/validation.
 
 The optional [GPT-2 trainer](trainer/README.md) fine-tunes the standard pretrained
 model with `transformers.Trainer`, ChatML and loss on assistant answers only.
-It trains on the plain-text `memory/` view and has separate `train` and `evaluate`
+It supports text `memory/`, `history/` and `extraction/` views in separate runs,
+with `memory/` as the default, and has separate `train` and `evaluate`
 CLI commands. Training is not connected to Django and is never started by
 generating a dataset. Install `requirements-training.txt` only for this component.
 

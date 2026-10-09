@@ -1,7 +1,7 @@
 """Scenario semantics, provenance, split integrity and chat-export contracts."""
 
 from collections import Counter
-from dataclasses import asdict, replace
+from dataclasses import replace
 import hashlib
 import json
 
@@ -12,6 +12,7 @@ from semantic_corpus.dialogue_generator import (
     TASKS, USER_ASSISTANT_TASKS, DialogueGenerator, build_dialogue_dataset, dialogue_tasks,
 )
 from semantic_corpus.dialogue_generator.export import extraction_row, prompt_key, response_row
+from semantic_corpus.dialogue_generator.extraction_text import decode_update, parse_prompt
 from semantic_corpus.dialogue_generator.models import (
     Delta, Evidence, Fact, Memory, Query, Replacement, Turn, answer_query, apply_delta,
 )
@@ -166,10 +167,12 @@ def test_exports_keep_targets_out_of_prompts_and_have_equal_loss_scope():
         assert "supporting_ids" not in row["messages"][1]["content"]
     transition = next(t for t in e.transitions if any(f.relation == "selection" for f in t.delta.add))
     row = extraction_row(e, transition)
-    prompt = json.loads(row["messages"][1]["content"])
-    assert not any(f["relation"] == "selection" for f in prompt["state_before"]["facts"])
-    assert prompt["last_assistant"]["text"] == transition.previous_assistant.text
-    assert json.loads(row["messages"][-1]["content"]) == json.loads(json.dumps(asdict(transition.delta)))
+    memory, user, previous = parse_prompt(row["messages"][1]["content"])
+    assert not any(f.relation == "selection" for f in memory.facts)
+    assert previous.text == transition.previous_assistant.text
+    assert user.text == transition.turn.text
+    assert decode_update(row["messages"][-1]["content"], transition.before,
+                         transition.turn, transition.previous_assistant) == transition.delta
 
 
 @pytest.mark.parametrize("user_only", [False, True])
@@ -255,7 +258,7 @@ def test_omitting_metadata_preserves_training_content_splits_and_audit(tmp_path,
 def test_cli_dialogue_build_and_refusal(tmp_path, capsys):
     args = ["dialogue-build", "--out", str(tmp_path / "data"), "--train", "1", "--validation", "1", "--test", "1"]
     assert main(args) == 0
-    assert "12 paired response examples" in capsys.readouterr().out
+    assert f"{len(TASKS)} paired response examples" in capsys.readouterr().out
     assert main(args) == 2
     assert "new output directory" in capsys.readouterr().err
     with pytest.raises(SystemExit):
@@ -303,10 +306,11 @@ def test_user_only_scenarios_need_no_names_and_keep_context_splits_across_seeds(
 @pytest.mark.parametrize('user_only', [False, True])
 def test_default_sizes_have_no_duplicate_or_cross_split_prompts(tmp_path, user_only):
     manifest = build_dialogue_dataset(tmp_path / 'dataset', user_assistant_only=user_only)
-    assert ('entities.json' not in manifest['resources']) == user_only
-    assert manifest['prompt_version'] == 'dialogue-prompts-v3'
-    assert manifest['content_formats'] == {'history': 'history-text-v1', 'memory': 'memory-text-v2',
-                                            'extraction': 'extraction-json-v1'}
+    assert 'entities.json' in manifest['resources']
+    assert 'semantic_generator/frames.py' in manifest['resources']
+    assert manifest['prompt_version'] == 'dialogue-prompts-v5'
+    assert manifest['content_formats'] == {'history': 'history-text-v1', 'memory': 'memory-text-v3',
+                                            'extraction': 'extraction-text-v2'}
     for view in ('history', 'memory', 'extraction'):
         seen = set()
         for split, count in (('train', 200), ('validation', 20), ('test', 20)):

@@ -17,25 +17,15 @@ from ..semantic_generator.substitutions import ENTITIES_PATH
 from .generator import GENERATOR_VERSION, DialogueGenerator, fingerprint
 from .memory_text import MEMORY_TEXT_VERSION, render_memory
 from .actions import CONTRAST_TASKS
+from .extraction_text import EXTRACT_SYSTEM, EXTRACTION_TEXT_VERSION, render_prompt, render_update
 from .models import Episode, SCHEMA_VERSION, Transition
 
-PROMPT_VERSION = "dialogue-prompts-v3"
+PROMPT_VERSION = "dialogue-prompts-v5"
 RESPONSE_SYSTEM = (
     "You are a friendly AI personal assistant. Reply briefly and naturally to the latest user message. "
     "Use only the supplied conversation context. If information is missing, say you don't know; "
     "if a reference is ambiguous, ask for clarification. A wish or suggestion is not a completed action. "
     "This chat cannot send messages, set reminders or use external tools."
-)
-EXTRACT_SYSTEM = (
-    "Update conversation memory from the latest user message. Return only a JSON object with "
-    "add, replace and invalidate arrays. Each new fact has id, subject, relation, value, evidence, "
-    "polarity (positive/negative) and modality (asserted/desired/planned). Each evidence item has turn_id "
-    "and an exact quote. Each replacement has old_id and fact. invalidate contains active fact IDs. "
-    "Relations in this pilot: location, meeting_day, feeling, visited, selection, completed_break, drink, "
-    "bought, called, sent, read. "
-    "Keep subjects and asserted/desired/planned claims separate. Suggestions are not completed actions. "
-    "Questions and acknowledgements add no facts. Unresolved references add no facts. "
-    "Use the supplied next_fact_id for additions and increment it for further facts."
 )
 
 
@@ -70,14 +60,10 @@ def response_row(episode: Episode, view: str, *, memory_style: int | None = None
 
 
 def extraction_row(episode: Episode, transition: Transition) -> dict:
-    facts = (*transition.before.facts, *transition.before.retired)
-    next_id = max((int(f.id[1:]) for f in facts), default=0) + 1
-    previous = asdict(transition.previous_assistant) if transition.previous_assistant else None
-    prompt = _json({"state_before": transition.before.prompt_data(), "next_fact_id": f"f{next_id}",
-                    "last_assistant": previous, "user_turn": asdict(transition.turn)})
+    prompt = render_prompt(transition.before, transition.turn, transition.previous_assistant)
     return {"id": episode.id + ":" + transition.turn.id, "scenario_key": episode.scenario_key,
             "task": episode.task,
-            "messages": _messages(EXTRACT_SYSTEM, prompt, _json(asdict(transition.delta)))}
+            "messages": _messages(EXTRACT_SYSTEM, prompt, render_update(transition))}
 
 
 def prompt_key(row: dict) -> str:
@@ -123,8 +109,8 @@ def build_dialogue_dataset(out: Path, *, train: int = 200, validation: int = 20,
     are deduplicated independently. No tokenizer, model, network or DB is used.
     Disabling metadata exports only messages in training rows; internal grouping,
     validation and the episode audit records retain their identifiers.
-    user_assistant_only selects 11 tasks without names or third-party facts;
-    the default retains the original 12 named-pool tasks.
+    user_assistant_only selects 14 tasks without personal names;
+    the default includes the additional named-people task (15 tasks).
     contrast_multiplier scales only the two completion contrast tasks in all
     splits. Its default of 1 preserves the UI's uniform per-task quotas.
     An optional existing trainer report supplies its tokenizer contract; the
@@ -153,7 +139,7 @@ def build_dialogue_dataset(out: Path, *, train: int = 200, validation: int = 20,
                 "prompt_version": PROMPT_VERSION, "seed": seed, "quota_per_task": counts,
                 "task_multipliers": weights,
                 "content_formats": {"history": "history-text-v1", "memory": MEMORY_TEXT_VERSION,
-                                    "extraction": "extraction-json-v1"},
+                                    "extraction": EXTRACTION_TEXT_VERSION},
                 "include_metadata": include_metadata,
                 "user_assistant_only": user_assistant_only,
                 "dialogue_profile": "user-assistant-v1" if user_assistant_only else "named-pool-v1",
@@ -166,10 +152,11 @@ def build_dialogue_dataset(out: Path, *, train: int = 200, validation: int = 20,
                 "review_status": "synthetic pilot; inspect before large-scale training",
                 "training_report_supplied": report is not None}
     resources = sorted(Path(__file__).parent.glob("*.py"))
-    if not user_assistant_only:
-        resources.append(ENTITIES_PATH)
+    resources.append(ENTITIES_PATH)  # Typed event fillers use the common pool in both profiles.
     for path in resources:
         manifest["resources"][path.name] = _sha256(path)
+    frame_path = Path(__file__).parent.parent / 'semantic_generator' / 'frames.py'
+    manifest['resources']['semantic_generator/frames.py'] = _sha256(frame_path)
     out.parent.mkdir(parents=True, exist_ok=True)
     # Failure never publishes a half-finished dataset or overwrites an old one.
     with TemporaryDirectory(prefix=".dialogue-build-", dir=out.parent) as temporary:
@@ -229,6 +216,9 @@ def build_dialogue_dataset(out: Path, *, train: int = 200, validation: int = 20,
                                 delta = transition.delta
                                 stats["delta_operations"].update({"add": len(delta.add), "replace": len(delta.replace),
                                                                   "invalidate": len(delta.invalidate),
+                                                                  "event_add": len(delta.event_add),
+                                                                  "event_replace": len(delta.event_replace),
+                                                                  "event_invalidate": len(delta.event_invalidate),
                                                                   "no_change": int(delta == type(delta)())})
                             else:
                                 stats["extraction_duplicates"] += 1

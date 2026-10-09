@@ -8,7 +8,7 @@ import pytest
 from semantic_corpus.dialogue_generator.trainer.chatml import (
     IM_START, IM_END, PAD, encode_example, prompt_text,
 )
-from semantic_corpus.dialogue_generator.trainer.data import check_disjoint, load_rows
+from semantic_corpus.dialogue_generator.trainer.data import check_disjoint, load_rows, validate_view
 
 
 class CharacterTokenizer:
@@ -74,3 +74,21 @@ def test_duplicates_conflicts_and_scenario_leakage_are_refused(tmp_path):
     second = load_rows(save(tmp_path, 'validation.json', [row(question='Recall my location.', scenario_key='same-plan')]))
     with pytest.raises(ValueError, match='Scenario leakage'):
         check_disjoint(first, second)
+
+
+def test_explicit_view_rejects_json_mixed_tasks_and_invalid_extraction_targets(tmp_path):
+    from semantic_corpus.dialogue_generator import DialogueGenerator
+    from semantic_corpus.dialogue_generator.export import extraction_row, response_row
+
+    episode = next(DialogueGenerator(user_assistant_only=True).generate('recall', 1, split='train'))
+    for view in ('memory', 'history', 'extraction'):
+        item = extraction_row(episode, episode.transitions[0]) if view == 'extraction' else response_row(episode, view)
+        rows = load_rows(save(tmp_path, view + '.json', [item]))
+        validate_view(rows, view, 'train')
+        for other in {'memory', 'history', 'extraction'} - {view}:
+            with pytest.raises(ValueError, match='plain-text'):
+                validate_view(rows, other, 'train')
+    item['messages'][-1]['content'] = '{}'
+    rows = load_rows(save(tmp_path, 'invalid.json', [item]))
+    with pytest.raises(ValueError, match='SET'):
+        validate_view(rows, 'extraction', 'train')

@@ -93,7 +93,7 @@ class ChatDatasetPageTests(TestCase):
         self.assertContains(response, 'name="include_metadata"')
         self.assertContains(response, 'Include metadata')
         self.assertContains(response, 'plain-text facts')
-        self.assertContains(response, 'Inputs and targets still use JSON')
+        self.assertContains(response, 'Message content contains no JSON')
         self.assertTrue(response.context['form']['include_metadata'].value())
         self.assertContains(response, f'data-task-count="{len(USER_ASSISTANT_TASKS)}"')
         self.assertContains(response, 'User and assistant only')
@@ -208,11 +208,12 @@ class ChatDatasetPageTests(TestCase):
         manifest = json.loads((root / 'dataset/manifest.json').read_text(encoding='utf-8'))
         self.assertIs(manifest['include_metadata'], True)
         self.assertIs(manifest['user_assistant_only'], False)
-        self.assertEqual(manifest['content_formats']['memory'], 'memory-text-v2')
+        self.assertEqual(manifest['content_formats']['memory'], 'memory-text-v3')
+        self.assertEqual(manifest['content_formats']['extraction'], 'extraction-text-v2')
         rows = json.loads((root / 'dataset/memory/train.json').read_text(encoding='utf-8'))
         for row in rows:
             fields = {'messages', 'id', 'scenario_key', 'task'}
-            if row['task'] in ('desire_vs_done', 'suggestion_vs_done'):
+            if 'contrast_group' in row:
                 fields |= {'contrast_group', 'condition', 'answer_kind'}
                 self.assertIn(row['answer_kind'], ('yes', 'no', 'unknown'))
             self.assertEqual(set(row), fields)
@@ -227,7 +228,8 @@ class ChatDatasetPageTests(TestCase):
                 self.assertEqual(archive.read(name), (root / 'dataset' / name).read_bytes())
         response = self.client.get(reverse('app_main:job', args=[job.pk]))
         self.assertContains(response, 'Chat dataset results')
-        self.assertContains(response, 'Start with Memory')
+        self.assertContains(response, 'Memory uses plain-text facts')
+        self.assertContains(response, 'Extraction uses text context')
         self.assertContains(response, 'Download dataset ZIP')
         self.assertNotContains(response, 'Result quality')
         for name in ('chat-dataset.zip', 'dataset/memory/train.json', 'dataset/history/test.json',
@@ -267,6 +269,11 @@ class ChatDatasetPageTests(TestCase):
                             self.assertTrue(content.startswith('Known facts:\n'))
                             self.assertNotIn('turn_id', content)
                             self.assertNotIn('{', content)
+                    elif view == 'extraction':
+                        for row in rows:
+                            self.assertTrue(row['messages'][1]['content'].startswith('Current memory:\n'))
+                            self.assertNotIn('{', row['messages'][1]['content'])
+                            self.assertNotIn('{', row['messages'][-1]['content'])
 
     def test_bad_saved_settings_and_cancellation_do_not_publish_results(self):
         for config, cancelled, message in (

@@ -7,8 +7,9 @@ The checker validates references and updates, not arbitrary English semantics.
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
+from .events import Event, completion_evidence
 
-SCHEMA_VERSION = "dialogue-memory-v2"
+SCHEMA_VERSION = "dialogue-memory-v3"
 
 
 @dataclass(frozen=True)
@@ -47,10 +48,30 @@ class Replacement:
 
 
 @dataclass(frozen=True)
+class EventClaim:
+    id: str
+    event: Event
+    evidence: tuple[Evidence, ...]
+
+    @property
+    def key(self):
+        return self.event.key
+
+
+@dataclass(frozen=True)
+class EventReplacement:
+    old_id: str
+    claim: EventClaim
+
+
+@dataclass(frozen=True)
 class Delta:
     add: tuple[Fact, ...] = ()
     replace: tuple[Replacement, ...] = ()
     invalidate: tuple[str, ...] = ()
+    event_add: tuple[EventClaim, ...] = ()
+    event_replace: tuple[EventReplacement, ...] = ()
+    event_invalidate: tuple[str, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -65,6 +86,8 @@ class Memory:
     facts: tuple[Fact, ...] = ()
     retired: tuple[Fact, ...] = ()
     assistant_actions: tuple[AssistantAction, ...] = ()
+    events: tuple[EventClaim, ...] = ()
+    retired_events: tuple[EventClaim, ...] = ()
 
     def find(self, subject: str, relation: str, modality: str = "asserted") -> Fact | None:
         return next((f for f in self.facts if f.key == (subject, relation, modality)), None)
@@ -72,7 +95,11 @@ class Memory:
     def prompt_data(self) -> dict:
         # Retired claims stay in the audit record, not in current-state prompts.
         return {"facts": [asdict(f) for f in self.facts],
-                "assistant_actions": [asdict(a) for a in self.assistant_actions]}
+                "assistant_actions": [asdict(a) for a in self.assistant_actions],
+                "events": [asdict(event) for event in self.events]}
+
+    def find_event(self, event: Event) -> EventClaim | None:
+        return next((claim for claim in self.events if claim.key == event.key), None)
 
 
 def apply_delta(memory: Memory, delta: Delta, turns: tuple[Turn, ...]) -> Memory:
@@ -93,7 +120,7 @@ def apply_delta(memory: Memory, delta: Delta, turns: tuple[Turn, ...]) -> Memory
         if active[replacement.old_id].key != replacement.fact.key:
             raise ValueError("Replacement cannot change subject, relation or modality")
     additions = (*delta.add, *(r.fact for r in delta.replace))
-    seen = set(active) | historical
+    seen = set(active) | historical | {claim.id for claim in (*memory.events, *memory.retired_events)}
     for fact in additions:
         if not all(isinstance(s, str) and s.strip() for s in
                    (fact.id, fact.subject, fact.relation, fact.value)) or fact.id in seen:
@@ -111,7 +138,37 @@ def apply_delta(memory: Memory, delta: Delta, turns: tuple[Turn, ...]) -> Memory
     facts = kept + additions
     if len({f.key for f in facts}) != len(facts):
         raise ValueError("Conflicting active facts: use an explicit replacement")
-    return Memory(facts, memory.retired + tuple(active[fid] for fid in removed), memory.assistant_actions)
+    event_active = {claim.id: claim for claim in memory.events}
+    event_history = {claim.id for claim in memory.retired_events}
+    if (len(event_active) != len(memory.events) or len(event_history) != len(memory.retired_events)
+            or event_active.keys() & event_history or (set(active) | historical) & (set(event_active) | event_history)):
+        raise ValueError('Duplicate event IDs in memory')
+    event_removed = (*delta.event_invalidate, *(r.old_id for r in delta.event_replace))
+    if len(set(event_removed)) != len(event_removed) or any(key not in event_active for key in event_removed):
+        raise ValueError('Event updates must refer to distinct active IDs')
+    for replacement in delta.event_replace:
+        if event_active[replacement.old_id].key != replacement.claim.key:
+            raise ValueError('Event replacement cannot change identity or operator path')
+    event_added = (*delta.event_add, *(r.claim for r in delta.event_replace))
+    seen.update(event_active)
+    seen.update(event_history)
+    for claim in event_added:
+        if not claim.id or claim.id in seen:
+            raise ValueError('New events need fresh IDs')
+        seen.add(claim.id)
+        if not isinstance(claim.event, Event):
+            raise ValueError('Event claims need a validated Event')
+        if not claim.evidence or not any(e.turn_id == turns[-1].id for e in claim.evidence):
+            raise ValueError('An event needs evidence from the current user turn')
+        for evidence in claim.evidence:
+            source = by_turn.get(evidence.turn_id)
+            if source is None or not evidence.quote or evidence.quote not in source.text:
+                raise ValueError('Event evidence must quote an existing turn exactly')
+    events = tuple(claim for claim in memory.events if claim.id not in event_removed) + event_added
+    if len({claim.key for claim in events}) != len(events):
+        raise ValueError('Conflicting active event claims: use an explicit replacement')
+    return Memory(facts, memory.retired + tuple(active[fid] for fid in removed), memory.assistant_actions,
+                  events, memory.retired_events + tuple(event_active[key] for key in event_removed))
 
 
 @dataclass(frozen=True)
@@ -129,17 +186,29 @@ class Query:
     subject: str = "user"
     relation: str = ""
     value: str = ""
+    event: Event | None = None
 
 
 def answer_query(memory: Memory, query: Query) -> tuple[str, str, tuple[str, ...]]:
     """Reference answer, dialogue action and supporting IDs from visible state."""
-    if query.kind not in ("lookup", "yes_no", "clarify_option", "capability"):
+    if query.kind not in ("lookup", "yes_no", "clarify_option", "capability", "event_completion"):
         raise ValueError(f"Unsupported query kind: {query.kind}")
     if query.kind == "clarify_option":
         options = next(a for a in reversed(memory.assistant_actions) if a.kind == "options")
         return f"Do you mean {options.items[0]} or {options.items[1]}?", "clarify", (options.source_turn,)
     if query.kind == "capability":
         return "I can't send messages or set reminders in this chat.", "explain_limitation", ()
+    if query.kind == 'event_completion':
+        if query.event is None:
+            raise ValueError('Event completion queries require a typed event')
+        relevant = [(claim, completion_evidence(claim.event)) for claim in memory.events
+                    if claim.event.identity == query.event.identity]
+        known = {result for _, result in relevant if result != 'unknown'}
+        if len(known) != 1:
+            return "I don't know; completion has not been established.", 'unknown', ()
+        result = next(iter(known))
+        supports = tuple(claim.id for claim, value in relevant if value == result)
+        return ('Yes, completion was reported.' if result == 'yes' else 'No, non-completion was reported.'), 'answer', supports
     fact = memory.find(query.subject, query.relation)
     subject = "You" if query.subject == "user" else query.subject
     if query.kind == "yes_no":
@@ -205,7 +274,8 @@ class Episode:
                 if any(a.kind not in ("options", "suggestion") or not a.items
                        or any(item not in turn.text for item in a.items) for a in actions):
                     raise ValueError("Assistant action is not grounded in its utterance")
-                state = Memory(state.facts, state.retired, state.assistant_actions + actions)
+                state = Memory(state.facts, state.retired, state.assistant_actions + actions,
+                               state.events, state.retired_events)
         if not self.turns or self.turns[-1].role != "user" or next(transitions, None) is not None:
             raise ValueError("Incomplete dialogue or extra transitions")
         if state != self.memory:
