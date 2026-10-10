@@ -150,26 +150,36 @@ def train(settings: TrainSettings) -> dict:
     settings.validate()
     if settings.out.exists():
         raise FileExistsError(f'Choose a new training directory: {settings.out}')
+
     device = _device(settings.device)
     precision = _precision(device, settings.precision)
     torch.set_num_threads(settings.threads)
     set_seed(settings.seed)
+
     train_path, val_path = settings.data / 'train.json', settings.data / 'validation.json'
     rows, val_rows = load_rows(train_path), load_rows(val_path)
+
     check_disjoint(rows, val_rows)
     validate_view(rows, settings.view, 'train')
     validate_view(val_rows, settings.view, 'validation')
+
     loading = {'cache_dir': str(settings.cache_dir), 'local_files_only': settings.local_files_only}
+    
     config = AutoConfig.from_pretrained(settings.model, **loading)
+    
     if config.model_type != 'gpt2':
         raise ValueError('The trainer supports GPT-2 checkpoints only')
     if settings.max_length > config.n_positions:
         raise ValueError(f'max_length exceeds the GPT-2 context limit ({config.n_positions})')
+    
     tokenizer = GPT2TokenizerFast.from_pretrained(settings.model, **loading)
+    
     configure_chatml(tokenizer)
+    
     examples = _encode(rows, tokenizer, settings.max_length, 'train', settings.view)
     validation = _encode(val_rows, tokenizer, settings.max_length, 'validation', settings.view)
     print(f'Validated {len(rows)} train / {len(val_rows)} validation records. Loading pretrained {settings.model}.', flush=True)
+    
     model = GPT2LMHeadModel.from_pretrained(settings.model, **loading)
     model.resize_token_embeddings(len(tokenizer), mean_resizing=False)
     model.config.pad_token_id = tokenizer.pad_token_id
@@ -177,8 +187,11 @@ def train(settings: TrainSettings) -> dict:
     model.config.use_cache = False
     model.generation_config.pad_token_id = tokenizer.pad_token_id
     model.generation_config.eos_token_id = tokenizer.eos_token_id
-    model.generation_config.suppress_tokens = list({tokenizer.pad_token_id,
-        tokenizer.convert_tokens_to_ids(IM_START), tokenizer.convert_tokens_to_ids('<|endoftext|>')})
+    model.generation_config.suppress_tokens = list({
+        tokenizer.pad_token_id,
+        tokenizer.convert_tokens_to_ids(IM_START),
+        tokenizer.convert_tokens_to_ids('<|endoftext|>')
+        })
     settings.out.mkdir(parents=True, exist_ok=False)
     report = {'status': 'running', 'mode': 'sft', 'initialization': 'pretrained', 'view': settings.view,
               'trainer': 'transformers.Trainer', 'format': FORMAT_VERSION,
@@ -200,21 +213,46 @@ def train(settings: TrainSettings) -> dict:
     started = time.monotonic()
     try:
         arguments = TrainingArguments(
-            output_dir=str(settings.out / 'checkpoints'), num_train_epochs=settings.epochs,
-            max_steps=settings.max_steps, per_device_train_batch_size=settings.batch_size,
-            per_device_eval_batch_size=settings.batch_size, gradient_accumulation_steps=settings.accumulation,
-            learning_rate=settings.learning_rate, weight_decay=0.01, warmup_ratio=0.05,
-            seed=settings.seed, data_seed=settings.seed, optim='adamw_torch',
-            use_cpu=device.type == 'cpu', bf16=precision == 'bfloat16', fp16=precision == 'float16',
-            eval_strategy='epoch', save_strategy='epoch', save_total_limit=2, save_only_model=settings.save_only_model,
-            load_best_model_at_end=True, metric_for_best_model='eval_loss', greater_is_better=False,
-            prediction_loss_only=True, report_to=[], push_to_hub=False,
-            logging_steps=settings.log_every, logging_first_step=True, disable_tqdm=True,
-            dataloader_num_workers=0, dataloader_pin_memory=device.type == 'cuda',
+            output_dir=str(settings.out / 'checkpoints'),
+            num_train_epochs=settings.epochs,
+            max_steps=settings.max_steps,
+            per_device_train_batch_size=settings.batch_size,
+            per_device_eval_batch_size=settings.batch_size,
+            gradient_accumulation_steps=settings.accumulation,
+            learning_rate=settings.learning_rate,
+            weight_decay=0.01,
+            warmup_ratio=0.05,
+            seed=settings.seed,
+            data_seed=settings.seed,
+            optim='adamw_torch',
+            use_cpu=device.type == 'cpu',
+            bf16=precision == 'bfloat16',
+            fp16=precision == 'float16',
+            eval_strategy='epoch',
+            save_strategy='epoch',
+            save_total_limit=2,
+            save_only_model=settings.save_only_model,
+            load_best_model_at_end=True,
+            metric_for_best_model='eval_loss',
+            greater_is_better=False,
+            prediction_loss_only=True,
+            report_to=[],
+            push_to_hub=False,
+            logging_steps=settings.log_every,
+            logging_first_step=True,
+            disable_tqdm=True,
+            dataloader_num_workers=0,
+            dataloader_pin_memory=device.type == 'cuda',
         )
-        trainer = Trainer(model=model, args=arguments, train_dataset=ChatDataset(examples),
-                          eval_dataset=ChatDataset(validation), data_collator=AnswerCollator(tokenizer.pad_token_id),
-                          processing_class=tokenizer, compute_loss_func=assistant_loss)
+        trainer = Trainer(
+            model=model,
+            args=arguments,
+            train_dataset=ChatDataset(examples),
+            eval_dataset=ChatDataset(validation),
+            data_collator=AnswerCollator(tokenizer.pad_token_id),
+            processing_class=tokenizer,
+            compute_loss_func=assistant_loss
+        )
         report['initial_validation'] = trainer.evaluate()
         _write_json(settings.out / 'run.json', report)
         result = trainer.train()
@@ -223,9 +261,14 @@ def train(settings: TrainSettings) -> dict:
         trainer.save_model(str(settings.out / 'model'))
         tokenizer.save_pretrained(settings.out / 'model')
         trainer.save_state()
-        report.update(status='complete', steps=trainer.state.global_step,
-                      best_checkpoint=trainer.state.best_model_checkpoint, best_validation_loss=trainer.state.best_metric,
-                      train_metrics=result.metrics, final_validation=trainer.evaluate())
+        report.update(
+            status='complete',
+            steps=trainer.state.global_step,
+            best_checkpoint=trainer.state.best_model_checkpoint,
+            best_validation_loss=trainer.state.best_metric,
+            train_metrics=result.metrics,
+            final_validation=trainer.evaluate()
+        )
         report['tokenizer_files'] = {name: file_sha256(settings.out / 'model' / name)
                                      for name in ('tokenizer.json', 'tokenizer_config.json', 'special_tokens_map.json')}
     except BaseException as error:
