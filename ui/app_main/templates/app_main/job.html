@@ -72,8 +72,8 @@
 {% if published_bank %}
     <section class="panel mb-4">
         <h2>Added to Built-in pool</h2>
-        <p>The validated resource bank is available at <code>{{ published_bank }}</code>.</p>
-        <p class="small text-secondary">Publication is complete. Stopping the job afterwards does not remove these resources.</p>
+        <p>Validated resources are now part of the shared Built-in pool. Their source archive is stored at <code>{{ published_bank }}</code>.</p>
+        <p class="small text-secondary">These resources stay in Built-in pool if the job is stopped afterwards.</p>
         <a href="{% url 'app_main:pools' %}">View Built-in pool &rarr;</a>
     </section>
 {% endif %}

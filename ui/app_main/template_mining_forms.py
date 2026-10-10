@@ -31,14 +31,6 @@ class TemplateMiningForm(forms.Form):
                   '(one record per non-empty line), JSONL and JSONL.GZ '
                   'with an example or text field. The file is uploaded when you queue the job.',
     )
-    publish_to_pool = forms.BooleanField(
-        label='Add validated results to Built-in pool',
-        required=False,
-        initial=True,
-        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}),
-        help_text='Successful results become available to Synthetic corpus. '
-                  'Unchecked: keep the mined bank in this job only.',
-    )
 
     def __init__(self, *args, source_path='', **kwargs):
         super().__init__(*args, **kwargs)

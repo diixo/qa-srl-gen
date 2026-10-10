@@ -2,7 +2,7 @@
     <div class="d-flex flex-wrap align-items-start justify-content-between gap-3 mb-3">
         <div>
             <h2>Built-in pool resources</h2>
-            <p class="text-secondary mb-0">Synthetic corpus uses curated frames and eligible mined templates from this shared pool.</p>
+            <p class="text-secondary mb-0">One Built-in pool brings together entities, curated frames and mined resources from all added sources.</p>
         </div>
         <div class="d-flex gap-2">
             <a class="btn btn-outline-primary" href="{% url 'app_main:template_mining' %}">Mine templates</a>
@@ -20,11 +20,11 @@
             <div class="metric-card"><span>Archived mined templates</span><strong>{{ monitor.resources.templates|floatformat:'0g' }}</strong><small>before predicate exclusions</small></div>
         </div>
         <div class="col-sm-6 col-lg-3">
-            <div class="metric-card"><span>Source records</span><strong>{{ monitor.resources.records|floatformat:'0g' }}</strong><small>records processed across source banks</small></div>
+            <div class="metric-card"><span>Source records</span><strong>{{ monitor.resources.records|floatformat:'0g' }}</strong><small>records processed across source archives</small></div>
         </div>
     </div>
     {% if monitor.resources.available %}
-        <p class="small text-secondary">Source banks: {{ monitor.resources.source_banks|default:1 }}. Counts below describe the preserved source archives before generation exclusions; entries can overlap across banks.</p>
+        <p class="small text-secondary">Source archives in Built-in pool: {{ monitor.resources.source_banks|default:1 }}. Counts below describe preserved source entries before generation exclusions; entries can overlap across archives.</p>
 
         <div class="table-responsive">
             <table class="table mb-3">

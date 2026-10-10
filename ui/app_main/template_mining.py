@@ -122,10 +122,8 @@ def load_mining_model():
 
 
 def execute_template_mining(job, out, config, progress):
-    from semantic_corpus.template_bank import TemplateBank
     from semantic_corpus.template_compiler import build_bank
     from semantic_corpus.template_registry import register_bank
-    from semantic_corpus.template_validation import validate_bank
 
     from .models import Job
 
@@ -146,25 +144,22 @@ def execute_template_mining(job, out, config, progress):
 
     def check_cancelled():
         if Job.objects.filter(pk=job.pk, cancel_requested=True).exists():
-            raise ValueError('Cancellation requested before publication.')
+            raise ValueError('Cancellation requested before adding resources to Built-in pool.')
 
     check_cancelled()
-    published = None
-    if config.get('publish_to_pool', True):
-        progress('Validating and adding to Built-in pool', total, total)
-        published = register_bank(out / 'bank', source, repo_root=settings.REPO_ROOT,
-                                  bank_id=str(job.pk), before_publish=check_cancelled)
-        validation = json.loads((published / 'validation.json').read_text(encoding='utf-8'))
-    else:
-        progress('Validating mined templates', total, total)
-        validation = validate_bank(TemplateBank(out / 'bank'), source)
+    # Adding validated resources to the shared pool is part of every mining job,
+    # including queued or retried jobs with the former publish_to_pool=False flag.
+    progress('Validating and adding to Built-in pool', total, total)
+    published = register_bank(out / 'bank', source, repo_root=settings.REPO_ROOT,
+                              bank_id=str(job.pk), before_publish=check_cancelled)
+    validation = json.loads((published / 'validation.json').read_text(encoding='utf-8'))
     (out / 'bank/validation.json').write_text(
         json.dumps(validation, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     summary = {'inputs': inputs, 'counts': manifest['counts'], 'validation': validation,
-               'review_status': 'UNREVIEWED', 'published_to_pool': published is not None,
-               'pool_path': str(published) if published else None,
+               'review_status': 'UNREVIEWED', 'published_to_pool': True,
+               'pool_path': str(published),
                'note': 'Mined syntax needs semantic annotation before QA and training export.'}
     (out / 'mining_summary.json').write_text(
         json.dumps(summary, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-    progress('Built-in pool updated' if published else 'Template mining complete', total, total,
-             templates=manifest['counts']['templates'], published_to_pool=published is not None)
+    progress('Built-in pool updated', total, total,
+             templates=manifest['counts']['templates'], published_to_pool=True)

@@ -24,7 +24,7 @@ from .mined_arguments import realize_arguments
 from .mined_subjects import realize_subject
 from .mined_review import POLICY_PATH, REASONS, normalize_inventory, review_template, reason_category, policy, policy_fingerprint
 
-VERSION = 'dialogue-mined-bank-v8'
+VERSION = 'dialogue-mined-bank-v9'
 
 
 def normalize_verb(row, lexicon):

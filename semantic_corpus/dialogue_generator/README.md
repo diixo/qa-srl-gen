@@ -258,9 +258,10 @@ any controlled lexical/copular head is skipped before generation, including
 embedded heads and multiword predicates headed by these verbs. Auxiliary uses
 inside other predicates (`has bought`, `is moving`, `can buy`) remain eligible.
 
-The policy applies to all published banks and cannot be bypassed by a Built-in
-lemma filter. It does not delete or rewrite `data/eng-base-templates/`, occurrences,
-manifests, or other source components. `TemplateBank` and raw `template-generate`
+The policy applies to mined resources from every source in Built-in pool and
+cannot be bypassed by a lemma filter. It does not delete or rewrite
+`data/eng-base-templates/`, occurrences, manifests, or other source archives.
+`TemplateBank` and raw `template-generate`
 remain archive/reprocessing APIs; normal Synthetic corpus uses the filtered
 `BuiltInPool`. UI inventory totals describe archived entries, not the number of
 eligible templates. Policy version is recorded in generated document metadata.
@@ -410,6 +411,10 @@ followed by `to`. Each role must name a unique phrase in the retained `complemen
 That complete phrase preserves particle placement and argument order. Overlapping
 or ambiguous spans are refused. Object `me/you` becomes `user/assistant`; Memory
 renders the corresponding object pronouns and switches `my/your` perspective.
+Uniqueness and overlap are checked again after that normalization. For example,
+`introduced you to my assistant` would contain two occurrences of `assistant`
+after substitution, so it remains a quotation with reason
+`ambiguous_normalized_argument_surface` instead of failing during event creation.
 
 Passive `be + past participle` uses dictionary forms, subject number and scope:
 `The books were sold`, `were not sold`, `were being sold`, `may have been sold`.
@@ -418,6 +423,15 @@ possibility remain unknown. `The book was sold by Tom` keeps the book as its
 grammatical subject and Tom in `by_phrase`. Without that phrase, no agent is
 invented. Active/passive claims are not automatically merged into one identity;
 that would require a reviewed participant/sense mapping.
+
+A `by_phrase` requires evidence of attachment to the predicate. New compiled
+templates retain the preposition text and governor in the nominal slot's
+`preposition` descriptor. Existing templates can use a direct dependency or an
+exact predicate construction marker. Passive voice alone is insufficient:
+`sold in the shop by the river` must not attach the river to the sale when `by`
+modifies the shop. Missing or unresolved attachment keeps the whole source as a
+quotation (`unresolved_prepositional_attachment`). Old archives are unchanged;
+recompilation from source can restore missing attachment information.
 
 `Tom arrived and Mary left` can produce two event updates in one message, with
 the original clause order retained. Every clause must validate before any is

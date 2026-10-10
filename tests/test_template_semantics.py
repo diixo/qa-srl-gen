@@ -50,7 +50,8 @@ def template(*, passive=False, agent=True, particle=False, lemma='buy', verb='bo
         bindings['v1'] = 'was'
         parts = [*noun, {'literal': ' '}, {'slot': 'v1'}, {'literal': ' '}, {'slot': 'v0'}]
         if agent:
-            slots['n0'].update(dependency='pobj', head_slot=None)
+            slots['n0'].update(dependency='pobj', head_slot=None,
+                               preposition={'text': 'by', 'head_slot': 'v0'})
             parts.extend([{'literal': ' by '}, {'slot': 'n0'}])
         else:
             del slots['n0'], bindings['n0']

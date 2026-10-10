@@ -47,15 +47,26 @@ def argument_specs(record, head, voice):
             prep = re.search(r'\b([a-z]+)\s+$', before, re.I)
             if not prep or prep[1].lower() not in PREPOSITIONS:
                 return None, 'unresolved_prepositional_argument'
+            prep_span = prep.span(1)
             prep = prep[1].lower()
-            # A by phrase in a passive is licensed structurally; it need not be
-            # a volitional PERSON agent (e.g. a storm). Other PPs need an edge
-            # or an archived predicate construction marker to fix attachment.
+            # Voice alone cannot attach "by the river" to "sold" in
+            # "sold in the shop by the river". Require a dependency edge or
+            # an exact archived marker, including for passive by phrases.
             markers = [m for g in record['predicate_groups'] if g['head_slot'] == head
                        for c in g.get('constructions', ()) if c['kind'] in ('preposition_candidate', 'particle_preposition')
                        for m in c.get('markers', ())]
-            if not (voice == 'passive' and prep == 'by' or slot.get('head_slot') == head
-                    or any(m.get('part') == parts[first - 1].get('_source_part', first - 1) for m in markers)):
+            marked = any(m.get('part') == parts[first - 1].get('_source_part', first - 1)
+                         and (m.get('start'), m.get('end')) == prep_span for m in markers)
+            attachment = slot.get('preposition')
+            if attachment is not None:
+                # A known noun attachment must not be overridden by a marker.
+                # A missing governor slot can be an ADP in a marked PP chain.
+                attached = (attachment.get('text') == prep and
+                            (attachment.get('head_slot') == head or
+                             attachment.get('head_slot') is None and marked))
+            else:
+                attached = slot.get('head_slot') == head or marked
+            if not attached:
                 return None, 'unresolved_prepositional_attachment'
             role = 'by_phrase' if voice == 'passive' and prep == 'by' else 'oblique_' + prep
         if any(a['role'] == role for a in result):
@@ -87,6 +98,18 @@ def realize_arguments(record, spec, bindings, person_names, entities=None):
         spans.append((*span, np.text))
     for start, end, text in sorted(spans, reverse=True):
         tail = tail[:start] + text + tail[end:]
+    # Participant aliases can collide with another NP after normalization,
+    # e.g. "you to my assistant" -> "assistant to my assistant". Reject at
+    # admission, before Event validation can abort an otherwise valid job.
+    normalized_spans = []
+    for _, text, _ in arguments:
+        occurrences = list(re.finditer(r'(?<!\w)' + re.escape(text) + r'(?!\w)', tail))
+        if len(occurrences) != 1:
+            return None, 'ambiguous_normalized_argument_surface'
+        start, end = occurrences[0].span()
+        if any(start < b and a < end for a, b in normalized_spans):
+            return None, 'overlapping_normalized_arguments'
+        normalized_spans.append((start, end))
     return (tail, sorted(arguments)), None
 
 

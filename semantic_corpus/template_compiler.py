@@ -131,6 +131,14 @@ def compile_record(doc, source, audit):
         key = token_slots.get(token.i)
         if key:
             slots[key]["head_slot"] = token_slots.get(token.head.i)
+            if token.dep_ == "pobj" and token.head.pos_ == "ADP":
+                # ADPs remain literal text. Preserve their governor separately
+                # so consumers can distinguish verb-attached by from noun-
+                # attached by without inferring attachment from passive voice.
+                slots[key]["preposition"] = {
+                    "text": token.head.lower_,
+                    "head_slot": token_slots.get(token.head.head.i),
+                }
         if key and (token.pos_ == "ADJ" or token.tag_ in ("JJ", "JJR", "JJS")):
             target = token.head if token.dep_ == "amod" else next(
                 (t for t in token.head.children if t.dep_ in ("nsubj", "nsubjpass")), None)

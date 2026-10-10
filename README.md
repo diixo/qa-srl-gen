@@ -78,14 +78,17 @@ names and retained for background processing and retries. Both inputs are
 combined and processed in full, without sampling.
 
 The page queues a background job that compiles templates, verbs, adjectives and
-multiword constructions, then independently validates the bank. The default
-**Add validated results to Built-in pool** option publishes an immutable
-component in `data/mined-templates/<job-id>/`, including the source snapshot and
-occurrence ledger. Existing `data/eng-base-templates/` files stay intact; new
-Synthetic corpus jobs use all published components through the same pool. Turn
-the option off to keep the result only in the job's output directory. Resource
-counts sum entries across source banks and may include overlapping patterns or
-lemmas; generated identical texts are deduplicated by the corpus store.
+multiword constructions, then independently validates the results. Every
+successful mining job automatically adds these resources to the single shared
+Built-in pool. This also applies to queued or retried jobs with the former
+`publish_to_pool=False` setting. Their source archive is stored in
+`data/mined-templates/<job-id>/`, including the source snapshot and occurrence
+ledger. This directory is created when resources are first added. Together with
+`data/eng-base-templates/`, these archives supply one Built-in pool used by
+Synthetic corpus and Chat dataset. Validation failure or cancellation before
+addition leaves the pool unchanged. Resource counts sum entries across source
+archives and may include overlapping patterns or lemmas; generated identical
+texts are deduplicated by the corpus store.
 
 Mining requires `requirements-mining.txt` and a local English spaCy model with a
 parser and lemmatizer. Set `CORPUS_MINING_MODEL` to its package name or directory,
@@ -109,8 +112,9 @@ are stored under `artifacts/ui/`. `CORPUS_UI_ROOT` overrides that artifact
 directory; it does not change the database path. Use the same value for the
 server and worker. Removing `artifacts/` while the server and worker are stopped
 removes output files and uploads but preserves job history and database tables.
-Published template components under `data/mined-templates/` also survive;
-unpublished mining results and models cached under `artifacts/` do not.
+Built-in pool source archives under `data/mined-templates/` also survive;
+unfinished or historical job-only mining results and models cached under
+`artifacts/` do not.
 If `ui/db.sqlite3` itself is removed, run `python ui/manage.py migrate` to create
 empty tables again. The UI is a local operator tool, with CSRF checks
 and no user-account access control; public/network deployment is not configured.
@@ -256,7 +260,7 @@ CLI `build`. `BuiltInPool` in `semantic_corpus/resource_pool.py` provides access
 to typed entities, the seventeen manual frames, verb forms, adjectives,
 constructions, lexical alternatives and eligible mined templates. The existing files
 stay in `semantic_corpus/semantic_generator/entities.json`,
-`data/eng-base-templates/` and published components under `data/mined-templates/`;
+`data/eng-base-templates/` and source archives under `data/mined-templates/`;
 their different structures do not require separate generation operations or
 flattening everything into entity entries.
 
@@ -280,8 +284,8 @@ Raw `TemplateBank` / `template-generate` remain available for audit/reprocessing
 normal Synthetic corpus uses `BuiltInPool`. UI inventory totals are archival.
 
 The default mined quota traverses eligible templates from eng-base plus
-eligible templates from every published component in new UI jobs before split filtering
-and deduplication. It does not promise that every
+eligible templates from all sources added to Built-in pool in new UI jobs
+before split filtering and deduplication. It does not promise that every
 candidate belongs to the selected split or has a semantic annotation.
 `generation-summary.json` reports candidates, split skips, duplicates, stored
 documents and documents awaiting annotation. Mined texts receive a deterministic
@@ -503,7 +507,8 @@ does not establish that it happened. Four task families cover scope,
 progress, event corrections and possession/location states. Reviewed grammar
 distinguishes modals, auxiliary be/have, permissive let and prospective going to;
 the original flat-fact tasks remain as controls.
-The `mined_predicates` task reads all published banks and Wiktionary forms.
+The `mined_predicates` task reads mined resources from the shared Built-in pool
+and Wiktionary forms.
 Supported active/passive constructions retain grammatical subjects, argument
 roles and operator scope. Independent clauses become separate events in one
 message; withdrawing one report preserves the others. Complex or ambiguous

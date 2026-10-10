@@ -1,5 +1,6 @@
 """Participants, passive morphology and independent events survive all views."""
 from dataclasses import asdict, replace
+from copy import deepcopy
 import gzip
 import json
 
@@ -224,3 +225,104 @@ def test_contract_rejects_fabricated_or_overlapping_roles():
                  (EventArgument('complement', 'a book', 'UNRESOLVED'), EventArgument('object', 'a car', 'PHYSICAL_OBJECT'))]:
         with pytest.raises(ValueError):
             Event('sell', args, mined=True, subject=subject)
+
+
+def alias_collision(pronoun='you', noun='assistant', determiner='my'):
+    row = template(lemma='introduce', verb='introduced', adjective=False)
+    row['defaults'].update(n1=pronoun, n2=noun)
+    row['slots']['n1'].update(pos='PRON', tag='PRP')
+    row['slots']['n2'] = {'kind': 'nominal', 'pos': 'NOUN', 'tag': 'NN',
+                          'dependency': 'pobj', 'head_slot': None}
+    row['parts'][4] = {'literal': ''}
+    index = len(row['parts']) - 1
+    row['parts'][-1:] = [{'literal': f' to {determiner} '}, {'slot': 'n2'}, {'literal': '.'}]
+    row['predicate_groups'][0]['constructions'] = [
+        {'kind': 'preposition_candidate', 'lemma': 'introduce to',
+         'markers': [{'part': index, 'start': 1, 'end': 3}]}]
+    return row
+
+
+@pytest.mark.parametrize('pronoun,noun,determiner', [('you', 'assistant', 'my'), ('me', 'user', 'a')])
+def test_argument_alias_collisions_are_quoted_before_event_creation(pronoun, noun, determiner):
+    row = alias_collision(pronoun, noun, determiner)
+    spec, reason = active_phrase(row, 'v0', 'introduce', forms('introduce'), {'Anna'})
+    assert spec is None and reason == 'ambiguous_normalized_argument_surface'
+    # Every attested binding must be safe, not only the default/source example.
+    row = deepcopy(row)
+    row['attested_bindings'] = [dict(row['defaults'])]
+    row['defaults']['n2'] = 'colleague'
+    row['attested_bindings'].insert(0, row['defaults'])
+    assert active_phrase(row, 'v0', 'introduce', forms('introduce'), {'Anna'})[1] == reason
+    row['attested_bindings'].pop()
+    event = event_from(row, lemma='introduce')
+    assert event_statement(event, perspective='user') == f'Anna introduced {pronoun} to {determiner} colleague today.'
+
+
+def nested_by_phrase():
+    row = template(lemma='sell', verb='sold', passive=True, agent=False, adjective=False)
+    row['slots']['n2'] = {'kind': 'nominal', 'pos': 'NOUN', 'tag': 'NN',
+                          'dependency': 'pobj', 'head_slot': None}
+    row['slots']['n3'] = {**row['slots']['n2']}
+    row['defaults'].update(n2='shop', n3='river')
+    index = len(row['parts']) - 1
+    row['parts'][-1:] = [{'literal': ' in the '}, {'slot': 'n2'}, {'literal': ' by the '},
+                        {'slot': 'n3'}, {'literal': '.'}]
+    row['predicate_groups'][0]['constructions'] = [
+        {'kind': 'preposition_candidate', 'lemma': 'sell in',
+         'markers': [{'part': index, 'start': 1, 'end': 3}]}]
+    return row
+
+
+def test_passive_by_requires_an_attachment_witness():
+    row = template(lemma='sell', verb='sold', passive=True, adjective=False)
+    row['slots']['n0'].pop('preposition')
+    assert active_phrase(row, 'v0', 'sell', forms('sell'), {'Anna'})[1] == 'unresolved_prepositional_attachment'
+    # Old archives can use an exact existing verb-attached marker.
+    index = next(i for i, part in enumerate(row['parts']) if part.get('literal') == ' by ')
+    marker = {'part': index, 'start': 1, 'end': 3}
+    row['predicate_groups'][0]['constructions'] = [
+        {'kind': 'preposition_candidate', 'lemma': 'sell by', 'markers': [marker]}]
+    assert event_from(row).voice == 'passive'
+    marker['start'] = 0  # A different span in the same literal is not evidence.
+    assert active_phrase(row, 'v0', 'sell', forms('sell'), {'Anna'})[1] == 'unresolved_prepositional_attachment'
+
+
+@pytest.mark.parametrize('archived', [False, True])
+def test_noun_attached_by_never_becomes_a_passive_argument(archived):
+    row = nested_by_phrase()
+    if not archived:
+        row['slots']['n2']['preposition'] = {'text': 'in', 'head_slot': 'v0'}
+        row['slots']['n3']['preposition'] = {'text': 'by', 'head_slot': 'n2'}
+    spec, reason = active_phrase(row, 'v0', 'sell', forms('sell'), {'Anna'})
+    assert spec is None and reason == 'unresolved_prepositional_attachment'
+
+
+@pytest.mark.parametrize('user_only', [True, False])
+def test_rejected_argument_templates_remain_available_as_quotations(small_bank, user_only):
+    rows = [alias_collision(), nested_by_phrase()]
+    bank_path = small_bank.banks[0].path
+    for row in rows:
+        row['fillers'] = {k: [v] for k, v in row['defaults'].items()}
+        row['template_id'] = fingerprint(row)
+        with gzip.open(bank_path / 'templates' / (row['template_id'][:2] + '.jsonl.gz'), 'at', encoding='utf-8') as stream:
+            stream.write(json.dumps(row) + '\n')
+    with gzip.open(bank_path / 'verbs.jsonl.gz', 'at', encoding='utf-8') as stream:
+        for lemma, surface in [('introduce', 'introduced'), ('sell', 'sold')]:
+            stream.write(json.dumps({'lemma': lemma, 'forms': {surface: 1}}) + '\n')
+    with small_bank.dictionary.open('a', encoding='utf-8') as stream:
+        stream.write('introduce\tintroduces\tintroducing\tintroduced\tintroduced\n'
+                     'sell\tsells\tselling\tsold\tsold\n')
+    bank = DialogueMinedBank(small_bank.root, cache=False)
+    for lemma, reason in [('introduce', 'ambiguous_normalized_argument_surface'),
+                          ('sell', 'unresolved_prepositional_attachment')]:
+        assert bank.entries[lemma]['native_rejections'] == {reason: 1}
+        assert not bank.entries[lemma]['native_references']
+    episodes = list(DialogueGenerator(user_assistant_only=user_only, mined_bank=bank)
+                    .generate('mined_predicates', 3 * len(bank.lemmas), split='train'))
+    rejected = [e for e in episodes if e.mined_source['raw_lemma'] in ('introduce', 'sell')]
+    assert len(rejected) == 6
+    for episode in rejected:
+        assert episode.mined_source['realization'] == 'attested_quotation'
+        for transition in episode.transitions:
+            target = extraction_row(episode, transition)['messages'][-1]['content']
+            assert decode_update(target, transition.before, transition.turn, transition.previous_assistant) == transition.delta

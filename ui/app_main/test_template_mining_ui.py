@@ -45,11 +45,11 @@ class TemplateMiningFormTests(MiningInputFixtures, SimpleTestCase):
 
     def test_pasted_text_preserves_whitespace_and_needs_no_file(self):
         text = '  She bought a book.\n\nThey read it.\n'
-        form = TemplateMiningForm({'text': text, 'publish_to_pool': 'on'})
+        form = TemplateMiningForm({'text': text})
         self.assertTrue(form.is_valid(), form.errors)
         self.assertEqual(form.cleaned_data['text'], text)
         self.assertEqual(form.cleaned_data['source_path'], '')
-        self.assertTrue(form.cleaned_data['publish_to_pool'])
+        self.assertNotIn('publish_to_pool', form.cleaned_data)
 
     def test_file_only_and_combined_inputs_accept_uploaded_source(self):
         for text in ('', 'She visited Kyiv.'):
@@ -60,7 +60,7 @@ class TemplateMiningFormTests(MiningInputFixtures, SimpleTestCase):
                 self.assertIs(form.cleaned_data['source_file'], uploaded)
                 self.assertEqual(form.cleaned_data['source_path'], '')
                 self.assertEqual(form.cleaned_data['text'], text)
-                self.assertFalse(form.cleaned_data['publish_to_pool'])
+                self.assertNotIn('publish_to_pool', form.cleaned_data)
         self.assertEqual(self.source.read_text(encoding='utf-8'), 'They picked up the book.\n')
 
     def test_retry_can_reuse_saved_source_but_browser_cannot_submit_a_path(self):
@@ -119,11 +119,12 @@ class TemplateMiningPageTests(MiningInputFixtures, TestCase):
         self.assertContains(response, 'type="file"')
         self.assertContains(response, 'enctype="multipart/form-data"')
         self.assertNotContains(response, 'name="source_path"')
-        self.assertContains(response, 'name="publish_to_pool"')
+        self.assertNotContains(response, 'name="publish_to_pool"')
+        self.assertContains(response, 'Validated resources are automatically added to Built-in pool.')
         self.assertContains(response, 'UNREVIEWED')
         self.assertContains(response, 'aria-current="page"')
         self.assertEqual(response.context['nav_active'], 'template_mining')
-        self.assertTrue(response.context['form'].fields['publish_to_pool'].initial)
+        self.assertNotIn('publish_to_pool', response.context['form'].fields)
         self.assertEqual(Job.objects.count(), 0)
         start.assert_not_called()
 
@@ -133,7 +134,6 @@ class TemplateMiningPageTests(MiningInputFixtures, TestCase):
         response = self.client.post(self.url, {
             'text': text,
             'source_file': SimpleUploadedFile('sentences.txt', self.source.read_bytes()),
-            'publish_to_pool': 'on',
         })
         job = Job.objects.get()
         self.assertRedirects(response, reverse('app_main:job', args=[job.pk]), fetch_redirect_response=False)
@@ -151,15 +151,15 @@ class TemplateMiningPageTests(MiningInputFixtures, TestCase):
         self.assertEqual(counts['records'], 2)
         self.assertEqual([json.loads(line)['example'] for line in snapshot.read_text().splitlines()],
                          [text.rstrip('\n'), self.source.read_text().rstrip('\n')])
-        self.assertTrue(job.config['publish_to_pool'])
+        self.assertNotIn('publish_to_pool', job.config)
         self.assertEqual(job.status, Job.Status.QUEUED)
         start.assert_called_once()
 
     @patch('app_main.views.start_worker')
-    def test_unchecked_publication_is_saved_as_false(self, start):
-        response = self.client.post(self.url, {'text': 'Go.'})
+    def test_legacy_opt_out_is_not_saved_for_new_jobs(self, start):
+        response = self.client.post(self.url, {'text': 'Go.', 'publish_to_pool': ''})
         self.assertEqual(response.status_code, 302)
-        self.assertFalse(Job.objects.get().config['publish_to_pool'])
+        self.assertNotIn('publish_to_pool', Job.objects.get().config)
         start.assert_called_once()
 
     @patch('app_main.views.start_worker')
@@ -208,7 +208,6 @@ class TemplateMiningPageTests(MiningInputFixtures, TestCase):
     def test_retry_of_uploaded_file_reuses_the_saved_copy(self, start):
         response = self.client.post(self.url, {
             'source_file': SimpleUploadedFile('sentences.txt', b'An uploaded sentence.'),
-            'publish_to_pool': 'on',
         })
         previous = Job.objects.get()
         previous.status = Job.Status.FAILED
@@ -244,7 +243,7 @@ class TemplateMiningPageTests(MiningInputFixtures, TestCase):
         self.assertNotContains(response, reverse('app_main:job', args=[unrelated.pk]))
 
     @patch('app_main.views.start_worker')
-    def test_retry_preserves_dedicated_mining_config(self, start):
+    def test_retry_preserves_sources_and_drops_legacy_opt_out(self, start):
         previous = Job.objects.create(
             operation='template_mining',
             config={
@@ -259,7 +258,8 @@ class TemplateMiningPageTests(MiningInputFixtures, TestCase):
         new = Job.objects.exclude(pk=previous.pk).get()
         self.assertRedirects(response, reverse('app_main:job', args=[new.pk]), fetch_redirect_response=False)
         self.assertEqual(new.operation, 'template_mining')
-        self.assertEqual(new.config, previous.config)
+        self.assertEqual(new.config, {key: value for key, value in previous.config.items()
+                                     if key != 'publish_to_pool'})
         start.assert_called_once()
 
     @patch('app_main.views.start_worker')

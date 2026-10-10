@@ -139,13 +139,30 @@ class TemplateMiningExecutionTests(MiningFixtures, TestCase):
         self.assertIn('Compiling templates, verbs and adjectives', self.stages)
         self.assertEqual(self.stages[-1], 'Built-in pool updated')
 
-    def test_unchecked_publication_keeps_a_validated_job_bank_only(self):
+        from semantic_corpus.dialogue_generator.generator import DialogueGenerator
+        from semantic_corpus.dialogue_generator.mined_bank import DialogueMinedBank
+
+        dialogue_bank = DialogueMinedBank(self.root, cache=False)
+        self.assertEqual(dialogue_bank.lemmas, ('pick',))
+        for user_only in (False, True):
+            with self.subTest(user_assistant_only=user_only):
+                generator = DialogueGenerator(user_assistant_only=user_only, mined_bank=dialogue_bank)
+                episodes = list(generator.generate('mined_predicates', 3, split='train'))
+                self.assertEqual(len(episodes), 3)
+                for episode in episodes:
+                    episode.validate()
+                    self.assertEqual(episode.mined_source['source_text'], self.text)
+                    self.assertEqual(Path(episode.mined_source['bank']), bank.path)
+
+    def test_legacy_opt_out_cannot_bypass_adding_resources_to_pool(self):
         self.run_mining(publish_to_pool=False)
         summary = json.loads((self.out / 'mining_summary.json').read_text(encoding='utf-8'))
-        self.assertFalse(summary['published_to_pool'])
+        self.assertTrue(summary['published_to_pool'])
         self.assertEqual(summary['validation']['status'], 'passed')
-        self.assertFalse((self.root / 'data/mined-templates').exists())
-        self.assertEqual(self.stages[-1], 'Template mining complete')
+        pool = BuiltInPool(self.root, entities=EntityPool([]))
+        documents = [doc for split in ('train', 'dev', 'test') for doc in pool.mined_documents(split=split)]
+        self.assertEqual([doc.text for doc in documents], [self.text])
+        self.assertEqual(self.stages[-1], 'Built-in pool updated')
 
     def test_cancel_request_prevents_publication(self):
         Job.objects.filter(pk=self.job.pk).update(cancel_requested=True)

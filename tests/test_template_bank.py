@@ -66,6 +66,31 @@ def bank(tmp_path, resources):
     return TemplateBank(output)
 
 
+@pytest.mark.parametrize('by_dependency,by_head', [('agent', 3), ('prep', 3), ('prep', 6)])
+def test_compiler_preserves_by_attachment_for_dialogue_admission(resources, by_dependency, by_head):
+    from semantic_corpus.dialogue_generator.mined_realization import active_phrase, lexicon
+    from dataclasses import asdict
+
+    doc = parsed(['The', 'book', 'was', 'sold', 'in', 'the', 'shop', 'by', 'the', 'river', '.'],
+                 [1, 3, 3, 3, 3, 6, 4, by_head, 9, 7, 3],
+                 ['det', 'nsubjpass', 'auxpass', 'ROOT', 'prep', 'det', 'pobj', by_dependency, 'det', 'pobj', 'punct'],
+                 ['DET', 'NOUN', 'AUX', 'VERB', 'ADP', 'DET', 'NOUN', 'ADP', 'DET', 'NOUN', 'PUNCT'],
+                 ['DT', 'NN', 'VBD', 'VBN', 'IN', 'DT', 'NN', 'IN', 'DT', 'NN', '.'],
+                 ['the', 'book', 'be', 'sell', 'in', 'the', 'shop', 'by', 'the', 'river', '.'])
+    directory, wordnet = resources
+    row, _ = compile_record(doc, {'line': 1}, LexicalAudit(directory, wordnet))
+    row['attested_bindings'] = [row['defaults']]
+    assert CorpusTemplate(row).render()['text'] == doc.text
+    assert row['slots']['n2']['preposition'] == {'text': 'by', 'head_slot': 'v1' if by_head == 3 else 'n1'}
+    forms = [asdict(p) for p in lexicon().paradigms('sell')]
+    spec, reason = active_phrase(row, 'v1', 'sell', forms, set())
+    if by_head == 3:
+        assert reason is None and spec['voice'] == 'passive'
+        assert {arg['role'] for arg in spec['arguments']} == {'oblique_in', 'by_phrase'}
+    else:
+        assert spec is None and reason == 'unresolved_prepositional_attachment'
+
+
 def test_full_coverage_includes_duplicates_and_verbless_records(bank):
     counts = bank.manifest["counts"]
     assert counts["input_records"] == counts["compiled_records"] == counts["roundtrips_verified"] == 5

@@ -34,14 +34,7 @@
                     <div class="text-danger small">{{ form.source_file.errors }}</div>
                 </div>
 
-                <div class="form-check">
-                    {{ form.publish_to_pool }}
-                    <label class="form-check-label" for="{{ form.publish_to_pool.id_for_label }}">
-                        {{ form.publish_to_pool.label }}
-                    </label>
-                </div>
-                <div class="form-text">{{ form.publish_to_pool.help_text }}</div>
-                <div class="text-danger small">{{ form.publish_to_pool.errors }}</div>
+                <p class="form-text">Validated resources are automatically added to Built-in pool.</p>
 
                 <button class="btn btn-primary mt-4 px-3" type="submit">
                     Queue mining job <span aria-hidden="true">&rarr;</span>
@@ -56,14 +49,14 @@
             <ol class="ps-3 mb-3">
                 <li class="mb-2">Compile all source records into templates and lexical inventories.</li>
                 <li class="mb-2">Validate source coverage, text reconstruction and token spans.</li>
-                <li>Add the validated bank to Built-in pool if selected.</li>
+                <li>Automatically add validated resources to the shared Built-in pool.</li>
             </ol>
             <p class="text-secondary">The job page shows progress, logs and output files. Mining runs in the existing worker queue.</p>
             <a href="{% url 'app_main:workers' %}">View process slots &rarr;</a>
         </section>
         <section class="panel">
             <h2>Using the results</h2>
-            <p>Published templates are available in Synthetic corpus through the shared Built-in pool.</p>
+            <p>Resources added here become part of the same Built-in pool used by Synthetic corpus and Chat dataset.</p>
             <p class="small text-secondary mb-0">
                 Automatic syntax remains <strong>UNREVIEWED</strong> after validation.
                 Synthetic corpus derives semantic candidates and QA from supported templates; unsupported clauses remain pending for further annotation.
@@ -74,19 +67,19 @@
 
 <section class="panel mb-4">
     <div class="d-flex flex-wrap align-items-start justify-content-between gap-3 mb-3">
-        <h2 class="mb-0">Current mined resources</h2>
+        <h2 class="mb-0">Mined resources in Built-in pool</h2>
         <a href="{% url 'app_main:slots' %}">View sentence patterns &rarr;</a>
     </div>
     <p class="small text-secondary">
-        Source banks: {{ resources.source_banks|default:0 }}.
-        Counts are summed across banks; shared lemmas and templates can appear in more than one bank.
+        Source archives in Built-in pool: {{ resources.source_banks|default:0 }}.
+        Counts are summed across source archives; shared lemmas and templates can appear in more than one archive.
     </p>
     <div class="row g-3">
         <div class="col-md-4">
             <div class="metric-card">
-                <span>Mined templates</span>
+                <span>Archived mined templates</span>
                 <strong>{{ resources.templates|floatformat:'0g' }}</strong>
-                <small>available in Built-in pool</small>
+                <small>before predicate exclusions</small>
             </div>
         </div>
         <div class="col-md-4">
