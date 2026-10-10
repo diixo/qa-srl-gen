@@ -7,13 +7,13 @@ from dataclasses import dataclass
 import re
 
 from ..ontology.models import ENTITY_LABELS
+from ..template_syntax import nominal_members
 
 
 WEATHER_PREDICATES = frozenset(('rain', 'snow', 'hail', 'drizzle', 'sleet', 'thunder'))
 POSSIBILITY_PROFILES = (('may',), ('may', 'not'), ('might',), ('may', 'have'))
 NONPERSON_SOURCE_OPERATORS = frozenset(('not', 'can', 'could', 'must', 'may', 'might',
                                       'have', 'be', 'have_to', 'start', 'finish', 'stop', 'manage', 'fail'))
-_MODIFIERS = {'compound', 'amod', 'nummod', 'poss', 'flat', 'flat:name'}
 _DETERMINERS = set('a an the this that these those my your some each every all both one two three four five six seven eight nine ten hundred thousand million billion'.split())
 _REFERENCES = re.compile(r'\b(he|she|they|we|him|her|them|us|his|their|our|its|it|myself|yourself|himself|herself|itself|themselves|ourselves)\b', re.I)
 _SOURCE_AUXILIARIES = frozenset('am is are was were be been being have has had do does did can cannot could may might must will would shall should not ca wo sha'.split())
@@ -59,13 +59,7 @@ class MinedSubject:
 def subject_parts(record, subject_slot, head_slot, *, scoped=False):
     """Accept contiguous simple NPs; keep unresolved clause material quoted."""
     slots, parts = record['slots'], record['parts']
-    members = {subject_slot}
-    while True:
-        added = {key for key, slot in slots.items() if key not in members
-                 and slot.get('head_slot') in members and slot.get('dependency') in _MODIFIERS}
-        if not added:
-            break
-        members.update(added)
+    members = nominal_members(slots, subject_slot)
     if any(key not in members and slot.get('head_slot') in members for key, slot in slots.items()):
         return None, 'complex_subject'
     head_index = next(i for i, part in enumerate(parts) if part.get('slot') == head_slot)
@@ -98,7 +92,7 @@ def subject_parts(record, subject_slot, head_slot, *, scoped=False):
     return before, None
 
 
-def realize_subject(record, spec, bindings, person_names, entities=None):
+def realize_subject(record, spec, bindings, person_names, entities=None, *, require_number=True):
     """Classify only explicit dialogue deixis and pool-backed entity readings."""
     key = spec['subject_slot']
     slot = record['slots'][key]
@@ -118,8 +112,10 @@ def realize_subject(record, spec, bindings, person_names, entities=None):
         number = 'plural'
     elif 'Number=Sing' in morph or tag in ('NN', 'NNP') or text in person_names:
         number = 'singular'
-    else:
+    elif require_number:
         return None, 'unresolved_subject_number'
+    else:
+        number = 'singular'  # Non-subject role values do not carry agreement.
     # Preserve proper-name case; normalize only a known initial determiner.
     first = text.split(' ', 1)[0]
     if first.lower() in _DETERMINERS:

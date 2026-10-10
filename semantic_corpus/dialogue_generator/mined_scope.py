@@ -34,7 +34,7 @@ def _words(text):
     return product(*[('is', 'has') if w == "'s" else ('had', 'would') if w == "'d" else (w,) for w in tokens])
 
 
-def parse_scope(text, leaf, paradigms, finite_tag=None):
+def parse_scope(text, leaf, paradigms, finite_tag=None, *, voice='active'):
     """Parse the subject-to-leaf VP, excluding the leaf's complement."""
     if len(text.split()) > 24:
         return None, 'unsupported_source_scope'
@@ -54,11 +54,19 @@ def parse_scope(text, leaf, paradigms, finite_tag=None):
         w, *rest = words
         if w == 'not' and not finite:
             return [('not',) + ops for ops in parse(rest, form)]
-        if len(words) == 1 and matches(w, leaf, form):
+        if voice == 'passive' and matches(w, 'be', form):
+            if len(rest) == 1 and matches(rest[0], leaf, 'participle'):
+                return [()]
+            if len(rest) == 2 and rest[0] == 'not' and matches(rest[1], leaf, 'participle'):
+                return [('not',)]
+        if voice == 'active' and len(words) == 1 and matches(w, leaf, form):
             return [()]
         results = []
         if finite and w in ('do', 'does', 'did') and form == {'do': 'present', 'does': 'third', 'did': 'past'}[w]:
-            results += parse(rest, 'base')
+            # Passive be takes direct negation/inversion, not do-support.
+            # A lexical controller still can: did not want to be seen.
+            results += [ops for ops in parse(rest, 'base')
+                        if voice != 'passive' or any(op != 'not' for op in ops)]
         for lemma in (*CONTROL, 'have', 'be'):
             if not matches(w, lemma, form):
                 continue
@@ -120,8 +128,6 @@ def parse_scope(text, leaf, paradigms, finite_tag=None):
 def scope_structure(record, head):
     """License a ROOT -> reviewed xcomp chain with one shared subject."""
     slots = record['slots']
-    if any(s.get('dependency') in ('nsubjpass', 'auxpass', 'nsubj:pass', 'aux:pass') for s in slots.values()):
-        return None, 'passive'
     chain = [head]
     while slots[chain[-1]].get('dependency') != 'ROOT':
         slot = slots[chain[-1]]
@@ -132,12 +138,12 @@ def scope_structure(record, head):
             return None, 'unreviewed_control_operator'
         chain.append(parent)
     root = chain[-1]
-    subjects = [k for k, s in slots.items() if s.get('dependency') == 'nsubj']
+    subjects = [k for k, s in slots.items() if s.get('dependency') in ('nsubj', 'nsubjpass', 'nsubj:pass')]
     if len(subjects) != 1 or slots[subjects[0]].get('head_slot') != root:
         return None, 'unresolved_control_subject'
     allowed = set(chain)
     allowed.update(k for k, s in slots.items() if s.get('pos') == 'AUX'
-                   and s.get('dependency') == 'aux' and s.get('head_slot') in chain)
+                   and s.get('dependency') in ('aux', 'auxpass', 'aux:pass') and s.get('head_slot') in chain)
     if any(k not in allowed for k, s in slots.items() if s.get('kind') == 'verb'):
         return None, 'embedded_or_coordinated_predicates'
     if any(s.get('head_slot') in chain[1:] and k not in allowed | set(subjects)

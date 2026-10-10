@@ -13,37 +13,36 @@ from .events import Event, EventArgument
 from .observed_clauses import ObservedClause
 from .mined_subjects import MinedSubject
 
-EXTRACTION_TEXT_VERSION = 'extraction-text-v6'
+EXTRACTION_TEXT_VERSION = 'extraction-text-v7'
 PROMPT_PREFIX = 'Current memory:\n'
 STATE_RELATIONS = frozenset(('location', 'meeting_day', 'feeling', 'selection', 'drink'))
 ESCAPES = {'\\': '\\', '|': '|', 'n': '\n', 'r': '\r', 't': '\t'}
 ENCODE_ESCAPES = {value: '\\' + key for key, value in ESCAPES.items()}
 
 EXTRACT_SYSTEM = (
-    'Update memory from the latest user message. Return text commands only, one per line. '
+    'Update memory from the latest user message: one text command per line. '
     'SET subject | relation | modality | polarity | value adds or replaces a fact. '
-    'SET_CONTEXT uses SET fields and cites the last assistant message for a resolved reference. '
+    'Suffix _CONTEXT cites the last assistant message for resolved references. '
     'REMOVE subject | relation | modality withdraws an existing fact. '
-    'Return NO_CHANGE alone when nothing changes. '
+    'Otherwise return NO_CHANGE alone. '
     'Relations: location, meeting_day, feeling, selection, drink, visited, bought, called, sent, read, completed_break. '
-    'Modalities: asserted, desired, planned; desired/planned apply only to actions. '
-    'Polarity: positive or negative. Use user for the speaker. '
-    'Wishes, plans, suggestions and choices do not establish completion. '
+    'Modality: asserted, desired/planned (actions only). Polarity: positive/negative. Speaker=user. '
     'Questions, thanks and unresolved references add no facts. '
-    'EVENT predicate | time | scope | phase | tense | role=TYPE:value ... records a typed event; '
-    'EVENT_CONTEXT also cites the last assistant message. REMOVE_EVENT followed by the same event fields withdraws it. '
-    'Scope is outer-to-inner operators separated by >, or none. not negates its child. '
+    'EVENT predicate | time | scope | phase | tense | role=TYPE:value ... records an event. '
+    'Scope: outer>inner operators or none; not negates its child. '
     'Phase: unspecified, ongoing, completed. Tense: present, past, future, modal. '
-    'Finite can/could/must/may/might use modal tense. Let names a separate permitter=PERSON:value. '
-    'Lexical be/have describe states; auxiliary be/have, have_to and be_going_to are scoped operators. '
-    'Never infer completion from a wish, need, plan, attempt, start or stop. '
+    'can/could/must/may/might require modal tense. let requires permitter=PERSON:value. '
+    'Lexical be/have are states; auxiliary be/have are operators. '
+    'Wishes, plans, attempts, starts, stops and suggestions never prove completion. '
     'No JSON, IDs or evidence quotations.'
     ' MINED uses EVENT fields: subject=TYPE:text | number=singular/plural, '
-    'then optional complement=UNRESOLVED:text. Subject is grammatical, not necessarily an agent; '
-    'user/assistant resolve I/you, other noun phrases retain user perspective. Use pool types or UNRESOLVED; '
-    'weather it uses IMPERSONAL. Phase reported is a bare past report, not completion. '
+    'optional voice=passive (default active), complement=UNRESOLVED:text, and role=TYPE:text. '
+    'Roles object, indirect_object, oblique_PREPOSITION, by_phrase identify unique phrases in the complement. '
+    'Roles are grammatical. user/assistant resolve I/me/you; otherwise retain user perspective. '
+    'Use pool types or UNRESOLVED, IMPERSONAL for weather it. reported means bare past, not completion. '
+    'Separate independent events. Prefix REMOVE_ to EVENT/MINED/QUOTE to withdraw only that report using its exact fields. '
     'QUOTE status | text records reported, denied, desired, planned, suggested, possible, required or permitted wording; '
-    'it never confirms the events inside the quotation. Prefix REMOVE_ to withdraw MINED or QUOTE.'
+    'Quotation never confirms embedded events.'
 )
 
 
@@ -124,6 +123,7 @@ class EventCommand:
 def _event_fields(event: Event) -> tuple[str, ...]:
     return (event.predicate, event.time, '>'.join(event.operators) or 'none', event.phase, event.tense,
             *((f'subject={event.subject.label}:{event.subject.text}', f'number={event.subject.number}') if event.subject else ()),
+            *((f'voice={event.voice}',) if event.voice != 'active' else ()),
             *(f'{arg.role}={arg.label}:{arg.text}' for arg in event.arguments),
             *((f'permitter={event.permitter.label}:{event.permitter.text}',) if event.permitter else ()))
 
@@ -164,9 +164,14 @@ def _parse_event_payload(operation, fields):
         if len(fields) < 6:
             raise ValueError('MINED needs predicate, time, scope, phase, tense and subject')
         predicate, time, scope, phase, tense, *args = fields
-        roles, permitter, subject, number = [], None, None, None
+        roles, permitter, subject, number, voice = [], None, None, None, None
         for value in args:
             role, eq, tail = value.partition('=')
+            if role == 'voice' and eq:
+                if voice is not None:
+                    raise ValueError('Repeated voice')
+                voice = tail
+                continue
             if role == 'number' and eq:
                 if number is not None:
                     raise ValueError('Repeated subject number')
@@ -190,7 +195,7 @@ def _parse_event_payload(operation, fields):
             raise ValueError('A MINED subject and its number must be supplied together')
         return Event(predicate, tuple(sorted(roles)), time, () if scope == 'none' else tuple(scope.split('>')),
                      phase, tense, permitter, mined=True,
-                     subject=MinedSubject(*subject, number) if subject else None)
+                     subject=MinedSubject(*subject, number) if subject else None, voice=voice if voice is not None else 'active')
     return _read_event(fields)
 
 

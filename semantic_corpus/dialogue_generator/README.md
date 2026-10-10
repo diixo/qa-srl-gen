@@ -288,14 +288,14 @@ Two realization levels are explicit in each exported mined record:
 
 | Level | Generation and target |
 | --- | --- |
-| `compositional` | A supported active VP preserves its subject and recognized source operator scope. Complements retain particles/prepositions and word order. Occurrence is inferred only from reviewed evidence rules; telic completion remains unknown. |
+| `compositional` | A supported active/passive VP preserves its subject, grammatical arguments and recognized source operator scope. Independent clauses remain separate events. Occurrence follows reviewed evidence rules; telic completion remains unknown. |
 | `attested_quotation` | The entire original sentence is preserved. The dialogue distinguishes reporting that wording from planning, proposing, requiring or denying its use. This does **not** label the embedded action as completed or assign it invented semantic roles. |
 
-Compositional realization requires an unambiguous active subject, one target
+Compositional realization requires an unambiguous subject for each licensed
 predicate with a reviewed same-subject operator chain, agreement between observed
 tag and dictionary form, and a complement requiring no unresolved pronoun or
-temporal-scope rewrite. Passive, unrecognized control/embedding, coordinated and
-other unresolved cases remain available as quotations.
+temporal-scope rewrite. Unrecognized control/embedding, shared-subject coordination
+and other unresolved cases remain available as quotations.
 Their source slots, dependencies, spans and construction candidates remain in
 `*.episodes.jsonl`. Corpus annotations remain **UNREVIEWED**. Thus every indexed
 head participates, but arbitrary full semantic generation for every head is not
@@ -323,16 +323,17 @@ by `mined_scope.py`. The source scope is retained, including outer/inner negatio
 `finish/stop + gerund`, supported modals, perfect/progressive, `have to` and
 licensed `be able/going to` structures are recognized. A dependency path and the
 whole intervening surface span must both validate. `stop to do`, `try doing`,
-object control (`Tom wanted Mary to leave`), separate clauses, unreviewed operators
-and passive constructions remain quotations. Inflections alone do not license them.
+object control (`Tom wanted Mary to leave`) and unreviewed operators remain
+quotations. Inflections alone do not license them.
 The existing event contract permits at most four operators, including negation.
 
 Source tense, operator order and negation are retained; the dialogue supplies a new
 `today` context, not the original document's timeline. Bare affirmative sources can
 still supply a newly generated modal/intention contrast. `scope_origin` records
 `source` or `generated`; `source_scope` stores the original recognized analysis.
-Sampling prefers a scoped source on half the native draws when one exists, without
-excluding plain phrases. Native reference counts and rejection reasons are audited.
+On half the native draws, sampling chooses among available scoped, passive and
+multi-event sources; other draws retain access to all native references.
+Native reference counts and rejection reasons are audited.
 Observed nonperson subjects also allow structural aspect/necessity/success/failure
 operators; unsupported wishes or control operators are still refused.
 
@@ -344,7 +345,33 @@ leave`, `was leaving`) does not entail `left`; those remain unknown, along with
 negated perfect, negated success and cessation.
 Conflicting active evidence yields unknown. A source report is explicitly withdrawn
 before generating an incompatible follow-up; withdrawing it removes its evidence.
-Passive roles, multiple events and parser repair are subsequent implementation steps.
+Parser ambiguity and inventory noise remain a separate step; these candidates
+still carry `UNREVIEWED` provenance.
+
+Step 3 adds `object`, `indirect_object`, `oblique_<preposition>` and passive
+`by_phrase` arguments. These are **grammatical roles**, not automatic semantic
+AGENT/THEME/LOCATION assignments. For example, `sent a book to Tom` stores an
+object and `oblique_to`; it does not invent a semantic recipient for every verb
+followed by `to`. Each role must name a unique phrase in the retained `complement`.
+That complete phrase preserves particle placement and argument order. Overlapping
+or ambiguous spans are refused. Object `me/you` becomes `user/assistant`; Memory
+renders the corresponding object pronouns and switches `my/your` perspective.
+
+Passive `be + past participle` uses dictionary forms, subject number and scope:
+`The books were sold`, `were not sold`, `were being sold`, `may have been sold`.
+Only the first two directly report occurrence/nonoccurrence; progress and
+possibility remain unknown. `The book was sold by Tom` keeps the book as its
+grammatical subject and Tom in `by_phrase`. Without that phrase, no agent is
+invented. Active/passive claims are not automatically merged into one identity;
+that would require a reviewed participant/sense mapping.
+
+`Tom arrived and Mary left` can produce two event updates in one message, with
+the original clause order retained. Every clause must validate before any is
+used. Explicit subjects, supported predicates and independent scopes are required
+(up to four clauses); `or`, shared-subject/embedded coordination, unresolved
+companions and repeated reports about the same event remain quotations. This
+prevents dropping an unsupported half of a sentence. Generated corrections name
+the withdrawn report explicitly and leave companion events in memory.
 
 This applies automatically to new **Chat dataset** jobs; there is no new UI mode.
 Existing exports are unchanged. To audit the scope-aware export and compare it
@@ -354,12 +381,19 @@ with step 1, including archive/dictionary identity and per-predicate restriction
 python scripts/review_dialogue_scopes.py artifacts/dialogue-mined-scopes-step2 --baseline artifacts/dialogue-mined-subjects-step1 --out artifacts/reviews/dialogue-scopes-step2-validation.json
 ```
 
+For the step-3 export, including voice, role roundtrips and selective withdrawal:
+
+```powershell
+python scripts/review_dialogue_roles.py artifacts/dialogue-mined-roles-step3 --baseline artifacts/dialogue-mined-scopes-step2 --out artifacts/reviews/dialogue-roles-step3-validation.json
+```
+
 The model's text update commands add these forms:
 
 ```text
 MINED sell | today | want | unspecified | present | subject=PERSON:Tom | number=singular | complement=UNRESOLVED:a ticket
 MINED sell | today | none | reported | past | subject=PERSON:Tom | number=singular | complement=UNRESOLVED:a ticket
 MINED rain | today | may | unspecified | modal | subject=IMPERSONAL:it | number=singular
+MINED sell | today | none | reported | past | subject=UNRESOLVED:the book | number=singular | voice=passive | by_phrase=PERSON:Tom | complement=UNRESOLVED:by Tom
 QUOTE planned | Anna might have bought a ticket.
 ```
 
@@ -484,9 +518,9 @@ The internal memory and audit keep their structured schema. **Extraction** uses
 the text command contract described below, with lossless conversion to internal
 deltas for the supported pilot scenarios.
 
-The manifest now records `schema_version: dialogue-memory-v7`,
-`prompt_version: dialogue-prompts-v9`, `content_formats.memory: memory-text-v7` and
-`content_formats.extraction: extraction-text-v6`. Generate a new job/directory to get
+The manifest now records `schema_version: dialogue-memory-v8`,
+`prompt_version: dialogue-prompts-v10`, `content_formats.memory: memory-text-v8` and
+`content_formats.extraction: extraction-text-v7`. Generate a new job/directory to get
 the text format; existing output files are not rewritten. Text-based prompt
 deduplication can select different episodes when older prompts differed only
 by internal identifiers. Paired History/Memory targets and split checks remain

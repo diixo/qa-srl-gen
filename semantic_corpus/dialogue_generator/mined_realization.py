@@ -1,10 +1,10 @@
-"""Conservative realization of an observed active verb phrase.
+"""Conservative realization of licensed active/passive and independent clauses.
 
 Only the head is inflected; the full complement, particles and prepositions keep
 their attested order. This layer does not assign ACTION/STATE or completion to an
 unreviewed sense. `reported` records a past predication, not a completed event.
 """
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
 from functools import lru_cache
 from pathlib import Path
 import re
@@ -13,6 +13,8 @@ from ..controlled_verbs import controlled_head
 from ..qasrl_core.inflections import load_inflections
 from .mined_subjects import realize_subject, subject_parts, NONPERSON_SOURCE_OPERATORS
 from .mined_scope import parse_scope, scope_structure
+from .mined_arguments import argument_specs, realize_arguments
+from .mined_clauses import independent_clauses
 
 
 @lru_cache(maxsize=8)
@@ -43,13 +45,62 @@ def mined_lexeme(predicate):
 
 
 def active_phrase(record, head_slot, canonical, paradigms, person_names):
+    """License every clause before exposing any event in a multi-clause source."""
+    clauses, reason = independent_clauses(record)
+    if reason:
+        return None, reason
+    if clauses is None:
+        return _single_phrase(record, head_slot, canonical, paradigms, person_names)
+    primary, companions, ordered = None, [], []
+    for clause in clauses:
+        if head_slot in clause['slots']:
+            primary, reason = _single_phrase(clause, head_slot, canonical, paradigms, person_names)
+            if reason:
+                return None, reason
+            ordered.append(primary)
+        else:
+            candidates = []
+            for key, slot in clause['slots'].items():
+                if slot.get('pos') != 'VERB':
+                    continue
+                lemma = slot.get('lemma', '')
+                forms = [asdict(p) for p in lexicon().paradigms(lemma)]
+                candidate, _ = _single_phrase(clause, key, lemma, forms, person_names)
+                if candidate:
+                    candidates.append(candidate)
+            if len(candidates) != 1:
+                return None, 'unsupported_companion_clause'
+            companions.append(candidates[0])
+            ordered.append(candidates[0])
+    if primary is None:
+        return None, 'unresolved_clause_head'
+    for binding in record['attested_bindings']:
+        keys = []
+        for candidate in ordered:
+            subject, _ = realize_subject(record, candidate, binding, person_names)
+            values, _ = realize_arguments(record, candidate, binding, person_names)
+            key = (candidate['predicate'], subject, values[0], candidate['voice'])
+            if key in keys:
+                return None, 'overlapping_companion_events'
+            keys.append(key)
+    primary['companions'] = companions
+    primary['source_order'] = [c['head_slot'] for c in ordered]
+    return primary, None
+
+
+def _single_phrase(record, head_slot, canonical, paradigms, person_names):
     """License the VP and retain the original reviewed scope, if present."""
+    record = {**record, 'parts': [{'_source_part': i, **p} for i, p in enumerate(record['parts'])]}
     if not paradigms or controlled_head(canonical):
         return None, 'unresolved_or_controlled_inflection'
     structure, reason = scope_structure(record, head_slot)
     if reason:
         return None, reason
     root, subject, chain = structure
+    voice = 'passive' if any(s.get('dependency') in ('nsubjpass', 'auxpass', 'nsubj:pass', 'aux:pass')
+                             for s in record['slots'].values()) else 'active'
+    if voice == 'passive' and record['slots'][head_slot].get('tag') != 'VBN':
+        return None, 'passive_without_participle'
     np, reason = subject_parts(record, subject, head_slot, scoped=True)
     if reason:
         return None, reason
@@ -62,7 +113,7 @@ def active_phrase(record, head_slot, canonical, paradigms, person_names):
     # realization available. A malformed binding must not be silently stripped.
     for binding in record['attested_bindings']:
         text = ''.join(p.get('literal', binding.get(p.get('slot'), '')) for p in scope_parts)
-        scope, reason = parse_scope(text, canonical.split(' ', 1)[0], paradigms, finite_tag)
+        scope, reason = parse_scope(text, canonical.split(' ', 1)[0], paradigms, finite_tag, voice=voice)
         if reason:
             return None, reason
     projected = {**record, 'parts': np + [{'literal': ' '}] + parts[index:],
@@ -70,13 +121,14 @@ def active_phrase(record, head_slot, canonical, paradigms, person_names):
                  'predicate_groups': [g for g in record['predicate_groups'] if g['head_slot'] == head_slot]}
     projected['slots'][head_slot].update(dependency='ROOT', head_slot=head_slot)
     projected['slots'][subject]['head_slot'] = head_slot
+    projected['slots'][subject]['dependency'] = 'nsubj'
     # be able to has an adjective marker, not an event complement.
     prefix_slots = {p['slot'] for p in scope_parts[:-1] if 'slot' in p}
     for key in prefix_slots:
         projected['slots'].pop(key, None)
-    spec, reason = _active_phrase(projected, head_slot, canonical, paradigms, person_names)
+    spec, reason = _active_phrase(projected, head_slot, canonical, paradigms, person_names, voice=voice)
     if spec:
-        spec.update(source_parts=scope_parts, finite_tag=finite_tag)
+        spec.update(source_parts=scope_parts, finite_tag=finite_tag, voice=voice)
         spec['has_source_scope'] = False
         for binding in record['attested_bindings']:
             subject, _ = realize_subject(record, spec, binding, person_names)
@@ -84,22 +136,26 @@ def active_phrase(record, head_slot, canonical, paradigms, person_names):
             spec['has_source_scope'] |= bool(scope.operators or scope.phase == 'ongoing' or scope.tense == 'future')
             if subject.label != 'PERSON' and not set(scope.operators) <= NONPERSON_SOURCE_OPERATORS:
                 return None, 'unreviewed_subject_operator_combination'
+        for phrase in (spec['tail_parts'], spec['subject_parts'], spec['source_parts'],
+                       *(a['parts'] for a in spec['arguments'])):
+            for part in phrase:
+                part.pop('_source_part', None)
     return spec, reason
 
 
 def source_scope(spec, bindings, paradigms):
     text = ''.join(p.get('literal', bindings.get(p.get('slot'), '')) for p in spec['source_parts'])
-    scope, reason = parse_scope(text, spec['predicate'].split(' ', 1)[0], paradigms, spec['finite_tag'])
+    scope, reason = parse_scope(text, spec['predicate'].split(' ', 1)[0], paradigms, spec['finite_tag'], voice=spec.get('voice', 'active'))
     if reason:
         raise ValueError(f'Indexed source scope no longer validates: {reason}')
     return scope
 
 
-def _active_phrase(record, head_slot, canonical, paradigms, person_names):
+def _active_phrase(record, head_slot, canonical, paradigms, person_names, *, voice='active'):
     """Return a licensed subject + VP or a reason for attested-only use.
 
-    No parser is run here. Reject clauses needing control, voice, relative-clause
-    or pronoun rewriting. These remain accessible as whole source quotations.
+    No parser is run here. Scope/voice are licensed by the caller. Relative
+    clauses and unresolved references remain whole source quotations.
     """
     slots = record['slots']
     slot = slots[head_slot]
@@ -143,7 +199,16 @@ def _active_phrase(record, head_slot, canonical, paradigms, person_names):
         # "You grew up, Tom" addresses Tom, not the assistant. Detached phrases
         # and comma-separated complements need their own scope/role analysis.
         return None, 'vocative_or_detached_complement'
-    if re.search(r'\b(i|me|my|mine|you|your|yours|his|her|their|he|she|him|they|them|we|us|our|it|its|myself|yourself|himself|herself|itself|themselves|ourselves)\b', tail, re.I):
+    arguments, reason = argument_specs(record, head_slot, voice)
+    if reason:
+        return None, reason
+    # Explicit role spans resolve I/you perspective. References outside a
+    # licensed noun phrase remain quotation-only.
+    unbound = tail
+    for arg in arguments:
+        phrase = ''.join(p.get('literal', record['defaults'].get(p.get('slot'), '')) for p in arg['parts']).strip()
+        unbound = unbound.replace(phrase, '')
+    if re.search(r'\b(i|me|my|mine|you|your|yours|his|her|their|he|she|him|they|them|we|us|our|it|its|myself|yourself|himself|herself|itself|themselves|ourselves)\b', unbound, re.I):
         return None, 'unresolved_reference'
     if re.search(r'\b(today|yesterday|tomorrow|now|ago|yet|already|ever|never|always|still|again|last|next|previous|monday|tuesday|wednesday|thursday|friday|saturday|sunday|seconds?|minutes?|hours?|days?|nights?|weeks?|months?|years?)\b', tail, re.I):
         return None, 'time_or_adverb_scope'
@@ -152,7 +217,7 @@ def _active_phrase(record, head_slot, canonical, paradigms, person_names):
     # Only attested noun/adjective slots and grammatical linking words may be
     # carried into a newly inflected VP. Free adverbs/negation need their scope.
     literals = ' '.join(p.get('literal', '') for p in after)
-    allowed = set('a an the this that these those some any each every all both either neither no one two three four five six seven eight nine ten to for of in on at from by with without about into onto over under through across along around against between among during until since before after up down out off away back together apart forward upon and or'.split())
+    allowed = set('a an the this that these those my your some any each every all both either neither no one two three four five six seven eight nine ten to for of in on at from by with without about into onto over under through across along around against between among during until since before after up down out off away back together apart forward upon and or'.split())
     if any(w.lower() not in allowed for w in re.findall(r"[A-Za-z']+", literals)):
         return None, 'unresolved_literal_scope'
     # A particle belongs to the predicate but stays in its original tail position.
@@ -171,9 +236,12 @@ def _active_phrase(record, head_slot, canonical, paradigms, person_names):
     if reason:
         return None, reason
     spec = {'predicate': predicate, 'head_slot': head_slot, 'subject_slot': subjects[0],
-            'subject_parts': parts, 'tail_parts': after}
+            'subject_parts': parts, 'tail_parts': after, 'arguments': arguments}
     for binding in record['attested_bindings']:
         _, reason = realize_subject(record, spec, binding, person_names)
+        if reason:
+            return None, reason
+        _, reason = realize_arguments(record, spec, binding, person_names)
         if reason:
             return None, reason
     return spec, None

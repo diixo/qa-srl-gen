@@ -19,10 +19,11 @@ from ..qasrl_core.inflections import load_inflections
 from ..resource_pool import BuiltInPool
 from ..template_bank import CorpusTemplate, fingerprint, read_rows
 from ..ontology import Label
-from .mined_realization import active_phrase, phrase_tail, source_scope
+from .mined_realization import active_phrase, source_scope, lexicon
+from .mined_arguments import realize_arguments
 from .mined_subjects import realize_subject
 
-VERSION = 'dialogue-mined-bank-v5'
+VERSION = 'dialogue-mined-bank-v6'
 
 
 def normalize_verb(row, lexicon):
@@ -64,6 +65,9 @@ class DialogueMinedBank:
                                                  Path(__file__).with_name('mined_realization.py').read_bytes() +
                                                  Path(__file__).with_name('mined_scope.py').read_bytes() +
                                                  Path(__file__).with_name('verb_operators.py').read_bytes() +
+                                                 Path(__file__).with_name('mined_arguments.py').read_bytes() +
+                                                 Path(__file__).with_name('mined_clauses.py').read_bytes() +
+                                                 Path(__file__).parents[1].joinpath('template_syntax.py').read_bytes() +
                                                  Path(__file__).with_name('mined_subjects.py').read_bytes()).hexdigest(),
                         'dictionary_sha256': sha256(self.dictionary.read_bytes()).hexdigest(),
                         'banks': [{'path': str(b.path.resolve()), 'manifest': fingerprint(b.manifest),
@@ -117,6 +121,7 @@ class DialogueMinedBank:
                     entries[row['lemma']]['forms'] = dict(forms)
                 entry = entries.setdefault(row['lemma'], {**info, 'references': [], 'native_references': [],
                                                           'scoped_references': [],
+                                                          'passive_references': [], 'argument_references': [], 'multi_references': [],
                                                           'native_rejections': Counter(), 'source_banks': []})
                 entry['source_banks'].append(bank_index)
             alt = bank.path / 'verb_alternatives.jsonl.gz'
@@ -151,6 +156,12 @@ class DialogueMinedBank:
                         entry['native_references'].append(reference)
                         if spec['has_source_scope']:
                             entry['scoped_references'].append(reference)
+                        if spec.get('voice') == 'passive':
+                            entry['passive_references'].append(reference)
+                        if spec.get('arguments'):
+                            entry['argument_references'].append(reference)
+                        if spec.get('companions'):
+                            entry['multi_references'].append(reference)
                     else:
                         entry['native_rejections'][reason] += 1
                     predicates += 1
@@ -168,6 +179,9 @@ class DialogueMinedBank:
                   'dispositions': dict(dispositions), 'inflections': dict(Counter(e['inflection_source'] for e in entries.values())),
                   'source_scope_lemmas': sum(bool(e['scoped_references']) for e in entries.values()),
                   'source_scope_occurrences': sum(len(e['scoped_references']) for e in entries.values()),
+                  'passive_occurrences': sum(len(e['passive_references']) for e in entries.values()),
+                  'argument_occurrences': sum(len(e['argument_references']) for e in entries.values()),
+                  'multi_event_occurrences': sum(len(e['multi_references']) for e in entries.values()),
                   'alternative_lemmas': len(alternatives),
                   'alternative_only_lemmas': sorted(set(alternatives) - set(entries)),
                   'unavailable': {k: e['status'] for k, e in entries.items() if not e['references']},
@@ -192,8 +206,9 @@ class DialogueMinedBank:
     def reference(self, lemma, rng, *, native=True):
         entry = self.entries[lemma]
         references = entry['native_references'] if native and entry['native_references'] else entry['references']
-        if native and entry['scoped_references'] and rng.randrange(2) == 0:
-            references = entry['scoped_references']
+        featured = [entry[key] for key in ('scoped_references', 'passive_references', 'multi_references') if entry[key]]
+        if native and featured and rng.randrange(2) == 0:
+            references = rng.choice(featured)
         return rng.choice(references)
 
     def preload(self, references):
@@ -220,13 +235,24 @@ class DialogueMinedBank:
                            'source_text': row['text'], 'head_slot': head,
                            'slots': row['slots'], 'spans': row['spans'], 'predicate_groups': row['predicate_groups']}
         if spec:
-            subject, reason = realize_subject(template.record, spec, row['bindings'], self.person_names, self.pool.entities)
-            if reason:
-                raise ValueError(f'Indexed subject no longer validates: {reason}')
-            spec = {**spec, 'tail': phrase_tail(spec, row['bindings']), 'subject': subject}
-            spec['source_scope'] = source_scope(spec, row['bindings'], entry['paradigms'])
-            info['subject'] = asdict(subject)
+            def realize(candidate, paradigms):
+                subject, reason = realize_subject(template.record, candidate, row['bindings'], self.person_names, self.pool.entities)
+                if reason:
+                    raise ValueError(f'Indexed subject no longer validates: {reason}')
+                values, reason = realize_arguments(template.record, candidate, row['bindings'], self.person_names, self.pool.entities)
+                if reason:
+                    raise ValueError(f'Indexed arguments no longer validate: {reason}')
+                tail, arguments = values
+                return {**candidate, 'tail': tail, 'argument_values': arguments, 'subject': subject,
+                        'source_scope': source_scope(candidate, row['bindings'], paradigms)}
+            companions = [realize(c, [asdict(p) for p in lexicon().paradigms(c['predicate'].split(' ', 1)[0])])
+                          for c in spec.get('companions', ())]
+            spec = {**realize(spec, entry['paradigms']), 'companions': companions}
+            info['subject'] = asdict(spec['subject'])
             info['source_scope'] = asdict(spec['source_scope'])
+            info['voice'] = spec['voice']
+            info['arguments'] = spec['argument_values']
+            info['companion_heads'] = [c['head_slot'] for c in companions]
         return row, spec, info
 
     def coverage(self, selected):
@@ -237,5 +263,8 @@ class DialogueMinedBank:
     def inventory_report(self):
         return {lemma: {key: entry[key] for key in ('canonical', 'inflection_source', 'status', 'native_rejections')}
                 | {'source_occurrences': len(entry['references']), 'compositional_occurrences': len(entry['native_references']),
-                   'scoped_occurrences': len(entry['scoped_references'])}
+                   'scoped_occurrences': len(entry['scoped_references']),
+                   'passive_occurrences': len(entry['passive_references']),
+                   'argument_occurrences': len(entry['argument_references']),
+                   'multi_event_occurrences': len(entry['multi_references'])}
                 for lemma, entry in self.entries.items()}

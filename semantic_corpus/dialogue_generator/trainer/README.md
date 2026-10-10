@@ -105,8 +105,9 @@ FP32 on CPU; `--precision float32` overrides it. This CLI supports one process.
 
 ## Train the text memory updater
 
-New exports use `extraction-text-v6` with explicit grammatical subjects, number and
-recognized source operator scopes (older files are not converted
+New exports use `extraction-text-v7` with grammatical subjects, number, recognized
+operator scopes, passive voice and argument roles. Independent clauses can require
+several update commands, and selective withdrawal preserves other events (older files are not converted
 in place). Select `extraction/` explicitly. The following commands refer to the
 older frozen v3 updater dataset, whose token lengths were measured:
 

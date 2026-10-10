@@ -12,6 +12,7 @@ from .verb_operators import MODALS, OPERATORS, Operator, be_form, validate_chain
 from .observed_clauses import ObservedClause
 from .mined_realization import mined_lexeme
 from .mined_subjects import MinedSubject, NONPERSON_SOURCE_OPERATORS, WEATHER_PREDICATES
+from .mined_arguments import validate_arguments, render_complement
 
 
 @dataclass(frozen=True)
@@ -68,8 +69,11 @@ class Event:
     observation: ObservedClause | None = None
     mined: bool = False
     subject: MinedSubject | None = None
+    voice: str = 'active'
 
     def __post_init__(self):
+        if self.voice not in ('active', 'passive') or self.voice != 'active' and (not self.mined or self.subject is None):
+            raise ValueError('Passive voice requires an explicit mined subject')
         if self.subject is not None and (not self.mined or not isinstance(self.subject, MinedSubject)):
             raise ValueError('An explicit grammatical subject belongs to a mined event')
         if self.observation is not None:
@@ -113,8 +117,8 @@ class Event:
                 # Read existing extraction-text-v4 exports without rewriting them.
                 if roles not in (('agent',), ('agent', 'complement')) or self.arguments[0] != EventArgument('agent', 'user', 'PERSON'):
                     raise ValueError('Legacy mined events require agent=PERSON:user')
-            elif roles not in ((), ('complement',)):
-                raise ValueError('Mined subjects are grammatical subjects, not inferred agents')
+            else:
+                validate_arguments(self.arguments, self.voice)
             if any(a.role == 'complement' and (a.label != 'UNRESOLVED' or not a.text.strip()) for a in self.arguments):
                 raise ValueError('A mined complement keeps its unresolved semantic type')
             if any(arg.text != arg.text.strip() for arg in self.arguments):
@@ -159,7 +163,7 @@ class Event:
         if self.mined:
             # Legacy agent=user and the explicit subject=user name one event.
             arguments = tuple(arg for arg in self.arguments if arg.role != 'agent')
-            return self.predicate, arguments, self.time, 'mined', self.subject or MinedSubject('user', 'PERSON')
+            return self.predicate, arguments, self.time, 'mined', self.subject or MinedSubject('user', 'PERSON'), self.voice
         return self.predicate, self.arguments, self.time
 
     @property
@@ -248,11 +252,13 @@ def occurrence_evidence(event: Event) -> str:
     return 'unknown'
 
 
-def _core(event: Event, form: str, style: int, subject='I') -> str:
+def _core(event: Event, form: str, style: int, subject='I', perspective='user') -> str:
     if event.mined:
         lexeme = event.lexeme
         word = lexeme.lemma if form in ('base', 'present') else getattr(lexeme, form)
-        tail = next((a.text for a in event.arguments if a.role == 'complement'), '')
+        if event.voice == 'passive':
+            word = be_form(form, subject) + ' ' + lexeme.participle
+        tail = render_complement(event.arguments, perspective)
         return word + (' ' + tail if tail else '')
     lexeme = EVENT_BY_LEMMA[event.predicate]
     frame = lexeme.frame
@@ -288,12 +294,13 @@ def _person(text, perspective, *, object_case=False):
 
 def _phrase(event: Event, operators: tuple[str, ...], form: str, style: int, subject='I', perspective='user') -> str:
     if not operators:
-        return _core(event, form, style, subject)
+        return _core(event, form, style, subject, perspective)
     head, *tail = operators
     tail = tuple(tail)
     if head == 'not':
         child = tail[0] if tail else event.predicate
-        auxiliary = child in MODALS or child in ('be', 'be_able_to', 'be_going_to') or child == 'have' and bool(tail)
+        auxiliary = (child in MODALS or child in ('be', 'be_able_to', 'be_going_to') or child == 'have' and bool(tail)
+                     or not tail and event.voice == 'passive')
         if auxiliary and form in ('past', 'third', 'present', 'modal'):
             phrase = _phrase(event, tail, form, style, subject, perspective)
             first, separator, rest = phrase.partition(' ')
@@ -346,12 +353,12 @@ def event_statement(event: Event, *, perspective='memory', style=0) -> str:
     first_or_second = agreement.lower() in ('i', 'you', 'we', 'they')
     when = ' ' + event.time
     if event.tense == 'future':
-        phrase = 'will ' + _phrase(event, event.operators, 'base', style, subject, perspective)
+        phrase = 'will ' + _phrase(event, event.operators, 'base', style, agreement, perspective)
     elif event.phase == 'reported':
-        phrase = ('did not ' + _core(event, 'base', style)) if event.operators else _core(event, 'past', style)
+        phrase = _phrase(event, event.operators, 'past', style, agreement, perspective)
     elif event.phase == 'ongoing':
         be = be_form('past' if event.tense == 'past' else 'present', agreement)
-        phrase = be + (' not ' if event.operators else ' ') + _core(event, 'gerund', style)
+        phrase = be + (' not ' if event.operators else ' ') + _core(event, 'gerund', style, agreement, perspective)
     elif event.phase == 'completed':
         negative = bool(event.operators)
         if event.tense == 'past':
@@ -395,6 +402,10 @@ def event_question(event: Event, *, style=0) -> str:
         return event.observation.question()
     if event.mined:
         subject = event.subject.surface('user') if event.subject else 'I'
+        if event.voice == 'passive':
+            be = be_form('past', event.subject.agreement('user'))
+            tail = render_complement(event.arguments, 'user')
+            return f'{be.capitalize()} {subject} {event.lexeme.participle}' + (' ' + tail if tail else '') + f' {event.time}?'
         return f'Did {subject} {_core(event, "base", style)} {event.time}?'
     if event.is_state:
         subject = _person(event.agent, 'user')

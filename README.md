@@ -494,7 +494,7 @@ Start response training with `memory/`: its message content now uses short
 English facts and ordered assistant options, with natural-language targets.
 `history/` also uses text. New `extraction/` exports use text context and
 `SET` / `SET_CONTEXT` / `REMOVE` / `EVENT` / `EVENT_CONTEXT` / `REMOVE_EVENT` /
-`NO_CHANGE` commands inside messages;
+`MINED` / `QUOTE` (with contextual/withdrawal variants) / `NO_CHANGE` commands inside messages;
 IDs and exact source quotes are handled by code. The outer files remain JSON
 arrays for training. Generate a new dataset to obtain this extraction format.
 Typed events reuse the shared frames and entity pool. They distinguish participants,
@@ -504,7 +504,9 @@ progress, event corrections and possession/location states. Reviewed grammar
 distinguishes modals, auxiliary be/have, permissive let and prospective going to;
 the original flat-fact tasks remain as controls.
 The `mined_predicates` task reads all published banks and Wiktionary forms.
-Supported active constructions generate new scoped reports; complex or ambiguous
+Supported active/passive constructions retain grammatical subjects, argument
+roles and operator scope. Independent clauses become separate events in one
+message; withdrawing one report preserves the others. Complex or ambiguous
 constructions retain the whole source quotation and test reported wording.
 These two kinds are identified separately as `UNREVIEWED`. This is not a claim
 that every parser lemma has verified semantics. `mined-coverage.json` records

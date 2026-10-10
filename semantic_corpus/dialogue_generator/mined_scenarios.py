@@ -21,6 +21,14 @@ PROFILES = (('want',), ('need',), ('plan',), ('not', 'want'), ('want', 'not'),
 QUOTED_PROFILES = ('desired', 'planned', 'suggested', 'possible', 'required', 'permitted')
 
 
+def _source_event(spec):
+    args = [EventArgument(*value) for value in spec['argument_values']]
+    if spec['tail']:
+        args.append(EventArgument('complement', spec['tail'], 'UNRESOLVED'))
+    return Event(spec['predicate'], tuple(sorted(args)), mined=True, subject=spec['subject'],
+                 voice=spec['voice'], **asdict(spec['source_scope']))
+
+
 def mined_episodes(generator, count, split):
     from .generator import COMMON_PLACES, FEELINGS, DRINKS, _Conversation, _context_split, _fact, fingerprint
     from .events import MODALS
@@ -49,28 +57,27 @@ def mined_episodes(generator, count, split):
         context = rng.choice(contexts)
         style = rng.randrange(3)
         profile = rng.choice(PROFILES)
+        companions = ()
         if spec:
             subject = spec['subject']
             if subject.label != 'PERSON':
                 profile = rng.choice(POSSIBILITY_PROFILES)
             elif subject.text != 'user' and profile == ('let_us',):
                 profile = ('may',)
-            args = []
-            if spec['tail']:
-                args.append(EventArgument('complement', spec['tail'], 'UNRESOLVED'))
-            base = Event(spec['predicate'], tuple(args), tense='past', phase='reported', mined=True, subject=subject)
+            base = replace(_source_event(spec), operators=(), tense='past', phase='reported')
+            companions = tuple(_source_event(s) for s in spec['companions'])
             initial = replace(base, phase='unspecified', operators=profile,
                               tense='modal' if any(op in MODALS for op in profile) else 'present',
                               permitter=EventArgument('permitter', 'user' if subject.text == 'assistant' else 'assistant', 'PERSON') if 'let' in profile else None)
             scope = spec['source_scope']
             preserved = bool(scope.operators not in ((), ('not',)) or scope.phase == 'ongoing' or scope.tense == 'future'
-                             or scope.operators == ('not',))
+                             or scope.operators == ('not',) or spec['voice'] == 'passive' or companions)
             if preserved:
                 initial = replace(base, operators=scope.operators, phase=scope.phase, tense=scope.tense)
                 profile = scope.operators
             source = {**source, 'realization': 'compositional',
                       'scope_origin': 'source' if preserved else 'generated',
-                      'note': 'Subject and reviewed source operator scope are preserved. Time is normalized to today; complements keep attested order and unresolved roles. Completion is not inferred.'}
+                      'note': 'Grammatical subjects, argument candidates, voice and reviewed scope are retained. Independent companion clauses remain separate events. Time is normalized to today; semantic agent roles and completion are not inferred.'}
             condition = ('source:' if preserved else 'generated:') + ('>'.join(profile) or scope.phase)
             query = Query('mined_occurrence', event=base)
         else:
@@ -88,11 +95,18 @@ def mined_episodes(generator, count, split):
             place, feeling, drink = context
             c.pair(f"I'm in {place}. I feel {feeling}, and I prefer {drink}.",
                    facts=(_fact('user', 'location', place), _fact('user', 'feeling', feeling), _fact('user', 'drink', drink)))
-            c.pair(event_statement(initial, perspective='user', style=style), events=(initial,))
+            statements = [event_statement(e, perspective='user', style=style) for e in (initial, *companions)]
+            if companions:
+                by_head = dict(zip([spec['head_slot'], *(s['head_slot'] for s in spec['companions'])], statements))
+                utterance = ' '.join(by_head[head] for head in spec['source_order'])
+            else:
+                utterance = statements[0]
+            c.pair(utterance, events=(initial, *companions))
+            withdrawal = ('Withdraw only this report: "' + statements[0] + '"') if companions else 'Withdraw my last report.'
             known = occurrence_evidence(initial) if spec else 'unknown'
             if known != 'unknown' and known != outcome:
                 old = c.memory.find_event(initial)
-                c.pair('Withdraw my last report.', event_invalidate=(old.id,))
+                c.pair(withdrawal, event_invalidate=(old.id,))
             if outcome != 'unknown' and outcome != known:
                 final = (replace(base, operators=('not',) if outcome == 'no' else ()) if spec else
                          replace(base, observation=replace(base.observation, status='denied' if outcome == 'no' else 'reported')))

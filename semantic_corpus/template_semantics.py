@@ -18,12 +18,12 @@ from .qasrl_core.frame import ArgStructure, Frame
 from .question_generator.answers import QAExample, QAKind, phrase_answer
 from .question_generator.templates import ParadigmResolver, native_questions, _without_property
 from .agreement import verb_words
+from .template_syntax import nominal_members
 
 VERSION = 'mined-dependencies-v1'
 SOURCE = 'template_semantics'
 _SUBJECT = {'nsubj', 'nsubjpass', 'nsubj:pass'}
 _OBJECT = {'dobj', 'obj'}
-_NP_MODIFIERS = {'compound', 'amod', 'nummod', 'poss', 'flat', 'flat:name'}
 _MODALS = {'can', 'will', 'might', 'should', 'would'}
 _DETERMINER = re.compile(
     r"\b(?:(?:a|an|the|this|that|these|those|my|your|his|her|its|our|their|some|any|each|every|no|all|both|"
@@ -122,13 +122,7 @@ class TemplateAnnotator:
     def _mention(self, doc, slots, spans, key):
         if key not in spans or slots[key].get('kind') != 'nominal':
             raise Unsupported('missing_nominal_span')
-        members = {key}
-        while True:
-            added = {k for k, slot in slots.items() if k not in members
-                     and slot.get('head_slot') in members and slot.get('dependency') in _NP_MODIFIERS}
-            if not added:
-                break
-            members.update(added)
+        members = nominal_members(slots, key)
         if any(slot.get('head_slot') in members and k not in members
                and slot.get('dependency') in {'conj', 'appos', 'relcl', 'acl', 'acl:relcl'}
                for k, slot in slots.items()):

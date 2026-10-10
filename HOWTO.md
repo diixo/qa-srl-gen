@@ -213,16 +213,36 @@ python -m semantic_corpus.cli dialogue-build --out artifacts/dialogue-mined --us
 контрасты модальности. В аудите `mined_source.scope_origin` различает `source` и
 `generated`, а `source_scope` сохраняет распознанные операторы, время и фазу.
 Наблюдавшиеся аспектуальные конструкции с не-PERSON субъектами тоже сохраняются,
-но желания и планы им не приписываются. `Tom wanted Mary to leave`, `stop to do`,
-пассив и неподдержанные цепочки остаются цитатами с причиной ограничения.
-Дополнительные роли и исправления разбора — следующие этапы.
+но желания и планы им не приписываются. `Tom wanted Mary to leave`, `stop to do`
+и неподдержанные цепочки остаются цитатами с причиной ограничения.
 
-В Extraction v6 субъект и цепочка передаются текстом, например:
+Добавлены грамматические роли `object`, `indirect_object`, `oblique_<предлог>`
+и `by_phrase` в пассиве. Тип участника берётся из пула или остаётся `UNRESOLVED`.
+Это не автоматическое назначение семантических AGENT/THEME: например, `to Tom`
+сохраняется как `oblique_to`, а значение этой роли зависит от глагола.
+Поле `complement` сохраняет полный порядок дополнений и частиц; значения ролей
+должны однозначно встречаться в нём. `me/you` нормализуются к `user/assistant`,
+а Memory меняет перспективу местоимений.
+
+Поддержан пассив: `The books were sold`, `were not sold`, `were being sold`,
+`may have been sold`. Подлежащее остаётся подлежащим пассива; если нет `by Tom`,
+исполнитель не придумывается. Прогресс и возможность не доказывают выполнение.
+Актив и пассив пока не объединяются автоматически в одно событие.
+
+`Tom arrived and Mary left` даёт две отдельные команды Extraction в одном сообщении.
+Порядок частей сохраняется; отзыв конкретного сообщения удаляет только его событие.
+Каждая часть должна пройти проверку, иметь явное подлежащее и независимую область
+действия операторов. Общий субъект (`Tom sang and danced`), `or`, вложенная
+координация и неподдержанная соседняя часть сохраняют всё предложение цитатой.
+Исправления неоднозначного исходного разбора остаются следующим этапом.
+
+В Extraction v7 субъект, цепочка, залог и роли передаются текстом, например:
 
 ```text
 MINED rain | today | none | reported | past | subject=IMPERSONAL:it | number=singular
 MINED sleep | today | none | reported | past | subject=PERSON:Tom | number=singular
 MINED leave | today | want>not | unspecified | past | subject=PERSON:Tom | number=singular
+MINED sell | today | none | reported | past | subject=UNRESOLVED:the book | number=singular | voice=passive | by_phrase=PERSON:Tom | complement=UNRESOLVED:by Tom
 ```
 
 Старые команды `agent=PERSON:user` по-прежнему читаются. Для новых данных нужно
