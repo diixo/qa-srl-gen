@@ -1,11 +1,35 @@
-# Complete eng-base surface-template bank
+# Shared mined-template bank
 
-This directory is a durable compilation of `data/eng-base.jsonl`, separate from
-temporary runs under `artifacts/`. `manifest.json` records the exact source hash,
-NLP model, counts and coverage against the earlier verb/template catalogue.
-`validation.json` records the independent check against every source line and
-every attested template binding. These files are usable after the manifest
-reaches `complete`.
+This directory is the single durable bank for all mined resources. It initially
+contains the full compilation of `data/eng-base.jsonl`, moved byte-for-byte from
+`data/eng-base-templates/`. Every successful UI mining job appends to these same
+files; it does not create another bank under a job directory.
+
+The original manifest and validation describe the 736,040 eng-base records.
+On the first addition, `manifest.json` becomes `corpus-templates-pool-v1`: it
+retains each original source manifest and validation report, plus the committed
+byte ranges in the shared gzip files. Its `validation` field is the authoritative
+aggregate report; the original `validation.json` remains the eng-base audit.
+New source texts are preserved in `sources/<job-id>.jsonl`, and other source
+files (metadata, licenses and documentation) in `sources/<job-id>.zip`.
+
+Use `TemplateBank` / `BuiltInPool` to read the current bank. Gzip members are
+appended without rewriting earlier data; one atomic manifest replacement makes
+them visible. Readers keep their existing snapshot. Uncommitted tails after a
+crash are ignored by these APIs, and retries never overwrite committed ranges.
+Do not concatenate or regroup ledger lines manually: their line numbers are
+local to the source identified by the manifest. Inventories and template shapes
+may overlap across sources; source entries are deliberately retained intact.
+
+Validate the current bank against all preserved source records (fresh report):
+
+```bash
+python -m semantic_corpus.template_validation data/eng-base.jsonl --bank data/mined-templates --report artifacts/mined-bank-validation.json
+```
+
+The positional source selects the initial eng-base input; subsequent inputs are
+read from `sources/` automatically. For a bank created entirely by UI mining,
+the positional source can be omitted.
 
 These files belong to the centralized **Built-in pool**, accessed through
 `semantic_corpus.resource_pool.BuiltInPool` alongside typed entities and manual
@@ -37,14 +61,13 @@ alternative analyses for bare commands missed by the parser.
 Use **New job → Synthetic corpus → Built-in pool** for the combined corpus.
 **Situations per frame** controls manual-frame examples; **Examples per mined template**
 controls candidates per mined template, default 1. New UI jobs use the
-entire bank; 0 explicitly disables mined candidates. All 595,350 templates are
-visited at the default quota, before split filtering and deduplication.
+entire bank; 0 explicitly disables mined candidates. The initial bank contains
+595,350 templates; subsequent mining adds entries. Eligibility rules, split
+filtering and deduplication determine which candidates enter the corpus.
 `generation-summary.json` records the resulting counts and pending annotations.
-Manual-frame annotations produce QA/SFT/BIO immediately; mined documents retain
-`UNREVIEWED` and need semantic annotation before they can contribute those labels.
-For the next **Corpus annotation** job, keep **Only documents awaiting annotation**
-enabled so existing manual-frame annotations are preserved. Its document limit
-applies after selecting documents without an annotation run.
+Manual-frame annotations produce QA/SFT/BIO immediately. Supported mined clauses
+produce semantic candidates and QA while retaining `UNREVIEWED`; unsupported
+clauses can be processed through a separate **Corpus annotation** job.
 
 For direct inspection, render every template or filter by lemma with the
 low-level command (run from the repository root):

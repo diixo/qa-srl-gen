@@ -46,7 +46,7 @@ class PoolFixtures:
             self.addCleanup(mocked.stop)
 
     def bank(self):
-        path = self.root / 'data/eng-base-templates'
+        path = self.root / 'data/mined-templates'
         path.mkdir(parents=True)
         (path / 'manifest.json').write_text(json.dumps({
             'format': FORMAT, 'status': 'complete', 'source_sha256': 'a' * 64,
@@ -109,7 +109,7 @@ class UnifiedPoolFormTests(PoolFixtures, SimpleTestCase):
 
     def test_resource_monitor_keeps_all_inventory_counts_without_reading_shards(self):
         self.bank()
-        with patch('semantic_corpus.resource_pool.read_rows', side_effect=AssertionError('No shard reads on GET')):
+        with patch('semantic_corpus.template_bank.TemplateBank.rows', side_effect=AssertionError('No shard reads on GET')):
             summary = catalog.resource_summary()
         self.assertTrue(summary['available'])
         self.assertGreater(summary['entities'], 0)

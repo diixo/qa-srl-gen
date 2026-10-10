@@ -10,12 +10,42 @@ from __future__ import annotations
 
 import gzip
 import hashlib
+import io
 import json
 from pathlib import Path
 import random
 
 FORMAT = "corpus-templates-v1"
-DEFAULT_BANK = Path(__file__).resolve().parents[1] / "data" / "eng-base-templates"
+POOL_FORMAT = "corpus-templates-pool-v1"
+DEFAULT_BANK = Path(__file__).resolve().parents[1] / "data" / "mined-templates"
+
+
+class _Slice(io.RawIOBase):
+    """Bound a gzip reader to one committed member, including during appends."""
+
+    def __init__(self, stream, offset, size):
+        self.stream, self.remaining = stream, size
+        stream.seek(offset)
+
+    def readable(self):
+        return True
+
+    def readinto(self, buffer):
+        data = self.stream.read(min(len(buffer), self.remaining))
+        if not data and self.remaining:
+            raise ValueError('truncated template bank file')
+        buffer[:len(data)] = data
+        self.remaining -= len(data)
+        return len(data)
+
+
+def bank_files(path):
+    return sorted([*path.glob('*.jsonl.gz'), *(path / 'templates').glob('*.jsonl.gz'),
+                   *(path / 'occurrences').glob('*.jsonl.gz')])
+
+
+def file_snapshot(path):
+    return {p.relative_to(path).as_posix(): [0, p.stat().st_size] for p in bank_files(path)}
 
 
 def read_rows(path):
@@ -123,25 +153,93 @@ class CorpusTemplate:
 
 
 class TemplateBank:
-    def __init__(self, path=DEFAULT_BANK):
+    def __init__(self, path=DEFAULT_BANK, *, _entry=None):
         self.path = Path(path)
-        self.manifest = json.loads((self.path / "manifest.json").read_text(encoding="utf-8"))
-        if (not isinstance(self.manifest, dict) or self.manifest.get("format") != FORMAT
+        self.entry = _entry
+        self.manifest = (_entry['manifest'] if _entry is not None else
+                         json.loads((self.path / "manifest.json").read_text(encoding="utf-8")))
+        if (not isinstance(self.manifest, dict) or self.manifest.get("format") not in (FORMAT, POOL_FORMAT)
                 or self.manifest.get("status") != "complete"):
-            raise ValueError("a complete corpus-templates-v1 bank is required")
+            raise ValueError("a complete corpus template bank is required")
         if not isinstance(self.manifest.get("counts", {}), dict):
             raise ValueError("template bank counts must be a JSON object")
+        # This legacy provenance label is not a filesystem location. Keeping it
+        # preserves the IDs and source labels of previously generated documents.
+        self.source_id = _entry['id'] if _entry else 'eng-base-templates'
+        self.source_label = (_entry.get('source_label', f"mined-templates/{self.source_id}")
+                             if _entry else 'eng-base-templates')
+        self.files = (_entry['files'] if _entry else
+                      {} if self.manifest['format'] == POOL_FORMAT else file_snapshot(self.path))
+        if _entry is None and self.manifest['format'] == FORMAT:
+            # A writer seals a legacy manifest BEFORE appending any bytes.
+            # Retry if that transition raced the file-size snapshot above.
+            current = json.loads((self.path / 'manifest.json').read_text(encoding='utf-8'))
+            if current != self.manifest:
+                self.__init__(path)
+                return
+        if self.manifest['format'] == POOL_FORMAT:
+            from .template_registry import validate_pool_manifest
+            validate_pool_manifest(self.manifest)
+        if _entry is not None:
+            from .template_registry import _validated_report
+            _validated_report(self, _entry['validation'])
+            if _entry.get('source_file'):
+                if _entry['source_file'] != f'sources/{self.source_id}.jsonl':
+                    raise ValueError('invalid source snapshot path')
+                if not (self.path / _entry['source_file']).is_file():
+                    raise ValueError(f'missing source snapshot: {self.source_id}')
+        for name, extent in self.files.items():
+            target = (self.path / name).resolve()
+            if (not target.is_relative_to(self.path.resolve()) or Path(name).is_absolute()
+                    or not isinstance(extent, list) or len(extent) != 2
+                    or any(type(n) is not int or n < 0 for n in extent)):
+                raise ValueError('invalid template bank file extent')
+
+    def components(self):
+        if self.manifest['format'] == POOL_FORMAT:
+            return tuple(TemplateBank(self.path, _entry=entry) for entry in self.manifest['sources'])
+        return (self,)
+
+    def rows(self, name):
+        """Read one logical file from this source's immutable committed range."""
+        if self.manifest['format'] == POOL_FORMAT:
+            for component in self.components():
+                yield from component.rows(name)
+            return
+        if name not in self.files:
+            raise FileNotFoundError(self.path / name)
+        offset, size = self.files[name]
+        with (self.path / name).open('rb') as stream:
+            with io.BufferedReader(_Slice(stream, offset, size)) as bounded:
+                with gzip.GzipFile(fileobj=bounded) as compressed:
+                    with io.TextIOWrapper(compressed, encoding='utf-8') as text:
+                        for line in text:
+                            if line.strip():
+                                yield json.loads(line)
+
+    def occurrences(self):
+        if self.manifest['format'] == POOL_FORMAT:
+            for component in self.components():
+                yield from component.occurrences()
+            return
+        for name in sorted(self.files):
+            if name.startswith('occurrences/'):
+                yield from self.rows(name)
 
     def templates(self, *, lemma=None, adjective=None, template_id=None):
         if template_id is not None and (len(template_id) != 64 or
                 any(c not in "0123456789abcdef" for c in template_id)):
             raise ValueError("template_id must be a SHA-256 identifier")
-        files = ([self.path / "templates" / f"{template_id[:2]}.jsonl.gz"] if template_id
-                 else sorted((self.path / "templates").glob("*.jsonl.gz")))
+        if self.manifest['format'] == POOL_FORMAT:
+            for component in self.components():
+                yield from component.templates(lemma=lemma, adjective=adjective, template_id=template_id)
+            return
+        files = ([f"templates/{template_id[:2]}.jsonl.gz"] if template_id
+                 else sorted(name for name in self.files if name.startswith('templates/')))
         for file in files:
-            if not file.exists():
+            if file not in self.files:
                 continue
-            for row in read_rows(file):
+            for row in self.rows(file):
                 if template_id is not None and row["template_id"] != template_id:
                     continue
                 if lemma is not None and lemma not in row["verbs"] and lemma not in row["constructions"]:
@@ -151,16 +249,33 @@ class TemplateBank:
                 yield CorpusTemplate(row)
 
     def verbs(self):
-        return read_rows(self.path / "verbs.jsonl.gz")
+        return self.rows('verbs.jsonl.gz')
 
     def adjectives(self):
-        return read_rows(self.path / "adjectives.jsonl.gz")
+        return self.rows('adjectives.jsonl.gz')
 
     def generate(self, *, count=1, seed=0, lemma=None, adjective=None, template_id=None, recombine=False,
                  exclude_controlled=False):
         """Exactly count outputs for EVERY selected template; no hidden top-N."""
         if count < 1:
             raise ValueError("count per template must be positive")
+        if self.manifest['format'] == POOL_FORMAT:
+            found = False
+            for component in self.components():
+                if adjective and not any(row['lemma'] == adjective for row in component.adjectives()):
+                    continue
+                try:
+                    for row in component.generate(count=count, seed=seed, lemma=lemma, adjective=adjective,
+                                                  template_id=template_id, recombine=recombine,
+                                                  exclude_controlled=exclude_controlled):
+                        found = True
+                        yield {**row, 'source_id': component.source_id}
+                except ValueError as error:
+                    if str(error) != 'no templates match the selection':
+                        raise
+            if not found:
+                raise ValueError('no templates match the selection')
+            return
         adjective_forms = None
         if adjective is not None:
             adjective_forms = next((set(row["forms"]) for row in self.adjectives()

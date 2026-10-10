@@ -1,19 +1,18 @@
-"""Publish immutable mined banks as components of the built-in resource pool.
-
-The full validator runs on a staged copy before publication. Each successful job
-gets its own directory, so concurrent jobs never rewrite a shared catalog or
-the original eng-base bank. Small publication records make discovery cheap.
-"""
-
+"""Append validated sources to the shared bank and atomically commit their ranges."""
 from __future__ import annotations
 
+from collections import Counter
+from contextlib import contextmanager
 import json
+import os
 from pathlib import Path
 import re
 import shutil
-import uuid
+import tempfile
+import time
+import zipfile
 
-from .template_bank import TemplateBank, fingerprint
+from .template_bank import POOL_FORMAT, TemplateBank, bank_files, fingerprint
 from .template_validation import validate_bank
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -25,116 +24,212 @@ def _registry_root(repo_root):
     return (Path(repo_root) if repo_root is not None else REPO_ROOT) / "data" / "mined-templates"
 
 
-def _read_json(path):
-    value = json.loads(path.read_text(encoding="utf-8"))
-    if not isinstance(value, dict):
-        raise ValueError(f"{path.name} must contain a JSON object")
-    return value
-
-
-def _validated_report(bank):
-    report = _read_json(bank.path / "validation.json")
-    source_sha256 = bank.manifest.get("source_sha256")
-    if (not isinstance(source_sha256, str)
-            or re.fullmatch(r"[0-9a-f]{64}", source_sha256) is None
-            or report.get("status") != "passed"
-            or report.get("source_sha256") != source_sha256):
+def _validated_report(bank, report=None):
+    report = report if report is not None else json.loads((bank.path / "validation.json").read_text(encoding="utf-8"))
+    if not isinstance(report, dict):
+        raise ValueError('validation report must be a JSON object')
+    source = bank.manifest.get("source_sha256")
+    if (not isinstance(source, str) or re.fullmatch(r"[0-9a-f]{64}", source) is None
+            or report.get("status") != "passed" or report.get("source_sha256") != source):
         raise ValueError("a passed validation report for this bank's source is required")
     for observed, declared in (("source_records", "compiled_records"),
                                ("templates", "templates"), ("token_spans", "tokens_audited")):
         actual = report.get(observed)
-        expected = bank.manifest["counts"].get(declared)
-        if type(actual) is not int or actual < 0 or actual != expected:
+        if type(actual) is not int or actual < 0 or actual != bank.manifest["counts"].get(declared):
             raise ValueError(f"validation report does not match bank count {declared!r}")
     return report
 
 
 def _publication(bank, report, bank_id):
-    return {"format": PUBLICATION_FORMAT, "bank_id": bank_id,
-            "source_sha256": bank.manifest["source_sha256"],
-            "manifest_sha256": fingerprint(bank.manifest),
-            "validation_sha256": fingerprint(report)}
+    return dict(format=PUBLICATION_FORMAT, bank_id=bank_id,
+                source_sha256=bank.manifest["source_sha256"],
+                manifest_sha256=fingerprint(bank.manifest), validation_sha256=fingerprint(report))
 
 
-def _registered_bank(path):
-    bank = TemplateBank(path)
-    report = _validated_report(bank)
-    if (_read_json(path / "publication.json") != _publication(bank, report, path.name)
-            or not (path / "source.jsonl").is_file()):
-        raise ValueError(f"invalid template bank publication: {path.name}")
-    return bank
+def _pool_manifest(entries):
+    counts, validation = Counter(), Counter()
+    for entry in entries:
+        counts.update({k: v for k, v in entry["manifest"]["counts"].items() if type(v) is int})
+        validation.update({k: v for k, v in entry["validation"].items() if type(v) is int})
+    identity = fingerprint([e["publication"] for e in entries])
+    return dict(format=POOL_FORMAT, status="complete", sources=entries, source_sha256=identity,
+                counts=dict(counts), validation=dict(status="passed", source_sha256=identity, **validation))
+
+
+def validate_pool_manifest(manifest):
+    sources = manifest.get("sources")
+    if not isinstance(sources, list) or not sources:
+        raise ValueError("the shared bank must record its sources")
+    seen = set()
+    for entry in sources:
+        try:
+            identity = entry["id"]
+            if not isinstance(identity, str) or not _BANK_ID.fullmatch(identity) or identity in seen:
+                raise ValueError("invalid or repeated source ID")
+            seen.add(identity)
+            declared = entry["publication"]
+            if (declared.get("format") != PUBLICATION_FORMAT or declared.get("bank_id") != identity
+                    or declared.get("manifest_sha256") != fingerprint(entry["manifest"])
+                    or declared.get("source_sha256") != entry["manifest"]["source_sha256"]
+                    or declared.get("validation_sha256") != fingerprint(entry["validation"])
+                    or entry["validation"].get("status") != "passed" or not isinstance(entry["files"], dict)):
+                raise ValueError("invalid source publication")
+        except (KeyError, TypeError, AttributeError) as error:
+            raise ValueError("invalid source publication") from error
+    if manifest != _pool_manifest(sources):
+        raise ValueError("shared bank counts or source identity do not match its publications")
 
 
 def registered_banks(repo_root=None):
-    """Discover published banks without decompressing data or hashing sources.
-
-    A damaged published component is an error, not a silently omitted input.
-    Hidden staging directories left by interrupted jobs are never discoverable.
-    """
+    """Compatibility API: source views within the single shared directory."""
     root = _registry_root(repo_root)
-    if not root.exists():
+    if not (root / "manifest.json").is_file():
         return ()
-    banks = []
-    for path in sorted(root.iterdir()):
-        if path.name.startswith(".") or not path.is_dir():
-            continue
-        if path.is_symlink() or not _BANK_ID.fullmatch(path.name):
-            raise ValueError(f"invalid registered template bank directory: {path.name}")
+    bank = TemplateBank(root)
+    return bank.components() if bank.manifest["format"] == POOL_FORMAT else ()
+
+
+def publication_record(bank_id, *, repo_root=None):
+    root = _registry_root(repo_root)
+    if not (root / "manifest.json").is_file():
+        return None
+    bank = TemplateBank(root)
+    return next((entry for entry in bank.manifest.get("sources", ()) if entry["id"] == bank_id), None)
+
+
+@contextmanager
+def _writer_lock(root):
+    # Never unlink the lock: otherwise workers could lock different file objects.
+    root.parent.mkdir(parents=True, exist_ok=True)
+    with (root.parent / ".mined-templates.lock").open("a+b") as stream:
+        if stream.tell() == 0:
+            stream.write(b"0")
+            stream.flush()
+        deadline = time.monotonic() + 60
+        while True:
+            try:
+                stream.seek(0)
+                if os.name == "nt":
+                    import msvcrt
+                    msvcrt.locking(stream.fileno(), msvcrt.LK_NBLCK, 1)
+                else:
+                    import fcntl
+                    fcntl.flock(stream, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                break
+            except OSError:
+                if time.monotonic() >= deadline:
+                    raise TimeoutError("another worker is updating the mined bank")
+                time.sleep(0.1)
         try:
-            banks.append(_registered_bank(path))
-        except (OSError, ValueError) as error:
-            raise ValueError(f"invalid registered template bank {path.name!r}: {error}") from error
-    return tuple(banks)
+            yield
+        finally:
+            stream.seek(0)
+            if os.name == "nt":
+                msvcrt.locking(stream.fileno(), msvcrt.LK_UNLCK, 1)
+            else:
+                fcntl.flock(stream, fcntl.LOCK_UN)
+
+
+def _commit(root, entries):
+    with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", dir=root,
+                                     prefix=".", suffix=".tmp", delete=False) as stream:
+        temporary = Path(stream.name)
+        try:
+            json.dump(_pool_manifest(entries), stream, ensure_ascii=False, indent=2)
+            stream.write("\n")
+            stream.flush()
+            os.fsync(stream.fileno())
+        except BaseException:
+            stream.close()
+            temporary.unlink(missing_ok=True)
+            raise
+    try:
+        os.replace(temporary, root / "manifest.json")
+    finally:
+        temporary.unlink(missing_ok=True)
+
+
+def _append_file(source, destination):
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    with destination.open("ab") as sink, source.open("rb") as stream:
+        offset = sink.tell()
+        shutil.copyfileobj(stream, sink, length=1024 * 1024)
+        sink.flush()
+        os.fsync(sink.fileno())
+        return [offset, sink.tell() - offset]
 
 
 def register_bank(bank_path, source_path, *, repo_root=None, bank_id, before_publish=None):
-    """Validate and publish a bank; preserve the source and existing banks.
+    """Validate and append; return the shared directory. Repeated IDs are idempotent.
 
-    Validation runs on the exact copied bank and source before an atomic rename.
-    Any report in the input bank is replaced by this authoritative result.
-    Repeating the same publication is harmless; a conflicting ID is rejected.
-    ``before_publish`` can reject a cancelled job after validation and before
-    its resources become visible; an exception removes only this job's staging.
+    Existing file ranges are never rewritten. Readers use committed byte ranges,
+    so interrupted tails remain invisible, including during a retry.
     """
     if not isinstance(bank_id, str) or not _BANK_ID.fullmatch(bank_id):
         raise ValueError("bank_id must contain only lowercase letters, digits, '_' or '-'")
     bank = TemplateBank(bank_path)
-    source = Path(source_path)
-    root = _registry_root(repo_root).resolve()
-    root.mkdir(parents=True, exist_ok=True)
-    target = root / bank_id
-    staging = root / f".{bank_id}-{uuid.uuid4().hex}.staging"
-    try:
-        shutil.copytree(bank.path, staging)
-        shutil.copyfile(source, staging / "source.jsonl")
-        copied = TemplateBank(staging)
-        if fingerprint(copied.manifest) != fingerprint(bank.manifest):
+    if bank.manifest["format"] == POOL_FORMAT:
+        raise ValueError("register a newly compiled source, not the shared bank itself")
+    destination = _registry_root(repo_root)
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    # Resolve an existing parent, not a path another worker is just creating.
+    # Python 3.10 on Windows can otherwise alternate C:\ and \\?\C:\ forms.
+    root = destination.parent.resolve() / destination.name
+    if root.is_symlink():
+        raise ValueError('the shared bank directory must not be a symlink')
+    with tempfile.TemporaryDirectory(prefix=".mined-templates-", suffix=".staging", dir=root.parent) as tmp:
+        staging = Path(tmp)
+        shutil.copytree(bank.path, staging / "bank")
+        shutil.copyfile(source_path, staging / "source.jsonl")
+        copied = TemplateBank(staging / "bank")
+        if copied.manifest != bank.manifest:
             raise ValueError("bank manifest changed during publication")
-        report = validate_bank(copied, staging / "source.jsonl")
-        (staging / "validation.json").write_text(
-            json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-        publication = _publication(copied, _validated_report(copied), bank_id)
-        (staging / "publication.json").write_text(
-            json.dumps(publication, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-        if before_publish is not None:
-            before_publish()
-        if target.exists():
-            existing = _registered_bank(target)
-            if _publication(existing, _validated_report(existing), bank_id) == publication:
-                return target
-            raise FileExistsError(f"a different template bank is already registered as {bank_id!r}")
-        try:
-            staging.rename(target)
-        except OSError:
-            # Two workers can finish the exact same publication together. An
-            # existing different target is never overwritten or removed.
-            if target.exists():
-                existing = _registered_bank(target)
-                if _publication(existing, _validated_report(existing), bank_id) == publication:
-                    return target
-            raise
-    finally:
-        # Only our unique, resolved staging directory may be removed.
-        if staging.exists() and staging.resolve().parent == root and staging.name.startswith("."):
-            shutil.rmtree(staging)
-    return target
+        report = _validated_report(copied, validate_bank(copied, staging / "source.jsonl"))
+        publication = _publication(copied, report, bank_id)
+        with _writer_lock(root):
+            entries, legacy = [], None
+            if (root / "manifest.json").is_file():
+                current = TemplateBank(root)
+                if current.manifest["format"] == POOL_FORMAT:
+                    current.components()  # Reject damaged source metadata/snapshots on retries too.
+                    entries = current.manifest["sources"]
+                else:
+                    legacy = current
+                    previous = _validated_report(current)
+                    entries = [dict(id=current.source_id, source_label=current.source_label,
+                                    manifest=current.manifest, validation=previous, files=current.files,
+                                    publication=_publication(current, previous, current.source_id))]
+            elif root.exists() and any(not p.name.startswith('.') and p.is_dir()
+                                       and (p / 'manifest.json').is_file() for p in root.iterdir()):
+                raise ValueError("migrate legacy per-job banks before adding resources")
+            existing = next((e for e in entries if e["id"] == bank_id), None)
+            if existing:
+                if existing["publication"] != publication:
+                    raise FileExistsError(f"a different template bank is already registered as {bank_id!r}")
+                return root
+            if before_publish is not None:
+                before_publish()
+            root.mkdir(exist_ok=True)
+            if legacy:
+                # Seal legacy lengths BEFORE touching data. Readers retry if
+                # this manifest transition raced their initial file snapshot.
+                _commit(root, entries)
+            files = {p.relative_to(copied.path).as_posix():
+                     _append_file(p, root / p.relative_to(copied.path)) for p in bank_files(copied.path)}
+            sources = root / "sources"
+            sources.mkdir(exist_ok=True)
+            source_name = f"sources/{bank_id}.jsonl"
+            os.replace(staging / "source.jsonl", root / source_name)
+            # Licenses, documentation and original metadata remain auditable.
+            archive = staging / "audit.zip"
+            with zipfile.ZipFile(archive, "w", compression=zipfile.ZIP_DEFLATED) as audit:
+                for path in sorted(copied.path.rglob("*")):
+                    if path.is_file() and path.relative_to(copied.path).as_posix() not in files:
+                        audit.write(path, path.relative_to(copied.path).as_posix())
+            os.replace(archive, sources / f"{bank_id}.zip")
+            if before_publish is not None:
+                before_publish()
+            entry = dict(id=bank_id, manifest=copied.manifest, validation=report, publication=publication,
+                         files=files, source_file=source_name)
+            _commit(root, [*entries, entry])
+    return root

@@ -260,7 +260,7 @@ inside other predicates (`has bought`, `is moving`, `can buy`) remain eligible.
 
 The policy applies to mined resources from every source in Built-in pool and
 cannot be bypassed by a lemma filter. It does not delete or rewrite
-`data/eng-base-templates/`, occurrences, manifests, or other source archives.
+`data/mined-templates/`, occurrences, manifests, or other source archives.
 `TemplateBank` and raw `template-generate`
 remain archive/reprocessing APIs; normal Synthetic corpus uses the filtered
 `BuiltInPool`. UI inventory totals describe archived entries, not the number of

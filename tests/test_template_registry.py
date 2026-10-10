@@ -1,4 +1,4 @@
-"""Published mining jobs become immutable components of one resource pool."""
+"""Sources accumulate in one bank without losing data, provenance or reader snapshots."""
 
 import gzip
 import hashlib
@@ -82,9 +82,9 @@ def test_publication_preserves_validated_bank_and_source_and_is_idempotent(tmp_p
     repo = tmp_path / "repo"
     bank, source, _ = make_bank(tmp_path / "job-one")
     target = register_bank(bank, source, repo_root=repo, bank_id="job-one")
-    assert target == repo / "data" / "mined-templates" / "job-one"
-    assert (target / "source.jsonl").read_bytes() == source.read_bytes()
-    assert validate_bank(TemplateBank(target), target / "source.jsonl")["status"] == "passed"
+    assert target == repo / "data" / "mined-templates"
+    assert (target / "sources/job-one.jsonl").read_bytes() == source.read_bytes()
+    assert validate_bank(TemplateBank(target))["status"] == "passed"
     assert [bank.path for bank in registered_banks(repo)] == [target]
     before = {path.relative_to(target): path.read_bytes() for path in target.rglob("*") if path.is_file()}
     assert register_bank(bank, source, repo_root=repo, bank_id="job-one") == target
@@ -125,7 +125,7 @@ def test_publication_runs_full_validation_and_replaces_any_stale_report(tmp_path
     bank, source, _ = make_bank(tmp_path / "job-one")
     write_json(bank / "validation.json", {"status": "failed"})
     target = register_bank(bank, source, repo_root=tmp_path / "repo", bank_id="job-one")
-    assert json.loads((target / "validation.json").read_text())["status"] == "passed"
+    assert TemplateBank(target).manifest['validation']['status'] == 'passed'
 
 
 def test_incomplete_bank_is_not_published_despite_old_passed_report(tmp_path):
@@ -140,11 +140,11 @@ def test_incomplete_bank_is_not_published_despite_old_passed_report(tmp_path):
 def test_conflicting_publication_never_overwrites_an_existing_bank(tmp_path):
     repo = tmp_path / "repo"
     target, _ = publish(repo, tmp_path / "job-one")
-    original = (target / "source.jsonl").read_bytes()
+    original = (target / "sources/job-one.jsonl").read_bytes()
     other, source, _ = make_bank(tmp_path / "job-two", subject="Beth")
     with pytest.raises(FileExistsError, match="different template bank"):
         register_bank(other, source, repo_root=repo, bank_id="job-one")
-    assert (target / "source.jsonl").read_bytes() == original
+    assert (target / "sources/job-one.jsonl").read_bytes() == original
 
 
 def test_failed_copy_rolls_back_and_staging_is_never_discovered(tmp_path, monkeypatch):
@@ -175,9 +175,8 @@ def test_cancellation_after_validation_prevents_publication_and_preserves_existi
     callbacks = []
 
     def cancelled():
-        staging, = original.parent.glob(".job-two-*.staging")
-        assert json.loads((staging / "validation.json").read_text())["status"] == "passed"
-        assert (staging / "publication.json").is_file()
+        staging, = original.parent.glob('.mined-templates-*.staging')
+        assert (staging / 'source.jsonl').is_file()
         assert [bank.path for bank in registered_banks(repo)] == [original]
         callbacks.append(True)
         raise RuntimeError("job cancelled")
@@ -185,7 +184,7 @@ def test_cancellation_after_validation_prevents_publication_and_preserves_existi
     with pytest.raises(RuntimeError, match="job cancelled"):
         register_bank(bank, source, repo_root=repo, bank_id="job-two", before_publish=cancelled)
     assert callbacks == [True]
-    assert list(original.parent.iterdir()) == [original]
+    assert not list(original.parent.glob('.mined-templates-*.staging'))
     assert before == {path.relative_to(original): path.read_bytes()
                       for path in original.rglob("*") if path.is_file()}
     assert [bank.path for bank in registered_banks(repo)] == [original]
@@ -203,7 +202,7 @@ def test_published_component_without_eng_base_is_a_complete_pool(tmp_path):
 
 def test_duplicate_template_shapes_keep_every_sources_fillers_and_provenance(tmp_path):
     repo = tmp_path / "repo"
-    base, _, original_text = make_bank(repo / "data" / "eng-base-templates")
+    base, _, original_text = make_bank(repo / "data" / "mined-templates")
     before = {path.relative_to(base): path.read_bytes() for path in base.rglob("*") if path.is_file()}
     old_pool = BuiltInPool(repo_root=repo, entities=EntityPool())
     old_identity = old_pool.metadata()
@@ -223,12 +222,18 @@ def test_duplicate_template_shapes_keep_every_sources_fillers_and_provenance(tmp
     assert summary["source_banks"] == 2 and summary["counts_are_component_entries"]
     assert len(list(pool.occurrences())) == 2
     assert old_identity != pool.metadata()
-    assert before == {path.relative_to(base): path.read_bytes() for path in base.rglob("*") if path.is_file()}
+    for name, content in before.items():
+        if str(name) == 'manifest.json':
+            assert pool.banks[0].manifest == json.loads(content)
+        else:
+            assert (base / name).read_bytes().startswith(content)
+    assert all_documents(old_pool) == [original_document]
+    assert {bank.path for bank in pool.banks} == {base}
 
 
 def test_filter_matches_across_components_without_failing_on_nonmatching_banks(tmp_path):
     repo = tmp_path / "repo"
-    make_bank(repo / "data" / "eng-base-templates")
+    make_bank(repo / "data" / "mined-templates")
     _, text = publish(repo, tmp_path / "job-one", subject="Beth", verb="jump", adjective="beautiful")
     pool = BuiltInPool(repo_root=repo, entities=EntityPool())
     for filters in ({"lemma": "jump"}, {"adjective": "beautiful"},
@@ -240,7 +245,7 @@ def test_filter_matches_across_components_without_failing_on_nonmatching_banks(t
 
 def test_modified_published_manifest_is_visible_as_invalid_instead_of_omitted(tmp_path):
     repo = tmp_path / "repo"
-    make_bank(repo / "data" / "eng-base-templates")
+    make_bank(repo / "data" / "mined-templates")
     target, _ = publish(repo, tmp_path / "job-one")
     manifest = json.loads((target / "manifest.json").read_text(encoding="utf-8"))
     manifest["model"] = {"name": "changed after publication"}
@@ -254,10 +259,12 @@ def test_modified_published_manifest_is_visible_as_invalid_instead_of_omitted(tm
 def test_missing_publication_record_is_reported_as_corrupt_component(tmp_path):
     repo = tmp_path / "repo"
     target, _ = publish(repo, tmp_path / "job-one")
-    (target / "publication.json").unlink()
+    manifest = TemplateBank(target).manifest
+    del manifest['sources'][0]['publication']
+    write_json(target / 'manifest.json', manifest)
     pool = BuiltInPool(repo_root=repo, entities=EntityPool())
     assert pool.summary()["status"] == "invalid"
-    assert "job-one" in pool.summary()["error"]
+    assert 'publication' in pool.summary()['error']
 
 
 def test_monitoring_does_not_read_source_or_decompress_inventories(tmp_path, monkeypatch):
@@ -269,8 +276,108 @@ def test_monitoring_does_not_read_source_or_decompress_inventories(tmp_path, mon
     def unexpected_read(*args, **kwargs):
         raise AssertionError("monitoring must only read small metadata files")
 
-    monkeypatch.setattr(resource_pool, "read_rows", unexpected_read)
+    monkeypatch.setattr(resource_pool.TemplateBank, 'rows', unexpected_read)
     monkeypatch.setattr(template_registry, "validate_bank", unexpected_read)
     pool = BuiltInPool(repo_root=repo, entities=EntityPool())
     assert pool.summary()["templates"] == 1
     assert pool.metadata()["bank_components"]
+
+
+def test_shared_files_keep_both_sources_and_validation_survives_job_removal(tmp_path):
+    import shutil
+    import zipfile
+
+    repo = tmp_path / 'repo'
+    first, source, first_text = make_bank(tmp_path / 'first')
+    (first / 'LICENSE.txt').write_text('Keep this license.', encoding='utf-8')
+    target = register_bank(first, source, repo_root=repo, bank_id='first')
+    old = TemplateBank(target)
+    template_id = next(old.templates()).template_id
+    _, second_text = publish(repo, tmp_path / 'second', subject='Beth', adjective='beautiful')
+    assert sorted(p.name for p in target.iterdir() if p.is_dir()) == ['occurrences', 'sources', 'templates']
+    assert len(list((target / 'templates').glob('*.gz'))) == 1
+    assert len(list(TemplateBank(target).templates(template_id=template_id))) == 2
+    assert [r['text'] for r in old.generate()] == [first_text]
+    assert {r['text'] for r in TemplateBank(target).generate()} == {first_text, second_text}
+    assert [r['text'] for r in TemplateBank(target).generate(adjective='beautiful')] == [second_text]
+    with zipfile.ZipFile(target / 'sources/first.zip') as archive:
+        assert archive.read('LICENSE.txt') == b'Keep this license.'
+    shutil.rmtree(first)
+    source.unlink()
+    rendered = tmp_path / 'verified.jsonl'
+    report = validate_bank(TemplateBank(target), rendered=rendered)
+    assert report['source_records'] == report['templates'] == 2
+    examples = [json.loads(line) for line in rendered.read_text(encoding='utf-8').splitlines()]
+    assert {row['text'] for row in examples} == {first_text, second_text}
+    assert {row['source_id'] for row in examples} == {'first', 'second'}
+
+
+def test_interrupted_append_does_not_expose_partial_data_and_retry_keeps_old_snapshot(tmp_path, monkeypatch):
+    from semantic_corpus import template_registry
+
+    repo = tmp_path / 'repo'
+    target, first_text = publish(repo, tmp_path / 'first')
+    before = (target / 'manifest.json').read_bytes()
+    old = TemplateBank(target)
+    bank, source, second_text = make_bank(tmp_path / 'second', subject='Beth')
+
+    def failed_commit(*args):
+        raise OSError('injected commit failure')
+
+    with monkeypatch.context() as patch:
+        patch.setattr(template_registry, '_commit', failed_commit)
+        with pytest.raises(OSError, match='injected commit failure'):
+            register_bank(bank, source, repo_root=repo, bank_id='second')
+    assert (target / 'manifest.json').read_bytes() == before
+    assert [r['text'] for r in TemplateBank(target).generate()] == [first_text]
+    assert validate_bank(TemplateBank(target))['source_records'] == 1
+    register_bank(bank, source, repo_root=repo, bank_id='second')
+    assert [r['text'] for r in old.generate()] == [first_text]
+    assert {r['text'] for r in TemplateBank(target).generate()} == {first_text, second_text}
+    assert validate_bank(TemplateBank(target))['source_records'] == 2
+
+
+def test_cancellation_after_append_keeps_committed_resources_visible(tmp_path):
+    repo = tmp_path / 'repo'
+    target, first_text = publish(repo, tmp_path / 'first')
+    bank, source, _ = make_bank(tmp_path / 'second', subject='Beth')
+    calls = []
+
+    def cancel_after_append():
+        calls.append(True)
+        if len(calls) == 2:
+            raise RuntimeError('cancelled after copying')
+
+    with pytest.raises(RuntimeError, match='cancelled after copying'):
+        register_bank(bank, source, repo_root=repo, bank_id='second', before_publish=cancel_after_append)
+    assert [r['text'] for r in TemplateBank(target).generate()] == [first_text]
+    assert len(TemplateBank(target).manifest['sources']) == 1
+
+
+def test_simultaneous_sources_are_serialized_without_lost_updates(tmp_path):
+    from concurrent.futures import ThreadPoolExecutor
+
+    repo = tmp_path / 'repo'
+    inputs = [make_bank(tmp_path / name, subject=subject)
+              for name, subject in [('first', 'Ada'), ('second', 'Beth')]]
+    with ThreadPoolExecutor(max_workers=2) as workers:
+        futures = [workers.submit(register_bank, bank, source, repo_root=repo, bank_id=bank.name)
+                   for bank, source, _ in inputs]
+        paths = [future.result() for future in futures]
+    assert paths[0] == paths[1]
+    assert {r['text'] for r in TemplateBank(paths[0]).generate()} == {text for _, _, text in inputs}
+    assert validate_bank(TemplateBank(paths[0]))['source_records'] == 2
+
+
+def test_partial_gzip_tail_is_not_consumed_and_truncated_committed_data_is_rejected(tmp_path):
+    repo = tmp_path / 'repo'
+    target, first_text = publish(repo, tmp_path / 'first')
+    path = next((target / 'templates').glob('*.gz'))
+    committed = path.read_bytes()
+    with path.open('ab') as stream:
+        stream.write(b'\x1f\x8b\x08partial')
+    _, second_text = publish(repo, tmp_path / 'second', subject='Beth')
+    assert {r['text'] for r in TemplateBank(target).generate()} == {first_text, second_text}
+    path.write_bytes(committed[:-3])
+    with pytest.raises((ValueError, EOFError), match='truncated|end-of-stream'):
+        list(TemplateBank(target).generate())

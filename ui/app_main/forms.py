@@ -96,8 +96,8 @@ class JobForm(forms.Form):
             try:
                 if template_count > 0:
                     if operation == 'templates':
-                        # Historical template jobs name the original bank only.
-                        TemplateBank(settings.REPO_ROOT / 'data/eng-base-templates')
+                        # Historical template jobs now use the shared bank too.
+                        TemplateBank(settings.REPO_ROOT / 'data/mined-templates')
                     else:
                         catalog.get_resources().banks
             except (OSError, ValueError) as error:

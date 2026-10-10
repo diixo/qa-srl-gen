@@ -22,7 +22,7 @@ def write_rows(path, rows):
 
 @pytest.fixture
 def resources(tmp_path):
-    directory = tmp_path / "data" / "eng-base-templates"
+    directory = tmp_path / "data" / "mined-templates"
     # One known held-out form lets the test distinguish source-text hashing
     # from the stronger guarantee already promised by synthetic name splits.
     candidates = EntityPool(Entity(f"Reserved{i}", LabelSet.of(Label.PERSON)) for i in range(100))
@@ -131,7 +131,7 @@ def test_metadata_identity_tracks_bank_and_entity_changes(resources, tmp_path):
 
 @pytest.mark.parametrize("manifest", [[], {"format": FORMAT, "status": "complete", "counts": []}])
 def test_invalid_manifest_is_visible_in_monitor_instead_of_crashing(tmp_path, manifest):
-    directory = tmp_path / "data" / "eng-base-templates"
+    directory = tmp_path / "data" / "mined-templates"
     directory.mkdir(parents=True)
     (directory / "manifest.json").write_text(json.dumps(manifest), encoding="utf-8")
     pool = BuiltInPool(repo_root=tmp_path, entities=EntityPool())

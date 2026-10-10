@@ -1,9 +1,8 @@
 """One built-in resource pool for curated and corpus-derived generation.
 
 Resource kinds remain distinct: a parsed nominal is not automatically a typed
-entity and a dependency tree is not a verified semantic frame. The compiled
-bank is read in place; its inventories and occurrence ledger are never copied
-into entities.json or loaded wholesale into memory.
+entity and a dependency tree is not a verified semantic frame. One physical
+bank contains every source; readers retain committed per-source byte ranges.
 """
 
 from __future__ import annotations
@@ -16,8 +15,7 @@ import re
 from .documents import Document
 from .semantic_generator import DEFAULT_FRAMES, default_pool
 from .semantic_generator.generator import DEFAULT_PARADIGMS
-from .template_bank import TemplateBank, fingerprint, read_rows
-from .template_registry import registered_banks
+from .template_bank import TemplateBank, fingerprint
 from .controlled_verbs import CONTROLLED_VERBS, VERSION as CONTROLLED_VERSION, controlled_head, excluded_predicates
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -58,15 +56,12 @@ class BuiltInPool:
 
     @cached_property
     def bank(self):
-        """Primary component, retained for compatibility with older callers."""
-        path = self.repo_root / "data" / "eng-base-templates"
-        if (path / "manifest.json").exists() or not self.registered_banks:
-            return TemplateBank(path)
-        return self.registered_banks[0]
+        """The single physical bank shared by all generators."""
+        return TemplateBank(self.repo_root / 'data' / 'mined-templates')
 
     @cached_property
     def registered_banks(self):
-        return registered_banks(self.repo_root)
+        return self.bank.components() if self.bank.manifest.get('sources') else ()
 
     @cached_property
     def banks(self):
@@ -75,8 +70,7 @@ class BuiltInPool:
         Template identities can occur in several sources with different local
         fillers. Keep every source entry; the corpus store deduplicates texts.
         """
-        primary = self.bank
-        return (primary, *(bank for bank in self.registered_banks if bank.path != primary.path))
+        return self.bank.components()
 
     def templates(self, **filters):
         self._check_mined_lemma(filters.get('lemma'))
@@ -102,7 +96,7 @@ class BuiltInPool:
 
     def _inventory(self, name):
         for bank in self.banks:
-            yield from read_rows(bank.path / f"{name}.jsonl.gz")
+            yield from bank.rows(f"{name}.jsonl.gz")
 
     def constructions(self):
         return (row for row in self._inventory('constructions') if not controlled_head(row['lemma']))
@@ -115,8 +109,7 @@ class BuiltInPool:
 
     def occurrences(self):
         for bank in self.banks:
-            for path in sorted((bank.path / "occurrences").glob("*.jsonl.gz")):
-                yield from read_rows(path)
+            yield from bank.occurrences()
 
     def summary(self):
         """Small monitoring view; no decompression of inventories on page GET."""
@@ -140,7 +133,7 @@ class BuiltInPool:
                                ("adjective_alternatives", "adjective_alternative_forms"),
                                ("records", "compiled_records")):
                 result[field] += counts.get(key, 0)
-            result["banks"].append({"id": bank.path.name, "path": str(bank.path),
+            result["banks"].append({"id": bank.source_id, "path": str(bank.path),
                                     "source_sha256": bank.manifest.get("source_sha256"),
                                     "counts": counts})
         result.update(available=True, status="complete", source_banks=len(banks),
@@ -169,7 +162,7 @@ class BuiltInPool:
             banks = self.banks
             if len(banks) > 1 or self.registered_banks:
                 result["bank_components"] = [
-                    {"id": bank.path.name, "manifest_sha256": fingerprint(bank.manifest),
+                    {"id": bank.source_id, "manifest_sha256": fingerprint(bank.manifest),
                      "source_sha256": bank.manifest.get("source_sha256")} for bank in banks]
         return result
 
@@ -208,8 +201,7 @@ class BuiltInPool:
                     if not selected:
                         continue
                     key = fingerprint([identity, CONTROLLED_VERSION, row["template_id"], row["bindings"], recombine])
-                    source = ("eng-base-templates" if bank.path.name == "eng-base-templates"
-                              else f"mined-templates/{bank.path.name}")
+                    source = bank.source_label
                     yield Document(
                         document_id=f"mined-{key}", text=row["text"], source=source, split=split,
                         metadata={**{key: value for key, value in row.items() if key != "text"},

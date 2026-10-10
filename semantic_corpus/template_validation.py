@@ -10,7 +10,7 @@ import hashlib
 import json
 from pathlib import Path
 
-from .template_bank import TemplateBank, fingerprint, read_rows
+from .template_bank import POOL_FORMAT, TemplateBank, fingerprint
 
 
 def _check_rendered(row):
@@ -33,16 +33,36 @@ def _check_rendered(row):
             raise ValueError('invalid adjective target offsets')
 
 
-def validate_bank(bank, source, *, rendered=None):
+def _rendered_file(path):
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    opener = gzip.open if path.suffix == '.gz' else open
+    return opener(path, 'xt', encoding='utf-8')
+
+
+def validate_bank(bank, source=None, *, rendered=None, _sink=None):
     """Reject truncated, unmatched or inconsistent inventories and ledgers."""
+    if bank.manifest['format'] == POOL_FORMAT:
+        sink = _rendered_file(rendered) if rendered is not None else None
+        totals = Counter()
+        try:
+            for component in bank.components():
+                source_path = (bank.path / component.entry['source_file'] if component.entry.get('source_file')
+                               else source or component.manifest.get('source'))
+                if not source_path:
+                    raise ValueError(f'missing audit source for {component.source_id}')
+                report = validate_bank(component, source_path, _sink=sink)
+                totals.update({key: value for key, value in report.items() if type(value) is int})
+        finally:
+            if sink is not None:
+                sink.close()
+        return {'status': 'passed', 'source_sha256': bank.manifest['source_sha256'], **totals}
+    source = source or bank.manifest.get('source')
+    if not source:
+        raise ValueError('a source JSONL path is required for this bank')
     counts, template_counts = Counter(), {}
     attested = set()
-    sink = None
-    if rendered is not None:
-        rendered = Path(rendered)
-        rendered.parent.mkdir(parents=True, exist_ok=True)
-        opener = gzip.open if rendered.suffix == '.gz' else open
-        sink = opener(rendered, 'xt', encoding='utf-8')
+    sink = _rendered_file(rendered) if rendered is not None else _sink
     try:
         for template in bank.templates():
             template_counts[template.template_id] = template.record['count']
@@ -55,19 +75,21 @@ def validate_bank(bank, source, *, rendered=None):
             example = template.sample(seed=0)
             _check_rendered(example)
             if sink is not None:
+                if bank.entry:
+                    example['source_id'] = bank.source_id
                 sink.write(json.dumps(example, ensure_ascii=False, separators=(',', ':')) + '\n')
             if counts['templates'] % 50000 == 0:
                 print(f"Validated {counts['templates']:,} executable templates", flush=True)
     finally:
-        if sink is not None:
+        if sink is not None and _sink is None:
             sink.close()
 
     digest = hashlib.sha256()
     occurrences, observed_texts = Counter(), set()
     words = {'verbs': Counter(), 'adjectives': Counter()}
     with Path(source).open('rb') as stream:
-        for shard in sorted((bank.path / 'occurrences').glob('*.jsonl.gz')):
-            for row in read_rows(shard):
+        for shard in sorted(name for name in bank.files if name.startswith('occurrences/')):
+            for row in bank.rows(shard):
                 raw = next(stream, None)
                 if raw is None:
                     raise ValueError('ledger has more records than the source')
@@ -99,8 +121,11 @@ def validate_bank(bank, source, *, rendered=None):
     if occurrences != template_counts or observed_texts != attested:
         raise ValueError('template coverage or attested binding counts do not match the source')
     for kind, observed in words.items():
-        inventory = Counter({(row['lemma'], form): count for row in read_rows(bank.path / f'{kind}.jsonl.gz')
-                             for form, count in row['forms'].items()})
+        try:
+            inventory = Counter({(row['lemma'], form): count for row in bank.rows(f'{kind}.jsonl.gz')
+                                 for form, count in row['forms'].items()})
+        except (ValueError, OSError, EOFError) as error:
+            raise ValueError(f'{kind} inventory cannot be read: {error}') from error
         if inventory != observed:
             raise ValueError(f'{kind} inventory does not account for every occurrence')
         counts[kind + '_occurrences'] = sum(observed.values())
@@ -113,7 +138,7 @@ def validate_bank(bank, source, *, rendered=None):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('source', type=Path)
+    parser.add_argument('source', type=Path, nargs='?', help='source override for the original single-source bank')
     parser.add_argument('--bank', type=Path, required=True)
     parser.add_argument('--rendered', type=Path, help='new JSONL or JSONL.GZ output, one example per template')
     parser.add_argument('--report', type=Path, required=True)

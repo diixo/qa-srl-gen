@@ -203,10 +203,10 @@ def job_detail(request, pk):
         except (OSError, ValueError):
             pass
     if job.operation == 'template_mining':
-        published_path = settings.REPO_ROOT / 'data/mined-templates' / str(job.pk)
+        from semantic_corpus.template_registry import publication_record
+        published_path = settings.REPO_ROOT / 'data/mined-templates'
         try:
-            publication = catalog.read_json(published_path / 'publication.json', {})
-            if publication.get('bank_id') == str(job.pk):
+            if publication_record(str(job.pk), repo_root=settings.REPO_ROOT):
                 published_bank = catalog.relative(published_path)
         except (OSError, ValueError):
             pass

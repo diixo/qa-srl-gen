@@ -336,7 +336,7 @@ def test_complex_prepositional_argument_in_another_sentence_does_not_hide_qa(ann
 
 
 def write_bank(root, record):
-    bank = root / 'data/eng-base-templates'
+    bank = root / 'data/mined-templates'
     (bank / 'templates').mkdir(parents=True)
     with gzip.open(bank / 'templates' / (record['template_id'][:2] + '.jsonl.gz'), 'wt', encoding='utf-8') as stream:
         stream.write(json.dumps(record) + '\n')

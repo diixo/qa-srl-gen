@@ -33,7 +33,7 @@ def template(text, verb_slots):
 
 @pytest.fixture
 def bank(tmp_path):
-    path = tmp_path / 'data/eng-base-templates'
+    path = tmp_path / 'data/mined-templates'
     rows = [
         template('I have a book.', {1: ('have', 'ROOT')}),
         template('I had bought a book.', {1: ('have', 'aux'), 2: ('buy', 'ROOT')}),

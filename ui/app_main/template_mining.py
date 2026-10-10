@@ -123,7 +123,7 @@ def load_mining_model():
 
 def execute_template_mining(job, out, config, progress):
     from semantic_corpus.template_compiler import build_bank
-    from semantic_corpus.template_registry import register_bank
+    from semantic_corpus.template_registry import publication_record, register_bank
 
     from .models import Job
 
@@ -152,7 +152,7 @@ def execute_template_mining(job, out, config, progress):
     progress('Validating and adding to Built-in pool', total, total)
     published = register_bank(out / 'bank', source, repo_root=settings.REPO_ROOT,
                               bank_id=str(job.pk), before_publish=check_cancelled)
-    validation = json.loads((published / 'validation.json').read_text(encoding='utf-8'))
+    validation = publication_record(str(job.pk), repo_root=settings.REPO_ROOT)['validation']
     (out / 'bank/validation.json').write_text(
         json.dumps(validation, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     summary = {'inputs': inputs, 'counts': manifest['counts'], 'validation': validation,

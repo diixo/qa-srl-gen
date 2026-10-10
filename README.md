@@ -81,12 +81,15 @@ The page queues a background job that compiles templates, verbs, adjectives and
 multiword constructions, then independently validates the results. Every
 successful mining job automatically adds these resources to the single shared
 Built-in pool. This also applies to queued or retried jobs with the former
-`publish_to_pool=False` setting. Their source archive is stored in
-`data/mined-templates/<job-id>/`, including the source snapshot and occurrence
-ledger. This directory is created when resources are first added. Together with
-`data/eng-base-templates/`, these archives supply one Built-in pool used by
-Synthetic corpus and Chat dataset. Validation failure or cancellation before
-addition leaves the pool unchanged. Resource counts sum entries across source
+`publish_to_pool=False` setting. All mined resources are stored in the single
+`data/mined-templates/` bank, including the resources originally compiled from
+eng-base. Each job appends to its shared template shards, occurrence ledgers and
+inventories; it does not create another bank directory. `sources/<job-id>.jsonl`
+keeps the input snapshot and `sources/<job-id>.zip` preserves the original metadata,
+documentation and licenses. Source manifests and validation reports are retained
+in the shared manifest. Synthetic corpus and Chat dataset read this same bank.
+Validation failure or cancellation before commit leaves the visible pool unchanged.
+Resource counts sum entries across source
 archives and may include overlapping patterns or lemmas; generated identical
 texts are deduplicated by the corpus store.
 
@@ -260,7 +263,7 @@ CLI `build`. `BuiltInPool` in `semantic_corpus/resource_pool.py` provides access
 to typed entities, the seventeen manual frames, verb forms, adjectives,
 constructions, lexical alternatives and eligible mined templates. The existing files
 stay in `semantic_corpus/semantic_generator/entities.json`,
-`data/eng-base-templates/` and source archives under `data/mined-templates/`;
+`data/mined-templates/`;
 their different structures do not require separate generation operations or
 flattening everything into entity entries.
 

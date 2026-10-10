@@ -24,7 +24,7 @@
         </div>
     </div>
     {% if monitor.resources.available %}
-        <p class="small text-secondary">Source archives in Built-in pool: {{ monitor.resources.source_banks|default:1 }}. Counts below describe preserved source entries before generation exclusions; entries can overlap across archives.</p>
+        <p class="small text-secondary">Shared bank: <code>data/mined-templates/</code>. Sources: {{ monitor.resources.source_banks|default:1 }}. Counts below describe preserved source entries before generation exclusions; entries can overlap across sources.</p>
 
         <div class="table-responsive">
             <table class="table mb-3">

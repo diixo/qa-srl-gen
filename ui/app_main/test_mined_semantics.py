@@ -84,7 +84,7 @@ class MinedSemanticJobTests(TestCase):
             bindings = {'n0': 'Anna', 'v0': 'bought', 'n1': 'book'}
             record.update(defaults=bindings, attested_bindings=[bindings], fillers={k: [v] for k, v in bindings.items()},
                           count=1, adjective_lemmas=[])
-            bank = root / 'data/eng-base-templates'
+            bank = root / 'data/mined-templates'
             (bank / 'templates').mkdir(parents=True)
             with gzip.open(bank / 'templates' / (record['template_id'][:2] + '.jsonl.gz'), 'wt', encoding='utf-8') as stream:
                 stream.write(json.dumps(record) + '\n')

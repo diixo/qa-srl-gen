@@ -79,7 +79,7 @@ and morphological exceptions. The full `eng-base-templates` compilation used:
 * Archive: <https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/corpora/wordnet.zip>
 * SHA-256: `cbda5ea6eef7f36a97a43d4a75f85e07fccbb4f23657d27b4ccbc93e2646ab59`
 * The original permission and disclaimer are included verbatim in
-  `data/eng-base-templates/WORDNET-LICENSE.txt`.
+  `data/mined-templates/WORDNET-LICENSE.txt`.
 
 The compiled templates contain text from the supplied `data/eng-base.jsonl`;
 lexical resource and parser licenses do not replace the source text's own terms.

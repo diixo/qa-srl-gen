@@ -126,7 +126,8 @@ class TemplateMiningExecutionTests(MiningFixtures, TestCase):
         self.assertEqual(summary['validation']['status'], 'passed')
         self.assertTrue(summary['published_to_pool'])
         bank = TemplateBank(summary['pool_path'])
-        self.assertEqual((bank.path / 'source.jsonl').read_bytes(), (self.out / 'source.jsonl').read_bytes())
+        self.assertEqual((bank.path / 'sources' / f'{self.job.pk}.jsonl').read_bytes(),
+                         (self.out / 'source.jsonl').read_bytes())
         pool = BuiltInPool(self.root, entities=EntityPool([]))
         self.assertEqual(pool.summary()['source_banks'], 1)
         self.assertEqual(pool.summary()['records'], 1)
@@ -164,6 +165,31 @@ class TemplateMiningExecutionTests(MiningFixtures, TestCase):
         self.assertEqual([doc.text for doc in documents], [self.text])
         self.assertEqual(self.stages[-1], 'Built-in pool updated')
 
+    def test_two_jobs_share_files_and_dialogue_lookup_preserves_each_source(self):
+        from semantic_corpus.dialogue_generator.mined_bank import DialogueMinedBank
+
+        first_id = str(self.job.pk)
+        self.run_mining()
+        self.job = Job.objects.create(operation='template_mining')
+        self.out = self.root / 'artifacts/ui/jobs' / str(self.job.pk)
+        self.out.mkdir(parents=True)
+        self.run_mining()
+        pool = BuiltInPool(self.root, entities=EntityPool([]))
+        self.assertEqual(pool.summary()['source_banks'], 2)
+        self.assertEqual({bank.path for bank in pool.banks}, {self.root / 'data/mined-templates'})
+        bank = DialogueMinedBank(self.root, cache=False)
+        references = bank.entries['pick']['references']
+        self.assertEqual({ref[0] for ref in references}, {0, 1})
+        self.assertEqual({source.source_id for source in bank.banks}, {first_id, str(self.job.pk)})
+        bank.preload(references)
+        for reference in references:
+            template, _ = bank.template(reference)
+            self.assertEqual(template.render()['text'], self.text)
+        bank._selected.clear()
+        for reference in references:
+            template, _ = bank.template(reference)
+            self.assertEqual(template.render()['text'], self.text)
+
     def test_cancel_request_prevents_publication(self):
         Job.objects.filter(pk=self.job.pk).update(cancel_requested=True)
         with self.assertRaisesRegex(ValueError, 'Cancellation requested'):
@@ -174,5 +200,5 @@ class TemplateMiningExecutionTests(MiningFixtures, TestCase):
         with patch('semantic_corpus.template_registry.validate_bank', side_effect=ValueError('invalid spans')):
             with self.assertRaisesRegex(ValueError, 'invalid spans'):
                 self.run_mining()
-        self.assertEqual(list((self.root / 'data/mined-templates').iterdir()), [])
+        self.assertFalse((self.root / 'data/mined-templates/manifest.json').exists())
         self.assertFalse((self.out / 'mining_summary.json').exists())

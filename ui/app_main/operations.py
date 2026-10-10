@@ -97,7 +97,7 @@ def quality_report(store, out, config, progress):
 def _execute_templates(job, out, c, progress):
     from semantic_corpus.documents import Document
     from semantic_corpus.template_bank import TemplateBank
-    bank = TemplateBank(settings.REPO_ROOT / 'data/eng-base-templates')
+    bank = TemplateBank(settings.REPO_ROOT / 'data/mined-templates')
     store = CorpusStore(out / 'store')
     processed = stored = 0
     rows = bank.generate(count=c.get('template_count', 1), seed=c['seed'],
@@ -108,7 +108,7 @@ def _execute_templates(job, out, c, progress):
         for processed, row in enumerate(rows, 1):
             stream.write(json.dumps(row, ensure_ascii=False) + '\n')
             stored += store.add_document(Document(f'template-{processed:08d}', row['text'],
-                source='eng-base-templates', split=c['split'], metadata={
+                source='mined-templates', split=c['split'], metadata={
                     **{key: value for key, value in row.items() if key != 'text'},
                     'bank_source_sha256': bank.manifest['source_sha256'],
                     'recombined': c.get('recombine', False)}))

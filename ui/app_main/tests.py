@@ -146,7 +146,7 @@ class WorkspaceTests(TestCase):
     def test_template_operation_keeps_adjective_spans_and_unreviewed_provenance(self):
         import gzip
         from semantic_corpus.template_bank import FORMAT, fingerprint, read_rows
-        bank = self.root / 'data/eng-base-templates'
+        bank = self.root / 'data/mined-templates'
         (bank / 'templates').mkdir(parents=True)
         record = dict(parts=[{'literal': 'A '}, {'slot': 'a0'}, {'literal': ' book.'}],
             slots={'a0': {'kind': 'adjective', 'pos': 'ADJ', 'tag': 'JJ'}}, verbs=[], constructions=[],
@@ -160,7 +160,7 @@ class WorkspaceTests(TestCase):
                           (bank / 'adjectives.jsonl.gz', {'lemma': 'beautiful', 'forms': {'beautiful': 1}})):
             with gzip.open(path, 'wt', encoding='utf-8') as stream:
                 stream.write(json.dumps(row) + '\n')
-        self.assertFalse(any('eng-base-templates/' in s['path'] for s in catalog.sources()))
+        self.assertFalse(any('mined-templates/' in s['path'] for s in catalog.sources()))
         job = self.execute('templates')
         root = catalog.job_root(job)
         row, = read_rows(root / 'generated.jsonl.gz')

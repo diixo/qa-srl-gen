@@ -45,7 +45,7 @@ def record(words, head, lemma, subject=0, dependency='ROOT'):
 @pytest.fixture
 def small_bank(tmp_path):
     root = tmp_path / 'repo'
-    path = root / 'data/eng-base-templates'
+    path = root / 'data/mined-templates'
     dictionary = root / 'data/wiktionary/en_verb_inflections.txt'
     dictionary.parent.mkdir(parents=True)
     dictionary.write_text('sleep\tsleeps\tsleeping\tslept\tslept\n'

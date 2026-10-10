@@ -17,7 +17,7 @@ import tempfile
 
 from ..controlled_verbs import VERSION as CONTROLLED_VERSION, controlled_head, excluded_predicates
 from ..resource_pool import BuiltInPool
-from ..template_bank import CorpusTemplate, fingerprint, read_rows
+from ..template_bank import CorpusTemplate, fingerprint
 from ..ontology import Label
 from .mined_realization import active_phrase, source_scope, lexicon, lexicon_fingerprint, refresh_resources, DICTIONARY_PATH
 from .mined_arguments import realize_arguments
@@ -129,9 +129,8 @@ class DialogueMinedBank:
                                                           'lexical_decisions': Counter(), 'review_examples': {},
                                                           'resolved_heads': Counter()})
                 entry['source_banks'].append(bank_index)
-            alt = bank.path / 'verb_alternatives.jsonl.gz'
-            if alt.is_file():
-                for row in read_rows(alt):
+            if 'verb_alternatives.jsonl.gz' in bank.files:
+                for row in bank.rows('verb_alternatives.jsonl.gz'):
                     if not controlled_head(row['lemma']):
                         alternatives[row['lemma']] += sum(row.get('forms', {}).values())
         for lemma, entry in entries.items():
@@ -217,8 +216,8 @@ class DialogueMinedBank:
             return CorpusTemplate(self._selected[bank_index, template_id]), head
         key = (bank_index, template_id[:2])
         if key not in self._shards:
-            path = self.banks[bank_index].path / 'templates' / (template_id[:2] + '.jsonl.gz')
-            self._shards[key] = {r['template_id']: r for r in read_rows(path)}
+            bank = self.banks[bank_index]
+            self._shards[key] = {r['template_id']: r for r in bank.rows('templates/' + template_id[:2] + '.jsonl.gz')}
             # Bounded cache: no loading the complete bank into RAM.
             if len(self._shards) > 4:
                 self._shards.popitem(last=False)
@@ -240,7 +239,7 @@ class DialogueMinedBank:
         for bank_index, template_id, _ in references:
             by_shard.setdefault((bank_index, template_id[:2]), set()).add(template_id)
         for (bank_index, prefix), wanted in sorted(by_shard.items()):
-            for row in read_rows(self.banks[bank_index].path / 'templates' / (prefix + '.jsonl.gz')):
+            for row in self.banks[bank_index].rows('templates/' + prefix + '.jsonl.gz'):
                 if row['template_id'] in wanted:
                     self._selected[bank_index, row['template_id']] = row
         self._shards.clear()
@@ -254,7 +253,8 @@ class DialogueMinedBank:
         spec, reason = active_phrase(template.record, head, entry['canonical'], entry['paradigms'], self.person_names,
                                      reviewed=reviewed)
         decision = reviewed[1][head]
-        info = {'bank': str(self.banks[reference[0]].path), 'template_id': template.template_id,
+        info = {'bank': str(self.banks[reference[0]].path),
+                           'source_id': self.banks[reference[0]].source_id, 'template_id': template.template_id,
                            'raw_lemma': lemma, 'canonical_lemma': decision['canonical'],
                            'lexical_review': decision, 'restriction': reason,
                            'inflection_source': entry['inflection_source'], 'review_status': 'UNREVIEWED',

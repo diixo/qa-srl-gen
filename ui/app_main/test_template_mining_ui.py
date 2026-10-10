@@ -335,17 +335,16 @@ class TemplateMiningPageTests(MiningInputFixtures, TestCase):
 
     def test_failed_job_still_shows_published_bank_without_a_job_summary(self):
         job = Job.objects.create(operation='template_mining', status=Job.Status.FAILED)
-        published = self.root / 'data' / 'mined-templates' / str(job.pk)
-        published.mkdir(parents=True)
-        (published / 'publication.json').write_text(json.dumps({
-            'bank_id': str(job.pk),
-        }), encoding='utf-8')
+        from tests.test_template_registry import make_bank
+        from semantic_corpus.template_registry import register_bank
+        bank, source, _ = make_bank(self.root / 'fixture')
+        register_bank(bank, source, repo_root=self.root, bank_id=str(job.pk))
         self.assertFalse((job_root(job) / 'mining_summary.json').exists())
 
         response = self.client.get(reverse('app_main:job', args=[job.pk]))
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.context['published_bank'], f'data/mined-templates/{job.pk}')
+        self.assertEqual(response.context['published_bank'], 'data/mined-templates')
         self.assertContains(response, 'Added to Built-in pool')
-        self.assertContains(response, f'data/mined-templates/{job.pk}')
+        self.assertContains(response, 'data/mined-templates')
         self.assertContains(response, reverse('app_main:pools'))
         self.assertNotContains(response, 'Browse corpus records')

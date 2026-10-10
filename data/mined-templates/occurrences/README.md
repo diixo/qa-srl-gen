@@ -11,6 +11,12 @@
 Каждый файл содержит 10 000 записей, последний — 6 040. Порядок файлов и строк
 соответствует порядку записей в исходном корпусе.
 
+Эти числа описывают исходный eng-base. Новые результаты майнинга дописываются
+в те же файлы отдельными gzip-блоками. Общий `manifest.json` хранит диапазоны
+каждого источника; нумерация строк остаётся локальной для него. Читать журнал
+целиком следует через `TemplateBank.occurrences()`, чтобы не включать
+незавершённые хвосты после прерванного добавления.
+
 | Поле записи | Содержимое |
 | --- | --- |
 | `line`, `idx` | Номер строки и идентификатор исходной записи |
@@ -54,16 +60,12 @@
 из корня проекта:
 
 ```python
-import gzip
 import json
+from semantic_corpus.template_bank import TemplateBank
 
-with gzip.open(
-    "data/eng-base-templates/occurrences/00000.jsonl.gz",
-    "rt",
-    encoding="utf-8",
-) as stream:
-    first_record = json.loads(next(stream))
-    print(json.dumps(first_record, ensure_ascii=False, indent=2))
+bank = TemplateBank()
+first_record = next(bank.occurrences())
+print(json.dumps(first_record, ensure_ascii=False, indent=2))
 ```
 
 Компилятор и проверка выбирают только `*.jsonl.gz`, поэтому этот README
