@@ -37,6 +37,11 @@ metadata and records containing only `messages`. It never feeds outer IDs or
 task labels to the model. Retain metadata if you want evaluation broken down
 by task; otherwise all examples are reported as `unlabeled`.
 
+Fresh exports also include `mined-review.json` beside the manifest. It records
+lexical corrections and unresolved source examples for dataset inspection;
+it is not training input. These checks leave the text Memory/History/Extraction
+formats unchanged. Rebuild into a new directory to apply them to training data.
+
 To focus on completion reasoning, use the generator's `--contrast-multiplier 3`
 when preparing data; at the same base quotas this produces 4,000 training records
 unless the mined training quota is separately overridden.

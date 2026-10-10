@@ -511,6 +511,11 @@ constructions retain the whole source quotation and test reported wording.
 These two kinds are identified separately as `UNREVIEWED`. This is not a claim
 that every parser lemma has verified semantics. `mined-coverage.json` records
 every inventory head, form recovery, rejected transformations and actual selection.
+`mined-review.json` adds source examples, dictionary candidates, lexical repairs
+and explicit restriction reasons. Repairs affect an in-memory projection only;
+raw templates and the dictionary remain unchanged. Ambiguous conjugations such
+as reclining `lying` versus untruthful `lied` are kept out of compositional
+generation until resolved. The model's text format is unchanged.
 See [dialogue generation](semantic_corpus/dialogue_generator/README.md) for the
 scenario schema, split limits, files and the existing chat-trainer adapter.
 

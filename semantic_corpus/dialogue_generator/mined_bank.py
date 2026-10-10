@@ -6,6 +6,7 @@ operators. Unsupported morphology is retained explicitly, never regularized by
 guessing. The cache is disposable and source banks are read only.
 """
 from collections import Counter, OrderedDict
+from copy import deepcopy
 from dataclasses import asdict
 from hashlib import sha256
 import gzip
@@ -15,37 +16,22 @@ from pathlib import Path
 import tempfile
 
 from ..controlled_verbs import VERSION as CONTROLLED_VERSION, controlled_head, excluded_predicates
-from ..qasrl_core.inflections import load_inflections
 from ..resource_pool import BuiltInPool
 from ..template_bank import CorpusTemplate, fingerprint, read_rows
 from ..ontology import Label
-from .mined_realization import active_phrase, source_scope, lexicon
+from .mined_realization import active_phrase, source_scope, lexicon, lexicon_fingerprint, refresh_resources, DICTIONARY_PATH
 from .mined_arguments import realize_arguments
 from .mined_subjects import realize_subject
+from .mined_review import POLICY_PATH, REASONS, normalize_inventory, review_template, reason_category, policy, policy_fingerprint
 
-VERSION = 'dialogue-mined-bank-v6'
+VERSION = 'dialogue-mined-bank-v8'
 
 
 def normalize_verb(row, lexicon):
     """Keep all matching paradigms; reverse lookup repairs parser lemmas only
     when the observed forms agree on a single dictionary head.
     """
-    lemma = row['lemma']
-    observed = Counter({word.lower(): count for word, count in row.get('forms', {}).items()})
-    candidates = lexicon.paradigms(lemma)
-    source = 'dictionary'
-    if not candidates:
-        # The same surface can be three forms of one paradigm (read/read/read).
-        # That is not three independent votes for a lexical interpretation.
-        matching = [{p.stem for p, _ in lexicon.analyses(surface)} for surface in observed]
-        matching = [heads for heads in matching if heads]
-        heads = set.intersection(*matching) if matching else set()
-        candidates = lexicon.paradigms(next(iter(heads))) if len(heads) == 1 else ()
-        source = 'recovered_from_observed_forms' if candidates else 'observed_only'
-    canonical = candidates[0].stem if candidates else lemma
-    return {'lemma': lemma, 'canonical': canonical, 'forms': dict(observed),
-            'paradigms': [asdict(p) for p in candidates], 'inflection_source': source,
-            'controlled': controlled_head(canonical)}
+    return normalize_inventory(row, lexicon)
 
 
 class DialogueMinedBank:
@@ -54,6 +40,8 @@ class DialogueMinedBank:
         self.root = self.pool.repo_root
         self.banks = self.pool.banks
         self.dictionary = self.root / 'data/wiktionary/en_verb_inflections.txt'
+        refresh_resources(self.dictionary)
+        self._morphology_policy = deepcopy(policy())
         self.person_names = {e.text for e in self.pool.entities if e.is_named and Label.PERSON in e.labels}
         # Fingerprint all bank files, not just the list of names. Published banks
         # are immutable; stat changes invalidate a disposable cache even if an
@@ -69,7 +57,10 @@ class DialogueMinedBank:
                                                  Path(__file__).with_name('mined_clauses.py').read_bytes() +
                                                  Path(__file__).parents[1].joinpath('template_syntax.py').read_bytes() +
                                                  Path(__file__).with_name('mined_subjects.py').read_bytes()).hexdigest(),
-                        'dictionary_sha256': sha256(self.dictionary.read_bytes()).hexdigest(),
+                        'dictionary_sha256': lexicon_fingerprint(self.dictionary),
+                        'renderer_dictionary_sha256': lexicon_fingerprint(),
+                        'lexical_review_sha256': sha256(Path(__file__).with_name('mined_review.py').read_bytes()).hexdigest(),
+                        'morphology_policy_sha256': policy_fingerprint(),
                         'banks': [{'path': str(b.path.resolve()), 'manifest': fingerprint(b.manifest),
                                    'files': [(str(p.relative_to(b.path)), p.stat().st_size, p.stat().st_mtime_ns)
                                              for p in sorted(b.path.rglob('*.gz'))]} for b in self.banks]}
@@ -84,6 +75,7 @@ class DialogueMinedBank:
                 raise ValueError('Mined dialogue cache identity mismatch')
         else:
             data = self._build(progress)
+            self.validate_resources()
             if cache:
                 self.cache_path.parent.mkdir(parents=True, exist_ok=True)
                 with tempfile.NamedTemporaryFile(dir=self.cache_path.parent, suffix='.partial', delete=False) as tmp:
@@ -105,16 +97,27 @@ class DialogueMinedBank:
         self.entries = data['entries']
         self.report = data['report']
         self.lemmas = tuple(sorted(key for key, entry in self.entries.items() if entry['references']))
+        self.validate_resources()
+
+    def validate_resources(self):
+        """Do not publish/cache an index or export under another rule snapshot."""
+        for path, key in ((self.dictionary, 'dictionary_sha256'),
+                          (DICTIONARY_PATH, 'renderer_dictionary_sha256'),
+                          (POLICY_PATH, 'morphology_policy_sha256')):
+            if sha256(path.read_bytes()).hexdigest() != self.sources[key]:
+                raise ValueError(f'Mined resource changed during generation: {path}; create a new bank and retry')
+        if policy_fingerprint() != self.sources['morphology_policy_sha256']:
+            raise ValueError('Mined policy snapshot changed during generation; create a new bank and retry')
 
     def _build(self, progress):
-        lexicon = load_inflections(self.dictionary)
+        dictionary = lexicon(self.dictionary)
         entries = {}
         alternatives = Counter()
         for bank_index, bank in enumerate(self.banks):
             for row in bank.verbs():
                 if controlled_head(row['lemma']):
                     continue
-                info = normalize_verb(row, lexicon)
+                info = normalize_verb(row, dictionary)
                 if row['lemma'] in entries:
                     forms = Counter(entries[row['lemma']]['forms'])
                     forms.update(info['forms'])
@@ -122,7 +125,9 @@ class DialogueMinedBank:
                 entry = entries.setdefault(row['lemma'], {**info, 'references': [], 'native_references': [],
                                                           'scoped_references': [],
                                                           'passive_references': [], 'argument_references': [], 'multi_references': [],
-                                                          'native_rejections': Counter(), 'source_banks': []})
+                                                          'native_rejections': Counter(), 'source_banks': [],
+                                                          'lexical_decisions': Counter(), 'review_examples': {},
+                                                          'resolved_heads': Counter()})
                 entry['source_banks'].append(bank_index)
             alt = bank.path / 'verb_alternatives.jsonl.gz'
             if alt.is_file():
@@ -130,11 +135,12 @@ class DialogueMinedBank:
                     if not controlled_head(row['lemma']):
                         alternatives[row['lemma']] += sum(row.get('forms', {}).values())
         for lemma, entry in entries.items():
-            entry.update(normalize_verb({'lemma': lemma, 'forms': entry['forms']}, lexicon))
+            entry.update(normalize_verb({'lemma': lemma, 'forms': entry['forms']}, dictionary))
         templates = predicates = excluded = 0
         for bank_index, bank in enumerate(self.banks):
             for template in bank.templates():
                 templates += 1
+                reviewed = review_template(template.record, dictionary)
                 if excluded_predicates(template.record):
                     excluded += 1
                 # Source quotations may retain controlled predicates as context.
@@ -150,8 +156,12 @@ class DialogueMinedBank:
                         continue  # A recovered alias must not bypass manual routing.
                     reference = [bank_index, template.template_id, head_slot]
                     entry['references'].append(reference)
+                    decision = reviewed[1][head_slot]
+                    entry['lexical_decisions'][decision['reason']] += 1
+                    if decision['status'] != 'quotation_only':
+                        entry['resolved_heads'][decision['canonical']] += 1
                     spec, reason = active_phrase(template.record, head_slot, entry['canonical'],
-                                                 entry['paradigms'], self.person_names)
+                                                 entry['paradigms'], self.person_names, reviewed=reviewed)
                     if spec:
                         entry['native_references'].append(reference)
                         if spec['has_source_scope']:
@@ -164,6 +174,16 @@ class DialogueMinedBank:
                             entry['multi_references'].append(reference)
                     else:
                         entry['native_rejections'][reason] += 1
+                    # One reproducible example per decision/restriction per raw
+                    # head; counts still cover EVERY inspected occurrence.
+                    for issue in sorted({decision['reason'], reason} - {None, 'consistent'}):
+                        if issue not in entry['review_examples']:
+                            entry['review_examples'][issue] = {
+                                'reference': reference, 'category': reason_category(issue),
+                                'lexical_review': decision,
+                                'compositional': bool(spec), 'restriction': reason,
+                                'source_text': ''.join(p.get('literal', template.record['defaults'].get(p.get('slot'), ''))
+                                                       for p in template.record['parts'])}
                     predicates += 1
                 if progress and templates % 10000 == 0:
                     progress(templates)
@@ -186,7 +206,9 @@ class DialogueMinedBank:
                   'alternative_only_lemmas': sorted(set(alternatives) - set(entries)),
                   'unavailable': {k: e['status'] for k, e in entries.items() if not e['references']},
                   'review_status': 'UNREVIEWED',
-                  'note': 'Every archived template is inspected. Only uncontrolled heads are selected. Whole quotations retain source context; dictionary homographs are not promoted to asserted predicates.'}
+                  'lexical_decisions': dict(sum((e['lexical_decisions'] for e in entries.values()), Counter())),
+                  'review_reasons': REASONS,
+                  'note': 'Every archived template is inspected. Raw inventory entries are not certified verb senses. Lexical projection never overwrites the source; ambiguous forms and unsupported syntax remain whole quotations.'}
         return {'identity': self.identity, 'entries': entries, 'report': report}
 
     def template(self, reference):
@@ -228,14 +250,18 @@ class DialogueMinedBank:
         reference = self.reference(lemma, rng, native=native)
         template, head = self.template(reference)
         row = template.sample(seed=rng.getrandbits(64))
-        spec, _ = active_phrase(template.record, head, entry['canonical'], entry['paradigms'], self.person_names)
+        reviewed = review_template(template.record, lexicon(self.dictionary))
+        spec, reason = active_phrase(template.record, head, entry['canonical'], entry['paradigms'], self.person_names,
+                                     reviewed=reviewed)
+        decision = reviewed[1][head]
         info = {'bank': str(self.banks[reference[0]].path), 'template_id': template.template_id,
-                           'raw_lemma': lemma, 'canonical_lemma': entry['canonical'],
+                           'raw_lemma': lemma, 'canonical_lemma': decision['canonical'],
+                           'lexical_review': decision, 'restriction': reason,
                            'inflection_source': entry['inflection_source'], 'review_status': 'UNREVIEWED',
                            'source_text': row['text'], 'head_slot': head,
                            'slots': row['slots'], 'spans': row['spans'], 'predicate_groups': row['predicate_groups']}
         if spec:
-            def realize(candidate, paradigms):
+            def realize(candidate):
                 subject, reason = realize_subject(template.record, candidate, row['bindings'], self.person_names, self.pool.entities)
                 if reason:
                     raise ValueError(f'Indexed subject no longer validates: {reason}')
@@ -244,15 +270,15 @@ class DialogueMinedBank:
                     raise ValueError(f'Indexed arguments no longer validate: {reason}')
                 tail, arguments = values
                 return {**candidate, 'tail': tail, 'argument_values': arguments, 'subject': subject,
-                        'source_scope': source_scope(candidate, row['bindings'], paradigms)}
-            companions = [realize(c, [asdict(p) for p in lexicon().paradigms(c['predicate'].split(' ', 1)[0])])
-                          for c in spec.get('companions', ())]
-            spec = {**realize(spec, entry['paradigms']), 'companions': companions}
+                        'source_scope': source_scope(candidate, row['bindings'], candidate['source_paradigms'])}
+            companions = [realize(c) for c in spec.get('companions', ())]
+            spec = {**realize(spec), 'companions': companions}
             info['subject'] = asdict(spec['subject'])
             info['source_scope'] = asdict(spec['source_scope'])
             info['voice'] = spec['voice']
             info['arguments'] = spec['argument_values']
             info['companion_heads'] = [c['head_slot'] for c in companions]
+            info['companion_lexical_reviews'] = [c['lexical_review'] for c in companions]
         return row, spec, info
 
     def coverage(self, selected):
@@ -261,10 +287,21 @@ class DialogueMinedBank:
                 'unselected_lemmas': sorted(set(self.lemmas) - selected)}
 
     def inventory_report(self):
-        return {lemma: {key: entry[key] for key in ('canonical', 'inflection_source', 'status', 'native_rejections')}
+        return {lemma: {key: entry[key] for key in ('canonical', 'inflection_source', 'status', 'native_rejections',
+                                                   'lexical_decisions', 'resolved_heads')}
                 | {'source_occurrences': len(entry['references']), 'compositional_occurrences': len(entry['native_references']),
                    'scoped_occurrences': len(entry['scoped_references']),
                    'passive_occurrences': len(entry['passive_references']),
                    'argument_occurrences': len(entry['argument_references']),
                    'multi_event_occurrences': len(entry['multi_references'])}
                 for lemma, entry in self.entries.items()}
+
+    def review_report(self):
+        self.validate_resources()
+        return {'identity': self.identity, 'policy': deepcopy(self._morphology_policy),
+                'reason_descriptions': REASONS, 'lexical_decisions': self.report['lexical_decisions'],
+                'note': 'Examples are bounded to one per reason and raw head; counts cover all occurrences. '
+                        'Use reference [bank index, template ID, head slot] to inspect the immutable source. '
+                        'A passed morphology check does not resolve word sense or certify parser roles.',
+                'predicates': {lemma: {**row, 'examples': self.entries[lemma]['review_examples']}
+                               for lemma, row in self.inventory_report().items()}}

@@ -11,7 +11,8 @@ def independent_clauses(record):
     roots = {k for k, s in slots.items() if s.get('kind') == 'verb' and s.get('dependency') in ('ROOT', 'conj')}
     if len(roots) < 2:
         return None, None
-    for key in roots:
+    # Diagnostics must choose the same first failure across Python hash seeds.
+    for key in sorted(roots):
         slot = slots[key]
         if slot.get('dependency') == 'conj' and slot.get('head_slot') not in roots:
             return None, 'coordinated_embedded_scope'
@@ -48,7 +49,7 @@ def independent_clauses(record):
             return None, 'cross_clause_dependency'
         if any(slots[k].get('head_slot') not in keys | {None} for k in keys - {root}):
             return None, 'cross_clause_dependency'
-        subset = {k: dict(slots[k]) for k in keys}
+        subset = {k: dict(slot) for k, slot in slots.items() if k in keys}
         subset[root].update(dependency='ROOT', head_slot=root)
         clauses.append({**record, 'parts': parts, 'slots': subset,
                         'predicate_groups': [g for g in record['predicate_groups'] if g['head_slot'] in keys]})

@@ -68,7 +68,7 @@ def test_passive_participle_and_pronoun_by_phrase_are_not_active_agents():
     assert event_statement(event, perspective='user') == 'The book was seen by me today.'
     assert event_statement(event) == 'The book was seen by you today.'
     row['defaults']['v0'] = 'saw'
-    assert active_phrase(row, 'v0', 'see', forms('see'), {'Anna'})[1] == 'unsupported_source_scope'
+    assert active_phrase(row, 'v0', 'see', forms('see'), {'Anna'})[1] == 'dictionary_form_conflict'
 
 
 def test_object_role_keeps_separated_phrasal_particle():

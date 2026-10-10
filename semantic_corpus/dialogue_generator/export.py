@@ -189,6 +189,7 @@ def build_dialogue_dataset(out: Path, *, train: int = 200, validation: int = 20,
         manifest['length_filter'] = {'max_length': max_length, 'report_file': 'token-lengths.json',
                                      'rejections_file': 'length-rejections.jsonl'}
     resources = sorted(Path(__file__).parent.glob("*.py"))
+    resources.append(Path(__file__).with_name('mined_morphology.json'))
     resources.append(ENTITIES_PATH)  # Typed event fillers use the common pool in both profiles.
     for path in resources:
         manifest["resources"][path.name] = _sha256(path)
@@ -337,8 +338,10 @@ def build_dialogue_dataset(out: Path, *, train: int = 200, validation: int = 20,
         if mined_train == 0 and selected_mined['train'] != set(bank.lemmas):
             raise ValueError('Full mined coverage was requested but some predicates were not exported')
         (staging / 'mined-coverage.json').write_text(json.dumps(coverage, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+        (staging / 'mined-review.json').write_text(json.dumps(bank.review_report(), ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
         manifest['mined_bank'] = {'identity': bank.identity, 'available_lemmas': len(bank.lemmas),
                                   'coverage_file': 'mined-coverage.json',
+                                  'review_file': 'mined-review.json',
                                   'selected_lemmas': {s: len(v) for s, v in selected_mined.items()},
                                   'realizations': mined_realizations,
                                   'source_vocabulary_shared_between_splits': True}

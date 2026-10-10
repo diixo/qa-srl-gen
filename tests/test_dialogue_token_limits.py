@@ -19,6 +19,9 @@ class Bank:
     def inventory_report(self):
         return {}
 
+    def review_report(self):
+        return {}
+
 
 def fixture_generator(monkeypatch, *, mined=False):
     originals = DialogueGenerator(seed=21, user_assistant_only=True)

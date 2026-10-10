@@ -284,6 +284,60 @@ competing paradigms and unresolved observations stay in the audit. The dictionar
 does not certify a part of speech or choose a meaning. `verb_alternatives` are
 accounted for separately and are never silently promoted from homographs to verbs.
 
+### Lexical review and parser repairs
+
+`mined_review.py` checks every observed binding against the lexical POS, tag and
+dictionary. Inventory normalization no longer discards unmatched forms: a row
+containing `re` and `ring` cannot globally become `ring`. A unique lemma/form
+correction is projected onto copied slots and predicate groups. Finite tag repairs
+are limited to past forms at ROOT/conj with an explicit subject and no auxiliary;
+embedded infinitives, participles and ambiguous heads are not guessed. Source
+words, dependencies, bindings and archives remain unchanged.
+
+`mined_morphology.json` records reviewed generation preferences (`awakened`,
+`pleaded`) instead of selecting the first competing dictionary row. It also
+guards known sense-dependent inflections: `lie/lies/lying` remain quotations,
+whereas `lied` supports the untruth paradigm. For example, a reclining cat must
+not be regenerated as a cat that **lied**. Bare finite homographs such as `found`
+with a conflicting present/past reading remain unresolved. These checks do not
+constitute a complete word-sense disambiguator.
+
+Every export now includes `mined-review.json`, linked from
+`manifest.mined_bank.review_file`. Its `predicates.<raw lemma>.examples` has one
+example per reason, including the source text, `[bank index, template ID, head
+slot]`, candidate heads, original/revised tag and explicit changes. Counts cover
+all occurrences, not only the displayed examples. `lexical_decisions` distinguishes
+lexical evidence from `native_rejections` for unsupported constructions.
+`resolved_heads` may contain several heads for one noisy raw entry; inventory
+aliases are retained for traceability, not counted as distinct reviewed senses.
+Episode audits contain the actual selected decision and quotation restriction,
+including reviews of companion clauses. None of these audit fields enters model
+content, even when external metadata is enabled.
+
+To extend support, inspect the example and archived bindings first. Add a tested
+construction rule for a grammar limitation; resolve referents/attachments with
+source evidence; update the versioned morphology policy only for verified forms.
+A missing dictionary entry is not proof of a nonverb, and a known dictionary
+head is not proof that a parser's semantic reading is correct. Unresolved entries
+remain reachable as whole quotations, with the existing all-inventory quota.
+
+Each new bank refreshes changed policy/dictionary caches, including the event
+renderer. The review report contains the policy snapshot actually used. Changing
+these resources during a run prevents publishing its index/export; create a new
+bank and retry with stable resources. A source dictionary whose generation forms
+differ from the renderer receives `generation_paradigm_mismatch` and stays quoted.
+
+Audit a fresh export independently:
+
+```powershell
+python scripts/review_dialogue_lexical.py artifacts/dialogue-mined-review-step4-final --baseline artifacts/dialogue-mined-roles-step3 --out artifacts/reviews/dialogue-review-step4-final-validation.json
+```
+
+This includes earlier role/scope, split, command roundtrip and full ChatML length
+checks and reconciles every lexical decision and the generated paradigms. The
+audit also verifies code/policy hashes against the manifest and the policy snapshot
+in the review ledger; use the matching code revision when auditing an older run.
+
 Two realization levels are explicit in each exported mined record:
 
 | Level | Generation and target |

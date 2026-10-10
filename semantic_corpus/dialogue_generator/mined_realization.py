@@ -4,8 +4,9 @@ Only the head is inflected; the full complement, particles and prepositions keep
 their attested order. This layer does not assign ACTION/STATE or completion to an
 unreviewed sense. `reported` records a past predication, not a completed event.
 """
-from dataclasses import asdict, dataclass
+from dataclasses import dataclass
 from functools import lru_cache
+from hashlib import sha256
 from pathlib import Path
 import re
 
@@ -15,11 +16,39 @@ from .mined_subjects import realize_subject, subject_parts, NONPERSON_SOURCE_OPE
 from .mined_scope import parse_scope, scope_structure
 from .mined_arguments import argument_specs, realize_arguments
 from .mined_clauses import independent_clauses
+from .mined_review import paradigms_for, review_template, refresh_policy
+
+
+DICTIONARY_PATH = Path(__file__).resolve().parents[2] / 'data/wiktionary/en_verb_inflections.txt'
 
 
 @lru_cache(maxsize=8)
+def _lexicon_resource(path):
+    raw = path.read_bytes()
+    dictionary = load_inflections(path)
+    if path.read_bytes() != raw:
+        raise ValueError('Mined dictionary changed while loading; retry with stable resources')
+    return dictionary, sha256(raw).hexdigest()
+
+
 def lexicon(path=None):
-    return load_inflections(path or Path(__file__).resolve().parents[2] / 'data/wiktionary/en_verb_inflections.txt')
+    return _lexicon_resource(Path(path) if path is not None else DICTIONARY_PATH)[0]
+
+
+def lexicon_fingerprint(path=None):
+    return _lexicon_resource(Path(path) if path is not None else DICTIONARY_PATH)[1]
+
+
+def refresh_resources(path=None):
+    """Reload changed resources at a bank boundary, including renderer caches."""
+    changed = refresh_policy()
+    paths = {DICTIONARY_PATH, Path(path) if path is not None else DICTIONARY_PATH}
+    for resource in paths:
+        if sha256(resource.read_bytes()).hexdigest() != lexicon_fingerprint(resource):
+            _lexicon_resource.cache_clear()
+            changed = True
+    if changed:
+        mined_lexeme.cache_clear()
 
 
 @dataclass(frozen=True)
@@ -37,24 +66,27 @@ def mined_lexeme(predicate):
     head = predicate.split(' ', 1)[0]
     if controlled_head(head) or not re.fullmatch(r"[a-z][a-z'-]*(?: [a-z]+)*", predicate):
         raise ValueError('Unsupported or manually controlled mined predicate')
-    paradigm = lexicon().paradigm(head)
+    _, paradigm = paradigms_for(head, lexicon())
     if paradigm is None:
-        raise ValueError(f'No dictionary paradigm for mined predicate {predicate!r}')
-    return MinedLexeme(head, paradigm.past, paradigm.present_singular_3rd,
-                       paradigm.present_participle, paradigm.past_participle)
+        raise ValueError(f'No unambiguous generation paradigm for mined predicate {predicate!r}')
+    return MinedLexeme(head, paradigm['past'], paradigm['present_singular_3rd'],
+                       paradigm['present_participle'], paradigm['past_participle'])
 
 
-def active_phrase(record, head_slot, canonical, paradigms, person_names):
+def active_phrase(record, head_slot, canonical, paradigms, person_names, *, reviewed=None):
     """License every clause before exposing any event in a multi-clause source."""
+    record, reviews = reviewed if reviewed is not None else review_template(record, lexicon())
+    if reviews[head_slot]['status'] == 'quotation_only':
+        return None, reviews[head_slot]['reason']
     clauses, reason = independent_clauses(record)
     if reason:
         return None, reason
     if clauses is None:
-        return _single_phrase(record, head_slot, canonical, paradigms, person_names)
+        return _single_phrase(record, head_slot, canonical, paradigms, person_names, reviews)
     primary, companions, ordered = None, [], []
     for clause in clauses:
         if head_slot in clause['slots']:
-            primary, reason = _single_phrase(clause, head_slot, canonical, paradigms, person_names)
+            primary, reason = _single_phrase(clause, head_slot, canonical, paradigms, person_names, reviews)
             if reason:
                 return None, reason
             ordered.append(primary)
@@ -64,8 +96,7 @@ def active_phrase(record, head_slot, canonical, paradigms, person_names):
                 if slot.get('pos') != 'VERB':
                     continue
                 lemma = slot.get('lemma', '')
-                forms = [asdict(p) for p in lexicon().paradigms(lemma)]
-                candidate, _ = _single_phrase(clause, key, lemma, forms, person_names)
+                candidate, _ = _single_phrase(clause, key, lemma, (), person_names, reviews)
                 if candidate:
                     candidates.append(candidate)
             if len(candidates) != 1:
@@ -88,15 +119,24 @@ def active_phrase(record, head_slot, canonical, paradigms, person_names):
     return primary, None
 
 
-def _single_phrase(record, head_slot, canonical, paradigms, person_names):
+def _single_phrase(record, head_slot, canonical, paradigms, person_names, reviews):
     """License the VP and retain the original reviewed scope, if present."""
     record = {**record, 'parts': [{'_source_part': i, **p} for i, p in enumerate(record['parts'])]}
+    decision = reviews[head_slot]
+    if decision['status'] == 'quotation_only':
+        return None, decision['reason']
+    canonical, paradigms = decision['canonical'], decision['source_paradigms']
+    _, rendered = paradigms_for(canonical, lexicon())
+    if rendered != decision['generation_paradigm']:
+        return None, 'generation_paradigm_mismatch'
     if not paradigms or controlled_head(canonical):
         return None, 'unresolved_or_controlled_inflection'
     structure, reason = scope_structure(record, head_slot)
     if reason:
         return None, reason
     root, subject, chain = structure
+    # Controllers use the independently reviewed operator grammar below; they
+    # do not require a standalone lexical paradigm in the mined dictionary.
     voice = 'passive' if any(s.get('dependency') in ('nsubjpass', 'auxpass', 'nsubj:pass', 'aux:pass')
                              for s in record['slots'].values()) else 'active'
     if voice == 'passive' and record['slots'][head_slot].get('tag') != 'VBN':
@@ -128,7 +168,8 @@ def _single_phrase(record, head_slot, canonical, paradigms, person_names):
         projected['slots'].pop(key, None)
     spec, reason = _active_phrase(projected, head_slot, canonical, paradigms, person_names, voice=voice)
     if spec:
-        spec.update(source_parts=scope_parts, finite_tag=finite_tag, voice=voice)
+        spec.update(source_parts=scope_parts, finite_tag=finite_tag, voice=voice,
+                    lexical_review=decision, source_paradigms=paradigms)
         spec['has_source_scope'] = False
         for binding in record['attested_bindings']:
             subject, _ = realize_subject(record, spec, binding, person_names)

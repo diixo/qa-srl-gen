@@ -1,0 +1,21 @@
+{
+  "version": "dialogue-mined-morphology-v1",
+  "generation": {
+    "awaken": {
+      "forms": ["awaken", "awakens", "awakening", "awakened", "awakened"],
+      "source_variants": [],
+      "reason": "Keep awaken separate from awake; do not select the scrape's first awoke/awoken row."
+    },
+    "plead": {
+      "forms": ["plead", "pleads", "pleading", "pleaded", "pleaded"],
+      "source_variants": [["plead", "pleads", "pleading", "pled", "pled"]],
+      "reason": "Pled and pleaded are spelling variants here; generation consistently uses pleaded."
+    }
+  },
+  "sense_guards": {
+    "lie": {
+      "unambiguous_source_forms": ["lied"],
+      "reason": "The scrape only supplies lie/lied (untruth). Lie/lies/lying also describe reclining, whose past is lay. Keep those sources as quotations until their sense is resolved."
+    }
+  }
+}
