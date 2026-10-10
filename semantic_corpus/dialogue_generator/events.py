@@ -11,7 +11,7 @@ from ..semantic_generator.frames import frame_by_lemma
 from .verb_operators import MODALS, OPERATORS, Operator, be_form, validate_chain
 from .observed_clauses import ObservedClause
 from .mined_realization import mined_lexeme
-from .mined_subjects import MinedSubject, POSSIBILITY_PROFILES, WEATHER_PREDICATES
+from .mined_subjects import MinedSubject, NONPERSON_SOURCE_OPERATORS, WEATHER_PREDICATES
 
 
 @dataclass(frozen=True)
@@ -82,7 +82,7 @@ class Event:
             raise ValueError(f'Unsupported event predicate: {self.predicate}')
         if not self.time or self.time != self.time.strip():
             raise ValueError('An event needs an explicit time context')
-        if self.phase not in (('unspecified', 'reported') if self.mined else ('unspecified', 'ongoing', 'completed')) or self.tense not in ('present', 'past', 'future', 'modal'):
+        if self.phase not in (('unspecified', 'reported', 'ongoing') if self.mined else ('unspecified', 'ongoing', 'completed')) or self.tense not in ('present', 'past', 'future', 'modal'):
             raise ValueError('Unsupported event phase or tense')
         validate_chain(self.operators, self.tense, is_state=self.is_state)
         if any(op != 'not' for op in self.operators) and self.phase != 'unspecified':
@@ -106,7 +106,7 @@ class Event:
             self.lexeme  # A real dictionary paradigm, never guessed regular forms.
             if self.phase == 'reported' and (self.tense != 'past' or self.operators not in ((), ('not',))):
                 raise ValueError('A reported mined predication requires bare positive/negative past')
-            if self.phase == 'unspecified' and self.operators in ((), ('not',)):
+            if self.phase == 'unspecified' and self.operators in ((), ('not',)) and self.tense == 'past':
                 raise ValueError('A bare mined predication must explicitly use reported phase')
             roles = tuple(a.role for a in self.arguments)
             if self.subject is None:
@@ -124,8 +124,8 @@ class Event:
             if self.permitter and self.permitter.text == self.agent:
                 raise ValueError('Self-permission needs an explicit reflexive construction')
             if self.subject and self.subject.label != 'PERSON':
-                if self.operators not in ((), ('not',), *POSSIBILITY_PROFILES):
-                    raise ValueError('Unreviewed nonperson subjects allow only possibility operators')
+                if not set(self.operators) <= NONPERSON_SOURCE_OPERATORS:
+                    raise ValueError('Unreviewed nonperson subjects cannot receive intention/control operators')
             if self.subject and self.subject.label == 'IMPERSONAL':
                 if self.predicate not in WEATHER_PREDICATES or self.arguments:
                     raise ValueError('Impersonal it is restricted to bare weather predicates')
@@ -219,6 +219,32 @@ def completion_evidence(event: Event) -> str:
 def state_evidence(event: Event) -> str:
     if event.is_state and event.tense in ('present', 'past') and event.operators in ((), ('not',)):
         return 'no' if event.operators else 'yes'
+    return 'unknown'
+
+
+def occurrence_evidence(event: Event) -> str:
+    """Evidence of a mined predication, never evidence of telic completion.
+
+    Evaluate only reviewed outer scopes. In particular, a nested manage/fail
+    under want/may/try cannot establish the embedded occurrence.
+    """
+    if not event.mined or event.tense in ('future', 'modal'):
+        return 'unknown'
+    if event.phase == 'reported':
+        return 'no' if event.operators else 'yes'
+    # Was leaving / started to leave does not entail left. The mined sense has
+    # no reviewed telicity, so progress/onset cannot answer a simple-past query.
+    if event.tense == 'past':
+        if event.operators in (('manage',), ('finish',)):
+            return 'yes'
+        if event.operators in (('fail',), ('manage', 'not')):
+            return 'no'
+        if event.operators == ('fail', 'not'):
+            return 'yes'
+    # Present/past perfect reports a prior predication. Perfect negation is
+    # deliberately not treated as a timeless denial of occurrence.
+    if event.operators == ('have',):
+        return 'yes'
     return 'unknown'
 
 
@@ -324,8 +350,7 @@ def event_statement(event: Event, *, perspective='memory', style=0) -> str:
     elif event.phase == 'reported':
         phrase = ('did not ' + _core(event, 'base', style)) if event.operators else _core(event, 'past', style)
     elif event.phase == 'ongoing':
-        be = ('was' if subject != 'You' else 'were') if event.tense == 'past' else (
-            'am' if subject == 'I' else 'are' if subject == 'You' else 'is')
+        be = be_form('past' if event.tense == 'past' else 'present', agreement)
         phrase = be + (' not ' if event.operators else ' ') + _core(event, 'gerund', style)
     elif event.phase == 'completed':
         negative = bool(event.operators)

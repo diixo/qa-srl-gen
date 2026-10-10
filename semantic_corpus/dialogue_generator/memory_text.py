@@ -4,7 +4,7 @@ from .models import Fact, Memory
 from .actions import ACTION_BY_RELATION, action_statement
 from .events import event_statement
 
-MEMORY_TEXT_VERSION = "memory-text-v6"
+MEMORY_TEXT_VERSION = "memory-text-v7"
 
 
 def _fact_text(fact: Fact, style: int = 0) -> str:

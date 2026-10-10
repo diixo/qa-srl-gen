@@ -13,7 +13,7 @@ from .events import Event, EventArgument
 from .observed_clauses import ObservedClause
 from .mined_subjects import MinedSubject
 
-EXTRACTION_TEXT_VERSION = 'extraction-text-v5'
+EXTRACTION_TEXT_VERSION = 'extraction-text-v6'
 PROMPT_PREFIX = 'Current memory:\n'
 STATE_RELATIONS = frozenset(('location', 'meeting_day', 'feeling', 'selection', 'drink'))
 ESCAPES = {'\\': '\\', '|': '|', 'n': '\n', 'r': '\r', 't': '\t'}

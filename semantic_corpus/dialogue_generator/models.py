@@ -7,9 +7,9 @@ The checker validates references and updates, not arbitrary English semantics.
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
-from .events import Event, completion_evidence, state_evidence
+from .events import Event, completion_evidence, state_evidence, occurrence_evidence
 
-SCHEMA_VERSION = "dialogue-memory-v6"
+SCHEMA_VERSION = "dialogue-memory-v7"
 
 
 @dataclass(frozen=True)
@@ -206,13 +206,13 @@ def answer_query(memory: Memory, query: Query) -> tuple[str, str, tuple[str, ...
     if query.kind == 'mined_occurrence':
         if query.event is None or not query.event.mined:
             raise ValueError('A mined-occurrence query requires a mined event')
-        claims = [c for c in memory.events if c.event.identity == query.event.identity
-                  and c.event.phase == 'reported']
-        kinds = {bool(c.event.operators) for c in claims}
+        claims = [(c, occurrence_evidence(c.event)) for c in memory.events
+                  if c.event.identity == query.event.identity and occurrence_evidence(c.event) != 'unknown']
+        kinds = {value for _, value in claims}
         if len(kinds) != 1:
             return "I don't know; this has not been confirmed.", 'unknown', ()
-        negative = next(iter(kinds))
-        return ('No, you explicitly denied it.' if negative else 'Yes, you explicitly reported it.'), 'answer', tuple(c.id for c in claims)
+        negative = next(iter(kinds)) == 'no'
+        return ('No, your report indicates it did not happen.' if negative else 'Yes, your report indicates it happened.'), 'answer', tuple(c.id for c, _ in claims)
     if query.kind == "clarify_option":
         options = next(a for a in reversed(memory.assistant_actions) if a.kind == "options")
         return f"Do you mean {options.items[0]} or {options.items[1]}?", "clarify", (options.source_turn,)

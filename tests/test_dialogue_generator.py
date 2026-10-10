@@ -319,9 +319,9 @@ def test_default_sizes_have_no_duplicate_or_cross_split_prompts(tmp_path, user_o
     manifest = build_dialogue_dataset(tmp_path / 'dataset', user_assistant_only=user_only)
     assert 'entities.json' in manifest['resources']
     assert 'semantic_generator/frames.py' in manifest['resources']
-    assert manifest['prompt_version'] == 'dialogue-prompts-v8'
-    assert manifest['content_formats'] == {'history': 'history-text-v1', 'memory': 'memory-text-v6',
-                                            'extraction': 'extraction-text-v5'}
+    assert manifest['prompt_version'] == 'dialogue-prompts-v9'
+    assert manifest['content_formats'] == {'history': 'history-text-v1', 'memory': 'memory-text-v7',
+                                            'extraction': 'extraction-text-v6'}
     for view in ('history', 'memory', 'extraction'):
         seen = set()
         for split, count in (('train', 200), ('validation', 20), ('test', 20)):

@@ -274,9 +274,9 @@ verb list or frequency cutoff. Controlled heads (`can`, `must`, `may`, `be`,
 them as context; they are not selected as unreviewed generated predicates.
 The current primary bank contributes 4,031 working inventory entries. Some are
 parser errors or spelling/form aliases, not distinct English verb senses.
-The subject-aware compiler finds compositional candidates for 1,915 entries;
-2,116 retain quotation-only coverage. `mined-coverage.json` records the current
-counts and reasons; these are capabilities, not reviewed senses. All remain UNREVIEWED.
+`mined-coverage.json` records current compositional/quotation counts and reasons,
+plus `source_scope_lemmas` and `source_scope_occurrences`. These are capabilities,
+not reviewed senses. All remain UNREVIEWED.
 
 `data/wiktionary/en_verb_inflections.txt` supplies head paradigms. Reverse lookup
 repairs a parser lemma only when observed forms select one dictionary head;
@@ -288,13 +288,14 @@ Two realization levels are explicit in each exported mined record:
 
 | Level | Generation and target |
 | --- | --- |
-| `compositional` | A supported active VP gets dictionary inflection and preserves its observed grammatical subject. The complete observed complement retains particles/prepositions and word order. New licensed scopes do not establish occurrence. An explicit positive/negative past report answers the occurrence question. |
+| `compositional` | A supported active VP preserves its subject and recognized source operator scope. Complements retain particles/prepositions and word order. Occurrence is inferred only from reviewed evidence rules; telic completion remains unknown. |
 | `attested_quotation` | The entire original sentence is preserved. The dialogue distinguishes reporting that wording from planning, proposing, requiring or denying its use. This does **not** label the embedded action as completed or assign it invented semantic roles. |
 
-Compositional realization requires an unambiguous active subject, one lexical
-predicate, agreement between observed tag and dictionary form, and a complement
-which needs no unresolved pronoun or temporal-scope rewrite. Passive, embedded,
-coordinated, unresolved and other complex cases remain available as quotations.
+Compositional realization requires an unambiguous active subject, one target
+predicate with a reviewed same-subject operator chain, agreement between observed
+tag and dictionary form, and a complement requiring no unresolved pronoun or
+temporal-scope rewrite. Passive, unrecognized control/embedding, coordinated and
+other unresolved cases remain available as quotations.
 Their source slots, dependencies, spans and construction candidates remain in
 `*.episodes.jsonl`. Corpus annotations remain **UNREVIEWED**. Thus every indexed
 head participates, but arbitrary full semantic generation for every head is not
@@ -309,16 +310,49 @@ subject is not automatically a semantic agent. Bare `it` with `rain`, `snow`,
 `hail`, `drizzle`, `sleet` or `thunder` is `IMPERSONAL`, a transport marker for
 weather syntax, not a new ontology type.
 
-New nonperson/unresolved subjects use only `may`, `may not`, `might`, or
+Generated scopes for nonperson/unresolved subjects use only `may`, `may not`, `might`, or
 `may have`; they are not given wishes or plans. Person subjects keep existing
 licensed operators, with `let_us` restricted to `user`. Memory switches
 `my`/`your` perspective without losing the subject; event questions preserve it.
 Unresolved `he`/`she`/`they`/`we`/referential `it`, complex noun phrases,
 vocatives (`You grew up, Tom`) and adverbs needing scope analysis remain quotations.
-Embedded operator-chain interpretation, passive roles and parse repair are later
-steps. The added scopes create new examples; they do not reconstruct the source's
-original intent, tense or modal scope. Existing source auxiliaries may be replaced
-by the new scope (for example, `Tom is sleeping` can supply `Tom may sleep`).
+Reviewed source modals, aspect and same-subject control chains are now interpreted
+by `mined_scope.py`. The source scope is retained, including outer/inner negation:
+`Tom did not want to leave` is `not > want`; `Tom wanted not to leave` is `want > not`.
+`want/need/plan/intend/decide/try/manage/fail + to`, `start + to/gerund`,
+`finish/stop + gerund`, supported modals, perfect/progressive, `have to` and
+licensed `be able/going to` structures are recognized. A dependency path and the
+whole intervening surface span must both validate. `stop to do`, `try doing`,
+object control (`Tom wanted Mary to leave`), separate clauses, unreviewed operators
+and passive constructions remain quotations. Inflections alone do not license them.
+The existing event contract permits at most four operators, including negation.
+
+Source tense, operator order and negation are retained; the dialogue supplies a new
+`today` context, not the original document's timeline. Bare affirmative sources can
+still supply a newly generated modal/intention contrast. `scope_origin` records
+`source` or `generated`; `source_scope` stores the original recognized analysis.
+Sampling prefers a scoped source on half the native draws when one exists, without
+excluding plain phrases. Native reference counts and rejection reasons are audited.
+Observed nonperson subjects also allow structural aspect/necessity/success/failure
+operators; unsupported wishes or control operators are still refused.
+
+For mined occurrence questions, a direct past `managed to X` supports yes,
+`failed to X` or `managed not to X` supports no; `wanted/tried to X` and
+`wanted to manage to X` remain unknown. Bare perfect supports occurrence without
+assigning a completed phase to an unreviewed sense. Onset/progress (`started to
+leave`, `was leaving`) does not entail `left`; those remain unknown, along with
+negated perfect, negated success and cessation.
+Conflicting active evidence yields unknown. A source report is explicitly withdrawn
+before generating an incompatible follow-up; withdrawing it removes its evidence.
+Passive roles, multiple events and parser repair are subsequent implementation steps.
+
+This applies automatically to new **Chat dataset** jobs; there is no new UI mode.
+Existing exports are unchanged. To audit the scope-aware export and compare it
+with step 1, including archive/dictionary identity and per-predicate restrictions:
+
+```powershell
+python scripts/review_dialogue_scopes.py artifacts/dialogue-mined-scopes-step2 --baseline artifacts/dialogue-mined-subjects-step1 --out artifacts/reviews/dialogue-scopes-step2-validation.json
+```
 
 The model's text update commands add these forms:
 
@@ -450,9 +484,9 @@ The internal memory and audit keep their structured schema. **Extraction** uses
 the text command contract described below, with lossless conversion to internal
 deltas for the supported pilot scenarios.
 
-The manifest now records `schema_version: dialogue-memory-v6`,
-`prompt_version: dialogue-prompts-v8`, `content_formats.memory: memory-text-v6` and
-`content_formats.extraction: extraction-text-v5`. Generate a new job/directory to get
+The manifest now records `schema_version: dialogue-memory-v7`,
+`prompt_version: dialogue-prompts-v9`, `content_formats.memory: memory-text-v7` and
+`content_formats.extraction: extraction-text-v6`. Generate a new job/directory to get
 the text format; existing output files are not rewritten. Text-based prompt
 deduplication can select different episodes when older prompts differed only
 by internal identifiers. Paired History/Memory targets and split checks remain

@@ -11,7 +11,8 @@ import re
 
 from ..controlled_verbs import controlled_head
 from ..qasrl_core.inflections import load_inflections
-from .mined_subjects import realize_subject, subject_parts
+from .mined_subjects import realize_subject, subject_parts, NONPERSON_SOURCE_OPERATORS
+from .mined_scope import parse_scope, scope_structure
 
 
 @lru_cache(maxsize=8)
@@ -42,6 +43,59 @@ def mined_lexeme(predicate):
 
 
 def active_phrase(record, head_slot, canonical, paradigms, person_names):
+    """License the VP and retain the original reviewed scope, if present."""
+    if not paradigms or controlled_head(canonical):
+        return None, 'unresolved_or_controlled_inflection'
+    structure, reason = scope_structure(record, head_slot)
+    if reason:
+        return None, reason
+    root, subject, chain = structure
+    np, reason = subject_parts(record, subject, head_slot, scoped=True)
+    if reason:
+        return None, reason
+    parts = record['parts']
+    index = next(i for i, p in enumerate(parts) if p.get('slot') == head_slot)
+    scope_parts = parts[len(np):index + 1]
+    finite = next((p for p in scope_parts if p.get('slot') or p.get('literal', '').strip()), {})
+    finite_tag = record['slots'].get(finite.get('slot'), {}).get('tag')
+    # Validate all bindings, including source auxiliaries, before making any
+    # realization available. A malformed binding must not be silently stripped.
+    for binding in record['attested_bindings']:
+        text = ''.join(p.get('literal', binding.get(p.get('slot'), '')) for p in scope_parts)
+        scope, reason = parse_scope(text, canonical.split(' ', 1)[0], paradigms, finite_tag)
+        if reason:
+            return None, reason
+    projected = {**record, 'parts': np + [{'literal': ' '}] + parts[index:],
+                 'slots': {k: dict(s) for k, s in record['slots'].items() if k not in chain or k == head_slot},
+                 'predicate_groups': [g for g in record['predicate_groups'] if g['head_slot'] == head_slot]}
+    projected['slots'][head_slot].update(dependency='ROOT', head_slot=head_slot)
+    projected['slots'][subject]['head_slot'] = head_slot
+    # be able to has an adjective marker, not an event complement.
+    prefix_slots = {p['slot'] for p in scope_parts[:-1] if 'slot' in p}
+    for key in prefix_slots:
+        projected['slots'].pop(key, None)
+    spec, reason = _active_phrase(projected, head_slot, canonical, paradigms, person_names)
+    if spec:
+        spec.update(source_parts=scope_parts, finite_tag=finite_tag)
+        spec['has_source_scope'] = False
+        for binding in record['attested_bindings']:
+            subject, _ = realize_subject(record, spec, binding, person_names)
+            scope = source_scope(spec, binding, paradigms)
+            spec['has_source_scope'] |= bool(scope.operators or scope.phase == 'ongoing' or scope.tense == 'future')
+            if subject.label != 'PERSON' and not set(scope.operators) <= NONPERSON_SOURCE_OPERATORS:
+                return None, 'unreviewed_subject_operator_combination'
+    return spec, reason
+
+
+def source_scope(spec, bindings, paradigms):
+    text = ''.join(p.get('literal', bindings.get(p.get('slot'), '')) for p in spec['source_parts'])
+    scope, reason = parse_scope(text, spec['predicate'].split(' ', 1)[0], paradigms, spec['finite_tag'])
+    if reason:
+        raise ValueError(f'Indexed source scope no longer validates: {reason}')
+    return scope
+
+
+def _active_phrase(record, head_slot, canonical, paradigms, person_names):
     """Return a licensed subject + VP or a reason for attested-only use.
 
     No parser is run here. Reject clauses needing control, voice, relative-clause

@@ -11,6 +11,8 @@ from ..ontology.models import ENTITY_LABELS
 
 WEATHER_PREDICATES = frozenset(('rain', 'snow', 'hail', 'drizzle', 'sleet', 'thunder'))
 POSSIBILITY_PROFILES = (('may',), ('may', 'not'), ('might',), ('may', 'have'))
+NONPERSON_SOURCE_OPERATORS = frozenset(('not', 'can', 'could', 'must', 'may', 'might',
+                                      'have', 'be', 'have_to', 'start', 'finish', 'stop', 'manage', 'fail'))
 _MODIFIERS = {'compound', 'amod', 'nummod', 'poss', 'flat', 'flat:name'}
 _DETERMINERS = set('a an the this that these those my your some each every all both one two three four five six seven eight nine ten hundred thousand million billion'.split())
 _REFERENCES = re.compile(r'\b(he|she|they|we|him|her|them|us|his|their|our|its|it|myself|yourself|himself|herself|itself|themselves|ourselves)\b', re.I)
@@ -54,7 +56,7 @@ class MinedSubject:
         return 'they' if self.number == 'plural' else 'it'
 
 
-def subject_parts(record, subject_slot, head_slot):
+def subject_parts(record, subject_slot, head_slot, *, scoped=False):
     """Accept contiguous simple NPs; keep unresolved clause material quoted."""
     slots, parts = record['slots'], record['parts']
     members = {subject_slot}
@@ -74,6 +76,8 @@ def subject_parts(record, subject_slot, head_slot):
     if any(p.get('slot') not in members for p in before if 'slot' in p):
         return None, 'noncontiguous_subject'
     between = parts[max(indices) + 1:head_index]
+    if scoped:
+        between = []  # The caller validates the entire operator span separately.
     # Existing auxiliaries are replaced by a NEW generated scope, not interpreted
     # as source semantics. Do not silently drop adverbs or another lexical slot.
     if any((slots[p['slot']].get('pos'), slots[p['slot']].get('dependency'), slots[p['slot']].get('head_slot'))

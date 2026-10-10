@@ -8,7 +8,7 @@ from dataclasses import asdict, replace
 from itertools import product
 import random
 
-from .events import Event, EventArgument, event_question, event_statement
+from .events import Event, EventArgument, event_question, event_statement, occurrence_evidence
 from .observed_clauses import ObservedClause
 from .models import Episode, Query, answer_query
 from .mined_subjects import POSSIBILITY_PROFILES
@@ -62,9 +62,16 @@ def mined_episodes(generator, count, split):
             initial = replace(base, phase='unspecified', operators=profile,
                               tense='modal' if any(op in MODALS for op in profile) else 'present',
                               permitter=EventArgument('permitter', 'user' if subject.text == 'assistant' else 'assistant', 'PERSON') if 'let' in profile else None)
+            scope = spec['source_scope']
+            preserved = bool(scope.operators not in ((), ('not',)) or scope.phase == 'ongoing' or scope.tense == 'future'
+                             or scope.operators == ('not',))
+            if preserved:
+                initial = replace(base, operators=scope.operators, phase=scope.phase, tense=scope.tense)
+                profile = scope.operators
             source = {**source, 'realization': 'compositional',
-                      'note': 'The observed grammatical subject is preserved, not assigned an agent role. The head is inflected anew; complements retain observed order and unresolved semantic types.'}
-            condition = '>'.join(profile)
+                      'scope_origin': 'source' if preserved else 'generated',
+                      'note': 'Subject and reviewed source operator scope are preserved. Time is normalized to today; complements keep attested order and unresolved roles. Completion is not inferred.'}
+            condition = ('source:' if preserved else 'generated:') + ('>'.join(profile) or scope.phase)
             query = Query('mined_occurrence', event=base)
         else:
             base = Event('@clause', (), observation=ObservedClause(row['text'].strip()))
@@ -82,11 +89,15 @@ def mined_episodes(generator, count, split):
             c.pair(f"I'm in {place}. I feel {feeling}, and I prefer {drink}.",
                    facts=(_fact('user', 'location', place), _fact('user', 'feeling', feeling), _fact('user', 'drink', drink)))
             c.pair(event_statement(initial, perspective='user', style=style), events=(initial,))
-            if outcome != 'unknown':
+            known = occurrence_evidence(initial) if spec else 'unknown'
+            if known != 'unknown' and known != outcome:
+                old = c.memory.find_event(initial)
+                c.pair('Withdraw my last report.', event_invalidate=(old.id,))
+            if outcome != 'unknown' and outcome != known:
                 final = (replace(base, operators=('not',) if outcome == 'no' else ()) if spec else
                          replace(base, observation=replace(base.observation, status='denied' if outcome == 'no' else 'reported')))
                 c.pair(event_statement(final, perspective='user', style=style), events=(final,))
-            elif cycle % 2:
+            elif outcome == 'unknown' and known == 'unknown' and cycle % 2:
                 # A withdrawn explicit report must not survive in active memory.
                 c.pair(event_statement(base, perspective='user', style=style), events=(base,))
                 old = c.memory.find_event(base)

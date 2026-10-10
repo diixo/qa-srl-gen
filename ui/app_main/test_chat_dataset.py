@@ -234,8 +234,8 @@ class ChatDatasetPageTests(TestCase):
         manifest = json.loads((root / 'dataset/manifest.json').read_text(encoding='utf-8'))
         self.assertIs(manifest['include_metadata'], True)
         self.assertIs(manifest['user_assistant_only'], False)
-        self.assertEqual(manifest['content_formats']['memory'], 'memory-text-v6')
-        self.assertEqual(manifest['content_formats']['extraction'], 'extraction-text-v5')
+        self.assertEqual(manifest['content_formats']['memory'], 'memory-text-v7')
+        self.assertEqual(manifest['content_formats']['extraction'], 'extraction-text-v6')
         rows = json.loads((root / 'dataset/memory/train.json').read_text(encoding='utf-8'))
         for row in rows:
             fields = {'messages', 'id', 'scenario_key', 'task'}

@@ -239,7 +239,7 @@ def test_whole_subject_np_survives_mining_with_possessives_and_number():
     assert subject.surface('memory', initial=True) == 'Your dogs'
     # A new relative clause cannot be silently dropped from the subject.
     row['slots']['v3'] = {'dependency': 'relcl', 'head_slot': 'n1', 'kind': 'verb'}
-    assert active_phrase(row, 'v2', 'sleep', [asdict(p) for p in lexicon().paradigms('sleep')], set())[1] == 'complex_subject'
+    assert active_phrase(row, 'v2', 'sleep', [asdict(p) for p in lexicon().paradigms('sleep')], set())[1] == 'embedded_or_coordinated_predicates'
 
 
 @pytest.mark.parametrize('word', ['He', 'She', 'They', 'We', 'It'])
@@ -251,7 +251,7 @@ def test_unresolved_pronouns_do_not_become_the_user(word):
 @pytest.mark.parametrize('auxiliary, word, tag', [('can', 'sleep', 'VB'), ("can't", 'sleep', 'VB'),
                                                ("'ve", 'slept', 'VBN'), ('may have', 'slept', 'VBN'),
                                                ('does not', 'sleep', 'VB')])
-def test_source_auxiliaries_can_supply_a_vp_without_becoming_its_new_scope(auxiliary, word, tag):
+def test_source_auxiliaries_require_a_recognized_scope(auxiliary, word, tag):
     row = record(['I', auxiliary, word], 2, 'sleep')
     row['slots']['v2']['tag'] = tag
     spec, reason = active_phrase(row, 'v2', 'sleep', [asdict(p) for p in lexicon().paradigms('sleep')], set())
@@ -259,7 +259,7 @@ def test_source_auxiliaries_can_supply_a_vp_without_becoming_its_new_scope(auxil
     assert ''.join(p.get('literal', row['defaults'].get(p.get('slot'), '')) for p in spec['subject_parts']) == 'I'
     for adverb in ('obviously', 'maybe'):
         row['parts'][3]['literal'] = ' ' + adverb + ' '
-        assert active_phrase(row, 'v2', 'sleep', [asdict(p) for p in lexicon().paradigms('sleep')], set())[1] == 'unresolved_subject_context'
+        assert active_phrase(row, 'v2', 'sleep', [asdict(p) for p in lexicon().paradigms('sleep')], set())[1] == 'unsupported_source_scope'
 
 
 def test_compiled_auxiliary_slot_is_not_confused_with_a_second_subject():
@@ -273,7 +273,7 @@ def test_compiled_auxiliary_slot_is_not_confused_with_a_second_subject():
     assert reason is None
     assert realize_subject(row, spec, row['defaults'], {'Tom'})[0] == MinedSubject('Tom', 'PERSON')
     row['slots']['v1']['pos'] = 'VERB'
-    assert active_phrase(row, 'v2', 'sleep', [asdict(p) for p in lexicon().paradigms('sleep')], {'Tom'})[1] == 'unresolved_subject_context'
+    assert active_phrase(row, 'v2', 'sleep', [asdict(p) for p in lexicon().paradigms('sleep')], {'Tom'})[1] == 'embedded_or_coordinated_predicates'
 
 
 def test_vocatives_cannot_reassign_the_addressee_or_join_the_verb_complement():
