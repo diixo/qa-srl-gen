@@ -193,16 +193,24 @@ def train(settings: TrainSettings) -> dict:
         tokenizer.convert_tokens_to_ids('<|endoftext|>')
         })
     settings.out.mkdir(parents=True, exist_ok=False)
-    report = {'status': 'running', 'mode': 'sft', 'initialization': 'pretrained', 'view': settings.view,
-              'trainer': 'transformers.Trainer', 'format': FORMAT_VERSION,
+    report = {'status': 'running',
+              'mode': 'sft',
+              'initialization': 'pretrained',
+              'view': settings.view,
+              'trainer': 'transformers.Trainer',
+              'format': FORMAT_VERSION,
               'loss_scope': 'final assistant answer and im_end only',
-              'settings': asdict(settings), 'device': str(device), 'precision': precision,
+              'settings': asdict(settings),
+              'device': str(device),
+              'precision': precision,
               'versions': {'torch': torch.__version__, 'transformers': transformers.__version__},
-              'parameters': model.num_parameters(), 'vocab_size': len(tokenizer),
+              'parameters': model.num_parameters(),
+              'vocab_size': len(tokenizer),
               'source_files': {'train.json': file_sha256(train_path), 'validation.json': file_sha256(val_path)},
               'records': {'train': len(rows), 'validation': len(val_rows)},
               'max_record_tokens': max(len(e.input_ids) for e in examples + validation),
-              'test_used_during_training': False}
+              'test_used_during_training': False
+              }
     _write_json(settings.out / 'run.json', report)
     _write_json(settings.out / 'split_keys.json', {
         split: {'prompts': [row.prompt_key for row in data],
@@ -285,15 +293,20 @@ def load_run(run: Path, device):
     report = json.loads((run / 'run.json').read_text(encoding='utf-8'))
     if report.get('status') != 'complete' or report.get('format') != FORMAT_VERSION:
         raise ValueError('Expected a completed GPT-2 ChatML training run')
+
     for name, digest in report['tokenizer_files'].items():
         if file_sha256(run / 'model' / name) != digest:
             raise ValueError('Saved tokenizer contract has changed')
+
     tokenizer = GPT2TokenizerFast.from_pretrained(run / 'model', local_files_only=True)
+
     if tokenizer.chat_template != CHAT_TEMPLATE or tokenizer.eos_token != IM_END or tokenizer.pad_token != PAD:
         raise ValueError('Saved ChatML tokenizer contract is invalid')
+
     model = GPT2LMHeadModel.from_pretrained(run / 'model', local_files_only=True).to(device).eval()
     eos_ids = model.generation_config.eos_token_id
     eos_ids = eos_ids if isinstance(eos_ids, list) else [eos_ids]
+
     if model.config.vocab_size != len(tokenizer) or eos_ids != [tokenizer.eos_token_id]:
         raise ValueError('Saved model and tokenizer do not match')
     return model, tokenizer
@@ -306,6 +319,7 @@ def evaluate(run: Path, data: Path, out: Path, *, split='test', device='auto', m
         raise ValueError('Invalid evaluation settings')
     if out.exists():
         raise FileExistsError(f'Choose a new evaluation directory: {out}')
+
     torch.set_num_threads(threads)
     device = _device(device)
     run_report = json.loads((run / 'run.json').read_text(encoding='utf-8'))
@@ -314,12 +328,14 @@ def evaluate(run: Path, data: Path, out: Path, *, split='test', device='auto', m
     path = data / f'{split}.json'
     rows = load_rows(path)
     keys = json.loads((run / 'split_keys.json').read_text(encoding='utf-8'))
+
     for name in (('train', 'validation') if split == 'test' else ('train',)):
         if set(keys[name].get('contrast_groups', [])) & {row.contrast_group for row in rows if row.contrast_group}:
             raise ValueError(f'Evaluation contrast group leakage from {name}')
         if set(keys[name]['prompts']) & {row.prompt_key for row in rows} or \
                 set(keys[name]['scenarios']) & {row.scenario_key for row in rows if row.scenario_key}:
             raise ValueError(f'Evaluation leakage from {name}')
+
     all_count = len(rows)
     if limit:
         rows = rows[:limit]
@@ -329,6 +345,7 @@ def evaluate(run: Path, data: Path, out: Path, *, split='test', device='auto', m
     out.mkdir(parents=True, exist_ok=False)
     collator = AnswerCollator(tokenizer.pad_token_id)
     loss_sum, target_count = 0.0, 0
+
     for start in range(0, len(examples), batch_size):
         batch = {key: value.to(device) for key, value in collator(
             [ChatDataset(examples)[i] for i in range(start, min(start + batch_size, len(examples)))]).items()}
@@ -336,15 +353,20 @@ def evaluate(run: Path, data: Path, out: Path, *, split='test', device='auto', m
         count = (labels[:, 1:] != -100).sum().item()
         loss_sum += assistant_loss(model(**batch), labels).item() * count
         target_count += count
+
     totals = {'count': 0, 'exact_matches': 0, 'ended': 0}
     by_task = {}
     diagnostics = ExtractionMetrics() if view == 'extraction' else AnswerMetrics()
+
     with (out / 'predictions.jsonl').open('w', encoding='utf-8', newline='\n') as stream:
         for index, (row, encoded) in enumerate(zip(rows, examples), 1):
             # Only prompt tokens enter generate(); the reference is never supplied.
             inputs = torch.tensor([encoded.prompt_ids], device=device)
-            output = model.generate(input_ids=inputs, attention_mask=torch.ones_like(inputs),
-                                    max_new_tokens=max_new_tokens, do_sample=False, use_cache=True)
+            output = model.generate(input_ids=inputs,
+                                    attention_mask=torch.ones_like(inputs),
+                                    max_new_tokens=max_new_tokens,
+                                    do_sample=False,
+                                    use_cache=True)
             answer_ids = output[0, inputs.shape[1]:].tolist()
             ended = bool(answer_ids and answer_ids[-1] == tokenizer.eos_token_id)
             prediction = tokenizer.decode(answer_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)
@@ -359,18 +381,34 @@ def evaluate(run: Path, data: Path, out: Path, *, split='test', device='auto', m
                 counts['count'] += 1
                 counts['exact_matches'] += int(exact)
                 counts['ended'] += int(ended)
-            stream.write(json.dumps({'record': index, 'task': row.task, 'prompt': row.messages[1]['content'],
-                                     'reference': target, 'prediction': prediction, 'exact_match': exact,
-                                     'ended': ended, 'contrast_group': row.contrast_group,
-                                     'condition': row.condition}, ensure_ascii=False) + '\n')
+            stream.write(json.dumps({'record': index,
+                                     'task': row.task,
+                                     'prompt': row.messages[1]['content'],
+                                     'reference': target,
+                                     'prediction': prediction,
+                                     'exact_match': exact,
+                                     'ended': ended,
+                                     'contrast_group': row.contrast_group,
+                                     'condition': row.condition},
+                                ensure_ascii=False) + '\n')
             if index == 1 or index % 20 == 0 or index == len(rows):
                 print(f'Evaluated {index}/{len(rows)}', flush=True)
     loss = loss_sum / target_count
-    report = {'view': view, 'split': split, 'source_sha256': file_sha256(path), 'available_records': all_count,
-              'model': str(run / 'model'), 'decoding': 'greedy', 'max_new_tokens': max_new_tokens,
-              'answer_loss': loss, 'perplexity': math.exp(loss) if loss < 700 else None,
-              **totals, 'exact_match_rate': totals['exact_matches'] / totals['count'], 'by_task': by_task,
-              **diagnostics.report(),
-              'note': 'Exact match is a strict reference comparison; review predictions for semantic quality.'}
+    report = {
+        'view': view,
+        'split': split,
+        'source_sha256': file_sha256(path),
+        'available_records': all_count,
+        'model': str(run / 'model'),
+        'decoding': 'greedy',
+        'max_new_tokens': max_new_tokens,
+        'answer_loss': loss,
+        'perplexity': math.exp(loss) if loss < 700 else None,
+        **totals,
+        'exact_match_rate': totals['exact_matches'] / totals['count'],
+        'by_task': by_task,
+        **diagnostics.report(),
+        'note': 'Exact match is a strict reference comparison; review predictions for semantic quality.'
+    }
     _write_json(out / 'evaluation.json', report)
     return report
