@@ -1,0 +1,9785 @@
+{
+  "version": "dailydialog-curation-v1",
+  "review_note": "Reviewed by Codex from the local DailyDialog vocabulary and candidate contexts. Names are possible lexical readings, not contextual gold NER. Uncertain spellings and entity readings remain proposals.",
+  "corrections": [
+    {
+      "before": "magadize",
+      "after": "magazine"
+    },
+    {
+      "before": "dont",
+      "after": "don't"
+    },
+    {
+      "before": "untill",
+      "after": "until"
+    },
+    {
+      "before": "excercise",
+      "after": "exercise"
+    },
+    {
+      "before": "enviroment",
+      "after": "environment"
+    },
+    {
+      "before": "brough",
+      "after": "brought"
+    },
+    {
+      "before": "yourorder",
+      "after": "your order"
+    },
+    {
+      "before": "technoledge",
+      "after": "technology"
+    },
+    {
+      "before": "invesigator",
+      "after": "investigator"
+    },
+    {
+      "before": "wasbuilt",
+      "after": "was built"
+    },
+    {
+      "before": "renowed",
+      "after": "renowned"
+    },
+    {
+      "before": "racketball",
+      "after": "racquetball"
+    },
+    {
+      "before": "burd",
+      "after": "bird"
+    },
+    {
+      "before": "alway",
+      "after": "always"
+    },
+    {
+      "before": "isnt",
+      "after": "isn't"
+    },
+    {
+      "before": "reasearch",
+      "after": "research"
+    },
+    {
+      "before": "fashional",
+      "after": "fashionable"
+    },
+    {
+      "before": "styte",
+      "after": "style"
+    },
+    {
+      "before": "positon",
+      "after": "position"
+    },
+    {
+      "before": "sportsshoes",
+      "after": "sports shoes"
+    },
+    {
+      "before": "momment",
+      "after": "moment"
+    },
+    {
+      "before": "catagories",
+      "after": "categories"
+    },
+    {
+      "before": "insurancecompany",
+      "after": "insurance company"
+    },
+    {
+      "before": "strang",
+      "after": "strange"
+    },
+    {
+      "before": "thinkbecause",
+      "after": "think because"
+    },
+    {
+      "before": "thatbecause",
+      "after": "that because"
+    },
+    {
+      "before": "inition",
+      "after": "invitation"
+    },
+    {
+      "before": "comerials",
+      "after": "commercials"
+    },
+    {
+      "before": "tobe",
+      "after": "to be"
+    },
+    {
+      "before": "beforethe",
+      "after": "before the"
+    },
+    {
+      "before": "indispensible",
+      "after": "indispensable"
+    },
+    {
+      "before": "claborate",
+      "after": "elaborate"
+    },
+    {
+      "before": "hetter",
+      "after": "better"
+    },
+    {
+      "before": "ofprogrammes",
+      "after": "of programmes"
+    },
+    {
+      "before": "reallyconsidering",
+      "after": "really considering"
+    },
+    {
+      "before": "thetelevision",
+      "after": "the television"
+    },
+    {
+      "before": "justturn",
+      "after": "just turn"
+    },
+    {
+      "before": "whetherman",
+      "after": "weatherman"
+    },
+    {
+      "before": "partlycloudy",
+      "after": "partly cloudy"
+    },
+    {
+      "before": "bitstrange",
+      "after": "bit strange"
+    },
+    {
+      "before": "onlytwo",
+      "after": "only two"
+    },
+    {
+      "before": "jeansand",
+      "after": "jeans and"
+    },
+    {
+      "before": "conscanciouss",
+      "after": "conscientious"
+    },
+    {
+      "before": "brothe",
+      "after": "brother"
+    },
+    {
+      "before": "encouragelifelong",
+      "after": "encourage lifelong"
+    },
+    {
+      "before": "homelesspeople",
+      "after": "homeless people"
+    },
+    {
+      "before": "thats",
+      "after": "that's"
+    },
+    {
+      "before": "thetwenty",
+      "after": "the twenty"
+    },
+    {
+      "before": "direcly",
+      "after": "directly"
+    },
+    {
+      "before": "anotherleft",
+      "after": "another left"
+    },
+    {
+      "before": "arround",
+      "after": "around"
+    },
+    {
+      "before": "fouth",
+      "after": "fourth"
+    },
+    {
+      "before": "itemssold",
+      "after": "items sold"
+    },
+    {
+      "before": "soud",
+      "after": "sound"
+    },
+    {
+      "before": "break bown",
+      "after": "break down"
+    },
+    {
+      "before": "outby",
+      "after": "out by"
+    },
+    {
+      "before": "nextweek",
+      "after": "next week"
+    },
+    {
+      "before": "nowaday",
+      "after": "nowadays"
+    },
+    {
+      "before": "teambuiding",
+      "after": "team building"
+    },
+    {
+      "before": "fantasticbecuase",
+      "after": "fantastic because"
+    },
+    {
+      "before": "kown",
+      "after": "know"
+    },
+    {
+      "before": "darkgreen",
+      "after": "dark green"
+    },
+    {
+      "before": "pymeids",
+      "after": "pyramids"
+    },
+    {
+      "before": "intermet",
+      "after": "internet"
+    },
+    {
+      "before": "theindividuals",
+      "after": "the individuals"
+    },
+    {
+      "before": "inseems",
+      "after": "it seems"
+    },
+    {
+      "before": "visitorsfrom",
+      "after": "visitors from"
+    },
+    {
+      "before": "disabilitiescan",
+      "after": "disabilities can"
+    },
+    {
+      "before": "saidthey",
+      "after": "said they"
+    },
+    {
+      "before": "explainwhy",
+      "after": "explain why"
+    },
+    {
+      "before": "imponent",
+      "after": "important"
+    },
+    {
+      "before": "hosue",
+      "after": "house"
+    },
+    {
+      "before": "theycook",
+      "after": "they cook"
+    },
+    {
+      "before": "guythat",
+      "after": "guy that"
+    },
+    {
+      "before": "highheel",
+      "after": "high-heel"
+    },
+    {
+      "before": "butoften",
+      "after": "but often"
+    },
+    {
+      "before": "embarrased",
+      "after": "embarrassed"
+    },
+    {
+      "before": "mediun",
+      "after": "medium"
+    },
+    {
+      "before": "thetheatre",
+      "after": "the theatre"
+    },
+    {
+      "before": "somejackets",
+      "after": "some jackets"
+    },
+    {
+      "before": "ballon",
+      "after": "balloon"
+    },
+    {
+      "before": "youknow",
+      "after": "you know"
+    },
+    {
+      "before": "torgue",
+      "after": "tongue"
+    },
+    {
+      "before": "partie nt",
+      "after": "patient"
+    },
+    {
+      "before": "thatmany",
+      "after": "that many"
+    },
+    {
+      "before": "howso survive",
+      "after": "how to survive"
+    },
+    {
+      "before": "theinternet",
+      "after": "the internet"
+    },
+    {
+      "before": "rcceived",
+      "after": "received"
+    },
+    {
+      "before": "seeingyou",
+      "after": "seeing you"
+    },
+    {
+      "before": "windowand",
+      "after": "window and"
+    },
+    {
+      "before": "firiend",
+      "after": "friend"
+    },
+    {
+      "before": "on wich",
+      "after": "on which"
+    },
+    {
+      "before": "agood",
+      "after": "a good"
+    },
+    {
+      "before": "somebrushes",
+      "after": "some brushes"
+    },
+    {
+      "before": "afer",
+      "after": "after"
+    },
+    {
+      "before": "smallthings",
+      "after": "small things"
+    },
+    {
+      "before": "comunication",
+      "after": "communication"
+    },
+    {
+      "before": "countr-offer",
+      "after": "counter-offer"
+    },
+    {
+      "before": "brandgrowth",
+      "after": "brand growth"
+    },
+    {
+      "before": "everthing",
+      "after": "everything"
+    },
+    {
+      "before": "dustbiri",
+      "after": "dustbin"
+    },
+    {
+      "before": "paperand",
+      "after": "paper and"
+    },
+    {
+      "before": "middle-anagement",
+      "after": "middle-management"
+    },
+    {
+      "before": "fullbodied",
+      "after": "full-bodied"
+    },
+    {
+      "before": "bonedry",
+      "after": "bone-dry"
+    },
+    {
+      "before": "delitous",
+      "after": "delicious"
+    },
+    {
+      "before": "includeair",
+      "after": "include air"
+    },
+    {
+      "before": "conditionining",
+      "after": "conditioning"
+    },
+    {
+      "before": "somesleepwear",
+      "after": "some sleepwear"
+    },
+    {
+      "before": "dumbbless",
+      "after": "dumbbells"
+    },
+    {
+      "before": "yor",
+      "after": "your"
+    },
+    {
+      "before": "dipyour",
+      "after": "dip your"
+    },
+    {
+      "before": "wifereturned",
+      "after": "wife returned"
+    },
+    {
+      "before": "livingroom",
+      "after": "living room"
+    },
+    {
+      "before": "yourfingers",
+      "after": "your fingers"
+    },
+    {
+      "before": "loke",
+      "after": "like"
+    },
+    {
+      "before": "stcrtion",
+      "after": "station"
+    },
+    {
+      "before": "govemance",
+      "after": "governance"
+    },
+    {
+      "before": "goveroverment",
+      "after": "government"
+    },
+    {
+      "before": "offerbased",
+      "after": "offer based"
+    },
+    {
+      "before": "upto-date",
+      "after": "up-to-date"
+    },
+    {
+      "before": "alout",
+      "after": "about"
+    },
+    {
+      "before": "moreinformation",
+      "after": "more information"
+    },
+    {
+      "before": "pineappleand",
+      "after": "pineapple and"
+    },
+    {
+      "before": "thechance",
+      "after": "the chance"
+    },
+    {
+      "before": "conferrence",
+      "after": "conference"
+    },
+    {
+      "before": "onemonth",
+      "after": "one month"
+    },
+    {
+      "before": "themeantime",
+      "after": "the meantime"
+    },
+    {
+      "before": "cannedlichee",
+      "after": "canned lychee"
+    },
+    {
+      "before": "co-wokers",
+      "after": "co-workers"
+    },
+    {
+      "before": "thecompleted",
+      "after": "the completed"
+    },
+    {
+      "before": "meetingwith",
+      "after": "meeting with"
+    },
+    {
+      "before": "rec-ommend",
+      "after": "recommend"
+    },
+    {
+      "before": "postoffice",
+      "after": "post office"
+    },
+    {
+      "before": "commercia invoice",
+      "after": "commercial invoice"
+    },
+    {
+      "before": "likethat",
+      "after": "like that"
+    },
+    {
+      "before": "plese",
+      "after": "please"
+    },
+    {
+      "before": "wellknown",
+      "after": "well-known"
+    },
+    {
+      "before": "headoffice",
+      "after": "head office"
+    },
+    {
+      "before": "spinage",
+      "after": "spinach"
+    },
+    {
+      "before": "shoul-der",
+      "after": "shoulder"
+    },
+    {
+      "before": "am-phibians",
+      "after": "amphibians"
+    },
+    {
+      "before": "emper-or",
+      "after": "emperor"
+    },
+    {
+      "before": "a-gainst",
+      "after": "against"
+    },
+    {
+      "before": "litt 1e",
+      "after": "little"
+    },
+    {
+      "before": "acliff-hangerstory",
+      "after": "a cliffhanger story"
+    },
+    {
+      "before": "sun is shinning",
+      "after": "sun is shining"
+    },
+    {
+      "before": "Who is he marring",
+      "after": "Who is he marrying"
+    },
+    {
+      "before": "dinning room",
+      "after": "dining room"
+    },
+    {
+      "before": "dinning tables",
+      "after": "dining tables"
+    },
+    {
+      "before": "does't",
+      "after": "doesn't"
+    },
+    {
+      "before": "havn't",
+      "after": "haven't"
+    },
+    {
+      "before": "arn't",
+      "after": "aren't"
+    },
+    {
+      "before": "I'II",
+      "after": "I'll"
+    },
+    {
+      "before": "I'Il",
+      "after": "I'll"
+    },
+    {
+      "before": "I'v",
+      "after": "I've"
+    },
+    {
+      "before": "You'v",
+      "after": "You've"
+    },
+    {
+      "before": "I'am",
+      "after": "I am"
+    },
+    {
+      "before": "ma'ma",
+      "after": "ma'am"
+    },
+    {
+      "before": "That'what",
+      "after": "That's what"
+    },
+    {
+      "before": "here'sa",
+      "after": "here's a"
+    },
+    {
+      "before": "wouldn'tbrazen",
+      "after": "wouldn't brazen"
+    },
+    {
+      "before": "shoppinglIist",
+      "after": "shopping list"
+    },
+    {
+      "before": "othe rise",
+      "after": "otherwise"
+    },
+    {
+      "before": "Addi trional",
+      "after": "additional"
+    },
+    {
+      "before": "trade - trional",
+      "after": "traditional"
+    },
+    {
+      "before": "beau - fully",
+      "after": "beautifully"
+    },
+    {
+      "before": "Los Angles",
+      "after": "Los Angeles"
+    },
+    {
+      "before": "Las Angeles",
+      "after": "Los Angeles"
+    },
+    {
+      "before": "Melboume",
+      "after": "Melbourne"
+    },
+    {
+      "before": "TaiWan",
+      "after": "Taiwan"
+    },
+    {
+      "before": "XinJiang",
+      "after": "Xinjiang"
+    }
+  ],
+  "truecase": [
+    "82nd Street",
+    "ABC Company",
+    "Aaron Johnson",
+    "Abby",
+    "Abraham Lincoln",
+    "Adam",
+    "Africa",
+    "Air China",
+    "Alabama",
+    "Alan",
+    "Alaska",
+    "Albert",
+    "Alberta",
+    "Alex",
+    "Alex Brent",
+    "Alexander",
+    "Alice",
+    "Alison",
+    "Allan Parker",
+    "Allen",
+    "Allison",
+    "Altadena",
+    "Altadena Drive",
+    "Amanda",
+    "American",
+    "American Airlines",
+    "American Express",
+    "Amy",
+    "Amy Card",
+    "Anderson",
+    "Andrea",
+    "Andrew",
+    "Andrew Smith",
+    "Andy",
+    "Andy Lau",
+    "Angela",
+    "Angelina Jolie",
+    "Ann",
+    "Anna",
+    "Anne",
+    "Anne Hathaway",
+    "Anne Smith",
+    "Annie",
+    "Anthony",
+    "Anthony Hopkins",
+    "April",
+    "Arabic",
+    "Argentina",
+    "Arnold",
+    "Arnold Schwarzenegger",
+    "Arthur",
+    "Asia",
+    "Atlanta",
+    "Atlantic City",
+    "Auckland",
+    "Australia",
+    "Australian",
+    "Austria",
+    "Bali",
+    "Baltimore",
+    "Bangkok",
+    "Bank of America",
+    "Bank of China",
+    "Barack Obama",
+    "Barbara",
+    "Barcelona",
+    "Barkley",
+    "Becky",
+    "Beethoven",
+    "Beidaihe",
+    "Beijing",
+    "Beijing International Airport",
+    "Beijing Road",
+    "Beijing University",
+    "Belgium",
+    "Belinda",
+    "Ben",
+    "Benjamin",
+    "Bergeron",
+    "Berkeley",
+    "Berlin",
+    "Bermuda",
+    "Beth",
+    "Betty",
+    "Betty Sue",
+    "Bill Gates",
+    "Bill Smith",
+    "Billy",
+    "Birmingham",
+    "Bob Copeland",
+    "Bob Thomas",
+    "Bonn",
+    "Boris",
+    "Boston",
+    "Brad Pitt",
+    "Bradley",
+    "Brazil",
+    "Bremen",
+    "Brian",
+    "Brisbane",
+    "Britain",
+    "British",
+    "Britney",
+    "Broadway",
+    "Brooke",
+    "Brooklyn",
+    "Bruce",
+    "Bruce Lee",
+    "Brussels",
+    "Bucharest",
+    "Buckingham Palace",
+    "Budapest",
+    "Buenos Aires",
+    "California",
+    "Cambridge",
+    "Campbell",
+    "Canada",
+    "Canadian",
+    "Canberra",
+    "Canterbury",
+    "Carl",
+    "Carla",
+    "Carmichael",
+    "Carter",
+    "Casey",
+    "Catharine",
+    "Catherine",
+    "Cathy",
+    "Celia",
+    "Central America",
+    "Central Park",
+    "Chandler",
+    "Chanel",
+    "Chang",
+    "Changchun",
+    "Changsha",
+    "Charles",
+    "Charles Brown",
+    "Charles Dickens",
+    "Charlie",
+    "Charlie Chaplin",
+    "Chen",
+    "Chen Liang",
+    "Cheng Long",
+    "Chengdu",
+    "Chicago",
+    "Chile",
+    "China Airlines",
+    "Chinatown",
+    "Chinese",
+    "Chongqing",
+    "Chris",
+    "Christina",
+    "Christine",
+    "Christmas",
+    "Christopher",
+    "Chuck Jones",
+    "Cindy",
+    "Claire",
+    "Clare Williams",
+    "Clark",
+    "Cleveland",
+    "Clinton",
+    "Collins",
+    "Colombia",
+    "Colorado",
+    "Congo",
+    "Connecticut",
+    "Conrad Reeves",
+    "Costa Rica",
+    "Craig",
+    "Dalian",
+    "Dallas",
+    "Dan Robson",
+    "Dana",
+    "Daniel",
+    "Danny",
+    "Darren McDowell",
+    "Dave",
+    "David",
+    "David Richton",
+    "Davis",
+    "Deborah",
+    "December",
+    "Del Mar",
+    "Denise",
+    "Denver",
+    "Detroit",
+    "Diana",
+    "Diane",
+    "Dick Brown",
+    "Dickens",
+    "Dina",
+    "Disneyland",
+    "Donald",
+    "Donald Eakins",
+    "Donna",
+    "Dora",
+    "Doris",
+    "Dresden",
+    "Du Tao",
+    "Dubai",
+    "Dutch",
+    "Dylan",
+    "Eakins",
+    "Easter",
+    "Eastern Europe",
+    "Ecuador",
+    "Edinburgh",
+    "Edward Norton",
+    "Edwin Hubble",
+    "Egypt",
+    "Eiffel Tower",
+    "Elizabeth",
+    "Ellen",
+    "Ellen Bower",
+    "Elvin",
+    "Elvis",
+    "Emory",
+    "England",
+    "English",
+    "Eric",
+    "Ernie",
+    "Ethiopia",
+    "Eurasia",
+    "Europe",
+    "European",
+    "Evelyn",
+    "Fair Oaks",
+    "February",
+    "Fifth Avenue",
+    "Fitzgerald",
+    "Florence",
+    "Florida",
+    "France",
+    "Francis",
+    "Frankfurt",
+    "Frans Smith",
+    "Fred",
+    "French",
+    "Frida",
+    "Friday",
+    "Fuxingmen",
+    "Gansu",
+    "Gansu Province",
+    "Gao",
+    "Gary",
+    "General Motors",
+    "Geoff",
+    "George",
+    "George W. Bush",
+    "German",
+    "Germany",
+    "Google",
+    "Gordon",
+    "Graham",
+    "Grangerfield",
+    "Great Britain",
+    "Greece",
+    "Greenwich",
+    "Greenwich Village",
+    "Greg",
+    "Greg Wu",
+    "Guangdong",
+    "Guangzhou",
+    "Guatemala",
+    "Guizhou",
+    "Hainan",
+    "Hamburg",
+    "Hangzhou",
+    "Hans",
+    "Harbin",
+    "Harrison Ford",
+    "Harry Potter",
+    "Hartford",
+    "Harvard",
+    "Harvard University",
+    "Hawaii",
+    "Hawkins",
+    "Heathrow Airport",
+    "Helen",
+    "Helen Baker",
+    "Henry",
+    "Hilary",
+    "Hilton Hotel",
+    "Hindi",
+    "Holland",
+    "Hollywood",
+    "Honda",
+    "Honduras",
+    "Hong Kong",
+    "Hongkong",
+    "Honolulu",
+    "Houston",
+    "Huang",
+    "Huangshan",
+    "Hugh Young",
+    "Hunan",
+    "IBA Bank",
+    "IBM",
+    "IKEA",
+    "India",
+    "Indonesia",
+    "Iran",
+    "Iraq",
+    "Ireland",
+    "Irene",
+    "Isaac Newton",
+    "Italian",
+    "Italy",
+    "Ivan",
+    "Jack Nicklaus",
+    "Jackie",
+    "Jackie Chan",
+    "Jackson",
+    "Jacob",
+    "Jake",
+    "James",
+    "James Bond",
+    "James Mason",
+    "James Smith",
+    "Jane",
+    "Jane Austen",
+    "Janet",
+    "Janet Smith",
+    "Janice",
+    "January",
+    "Japan",
+    "Japanese",
+    "Jason",
+    "Jason Huntley",
+    "Jeanine",
+    "Jeff",
+    "Jen",
+    "Jenkins",
+    "Jennifer",
+    "Jenny",
+    "Jeremy",
+    "Jerry",
+    "Jess",
+    "Jessica",
+    "Jessie",
+    "Jesus Christ",
+    "Jill",
+    "Jim",
+    "Jim Stewart",
+    "Jim Thomas",
+    "Jim White",
+    "Jin Lili",
+    "Jingdezhen",
+    "Jingshan",
+    "Jingshan Park",
+    "Jiuzhaigou Valley",
+    "Joan",
+    "Joanna",
+    "Joanna Stevens",
+    "Joanne",
+    "Joe",
+    "Joey",
+    "John Anderson",
+    "John Brown",
+    "John Phillips",
+    "John Sandals",
+    "John Smith",
+    "John Taylor",
+    "John White",
+    "Johnny",
+    "Johnson",
+    "Jones",
+    "Joseph",
+    "Josh O'Neil",
+    "Judy",
+    "Judy Liao",
+    "Julia",
+    "Julia Roberts",
+    "Julianne Horton",
+    "Julie",
+    "Juliet",
+    "July",
+    "June",
+    "Justin",
+    "KFC",
+    "Kansas",
+    "Kara",
+    "Karen",
+    "Karen Marsh",
+    "Karl",
+    "Karl Miller",
+    "Kate",
+    "Kate Hudson",
+    "Katherine",
+    "Kathmandu",
+    "Kathy",
+    "Katie Holmes",
+    "Kazakhstan",
+    "Keith",
+    "Kelly",
+    "Ken",
+    "Kennedy Airport",
+    "Kenny",
+    "Kentucky",
+    "Kevin",
+    "Kim",
+    "Kobe Bryant",
+    "Korea",
+    "Korean",
+    "Kowalski",
+    "Kristy",
+    "Kunming",
+    "Kwon",
+    "Kyoto",
+    "Larry",
+    "Las Vegas",
+    "Latin America",
+    "Laura",
+    "Lawson",
+    "Leeds",
+    "Leo",
+    "Leslie",
+    "Li Hong",
+    "Li Lan",
+    "Li Lei",
+    "Li Lin",
+    "Li Mei",
+    "Li Ming",
+    "Li Na",
+    "Li Ping",
+    "Li River",
+    "Liang",
+    "Lili",
+    "Liliana",
+    "Lillian",
+    "Lin",
+    "Lin Tao",
+    "Lincoln Bank",
+    "Linda",
+    "Lisa",
+    "Lisbon",
+    "Liu",
+    "Liu Wei",
+    "Liu Yi",
+    "Liz",
+    "Lizzy",
+    "London",
+    "Long Island",
+    "Los Angeles",
+    "Louise",
+    "Lucy",
+    "Lulu",
+    "Luoyang",
+    "Macao",
+    "Macau",
+    "Macmillan",
+    "Maddie",
+    "Madrid",
+    "Maggie",
+    "Main Street",
+    "Maine",
+    "Mainland China",
+    "Malaysia",
+    "Malia",
+    "Malibu",
+    "Manchester",
+    "Manchester University",
+    "Manhattan",
+    "Marcia",
+    "Marcia Gleason",
+    "Margaret",
+    "Margaret Mitchell",
+    "Maria",
+    "Marian",
+    "Mark Benson",
+    "Mark Wyatt",
+    "Marsha",
+    "Martha",
+    "Martin",
+    "Mary",
+    "Mary Kelly",
+    "Mary Lin",
+    "Mary Smith",
+    "Maryland",
+    "Massachusetts",
+    "MasterCard",
+    "Matthew",
+    "Maurice Richard",
+    "Max Richards",
+    "McBride",
+    "McCain",
+    "Mecca",
+    "Megan",
+    "Mei",
+    "Mel",
+    "Mel Gibson",
+    "Melbourne",
+    "Melinda",
+    "Melissa",
+    "Meng",
+    "Mexico",
+    "Miami",
+    "Miao Li",
+    "Miao Ping",
+    "Michael",
+    "Michael Baker",
+    "Michael Jackson",
+    "Michael Johnson",
+    "Michael Jordan",
+    "Michael Milliken",
+    "Michelle",
+    "Mick",
+    "Microsoft",
+    "Mike Sanderson",
+    "Milan",
+    "Milwaukee",
+    "Minneapolis",
+    "Minnesota",
+    "Mona",
+    "Mona White",
+    "Monaco",
+    "Monday",
+    "Monica",
+    "Montgomery",
+    "Montreal",
+    "Morley",
+    "Mozart",
+    "Munich",
+    "Murphy",
+    "Myra",
+    "NBA",
+    "NYU",
+    "Nanchang",
+    "Nancy",
+    "Nancy Brown",
+    "Nanjing",
+    "Nanjing Road",
+    "Nashville",
+    "Nathan",
+    "Nathaniel",
+    "Nathaniel Brown",
+    "Nelson",
+    "Nepal",
+    "New Delhi",
+    "New England",
+    "New Guinea",
+    "New Hampshire",
+    "New Haven",
+    "New Jersey",
+    "New Orleans",
+    "New York",
+    "New York City",
+    "New Zealand",
+    "Nicole",
+    "Nigel",
+    "Nigel Smith",
+    "Nigeria",
+    "Noirin O'Neil",
+    "North America",
+    "Northern China",
+    "Norway",
+    "November",
+    "Obama",
+    "October",
+    "Ohio",
+    "Oklahoma City",
+    "Ophelia",
+    "Oregon",
+    "Orlando",
+    "Osaka",
+    "Oscar",
+    "Ottawa",
+    "Owen Wilson",
+    "Oxford",
+    "Pakistan",
+    "Pamela",
+    "Panama",
+    "Panda Express",
+    "Paris",
+    "Park Avenue",
+    "Parker",
+    "Pasadena",
+    "Patrick",
+    "Patty Smith Hill",
+    "Paul",
+    "Paula",
+    "Pauline",
+    "Pavel Bure",
+    "Peckham",
+    "Peking",
+    "Peking University",
+    "Pennsylvania",
+    "Peru",
+    "Pete",
+    "Peter",
+    "Peter Brown",
+    "Peter Kaufman",
+    "Peter Smith",
+    "Peters",
+    "Philadelphia",
+    "Philip",
+    "Phillips",
+    "Phoebe",
+    "Phyllis Seymour",
+    "Plymouth",
+    "Poland",
+    "Portland",
+    "Portuguese",
+    "Powell",
+    "Prague",
+    "Qingdao",
+    "Quebec",
+    "Quinn",
+    "Rachel",
+    "Randy Horn",
+    "Rebecca",
+    "Reynolds",
+    "Rhode Island",
+    "Richard",
+    "Rick Fields",
+    "Ricky",
+    "Ricky Martin",
+    "Rita",
+    "Robbins",
+    "Robert",
+    "Robert Jordan",
+    "Robert Smith",
+    "Robin Williams",
+    "Robinson",
+    "Rockefeller Center",
+    "Rodgers",
+    "Rodriguez",
+    "Roger",
+    "Roger Vargas",
+    "Rogers",
+    "Romania",
+    "Rome",
+    "Ron",
+    "Rose Green",
+    "Rose Teller",
+    "Ross",
+    "Roy",
+    "Rudy Randolph",
+    "Russia",
+    "Russian",
+    "Ruth",
+    "Ryan",
+    "Sally",
+    "Salt Lake City",
+    "Samantha",
+    "Samuel",
+    "San Diego",
+    "San Francisco",
+    "San Marino",
+    "Sandra",
+    "Santa Barbara",
+    "Santa Monica",
+    "Sara",
+    "Sara Ralston",
+    "Sara Wilson",
+    "Sarah",
+    "Sarah O'Connell",
+    "Saturday",
+    "Saudi Arabia",
+    "Schmidt",
+    "Scotland",
+    "Seattle",
+    "Seinfeld",
+    "Seoul",
+    "September",
+    "Shakespeare",
+    "Shandong",
+    "Shanghai",
+    "Shaquille O'Neal",
+    "Sharon",
+    "Sharon Stone",
+    "Sheila",
+    "Shenyang",
+    "Shenzhen",
+    "Sheryl",
+    "Shirley",
+    "Sichuan",
+    "Silicon Valley",
+    "Simon",
+    "Simpson",
+    "Singapore",
+    "Smith",
+    "Sony",
+    "Sophia",
+    "South Africa",
+    "South America",
+    "South Korea",
+    "South London",
+    "Southampton",
+    "Southeast Asia",
+    "Southwest China",
+    "Spain",
+    "Spanish",
+    "Stanley",
+    "Stefan",
+    "Stephanie",
+    "Stephen",
+    "Steve",
+    "Steve Schliessman",
+    "Steven",
+    "Steven Michael",
+    "Steven Smith",
+    "Stevens",
+    "Stewart",
+    "Summer Palace",
+    "Sunday",
+    "Susan",
+    "Susan Marshall",
+    "Susan Miller",
+    "Susan Ransom",
+    "Susie",
+    "Suzhou",
+    "Suzy",
+    "Sweden",
+    "Swedish",
+    "Switzerland",
+    "Sybil",
+    "Sydney",
+    "Sylvester Stallone",
+    "Taichung",
+    "Tainan",
+    "Taipei",
+    "Taiwan",
+    "Tampa",
+    "Tang",
+    "Tangshan",
+    "Tao",
+    "Tasha",
+    "Taylor",
+    "Taylor Smith",
+    "Ted",
+    "Temple City",
+    "Terry Chen",
+    "Terry Graham",
+    "Texas",
+    "Thailand",
+    "Thanksgiving",
+    "Thomas",
+    "Thursday",
+    "Tiananmen Square",
+    "Tianjin",
+    "Tibet",
+    "Tiger Woods",
+    "Tim",
+    "Times Square",
+    "Tina",
+    "Tokyo",
+    "Tom Baker",
+    "Tom Cruise",
+    "Tom Hanks",
+    "Tom Smith",
+    "Tomas",
+    "Tommy",
+    "Tonia",
+    "Tony",
+    "Toronto",
+    "Tower Bridge",
+    "Tracy",
+    "Tsinghua University",
+    "Tuesday",
+    "Tulsa",
+    "UCLA",
+    "Ukraine",
+    "Union Square",
+    "United Airlines",
+    "United Nations",
+    "Urumqi",
+    "Utah",
+    "Vancouver",
+    "Vanessa",
+    "Vargas",
+    "Vatican",
+    "Venezuela",
+    "Venice",
+    "Veronica",
+    "Versailles",
+    "Vic",
+    "Vicky",
+    "Victor",
+    "Vienna",
+    "Vietnam",
+    "Vince",
+    "Wales",
+    "Walter",
+    "Wang",
+    "Wang Li",
+    "Wang Lin",
+    "Wang Wei",
+    "Warsaw",
+    "Washington",
+    "Washington D. C.",
+    "Washington DC",
+    "Washington Square Park",
+    "WebTracker",
+    "Wednesday",
+    "Wendy",
+    "West Lake",
+    "Whole Foods",
+    "William",
+    "William Smith",
+    "Williams",
+    "Wilson",
+    "Wimbledon",
+    "Winston Churchill",
+    "Winthrop",
+    "Wisconsin",
+    "World Bank",
+    "Wrigley Field",
+    "Wudaokou",
+    "Wuhan",
+    "XYZ Company",
+    "Xi'an",
+    "Xiamen",
+    "Xinjiang",
+    "Xizhimen",
+    "Xu Hua",
+    "Yale",
+    "Yancheng",
+    "Yang",
+    "Yang Tang",
+    "Yao Ming",
+    "Yolanda",
+    "York",
+    "Yuanmingyuan",
+    "Yucatan",
+    "Yunnan Province",
+    "Yuri",
+    "Yvonne",
+    "Zhang",
+    "Zhang Hua",
+    "Zhang Lin",
+    "Zhang Wei",
+    "Zhang Yong",
+    "Zhejiang",
+    "Zhenjiang",
+    "Zhongshan Road",
+    "Zhouzhuang",
+    "Zhuang",
+    "Zhuhai",
+    "Zina",
+    "Zurich",
+    "eBay",
+    "the Alps",
+    "the British Museum",
+    "the Caribbean",
+    "the Colorado River",
+    "the Forbidden City",
+    "the Great Wall",
+    "the Indian Ocean",
+    "the Louvre Museum",
+    "the Middle East",
+    "the North Pole",
+    "the Pacific Ocean",
+    "the Rocky Mountains",
+    "the Statue of Liberty",
+    "the United States",
+    "the West Lake",
+    "the White House",
+    "the Yangtze River"
+  ],
+  "entities": [
+    {
+      "text": "Aaron Johnson",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Abby",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Abraham Lincoln",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Adam",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Alan",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Albert",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Alex",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Alex Brent",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Alexander",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Alice",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Alison",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Allan Parker",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Allen",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Allison",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Amanda",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Amy",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Amy Card",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Anderson",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Andrea",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Andrew",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Andrew Smith",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Andy",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Andy Lau",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Angela",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Angelina Jolie",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Ann",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Anna",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Anne",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Anne Hathaway",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Anne Smith",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Annie",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Anthony",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Anthony Hopkins",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Arnold",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Arnold Schwarzenegger",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Arthur",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Bach",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Baker",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Barack Obama",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Barbara",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Barker",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Barkley",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Basil",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Becky",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Beethoven",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Belinda",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Bell",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Bellow",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Ben",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Benjamin",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Bergeron",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Beth",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Betty",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Betty Sue",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Bill",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Bill Gates",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Bill Smith",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Billy",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Black",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Bob",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Bob Copeland",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Bob Thomas",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Bobby",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Boris",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Brad",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Brad Pitt",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Bradley",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Brian",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Britney",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Brooke",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Brown",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Bruce",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Bruce Lee",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Bush",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Campbell",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Carl",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Carla",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Carmichael",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Carol",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Carrie",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Carter",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Casey",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Catharine",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Catherine",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Cathy",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Celia",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Chandler",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Chang",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Charles",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Charles Brown",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Charles Dickens",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Charlie",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Charlie Chaplin",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Chen",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Chen Liang",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Cheng Long",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Chris",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Christina",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Christine",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Christopher",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Chuck",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Chuck Jones",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Cindy",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Claire",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Clare Williams",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Clark",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Clinton",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Collins",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Conrad Reeves",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Cooper",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Craig",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Crane",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Daisy",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Dan",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Dan Robson",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Dana",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Daniel",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Danny",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Darren McDowell",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Dave",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "David",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "David Richton",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Davis",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Dean",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Deborah",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Denise",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Diana",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Diane",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Dick",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Dick Brown",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Dickens",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Dina",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Don",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Donald",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Donald Eakins",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Donna",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Dora",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Doris",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Du Tao",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Dylan",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Eakins",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Ed",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Edward Norton",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Edwin Hubble",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Elizabeth",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Ellen",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Ellen Bower",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Elvin",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Elvis",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Emory",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Eric",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Ernie",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Evelyn",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Fitzgerald",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Foster",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Francis",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Frank",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Frans Smith",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Fred",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Frida",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Gao",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Gary",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Geoff",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "George",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "George W. Bush",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Gordon",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Grace",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Graham",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Grangerfield",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Grant",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Green",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Greg",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Greg Wu",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Hank",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Hans",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Harrison Ford",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Harry",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Harry Potter",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Hawkins",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Helen",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Helen Baker",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Henry",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Hilary",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Huang",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Hugh Young",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Hunter",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Irene",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Iris",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Isaac Newton",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Ivan",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jack",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jack Nicklaus",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jackie",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jackie Chan",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jackson",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jacob",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jake",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "James",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "James Bond",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "James Mason",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "James Smith",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jane",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jane Austen",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Janet",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Janet Smith",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Janice",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jason",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jason Huntley",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jean",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jeanine",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jeff",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jen",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jenkins",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jennifer",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jenny",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jeremy",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jerry",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jess",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jessica",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jessie",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jesus Christ",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jill",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jim",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jim Stewart",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jim Thomas",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jim White",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jimmy",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jin Lili",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jo",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Joan",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Joanna",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Joanna Stevens",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Joanne",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Joe",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Joey",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "John",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "John Anderson",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "John Brown",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "John Phillips",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "John Sandals",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "John Smith",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "John Taylor",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "John White",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Johnny",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Johnson",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jones",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jordan",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Joseph",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Josh",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Josh O'Neil",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Judy",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Judy Liao",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Julia",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Julia Roberts",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Julianne Horton",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Julie",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Juliet",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Justin",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Kara",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Karen",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Karen Marsh",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Karl",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Karl Miller",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Kate",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Kate Hudson",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Katherine",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Kathy",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Katie Holmes",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Keith",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Kelly",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Ken",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Kenny",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Kevin",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Kim",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Kitty",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Kobe Bryant",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Kowalski",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Kristy",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Kwon",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Larry",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Laura",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Lawson",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Lee",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Leo",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Leslie",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Li",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Li Hong",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Li Lan",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Li Lei",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Li Lin",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Li Mei",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Li Ming",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Li Na",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Li Ping",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Liang",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Lili",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Liliana",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Lillian",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Lily",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Lin",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Lin Tao",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Linda",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Lisa",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Liu",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Liu Wei",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Liu Yi",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Liz",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Lizzy",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Louise",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Lucy",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Lulu",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Macmillan",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Maddie",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Maggie",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Malia",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Marcia",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Marcia Gleason",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Margaret",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Margaret Mitchell",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Maria",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Marian",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Mark",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Mark Benson",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Mark Wyatt",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Marsha",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Martha",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Martin",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Mary",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Mary Kelly",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Mary Lin",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Mary Smith",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Mason",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Matt",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Matthew",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Maurice Richard",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Max Richards",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "McBride",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "McCain",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Megan",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Mei",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Mel",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Mel Gibson",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Melinda",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Melissa",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Meng",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Miao Li",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Miao Ping",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Michael",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Michael Baker",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Michael Jackson",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Michael Johnson",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Michael Jordan",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Michael Milliken",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Michelle",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Mick",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Mike",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Mike Sanderson",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Mona",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Mona White",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Monica",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Montgomery",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Morley",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Mozart",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Murphy",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Myra",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Nancy",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Nancy Brown",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Nathan",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Nathaniel",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Nathaniel Brown",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Nelson",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Nick",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Nicole",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Nigel",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Nigel Smith",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Noirin O'Neil",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Obama",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Ophelia",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Oscar",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Owen Wilson",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Pamela",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Parker",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Parsons",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Patrick",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Patty Smith Hill",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Paul",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Paula",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Pauline",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Pavel Bure",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Peckham",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Penny",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Pete",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Peter",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Peter Brown",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Peter Kaufman",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Peter Smith",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Peters",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Philip",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Phillips",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Phoebe",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Phyllis Seymour",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Powell",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Quinn",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Rachel",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Randy",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Randy Horn",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Ray",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Rebecca",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Reynolds",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Rice",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Richard",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Rick",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Rick Fields",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Ricky",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Ricky Martin",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Rita",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Robbins",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Robert",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Robert Jordan",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Robert Smith",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Robin",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Robin Williams",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Robinson",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Rodgers",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Rodriguez",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Roger",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Roger Vargas",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Rogers",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Ron",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Rose",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Rose Green",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Rose Teller",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Ross",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Roy",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Rudy Randolph",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Ruth",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Ryan",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Sally",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Sam",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Samantha",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Samuel",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Sandra",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Sandy",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Sara",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Sara Ralston",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Sara Wilson",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Sarah",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Sarah O'Connell",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Schmidt",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Seinfeld",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Shakespeare",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Shaquille O'Neal",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Sharon",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Sharon Stone",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Sheila",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Sherry",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Sheryl",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Shirley",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Simon",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Simpson",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Smith",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Sophia",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Stanley",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Stefan",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Stephanie",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Stephen",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Steve",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Steve Schliessman",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Steven",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Steven Michael",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Steven Smith",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Stevens",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Stewart",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Sue",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Susan",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Susan Marshall",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Susan Miller",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Susan Ransom",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Susie",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Suzy",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Sybil",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Sylvester Stallone",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Tang",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Tao",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Tasha",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Taylor",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Taylor Smith",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Ted",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Terry",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Terry Chen",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Terry Graham",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Thomas",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Tiger Woods",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Tim",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Tina",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Tom",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Tom Baker",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Tom Cruise",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Tom Hanks",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Tom Smith",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Tomas",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Tommy",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Tonia",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Tony",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Tracy",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Vanessa",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Vargas",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Veronica",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Vic",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Vicky",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Victor",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Vince",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Walker",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Walter",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Wang",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Wang Li",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Wang Lin",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Wang Wei",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Wei",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Wendy",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "White",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "William",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "William Smith",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Williams",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Wilson",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Winston Churchill",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Winthrop",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Wood",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Xu",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Xu Hua",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Yang",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Yang Tang",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Yao Ming",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Yolanda",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Yuri",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Yvonne",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Zhang",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Zhang Hua",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Zhang Lin",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Zhang Wei",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Zhang Yong",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Zhuang",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Zina",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "82nd Street",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Africa",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Alabama",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Alaska",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Alberta",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Altadena",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Altadena Drive",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "America",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Argentina",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Asia",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Atlanta",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Atlantic City",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Auckland",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Australia",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Austria",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Bali",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Baltimore",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Bangkok",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Barcelona",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Beidaihe",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Beijing",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Beijing International Airport",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Beijing Road",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Belgium",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Berkeley",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Berlin",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Bermuda",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Birmingham",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Bonn",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Boston",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Brazil",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Bremen",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Brisbane",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Britain",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Broadway",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Brooklyn",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Brussels",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Bucharest",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Buckingham Palace",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Budapest",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Buenos Aires",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "California",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Cambridge",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Canada",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Canberra",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Canterbury",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Central America",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Central Park",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Changchun",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Changsha",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Chengdu",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Chicago",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Chile",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "China",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Chinatown",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Chongqing",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Cleveland",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Colombia",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Colorado",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Congo",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Connecticut",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Costa Rica",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Dalian",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Dallas",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Del Mar",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Denver",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Detroit",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Disneyland",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Dresden",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Dubai",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Eastern Europe",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Ecuador",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Edinburgh",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Egypt",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Eiffel Tower",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "England",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Ethiopia",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Eurasia",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Europe",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Fair Oaks",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Fifth Avenue",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Florence",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Florida",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "France",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Frankfurt",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Fuxingmen",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Gansu",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Gansu Province",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Germany",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Great Britain",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Greece",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Greenwich",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Greenwich Village",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Guangdong",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Guangzhou",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Guatemala",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Guizhou",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Hainan",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Hamburg",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Hangzhou",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Harbin",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Hartford",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Hawaii",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Heathrow Airport",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Hilton Hotel",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Holland",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Hollywood",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Honduras",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Hong Kong",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Hongkong",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Honolulu",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Houston",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Huangshan",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Hunan",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "India",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Indonesia",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Iran",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Iraq",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Ireland",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Italy",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Japan",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Jingdezhen",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Jingshan",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Jingshan Park",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Jiuzhaigou Valley",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Jordan",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Kansas",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Kathmandu",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Kazakhstan",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Kennedy Airport",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Kentucky",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Korea",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Kunming",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Kyoto",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Las Vegas",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Latin America",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Leeds",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Li River",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Lisbon",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "London",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Long Island",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Los Angeles",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Luoyang",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Macao",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Macau",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Madrid",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Main Street",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Maine",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Mainland China",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Malaysia",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Malibu",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Manchester",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Manhattan",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Maryland",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Massachusetts",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Mecca",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Melbourne",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Mexico",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Miami",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Milan",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Milwaukee",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Minneapolis",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Minnesota",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Monaco",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Montreal",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Munich",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Nanchang",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Nanjing",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Nanjing Road",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Nashville",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Nepal",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "New Delhi",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "New England",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "New Guinea",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "New Hampshire",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "New Haven",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "New Jersey",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "New Orleans",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "New York",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "New York City",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "New Zealand",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Nigeria",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "North America",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Northern China",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Norway",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Ohio",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Oklahoma City",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Oregon",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Orlando",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Osaka",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Ottawa",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Oxford",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Pakistan",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Panama",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Paris",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Park Avenue",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Pasadena",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Peking",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Pennsylvania",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Peru",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Philadelphia",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Phoenix",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Plymouth",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Poland",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Portland",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Prague",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Providence",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Qingdao",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Quebec",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Rhode Island",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Rockefeller Center",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Romania",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Rome",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Russia",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Salt Lake City",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "San Diego",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "San Francisco",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "San Marino",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Santa Barbara",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Santa Monica",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Saudi Arabia",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Scotland",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Seattle",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Seoul",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Shandong",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Shanghai",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Shenyang",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Shenzhen",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Sichuan",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Silicon Valley",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Singapore",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "South Africa",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "South America",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "South Korea",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "South London",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Southampton",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Southeast Asia",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Southwest China",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Spain",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Summer Palace",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Suzhou",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Sweden",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Switzerland",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Sydney",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Taichung",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Tainan",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Taipei",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Taiwan",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Tampa",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Tangshan",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Temple City",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Texas",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Thailand",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Tiananmen Square",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Tianjin",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Tibet",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Times Square",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Tokyo",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Toronto",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Tower Bridge",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Tulsa",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "UK",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "USA",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Ukraine",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Union Square",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Urumqi",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Utah",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Vancouver",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Vatican",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Venezuela",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Venice",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Versailles",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Vienna",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Vietnam",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Wales",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Warsaw",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Washington",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Washington D. C.",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Washington DC",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Washington Square Park",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "West Lake",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Wimbledon",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Wisconsin",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Wrigley Field",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Wudaokou",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Wuhan",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Xi'an",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Xiamen",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Xinjiang",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Xizhimen",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Yancheng",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "York",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Yuanmingyuan",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Yucatan",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Yunnan Province",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Zhejiang",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Zhenjiang",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Zhongshan Road",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Zhouzhuang",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Zhuhai",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Zurich",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "the Alps",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "the British Museum",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "the Caribbean",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "the Colorado River",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "the Forbidden City",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "the Great Wall",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "the Indian Ocean",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "the Louvre Museum",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "the Middle East",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "the North Pole",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "the Pacific Ocean",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "the Rocky Mountains",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "the Statue of Liberty",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "the United States",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "the West Lake",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "the White House",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "the Yangtze River",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "ABC Company",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Air China",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "American Airlines",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "American Express",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Bank of America",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Bank of China",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Beijing University",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Chanel",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "China Airlines",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "General Motors",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Google",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Harvard",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Harvard University",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Honda",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "IBA Bank",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "IBM",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "IKEA",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "KFC",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Lincoln Bank",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Manchester University",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "MasterCard",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Microsoft",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "NBA",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "NYU",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Panda Express",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Peking University",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Sony",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Tsinghua University",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "UCLA",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "United Airlines",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "United Nations",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "WebTracker",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Whole Foods",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "World Bank",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "XYZ Company",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Yale",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "eBay",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    }
+  ],
+  "case_phrases": [
+    {
+      "before": "date with john",
+      "after": "date with John"
+    },
+    {
+      "before": "Annabell and matt",
+      "after": "Annabell and Matt"
+    },
+    {
+      "before": "going out with mike",
+      "after": "going out with Mike"
+    },
+    {
+      "before": "seeing nick",
+      "after": "seeing Nick"
+    },
+    {
+      "before": "Mr. baker",
+      "after": "Mr. Baker"
+    },
+    {
+      "before": "Mr smith",
+      "after": "Mr Smith"
+    },
+    {
+      "before": "I can't agree, dan",
+      "after": "I can't agree, Dan"
+    },
+    {
+      "before": "daisy's in hospital",
+      "after": "Daisy's in hospital"
+    },
+    {
+      "before": "week of august",
+      "after": "week of August"
+    },
+    {
+      "before": "in china",
+      "after": "in China"
+    },
+    {
+      "before": "to china",
+      "after": "to China"
+    },
+    {
+      "before": "of china",
+      "after": "of China"
+    },
+    {
+      "before": "visit china",
+      "after": "visit China"
+    },
+    {
+      "before": "countries-china",
+      "after": "countries-China"
+    },
+    {
+      "before": "Asia, china",
+      "after": "Asia, China"
+    },
+    {
+      "before": "Canada, china",
+      "after": "Canada, China"
+    },
+    {
+      "before": "china has a single-child policy",
+      "after": "China has a single-child policy"
+    },
+    {
+      "before": "china daily",
+      "after": "China Daily"
+    },
+    {
+      "before": "air-china",
+      "after": "Air-China"
+    },
+    {
+      "before": "china-town",
+      "after": "Chinatown"
+    },
+    {
+      "before": "jim taylor",
+      "after": "Jim Taylor"
+    },
+    {
+      "before": "Mr. stephen",
+      "after": "Mr. Stephen"
+    },
+    {
+      "before": "bloody mary",
+      "after": "Bloody Mary"
+    },
+    {
+      "before": "the great barrier reef",
+      "after": "the Great Barrier Reef"
+    }
+  ],
+  "unresolved": [
+    {
+      "text": "methone",
+      "reason": "Ambiguous or damaged source; needs dialogue-level review, not a spelling guess."
+    },
+    {
+      "text": "loange",
+      "reason": "Ambiguous or damaged source; needs dialogue-level review, not a spelling guess."
+    },
+    {
+      "text": "footsweet",
+      "reason": "Ambiguous or damaged source; needs dialogue-level review, not a spelling guess."
+    },
+    {
+      "text": "windshelled",
+      "reason": "Ambiguous or damaged source; needs dialogue-level review, not a spelling guess."
+    },
+    {
+      "text": "uncite",
+      "reason": "Ambiguous or damaged source; needs dialogue-level review, not a spelling guess."
+    },
+    {
+      "text": "pearbrittles",
+      "reason": "Ambiguous or damaged source; needs dialogue-level review, not a spelling guess."
+    },
+    {
+      "text": "tob",
+      "reason": "Ambiguous or damaged source; needs dialogue-level review, not a spelling guess."
+    },
+    {
+      "text": "jucky",
+      "reason": "Ambiguous or damaged source; needs dialogue-level review, not a spelling guess."
+    },
+    {
+      "text": "reback",
+      "reason": "Ambiguous or damaged source; needs dialogue-level review, not a spelling guess."
+    },
+    {
+      "text": "spods",
+      "reason": "Ambiguous or damaged source; needs dialogue-level review, not a spelling guess."
+    },
+    {
+      "text": "outthrough",
+      "reason": "Ambiguous or damaged source; needs dialogue-level review, not a spelling guess."
+    }
+  ]
+}
