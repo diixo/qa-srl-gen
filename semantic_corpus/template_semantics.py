@@ -20,7 +20,7 @@ from .question_generator.templates import ParadigmResolver, native_questions, _w
 from .agreement import verb_words
 from .template_syntax import nominal_members
 
-VERSION = 'mined-dependencies-v1'
+VERSION = 'mined-dependencies-v2'
 SOURCE = 'template_semantics'
 _SUBJECT = {'nsubj', 'nsubjpass', 'nsubj:pass'}
 _OBJECT = {'dobj', 'obj'}
@@ -176,6 +176,17 @@ class TemplateAnnotator:
             raise Unsupported('ambiguous_imperative')
         if slot['dependency'] not in {'ROOT', 'root', 'conj'}:
             raise Unsupported('embedded_or_nonfinite_clause')
+        # A conjunct inherits the scope of its coordination head. In
+        # "She says Anna bought a book and Ben sold it", sold is still reported
+        # content, not a second independent assertion by the speaker.
+        ancestor, visited = key, set()
+        while slots[ancestor].get('dependency') == 'conj':
+            visited.add(ancestor)
+            ancestor = slots[ancestor].get('head_slot')
+            if ancestor not in slots or ancestor in visited:
+                raise Unsupported('missing_slot_dependencies')
+        if slots[ancestor].get('dependency') not in {'ROOT', 'root'}:
+            raise Unsupported('embedded_or_nonfinite_clause')
         children = {k: s for k, s in slots.items() if k != key and s.get('head_slot') == key}
         if any(s.get('dependency') in {'ccomp', 'xcomp', 'csubj', 'csubjpass', 'attr', 'acomp', 'oprd', 'expl'}
                for s in children.values()):
@@ -195,7 +206,7 @@ class TemplateAnnotator:
         tail = re.search(r'[.!?;\n]', doc.text[spans[key][1]:])
         right = spans[key][1] + tail.end() if tail else len(doc.text)
         clause = doc.text[left:right]
-        if '?' in clause or re.search(r'\b(if|unless|wish|whether)\b', clause, re.I):
+        if '?' in clause or re.search(r'\b(if|unless|wish|whether|as long as|provided that)\b', clause, re.I):
             raise Unsupported('question_or_conditional_scope')
         if re.search(r'\b(no|nobody|nothing|none|neither|nowhere|without)\b', clause, re.I):
             raise Unsupported('negative_quantifier_scope')

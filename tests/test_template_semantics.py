@@ -185,6 +185,51 @@ def test_partial_annotations_still_need_a_teacher_until_replaced(annotator):
     assert not needs_annotation(result.document, [result.run, AnnotationRun('teacher', model_name='http')])
 
 
+@pytest.mark.parametrize('embedded', [False, True])
+@pytest.mark.parametrize('nested', [False, True])
+def test_coordinated_predicate_inherits_scope_of_its_ancestors(annotator, embedded, nested):
+    record = template(adjective=False)
+    record['slots']['v0'].update(dependency='conj', head_slot='v1')
+    record['slots']['v1'] = dict(kind='verb', pos='VERB', tag='VBD', lemma='smile',
+                                dependency='ccomp' if embedded else 'ROOT', head_slot='v2' if embedded else 'v1')
+    record['defaults']['v1'] = 'smiled'
+    prefix = [{'literal': 'Ben '}, {'slot': 'v1'}, {'literal': ' and '}]
+    if embedded:
+        record['slots']['v2'] = dict(kind='verb', pos='VERB', tag='VBD', lemma='say',
+                                    dependency='ROOT', head_slot='v2')
+        record['defaults']['v2'] = 'said'
+        prefix = [{'literal': 'They '}, {'slot': 'v2'}, {'literal': ' '}, *prefix]
+    if nested:
+        record['slots']['v3'] = dict(kind='verb', pos='VERB', tag='VBD', lemma='laugh',
+                                    dependency='conj', head_slot='v1')
+        record['defaults']['v3'] = 'laughed'
+        record['slots']['v0']['head_slot'] = 'v3'
+        prefix += [{'literal': 'he '}, {'slot': 'v3'}, {'literal': ' and '}]
+    record['parts'] = prefix + record['parts']
+    result, qa, _ = annotate(annotator, record)
+    if embedded:
+        assert result.run is None and not qa
+        assert result.document.metadata['template_semantics']['skipped'][0]['reason'] == 'embedded_or_nonfinite_clause'
+    else:
+        assert qa['What did Anna buy?'] == 'A book.'
+
+
+@pytest.mark.parametrize('condition', ['As long as Ben agrees, ', 'Provided that Ben agrees, '])
+def test_conditional_markers_do_not_become_unconditional_claims(annotator, condition):
+    record = template(adjective=False)
+    record['parts'].insert(0, {'literal': condition})
+    result, qa, _ = annotate(annotator, record)
+    assert result.run is None and not qa
+    assert result.document.metadata['template_semantics']['skipped'][0]['reason'] == 'question_or_conditional_scope'
+
+
+def test_cyclic_coordination_is_rejected_without_looping(annotator):
+    record = template(adjective=False)
+    record['slots']['v0'].update(dependency='conj', head_slot='v0')
+    result, qa, _ = annotate(annotator, record)
+    assert result.run is None and not qa
+
+
 @pytest.mark.parametrize('perfect', [True, False])
 def test_auxiliaries_negation_and_plural_subject_agreement(annotator, perfect):
     record = template(verb='bought' if perfect else 'buying', adjective=False)

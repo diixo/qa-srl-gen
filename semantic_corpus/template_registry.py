@@ -159,11 +159,14 @@ def _append_file(source, destination):
         return [offset, sink.tell() - offset]
 
 
-def register_bank(bank_path, source_path, *, repo_root=None, bank_id, before_publish=None):
+def register_bank(bank_path, source_path, *, repo_root=None, bank_id, before_publish=None,
+                  archive_source=True):
     """Validate and append; return the shared directory. Repeated IDs are idempotent.
 
     Existing file ranges are never rewritten. Readers use committed byte ranges,
     so interrupted tails remain invisible, including during a retry.
+    archive_source=False still validates every source record, but omits the
+    duplicate input/attachment archive for a one-time, self-contained import.
     """
     if not isinstance(bank_id, str) or not _BANK_ID.fullmatch(bank_id):
         raise ValueError("bank_id must contain only lowercase letters, digits, '_' or '-'")
@@ -191,7 +194,7 @@ def register_bank(bank_path, source_path, *, repo_root=None, bank_id, before_pub
             if (root / "manifest.json").is_file():
                 current = TemplateBank(root)
                 if current.manifest["format"] == POOL_FORMAT:
-                    current.components()  # Reject damaged source metadata/snapshots on retries too.
+                    current.components()  # Reject damaged component metadata on retries too.
                     entries = current.manifest["sources"]
                 else:
                     legacy = current
@@ -204,7 +207,8 @@ def register_bank(bank_path, source_path, *, repo_root=None, bank_id, before_pub
                 raise ValueError("migrate legacy per-job banks before adding resources")
             existing = next((e for e in entries if e["id"] == bank_id), None)
             if existing:
-                if existing["publication"] != publication:
+                if (existing["publication"] != publication
+                        or bool(existing.get("source_file")) != archive_source):
                     raise FileExistsError(f"a different template bank is already registered as {bank_id!r}")
                 return root
             if before_publish is not None:
@@ -216,20 +220,23 @@ def register_bank(bank_path, source_path, *, repo_root=None, bank_id, before_pub
                 _commit(root, entries)
             files = {p.relative_to(copied.path).as_posix():
                      _append_file(p, root / p.relative_to(copied.path)) for p in bank_files(copied.path)}
-            sources = root / "sources"
-            sources.mkdir(exist_ok=True)
-            source_name = f"sources/{bank_id}.jsonl"
-            os.replace(staging / "source.jsonl", root / source_name)
-            # Licenses, documentation and original metadata remain auditable.
-            archive = staging / "audit.zip"
-            with zipfile.ZipFile(archive, "w", compression=zipfile.ZIP_DEFLATED) as audit:
-                for path in sorted(copied.path.rglob("*")):
-                    if path.is_file() and path.relative_to(copied.path).as_posix() not in files:
-                        audit.write(path, path.relative_to(copied.path).as_posix())
-            os.replace(archive, sources / f"{bank_id}.zip")
+            if archive_source:
+                sources = root / "sources"
+                sources.mkdir(exist_ok=True)
+                source_name = f"sources/{bank_id}.jsonl"
+                os.replace(staging / "source.jsonl", root / source_name)
+                # Licenses, documentation and original metadata remain auditable.
+                archive = staging / "audit.zip"
+                with zipfile.ZipFile(archive, "w", compression=zipfile.ZIP_DEFLATED) as audit:
+                    for path in sorted(copied.path.rglob("*")):
+                        if path.is_file() and path.relative_to(copied.path).as_posix() not in files:
+                            audit.write(path, path.relative_to(copied.path).as_posix())
+                os.replace(archive, sources / f"{bank_id}.zip")
             if before_publish is not None:
                 before_publish()
             entry = dict(id=bank_id, manifest=copied.manifest, validation=report, publication=publication,
-                         files=files, source_file=source_name)
+                         files=files)
+            if archive_source:
+                entry['source_file'] = source_name
             _commit(root, [*entries, entry])
     return root

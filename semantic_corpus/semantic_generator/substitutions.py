@@ -24,6 +24,7 @@ import hashlib
 import json
 import random
 from dataclasses import dataclass
+from functools import lru_cache
 from pathlib import Path
 from typing import Iterable, Mapping, Sequence
 
@@ -438,6 +439,38 @@ def save_pool(pool: EntityPool, path: Path | str, *, comment: Sequence[str] = ()
     )
 
 
-def default_pool(hierarchy: TypeHierarchy | None = None) -> EntityPool:
-    """The entity pool shipped with the package."""
-    return load_pool(ENTITIES_PATH, hierarchy)
+@lru_cache(maxsize=8)
+def _mined_entity_readings(path: Path, manifest_version: tuple[int, int]) -> tuple[Entity, ...]:
+    """Cache immutable readings; an atomic manifest update changes the key."""
+    from ..template_bank import TemplateBank
+    entities = []
+    for component in TemplateBank(path).components():
+        if 'entities.jsonl.gz' not in component.files:
+            continue
+        for row in component.rows('entities.jsonl.gz'):
+            if row.get('review_status') not in {'REVIEWED', 'REVIEWED_READING'}:
+                continue
+            entity = entity_from_json(row['entity'])
+            if not entity.is_named or entity.entity_label is None:
+                raise ValueError('mined entity must be a reviewed, typed named reading')
+            entities.append(entity)
+    return tuple(entities)
+
+
+def default_pool(hierarchy: TypeHierarchy | None = None, *, mined_bank: Path | None = None) -> EntityPool:
+    """Shipped entities plus explicitly reviewed readings in the shared bank.
+
+    Parser candidates and nominal phrases are evidence, not typed slot fillers.
+    A fresh pool prevents callers from mutating another generator's resources.
+    """
+    pool = load_pool(ENTITIES_PATH, hierarchy)
+    path = mined_bank if mined_bank is not None else Path(__file__).resolve().parents[2] / 'data/mined-templates'
+    if (path / 'manifest.json').is_file():
+        stat = (path / 'manifest.json').stat()
+        for entity in _mined_entity_readings(path, (stat.st_mtime_ns, stat.st_size)):
+            if hierarchy is not None and entity.type_name and entity.type_name in hierarchy:
+                inherited = hierarchy.labels_of(entity.type_name)
+                if inherited.entity_labels and entity.entity_label not in inherited.labels:
+                    raise ValueError(f'inconsistent mined entity type: {entity.text}')
+            pool.add(entity)
+    return pool

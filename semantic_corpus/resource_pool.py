@@ -50,7 +50,8 @@ class BuiltInPool:
 
     def __init__(self, repo_root=None, entities=None):
         self.repo_root = Path(repo_root) if repo_root is not None else REPO_ROOT
-        self.entities = entities if entities is not None else default_pool()
+        self.entities = entities if entities is not None else default_pool(
+            mined_bank=self.repo_root / 'data/mined-templates')
         self.frames = DEFAULT_FRAMES
         self.paradigms = dict(DEFAULT_PARADIGMS)
 
@@ -94,8 +95,10 @@ class BuiltInPool:
         for bank in self.banks:
             yield from bank.adjectives()
 
-    def _inventory(self, name):
+    def _inventory(self, name, *, optional=False):
         for bank in self.banks:
+            if optional and f'{name}.jsonl.gz' not in bank.files:
+                continue
             yield from bank.rows(f"{name}.jsonl.gz")
 
     def constructions(self):
@@ -106,6 +109,15 @@ class BuiltInPool:
 
     def adjective_alternatives(self):
         return self._inventory("adjective_alternatives")
+
+    def entity_candidates(self):
+        return self._inventory('entity_candidates', optional=True)
+
+    def nominals(self):
+        return self._inventory('nominals', optional=True)
+
+    def adverbs(self):
+        return self._inventory('adverbs', optional=True)
 
     def occurrences(self):
         for bank in self.banks:

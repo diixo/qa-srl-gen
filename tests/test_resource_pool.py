@@ -20,6 +20,28 @@ def write_rows(path, rows):
             stream.write(json.dumps(row) + "\n")
 
 
+def test_only_reviewed_named_readings_enter_default_entity_pool(resources):
+    from semantic_corpus.semantic_generator.substitutions import default_pool
+    resource_pool, _, _, _ = resources
+    bank = resource_pool.repo_root / 'data/mined-templates'
+    write_rows(bank / 'entities.jsonl.gz', [
+        {'entity': {'text': 'ReviewedExampleName', 'labels': ['PERSON', 'NAMED_ENTITY'], 'named': True},
+         'review_status': 'REVIEWED_READING'},
+        {'entity': {'text': 'UnreviewedExampleName', 'labels': ['PERSON', 'NAMED_ENTITY'], 'named': True},
+         'review_status': 'UNREVIEWED'},
+    ])
+    pool = default_pool(mined_bank=bank)
+    assert any(e.text == 'ReviewedExampleName' for e in pool)
+    assert not any(e.text == 'UnreviewedExampleName' for e in pool)
+
+
+def test_additional_resource_inventories_are_optional_for_older_banks(resources):
+    pool, _, _, _ = resources
+    assert list(pool.entity_candidates()) == []
+    assert list(pool.nominals()) == []
+    assert list(pool.adverbs()) == []
+
+
 @pytest.fixture
 def resources(tmp_path):
     directory = tmp_path / "data" / "mined-templates"

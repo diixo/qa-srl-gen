@@ -186,8 +186,9 @@ class TemplateBank:
             if _entry.get('source_file'):
                 if _entry['source_file'] != f'sources/{self.source_id}.jsonl':
                     raise ValueError('invalid source snapshot path')
-                if not (self.path / _entry['source_file']).is_file():
-                    raise ValueError(f'missing source snapshot: {self.source_id}')
+                # The snapshot is audit evidence, not a rendering dependency.
+                # Templates contain their parts, bindings and grammatical data.
+                # validate_bank still requires the source for an external audit.
         for name, extent in self.files.items():
             target = (self.path / name).resolve()
             if (not target.is_relative_to(self.path.resolve()) or Path(name).is_absolute()

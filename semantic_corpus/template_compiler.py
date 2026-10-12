@@ -231,7 +231,7 @@ class WordInventory:
 
 
 def build_bank(source, output, work, nlp, *, wiktionary, wordnet=None, previous=None, field="example", limit=None,
-               batch_size=512, progress=None):
+               batch_size=512, progress=None, record_compiler=compile_record):
     source, output, work = Path(source), Path(output), Path(work)
     output.mkdir(parents=True, exist_ok=False)
     work.mkdir(parents=True, exist_ok=False)
@@ -245,9 +245,11 @@ def build_bank(source, output, work, nlp, *, wiktionary, wordnet=None, previous=
     seen_sentences, seen_predicates = set(), set()
     constructions = {}
     manifest = {"format": FORMAT, "status": "building", "source": str(source.resolve()),
-                "full_input": limit is None, "model": nlp.meta, "spacy_version": version("spacy"),
+                "full_input": limit is None, "model": nlp.meta,
                 "review_status": "UNREVIEWED", "field": field,
-                "note": "Executable surface patterns; automatic syntax is not verified semantic role annotation."}
+                "note": getattr(nlp, 'note', "Executable surface patterns; automatic syntax is not verified semantic role annotation.")}
+    if getattr(nlp, 'uses_spacy', True):
+        manifest['spacy_version'] = version('spacy')
     if wordnet is not None:
         manifest["wordnet_sha256"] = hashlib.sha256(Path(wordnet).read_bytes()).hexdigest()
         with ZipFile(wordnet) as archive:
@@ -274,7 +276,10 @@ def build_bank(source, output, work, nlp, *, wiktionary, wordnet=None, previous=
                     text = row[field]
                     if not isinstance(text, str) or not text.strip():
                         raise ValueError(f"line {number}: expected nonempty text")
-                    yield text, {"line": number, "idx": row.get("idx")}
+                    metadata = row.get("provenance", {})
+                    if not isinstance(metadata, dict) or {"line", "idx"} & metadata.keys():
+                        raise ValueError(f"line {number}: invalid provenance")
+                    yield text, {**metadata, "line": number, "idx": row.get("idx")}
 
         with ExitStack() as stack:
             shards = {}
@@ -286,7 +291,7 @@ def build_bank(source, output, work, nlp, *, wiktionary, wordnet=None, previous=
                     ledger_stream = stack.enter_context(gzip.open(
                         output / "occurrences" / f"{counts['compiled_records']//10000:05d}.jsonl.gz",
                         "wt", encoding="utf-8", compresslevel=3))
-                template, ledger = compile_record(doc, provenance, audit)
+                template, ledger = record_compiler(doc, provenance, audit)
                 key = template["template_id"][:2]
                 if key not in shards:
                     shards[key] = stack.enter_context(gzip.open(work / f"{key}.jsonl.gz", "wt", encoding="utf-8", compresslevel=1))
@@ -315,7 +320,7 @@ def build_bank(source, output, work, nlp, *, wiktionary, wordnet=None, previous=
                     is_adjective = token["pos"] == "ADJ" or token["tag"] in ("JJ", "JJR", "JJS")
                     if is_adjective:
                         counts["adjective_occurrences"] += 1
-                        adjectives.add(token["parser_lemma"], token, example, "parser")
+                        adjectives.add(token["parser_lemma"], token, example, token.get("analysis", "parser"))
                     for lemma in token["verb_lemmas"]:
                         if token["kind"] != "verb" or lemma != token["lemma"]:
                             verb_alternatives.add(lemma, token, example, "dictionary_homograph")

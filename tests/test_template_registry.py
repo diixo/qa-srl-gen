@@ -312,6 +312,54 @@ def test_shared_files_keep_both_sources_and_validation_survives_job_removal(tmp_
     assert {row['source_id'] for row in examples} == {'first', 'second'}
 
 
+def test_rendering_does_not_require_original_or_archived_source(tmp_path):
+    repo = tmp_path / 'repo'
+    bank, source, text = make_bank(tmp_path / 'input')
+    target = register_bank(bank, source, repo_root=repo, bank_id='reviewed')
+    source.unlink()
+    (target / 'sources/reviewed.jsonl').unlink()
+    (target / 'sources/reviewed.zip').unlink()
+
+    reopened = TemplateBank(target)
+    assert [row['text'] for row in reopened.generate()] == [text]
+    pool = BuiltInPool(repo_root=repo)
+    assert pool.summary()['available']
+    assert next(pool.templates()).render()['text'] == text
+    # An external audit must still fail honestly when its source is missing.
+    with pytest.raises(FileNotFoundError):
+        validate_bank(reopened)
+
+
+def test_one_time_import_validates_without_archiving_source(tmp_path):
+    bank, source, text = make_bank(tmp_path / 'input')
+    repo = tmp_path / 'repo'
+    target = register_bank(bank, source, repo_root=repo, bank_id='once', archive_source=False)
+    assert not (target / 'sources').exists()
+    assert validate_bank(TemplateBank(target), source)['status'] == 'passed'
+    before = (target / 'manifest.json').read_bytes()
+    assert register_bank(bank, source, repo_root=repo, bank_id='once', archive_source=False) == target
+    assert (target / 'manifest.json').read_bytes() == before
+    source.unlink()
+    assert next(TemplateBank(target).generate())['text'] == text
+
+
+def test_reviewed_entity_cache_refreshes_after_publication(tmp_path):
+    from semantic_corpus.semantic_generator.substitutions import default_pool
+    repo = tmp_path / 'repo'
+    first, source, _ = make_bank(tmp_path / 'first')
+    target = register_bank(first, source, repo_root=repo, bank_id='first')
+    original = default_pool(mined_bank=target)
+    second, source, _ = make_bank(tmp_path / 'second')
+    write_rows(second / 'entities.jsonl.gz', [{
+        'entity': {'text': 'NewReviewedName', 'labels': ['PERSON', 'NAMED_ENTITY'], 'named': True},
+        'review_status': 'REVIEWED',
+    }])
+    register_bank(second, source, repo_root=repo, bank_id='second')
+    current = default_pool(mined_bank=target)
+    assert not any(e.text == 'NewReviewedName' for e in original)
+    assert any(e.text == 'NewReviewedName' for e in current)
+
+
 def test_interrupted_append_does_not_expose_partial_data_and_retry_keeps_old_snapshot(tmp_path, monkeypatch):
     from semantic_corpus import template_registry
 
