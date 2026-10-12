@@ -19,12 +19,16 @@ def check_resources(manifest):
     """An audit using other rules cannot certify the recorded generation run."""
     root = Path(__file__).resolve().parents[1] / 'semantic_corpus'
     for name, expected in manifest['resources'].items():
-        if name == 'entities.json':
+        allowed = root
+        if name.startswith('data/'):
+            allowed = root.parent / 'data'
+            path = root.parent / name
+        elif name == 'entities.json':
             path = root / 'semantic_generator/entities.json'
         else:
             path = root / name if '/' in name else root / 'dialogue_generator' / name
         path = path.resolve()
-        if not path.is_relative_to(root) or sha256(path.read_bytes()).hexdigest() != expected:
+        if not path.is_relative_to(allowed) or not path.is_file() or sha256(path.read_bytes()).hexdigest() != expected:
             raise ValueError(f'Audit resource differs from dataset manifest: {name}; use the matching revision')
 
 

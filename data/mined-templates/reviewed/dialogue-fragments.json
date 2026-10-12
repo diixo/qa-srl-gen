@@ -1,0 +1,119 @@
+{
+  "format": "reviewed-dialogue-fragments-v1",
+  "note": "Explicit model-authored interpretations, not an automatic fragment parser. Source examples are self-contained; the DailyDialog files are not required at generation time. Patterns generalize only the listed slots. All input splits were authorized for resource enrichment.",
+  "patterns": [
+    {
+      "id": "coffee_choice", "kind": "fact", "context": true,
+      "assistant": "Do you want black or white coffee?",
+      "reply": "White, please", "relation": "selection", "value": "white coffee",
+      "question": "Which coffee did I choose?",
+      "source": {"split": "train", "dialogue": 30, "turn": 2, "text": "White, please"},
+      "note": "An order choice, not a stable drink preference."
+    },
+    {
+      "id": "learning_location", "kind": "fact", "context": true,
+      "assistant": "Where did you learn English?",
+      "reply": "At school, in China.", "relation": "learning_location", "value": "at school, in China",
+      "question": "Where did I learn English?",
+      "source": {"split": "train", "dialogue": 29, "turn": 5, "text": "At school, in China."},
+      "note": "Location of learning in the current study topic, not current physical location."
+    },
+    {
+      "id": "ambiguous_choice", "kind": "ambiguous", "context": false,
+      "assistant": "Would you like tea or coffee?", "options": ["tea", "coffee"],
+      "reply": "This one.",
+      "source": {"split": "train", "dialogue": 25, "turn": 3, "text": "This one."},
+      "note": "Adapted context: two text options, no pointing/visual evidence. Preserve ambiguity."
+    },
+    {
+      "id": "acknowledgement", "kind": "no_change", "context": false,
+      "assistant": "Let me know if you want to discuss your meeting.", "reply": "Right.",
+      "question": "Which day is my meeting?", "relation": "meeting_day",
+      "source": {"split": "train", "dialogue": 21, "turn": 6, "text": "Right."},
+      "note": "Acknowledgement after a non-propositional invitation supplies no date."
+    },
+    {
+      "id": "current_location", "kind": "fact", "context": true,
+      "assistant": "Where are you now?", "reply": "In {destination}.",
+      "relation": "location", "value": "{destination}", "question": "Where am I now?"
+    },
+    {
+      "id": "meeting_day", "kind": "fact", "context": true,
+      "assistant": "Which day is your meeting?", "reply": "{day}.",
+      "relation": "meeting_day", "value": "{day}", "question": "Which day is my meeting?"
+    },
+    {
+      "id": "negative_day", "kind": "fact", "context": true,
+      "assistant": "Is your meeting on {day}?", "reply": "Not on {day}.",
+      "relation": "meeting_day", "value": "{day}", "negative": true,
+      "question": "Which day is my meeting?", "note": "Exclude a date without inventing a replacement."
+    },
+    {
+      "id": "feeling_reply", "kind": "fact", "context": true,
+      "assistant": "How are you feeling?", "reply": "A bit {feeling}.",
+      "relation": "feeling", "value": "{feeling}", "question": "How do I feel?",
+      "note": "The pilot records the feeling category; degree remains in source evidence."
+    },
+    {
+      "id": "interrupted_feeling", "kind": "fact", "context": false,
+      "assistant": "How are things?", "reply": "I feel {feeling}, but...",
+      "relation": "feeling", "value": "{feeling}", "question": "How do I feel?",
+      "note": "An unfinished contrast does not erase the completed first clause."
+    },
+    {
+      "id": "want_buy_missing_object", "kind": "partial", "context": false,
+      "assistant": "What would you like to do?", "reply": "I want to buy...",
+      "predicate": "buy", "operators": ["want"], "tense": "present",
+      "arguments": [["agent", "user", "PERSON"]], "missing_roles": ["theme"],
+      "question": "Have I completed the purchase?",
+      "note": "Unknown object is not an entity called something, and time is not inferred."
+    },
+    {
+      "id": "need_pick_up_missing_object", "kind": "partial", "context": false,
+      "assistant": "What do you need to do?", "reply": "I need to pick up...",
+      "predicate": "pick up", "operators": ["need"], "tense": "present",
+      "arguments": [["agent", "user", "PERSON"]], "missing_roles": ["theme"],
+      "question": "Have I finished picking it up?", "note": "Preserve the phrasal verb particle."
+    },
+    {
+      "id": "want_go_missing_destination", "kind": "partial", "context": false,
+      "assistant": "What would you like to do?", "reply": "I want to go to...",
+      "predicate": "go", "operators": ["want"], "tense": "present",
+      "arguments": [["agent", "user", "PERSON"]], "missing_roles": ["destination"],
+      "question": "Have I arrived there?"
+    },
+    {
+      "id": "contextual_buy_missing_object", "kind": "partial", "context": true,
+      "assistant": "What do you want to do?", "reply": "To buy...",
+      "predicate": "buy", "operators": ["want"], "tense": "present",
+      "arguments": [["agent", "user", "PERSON"]], "missing_roles": ["theme"],
+      "question": "Have I completed the purchase?",
+      "note": "The answer names buying as the desired action, but does not identify its object."
+    },
+    {
+      "id": "resolve_missing_object", "kind": "refine", "context": false,
+      "assistant": "What would you like to do?", "reply": "I want to buy...",
+      "predicate": "buy", "operators": ["want"], "tense": "present",
+      "arguments": [["agent", "user", "PERSON"]], "missing_roles": ["theme"],
+      "clarification": "What do you want to buy?", "continuation": "{object}.",
+      "fill": ["theme", "{object}", "PHYSICAL_OBJECT"],
+      "question": "Have I completed the purchase?",
+      "note": "Retire the partial intention when its object is supplied; this is not confirmation of purchase."
+    },
+    {
+      "id": "interrupted_desire_known_object", "kind": "event", "context": false,
+      "assistant": "What would you like to do?", "reply": "I want to buy {object}, but...",
+      "predicate": "buy", "operators": ["want"], "tense": "present",
+      "arguments": [["agent", "user", "PERSON"], ["theme", "{object}", "PHYSICAL_OBJECT"]],
+      "question": "Have I completed the purchase?",
+      "note": "Known object retained despite the unfinished continuation; desire is not completion."
+    },
+    {
+      "id": "possible_visit", "kind": "event", "context": true,
+      "assistant": "What might you do next?", "reply": "Maybe visit {destination}.",
+      "predicate": "visit", "operators": ["might"], "tense": "modal",
+      "arguments": [["destination", "{destination}", "LOCATION"], ["visitor", "user", "PERSON"]],
+      "question": "Have I finished the visit?", "note": "Possibility, not a firm plan or completion."
+    }
+  ]
+}

@@ -29,8 +29,8 @@ python -m semantic_corpus.cli dialogue-build --out artifacts/dialogue-gpt2-memor
 python -m semantic_corpus.dialogue_generator.trainer train --mode sft --model gpt2 --data artifacts/dialogue-gpt2-memory/memory --out artifacts/training/gpt2-memory --epochs 3 --batch-size 2 --accumulation 8
 ```
 
-Both output directories must be new. The first command produces 3,200 training,
-320 validation and 320 test examples. Add `--mined-train 0` to the generator
+Both output directories must be new. The first command produces 3,400 training,
+340 validation and 340 test examples. Add `--mined-train 0` to the generator
 command for complete mined-head coverage in training; UI jobs use it by default.
 The trainer accepts both records with
 metadata and records containing only `messages`. It never feeds outer IDs or

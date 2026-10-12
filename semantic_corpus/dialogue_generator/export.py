@@ -119,8 +119,8 @@ def build_dialogue_dataset(out: Path, *, train: int = 200, validation: int = 20,
     This requires the optional tokenizer packages and a locally cached tokenizer.
     Disabling metadata exports only messages in training rows; internal grouping,
     validation and the episode audit records retain their identifiers.
-    user_assistant_only selects 16 tasks; source quotations may contain names.
-    The default includes the additional named-people task (17 tasks).
+    user_assistant_only selects 17 tasks; source quotations may contain names.
+    The default includes the additional named-people task (18 tasks).
     mined_train overrides only the mined training quota; 0 means three examples
     per available head (a full yes/no/unknown cycle), None retains the task quota.
     contrast_multiplier scales only the two completion contrast tasks in all
@@ -191,8 +191,10 @@ def build_dialogue_dataset(out: Path, *, train: int = 200, validation: int = 20,
     resources = sorted(Path(__file__).parent.glob("*.py"))
     resources.append(Path(__file__).with_name('mined_morphology.json'))
     resources.append(ENTITIES_PATH)  # Typed event fillers use the common pool in both profiles.
+    from .fragments import CATALOG
     for path in resources:
         manifest["resources"][path.name] = _sha256(path)
+    manifest['resources']['data/mined-templates/reviewed/dialogue-fragments.json'] = _sha256(CATALOG)
     frame_path = Path(__file__).parent.parent / 'semantic_generator' / 'frames.py'
     manifest['resources']['semantic_generator/frames.py'] = _sha256(frame_path)
     if token_counter:

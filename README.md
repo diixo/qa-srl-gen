@@ -53,9 +53,9 @@ It can also be run explicitly with `python ui/manage.py pipeline_worker --once`.
 **Pipeline → Chat dataset** (`/chat-dataset`) generates controlled English
 dialogues for chat-model training. Set the training, validation and test quotas
 **per task**, plus the seed. The page shows totals across the selected tasks before
-submission. UI defaults use 16 tasks and cover every mined predicate in training:
-3,000 manual-task dialogues plus three per mined head, with 320 validation and
-320 test dialogues. **Mined training dialogues** controls this separate quota;
+submission. UI defaults use 17 tasks and cover every mined predicate in training:
+3,200 manual-task dialogues plus three per mined head, with 340 validation and
+340 test dialogues. **Mined training dialogues** controls this separate quota;
 0 requests full coverage, a positive number sets a limit, and blank uses the
 ordinary per-task quota. Source quotations may contain names in either profile.
 The job page shows progress, supports cancellation/retry and provides both
@@ -481,13 +481,17 @@ For a separate controlled dialogue-training experiment inspired by bAbI:
 python -m semantic_corpus.cli dialogue-build --out artifacts/dialogue-pilot --train 200 --validation 20 --test 20 --seed 42
 ```
 
-This creates 17 task families with paired history/memory response datasets and
+This creates 18 task families with paired history/memory response datasets and
 a separate memory-update dataset, all in `messages` format. Quotas are per task;
-the CLI defaults give 3,400 training, 340 validation and 340 test episodes. Names and
+the CLI defaults give 3,600 training, 360 validation and 360 test episodes. Names and
 places come from the existing entity pool. No model or network is needed.
 For conversations about the user alone, add `--user-assistant-only`: no personal
-named conversation participants, 16 tasks, and 3,200 / 320 / 320 episodes by default.
+named conversation participants, 17 tasks, and 3,400 / 340 / 340 episodes by default.
 Mined source sentences retain their original vocabulary, including names.
+The `fragment_meaning` task teaches context-dependent short replies, unfinished
+thoughts and partial events. Missing arguments stay explicit; filling one later
+does not turn an intention into a completed action. Its reviewed patterns live in
+`data/mined-templates/reviewed/dialogue-fragments.json`.
 Add `--mined-train 0` to cover every available mined head in training; this
 overrides the mined task's training quota only. The UI defaults to this full coverage.
 In **Pipeline → Chat dataset**, **User and assistant only** is checked by default;

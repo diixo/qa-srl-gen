@@ -24,13 +24,14 @@ TASK_LABELS = {
     'event_updates': 'Correct and retract events without losing other actions',
     'event_states': 'Distinguish location and possession from wishes and past states',
     'mined_predicates': 'Use all mined predicates: compositional events and scoped source quotations',
+    'fragment_meaning': 'Understand short replies and unfinished thoughts',
 }
 
 
 class ChatDatasetForm(forms.Form):
     user_assistant_only = forms.BooleanField(
         label='User and assistant only', initial=True, required=False,
-        help_text='User/assistant scenarios (16 tasks); uncheck for named-person scenarios (17 tasks). '
+        help_text=f'User/assistant scenarios ({len(USER_ASSISTANT_TASKS)} tasks); uncheck for named-person scenarios ({len(TASKS)} tasks). '
                   'Mined event subjects and quotations can refer to other people, animals or objects in either profile.',
     )
     train = forms.IntegerField(

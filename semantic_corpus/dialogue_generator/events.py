@@ -70,8 +70,13 @@ class Event:
     mined: bool = False
     subject: MinedSubject | None = None
     voice: str = 'active'
+    missing_roles: tuple[str, ...] = ()
 
     def __post_init__(self):
+        if not isinstance(self.missing_roles, tuple) or any(not isinstance(r, str) for r in self.missing_roles):
+            raise ValueError('Missing roles must be an explicit tuple of role names')
+        if self.missing_roles and (self.mined or self.observation is not None or self.phase != 'unspecified'):
+            raise ValueError('Partial events use reviewed frames and cannot claim a completed or ongoing phase')
         if self.voice not in ('active', 'passive') or self.voice != 'active' and (not self.mined or self.subject is None):
             raise ValueError('Passive voice requires an explicit mined subject')
         if self.subject is not None and (not self.mined or not isinstance(self.subject, MinedSubject)):
@@ -95,7 +100,7 @@ class Event:
             raise ValueError('Future does not establish ongoing/completed phase')
         if self.is_state and self.phase != 'unspecified':
             raise ValueError('Location and possession are states, not completed/ongoing actions')
-        if (self.lexeme.bounded and self.operators in (('have',), ('not', 'have'))):
+        if (not self.missing_roles and self.lexeme.bounded and self.operators in (('have',), ('not', 'have'))):
             raise ValueError('Use completed phase for a bare perfect bounded action')
         if ('let' in self.operators) != (self.permitter is not None):
             raise ValueError('Permissive let requires a separate permitter; other chains cannot carry one')
@@ -104,7 +109,7 @@ class Event:
                     or not self.permitter.text or self.permitter.text != self.permitter.text.strip()):
                 raise ValueError('Let requires a named PERSON permitter argument')
         if (self.tense == 'past' and self.phase == 'unspecified' and self.operators in ((), ('not',))
-                and self.lexeme.bounded):
+                and self.lexeme.bounded and not self.missing_roles):
             raise ValueError('A bare past bounded action requires an explicit completed phase')
         if self.mined:
             self.lexeme  # A real dictionary paradigm, never guessed regular forms.
@@ -139,7 +144,10 @@ class Event:
         if roles != sorted(set(roles)):
             raise ValueError('Event arguments must have distinct, sorted roles')
         pattern = frame.pattern(EVENT_BY_LEMMA[self.predicate].pattern)
-        if set(roles) != set(pattern.mentioned()):
+        missing = self.missing_roles
+        if missing != tuple(sorted(set(missing))) or set(roles) & set(missing):
+            raise ValueError('Missing roles must be distinct, sorted and absent from known arguments')
+        if set(roles) | set(missing) != set(pattern.mentioned()):
             raise ValueError('Event arguments must match the selected shared frame pattern')
         for arg in self.arguments:
             if not arg.text or arg.text != arg.text.strip():
@@ -164,6 +172,8 @@ class Event:
             # Legacy agent=user and the explicit subject=user name one event.
             arguments = tuple(arg for arg in self.arguments if arg.role != 'agent')
             return self.predicate, arguments, self.time, 'mined', self.subject or MinedSubject('user', 'PERSON'), self.voice
+        if self.missing_roles:
+            return self.predicate, self.arguments, self.time, 'partial', self.missing_roles
         return self.predicate, self.arguments, self.time
 
     @property
@@ -191,6 +201,8 @@ class Event:
             return 'user'
         frame = EVENT_BY_LEMMA[self.predicate].frame
         role = frame.pattern(EVENT_BY_LEMMA[self.predicate].pattern).subject
+        if role in self.missing_roles:
+            return 'unspecified participant'
         return next(arg.text for arg in self.arguments if arg.role == role)
 
 
@@ -200,7 +212,7 @@ def completion_evidence(event: Event) -> str:
     A negated modal is not a negated action. Starting, stopping and attempting
     do not establish completion. Nested success under a wish remains unknown.
     """
-    if event.observation is not None or event.mined or event.is_state or event.tense in ('future', 'modal'):
+    if event.missing_roles or event.observation is not None or event.mined or event.is_state or event.tense in ('future', 'modal'):
         return 'unknown'
     if event.operators in ((), ('not',)) and event.phase == 'completed':
         return 'no' if event.operators else 'yes'
@@ -221,6 +233,8 @@ def completion_evidence(event: Event) -> str:
 
 
 def state_evidence(event: Event) -> str:
+    if event.missing_roles:
+        return 'unknown'
     if event.is_state and event.tense in ('present', 'past') and event.operators in ((), ('not',)):
         return 'no' if event.operators else 'yes'
     return 'unknown'
@@ -347,11 +361,21 @@ def event_statement(event: Event, *, perspective='memory', style=0) -> str:
         raise ValueError('Unsupported event rendering')
     if event.observation is not None:
         return event.observation.statement(perspective=perspective, style=style)
+    if event.missing_roles:
+        # Do not feed placeholders to a complete frame's surface renderer: that
+        # would turn unknown arguments into apparently asserted entities.
+        known = ('; '.join(f'{a.role}: {_person(a.text, perspective, object_case=True)} ({a.label})'
+                           for a in event.arguments) or 'none specified')
+        scope = ' > '.join(event.operators) or 'none'
+        when = 'not specified' if event.time == 'unspecified' else event.time
+        return (f'Incomplete {event.predicate} event. Known participants: {known}. '
+                f'Unspecified roles: {", ".join(event.missing_roles)}. '
+                f'Scope: {scope}; tense: {event.tense}; time: {when}. Completion is unknown.')
     subject = (event.subject.surface(perspective, initial=True) if event.subject and not event.permitter else
                _person(event.permitter.text if event.permitter else event.agent, perspective))
     agreement = event.subject.agreement(perspective) if event.subject and not event.permitter else subject
     first_or_second = agreement.lower() in ('i', 'you', 'we', 'they')
-    when = ' ' + event.time
+    when = '' if event.time == 'unspecified' else ' ' + event.time
     if event.tense == 'future':
         phrase = 'will ' + _phrase(event, event.operators, 'base', style, agreement, perspective)
     elif event.phase == 'reported':
@@ -398,27 +422,30 @@ def event_statement(event: Event, *, perspective='memory', style=0) -> str:
 
 
 def event_question(event: Event, *, style=0) -> str:
+    if event.missing_roles:
+        return 'Has the action in my unfinished message been completed?'
     if event.observation is not None:
         return event.observation.question()
+    when = '' if event.time == 'unspecified' else ' ' + event.time
     if event.mined:
         subject = event.subject.surface('user') if event.subject else 'I'
         if event.voice == 'passive':
             be = be_form('past', event.subject.agreement('user'))
             tail = render_complement(event.arguments, 'user')
-            return f'{be.capitalize()} {subject} {event.lexeme.participle}' + (' ' + tail if tail else '') + f' {event.time}?'
-        return f'Did {subject} {_core(event, "base", style)} {event.time}?'
+            return f'{be.capitalize()} {subject} {event.lexeme.participle}' + (' ' + tail if tail else '') + when + '?'
+        return f'Did {subject} {_core(event, "base", style)}' + when + '?'
     if event.is_state:
         subject = _person(event.agent, 'user')
         if style >= 3:
             form = 'past' if event.tense == 'past' else 'present' if subject in ('I', 'You') else 'third'
             prefix = 'Is there confirmation that' if style == 3 else 'Can you tell whether'
-            return f'{prefix} {subject} {_core(event, form, style, subject)} {event.time}?'
+            return f'{prefix} {subject} {_core(event, form, style, subject)}' + when + '?'
         if event.predicate == 'be':
             be = be_form('past' if event.tense == 'past' else 'present', subject)
             location = next(arg.text for arg in event.arguments if arg.role == 'location')
-            return f'{be.capitalize()} {subject} in {location} {event.time}?'
+            return f'{be.capitalize()} {subject} in {location}' + when + '?'
         helper = 'Did' if event.tense == 'past' else 'Do' if subject in ('I', 'You') else 'Does'
-        return f'{helper} {subject} {_core(event, "base", style, subject)} {event.time}?'
+        return f'{helper} {subject} {_core(event, "base", style, subject)}' + when + '?'
     if event.agent != 'user':
         subject, have = event.agent, 'Has'
     else:
@@ -427,9 +454,11 @@ def event_question(event: Event, *, style=0) -> str:
     phrase = _core(event, 'participle', style) if lexeme.bounded else 'finished ' + _core(event, 'gerund', style)
     if style >= 3:
         prefix = 'Is there confirmation that' if style == 3 else 'Can you tell whether'
-        return f'{prefix} {subject} {have.lower()} {phrase} {event.time}?'
-    return f'{have} {subject} {phrase} {event.time}?'
+        return f'{prefix} {subject} {have.lower()} {phrase}' + when + '?'
+    return f'{have} {subject} {phrase}' + when + '?'
 
 
 def event_description(event: Event, *, style=0) -> str:
-    return _core(event, 'gerund', style) + ' ' + event.time
+    if event.missing_roles:
+        return 'the incomplete report about ' + event.predicate
+    return _core(event, 'gerund', style) + ('' if event.time == 'unspecified' else ' ' + event.time)

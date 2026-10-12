@@ -18,6 +18,7 @@ from semantic_corpus.dialogue_generator.extraction_text import _event_payload, _
 def read_event(data):
     return Event(**{**data, 'arguments': tuple(EventArgument(**a) for a in data['arguments']),
                     'operators': tuple(data['operators']),
+                    'missing_roles': tuple(data.get('missing_roles', ())),
                     'subject': MinedSubject(**data['subject']) if data['subject'] else None,
                     'permitter': EventArgument(**data['permitter']) if data['permitter'] else None})
 

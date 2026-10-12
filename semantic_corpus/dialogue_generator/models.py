@@ -9,7 +9,7 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass
 from .events import Event, completion_evidence, state_evidence, occurrence_evidence
 
-SCHEMA_VERSION = "dialogue-memory-v8"
+SCHEMA_VERSION = "dialogue-memory-v9"
 
 
 @dataclass(frozen=True)
@@ -255,6 +255,8 @@ def answer_query(memory: Memory, query: Query) -> tuple[str, str, tuple[str, ...
         answer = f"{subject} {'prefer' if query.subject == 'user' else 'prefers'} {fact.value}."
     elif query.relation == "selection":
         answer = f"You chose {fact.value}."
+    elif query.relation == "learning_location":
+        answer = f"{subject} learned {fact.value}."
     else:
         raise ValueError(f"Unsupported query: {query}")
     return answer, "answer", (fact.id,)

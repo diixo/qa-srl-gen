@@ -4,7 +4,7 @@ from .models import Fact, Memory
 from .actions import ACTION_BY_RELATION, action_statement
 from .events import event_statement
 
-MEMORY_TEXT_VERSION = "memory-text-v8"
+MEMORY_TEXT_VERSION = "memory-text-v9"
 
 
 def _fact_text(fact: Fact, style: int = 0) -> str:
@@ -36,6 +36,8 @@ def _fact_text(fact: Fact, style: int = 0) -> str:
         return f"{subject} {verb} {value}."
     if fact.relation == "selection":
         return f"{subject} {'did not choose' if negative else 'chose'} {value}."
+    if fact.relation == "learning_location":
+        return f"{subject} {'did not learn' if negative else 'learned'} {value}."
     raise ValueError(f"Unsupported fact relation: {fact.relation}")
 
 

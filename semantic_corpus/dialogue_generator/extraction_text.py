@@ -13,36 +13,33 @@ from .events import Event, EventArgument
 from .observed_clauses import ObservedClause
 from .mined_subjects import MinedSubject
 
-EXTRACTION_TEXT_VERSION = 'extraction-text-v7'
+EXTRACTION_TEXT_VERSION = 'extraction-text-v8'
 PROMPT_PREFIX = 'Current memory:\n'
-STATE_RELATIONS = frozenset(('location', 'meeting_day', 'feeling', 'selection', 'drink'))
+STATE_RELATIONS = frozenset(('location', 'learning_location', 'meeting_day', 'feeling', 'selection', 'drink'))
 ESCAPES = {'\\': '\\', '|': '|', 'n': '\n', 'r': '\r', 't': '\t'}
 ENCODE_ESCAPES = {value: '\\' + key for key, value in ESCAPES.items()}
 
 EXTRACT_SYSTEM = (
-    'Update memory from the latest user message: one text command per line. '
-    'SET subject | relation | modality | polarity | value adds or replaces a fact. '
-    'Suffix _CONTEXT cites the last assistant message for resolved references. '
-    'REMOVE subject | relation | modality withdraws an existing fact. '
-    'Otherwise return NO_CHANGE alone. '
-    'Relations: location, meeting_day, feeling, selection, drink, visited, bought, called, sent, read, completed_break. '
-    'Modality: asserted, desired/planned (actions only). Polarity: positive/negative. Speaker=user. '
-    'Questions, thanks and unresolved references add no facts. '
-    'EVENT predicate | time | scope | phase | tense | role=TYPE:value ... records an event. '
-    'Scope: outer>inner operators or none; not negates its child. '
-    'Phase: unspecified, ongoing, completed. Tense: present, past, future, modal. '
-    'can/could/must/may/might require modal tense. let requires permitter=PERSON:value. '
-    'Lexical be/have are states; auxiliary be/have are operators. '
-    'Wishes, plans, attempts, starts, stops and suggestions never prove completion. '
-    'No JSON, IDs or evidence quotations.'
-    ' MINED uses EVENT fields: subject=TYPE:text | number=singular/plural, '
-    'optional voice=passive (default active), complement=UNRESOLVED:text, and role=TYPE:text. '
-    'Roles object, indirect_object, oblique_PREPOSITION, by_phrase identify unique phrases in the complement. '
-    'Roles are grammatical. user/assistant resolve I/me/you; otherwise retain user perspective. '
-    'Use pool types or UNRESOLVED, IMPERSONAL for weather it. reported means bare past, not completion. '
-    'Separate independent events. Prefix REMOVE_ to EVENT/MINED/QUOTE to withdraw only that report using its exact fields. '
-    'QUOTE status | text records reported, denied, desired, planned, suggested, possible, required or permitted wording; '
-    'Quotation never confirms embedded events.'
+    'Update memory from the latest user message, one command per line; no JSON, IDs or evidence quotations. '
+    'SET subject | relation | modality | polarity | value adds/replaces a fact. '
+    'REMOVE subject | relation | modality withdraws it. Otherwise NO_CHANGE alone. '
+    'Suffix _CONTEXT cites the last assistant for contextual replies. '
+    'Relations: location, learning_location, meeting_day, feeling, selection, drink, visited, bought, called, sent, read, completed_break. '
+    'Modality: asserted, desired/planned(actions). Polarity: positive/negative. Speaker=user. '
+    'learning_location concerns the current study topic, not current location. '
+    'Questions, thanks, unresolved references add nothing. Preserve known fragment meaning without guessing. '
+    'EVENT predicate | time | scope | phase | tense | role=TYPE:value ... '
+    'Scope: outer>inner or none; not negates its child. Phase: unspecified/ongoing/completed. '
+    'Tense: present/past/future/modal; can/could/must/may/might use modal. let needs permitter=PERSON:value. '
+    'Lexical be/have are states; auxiliaries are operators. Wishes/plans/suggestions/attempts/starts/stops never prove completion. '
+    'PARTIAL uses EVENT fields plus missing=role,role; only known arguments, unspecified phase, absent time=unspecified. '
+    'MINED uses EVENT fields plus subject=TYPE:text | number=singular/plural; optional voice=passive(default active), complement=UNRESOLVED:text. '
+    'Grammatical roles object/indirect_object/oblique_PREPOSITION/by_phrase locate unique complement phrases. '
+    'Resolve I/me/you to user/assistant; retain user perspective. Types: pool labels/UNRESOLVED; weather it=IMPERSONAL. '
+    'MINED reported phase means bare past, not completion. Separate independent events. '
+    'QUOTE status | text: reported/denied/desired/planned/suggested/possible/required/permitted wording. '
+    'Quotes never confirm embedded events; partial events never prove completion. '
+    'REMOVE_ prefixes EVENT/MINED/QUOTE/PARTIAL to withdraw an exact report.'
 )
 
 
@@ -124,18 +121,25 @@ def _event_fields(event: Event) -> tuple[str, ...]:
     return (event.predicate, event.time, '>'.join(event.operators) or 'none', event.phase, event.tense,
             *((f'subject={event.subject.label}:{event.subject.text}', f'number={event.subject.number}') if event.subject else ()),
             *((f'voice={event.voice}',) if event.voice != 'active' else ()),
+            *((f'missing={",".join(event.missing_roles)}',) if event.missing_roles else ()),
             *(f'{arg.role}={arg.label}:{arg.text}' for arg in event.arguments),
             *((f'permitter={event.permitter.label}:{event.permitter.text}',) if event.permitter else ()))
 
 
-def _read_event(fields) -> Event:
+def _read_event(fields, *, partial=False) -> Event:
     if len(fields) < 6:
         raise ValueError('An event needs predicate, time, scope, phase, tense and typed arguments')
     predicate, time, scope, phase, tense, *arguments = fields
     roles = []
     permitter = None
+    missing = None
     for argument in arguments:
         role, separator, value = argument.partition('=')
+        if role == 'missing':
+            if not partial or missing is not None or not separator or not value:
+                raise ValueError('PARTIAL requires one nonempty missing=role,role field')
+            missing = tuple(value.split(','))
+            continue
         label, colon, text = value.partition(':')
         if not separator or not colon:
             raise ValueError('Expected role=TYPE:value')
@@ -146,16 +150,23 @@ def _read_event(fields) -> Event:
             permitter = argument
         else:
             roles.append(argument)
-    return Event(predicate, tuple(sorted(roles)), time, () if scope == 'none' else tuple(scope.split('>')), phase, tense, permitter)
+    if partial and missing is None:
+        raise ValueError('PARTIAL requires explicit missing roles')
+    return Event(predicate, tuple(sorted(roles)), time, () if scope == 'none' else tuple(scope.split('>')),
+                 phase, tense, permitter, missing_roles=missing or ())
 
 
 def _event_payload(event):
+    if event.missing_roles:
+        return 'PARTIAL', _event_fields(event)
     if event.observation is not None:
         return 'QUOTE', (event.observation.status, event.observation.text)
     return ('MINED' if event.mined else 'EVENT'), _event_fields(event)
 
 
 def _parse_event_payload(operation, fields):
+    if operation == 'PARTIAL':
+        return _read_event(fields, partial=True)
     if operation == 'QUOTE':
         if len(fields) != 2:
             raise ValueError('QUOTE needs status and text')
@@ -209,10 +220,11 @@ def parse_commands(text: str) -> tuple[Command | EventCommand, ...]:
     for line in text.strip().split('\n'):
         operation, separator, payload = line.strip().partition(' ')
         if not separator or operation not in ('SET', 'SET_CONTEXT', 'REMOVE', 'EVENT', 'EVENT_CONTEXT', 'REMOVE_EVENT',
-                                             'MINED', 'MINED_CONTEXT', 'REMOVE_MINED', 'QUOTE', 'QUOTE_CONTEXT', 'REMOVE_QUOTE'):
+                                             'MINED', 'MINED_CONTEXT', 'REMOVE_MINED', 'QUOTE', 'QUOTE_CONTEXT', 'REMOVE_QUOTE',
+                                             'PARTIAL', 'PARTIAL_CONTEXT', 'REMOVE_PARTIAL'):
             raise ValueError('Expected SET, EVENT, REMOVE, REMOVE_EVENT or NO_CHANGE alone')
         fields = _read_fields(payload)
-        if operation.startswith(('EVENT', 'MINED', 'QUOTE', 'REMOVE_EVENT', 'REMOVE_MINED', 'REMOVE_QUOTE')):
+        if operation.startswith(('EVENT', 'MINED', 'QUOTE', 'PARTIAL', 'REMOVE_EVENT', 'REMOVE_MINED', 'REMOVE_QUOTE', 'REMOVE_PARTIAL')):
             kind = operation.removeprefix('REMOVE_').removesuffix('_CONTEXT')
             command = EventCommand(operation, _parse_event_payload(kind, fields))
         else:
@@ -384,7 +396,7 @@ def parse_prompt(text: str) -> tuple[Memory, Turn, Turn | None]:
         facts_text, events_text = facts_text.split('\n\nEvent memory:\n', 1)
         for index, line in enumerate(events_text.split('\n'), 1):
             kind, _, tail = line.partition(' ')
-            if kind not in ('QUOTE', 'MINED'):
+            if kind not in ('QUOTE', 'MINED', 'PARTIAL'):
                 kind, tail = 'EVENT', line
             events.append(EventClaim(f'e{index}', _parse_event_payload(kind, _read_fields(tail)), ()))
     if len({claim.key for claim in events}) != len(events):

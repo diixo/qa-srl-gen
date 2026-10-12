@@ -108,6 +108,7 @@ class ChatDatasetPageTests(TestCase):
         self.assertContains(response, 'name="include_metadata"')
         self.assertContains(response, 'Include metadata')
         self.assertContains(response, 'plain-text facts')
+        self.assertContains(response, 'Understand short replies and unfinished thoughts')
         self.assertContains(response, 'Message content contains no JSON')
         self.assertTrue(response.context['form']['include_metadata'].value())
         self.assertContains(response, f'data-task-count="{len(USER_ASSISTANT_TASKS)}"')
@@ -234,8 +235,8 @@ class ChatDatasetPageTests(TestCase):
         manifest = json.loads((root / 'dataset/manifest.json').read_text(encoding='utf-8'))
         self.assertIs(manifest['include_metadata'], True)
         self.assertIs(manifest['user_assistant_only'], False)
-        self.assertEqual(manifest['content_formats']['memory'], 'memory-text-v8')
-        self.assertEqual(manifest['content_formats']['extraction'], 'extraction-text-v7')
+        self.assertEqual(manifest['content_formats']['memory'], 'memory-text-v9')
+        self.assertEqual(manifest['content_formats']['extraction'], 'extraction-text-v8')
         rows = json.loads((root / 'dataset/memory/train.json').read_text(encoding='utf-8'))
         for row in rows:
             fields = {'messages', 'id', 'scenario_key', 'task'}

@@ -18,13 +18,14 @@ from .models import (
     Replacement, Transition, Turn, answer_query, apply_delta, EventClaim, EventReplacement,
 )
 
-GENERATOR_VERSION = "dialogue-babi-0.9.1"
+GENERATOR_VERSION = "dialogue-babi-0.10.0"
 TASKS = (
     "recall", "correction", "different_people", "negation", "desire_vs_done",
     "option_reference", "ambiguous_reference", "unknown", "suggestion_vs_done",
     "topic_return", "retraction", "capability",
     "event_scope", "event_progress", "event_updates", "event_states",
     "mined_predicates",
+    "fragment_meaning",
 )
 USER_ASSISTANT_TASKS = tuple(task for task in TASKS if task != "different_people")
 COMMON_PLACES = (
@@ -286,6 +287,10 @@ class DialogueGenerator:
         if task == 'mined_predicates':
             from .mined_scenarios import mined_episodes
             yield from mined_episodes(self, count, split)
+            return
+        if task == 'fragment_meaning':
+            from .fragments import fragment_episodes
+            yield from fragment_episodes(self, count, split)
             return
         if task in ('event_scope', 'event_progress', 'event_updates', 'event_states'):
             from .event_scenarios import event_episodes

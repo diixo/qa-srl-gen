@@ -34,7 +34,9 @@ def test_all_tasks_roundtrip_updates_including_sources_and_retirements(user_only
                 # Evaluation can replay using only information in the input.
                 decode_update(target, visible, user, previous)
                 operations.update(line.partition(' ')[0] for line in target.splitlines())
-    assert operations == {'SET', 'SET_CONTEXT', 'REMOVE', 'NO_CHANGE', 'EVENT', 'REMOVE_EVENT', 'MINED', 'REMOVE_MINED', 'QUOTE'}
+    assert operations == {'SET', 'SET_CONTEXT', 'REMOVE', 'NO_CHANGE', 'EVENT', 'EVENT_CONTEXT',
+                          'REMOVE_EVENT', 'MINED', 'REMOVE_MINED', 'QUOTE',
+                          'PARTIAL', 'PARTIAL_CONTEXT', 'REMOVE_PARTIAL'}
 
 
 def test_commands_preserve_modality_and_do_not_turn_removal_into_negative_claim():

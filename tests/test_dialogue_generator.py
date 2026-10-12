@@ -310,8 +310,11 @@ def test_user_only_scenarios_need_no_names_and_keep_context_splits_across_seeds(
                                if f.relation in ('location', 'visited'))
                     context = tuple((f.relation, f.value) for f in episode.transitions[0].after.facts)
                     assert context_splits.setdefault(context, split) == split
-                    # No loss of the grouping context through corrections/retractions.
-                    assert all(f in episode.memory.facts for f in episode.transitions[0].after.facts)
+                    # Fragment replies may update location/feeling. The original
+                    # grouping context remains in the audit, not as stale facts.
+                    retained = (episode.memory.facts + episode.memory.retired
+                                if task == 'fragment_meaning' else episode.memory.facts)
+                    assert all(f in retained for f in episode.transitions[0].after.facts)
 
 
 @pytest.mark.parametrize('user_only', [False, True])
@@ -320,8 +323,8 @@ def test_default_sizes_have_no_duplicate_or_cross_split_prompts(tmp_path, user_o
     assert 'entities.json' in manifest['resources']
     assert 'semantic_generator/frames.py' in manifest['resources']
     assert manifest['prompt_version'] == 'dialogue-prompts-v10'
-    assert manifest['content_formats'] == {'history': 'history-text-v1', 'memory': 'memory-text-v8',
-                                            'extraction': 'extraction-text-v7'}
+    assert manifest['content_formats'] == {'history': 'history-text-v1', 'memory': 'memory-text-v9',
+                                            'extraction': 'extraction-text-v8'}
     for view in ('history', 'memory', 'extraction'):
         seen = set()
         for split, count in (('train', 200), ('validation', 20), ('test', 20)):

@@ -12,8 +12,8 @@ From the repository root:
 python -m semantic_corpus.cli dialogue-build --out artifacts/dialogue-pilot --train 200 --validation 20 --test 20 --seed 42
 ```
 
-Quotas are **per task**: the CLI's 17 tasks produce 3,400 training, 340 validation and
-340 test episodes. The destination must be new. Generation uses Python's standard
+Quotas are **per task**: the CLI's 18 tasks produce 3,600 training, 360 validation and
+360 test episodes. The destination must be new. Generation uses Python's standard
 library, shared frames/entities, the published mined banks and Wiktionary forms.
 It reads existing analyses without calling a model or re-mining `eng-base.jsonl`.
 
@@ -31,11 +31,11 @@ without adding named speakers to the generated conversation. Mined event subject
 and source quotations can name other people, animals or objects in either profile;
 the speaker and the subject of a reported event are separate. Ordinary places
 such as `the kitchen` and `the park` replace city names. The `different_people`
-task is excluded: 16 tasks give **3,200 / 320 / 320** episodes with uniform quotas.
+task is excluded: 17 tasks give **3,400 / 340 / 340** episodes with uniform quotas.
 Uncheck it to use the 17-task named-pool scenarios. The UI additionally defaults
 **Mined training dialogues** to **0**, meaning three training examples per mined
-head. With the current 4,031-entry bank this gives **15,093 / 320 / 320** episodes
-in the user/assistant profile (15,293 / 340 / 340 with named participants).
+head. The UI computes training totals from the current bank: **3,200 + 3 × heads**
+in the user/assistant profile, **3,400 + 3 × heads** with named participants.
 The other tasks keep their original quotas. A positive mined quota sets an exact
 count; blank retains the ordinary per-task quota. The CLI equivalent of full
 coverage is `--mined-train 0`; CLI/API defaults preserve uniform quotas.
@@ -124,6 +124,49 @@ its own checks. The CLI trainer still defaults to 512.
 | `event_updates` | Correct or withdraw one event while retaining other objects, participants and time contexts |
 | `event_states` | Distinguish current possession/location from wishes, modal claims and past states |
 | `mined_predicates` | Scoped occurrence reports for licensed mined phrases; reported-wording scope for attested-only source clauses |
+| `fragment_meaning` | Contextual short replies, known meaning in unfinished utterances, and partial events without fabricated arguments |
+
+### Short replies and unfinished utterances
+
+The central bank's `reviewed/dialogue-fragments.json` contains 16 explicit
+interpretation patterns. Four cite already reviewed DailyDialog fragments;
+the remaining patterns are authored controls and extensions. Their prompts,
+replies and semantic targets are self-contained. No source file or NLP parser is
+needed during generation. This is a bounded set of reviewed constructions, not
+automatic semantic coverage of every archived DailyDialog fragment. A fragment
+can carry meaning without becoming a complete sentence template.
+
+`White, please` after a coffee question records `selection`, not a lasting drink
+preference. `At school, in China` after a learning question records
+`learning_location`, preserving the user's current `location`. This flat relation
+holds one learning place for the current study topic; simultaneous learning
+histories for multiple subjects/languages need a richer event representation.
+Context-dependent updates cite the last assistant turn through `_CONTEXT`.
+`I feel tired, but...` retains the stated feeling; its missing continuation is not
+invented. Ambiguous `This one.` triggers clarification, while an acknowledgement
+of an invitation supplies no factual update.
+
+The text contract `extraction-text-v8` adds:
+
+```text
+PARTIAL buy | unspecified | want | unspecified | present | missing=theme | agent=PERSON:user
+```
+
+Partial events use the existing reviewed frame roles. Known arguments must pass
+the same type checks as complete events; `missing` must exactly list the other
+required roles. No placeholder entity, date or completion is inferred. They
+remain distinct from complete event identities, and completion/state queries
+return unknown even for partial past reports. The initial examples cover `buy`,
+phrasal `pick up`, and directional `go`, alongside full but merely possible visits.
+Partial mined predicates with unresolved valency are deliberately not accepted.
+
+`PARTIAL_CONTEXT` adds assistant evidence; `REMOVE_PARTIAL` withdraws an exact
+partial report. In refinement examples, `I want to buy...` followed by the answer
+`a book` to a clarifying question retires the partial intention and records the
+complete **intention**, retaining its scope and unspecified time. It never asserts
+a purchase. History, Memory and Extraction keep text inside `content`; no nested
+JSON is introduced. Old files remain readable and are not rewritten; generate a
+new dataset to include this task. The manifest records the catalog SHA-256.
 
 The simulator creates the user's assertions and state updates together. Answers
 are derived from the resulting state. Every update carries exact evidence;

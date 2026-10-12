@@ -130,10 +130,10 @@
             <p class="text-secondary">Mined predicate coverage in training: <strong>{{ chat_summary.mined_bank.selected_lemmas.train }} / {{ chat_summary.mined_bank.available_lemmas }}</strong>.
                 See <a href="{% url 'app_main:download' job.pk 'dataset/mined-coverage.json' %}">mined-coverage.json</a> for inflection recovery, compositional uses and attested-only clauses. Source analyses are unreviewed.</p>
         {% endif %}
-        {% if chat_summary.content_formats.memory == 'memory-text-v1' or chat_summary.content_formats.memory == 'memory-text-v2' or chat_summary.content_formats.memory == 'memory-text-v3' or chat_summary.content_formats.memory == 'memory-text-v4' or chat_summary.content_formats.memory == 'memory-text-v5' or chat_summary.content_formats.memory == 'memory-text-v6' or chat_summary.content_formats.memory == 'memory-text-v7' or chat_summary.content_formats.memory == 'memory-text-v8' %}
+        {% if chat_summary.content_formats.memory|slice:':13' == 'memory-text-v' %}
             <p class="text-secondary">Memory uses plain-text facts and natural answers.</p>
         {% endif %}
-        {% if chat_summary.content_formats.extraction == 'extraction-text-v1' or chat_summary.content_formats.extraction == 'extraction-text-v2' or chat_summary.content_formats.extraction == 'extraction-text-v3' or chat_summary.content_formats.extraction == 'extraction-text-v4' or chat_summary.content_formats.extraction == 'extraction-text-v5' or chat_summary.content_formats.extraction == 'extraction-text-v6' or chat_summary.content_formats.extraction == 'extraction-text-v7' %}
+        {% if chat_summary.content_formats.extraction|slice:':17' == 'extraction-text-v' %}
             <p class="text-secondary">Extraction uses text context and memory-update commands. IDs and evidence are managed by the application.</p>
         {% elif chat_summary.content_formats.extraction == 'extraction-json-v1' %}
             <p class="text-secondary">This older dataset uses JSON inside Extraction messages. Generate a new dataset for text commands.</p>
