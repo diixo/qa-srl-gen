@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "published": true,
+  "new_patterns": 2,
+  "checked_patterns": 2,
+  "catalog_patterns": 731,
+  "source_dialogues": 2,
+  "episodes_checked": 4,
+  "transitions_checked": 12,
+  "previous_patterns_preserved": 729,
+  "previous_catalog_sha256": "c36b044b0dba8e3a5b96f5f464c317468cf1d70638149afce2d4ac6d5c05d3d9",
+  "result_catalog_sha256": "cc8fe01dce77b544e4df21a96af13a03ee9b727a0619014a0af9fc9dafaba2cc",
+  "template_bank_changed": false,
+  "api_calls": 0,
+  "parser_inference_calls": 0
+}

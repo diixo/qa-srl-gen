@@ -1,0 +1,35 @@
+{
+  "version": "quarantine_current_candidate_v1",
+  "candidate": "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-hybrid-quality-v38",
+  "previous_ledger": "C:\\git\\qa-srl-gen\\data\\dailydialog\\review-parts\\luna-offline-quality-v37",
+  "saved_warnings": 12978,
+  "explicitly_rechecked": 0,
+  "recheck_findings": {},
+  "invalidated_without_new_review": 0,
+  "warning_counts": {
+    "closed_verified_after_source_revision": 734,
+    "fixed_in_candidate": 8974,
+    "closed_representation_only": 1112,
+    "closed_not_supported": 585,
+    "fixed_wording_only": 1243,
+    "fixed_boundary_only": 260,
+    "closed_source_warning_not_supported": 51,
+    "quarantined_unresolved": 19
+  },
+  "quarantined_warnings": 19,
+  "quarantined_original_cases": 19,
+  "quarantined_current_occurrences": 21,
+  "quarantine_groups": {
+    "source": 13,
+    "ambiguity": 5,
+    "other_syntax": 1
+  },
+  "received_evidence_sha256": "68f72401d4ccd5e4a26eaaf23e1558dc268f136195680c658a2f857f8be68391",
+  "review_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "current_source_and_context_embedded": true,
+  "unknowns_retained": true,
+  "exclusions": 0,
+  "semantic_review_complete": false,
+  "full_candidate_published": false,
+  "api_calls": 0
+}

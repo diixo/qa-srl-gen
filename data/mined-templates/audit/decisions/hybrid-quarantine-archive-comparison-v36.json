@@ -1,0 +1,269 @@
+{
+  "version": "quarantine-archive-comparison-v36",
+  "status": "passed",
+  "source_url": "https://raw.githubusercontent.com/diixo/daily-dialogs-dataset/main/ijcnlp_dailydialog.zip",
+  "archive_sha256": "c641e88cbf21fd7c1b57289387f9107d33fe8685a2b37fe8066b82776535ea89",
+  "archive_bytes": 4475921,
+  "archive_is_mirror": true,
+  "author_homepage_status": "https://yanran.li/dailydialog currently shows a parked domain; mirror provenance is recorded rather than claimed as a new authoritative correction",
+  "split_counts": {
+    "train": 11118,
+    "test": 1000,
+    "val": 1000
+  },
+  "full_file_dialogues": 13118,
+  "compared_warnings": 19,
+  "recovered_continuations": 0,
+  "quarantine_status": "deferred_missing_evidence",
+  "current_pass_complete": true,
+  "unchanged_register_sha256": "9bf9c3569aea340ca05f57f83450a9e94e95f195b8b6c9fd55cbddca7a1897b9",
+  "cases": [
+    {
+      "id": "test:364:2:4",
+      "original_local_turn": "Yes, I do. I also use an anti-spyware program and a firewall. There are so many nasties on the internet and so many people who are trying to use the internet to hurt other users. You have to be very c",
+      "archive_turn": "Yes , I do . I also use an anti-spyware program and a firewall . There are so many nasties on the internet and so many people who are trying to use the internet to hurt other users . You have to be very c",
+      "archive_member": "ijcnlp_dailydialog/test.zip!test/dialogues_test.txt",
+      "archive_dialogue": 364,
+      "archive_turn_index": 2,
+      "full_file_matching_dialogue_lines": [
+        3067
+      ],
+      "comparison": "same characters after case/whitespace/punctuation normalization; no missing continuation recovered",
+      "source_changed": false
+    },
+    {
+      "id": "test:45:3:2",
+      "original_local_turn": "What? Oh, what we live! Thank you very much for your help, miss.",
+      "archive_turn": "What ? Oh , what we live ! Thank you very much for your help , miss .",
+      "archive_member": "ijcnlp_dailydialog/test.zip!test/dialogues_test.txt",
+      "archive_dialogue": 45,
+      "archive_turn_index": 3,
+      "full_file_matching_dialogue_lines": [
+        2737
+      ],
+      "comparison": "same characters after case/whitespace/punctuation normalization; no missing continuation recovered",
+      "source_changed": false
+    },
+    {
+      "id": "test:493:3:2",
+      "original_local_turn": "Shall I put some oil on? B",
+      "archive_turn": "Shall I put some oil on ? B",
+      "archive_member": "ijcnlp_dailydialog/test.zip!test/dialogues_test.txt",
+      "archive_dialogue": 493,
+      "archive_turn_index": 3,
+      "full_file_matching_dialogue_lines": [
+        2614
+      ],
+      "comparison": "same characters after case/whitespace/punctuation normalization; no missing continuation recovered",
+      "source_changed": false
+    },
+    {
+      "id": "test:679:5:1",
+      "original_local_turn": "Hug! And this sweater from my aunt? Isn't it hideous?",
+      "archive_turn": "Hug ! And this sweater from my aunt ? Isn ’ t it hideous ?",
+      "archive_member": "ijcnlp_dailydialog/test.zip!test/dialogues_test.txt",
+      "archive_dialogue": 679,
+      "archive_turn_index": 5,
+      "full_file_matching_dialogue_lines": [
+        7522
+      ],
+      "comparison": "same characters after case/whitespace/punctuation normalization; no missing continuation recovered",
+      "source_changed": false
+    },
+    {
+      "id": "test:794:7:3",
+      "original_local_turn": "Yes, that's a good place to spend a holiday. Last year I went there. It's really.",
+      "archive_turn": "Yes , that's a good place to spend a holiday . Last year I went there . It's really .",
+      "archive_member": "ijcnlp_dailydialog/test.zip!test/dialogues_test.txt",
+      "archive_dialogue": 794,
+      "archive_turn_index": 7,
+      "full_file_matching_dialogue_lines": [
+        6237
+      ],
+      "comparison": "same characters after case/whitespace/punctuation normalization; no missing continuation recovered",
+      "source_changed": false
+    },
+    {
+      "id": "test:808:13:3",
+      "original_local_turn": "See you soon! Bye! Egg... I can't stand that woman or her obnoxious daughter.",
+      "archive_turn": "See you soon ! Bye ! Egg ... I can ’ t stand that woman or her obnoxious daughter .",
+      "archive_member": "ijcnlp_dailydialog/test.zip!test/dialogues_test.txt",
+      "archive_dialogue": 808,
+      "archive_turn_index": 13,
+      "full_file_matching_dialogue_lines": [
+        7635
+      ],
+      "comparison": "same characters after case/whitespace/punctuation normalization; no missing continuation recovered",
+      "source_changed": false
+    },
+    {
+      "id": "test:856:3:1",
+      "original_local_turn": "I hear that John's leading a double wife.",
+      "archive_turn": "I hear that John's leading a double wife .",
+      "archive_member": "ijcnlp_dailydialog/test.zip!test/dialogues_test.txt",
+      "archive_dialogue": 856,
+      "archive_turn_index": 3,
+      "full_file_matching_dialogue_lines": [
+        6361
+      ],
+      "comparison": "same characters after case/whitespace/punctuation normalization; no missing continuation recovered",
+      "source_changed": false
+    },
+    {
+      "id": "test:961:1:1",
+      "original_local_turn": "I'm afraid I spoke in all of the table clock.",
+      "archive_turn": "I ’ m afraid I spoke in all of the table clock .",
+      "archive_member": "ijcnlp_dailydialog/test.zip!test/dialogues_test.txt",
+      "archive_dialogue": 961,
+      "archive_turn_index": 1,
+      "full_file_matching_dialogue_lines": [
+        4558
+      ],
+      "comparison": "same characters after case/whitespace/punctuation normalization; no missing continuation recovered",
+      "source_changed": false
+    },
+    {
+      "id": "train:10044:10:4",
+      "original_local_turn": "Yeah! It's a 24 hour market! I had bought some RIB earlier at a low asking price but last night it appreciated drastically so I made a split second decision and sold all my RIB at an amazing bid! I '",
+      "archive_turn": "Yeah ! It ’ s a 24 hour market ! I had bought some RIB earlier at a low asking price but last night it appreciated drastically so I made a split second decision and sold all my RIB at an amazing bid ! I ’",
+      "archive_member": "ijcnlp_dailydialog/train.zip!train/dialogues_train.txt",
+      "archive_dialogue": 10044,
+      "archive_turn_index": 10,
+      "full_file_matching_dialogue_lines": [
+        13083
+      ],
+      "comparison": "same characters after case/whitespace/punctuation normalization; no missing continuation recovered",
+      "source_changed": false
+    },
+    {
+      "id": "train:10158:7:2",
+      "original_local_turn": "It starts at $ 30,000. S",
+      "archive_turn": "It starts at $ 30,000 . S",
+      "archive_member": "ijcnlp_dailydialog/train.zip!train/dialogues_train.txt",
+      "archive_dialogue": 10158,
+      "archive_turn_index": 7,
+      "full_file_matching_dialogue_lines": [
+        10744
+      ],
+      "comparison": "same characters after case/whitespace/punctuation normalization; no missing continuation recovered",
+      "source_changed": false
+    },
+    {
+      "id": "train:1040:1:5",
+      "original_local_turn": "Oh, George, what a beautiful day it is today! The sun is hot and there are just a few clouds scattered here and there! What a perfect day to be at the beach! The kids are going to have so much fun! A",
+      "archive_turn": "Oh , George , what a beautiful day it is today ! The sun is hot and there are just a few clouds scattered here and there ! What a perfect day to be at the beach ! The kids are going to have so much fun ! A",
+      "archive_member": "ijcnlp_dailydialog/train.zip!train/dialogues_train.txt",
+      "archive_dialogue": 1040,
+      "archive_turn_index": 1,
+      "full_file_matching_dialogue_lines": [
+        8531
+      ],
+      "comparison": "same characters after case/whitespace/punctuation normalization; no missing continuation recovered",
+      "source_changed": false
+    },
+    {
+      "id": "train:10542:8:4",
+      "original_local_turn": "Find out what other companies charge for the same products or services. Price yourself near the low end. Don't be much cheaper than everyone else, because many customers distrust very cheap things. Th",
+      "archive_turn": "Find out what other companies charge for the same products or services . Price yourself near the low end . Don ’ t be much cheaper than everyone else , because many customers distrust very cheap things . Th",
+      "archive_member": "ijcnlp_dailydialog/train.zip!train/dialogues_train.txt",
+      "archive_dialogue": 10542,
+      "archive_turn_index": 8,
+      "full_file_matching_dialogue_lines": [
+        12375
+      ],
+      "comparison": "same characters after case/whitespace/punctuation normalization; no missing continuation recovered",
+      "source_changed": false
+    },
+    {
+      "id": "train:1061:1:1",
+      "original_local_turn": "Cheer!",
+      "archive_turn": "Cheer !",
+      "archive_member": "ijcnlp_dailydialog/train.zip!train/dialogues_train.txt",
+      "archive_dialogue": 1061,
+      "archive_turn_index": 1,
+      "full_file_matching_dialogue_lines": [
+        5809
+      ],
+      "comparison": "same characters after case/whitespace/punctuation normalization; no missing continuation recovered",
+      "source_changed": false
+    },
+    {
+      "id": "train:1061:2:1",
+      "original_local_turn": "Cheer!",
+      "archive_turn": "Cheer !",
+      "archive_member": "ijcnlp_dailydialog/train.zip!train/dialogues_train.txt",
+      "archive_dialogue": 1061,
+      "archive_turn_index": 2,
+      "full_file_matching_dialogue_lines": [
+        5809
+      ],
+      "comparison": "same characters after case/whitespace/punctuation normalization; no missing continuation recovered",
+      "source_changed": false
+    },
+    {
+      "id": "train:10882:5:4",
+      "original_local_turn": "Yes, sir. We usually serve soya-bean milk and jellied beancurd. Which one do you prefer, sir? A",
+      "archive_turn": "Yes , sir . We usually serve soya-bean milk and jellied beancurd . Which one do you prefer , sir ? A",
+      "archive_member": "ijcnlp_dailydialog/train.zip!train/dialogues_train.txt",
+      "archive_dialogue": 10882,
+      "archive_turn_index": 5,
+      "full_file_matching_dialogue_lines": [
+        754
+      ],
+      "comparison": "same characters after case/whitespace/punctuation normalization; no missing continuation recovered",
+      "source_changed": false
+    },
+    {
+      "id": "train:1273:1:1",
+      "original_local_turn": "Too... your face is really oily... perfect!",
+      "archive_turn": "Too ... your face is really oily ... perfect !",
+      "archive_member": "ijcnlp_dailydialog/train.zip!train/dialogues_train.txt",
+      "archive_dialogue": 1273,
+      "archive_turn_index": 1,
+      "full_file_matching_dialogue_lines": [
+        8041
+      ],
+      "comparison": "same characters after case/whitespace/punctuation normalization; no missing continuation recovered",
+      "source_changed": false
+    },
+    {
+      "id": "train:1466:6:4",
+      "original_local_turn": "There are restaurants with food from all over the world. We have a small Chinatown near the city centre. There are many Indian, thai, and Italian restaurants all over the city centre. There are many s",
+      "archive_turn": "There are restaurants with food from all over the world . We have a small china-town near the city centre . There are many Indian , thai , and Italian restaurants all over the city centre . There are many s",
+      "archive_member": "ijcnlp_dailydialog/train.zip!train/dialogues_train.txt",
+      "archive_dialogue": 1466,
+      "archive_turn_index": 6,
+      "full_file_matching_dialogue_lines": [
+        8625
+      ],
+      "comparison": "same characters after case/whitespace/punctuation normalization; no missing continuation recovered",
+      "source_changed": false
+    },
+    {
+      "id": "train:1674:10:4",
+      "original_local_turn": "Well, it could be me too. But I am not too worried. This place is suffocating me with this boss being such a hard-ass and colleagues who barely know how to get dressed in the morning. It would almost b",
+      "archive_turn": "well , it could be me too . But I am not too worried . This place is suffocating me with this boss being such a hard-ass and colleagues who barely know how to get dressed in the morning . It would almost b",
+      "archive_member": "ijcnlp_dailydialog/train.zip!train/dialogues_train.txt",
+      "archive_dialogue": 1674,
+      "archive_turn_index": 10,
+      "full_file_matching_dialogue_lines": [
+        8699
+      ],
+      "comparison": "same characters after case/whitespace/punctuation normalization; no missing continuation recovered",
+      "source_changed": false
+    },
+    {
+      "id": "train:2502:5:4",
+      "original_local_turn": "There must be several private companies that are interested in employing someone like you. You could do some research for a university. There's a lot of discussion about genetics nowadays. Someone wit",
+      "archive_turn": "There must be several private companies that are interested in employing someone like you . You could do some research for a university . There ’ s a lot of discussion about genetics nowadays . Someone wit",
+      "archive_member": "ijcnlp_dailydialog/train.zip!train/dialogues_train.txt",
+      "archive_dialogue": 2502,
+      "archive_turn_index": 5,
+      "full_file_matching_dialogue_lines": [
+        4775
+      ],
+      "comparison": "same characters after case/whitespace/punctuation normalization; no missing continuation recovered",
+      "source_changed": false
+    }
+  ]
+}

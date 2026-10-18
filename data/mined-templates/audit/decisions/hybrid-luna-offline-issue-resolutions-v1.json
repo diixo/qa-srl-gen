@@ -1,0 +1,111 @@
+{
+  "version": "explicit-offline-api-issue-resolutions-v1",
+  "review_sha256": "03f05bdc9aeedde8578d45670f0aec086c506662cc5c8e9c9303d47f17b84879",
+  "candidate": "artifacts/dailydialog-hybrid-luna-offline-v3",
+  "resolved_issue_indices": {
+    "train:10038:1:1": [
+      0
+    ],
+    "test:32:2:1": [
+      0
+    ],
+    "train:1957:10:2": [
+      0
+    ],
+    "train:1683:1:1": [
+      1
+    ],
+    "train:10997:6:2": [
+      0
+    ],
+    "train:1563:4:1": [
+      0,
+      1
+    ],
+    "test:666:3:1": [
+      0
+    ],
+    "train:10580:14:1": [
+      1,
+      2
+    ],
+    "train:10468:9:1": [
+      0
+    ],
+    "test:379:15:2": [
+      0
+    ],
+    "train:2333:11:2": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "train:2176:8:1": [
+      0
+    ],
+    "test:343:8:2": [
+      0
+    ],
+    "train:1947:2:1": [
+      0
+    ],
+    "test:980:6:2": [
+      0
+    ],
+    "test:813:9:1": [
+      0
+    ],
+    "train:1956:1:1": [
+      0
+    ],
+    "train:10680:4:2": [
+      0
+    ],
+    "train:1576:4:1": [
+      0
+    ],
+    "train:10704:3:1": [
+      0,
+      1
+    ],
+    "test:915:4:1": [
+      0,
+      1
+    ],
+    "train:10092:6:1": [
+      0
+    ],
+    "train:1051:3:3": [
+      0
+    ],
+    "train:1461:12:1": [
+      0
+    ],
+    "train:2607:1:1": [
+      0
+    ],
+    "test:627:1:1": [
+      0
+    ],
+    "test:953:4:1": [
+      0
+    ],
+    "test:195:9:2": [
+      0
+    ],
+    "train:10265:2:1": [
+      0,
+      1
+    ],
+    "test:753:8:3": [
+      0
+    ],
+    "train:11077:7:1": [
+      0
+    ]
+  },
+  "method": "Direct assistant verification of each listed correction against the authored token/source edit. No blanket resolution of other warnings in the same case.",
+  "publication": false
+}

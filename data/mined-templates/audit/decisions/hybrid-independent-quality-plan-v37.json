@@ -1,0 +1,213 @@
+{
+  "version": "independent-quality-plan-v37",
+  "status": "FROZEN_BEFORE_REVIEW",
+  "seed": "20261018-independent-quality-v37",
+  "population": 148053,
+  "size": 50,
+  "sampling": "Uniform occurrence sample without replacement by seeded SHA-256 ranks; no filters for length, lexical items or risk flags.",
+  "exclusions": "All saved API warning addresses and descendants, earlier quality/sample addresses, prior contextual reviews and exact manual-dialogue reuses.",
+  "scope": "Quality of automatically parsed occurrences outside the saved warning queue. One direct model reviewer; no human gold standard and no claim of trained-model accuracy.",
+  "candidate": "artifacts/dailydialog-hybrid-quality-v37",
+  "selected_ids": [
+    "train:9624:8:4",
+    "train:5591:8:1",
+    "train:9970:2:2",
+    "val:785:8:1",
+    "train:660:3:2",
+    "train:8824:6:1",
+    "train:2157:12:2",
+    "train:998:3:3",
+    "train:7730:12:1",
+    "test:459:4:2",
+    "train:5449:3:1",
+    "train:1211:15:3",
+    "train:10530:3:1",
+    "train:5575:1:2",
+    "train:2357:5:1",
+    "train:711:4:2",
+    "train:1683:9:2",
+    "train:6754:2:1",
+    "val:380:13:1",
+    "train:1859:3:3",
+    "train:8245:5:2",
+    "train:3818:5:1",
+    "train:10423:7:4",
+    "train:6552:8:3",
+    "test:380:3:2",
+    "train:1591:6:1",
+    "train:4120:5:1",
+    "train:505:4:3",
+    "test:394:1:1",
+    "train:4606:5:2",
+    "train:4915:9:1",
+    "train:946:3:2",
+    "train:5237:6:1",
+    "train:7750:5:1",
+    "train:8028:11:2",
+    "train:5986:13:1",
+    "train:5044:2:6",
+    "train:9847:10:1",
+    "train:3699:9:1",
+    "train:10756:4:2",
+    "train:3885:11:2",
+    "test:463:8:1",
+    "train:5530:3:1",
+    "test:494:1:1",
+    "train:3002:3:1",
+    "val:376:4:1",
+    "train:9571:3:1",
+    "train:1267:8:2",
+    "train:8425:8:1",
+    "train:3927:6:1"
+  ],
+  "distinct_dialogues": 50,
+  "snapshot": "data/dailydialog/review-parts/hybrid-independent-quality-snapshot-v37.jsonl.gz",
+  "snapshot_sha256": "7c8e9b798c3853723c5e58abec7c7448e35af73074381f4b7e7f567674cf9094",
+  "prior_samples": [
+    {
+      "path": "data/dailydialog/review-parts/hybrid-independent-quality-admission-v36.jsonl",
+      "sha256": "44caf68243dd2d293520bf34464b2912eacde4bc67e88baf1c8fe36b9cff1fa2"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-independent-quality-after-v36.jsonl.gz",
+      "sha256": "3fab78f6f537eff81cb4d1b417c4fe4ccddfff539857cf52bace3df80b77b5d4"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-independent-quality-blind-v36.json",
+      "sha256": "9aa50e21db07405229068fcd36bd9257802b8db18dfeee505b00c12d03e8b8fa"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-independent-quality-context-v36.jsonl",
+      "sha256": "d1fa015022fa46790bfe095180e4f8f96e30f432f9731b4751cd00243f5f1429"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-independent-quality-plan-v36.json",
+      "sha256": "ed3cbb60101a0a77a429d3eb384fcc2d21df2bd3f139f63e9e90279398c69823"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-independent-quality-readings-v36.json",
+      "sha256": "43869fd6ae19e1e761564714a46df0180e6a9c9d6275c9ce9fae061db36aab7e"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-independent-quality-review-v36.json",
+      "sha256": "5c5e0d6183bb63d38cbe807a7cd7c78affa1afa5c4669cfd9ef608f09b8b3090"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-independent-quality-snapshot-v36.jsonl.gz",
+      "sha256": "76d470e35e92516bca4d4a2ea3a6b15a649424143dc2f2e038b88692260ed76c"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-independent-quality-warning-rechecks-v36.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-luna-independent-sample-v1.jsonl",
+      "sha256": "fded33ed8627a0501083898050006193b738d336311bd225754f317522663525"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-luna-offline-progress-quality-v36.json",
+      "sha256": "d06a254ca2e48879659e6849b3e41650c4bdf34d42bec33d89d6737f6f5140bb"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-offline-final-wording-qc-sample-v1.jsonl",
+      "sha256": "e94d32c6df1bad1ca0b238bc9e3edba7973485a1bdf394e0a9519861e7f56212"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-quality-adapters-v29.json",
+      "sha256": "e7b7741334929acb4b98647d24abe5c1b255d82344d09688ad1b9d88d209d46c"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-quality-control-50-v1.json",
+      "sha256": "c851a8a23ae51cce27a76dd5143db6c59f1965733528187951ac8daef22cc5b9"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-quality-control-admission-result-v1.json",
+      "sha256": "f67ecaba1a40260e2fdee0bd766c3bbe92931899006fae4e3369831a1b9cbf55"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-quality-control-admission-v1.jsonl",
+      "sha256": "c99753bb88bbbcedc7366befc97868cde9002112dc917bee9c98116cc2d320b1"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-quality-control-fixes-result-v1.json",
+      "sha256": "7e683e164d104d3775d6d1afc0eddf2e19463f726e55e3a3de3790b56e18ba9d"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-quality-control-fixes-v1.jsonl",
+      "sha256": "37378b9dede0b9994a1413d339512a727ed81e149e409865af160e41315757f6"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-quality-decisions-v29.json",
+      "sha256": "ed61df95c0159270d99bea9e526141c853f66902a1a7829d87cb9a4f19ae2f91"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-quality-fragment-adapters-v2.json",
+      "sha256": "86dee419698250320621176bf39af126a7e10ab1b24a816ac8d78533f4bbbfcc"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-quality-original-contexts-v29.jsonl.gz",
+      "sha256": "a0416819fcbfc807446e33c839d80876ed61a77c6a6d238a6a45d9b44f4ac8a8"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-random-quality-50-plan-v1.json",
+      "sha256": "203adab9f6f739045caecbe296b487c602e53683a4821f5e5ff7e397f4b341d4"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-random-quality-50-result-v1.json",
+      "sha256": "224db23c77987be81d257e7cf2d3cc7f77f9ee245ea75d7d7ec7b21827b899d2"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-random-quality-after-v27.jsonl.gz",
+      "sha256": "8e66e55f02cb9b606fa96a24babcd2cb3c066e2a62663fba427842e721af7d99"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-random-quality-application-v1.json",
+      "sha256": "f722eabaf04ff8035a88e88e74151cc46363a278e1feecb3c48afefd6852e00d"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-random-quality-context-v27.jsonl",
+      "sha256": "2002cf3b34ec080d0245126446d5a750413353ccc788f56a5eee0f12c496ffd9"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-random-quality-current-snapshot-v27.jsonl.gz",
+      "sha256": "a841fab7b4496ee0457e5841eed8fdf737a6a8f09e848fc48e585e6c6a0755d8"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-random-quality-held-v27.json",
+      "sha256": "a6920db1bb625919140afcf21b25faf69b910e7fe10ec872f03e7c9ee4a0583c"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-random-quality-plan-v27.json",
+      "sha256": "8636ba73862f0ede5184e98815629cca877c4b77938ca9d19eb747b30e9a936a"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-random-quality-review-v27.json",
+      "sha256": "da7bce5d80ce213abfa7ed8845c9c74a49b83d3bbd040f2851d6c46a285545ae"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-random-quality-reviews-v1.jsonl",
+      "sha256": "3e854f7200ab1b6b7bbbbcebd9264ca3f5c05258328b22375f4c5ffef8ef5f2b"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-random-quality-snapshot-v27.jsonl.gz",
+      "sha256": "e0530f02acdc12e81c190c9ea7e3a5ffc8dd3f33101a3fab0f887eef16e72a03"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-random-quality-warning-rechecks-v27.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "protected": {
+    "artifacts/dailydialog-hybrid-quality-v37/plan.json": "95095b6d32b59ea8a55062fdc74aa0652a2ca8e7b2e9acf8c11ebb7ad92aaa57",
+    "artifacts/dailydialog-hybrid-quality-v37/report.json": "7e97deb342c186ff48a868e47ef5b4937d8fd9a40ddeb9696710aae8828596e7",
+    "artifacts/dailydialog-hybrid-quality-v37/sentences.jsonl": "d72494f9bf02d25a088eb6c183eb0c9bf8c0d471733e10538c0be7e32a9ed3ea",
+    "artifacts/dailydialog-hybrid-quality-v37/revision.sqlite3": "6a25350305dfc1089415657863d02e962d7730f8fc9193c2c7f4fd43fea477d1",
+    "artifacts/dailydialog-hybrid-quality-v37/contexts.jsonl.gz": "df3aefcd67cfb39ccffc274817f0a95d45af7efd289048fa0fa193d66cd61764",
+    "data/mined-templates/manifest.json": "7c889f6da955f8298d8030b3f806f2bf9899a283e9bd9df022b7fddd28ea5539",
+    "data/mined-templates/reviewed/dialogue-fragments.json": "6d935fc5de66322c994ce1bce859d95ef858754d53b755d7287b4d46b4e0a3cc",
+    "data/mined-templates/reviewed/dailydialog-quarantine.json": "6e099ca7cc6871791eec55117f23d2f87db5430a247b2ab508b4b7bc99e70390"
+  },
+  "prior_warning_or_qc_addresses": 11637,
+  "api_calls": 0,
+  "publication": false
+}

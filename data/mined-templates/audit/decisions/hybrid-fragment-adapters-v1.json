@@ -1,0 +1,544 @@
+{
+  "format": "reviewed-fragment-adapters-v1",
+  "patterns": [
+    {
+      "id": "dd_instruction_after_meals",
+      "kind": "mined_event",
+      "context": true,
+      "assistant": "According to the instruction, should I take these pills before the meals or after the meals?",
+      "reply": "After the meals.",
+      "predicate": "take",
+      "operators": [
+        "should"
+      ],
+      "tense": "modal",
+      "subject": {
+        "text": "assistant",
+        "label": "PERSON",
+        "number": "singular"
+      },
+      "arguments": [
+        [
+          "complement",
+          "these pills",
+          "UNRESOLVED"
+        ],
+        [
+          "object",
+          "these pills",
+          "PHYSICAL_OBJECT"
+        ]
+      ],
+      "time": "after the meals",
+      "question": "Have you already taken these pills?",
+      "source": {
+        "split": "train",
+        "dialogue": 7556,
+        "turn": 7,
+        "text": "After the meals.",
+        "span": [
+          0,
+          16
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          5,
+          6,
+          7
+        ],
+        "adaptation": "The preceding question now states the action explicitly. The reply supplies instruction timing, not completed pill-taking. No dosage is copied into generated prompts.",
+        "source_sha256": "5ee22117c90c9f06d3ecf915dee4b1eb71f28eda0d3fb13d810e5a849bc90817",
+        "context_sha256": "fdd4deb294b28543c2b24932aecc8a0cfe5f9b1b42cf9f3402d269f43cd33a8a"
+      }
+    },
+    {
+      "id": "dd_plan_after_practice",
+      "kind": "mined_event",
+      "context": true,
+      "assistant": "When do you plan to play chess with me?",
+      "reply": "After baseball practice.",
+      "predicate": "play",
+      "operators": [
+        "plan"
+      ],
+      "tense": "present",
+      "subject": {
+        "text": "user",
+        "label": "PERSON",
+        "number": "singular"
+      },
+      "arguments": [
+        [
+          "complement",
+          "chess with assistant",
+          "UNRESOLVED"
+        ],
+        [
+          "object",
+          "chess",
+          "UNRESOLVED"
+        ],
+        [
+          "oblique_with",
+          "assistant",
+          "PERSON"
+        ]
+      ],
+      "time": "after baseball practice",
+      "question": "Have I already played chess with you?",
+      "source": {
+        "split": "train",
+        "dialogue": 538,
+        "turn": 9,
+        "text": "After baseball practice.",
+        "span": [
+          0,
+          24
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          2,
+          6,
+          7,
+          8,
+          9
+        ],
+        "adaptation": "Replace the anaphoric When? with a self-contained question about the promised chess session. The promise is adapted to an explicit plan; neither practice nor chess is asserted completed.",
+        "source_sha256": "0de92adc62d3f0622bba45e8b026113e9194c69c31d87af5f788d2ff976cb339",
+        "context_sha256": "133c789bedd138939ffa30701fdcabbfce6bbe517427404609709f8859d25362"
+      }
+    },
+    {
+      "id": "dd_retake_tomorrow",
+      "kind": "mined_event",
+      "context": true,
+      "assistant": "When can you retake your exam?",
+      "reply": "Tomorrow.",
+      "predicate": "retake",
+      "operators": [
+        "can"
+      ],
+      "tense": "modal",
+      "subject": {
+        "text": "user",
+        "label": "PERSON",
+        "number": "singular"
+      },
+      "arguments": [
+        [
+          "complement",
+          "my exam",
+          "UNRESOLVED"
+        ],
+        [
+          "object",
+          "my exam",
+          "ABSTRACT_ENTITY"
+        ]
+      ],
+      "time": "tomorrow",
+      "question": "Have I already retaken my exam?",
+      "source": {
+        "split": "train",
+        "dialogue": 944,
+        "turn": 16,
+        "text": "Tomorrow.",
+        "span": [
+          0,
+          9
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          5,
+          6,
+          15,
+          16
+        ],
+        "adaptation": "Use the exam-retake question without its preceding evaluation. Tomorrow specifies availability/possibility under can; it is not a meeting date or an accomplished retake.",
+        "source_sha256": "918f980fec962c8af4a88a9316394dfa035228a23f493bc51926c5b72fc3cee3",
+        "context_sha256": "3720fb832b1dc514581edecbae018678adac8b0e8584477f36eda96fd3e318cb"
+      }
+    },
+    {
+      "id": "dd_market_meeting",
+      "kind": "mined_event",
+      "context": true,
+      "assistant": "Where do we plan to meet?",
+      "reply": "In the market.",
+      "predicate": "meet",
+      "operators": [
+        "plan"
+      ],
+      "tense": "present",
+      "subject": {
+        "text": "we",
+        "label": "PERSON",
+        "number": "plural"
+      },
+      "arguments": [
+        [
+          "complement",
+          "in the market",
+          "UNRESOLVED"
+        ],
+        [
+          "oblique_in",
+          "the market",
+          "LOCATION"
+        ]
+      ],
+      "time": "unspecified",
+      "question": "Have we already met in the market?",
+      "source": {
+        "split": "train",
+        "dialogue": 1061,
+        "turn": 6,
+        "text": "In the market.",
+        "span": [
+          0,
+          14
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "adaptation": "Adapt Where to meet? to an explicit two-person plan. Do not import tomorrow or 7:30 from older turns that the generated prompt does not include. Current location stays unchanged.",
+        "source_sha256": "6c45aaf1c8313832614ea71235445b9965b4c497753f8ea39dc12460c179a661",
+        "context_sha256": "1d1f2df9ce1ee9380dae848516d812689c52b89f9423fd129c689cc599327a0f"
+      }
+    },
+    {
+      "id": "dd_market_current_location",
+      "kind": "fact",
+      "context": true,
+      "assistant": "Where are you now?",
+      "reply": "In the market.",
+      "relation": "location",
+      "value": "the market",
+      "question": "Where am I now?",
+      "source": {
+        "split": "train",
+        "dialogue": 1061,
+        "turn": 6,
+        "text": "In the market.",
+        "span": [
+          0,
+          14
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          6
+        ],
+        "adaptation": "Deliberate contrast with the meeting adapter: reuse the surface answer with a different visible question. This is a synthetic contextual variant, not the meaning of the original meeting exchange.",
+        "source_sha256": "6c45aaf1c8313832614ea71235445b9965b4c497753f8ea39dc12460c179a661",
+        "context_sha256": "1d1f2df9ce1ee9380dae848516d812689c52b89f9423fd129c689cc599327a0f"
+      }
+    },
+    {
+      "id": "dd_parking_meeting",
+      "kind": "mined_event",
+      "context": true,
+      "assistant": "Where and when do we plan to meet?",
+      "reply": "In my parking lot, at 2pm.",
+      "predicate": "meet",
+      "operators": [
+        "plan"
+      ],
+      "tense": "present",
+      "subject": {
+        "text": "we",
+        "label": "PERSON",
+        "number": "plural"
+      },
+      "arguments": [
+        [
+          "complement",
+          "in my parking lot",
+          "UNRESOLVED"
+        ],
+        [
+          "oblique_in",
+          "my parking lot",
+          "LOCATION"
+        ]
+      ],
+      "time": "at 2pm",
+      "question": "Have we already met in my parking lot?",
+      "source": {
+        "split": "train",
+        "dialogue": 1798,
+        "turn": 8,
+        "text": "In my parking lot, at 2pm.",
+        "span": [
+          0,
+          26
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "adaptation": "The known place and time belong to a planned meeting. Do not infer the current location, calendar date or that the film or meeting happened. The possessive remains in user perspective.",
+        "source_sha256": "c34b5b3775dcc49aebae4cc3be25d35aa7b5ce4e169f5900bdf1b529d9025989",
+        "context_sha256": "27712498b84c78995061fa8c736639387d06c0d38c18e035792be5af71bf3805"
+      }
+    },
+    {
+      "id": "dd_not_really_want_watch",
+      "kind": "mined_event",
+      "context": true,
+      "assistant": "Do you want to watch the Olympic Games?",
+      "reply": "Not really.",
+      "predicate": "watch",
+      "operators": [
+        "not",
+        "want"
+      ],
+      "tense": "present",
+      "subject": {
+        "text": "user",
+        "label": "PERSON",
+        "number": "singular"
+      },
+      "arguments": [
+        [
+          "complement",
+          "the Olympic Games",
+          "UNRESOLVED"
+        ],
+        [
+          "object",
+          "the Olympic Games",
+          "ABSTRACT_ENTITY"
+        ]
+      ],
+      "time": "unspecified",
+      "question": "Have I already watched the Olympic Games?",
+      "source": {
+        "split": "train",
+        "dialogue": 604,
+        "turn": 4,
+        "text": "Not really.",
+        "span": [
+          0,
+          11
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          3,
+          4
+        ],
+        "adaptation": "In this adapted yes/no preference question, the softened refusal denies wanting to watch. It does not assert not(watch), watching, or a stable general dislike.",
+        "source_sha256": "585b9f406b1f77cc91dbaa6387bea81ee5d1ff604059593787b6298f1f970769",
+        "context_sha256": "6dc9f46205060c0730eae67efedc14b6fac945b4713e067ee111b99e0dfde3fd"
+      }
+    },
+    {
+      "id": "dd_farewell",
+      "kind": "no_change",
+      "context": false,
+      "assistant": "See you later, alligator.",
+      "reply": "In a while, crocodile.",
+      "relation": "meeting_day",
+      "question": "Which day is my meeting?",
+      "source": {
+        "split": "train",
+        "dialogue": 1191,
+        "turn": 2,
+        "text": "In a while, crocodile.",
+        "span": [
+          0,
+          22
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2
+        ],
+        "adaptation": "Rhyming farewell, not a literal animal mention or an agreed meeting date. Speech act is recorded in review; no supported factual memory update.",
+        "source_sha256": "893065c1a70ac82bcf85cdf7b3afa58eeced7421560ac86e52906e90d6460a2c",
+        "context_sha256": "5b3e1820a4df578e56139f32f8d3611af94b8301b3292b02c509da403725be5a"
+      }
+    },
+    {
+      "id": "dd_gratitude",
+      "kind": "no_change",
+      "context": false,
+      "assistant": "You made a good choice.",
+      "reply": "Thanks.",
+      "relation": "meeting_day",
+      "question": "Which day is my meeting?",
+      "source": {
+        "split": "train",
+        "dialogue": 3754,
+        "turn": 14,
+        "text": "Thanks, Daisy.",
+        "span": [
+          0,
+          14
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          13,
+          14
+        ],
+        "adaptation": "Remove the named vocative and car-specific praise for a user/assistant pair. Gratitude does not establish a new purchase, meeting, or property of an unrelated object.",
+        "source_sha256": "23414f1802b05c6ab3ee9fbf1b42d176946551574f0ef247b78e8be1aa79f996",
+        "context_sha256": "2ec6efbbf2aa9954ee3469d7f928193b12e03f290ddbc091932b89851f6ba03b"
+      }
+    },
+    {
+      "id": "dd_unfinished_answer",
+      "kind": "no_change",
+      "context": false,
+      "assistant": "What is the nearest planet to the sun?",
+      "reply": "It's.. er.",
+      "relation": "meeting_day",
+      "question": "Which day is my meeting?",
+      "source": {
+        "split": "test",
+        "dialogue": 610,
+        "turn": 12,
+        "text": "It's.. er.",
+        "span": [
+          13,
+          23
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          11,
+          12
+        ],
+        "adaptation": "Select only the hesitation prefix. Later Venus/Pluto self-repairs in the same source turn are not evidence for a settled answer. No predicate complement can be filled from the unfinished prefix.",
+        "source_sha256": "48e8ac11d8fcbfab4b4e01d2c4c0787b8a01b1c9734838e653ed1d6eb4ca1086",
+        "context_sha256": "e319a38825a26db9a681c1dad2786c001325d15b5f3f4ce08bb400aa4b6ea660"
+      }
+    },
+    {
+      "id": "dd_say_missing_message",
+      "kind": "partial",
+      "context": false,
+      "assistant": "What would you like to tell me?",
+      "reply": "I want to say...",
+      "predicate": "say",
+      "operators": [
+        "want"
+      ],
+      "tense": "present",
+      "arguments": [
+        [
+          "speaker",
+          "user",
+          "PERSON"
+        ]
+      ],
+      "missing_roles": [
+        "message"
+      ],
+      "question": "Have I finished saying what I wanted to say?",
+      "source": {
+        "split": "train",
+        "dialogue": 1676,
+        "turn": 1,
+        "text": "I want to say...",
+        "span": [
+          0,
+          16
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1
+        ],
+        "adaptation": "Keep the explicitly expressed desire and speaker; message is missing. Future source turns contain a continuation, but are excluded from evidence and never fill this target.",
+        "source_sha256": "ec7288ff81e677917761959a9ddfd867e78b4d194594b4ee12a03ea4aa9751e3",
+        "context_sha256": "c71864ee19d29a51559b4a660ea92a0261eaa3ad2867c3fa0c4cfad149648b2b"
+      }
+    },
+    {
+      "id": "dd_embedded_say_missing_message",
+      "kind": "partial",
+      "context": false,
+      "assistant": "What would you like to tell me about your date?",
+      "reply": "But, well... what I want to say is...",
+      "predicate": "say",
+      "operators": [
+        "want"
+      ],
+      "tense": "present",
+      "arguments": [
+        [
+          "speaker",
+          "user",
+          "PERSON"
+        ]
+      ],
+      "missing_roles": [
+        "message"
+      ],
+      "question": "Have I finished saying what I wanted to say?",
+      "source": {
+        "split": "train",
+        "dialogue": 3197,
+        "turn": 4,
+        "text": "But, well... what I want to say is...",
+        "span": [
+          0,
+          37
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "adaptation": "Keep the explicitly expressed desire and speaker; message is missing. Future source turns contain a continuation, but are excluded from evidence and never fill this target.",
+        "source_sha256": "1a9b66b60e1fef4083ef6907268472c965b43a4efa861d53fb166ebc8ec5c767",
+        "context_sha256": "c4d7417b0db6a8643208f3d28ba2124e6690dd5ad0a33c748cd0502ea3e81630"
+      }
+    }
+  ]
+}

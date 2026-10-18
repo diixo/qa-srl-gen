@@ -1,0 +1,3743 @@
+{
+  "version": "original-wording-queue-v24",
+  "cases": [
+    {
+      "id": "train:10468:7:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10468,
+        "turn": 7,
+        "segment": 1,
+        "span": [
+          0,
+          26
+        ],
+        "text": "Boarding time is ten 20am.",
+        "context": [
+          "Can I see your ticket please?",
+          "Here you are.",
+          "Ok, Mr. Smith. Do you have any bags to check?",
+          "Just this one.",
+          "And would you prefer a window seat or an aisle seat?",
+          "Aisle, please.",
+          "Boarding time is ten 20am.",
+          "What's the gate number?",
+          "Gate 29C. Have a nice flight."
+        ]
+      },
+      "candidate_text": "Boarding time is ten 20am.",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "announcement",
+        "event_status": "boarding_time_with_unclear_notation",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker announces boarding time using ten 20am. Preserve the notation without converting it to a clock value or treating boarding as completed."
+        },
+        "unknown": [
+          "The exact normalized clock time is not established."
+        ]
+      },
+      "adapter_id": "dd_v24_train_10468_7_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10474:3:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10474,
+        "turn": 3,
+        "segment": 1,
+        "span": [
+          0,
+          42
+        ],
+        "text": "I'd like to change these dollars into RIB.",
+        "context": [
+          "Excuse me, will you change me some money, please?",
+          "Of course.",
+          "I'd like to change these dollars into RIB. Would you please tell me the exchange rate between American dollar and RIB?",
+          "Sure. At present one dollar is equal to 6.4392 yuan. How many dollars would you like to change?",
+          "500 dollars, please.",
+          "Please wait for a moment... Now here is your Chinese currency. See if it's right. It's 3,220 yuan. Please keep this exchange memo. You may need it for converting when you leave China.",
+          "OK. Thank you for your help. That's very nice of you.",
+          "It's my pleasure."
+        ]
+      },
+      "candidate_text": "I'd like to change these dollars into RIB.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "request",
+        "event_status": "requested_currency_exchange",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker wants to exchange dollars into the currency labelled RIB. Keep the label literally without substituting another currency or claiming that an exchange occurred."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10474_3_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10474:3:2",
+      "source": {
+        "split": "train",
+        "dialogue": 10474,
+        "turn": 3,
+        "segment": 2,
+        "span": [
+          43,
+          118
+        ],
+        "text": "Would you please tell me the exchange rate between American dollar and RIB?",
+        "context": [
+          "Excuse me, will you change me some money, please?",
+          "Of course.",
+          "I'd like to change these dollars into RIB. Would you please tell me the exchange rate between American dollar and RIB?",
+          "Sure. At present one dollar is equal to 6.4392 yuan. How many dollars would you like to change?",
+          "500 dollars, please.",
+          "Please wait for a moment... Now here is your Chinese currency. See if it's right. It's 3,220 yuan. Please keep this exchange memo. You may need it for converting when you leave China.",
+          "OK. Thank you for your help. That's very nice of you.",
+          "It's my pleasure."
+        ]
+      },
+      "candidate_text": "Would you please tell me the exchange rate between American dollar and RIB?",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "question",
+        "event_status": "requested_exchange_rate",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker requests the exchange rate between the American dollar and the currency labelled RIB. The label supplies no verified external currency identity or rate."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10474_3_2",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10475:4:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10475,
+        "turn": 4,
+        "segment": 1,
+        "span": [
+          0,
+          58
+        ],
+        "text": "Could you tell me shall I take the express or local train?",
+        "context": [
+          "Can I help you?",
+          "Is this the right subway to the Wall Street?",
+          "Yes, it is.",
+          "Could you tell me shall I take the express or local train?",
+          "Sure. The local train. It stops at every station.",
+          "Which of them is the local train, please?",
+          "You take the D train on the downtown platform, and go three stops.",
+          "How much is the fare?",
+          "One dollar and twenty cents. You give me the money and I'll exchange it for a token.",
+          "What should I do with the token?",
+          "You put it in the slot at the turnstile and then push the turnstile to get into the platform."
+        ]
+      },
+      "candidate_text": "Could you tell me shall I take the express or local train?",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "question",
+        "event_status": "queried_train_choice",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "Despite direct-question word order inside tell me, the speaker asks whether to take an express or local train. Neither choice nor boarding is completed."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10475_4_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10480:6:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10480,
+        "turn": 6,
+        "segment": 1,
+        "span": [
+          0,
+          152
+        ],
+        "text": "That maybe true, and I for one don't want to see anyone lose their job, but how can these Ces ask for a bailout when they're making millions of dollars?",
+        "context": [
+          "This is Action 5 News reporter Sarah O'Connell reporting live from Washington, D. C. where a protest has broken out. Thousands of angry citizens are protesting against the proposed bailout of the auto manufacturing industry! Sir, sir, Sarah O'Connell, Action 5 news. Can you tell us what'happening?",
+          "Yeah, yeah, we're here because we feel this is an injustice! The financial irresponsibility of big business has to stop! We're there to show the government that we don't like the way that they're spending our tax dollars!",
+          "Sir but what exactly is making everyone so angry?",
+          "It's an absolute outrage, Sarah, the US government wants to give 25 billion dollars of taxpayers'money to the auto industry. These are companies that have been mismanaged and are now nearly bankrupt.",
+          "I see. But, many supporters of the bailout argue that it could help save the jobs of millions of hardworking Americans.",
+          "That maybe true, and I for one don't want to see anyone lose their job, but how can these Ces ask for a bailout when they're making millions of dollars? And then, they have the nerve to fly to Washington in private jets! This costs hundreds of thousands of dollars! And they're asking for money! That is just not right!",
+          "Good point. This is Sarah O'Connell reporting live from Washington D. C., back to you, Tom."
+        ]
+      },
+      "candidate_text": "That maybe true, and I for one don't want to see anyone lose their job, but how can these Ces ask for a bailout when they're making millions of dollars?",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "objection",
+        "event_status": "bailout_objection_with_unclear_group_label",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker provisionally concedes the job-saving argument and opposes job losses, but challenges a bailout request by high earners labelled Ces. Do not expand Ces into an established job title."
+        },
+        "unknown": [
+          "The exact group or title represented by Ces is unspecified."
+        ]
+      },
+      "adapter_id": "dd_v24_train_10480_6_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10506:4:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10506,
+        "turn": 4,
+        "segment": 1,
+        "span": [
+          0,
+          65
+        ],
+        "text": "Yes, because I think being interesting thing is the best teacher.",
+        "context": [
+          "If we give you the job, what's the most important thing you except to get?",
+          "Well, I just want to enjoy what I'm doing. It's the most important thing to me.",
+          "Just this?",
+          "Yes, because I think being interesting thing is the best teacher. Or have more opportunities to have career growth.",
+          "Do you want to get a promotion?",
+          "Yes, of course.",
+          "Where would you like to be in 5 years?",
+          "In five years, I'd like to be a senior manager of this corporation.",
+          "How do you plan to accomplish this?",
+          "By doing whatever is necessary."
+        ]
+      },
+      "candidate_text": "Yes, because I think being interesting thing is the best teacher.",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "explanation",
+        "event_status": "enjoyment_and_learning_with_damaged_subject",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "After prioritizing enjoyable work, the speaker invokes a best-teacher comparison. Being interesting thing does not reliably identify whether interest, an activity or being interesting is the teacher."
+        },
+        "unknown": [
+          "The exact subject of the best-teacher comparison is unclear."
+        ]
+      },
+      "adapter_id": "dd_v24_train_10506_4_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10508:7:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10508,
+        "turn": 7,
+        "segment": 1,
+        "span": [
+          0,
+          39
+        ],
+        "text": "Today's rate is 823. 71 RIB to 100 USD.",
+        "context": [
+          "Is everything OK, Madam?",
+          "Well, I'm trying to buy some foreign currency for my holiday.",
+          "I can help you with that. Holiday, you say? Lucky you! Where are you going to be travelling to?",
+          "We are going to Macau to visit my niece. She said it's better for me to bring US dollars, is that right?",
+          "That is one option, Madam. If your are travelling to either Hong Kong or Macau we are permitted to exchange up to 1,000 USD for you.",
+          "OK, I see. What's the exchange rate? Is the dollar up or down?",
+          "Today's rate is 823. 71 RIB to 100 USD.",
+          "To be honest, I have no idea about these things! But I'm sure that's alright.",
+          "Yes, it's not bad. I will need to see your passport though."
+        ]
+      },
+      "candidate_text": "Today's rate is 823. 71 RIB to 100 USD.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "quotation",
+        "event_status": "quoted_currency_rate_as_supplied",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker quotes today's rate as 823. 71 RIB to 100 USD. Preserve both spacing and the literal RIB label; this is an attributed quote, not a verified rate or completed exchange."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10508_7_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10512:1:5",
+      "source": {
+        "split": "train",
+        "dialogue": 10512,
+        "turn": 1,
+        "segment": 5,
+        "span": [
+          281,
+          313
+        ],
+        "text": "It is really decorated identity.",
+        "context": [
+          "I went to visit a customer in IVS Company the other day. Their offices were very impressive, especially their company Logo which is all over the place. There are Logo models in metal, copper, clove, paper. They are even printed on the wall paper and the balls of the table-lights. It is really decorated identity.",
+          "It is just too much. Don't you feel it is an exaggerating style to decorate offices in that way?",
+          "Not at all! I like the design so much. The designer must have thought really hard to come out with such a brilliant concept.",
+          "Well, I doubt that."
+        ]
+      },
+      "candidate_text": "It is really decorated identity.",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "assessment",
+        "event_status": "office_identity_with_unclear_predication",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The preceding account describes a company logo repeated throughout its offices. The speaker evaluates that presentation in the phrase decorated identity; its exact predication is unclear."
+        },
+        "unknown": [
+          "The precise relationship expressed by decorated identity is unresolved."
+        ]
+      },
+      "adapter_id": "dd_v24_train_10512_1_5",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10526:9:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10526,
+        "turn": 9,
+        "segment": 1,
+        "span": [
+          0,
+          4
+        ],
+        "text": "Www!",
+        "context": [
+          "Are you okay, man? You don't look very well.",
+          "Ugh, I feel terrible. I went out last night with Trevor, and things got a little out of hand.",
+          "Nice! So, where did you guys go?",
+          "We hit a couple of local bars, and met up with some friends. Everything was cool until Mike came along, and it turned out that it was his birthday yesterday!",
+          "Oh no! Mike's birthday is a drinkfest for sure!",
+          "Tell me about it! We drank everything in the bar!",
+          "Is that why you missed work today?",
+          "Yeah. I woke up this morning feeling really nauseous. I threw up like five times.",
+          "Www!",
+          "I was so dehydrated that I drank like a gallon of water, and my head has been pounding all day. I swear, I'm never gonna drink again!",
+          "Too bad man, tonight is Tracy's going away party and she asked if you were gonna go.",
+          "Oh, yeah. I'm there!"
+        ]
+      },
+      "candidate_text": "Www!",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "reaction",
+        "event_status": "unspecified_reaction_to_illness",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "Www is a reaction to the other person's account of repeated vomiting. Its spelling establishes neither a particular interjection nor a positive or negative evaluation."
+        },
+        "unknown": [
+          "The intended interjection and emotional polarity are unknown."
+        ]
+      },
+      "adapter_id": "dd_v24_train_10526_9_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10530:1:3",
+      "source": {
+        "split": "train",
+        "dialogue": 10530,
+        "turn": 1,
+        "segment": 3,
+        "span": [
+          164,
+          165
+        ],
+        "text": "'",
+        "context": [
+          "Hello baseball fans, and welcome back to today's game! My name is Rick Fields and of course, I am here, once again, with the man that seals the deal, Bob Copeland. '",
+          "It's a beautiful day to see two world class teams face each other and fight for their right to be called champions.",
+          "Well, the national anthem has just been sung, and the umpire has started the game. It's time to play ball!",
+          "Roger Vargas is up at bat. The pitcher winds up and strike one!",
+          "A very nice curve ball by the pitcher. The catcher gives him the sign, he winds up and Vargas gets a line drive!",
+          "The players are scrambling to get the ball. Vargas gets to first base and he's still going! The outfielder throws it to second! Vargas slides! He's safe!",
+          "Great play!",
+          "We have a runner on third and up at bat is Brian Okapi! There's the pitch, he hits it! It's going, going, that ball is gone!",
+          "Home run by Okapi! That puts this team ahead by two as we are at the bottom of the fifth inning here at Richie Stadium!"
+        ]
+      },
+      "candidate_text": "'",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "fragment",
+        "event_status": "isolated_punctuation",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The detached apostrophe contains no lexical proposition. Do not borrow the preceding announcer introduction as its meaning."
+        },
+        "unknown": [
+          "No recoverable proposition is present."
+        ]
+      },
+      "adapter_id": null,
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10536:2:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10536,
+        "turn": 2,
+        "segment": 1,
+        "span": [
+          0,
+          43
+        ],
+        "text": "You know that I have no secrets toward you.",
+        "context": [
+          "There's a question I'm not sure whether it is suitable to ask.",
+          "You know that I have no secrets toward you.",
+          "When you go dinner with John, who foots the bill?",
+          "Why asking that? It's often the sort of Dutch treat."
+        ]
+      },
+      "candidate_text": "You know that I have no secrets toward you.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "reassurance",
+        "event_status": "claimed_openness_to_listener",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "In response to hesitation about asking a question, the speaker says they keep no secrets from the listener. The unusual toward does not prove honesty or answer the unstated question."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10536_2_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10542:8:4",
+      "source": {
+        "split": "train",
+        "dialogue": 10542,
+        "turn": 8,
+        "segment": 4,
+        "span": [
+          198,
+          200
+        ],
+        "text": "Th",
+        "context": [
+          "What do you think of the most important things to do when running a business?",
+          "Well, there are several things. Of course, you must do everything you can to keep costs down and revenues high.",
+          "So, do you think workers should be paid as little as possible?",
+          "No. if you do that, the workers won't like their jobs. They will be less efficient and you will get a high staff turnover. Those things will increase you costs.",
+          "How can a business maximise revenues?",
+          "You need to invest in some good advertising. You have to know where your potential customers are and target them. It's no good trying to sell computer games to older people. The market is too small.",
+          "What else do you suggest?",
+          "Find out what other companies charge for the same products or services. Price yourself near the low end. Don't be much cheaper than everyone else, because many customers distrust very cheap things. Th"
+        ]
+      },
+      "candidate_text": "Th",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "fragment",
+        "event_status": "truncated_word_without_proposition",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "Th is an incomplete word after earlier business advice. It does not establish a further instruction or its content."
+        },
+        "unknown": [
+          "The missing word and continuation are unknown."
+        ]
+      },
+      "adapter_id": null,
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10544:9:2",
+      "source": {
+        "split": "train",
+        "dialogue": 10544,
+        "turn": 9,
+        "segment": 2,
+        "span": [
+          10,
+          46
+        ],
+        "text": "I've go enough city life in Beijing.",
+        "context": [
+          "Hey, Mark, long time no see.",
+          "Julie! It's good to see you again. How have you been?",
+          "Great. I just got back from a week's vacation in Thailand.",
+          "Really? How was it?",
+          "Fantastic! I didn't want to come back.",
+          "I hear the beaches in Thailand are beautiful.",
+          "They are. And not only that the people are friendly, but also the food is delicious, not to mention cheap.",
+          "I do like Thai food. Did you see much of Bangkok?",
+          "Not much. I've go enough city life in Beijing.",
+          "I know what you mean. I could use a vacation myself.",
+          "Hey, wouldn't it be great if we could go to Thailand together sometime?",
+          "Yeah, it sure would."
+        ]
+      },
+      "candidate_text": "I've go enough city life in Beijing.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "explanation",
+        "event_status": "sufficient_exposure_to_city_life",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker explains limited sightseeing in Bangkok by already getting enough city life in Beijing. The malformed I've go is retained; it does not establish a new journey or departure."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10544_9_2",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10549:4:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10549,
+        "turn": 4,
+        "segment": 1,
+        "span": [
+          0,
+          42
+        ],
+        "text": "Bout side claim a small area of territory.",
+        "context": [
+          "Are you watching another news report about the war?",
+          "Yes. The two sides declared a short ceasefire but it broke down earlier today. Several military target were destroyed by bombing. Many civilians were among the dead and wounded.",
+          "How did this war start?",
+          "Bout side claim a small area of territory. Both sides tried to build border fences and began attacking each other.",
+          "Politicians from both sides sound increasingly belligerent. Neither side wants to compromise.",
+          "Relief agencies report that many civilians are in desperate need of food and shelter. Several European countries have agreed to send aid, but are afraid that their planes will be shot down.",
+          "What do you think will happen?",
+          "Both countries are very poor. Soon they will run out of money to finance the war. Then, perhaps, they will negotiate.",
+          "It would be much simpler and cheaper if they negotiated first."
+        ]
+      },
+      "candidate_text": "Bout side claim a small area of territory.",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "explanation",
+        "event_status": "territorial_dispute_with_unclear_subject_form",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "In the discussion of two opposing sides, the speaker links the conflict to claims over a small territory. Bout side is not silently repaired, and its exact subject number remains uncertain."
+        },
+        "unknown": [
+          "The precise subject and number expressed by Bout side are unresolved."
+        ]
+      },
+      "adapter_id": "dd_v24_train_10549_4_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10551:1:2",
+      "source": {
+        "split": "train",
+        "dialogue": 10551,
+        "turn": 1,
+        "segment": 2,
+        "span": [
+          12,
+          49
+        ],
+        "text": "We very regret the mistakes in goods.",
+        "context": [
+          "Mr. Wilson. We very regret the mistakes in goods. I am very sorry and we are responsible for the mistake.",
+          "We have no choice but to hold you responsible for the loss we sustained.",
+          "The first problem is supposed to be solved after the investigation. About the second problem, I admit it's our fault, so we will exchange all merchandise that falls short of our sample.",
+          "Well. I hope there won't be such things.",
+          "I can assure you that such a thing today will never happen again in future delivery. We have made the plan to improve the package of our exported goods."
+        ]
+      },
+      "candidate_text": "We very regret the mistakes in goods.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "apology",
+        "event_status": "regret_about_goods",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker expresses regret about mistakes in the goods. The very regret construction does not establish that replacement, refund or repair occurred."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10551_1_2",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10567:2:3",
+      "source": {
+        "split": "train",
+        "dialogue": 10567,
+        "turn": 2,
+        "segment": 3,
+        "span": [
+          0,
+          54
+        ],
+        "text": "Good morning. I'd like to speak to Peter. Chen Please.",
+        "context": [
+          "Good morning. SRC international. How may I help you?",
+          "Good morning. I'd like to speak to Peter. Chen Please.",
+          "Certainly. Who should I say is calling?",
+          "This is Tim. Hunter from Hunter industries.",
+          "And what is it regarding please?",
+          "We have an appointment for this afternoon. Mr. Chen will know why I'm calling.",
+          "Of course, Please hold the line Mr. Hunter."
+        ]
+      },
+      "candidate_text": "Chen Please.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "request",
+        "event_status": "requested_contact_with_supplied_name_fragments",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The full original turn requests to speak to the contact named by Peter followed by Chen Please. Retain the internal period and name fragments without asserting successful contact."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10567_2_3",
+      "adapter_uses_full_original_turn": true,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10567:4:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10567,
+        "turn": 4,
+        "segment": 1,
+        "span": [
+          0,
+          43
+        ],
+        "text": "This is Tim. Hunter from Hunter industries.",
+        "context": [
+          "Good morning. SRC international. How may I help you?",
+          "Good morning. I'd like to speak to Peter. Chen Please.",
+          "Certainly. Who should I say is calling?",
+          "This is Tim. Hunter from Hunter industries.",
+          "And what is it regarding please?",
+          "We have an appointment for this afternoon. Mr. Chen will know why I'm calling.",
+          "Of course, Please hold the line Mr. Hunter."
+        ]
+      },
+      "candidate_text": "This is Tim.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "identification",
+        "event_status": "caller_identification_with_name_continuation",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The full original turn introduces the caller with Tim followed by Hunter from Hunter industries. Keep the internal period and capitalization without inventing a separate caller."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10567_4_1",
+      "adapter_uses_full_original_turn": true,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10575:3:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10575,
+        "turn": 3,
+        "segment": 1,
+        "span": [
+          0,
+          40
+        ],
+        "text": "Do you think this music is warm matched?",
+        "context": [
+          "Do you like music?",
+          "Well, it depends.",
+          "Do you think this music is warm matched?",
+          "Of course yes.",
+          "How about the lyrics?",
+          "Very touching.",
+          "It bring me back to some of my childhood memories.",
+          "Yes, it is so. I love songs that take me to some places I have not been or have been for a long time. It is fun and exciting.",
+          "Of course.it is really fantastic too, and it makes me eager to dance.",
+          "It is full of energy.",
+          "This song is really worthy listening to and enjoying.",
+          "It certainly is."
+        ]
+      },
+      "candidate_text": "Do you think this music is warm matched?",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "question",
+        "event_status": "music_evaluation_with_unclear_property",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker asks for an evaluation of the music using warm matched. Do not replace it with well matched, warm or a particular mood."
+        },
+        "unknown": [
+          "The property meant by warm matched is unresolved."
+        ]
+      },
+      "adapter_id": "dd_v24_train_10575_3_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10577:4:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10577,
+        "turn": 4,
+        "segment": 1,
+        "span": [
+          0,
+          21
+        ],
+        "text": "What did you in mind?",
+        "context": [
+          "Hello, do you remember me? I bought some vases from you yesterday.",
+          "Yes, you sent them to New York, right?",
+          "That's right. I thought I'd come back to buy some more souvenirs.",
+          "What did you in mind?",
+          "Well, first, I'd like to buy a few postcards. My sister used to always send a postcard to herself whenever she went anywhere. I want to do that, too.",
+          "We have plenty of postcards to choose from here. The same designs can be found on these posters.",
+          "Posters are difficult to travel with. I think I'll just buy the postcards. I heard that you might also have some of the masks that are made in Venice.",
+          "Yes, we do. They're on the wall behind you.",
+          "How much do they cost?",
+          "The prices are clearly marked on the back of each mask. Would you like me to get one down for you to look at?",
+          "Yes, I think I'd like the green mask in the middle.",
+          "Here you go.",
+          "I'll take it, I'd also like to buy some chocolate.",
+          "Are you looking for some homemade chocolate as a gift.",
+          "Yes, it's my girlfriend's birthday today and she loves chocolate.",
+          "We've got plenty to choose from here.",
+          "They look delicious. I think she'll be pleased."
+        ]
+      },
+      "candidate_text": "What did you in mind?",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "question",
+        "event_status": "queried_purchase_preferences",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "In response to the customer's wish for more souvenirs, the speaker asks what they have in mind. The missing verb is not supplied, and no item or purchase is confirmed."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10577_4_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10579:5:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10579,
+        "turn": 5,
+        "segment": 1,
+        "span": [
+          0,
+          97
+        ],
+        "text": "It should be around that, if you like, please for a free to read the magazine while you are wait.",
+        "context": [
+          "Hello, Miss, what can I do for you this afternoon?",
+          "I need the haircut. But you seem so busy today.",
+          "Yes, it is, busy today. We usually have a lot more clients on the weekend. Would you like to take a sit, and wait for a while, please?",
+          "Ok, but how long I have to wait, it is going to be more than 30 minutes.",
+          "It should be around that, if you like, please for a free to read the magazine while you are wait.",
+          "Thank you.",
+          "Sorry to keep you waiting, Miss. I'll have a dresser Mr. Li is just finish with a client in a moment or two. Would you have a shampoo first? I'll get it on for you.",
+          "Ok, thanks."
+        ]
+      },
+      "candidate_text": "It should be around that, if you like, please for a free to read the magazine while you are wait.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "estimate_and_invitation",
+        "event_status": "estimated_wait_and_reading_invitation",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker estimates a wait around the mentioned thirty minutes and invites the listener to read a magazine while waiting. Malformed free and wait constructions do not establish an exact guarantee or completed reading."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10579_5_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10579:7:2",
+      "source": {
+        "split": "train",
+        "dialogue": 10579,
+        "turn": 7,
+        "segment": 2,
+        "span": [
+          33,
+          108
+        ],
+        "text": "I'll have a dresser Mr. Li is just finish with a client in a moment or two.",
+        "context": [
+          "Hello, Miss, what can I do for you this afternoon?",
+          "I need the haircut. But you seem so busy today.",
+          "Yes, it is, busy today. We usually have a lot more clients on the weekend. Would you like to take a sit, and wait for a while, please?",
+          "Ok, but how long I have to wait, it is going to be more than 30 minutes.",
+          "It should be around that, if you like, please for a free to read the magazine while you are wait.",
+          "Thank you.",
+          "Sorry to keep you waiting, Miss. I'll have a dresser Mr. Li is just finish with a client in a moment or two. Would you have a shampoo first? I'll get it on for you.",
+          "Ok, thanks."
+        ]
+      },
+      "candidate_text": "I'll have a dresser Mr. Li is just finish with a client in a moment or two.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "service_update",
+        "event_status": "anticipated_hairdresser_availability",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker anticipates Mr. Li finishing with a client in a moment or two. The opening dresser clause remains awkward; neither completion nor the precise clause linkage is established."
+        },
+        "unknown": [
+          "The syntactic link between the opening dresser clause and Mr. Li's clause is unresolved."
+        ]
+      },
+      "adapter_id": "dd_v24_train_10579_7_2",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10598:4:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10598,
+        "turn": 4,
+        "segment": 1,
+        "span": [
+          0,
+          35
+        ],
+        "text": "Myrdal, purse don't just disappear.",
+        "context": [
+          "Oh, no. Charlie, where is my purse?",
+          "Don't you have it? Did you lose it?",
+          "Yes, I did. I lost it. It disappeared.",
+          "Myrdal, purse don't just disappear. Think carefully. When did you have it last?",
+          "I had it when I left the house. I had it when we start to get the hotdog.",
+          "OK. Let'go back to the hotdog stand."
+        ]
+      },
+      "candidate_text": "Myrdal, purse don't just disappear.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "reassurance",
+        "event_status": "rejection_of_unexplained_purse_disappearance",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "Addressing Myrdal, the speaker rejects the idea of a purse simply disappearing. The number mismatch does not locate or recover the purse."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10598_4_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10601:1:3",
+      "source": {
+        "split": "train",
+        "dialogue": 10601,
+        "turn": 1,
+        "segment": 3,
+        "span": [
+          30,
+          53
+        ],
+        "text": "My tour car's stranded.",
+        "context": [
+          "Hello? Can you give me a tow? My tour car's stranded.",
+          "Sure. Where are you?",
+          "I'm on highway 1-75 going near exit 46.",
+          "What kind of car?",
+          "It's a blue Nissan minivan.",
+          "Where are you going to?",
+          "The closest garage. What's the charge?",
+          "You are within 50 kilometers, so it's a 50 - dollar flat rate.",
+          "How long will it take?",
+          "About 20 to 30 minutes.",
+          "Thanks."
+        ]
+      },
+      "candidate_text": "My tour car's stranded.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "report",
+        "event_status": "stranded_car_as_described",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker reports their car is stranded and describes it with tour. Retain that modifier without guessing its intended spelling or asserting towing or repair."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10601_1_3",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10615:3:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10615,
+        "turn": 3,
+        "segment": 1,
+        "span": [
+          0,
+          50
+        ],
+        "text": "Those are something gifts I bought for my friends.",
+        "context": [
+          "Hello, this is my passport.",
+          "What's in your bags?",
+          "Those are something gifts I bought for my friends.",
+          "Would you mind opening it?",
+          "Of course not."
+        ]
+      },
+      "candidate_text": "Those are something gifts I bought for my friends.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "identification",
+        "event_status": "gifts_previously_bought_for_friends",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "The speaker identifies items in their bags as gifts bought for friends. The something gifts defect gives no exact count and does not establish delivery to those friends."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10615_3_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10617:7:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10617,
+        "turn": 7,
+        "segment": 1,
+        "span": [
+          0,
+          117
+        ],
+        "text": "There are two different types that we are offering at the moment, Dividend Deposit and Dividend Participated Deposit.",
+        "context": [
+          "Hello, Sir. What can I do for you today?",
+          "I need to find a new way of getting my insurance.",
+          "We've just started a new business at this bank, Bank-Insurance Link.",
+          "Could you give me some details about that?",
+          "Certainly. It could really benefit someone like you. Besides insurance for you, you can also get more or less dividends from the insurance company.",
+          "That sounds great. More dividends if I want to purchase them!",
+          "There are two different types that we are offering at the moment, Dividend Deposit and Dividend Participated Deposit.",
+          "I'll go through the materials that you have given me and return shortly. Thanks."
+        ]
+      },
+      "candidate_text": "There are two different types that we are offering at the moment, Dividend Deposit and Dividend Participated Deposit.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "information",
+        "event_status": "two_products_with_literal_names",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker says two products are currently offered, using the names Dividend Deposit and Dividend Participated Deposit. Retain names without verifying or normalizing them; no purchase is completed."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10617_7_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10621:4:2",
+      "source": {
+        "split": "train",
+        "dialogue": 10621,
+        "turn": 4,
+        "segment": 2,
+        "span": [
+          16,
+          49
+        ],
+        "text": "I'd like to start with a Compare.",
+        "context": [
+          "Can I get you something to drink?",
+          "Sure, but I don't drink much. So I don't know what to order.",
+          "So how about an aperitif?",
+          "It sounds good. I'd like to start with a Compare.",
+          "Stirred or shaken?",
+          "Stirred will be fine.",
+          "Here you are.",
+          "Thanks. Does the bar have a signature drink?",
+          "Sure. All of our mixed drinks are excellent. You can also try a delicious non-alcoholic cocktail.",
+          "Can you recommend one?",
+          "Try a Stinger. It has lime juice and grenadine over ice.",
+          "It sounds interesting. I'll take one.",
+          "Here we go.",
+          "It tastes great.",
+          "Enjoy yourself.",
+          "Yeah."
+        ]
+      },
+      "candidate_text": "I'd like to start with a Compare.",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "request",
+        "event_status": "drink_request_with_uncertain_name",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker requests to start with a drink written Compare after discussing aperitifs. Do not substitute a recognized brand or assert that it was served."
+        },
+        "unknown": [
+          "The intended beverage identity behind Compare is unknown."
+        ]
+      },
+      "adapter_id": "dd_v24_train_10621_4_2",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10631:3:2",
+      "source": {
+        "split": "train",
+        "dialogue": 10631,
+        "turn": 3,
+        "segment": 2,
+        "span": [
+          52,
+          175
+        ],
+        "text": "But for redeeming, a rate of a usual 0.5 %, we shall charge you 1.6 % if you apply to buy it after the fund-raising period.",
+        "context": [
+          "Do you have any questions before you commit yourself to this?",
+          "Actually, yes I do. I was wondering about the subscription fee. And how much will you charge me during the time of redeeming this new fund?",
+          "The subscription fee is charged at a rate of 1.2 %. But for redeeming, a rate of a usual 0.5 %, we shall charge you 1.6 % if you apply to buy it after the fund-raising period.",
+          "So, it's going to cost me then?",
+          "I'm afraid so, yes. There is always some risk on the buyer's part."
+        ]
+      },
+      "candidate_text": "But for redeeming, a rate of a usual 0.5 %, we shall charge you 1.6 % if you apply to buy it after the fund-raising period.",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "explanation",
+        "event_status": "fee_quote_with_unclear_rate_relation",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker mentions redeeming and a usual 0.5 percent rate, then conditionally quotes 1.6 percent if applying to buy after fundraising. The broken first clause does not securely assign the usual rate to a transaction or reconcile both fees."
+        },
+        "unknown": [
+          "The relation of the usual 0.5 percent to redemption and the conditional 1.6 percent is unresolved."
+        ]
+      },
+      "adapter_id": "dd_v24_train_10631_3_2",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10644:4:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10644,
+        "turn": 4,
+        "segment": 1,
+        "span": [
+          0,
+          43
+        ],
+        "text": "Am. No, I have an urgency to talk with him.",
+        "context": [
+          "Good morning! May I help you?",
+          "Good morning! Is Mr. Smith in? I'm Cheng Jun from China National Petroleum Corporation. I'd like to see him.",
+          "Do you have an appointment with Mr. Smith?",
+          "Am. No, I have an urgency to talk with him.",
+          "Wait a moment, please. I'll tell his secretary that you are here.",
+          "Thank you.",
+          "I'm sorry. He is holding a meeting until ten o'clock.",
+          "It's nine o'clock now. And I'll wait for him."
+        ]
+      },
+      "candidate_text": "Am. No, I have an urgency to talk with him.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "answer_and_request",
+        "event_status": "no_appointment_and_urgent_conversation",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The No explicitly answers the appointment question, followed by a claim of urgency to speak to Mr. Smith. Initial Am is retained as disfluent material without assigning it an affirmative answer."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10644_4_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10651:7:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10651,
+        "turn": 7,
+        "segment": 1,
+        "span": [
+          0,
+          73
+        ],
+        "text": "What leadership qualities did you develop as an administrative personnel?",
+        "context": [
+          "What is your strongest trait?",
+          "Adaptability and sense of humor.",
+          "How would your friends or colleagues describe you?",
+          "(Pause a few seconds) They say Mr. Chen is an honest, hardworking and responsible man who deeply cares for his family and friends.",
+          "What personality traits do you admire?",
+          "Honest, flexible and easy-going.",
+          "What leadership qualities did you develop as an administrative personnel?",
+          "I feel that learning how to motivate people and to work together as a team will be the major goal of my leadership.",
+          "How do you normally handle criticism?",
+          "Silence is golden. Just don't say anything; otherwise the situation could become worse. I do, however, accept constructive criticism.",
+          "What do you find frustrating in a work situation?",
+          "Sometimes, the narrow-minded people make me frustrated.",
+          "How do you handle your conflict with your colleagues in your work?",
+          "I will try to present my ideas in a more clear and civilized manner in order to get my points across.",
+          "To secure employment hopefully with your company.",
+          "How long would you like to stay with this company?",
+          "I will stay as long as I can continue to learn and to grow in my field."
+        ]
+      },
+      "candidate_text": "What leadership qualities did you develop as an administrative personnel?",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "question",
+        "event_status": "queried_leadership_development",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The interviewer asks which leadership qualities developed through administrative work. The article mismatch with personnel does not supply those qualities or establish a specific job title."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10651_7_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10668:1:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10668,
+        "turn": 1,
+        "segment": 1,
+        "span": [
+          0,
+          62
+        ],
+        "text": "By the way, can you tell me where I can find a restaurant not?",
+        "context": [
+          "By the way, can you tell me where I can find a restaurant not?",
+          "As far as I can see, Westlake Restaurant is a good choice.",
+          "How can I get there?",
+          "Walk down till you see the first lights. It's cross the street.",
+          "Thank you."
+        ]
+      },
+      "candidate_text": "By the way, can you tell me where I can find a restaurant not?",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "question",
+        "event_status": "restaurant_location_query_with_stray_negation",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The visible clause asks where a restaurant can be found. Trailing not is not enough to determine an intended contrast or to negate the entire request."
+        },
+        "unknown": [
+          "The function or missing continuation of trailing not is unknown."
+        ]
+      },
+      "adapter_id": "dd_v24_train_10668_1_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10672:2:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10672,
+        "turn": 2,
+        "segment": 1,
+        "span": [
+          0,
+          37
+        ],
+        "text": "I'm awfully sorry, I have other plan.",
+        "context": [
+          "Could we have the honor of you presence of the meeting?",
+          "I'm awfully sorry, I have other plan.",
+          "Would you prefer some other time?",
+          "I'd love to come other time if it can be arranged.",
+          "Are you quite sure you can come next Tuesday?",
+          "Certainly, I'll be going.",
+          "What time am I supposed to pick you up?",
+          "I'll be waiting for you in our office about nine o'clock.",
+          "OK."
+        ]
+      },
+      "candidate_text": "I'm awfully sorry, I have other plan.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "decline",
+        "event_status": "meeting_declined_due_to_other_plans",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker apologetically declines the meeting invitation because of another plan. The determiner error does not specify the competing commitment."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10672_2_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10673:2:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10673,
+        "turn": 2,
+        "segment": 1,
+        "span": [
+          0,
+          37
+        ],
+        "text": "Yes, this is Holiday Inn reservation.",
+        "context": [
+          "Hello, is that 2896919 16?",
+          "Yes, this is Holiday Inn reservation.",
+          "Can you book me a room with a bath for August 28?",
+          "Yes. Your name, please?"
+        ]
+      },
+      "candidate_text": "Yes, this is Holiday Inn reservation.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "identification",
+        "event_status": "hotel_reservations_contact",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The respondent identifies the telephone contact as Holiday Inn reservation. Retain the department wording without inventing a booking."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10673_2_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10699:6:2",
+      "source": {
+        "split": "train",
+        "dialogue": 10699,
+        "turn": 6,
+        "segment": 2,
+        "span": [
+          13,
+          43
+        ],
+        "text": "Have you got receipt with you?",
+        "context": [
+          "There are something wrong with my computer.",
+          "Really, what's wrong with it?",
+          "The computer doesn't work when I push the power cotton.",
+          "Oh, do you use your computer often?",
+          "Yes, I don't know why it doesn't work this time.",
+          "Don't worry. Have you got receipt with you?",
+          "Yeah!",
+          "We'll go to your house and repair it on Tuesday. Ok?",
+          "OK, I'll expect you around 2 o'clock?",
+          "See you then."
+        ]
+      },
+      "candidate_text": "Have you got receipt with you?",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "question",
+        "event_status": "queried_possession_of_receipt",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker asks whether the customer has a receipt with them. The missing determiner does not establish its presence, absence or eligibility for repair."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10699_6_2",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10702:6:2",
+      "source": {
+        "split": "train",
+        "dialogue": 10702,
+        "turn": 6,
+        "segment": 2,
+        "span": [
+          46,
+          129
+        ],
+        "text": "That basically means that I would be the link between our and our development team.",
+        "context": [
+          "Okay, so let's go over everything one more time. I really want you to get this job!",
+          "I know! It's an amazing growth opportunity! They're true industry leaders, and it would be so interesting to be part of an organization that is the undisputed leader in business process platform development.",
+          "So, let's see, you did your research on the company, right?",
+          "Well, I visited their website and read up on what they do. They're an IT service company that offers comprehensive business solutions for large corporations. They provide services such as ARM development, and they also offer customdesigned applications.",
+          "So what would your role in the company?",
+          "Well, the position is for an account manager. That basically means that I would be the link between our and our development team.",
+          "Sounds good, and so, why do you want to work with them?",
+          "Well, as I said they're the industry leaders, they have a really great growth strategy, amazing development opportunities for employees, and it seems like they have strong corporate governance. They're all about helping companies grow and unleashing potential. I guess their core values and mission really resonated with me. Oh, and they offer six weeks'vacation, stock options and bonuses... I'm totally going to cash in on that.",
+          "You idiot! Don't say that! Do you want this job, or not?"
+        ]
+      },
+      "candidate_text": "That basically means that I would be the link between our and our development team.",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "description",
+        "event_status": "prospective_liaison_with_missing_party",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker describes the prospective role as a link involving the development team and another party omitted after our. Do not infer customers, sales or a current employment appointment."
+        },
+        "unknown": [
+          "The first party linked to the development team is missing."
+        ]
+      },
+      "adapter_id": "dd_v24_train_10702_6_2",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10705:4:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10705,
+        "turn": 4,
+        "segment": 1,
+        "span": [
+          0,
+          64
+        ],
+        "text": "In this case, you should first keep calm and normal to the face.",
+        "context": [
+          "Confronted with difficult questions in an interview, the job-hunters mostly will be at a loss about what to do.",
+          "Usually, you cannot prepare for these questions in advance and have to depend on your immediate performance.",
+          "Still, there are some rules to follow.",
+          "In this case, you should first keep calm and normal to the face.",
+          "Don't get nervous and freaked out.",
+          "Formulate a satisfactory answer based on your specific situation.",
+          "There should be neither too much silence nor hasty answers",
+          "Try to show the best of yourself with decent words and manners.",
+          "Don't be discouraged even when confronted with negative questions",
+          "You should admit your weakness frankly.",
+          "Anyway, what really matters is that you have tried your best.",
+          "You must have confidence in yourself."
+        ]
+      },
+      "candidate_text": "In this case, you should first keep calm and normal to the face.",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "advice",
+        "event_status": "calmness_with_unclear_facial_instruction",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker advises remaining calm when facing difficult interview questions. The phrase normal to the face does not establish a precise facial expression or action."
+        },
+        "unknown": [
+          "The instruction represented by normal to the face is unclear."
+        ]
+      },
+      "adapter_id": "dd_v24_train_10705_4_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10717:4:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10717,
+        "turn": 4,
+        "segment": 1,
+        "span": [
+          0,
+          116
+        ],
+        "text": "After overcoming these buttons, you should check whether there is any paper in the machine, you must make sure this.",
+        "context": [
+          "Could you show me how to operate this fax machine? I am going to receive some urgent fax from a company.",
+          "Of course. Let me check it. Firstly, don't be frustrated about all the buttons on it.",
+          "That's right.",
+          "After overcoming these buttons, you should check whether there is any paper in the machine, you must make sure this.",
+          "I couldn't agree more.",
+          "And then prepare what you want to receive. If you want to send a photograph, you must copy one.",
+          "What can I do next?",
+          "The next thing you should do is to wait. The sender will give you the fax.",
+          "Look. Some of the faxes come through blurred. What is wrong with it?",
+          "Maybe we should call its after-service man."
+        ]
+      },
+      "candidate_text": "After overcoming these buttons, you should check whether there is any paper in the machine, you must make sure this.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "instruction",
+        "event_status": "check_fax_paper_supply",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "After discussing unfamiliar fax controls, the speaker instructs checking that paper is in the machine and ensuring that fact. This points back to paper availability rather than a property of the listener; checking is not completed."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10717_4_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10719:10:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10719,
+        "turn": 10,
+        "segment": 1,
+        "span": [
+          0,
+          45
+        ],
+        "text": "Walk the sidewalk and please right-hand side.",
+        "context": [
+          "Mom, am I like a superman? All I need is a cape.",
+          "No, just a super-boy.",
+          "Mom, you always think of me as a child.",
+          "Yes, because a real man doesn't need Mom to worry about him so much. He can do things by himself.",
+          "Sure!",
+          "Oh, my poor Danny, sure, you are a man. But you know, running like this in street is very dangerous.",
+          "Superman is not afraid of any danger.",
+          "Do you remember the rules of road safety?",
+          "What?",
+          "Walk the sidewalk and please right-hand side.",
+          "Don't play on the street or make any noise.",
+          "Yes, so you still remember, ah.",
+          "Dear Mom, please permit of superman's naughty."
+        ]
+      },
+      "candidate_text": "Walk the sidewalk and please right-hand side.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "instruction",
+        "event_status": "sidewalk_and_right_side",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "In the road-safety exchange, the speaker directs the child to use the sidewalk and the right-hand side. Preserve the omitted predicate without inferring a completed walk or a universal traffic law."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10719_10_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10719:13:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10719,
+        "turn": 13,
+        "segment": 1,
+        "span": [
+          0,
+          46
+        ],
+        "text": "Dear Mom, please permit of superman's naughty.",
+        "context": [
+          "Mom, am I like a superman? All I need is a cape.",
+          "No, just a super-boy.",
+          "Mom, you always think of me as a child.",
+          "Yes, because a real man doesn't need Mom to worry about him so much. He can do things by himself.",
+          "Sure!",
+          "Oh, my poor Danny, sure, you are a man. But you know, running like this in street is very dangerous.",
+          "Superman is not afraid of any danger.",
+          "Do you remember the rules of road safety?",
+          "What?",
+          "Walk the sidewalk and please right-hand side.",
+          "Don't play on the street or make any noise.",
+          "Yes, so you still remember, ah.",
+          "Dear Mom, please permit of superman's naughty."
+        ]
+      },
+      "candidate_text": "Dear Mom, please permit of superman's naughty.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "request",
+        "event_status": "tolerance_for_childs_mischief",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The child addresses Mom and asks her to tolerate their mischievous behavior, using the playful Superman self-description. The malformed noun form does not license a specific dangerous act."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10719_13_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10720:6:2",
+      "source": {
+        "split": "train",
+        "dialogue": 10720,
+        "turn": 6,
+        "segment": 2,
+        "span": [
+          19,
+          50
+        ],
+        "text": "The Youth Hostel's Association.",
+        "context": [
+          "Read Jimmy's card to me please, Janey.",
+          "I have just arrived in Scotland and I'm staying at a Youth Hostel.",
+          "Eh?",
+          "He says he's just arrived in Scotland. He says he's staying at a Youth Hostel. You know he's a member of the Y. H. A.",
+          "The what?",
+          "The Y. H. A., mun. The Youth Hostel's Association.",
+          "What else does he say?",
+          "I'll write a letter soon. I hope you are all well.",
+          "What? Speak up, Janey. I'm afraid I can't hear you.",
+          "He says he'll write a letter soon. He hopes we are all well. Love, Jimmy.",
+          "Is that all? He doesn't say very much, does he?",
+          "He can't write very much on a card, mum."
+        ]
+      },
+      "candidate_text": "The Youth Hostel's Association.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "identification",
+        "event_status": "organization_expansion_as_written",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker expands Y. H. A. as The Youth Hostel's Association. Preserve this supplied name without asserting an official spelling or a new membership event."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10720_6_2",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10725:3:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10725,
+        "turn": 3,
+        "segment": 1,
+        "span": [
+          0,
+          90
+        ],
+        "text": "This title does not only give you a raising pay-check, but also increase responsibilities.",
+        "context": [
+          "Francis, you have done an outstanding work in the past six months. In view of your achievement, I trust you're now indispensable part of our company and you deserve an officer director title.",
+          "I am so happy to know that I could make some contribution to our company.",
+          "This title does not only give you a raising pay-check, but also increase responsibilities. Congratulations, and hope the best for you.",
+          "Thank you, I will be doing my best."
+        ]
+      },
+      "candidate_text": "This title does not only give you a raising pay-check, but also increase responsibilities.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "explanation",
+        "event_status": "promotion_benefits_and_responsibilities",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker says the new title brings higher pay and greater responsibilities. Not only does not negate the pay benefit; no payment amount or completed disbursement is given."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10725_3_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10727:8:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10727,
+        "turn": 8,
+        "segment": 1,
+        "span": [
+          0,
+          27
+        ],
+        "text": "This is not common noodles.",
+        "context": [
+          "Grandpa, this seat is for you, for you are the eldest person here and also it's your birthday today.",
+          "Oh, you are such a good child today. Come here. Sit next to me.",
+          "I'm afraid I can't do that. It's Dad's seat, according to the book about table manners.",
+          "Oh, you read? Very good. Then, I think we should do something different today. I'll give you some privilege.",
+          "Great. That's my favorite seat which will be the nearest to the birthday cake.",
+          "Now I see what you read the book for. But it's fine. I'll give you the lion's share.",
+          "Why do they serve up the noodles first? I don't like it. Where is the cake?",
+          "This is not common noodles. They're “ long-lived ” noodles.it's an old Chinese tradition to eat.long - lived noodle on birthday.",
+          "I see. Then I'll try it."
+        ]
+      },
+      "candidate_text": "This is not common noodles.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "description",
+        "event_status": "noodles_characterized_as_special",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker denies that the served noodles are ordinary. Number disagreement does not deny their being noodles or supply their exact traditional role within this span."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10727_8_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10727:8:3",
+      "source": {
+        "split": "train",
+        "dialogue": 10727,
+        "turn": 8,
+        "segment": 3,
+        "span": [
+          0,
+          128
+        ],
+        "text": "This is not common noodles. They're “ long-lived ” noodles.it's an old Chinese tradition to eat.long - lived noodle on birthday.",
+        "context": [
+          "Grandpa, this seat is for you, for you are the eldest person here and also it's your birthday today.",
+          "Oh, you are such a good child today. Come here. Sit next to me.",
+          "I'm afraid I can't do that. It's Dad's seat, according to the book about table manners.",
+          "Oh, you read? Very good. Then, I think we should do something different today. I'll give you some privilege.",
+          "Great. That's my favorite seat which will be the nearest to the birthday cake.",
+          "Now I see what you read the book for. But it's fine. I'll give you the lion's share.",
+          "Why do they serve up the noodles first? I don't like it. Where is the cake?",
+          "This is not common noodles. They're “ long-lived ” noodles.it's an old Chinese tradition to eat.long - lived noodle on birthday.",
+          "I see. Then I'll try it."
+        ]
+      },
+      "candidate_text": "it's an old Chinese tradition to eat.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "explanation",
+        "event_status": "attributed_birthday_noodle_tradition",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The full original turn describes the noodles as special and associates eating long-lived noodles on birthdays with an old Chinese tradition. Retain the internal periods; this is the speaker's cultural account, not independent verification or completed eating."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10727_8_3",
+      "adapter_uses_full_original_turn": true,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10727:8:4",
+      "source": {
+        "split": "train",
+        "dialogue": 10727,
+        "turn": 8,
+        "segment": 4,
+        "span": [
+          96,
+          128
+        ],
+        "text": "long - lived noodle on birthday.",
+        "context": [
+          "Grandpa, this seat is for you, for you are the eldest person here and also it's your birthday today.",
+          "Oh, you are such a good child today. Come here. Sit next to me.",
+          "I'm afraid I can't do that. It's Dad's seat, according to the book about table manners.",
+          "Oh, you read? Very good. Then, I think we should do something different today. I'll give you some privilege.",
+          "Great. That's my favorite seat which will be the nearest to the birthday cake.",
+          "Now I see what you read the book for. But it's fine. I'll give you the lion's share.",
+          "Why do they serve up the noodles first? I don't like it. Where is the cake?",
+          "This is not common noodles. They're “ long-lived ” noodles.it's an old Chinese tradition to eat.long - lived noodle on birthday.",
+          "I see. Then I'll try it."
+        ]
+      },
+      "candidate_text": "long - lived noodle on birthday.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "identification",
+        "event_status": "birthday_noodle_food_fragment",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "As continuation of the preceding tradition explanation, this fragment identifies long-lived noodles on a birthday. It does not independently assert cooking, eating or a verified cultural rule."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10727_8_4",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10728:1:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10728,
+        "turn": 1,
+        "segment": 1,
+        "span": [
+          0,
+          40
+        ],
+        "text": "Marketing manage office, can I help you?",
+        "context": [
+          "Marketing manage office, can I help you?",
+          "Mr Green, please.",
+          "Sorry, he's out.",
+          "What time you suspect back them?",
+          "Sorry, I am not sure, can I take a message?",
+          "No, thanks. I'll call back later.",
+          "That's fine.please call again later.",
+          "Ok, thank you. Goodbye."
+        ]
+      },
+      "candidate_text": "Marketing manage office, can I help you?",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "greeting_and_offer",
+        "event_status": "marketing_office_service_offer",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The greeting identifies the contact as a marketing office and offers help. The form manage is retained without establishing an individual manager's identity or availability."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10728_1_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10728:4:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10728,
+        "turn": 4,
+        "segment": 1,
+        "span": [
+          0,
+          32
+        ],
+        "text": "What time you suspect back them?",
+        "context": [
+          "Marketing manage office, can I help you?",
+          "Mr Green, please.",
+          "Sorry, he's out.",
+          "What time you suspect back them?",
+          "Sorry, I am not sure, can I take a message?",
+          "No, thanks. I'll call back later.",
+          "That's fine.please call again later.",
+          "Ok, thank you. Goodbye."
+        ]
+      },
+      "candidate_text": "What time you suspect back them?",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "question",
+        "event_status": "queried_return_time",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "After being told Mr Green is out, the speaker asks his expected return time. The damaged suspect back them wording does not supply a time or assert his return."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10728_4_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10731:4:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10731,
+        "turn": 4,
+        "segment": 1,
+        "span": [
+          0,
+          26
+        ],
+        "text": "No, but we've got a hurry.",
+        "context": [
+          "How far do we have to go?",
+          "About 50 miles.",
+          "The traffic is not very heavy on this high way, is it? So I'm sure we'll make it.",
+          "No, but we've got a hurry. It will be the rush hour soon.",
+          "Don't worry. There's plenty of time yet.",
+          "But it's Friday today. This road is always jam packed during the weekend, isn't it?",
+          "Right."
+        ]
+      },
+      "candidate_text": "No, but we've got a hurry.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "warning",
+        "event_status": "need_to_hurry",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker responds to the light-traffic observation by stressing that they need to hurry. The malformed got a hurry is not a report of arrival or a completed rush."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10731_4_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10733:10:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10733,
+        "turn": 10,
+        "segment": 1,
+        "span": [
+          0,
+          31
+        ],
+        "text": "14 May flower Ave, Los Angeles.",
+        "context": [
+          "The City Bank. May I help you, sir?",
+          "Yes, I'd like to close my account.",
+          "May I have your name, please?",
+          "Adam Smith.",
+          "Alright, what's your address?",
+          "56 Edison Ave, Apartment 39, Los Angeles.",
+          "When would you like your account closed?",
+          "Next Friday.",
+          "Okay. Where would you like to have your last bill sent to you?",
+          "14 May flower Ave, Los Angeles.",
+          "Alright, We'll take care of that."
+        ]
+      },
+      "candidate_text": "14 May flower Ave, Los Angeles.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "request",
+        "event_status": "last_bill_destination_as_supplied",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The address fragment answers where to send the last bill. Keep 14 May flower Ave, Los Angeles literally without correcting its spacing or treating it as a confirmed home address or completed mailing."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10733_10_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10743:3:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10743,
+        "turn": 3,
+        "segment": 1,
+        "span": [
+          0,
+          59
+        ],
+        "text": "Yes, I think it is possible more important than the salary.",
+        "context": [
+          "Thank you for seeing me. Did you look over my letter and resume?",
+          "Yes. Quite good. Perhaps you're very interested in the social benefits.",
+          "Yes, I think it is possible more important than the salary.",
+          "Really? We would like to start you off at 2,000 yuan a month, excluding bonus and overtime pay.",
+          "Good, about the essential living conditions?",
+          "Well, we'll supply you with an apartment of a bedroom and a living room.",
+          "I see. I'm a female. Are there any special benefits for me?",
+          "Yes, in our company, the women have a two-week vacation a year, besides this, if you are a married woman, maternity leave for some months is permitted.",
+          "I think it is very necessary for us. I wonder whether I am on holiday with payment every year.",
+          "Yes, you have a paid month holiday every year.",
+          "Right. How about the unemployment compensation and the retirement pension?",
+          "Well, we are only responsible for the retirement pension. About the unemployment compensation, this will be given by the government.",
+          "Yes, I see."
+        ]
+      },
+      "candidate_text": "Yes, I think it is possible more important than the salary.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "opinion",
+        "event_status": "benefits_may_outweigh_salary",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "In the social-benefits discussion, the speaker tentatively considers them more important than salary. The possible form is retained; this is an opinion, not an established ranking or accepted offer."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10743_3_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10743:8:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10743,
+        "turn": 8,
+        "segment": 1,
+        "span": [
+          0,
+          151
+        ],
+        "text": "Yes, in our company, the women have a two-week vacation a year, besides this, if you are a married woman, maternity leave for some months is permitted.",
+        "context": [
+          "Thank you for seeing me. Did you look over my letter and resume?",
+          "Yes. Quite good. Perhaps you're very interested in the social benefits.",
+          "Yes, I think it is possible more important than the salary.",
+          "Really? We would like to start you off at 2,000 yuan a month, excluding bonus and overtime pay.",
+          "Good, about the essential living conditions?",
+          "Well, we'll supply you with an apartment of a bedroom and a living room.",
+          "I see. I'm a female. Are there any special benefits for me?",
+          "Yes, in our company, the women have a two-week vacation a year, besides this, if you are a married woman, maternity leave for some months is permitted.",
+          "I think it is very necessary for us. I wonder whether I am on holiday with payment every year.",
+          "Yes, you have a paid month holiday every year.",
+          "Right. How about the unemployment compensation and the retirement pension?",
+          "Well, we are only responsible for the retirement pension. About the unemployment compensation, this will be given by the government.",
+          "Yes, I see."
+        ]
+      },
+      "candidate_text": "Yes, in our company, the women have a two-week vacation a year, besides this, if you are a married woman, maternity leave for some months is permitted.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "reported_policy",
+        "event_status": "annual_vacation_and_conditional_maternity_leave",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker reports two weeks of annual vacation for women at the company and several months of maternity leave conditional on being married. Retain the run-on as an attributed company-policy claim, without endorsing it or asserting leave taken."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10743_8_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10746:5:3",
+      "source": {
+        "split": "train",
+        "dialogue": 10746,
+        "turn": 5,
+        "segment": 3,
+        "span": [
+          30,
+          59
+        ],
+        "text": "How much do you want to loan?",
+        "context": [
+          "Good morning, what can I do for you?",
+          "I want to buy a car to facilitate my life. But I don't have enough money. Could you supply a loan to me?",
+          "Oh, I see. Would you mind telling me your monthly salary?",
+          "Sure. 7,000 yuan per month.",
+          "OK. We can supply you a loan. How much do you want to loan?",
+          "200,000 yuan. By the way, what about the interest rate?",
+          "It's only 4.5 % for one-year loan. Do you want to apply now?",
+          "Yes, I think so.",
+          "OK. Please fill out this loan application.",
+          "All right. Thank you.",
+          "My pleasure."
+        ]
+      },
+      "candidate_text": "How much do you want to loan?",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "question",
+        "event_status": "queried_amount_customer_wants_to_borrow",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The bank has offered to supply a loan to the customer, so the question concerns how much the customer wants to receive. Retain loan without reversing lender and borrower or asserting a transfer."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10746_5_3",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10751:4:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10751,
+        "turn": 4,
+        "segment": 1,
+        "span": [
+          0,
+          60
+        ],
+        "text": "I have no trouble communicating with native English Speaker.",
+        "context": [
+          "Do you speak a foreign language?",
+          "Yes. I am capable of speaking English smoothly. I have been learning English for years.",
+          "How well do you know English?",
+          "I have no trouble communicating with native English Speaker. I even taught spoken English in a training school."
+        ]
+      },
+      "candidate_text": "I have no trouble communicating with native English Speaker.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "self_report",
+        "event_status": "ease_of_english_communication",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker reports no difficulty communicating with native English speakers. The missing determiner does not specify a count or independently establish proficiency."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10751_4_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10752:4:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10752,
+        "turn": 4,
+        "segment": 1,
+        "span": [
+          0,
+          65
+        ],
+        "text": "Yes, because I think being interesting thing is the best teacher.",
+        "context": [
+          "If we give you the job, what's the most important thing you except to get?",
+          "Well, I just want to enjoy what I'm doing it's the most important thing to me.",
+          "Just this?",
+          "Yes, because I think being interesting thing is the best teacher. Or have more opportunities to have career growth.",
+          "Do you want to get a promotion?",
+          "Yes, of course.",
+          "Where would you like to be in 5 years?",
+          "In five years, I'd like to be a senior manager of this corporation.",
+          "How do you plan to accomplish this?",
+          "By doing whatever is necessary."
+        ]
+      },
+      "candidate_text": "Yes, because I think being interesting thing is the best teacher.",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "explanation",
+        "event_status": "enjoyment_and_learning_with_damaged_subject",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The prior turn prioritizes enjoyable work. This answer links that preference to a best-teacher comparison, but being interesting thing leaves its subject unclear."
+        },
+        "unknown": [
+          "The precise subject of the best-teacher comparison is unresolved."
+        ]
+      },
+      "adapter_id": "dd_v24_train_10752_4_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10755:2:3",
+      "source": {
+        "split": "train",
+        "dialogue": 10755,
+        "turn": 2,
+        "segment": 3,
+        "span": [
+          85,
+          278
+        ],
+        "text": "You see, we had all of these unexpected technical problems at the last minute, and that I couldn't get into the database and extract the kind of information that I needed for the data analysis.",
+        "context": [
+          "And so, I just wanted to check in with you and find out where we are with this project. As you know, you've missed a fairly significant deadline last week, and this will negativity impact the team's ability to move forward with the next stages of this project.",
+          "I know, I'm really sorry that I missed the deadline. But really, it wasn't my fault. You see, we had all of these unexpected technical problems at the last minute, and that I couldn't get into the database and extract the kind of information that I needed for the data analysis. You know, if the tech guys would have done their job and kept the ARM stable, then I wouldn't have missed my deadline.",
+          "Oh, come on! An excuse like that is tantamount to lying. You're essentially blaming the tech team for your time management issues, rather than accepting responsibility for the fact that you were procrastinating for the past two weeks.",
+          "No, I'm not trying to pass the buck here; I know that it was me who is ultimately responsible for getting this done. But the thing is, I could have finished on time if the system hadn't gone down. And you know, with everything I've got going on now, I can't afford to waste time dealing with technical problems. I've got a lot on my plate and there are only twenty-four hours in a day...",
+          "I'm not going to accept this excuse. You're using these small technical glitches as a crutch and trying to rationalize the fact that you've missed your deadline. Look, we have standards and I expect you to live up to those standards. No more phoney cases. If you're in over your head, you tell me. No more missed deadlines. Now, I want that data on my desk by nine am!"
+        ]
+      },
+      "candidate_text": "You see, we had all of these unexpected technical problems at the last minute, and that I couldn't get into the database and extract the kind of information that I needed for the data analysis.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "explanation",
+        "event_status": "technical_failures_and_inability_to_extract",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "The speaker reports unexpected last-minute technical problems and inability to access the database and extract needed information. The stray that does not turn the failed actions into completed extraction."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10755_2_3",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10758:3:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10758,
+        "turn": 3,
+        "segment": 1,
+        "span": [
+          0,
+          39
+        ],
+        "text": "Why didn't you phone me from a callboy?",
+        "context": [
+          "Why didn't you call me last night?",
+          "Because I went out.",
+          "Why didn't you phone me from a callboy?",
+          "I didn't have any change.",
+          "Tell me why you didn't come to see me tonight then.",
+          "I don't like all your questions. That's why."
+        ]
+      },
+      "candidate_text": "Why didn't you phone me from a callboy?",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "question",
+        "event_status": "queried_failure_to_phone_from_unclear_source",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker asks why the other person did not phone using a source written callboy. Do not infer a payphone, booth or an intervening person from this word."
+        },
+        "unknown": [
+          "The intended calling source represented by callboy is unclear."
+        ]
+      },
+      "adapter_id": "dd_v24_train_10758_3_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10782:2:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10782,
+        "turn": 2,
+        "segment": 1,
+        "span": [
+          0,
+          32
+        ],
+        "text": "Sweet and sour pro chops, Madam.",
+        "context": [
+          "What's special for today?",
+          "Sweet and sour pro chops, Madam.",
+          "We'll have it for two people.",
+          "In a minute, Madam."
+        ]
+      },
+      "candidate_text": "Sweet and sour pro chops, Madam.",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "identification",
+        "event_status": "menu_special_with_unclear_meat_label",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The answer names today's special as sweet-and-sour chops with the modifier pro. Sweet and sour describe the dish, and Madam is direct address. Do not infer pork or another meat."
+        },
+        "unknown": [
+          "The ingredient or modifier meant by pro is unresolved."
+        ]
+      },
+      "adapter_id": "dd_v24_train_10782_2_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10792:5:4",
+      "source": {
+        "split": "train",
+        "dialogue": 10792,
+        "turn": 5,
+        "segment": 4,
+        "span": [
+          190,
+          200
+        ],
+        "text": "Also get s",
+        "context": [
+          "Honey, we are all out of wine and cheese. Do you mind running to the deli and picking up a few things?",
+          "Can't it wait? I'm watching the game right now!",
+          "Your friends and family are coming over tonight and we still need to get a lot of things.",
+          "Fine! What do you need?",
+          "OK, pick up some cured meats to go with the wine. Maybe a pound of polish sausages, ham, liverwurst, salami and any other cold cuts that are on sale. I think I saw a promotion for pastrami. Also get s",
+          "Whoa wait a minute! Isn't that a bit too much? I mean, how much is all of this going to cost!",
+          "Never mind that. Get some dips as well. Get a jar of spinach and blue cheese dip and also some Tzatziki. If they have bean dip get that as well. Last but not least, get some pickles.",
+          "Is that all, your majesty?",
+          "Very funny! Get a move on! People will be here any minute."
+        ]
+      },
+      "candidate_text": "Also get s",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "request",
+        "event_status": "additional_purchase_with_missing_item",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "In the shopping-list exchange, Also get is a request to obtain an additional item. The final s does not identify the item, quantity or completed purchase."
+        },
+        "unknown": [
+          "The additional item and missing continuation after s are unknown."
+        ]
+      },
+      "adapter_id": "dd_v24_train_10792_5_4",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10793:4:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10793,
+        "turn": 4,
+        "segment": 1,
+        "span": [
+          0,
+          18
+        ],
+        "text": "Yes, Mr. Forester.",
+        "context": [
+          "Mr. Wang, we haven't discussed the mode of payment.",
+          "You know Mr. Forster, this is a really large purchase. I am afraid we can't pay off at one time. We have to pay by installment.",
+          "Do you mean you prefer a deferred payment?",
+          "Yes, Mr. Forester.",
+          "When do you start the payment then?",
+          "We'll start our payment in half a year and the total amount will be paid off within 2 years by three installments.",
+          "We can accept that but you have to pay the interest.",
+          "All right.",
+          "Shall we sign the agreement now?",
+          "Ok, let's sign it."
+        ]
+      },
+      "candidate_text": "Yes, Mr. Forester.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "confirmation",
+        "event_status": "deferred_payment_preference",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "Yes confirms a preference for deferred payment and addresses the interlocutor as Mr. Forester. Retain the spelling difference from Forster without inventing another person or completed payment."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10793_4_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10796:5:3",
+      "source": {
+        "split": "train",
+        "dialogue": 10796,
+        "turn": 5,
+        "segment": 3,
+        "span": [
+          56,
+          115
+        ],
+        "text": "It was painted by a famous Chinese painter in King Dynasty.",
+        "context": [
+          "Good morning, sir. Could I be of any service to you?",
+          "Have you got any Chinese paintings?",
+          "Yes, we have landscape paintings, figure paintings and flower-and-bird paintings.",
+          "I'd like a flower-and-bird painting.",
+          "Good. How about this picture of cranes with pine trees? It was painted by a famous Chinese painter in King Dynasty.",
+          "Oh, they look just like live cranes. I like this picture very much. How much is it?",
+          "One thousand dollars.",
+          "It's a lot of money. But the picture is excellent, I'll take it."
+        ]
+      },
+      "candidate_text": "It was painted by a famous Chinese painter in King Dynasty.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "attribution",
+        "event_status": "painting_origin_as_claimed",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "The speaker attributes the painting to a famous Chinese painter in the period labelled King Dynasty. Preserve that name without substituting a dynasty, verifying the attribution or naming the painter."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10796_5_3",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10806:13:7",
+      "source": {
+        "split": "train",
+        "dialogue": 10806,
+        "turn": 13,
+        "segment": 7,
+        "span": [
+          164,
+          200
+        ],
+        "text": "I don't think I have the patience fo",
+        "context": [
+          "Hi, excuse me sir? I'm looking for a dress shoe. My usual pair that I've had for years have finally been stretched out of shape. They don't provide any support anymore.",
+          "Sure, what kind of shoe are you looking for? We've got strappy sandals, sleek high heels, edgy pumps, or if you're looking for something a little more practical, we've got Mary Janes, ballerinas.",
+          "Show me some classic high heels, please.",
+          "Ok, right this way. What color did you have in mind?",
+          "Black. Classic.",
+          "Of course. We've got this style here that is very popular. Because it's an open-toe shoe, you can wear it any time of the year. They look great on everyone.",
+          "Umm. too shiny. And I wear pantyhose with my shoes so let's look for a closed-toe shoe.",
+          "OK, these are a very nice pair of leather shoes with a two-inch heel so they are very comfortable.",
+          "I don't like the pointed toes. Let me take a look at what else you have. Too high. That one looks like the back would cut into my heel. I have a high instep so I doubt that one will fit properly.",
+          "What size?",
+          "Seven-and-a-half.",
+          "Here we are. How does it fit?",
+          "Hmmm. Not good. They're too tight. The length is right, but the shoe is too narrow and it's pinching my toes. And there'd be no room for my insoles. You know what? I don't think I have the patience fo",
+          "Have a nice day, Ma'am."
+        ]
+      },
+      "candidate_text": "I don't think I have the patience fo",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "self_report",
+        "event_status": "lack_of_patience_with_unfinished_complement",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker expresses doubt about having enough patience during shoe shopping. Fo leaves the precise complement unfinished; do not infer a decision to leave or a completed purchase."
+        },
+        "unknown": [
+          "The missing continuation after fo is unspecified."
+        ]
+      },
+      "adapter_id": "dd_v24_train_10806_13_7",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10816:6:2",
+      "source": {
+        "split": "train",
+        "dialogue": 10816,
+        "turn": 6,
+        "segment": 2,
+        "span": [
+          5,
+          95
+        ],
+        "text": "I've come to talk with you about ordering the eight megapixel cameras for our new methone.",
+        "context": [
+          "Good morning, Angela, how have you been lately?",
+          "Morning, Michael. I've been very busy lately. One of our other vendors is going out of business and I've been searching for a suitable replacement.",
+          "Well, rest assured that you can count on us to be here for the long run, please sit down. Coffee?",
+          "No, thanks. I've been trying to cut down on the caffeine.",
+          "Haha, I could never do that. I'd be a zombie if I didn't have my morning coffee fix. Let's get down to business then.",
+          "Yes. I've come to talk with you about ordering the eight megapixel cameras for our new methone. The demand for phone cameras is growing, and Pear has been falling behind in the market.",
+          "That's great! I'm glad to hear that Pear has finally jumped on the bandwagon. Right now our contract is for the five megapixel cameras. Is Pear still interested in having those?",
+          "No, we're changing all the cameras to eight megapixels. We were hoping that by making your company our sole supplier for cameras we could negotiate a better deal.",
+          "Surely. Let's get started by drafting a new contract."
+        ]
+      },
+      "candidate_text": "I've come to talk with you about ordering the eight megapixel cameras for our new methone.",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "purpose_statement",
+        "event_status": "visit_to_discuss_camera_order",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "The speaker says they have come to discuss ordering eight-megapixel cameras for a product written methone. The visit is reported, but neither discussion outcome nor an order is complete."
+        },
+        "unknown": [
+          "The product identity represented by methone is unclear."
+        ]
+      },
+      "adapter_id": "dd_v24_train_10816_6_2",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10839:6:3",
+      "source": {
+        "split": "train",
+        "dialogue": 10839,
+        "turn": 6,
+        "segment": 3,
+        "span": [
+          67,
+          93
+        ],
+        "text": "It must be other problems.",
+        "context": [
+          "Dear, can you drive me to the clinic?",
+          "I'm afraid I can't.",
+          "Why?",
+          "Well, my car won't start. I don't know what's the matter with it.",
+          "Could it be the battery?",
+          "No, I don't think it could be. I checked the battery two days ago. It must be other problems.",
+          "Well, I suppose it could be the gas.",
+          "No, there is plenty of gas. I filled it up yesterday.",
+          "Perhaps it's the starter then?",
+          "Yes, that's possible."
+        ]
+      },
+      "candidate_text": "It must be other problems.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "inference",
+        "event_status": "inferred_other_car_fault",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker infers a cause other than the battery for the car's failure. Must marks inference rather than obligation or a confirmed diagnosis; number disagreement gives no fault count."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10839_6_3",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10844:7:6",
+      "source": {
+        "split": "train",
+        "dialogue": 10844,
+        "turn": 7,
+        "segment": 6,
+        "span": [
+          170,
+          196
+        ],
+        "text": "You should stay in bed tom",
+        "context": [
+          "Well, what is your trouble?",
+          "I'm not feeling well, doctor. I have a sore throat.",
+          "Have you any aches and pains?",
+          "Yes, my back aches.",
+          "I'll take your temperature. How long have you been feeling ill?",
+          "It began the night before last.",
+          "You have a temperature, but it's nothing serious. It's probably just the flu. I'll give you a prescription. Take this to the chemist's. Take one tablet every four hours. You should stay in bed tom",
+          "Lots of people are ill at the moment.",
+          "It's this cold weather we're having."
+        ]
+      },
+      "candidate_text": "You should stay in bed tom",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "advice",
+        "event_status": "bed_rest_with_unfinished_time",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker advises staying in bed. The trailing tom does not establish tomorrow or a duration, and the advice is attributed rather than verified medical guidance."
+        },
+        "unknown": [
+          "The intended time or continuation after tom is missing."
+        ]
+      },
+      "adapter_id": "dd_v24_train_10844_7_6",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10850:5:4",
+      "source": {
+        "split": "train",
+        "dialogue": 10850,
+        "turn": 5,
+        "segment": 4,
+        "span": [
+          106,
+          196
+        ],
+        "text": "Our VIP limousine will pick you up and provide you with complimentary champagne and finger",
+        "context": [
+          "Welcome to Perfect Getaway Tours. How can I help you?",
+          "I would like to plan a surprise getaway for me and my wife.",
+          "Very well, we have a couple of different options such as beaches, the wilderness, the countryside or even going to a spa for the weekend.",
+          "I think something in the countryside would be nice.",
+          "Perfect! This package includes round-trip flights to New Hampshire. A free airport pick - up is included. Our VIP limousine will pick you up and provide you with complimentary champagne and finger",
+          "Sounds good! What is the hotel that we will be staying at like?",
+          "That is the best part. Your hotel is actually an old country villa that has been restored and refurbished to accommodate a maximum of that is guests. You will enjoy an intimate and private time in this",
+          "Wow! This sounds like something my wife would really enjoy! Are there any outdoor activities we can take part in?",
+          "Of course! The hotel has a stable with beautiful stallions for a very romantic horseback ride along the country trail. You can also go fishing to the nearby lake or visit the local vineyard.",
+          "I'm sold! I want to book this trip. I don't care what it costs! Money is no object!"
+        ]
+      },
+      "candidate_text": "Our VIP limousine will pick you up and provide you with complimentary champagne and finger",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "offer",
+        "event_status": "future_pickup_and_incomplete_refreshments",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The tour representative offers limousine pickup and complimentary champagne, followed by an unfinished item beginning finger. Do not complete the item as food or assert delivered service."
+        },
+        "unknown": [
+          "The remaining item and continuation after finger are unknown."
+        ]
+      },
+      "adapter_id": "dd_v24_train_10850_5_4",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10850:7:2",
+      "source": {
+        "split": "train",
+        "dialogue": 10850,
+        "turn": 7,
+        "segment": 2,
+        "span": [
+          23,
+          149
+        ],
+        "text": "Your hotel is actually an old country villa that has been restored and refurbished to accommodate a maximum of that is guests.",
+        "context": [
+          "Welcome to Perfect Getaway Tours. How can I help you?",
+          "I would like to plan a surprise getaway for me and my wife.",
+          "Very well, we have a couple of different options such as beaches, the wilderness, the countryside or even going to a spa for the weekend.",
+          "I think something in the countryside would be nice.",
+          "Perfect! This package includes round-trip flights to New Hampshire. A free airport pick - up is included. Our VIP limousine will pick you up and provide you with complimentary champagne and finger",
+          "Sounds good! What is the hotel that we will be staying at like?",
+          "That is the best part. Your hotel is actually an old country villa that has been restored and refurbished to accommodate a maximum of that is guests. You will enjoy an intimate and private time in this",
+          "Wow! This sounds like something my wife would really enjoy! Are there any outdoor activities we can take part in?",
+          "Of course! The hotel has a stable with beautiful stallions for a very romantic horseback ride along the country trail. You can also go fishing to the nearby lake or visit the local vineyard.",
+          "I'm sold! I want to book this trip. I don't care what it costs! Money is no object!"
+        ]
+      },
+      "candidate_text": "Your hotel is actually an old country villa that has been restored and refurbished to accommodate a maximum of that is guests.",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "description",
+        "event_status": "restored_villa_with_unknown_guest_capacity",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "The speaker describes the hotel as an old villa that has been restored and refurbished. The phrase maximum of that is guests does not provide a usable capacity figure."
+        },
+        "unknown": [
+          "The maximum guest count is unknown."
+        ]
+      },
+      "adapter_id": "dd_v24_train_10850_7_2",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10850:7:3",
+      "source": {
+        "split": "train",
+        "dialogue": 10850,
+        "turn": 7,
+        "segment": 3,
+        "span": [
+          150,
+          201
+        ],
+        "text": "You will enjoy an intimate and private time in this",
+        "context": [
+          "Welcome to Perfect Getaway Tours. How can I help you?",
+          "I would like to plan a surprise getaway for me and my wife.",
+          "Very well, we have a couple of different options such as beaches, the wilderness, the countryside or even going to a spa for the weekend.",
+          "I think something in the countryside would be nice.",
+          "Perfect! This package includes round-trip flights to New Hampshire. A free airport pick - up is included. Our VIP limousine will pick you up and provide you with complimentary champagne and finger",
+          "Sounds good! What is the hotel that we will be staying at like?",
+          "That is the best part. Your hotel is actually an old country villa that has been restored and refurbished to accommodate a maximum of that is guests. You will enjoy an intimate and private time in this",
+          "Wow! This sounds like something my wife would really enjoy! Are there any outdoor activities we can take part in?",
+          "Of course! The hotel has a stable with beautiful stallions for a very romantic horseback ride along the country trail. You can also go fishing to the nearby lake or visit the local vineyard.",
+          "I'm sold! I want to book this trip. I don't care what it costs! Money is no object!"
+        ]
+      },
+      "candidate_text": "You will enjoy an intimate and private time in this",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "prediction",
+        "event_status": "promised_privacy_with_unfinished_place",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker predicts an intimate private experience. The unfinished in this does not name a precise setting or establish that the experience occurred."
+        },
+        "unknown": [
+          "The missing location phrase after this is unspecified."
+        ]
+      },
+      "adapter_id": "dd_v24_train_10850_7_3",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10853:3:3",
+      "source": {
+        "split": "train",
+        "dialogue": 10853,
+        "turn": 3,
+        "segment": 3,
+        "span": [
+          33,
+          153
+        ],
+        "text": "The Personal Pledge Loan is a loan secured by undue certificates, Time Deposits, for example, or Visible Treasury Bonds.",
+        "context": [
+          "Loans Department, how can I help you?",
+          "Hello. Could you give me some details about your Personal Pledge Loans, please?",
+          "Certainly, Sir. I'd be happy to. The Personal Pledge Loan is a loan secured by undue certificates, Time Deposits, for example, or Visible Treasury Bonds.",
+          "So, as long as I have one of those, I can apply for a Personal Pledge Loan?",
+          "That's correct, Sir. The bank will issue receipt to you and also take care of all the pledged securities.",
+          "Mmmm... how about the period of repayment?",
+          "The maximum maturity period is a year, but it also cannot exceed the maturity on the certificates used as collateral.",
+          "And the maximum loan amount?",
+          "The initial amount is just 2,000 RIB, but we can go up to 100,000 RIB. But remember, it cannot exceed the amount on the certificates you are using as collateral.",
+          "OK. I'll have a look at what I've got exactly in certificates and get back to you. Thanks for your help. Bye.",
+          "My pleasure, Sir. Bye."
+        ]
+      },
+      "candidate_text": "The Personal Pledge Loan is a loan secured by undue certificates, Time Deposits, for example, or Visible Treasury Bonds.",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "description",
+        "event_status": "loan_collateral_with_unclear_qualification",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker describes a secured loan and gives Time Deposits and Visible Treasury Bonds as collateral examples. Undue certificates is not silently replaced with unmatured certificates; no eligibility or transfer is verified."
+        },
+        "unknown": [
+          "The collateral qualification meant by undue is unresolved."
+        ]
+      },
+      "adapter_id": "dd_v24_train_10853_3_3",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10862:8:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10862,
+        "turn": 8,
+        "segment": 1,
+        "span": [
+          0,
+          36
+        ],
+        "text": "Four in hundred, one in ten, please.",
+        "context": [
+          "May I help you?",
+          "I'd like to withdraw some money.",
+          "Please fill in the slip, stating the exact amount you wish to withdraw.",
+          "All right. And here's my bankbook. Is that all?",
+          "Your ID card, please.",
+          "Oh, yes. Here it is.",
+          "Do you want large ones or small ones?",
+          "Four in hundred, one in ten, please.",
+          "Wait a minute, please... Here's the cash.",
+          "By the way, I'd like to change some U. S. dollars to pounds and I want to know today's exchange rate.",
+          "Well, sir. According to today's exchange rate, every pound in cash is equivalent to 1.89 U. S. dollars. How much would you like to change?",
+          "I want 100 pounds. And here are 189 U. S. dollars.",
+          "... OK. And here's your money.",
+          "Thank you. And goodbye.",
+          "Goodbye."
+        ]
+      },
+      "candidate_text": "Four in hundred, one in ten, please.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "request",
+        "event_status": "requested_banknote_denominations",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "Answering the denomination question, the speaker requests four hundred-denomination notes and one ten-denomination note. This is a request, not completed withdrawal; no currency is specified."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10862_8_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10864:10:2",
+      "source": {
+        "split": "train",
+        "dialogue": 10864,
+        "turn": 10,
+        "segment": 2,
+        "span": [
+          14,
+          74
+        ],
+        "text": "But can't you make the rent cheaper, Let's see, 12,000 yuan?",
+        "context": [
+          "Hello, Who's that speaking?",
+          "I am calling about the advertisement for a flat with a bedroom. Do you still have it?",
+          "Yes, I do.",
+          "Is there any furniture in it?",
+          "Yes, It's fully furnished.",
+          "What's the rent for a year?",
+          "15,000 yuan, including water, but not electricity and gas.",
+          "Where is it located?",
+          "It's in the International Trade Zone. It's only ten minutes'walk from the nearest subway station.",
+          "That's great. But can't you make the rent cheaper, Let's see, 12,000 yuan?",
+          "The price can be talked over. How about coming around and taking a look at it first?",
+          "OK. I will be free tomorrow afternoon. I'll take a taxi to get there. See you.",
+          "All right, see you."
+        ]
+      },
+      "candidate_text": "But can't you make the rent cheaper, Let's see, 12,000 yuan?",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "negotiation",
+        "event_status": "proposed_annual_rent_reduction",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "After hearing the annual rent of 15000 yuan, the speaker proposes reducing it to 12000 yuan. The negative question and Let's see express negotiation, not agreement or payment."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10864_10_2",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10868:2:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10868,
+        "turn": 2,
+        "segment": 1,
+        "span": [
+          0,
+          100
+        ],
+        "text": "Well, I just spend 15 minutes as so checking my stock bonds and booking an air ticket for my mother.",
+        "context": [
+          "Look at this survey conducted by a website. A quarter of the employees will spend an average of 10 minutes everyday online doing personal things. Hi, Francis, what about you?",
+          "Well, I just spend 15 minutes as so checking my stock bonds and booking an air ticket for my mother. Anyway, I have done all my work and it is about the time to leave.",
+          "Though our company doesn't have a return policy, limiting the personal use of internet, I don't think the boss will like us to do that.",
+          "Certainly, work always comes first.",
+          "But it is lucky for us. The company computers don't have software keeping tracks of websites we visit. I have shopped too often online these days.",
+          "Well, keep a low profile."
+        ]
+      },
+      "candidate_text": "Well, I just spend 15 minutes as so checking my stock bonds and booking an air ticket for my mother.",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "self_report",
+        "event_status": "online_activity_with_unclear_aspect",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker mentions fifteen minutes checking stock bonds and booking a ticket for their mother. Present spend alongside the context does not safely distinguish a habitual allocation from an already completed instance; as so does not establish a reliable qualification."
+        },
+        "unknown": [
+          "Whether the activities are habitual, ongoing or completed, and the qualifier as so, remain unclear."
+        ]
+      },
+      "adapter_id": "dd_v24_train_10868_2_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10871:2:5",
+      "source": {
+        "split": "train",
+        "dialogue": 10871,
+        "turn": 2,
+        "segment": 5,
+        "span": [
+          196,
+          249
+        ],
+        "text": "It saves a lot of place one machine instead of three.",
+        "context": [
+          "Office software like Windows might be one of the best inventions in this information age. It saves us from so much work and makes the communication even around the world much easier.",
+          "Fully agree. I do enjoy the convenience though I am still a beginner in using Excel. The latest office equipment is more type-functional. It combines fax machine, copy machine and printer in one. It saves a lot of place one machine instead of three.",
+          "Yes, this machine is even smaller than those before.",
+          "When will we get one of those?",
+          "You know our boss always trying to save the last penny. We have to use up the equipment first."
+        ]
+      },
+      "candidate_text": "It saves a lot of place one machine instead of three.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "explanation",
+        "event_status": "space_saved_by_combined_equipment",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "After describing a fax, copier and printer combined, the speaker says one machine instead of three saves space. The missing connector does not establish a purchase or a measured saving."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10871_2_5",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10874:3:4",
+      "source": {
+        "split": "train",
+        "dialogue": 10874,
+        "turn": 3,
+        "segment": 4,
+        "span": [
+          40,
+          75
+        ],
+        "text": "When will be checking out tomorrow?",
+        "context": [
+          "Front desk. May I help you?",
+          "I'm going to check out tomorrow. Then we'll be back in a week's time. Can I leave my luggage here.",
+          "Yes. Sure. You do have storage service. When will be checking out tomorrow?",
+          "About nine thirty in the morning.",
+          "Shall we arrange a bail boy to pick up your luggage at nine o'clock?",
+          "Sure.",
+          "May I have your room number please?",
+          "1218.",
+          "1218. We'll collect your luggage at nine o'clock tomorrow. Would you then come to the front desk to get your storage receipt please?",
+          "Thank you very much.. Bye.",
+          "You're welcome. Good-Bye."
+        ]
+      },
+      "candidate_text": "When will be checking out tomorrow?",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "question",
+        "event_status": "queried_checkout_time",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The hotel guest has said they will check out tomorrow. The subjectless question asks what time, without asserting checkout as completed."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10874_3_4",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10874:5:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10874,
+        "turn": 5,
+        "segment": 1,
+        "span": [
+          0,
+          68
+        ],
+        "text": "Shall we arrange a bail boy to pick up your luggage at nine o'clock?",
+        "context": [
+          "Front desk. May I help you?",
+          "I'm going to check out tomorrow. Then we'll be back in a week's time. Can I leave my luggage here.",
+          "Yes. Sure. You do have storage service. When will be checking out tomorrow?",
+          "About nine thirty in the morning.",
+          "Shall we arrange a bail boy to pick up your luggage at nine o'clock?",
+          "Sure.",
+          "May I have your room number please?",
+          "1218.",
+          "1218. We'll collect your luggage at nine o'clock tomorrow. Would you then come to the front desk to get your storage receipt please?",
+          "Thank you very much.. Bye.",
+          "You're welcome. Good-Bye."
+        ]
+      },
+      "candidate_text": "Shall we arrange a bail boy to pick up your luggage at nine o'clock?",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "offer",
+        "event_status": "luggage_pickup_with_unclear_staff_label",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker offers to arrange luggage collection at nine o'clock by a person labelled bail boy. Do not correct the staff title or treat the arrangement, collection or time of day as confirmed."
+        },
+        "unknown": [
+          "The precise staff title represented by bail boy is unresolved."
+        ]
+      },
+      "adapter_id": "dd_v24_train_10874_5_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10890:11:4",
+      "source": {
+        "split": "train",
+        "dialogue": 10890,
+        "turn": 11,
+        "segment": 4,
+        "span": [
+          62,
+          89
+        ],
+        "text": "What's there arriving time?",
+        "context": [
+          "Good morning. More Hotel. At your service.",
+          "Good morning! I'd like to make a reservation, please. Do you have any rooms available for the next week?",
+          "All right. Single-room or double-room?",
+          "Double-room, please. It's for an American couple.",
+          "Hold on, please. Let me check the bookings. Yes, we have double-rooms available. What kind of room would you like, sir?",
+          "I'd like a room with a nice view, please.",
+          "We have a nice garden-view room.",
+          "Good. I'll take that one. Is there a bar in your hotel?",
+          "Yes, sir. And there is also a party going on each Saturday night in the bar till next morning.",
+          "Party all night? Hotel California? No kidding. Anyway, what's the room charge?",
+          "888 Yuan per night. With breakfast. “ Northern Star ” buffet! What's there arriving time?",
+          "They turn up around 4p. m. next Monday, and they check out on next Sunday.",
+          "I see. May I have your name and phone number?",
+          "Yes. 6710121 3. Benjamin."
+        ]
+      },
+      "candidate_text": "What's there arriving time?",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "question",
+        "event_status": "queried_guests_arrival_time",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "In the booking conversation about an American couple, the hotel representative asks their arrival time. The there arriving defect does not provide the time or indicate a completed arrival."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10890_11_4",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10892:3:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10892,
+        "turn": 3,
+        "segment": 1,
+        "span": [
+          0,
+          126
+        ],
+        "text": "I was wondering, I have heard many of my co-workers that your knowledge and experience in international markets is phenomenal.",
+        "context": [
+          "Mr Hughes? Do you have a minute? I would like to discuss something with you.",
+          "What can I do for you?",
+          "I was wondering, I have heard many of my co-workers that your knowledge and experience in international markets is phenomenal. Also, I've heard the rumor that you speak fluent Japanese. Is that right?",
+          "Yes, that's right. I do speak decent Japanese.",
+          "Right now I'm working on a product launch project to open up our Asian market. We have several upcoming events to take place for the Japanese cities. We'll be heading to Tokyo next month to get things started. What I would like to talk to you about is joining our team to help bring this project to completion.",
+          "Exactly what kind of help did you have in mind?",
+          "We aer looking for someone who is familiar with the market and cultural issues to act as an advisor to our marketing staff. We would like to set up a partnership, where we can help each other.",
+          "So if I can help you as a consultant, what is in for me?",
+          "We could give you an uncite office, as well as potential to develop your own contracts in Japan. At the same time, after helping with our project, we will be willing to split our profit with you."
+        ]
+      },
+      "candidate_text": "I was wondering, I have heard many of my co-workers that your knowledge and experience in international markets is phenomenal.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "reported_praise",
+        "event_status": "colleagues_praise_of_market_expertise",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "The speaker reports hearing colleagues praise Mr Hughes's international-market knowledge and experience. Preserve the malformed heard construction as attributed praise, not independent validation of ability."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10892_3_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10892:9:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10892,
+        "turn": 9,
+        "segment": 1,
+        "span": [
+          0,
+          96
+        ],
+        "text": "We could give you an uncite office, as well as potential to develop your own contracts in Japan.",
+        "context": [
+          "Mr Hughes? Do you have a minute? I would like to discuss something with you.",
+          "What can I do for you?",
+          "I was wondering, I have heard many of my co-workers that your knowledge and experience in international markets is phenomenal. Also, I've heard the rumor that you speak fluent Japanese. Is that right?",
+          "Yes, that's right. I do speak decent Japanese.",
+          "Right now I'm working on a product launch project to open up our Asian market. We have several upcoming events to take place for the Japanese cities. We'll be heading to Tokyo next month to get things started. What I would like to talk to you about is joining our team to help bring this project to completion.",
+          "Exactly what kind of help did you have in mind?",
+          "We aer looking for someone who is familiar with the market and cultural issues to act as an advisor to our marketing staff. We would like to set up a partnership, where we can help each other.",
+          "So if I can help you as a consultant, what is in for me?",
+          "We could give you an uncite office, as well as potential to develop your own contracts in Japan. At the same time, after helping with our project, we will be willing to split our profit with you."
+        ]
+      },
+      "candidate_text": "We could give you an uncite office, as well as potential to develop your own contracts in Japan.",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "offer",
+        "event_status": "prospective_office_and_business_opportunities",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker offers an office with the unclear modifier uncite and opportunities for developing contracts in Japan. Could is an offer of possibilities, not completed provision or signed contracts."
+        },
+        "unknown": [
+          "The property or location meant by uncite is unclear."
+        ]
+      },
+      "adapter_id": "dd_v24_train_10892_9_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10895:5:2",
+      "source": {
+        "split": "train",
+        "dialogue": 10895,
+        "turn": 5,
+        "segment": 2,
+        "span": [
+          108,
+          173
+        ],
+        "text": "Our portfolio is worth half of what it was worth points week ago.",
+        "context": [
+          "Sorry to bother you sir, but I have some bad news.",
+          "What is it?",
+          "Well, the stock market just took a huge plunge and we've lost a lot of money!",
+          "What do you mean? What happened?",
+          "There are many factors that weigh in, but NASDAQ is down 200 points, the DOW Jones indicator also suffered! Our portfolio is worth half of what it was worth points week ago.",
+          "How is this possible? You are supposed to be talking to our stockbrokers and making sure that our securities and investments are safe and making a profitable return!",
+          "I know sir! We didn't expect a bull market to become a bear market all of a sudden. On the other hand, you still have some high yield trash bonds and government bonds that will give us enough liquidity to cut our loses and reinvest in emerging markets. We could potentially make this tragedy work for us and make us think outside the box.",
+          "Do what you have to do! One other thing, don't tell the rest of the stockholders about this. If they find out, it's the end of this company!"
+        ]
+      },
+      "candidate_text": "Our portfolio is worth half of what it was worth points week ago.",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "report",
+        "event_status": "portfolio_value_reduction_with_unclear_time",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker says the portfolio is worth half its earlier value. Points week ago leaves the comparison time unclear; no precise week count or loss amount is recoverable."
+        },
+        "unknown": [
+          "The time reference expressed by points week ago is unresolved."
+        ]
+      },
+      "adapter_id": "dd_v24_train_10895_5_2",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10896:4:2",
+      "source": {
+        "split": "train",
+        "dialogue": 10896,
+        "turn": 4,
+        "segment": 2,
+        "span": [
+          10,
+          113
+        ],
+        "text": "It's a very exciting game, because it keeps you alert, and I also enjoying the team spirit of football.",
+        "context": [
+          "What do you do in your spare times?",
+          "I have many hobbies. I like almost all kind of sports, and I also like to listen to classical musics.",
+          "What sports do you like best?",
+          "Football. It's a very exciting game, because it keeps you alert, and I also enjoying the team spirit of football.",
+          "Do you like reading books?",
+          "Yes. I enjoying reading biographs, especially those of well-known statesmen, militarists and artists, I can learn a lot from their life histories.",
+          "Who are you favourite authors?",
+          "I like the novels of Inches very much, I have reading almost all of them in Chinese translation, I wish I can reading them in the original."
+        ]
+      },
+      "candidate_text": "It's a very exciting game, because it keeps you alert, and I also enjoying the team spirit of football.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "preference",
+        "event_status": "football_excitement_and_team_spirit",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker calls football exciting because it keeps players alert and expresses enjoyment of team spirit. The malformed I also enjoying does not establish a particular game played or won."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10896_4_2",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10896:6:2",
+      "source": {
+        "split": "train",
+        "dialogue": 10896,
+        "turn": 6,
+        "segment": 2,
+        "span": [
+          5,
+          146
+        ],
+        "text": "I enjoying reading biographs, especially those of well-known statesmen, militarists and artists, I can learn a lot from their life histories.",
+        "context": [
+          "What do you do in your spare times?",
+          "I have many hobbies. I like almost all kind of sports, and I also like to listen to classical musics.",
+          "What sports do you like best?",
+          "Football. It's a very exciting game, because it keeps you alert, and I also enjoying the team spirit of football.",
+          "Do you like reading books?",
+          "Yes. I enjoying reading biographs, especially those of well-known statesmen, militarists and artists, I can learn a lot from their life histories.",
+          "Who are you favourite authors?",
+          "I like the novels of Inches very much, I have reading almost all of them in Chinese translation, I wish I can reading them in the original."
+        ]
+      },
+      "candidate_text": "I enjoying reading biographs, especially those of well-known statesmen, militarists and artists, I can learn a lot from their life histories.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "preference_and_belief",
+        "event_status": "life_histories_and_learning",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker likes reading the life histories of statesmen, militarists and artists and believes much can be learned from them. The malformed finite form and comma splice do not identify a finished book or attained knowledge."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10896_6_2",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10896:8:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10896,
+        "turn": 8,
+        "segment": 1,
+        "span": [
+          0,
+          139
+        ],
+        "text": "I like the novels of Inches very much, I have reading almost all of them in Chinese translation, I wish I can reading them in the original.",
+        "context": [
+          "What do you do in your spare times?",
+          "I have many hobbies. I like almost all kind of sports, and I also like to listen to classical musics.",
+          "What sports do you like best?",
+          "Football. It's a very exciting game, because it keeps you alert, and I also enjoying the team spirit of football.",
+          "Do you like reading books?",
+          "Yes. I enjoying reading biographs, especially those of well-known statesmen, militarists and artists, I can learn a lot from their life histories.",
+          "Who are you favourite authors?",
+          "I like the novels of Inches very much, I have reading almost all of them in Chinese translation, I wish I can reading them in the original."
+        ]
+      },
+      "candidate_text": "I like the novels of Inches very much, I have reading almost all of them in Chinese translation, I wish I can reading them in the original.",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "preference_and_wish",
+        "event_status": "translated_reading_with_unclear_aspect",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker likes novels by the author labelled Inches and wishes to read them in the original. The malformed have reading mentions almost all in Chinese translation but does not securely distinguish completed reading from ongoing experience."
+        },
+        "unknown": [
+          "The exact aspect and completion of the Chinese-translation reading are uncertain."
+        ]
+      },
+      "adapter_id": "dd_v24_train_10896_8_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10901:6:4",
+      "source": {
+        "split": "train",
+        "dialogue": 10901,
+        "turn": 6,
+        "segment": 4,
+        "span": [
+          168,
+          188
+        ],
+        "text": "Many people bend the",
+        "context": [
+          "Can you suggest a few exercise to help me get fit and stretch my muscles a little?",
+          "Sure. If you want to stretch your legs, a good exercise is to lift your knee in front of your body, like this. It's a very simple exercise, but very effective.",
+          "I need to excise my arms too. How can I do that?",
+          "One good way is to do push-ups. Another way is to use weights. Make sure you grip the weights firmly. You don't want to drop them on your feet!",
+          "When I do push-ups, should I bend my elbows so that my nose touches the ground?",
+          "You don't need to bend your elbows that much. Bend them so that your arms are at a 90 degree angle. The most important thing is to remember to keep your body straight. Many people bend the",
+          "What's a good exercise for my chest muscles?",
+          "One that I recommend is that you lie on your back. You should have a weight in each hand and stretch your arms out side of your body.",
+          "So I need plenty of space for this exercise.",
+          "Yes, you do. Lift the weight up, keeping your arms straight all the time.",
+          "Great. Thanks for you advice!"
+        ]
+      },
+      "candidate_text": "Many people bend the",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "generalization",
+        "event_status": "bending_with_missing_object",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker begins a generalization that many people bend something during the push-up discussion. The object after the is missing; do not choose elbows, backs or waists or turn it into an instruction."
+        },
+        "unknown": [
+          "The thing being bent and the missing continuation are unknown."
+        ]
+      },
+      "adapter_id": "dd_v24_train_10901_6_4",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10901:8:2",
+      "source": {
+        "split": "train",
+        "dialogue": 10901,
+        "turn": 8,
+        "segment": 2,
+        "span": [
+          51,
+          133
+        ],
+        "text": "You should have a weight in each hand and stretch your arms out side of your body.",
+        "context": [
+          "Can you suggest a few exercise to help me get fit and stretch my muscles a little?",
+          "Sure. If you want to stretch your legs, a good exercise is to lift your knee in front of your body, like this. It's a very simple exercise, but very effective.",
+          "I need to excise my arms too. How can I do that?",
+          "One good way is to do push-ups. Another way is to use weights. Make sure you grip the weights firmly. You don't want to drop them on your feet!",
+          "When I do push-ups, should I bend my elbows so that my nose touches the ground?",
+          "You don't need to bend your elbows that much. Bend them so that your arms are at a 90 degree angle. The most important thing is to remember to keep your body straight. Many people bend the",
+          "What's a good exercise for my chest muscles?",
+          "One that I recommend is that you lie on your back. You should have a weight in each hand and stretch your arms out side of your body.",
+          "So I need plenty of space for this exercise.",
+          "Yes, you do. Lift the weight up, keeping your arms straight all the time.",
+          "Great. Thanks for you advice!"
+        ]
+      },
+      "candidate_text": "You should have a weight in each hand and stretch your arms out side of your body.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "instruction",
+        "event_status": "arm_and_weight_position",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker recommends a weight in each hand and extending the arms out to the sides. The out side spacing is retained; no execution, load amount or safety guarantee is established."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10901_8_2",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10903:3:2",
+      "source": {
+        "split": "train",
+        "dialogue": 10903,
+        "turn": 3,
+        "segment": 2,
+        "span": [
+          37,
+          60
+        ],
+        "text": "My name's Charies Ford.",
+        "context": [
+          "Interesting lectures, aren't they?",
+          "Yes, very. I thought the last speaker was especially good.",
+          "Let me introduce myself, by the way. My name's Charies Ford.",
+          "How do you do? I'm Bob Evans."
+        ]
+      },
+      "candidate_text": "My name's Charies Ford.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "identification",
+        "event_status": "literal_self_introduction",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker introduces themself as Charies Ford. Preserve the supplied first name without correcting it to another name or verifying identity externally."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10903_3_2",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10916:3:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10916,
+        "turn": 3,
+        "segment": 1,
+        "span": [
+          0,
+          62
+        ],
+        "text": "Oh, it's the high time for you purchasing in our clothes shop.",
+        "context": [
+          "Hello! Can I help you?",
+          "Well, I am looking for some winter clothes for my fiancee.",
+          "Oh, it's the high time for you purchasing in our clothes shop. We are now having a preseason sale on all our winter apparel.",
+          "Really? What's that?",
+          "Every thing for winter is 20 % off.",
+          "I think my fiancee may favor the sweater in the shop window. Would you like to help me look for any skirts that go with this sweater?",
+          "Sure, we have both skirts and trousers that would look well with the sweater. Look at this section.",
+          "I especially like this flowery skirts. My fiancee will look very elegant in this.",
+          "You have a good taste. It's very much in style this year.",
+          "I don't think the green one fits her complexion. Do you have any skirts in light color or tan?",
+          "Look on the rack to the right.",
+          "Oh, yes. I'll take this one. Can I pay by traveler's check?",
+          "It's ok."
+        ]
+      },
+      "candidate_text": "Oh, it's the high time for you purchasing in our clothes shop.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "encouragement",
+        "event_status": "encouraged_current_shopping",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The salesperson encourages the customer to shop now. The high time construction does not assert that a purchase has happened or that it is overdue by a measurable period."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10916_3_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10916:8:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10916,
+        "turn": 8,
+        "segment": 1,
+        "span": [
+          0,
+          38
+        ],
+        "text": "I especially like this flowery skirts.",
+        "context": [
+          "Hello! Can I help you?",
+          "Well, I am looking for some winter clothes for my fiancee.",
+          "Oh, it's the high time for you purchasing in our clothes shop. We are now having a preseason sale on all our winter apparel.",
+          "Really? What's that?",
+          "Every thing for winter is 20 % off.",
+          "I think my fiancee may favor the sweater in the shop window. Would you like to help me look for any skirts that go with this sweater?",
+          "Sure, we have both skirts and trousers that would look well with the sweater. Look at this section.",
+          "I especially like this flowery skirts. My fiancee will look very elegant in this.",
+          "You have a good taste. It's very much in style this year.",
+          "I don't think the green one fits her complexion. Do you have any skirts in light color or tan?",
+          "Look on the rack to the right.",
+          "Oh, yes. I'll take this one. Can I pay by traveler's check?",
+          "It's ok."
+        ]
+      },
+      "candidate_text": "I especially like this flowery skirts.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "preference",
+        "event_status": "liking_floral_skirts",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The customer expresses particular liking for the indicated floral skirt display. Preserve the number mismatch without choosing an exact item count or asserting purchase."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10916_8_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10932:6:2",
+      "source": {
+        "split": "train",
+        "dialogue": 10932,
+        "turn": 6,
+        "segment": 2,
+        "span": [
+          11,
+          33
+        ],
+        "text": "Welcome to call again.",
+        "context": [
+          "Waitress! My bill for today's lunch, please.",
+          "OK, sir.",
+          "How much do I owe?",
+          "190 yuan.",
+          "Here is 200 yuan. The charge is for you.",
+          "Thank you. Welcome to call again. Goodbye.",
+          "Goodbye."
+        ]
+      },
+      "candidate_text": "Welcome to call again.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "invitation",
+        "event_status": "restaurant_return_invitation",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "At the end of restaurant service, the speaker welcomes a future visit. Call again is a return invitation in this context, not a completed return or specifically a telephone call."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10932_6_2",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10941:3:3",
+      "source": {
+        "split": "train",
+        "dialogue": 10941,
+        "turn": 3,
+        "segment": 3,
+        "span": [
+          50,
+          123
+        ],
+        "text": "I've been learning the table manners for hours but still can't really it.",
+        "context": [
+          "Honey, which hand should I use to hold the fork?",
+          "Left for the fork and right for the knife. Just remember that the stronger one is for knife.",
+          "Got it. It's so troublesome to have western food. I've been learning the table manners for hours but still can't really it.",
+          "Sure. Rather than eating, having western food is more about western culture.",
+          "Yeah. Which restaurant are we going to tonight?",
+          "Cindy has reserved a table for us at a newly opened western restaurant downtown. She said the environment there was really pleasant.",
+          "Fine. I believe in Cindy's taste. Oh, what should I wear?",
+          "You should put on the black suit I bought for you last week. But I'm afraid it may be a bit crumpled. You'd better iron it now.",
+          "I don't want to mess it up. Please do it for me. I'm going to the bank to cash some money. How much do we need?",
+          "There is no need to do that. I think the restaurant accepts credit cards. But it's necessary to make a budget.",
+          "Honey, you are a good accountant. So I'd better leave that to you, too.",
+          "It seems that it's all about me. Then what do you do?",
+          "I'll take care of the order.",
+          "OK then. Well, 50 Yuan for appetizer, 200 Yuan for dinner and 200 Yuan for wine. Anything else?",
+          "Don't forget about the dessert.",
+          "OK, then 50 Yuan for dessert. 500 Yuan all together."
+        ]
+      },
+      "candidate_text": "I've been learning the table manners for hours but still can't really it.",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "complaint",
+        "event_status": "learning_manners_with_missing_ability_predicate",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker reports hours of studying table manners and a remaining inability. Can't really it does not identify the exact ability, such as remembering, mastering or performing them."
+        },
+        "unknown": [
+          "The predicate describing the remaining inability is missing."
+        ]
+      },
+      "adapter_id": "dd_v24_train_10941_3_3",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10944:5:3",
+      "source": {
+        "split": "train",
+        "dialogue": 10944,
+        "turn": 5,
+        "segment": 3,
+        "span": [
+          65,
+          110
+        ],
+        "text": "He is involved with the boss's sister in-law.",
+        "context": [
+          "Our company is going to do some cutbacks soon.",
+          "Really? Where did you hear that?",
+          "I met with the supervisor just this morning. I don't know, but I am a little worried. Who do you think will get sacked?",
+          "I'm not sure... Well, first, it couldn't be George. He is such a kiss-ass. He'd wash the boss's dog if he asked.",
+          "No, it's not going to be George. I don't think it's Andy either. He is involved with the boss's sister in-law. And you know how whipped our boss is.",
+          "That's true. What about Lisa? I bet there's nobody who could do a worse job than her.",
+          "Lisa? No way. I've heard a rumor that she and the boss were having an affair. You know rumors can't come out from nowhere.",
+          "Well, okay. Then there is still Michael. But he's the boss' pet after having the best sales record for three months in a row. It definitely won't be Michael.",
+          "No, that would be crazy. But then who will it be? Oh dear, it must be me. I should have known it! Why else would he have talked to me alone about the downsizing. What should I do? I've got a family to support.",
+          "Well, it could be me too. But I am not too worried. This place is suffocating me with this boss being such a hard-ass and colleagues who barely know how to get dressed in the morning. It would almost be a blessing to be fired from this place."
+        ]
+      },
+      "candidate_text": "He is involved with the boss's sister in-law.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "report",
+        "event_status": "reported_personal_relationship",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "In discussing Andy's likely protection from layoffs, the speaker says he is involved with the boss's sister-in-law. Retain the hyphen spacing; no marriage, specific intimate act or actual employment outcome is established."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10944_5_3",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10947:2:2",
+      "source": {
+        "split": "train",
+        "dialogue": 10947,
+        "turn": 2,
+        "segment": 2,
+        "span": [
+          12,
+          43
+        ],
+        "text": "I made good records in college.",
+        "context": [
+          "How were you getting along with your studies?",
+          "Quite well. I made good records in college. I won the scholarship in every semester.",
+          "In addition to your major, did you have other fields to study?",
+          "Yes, I had taken finance courses in a training school. Compound talents are needed in the society and I must study continually to keep abreast with the times."
+        ]
+      },
+      "candidate_text": "I made good records in college.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "self_report",
+        "event_status": "reported_academic_achievement",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "Asked about studies, the speaker reports good academic performance in college. Records does not mean recorded music here and supplies no grades or rankings."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v24_train_10947_2_2",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10951:6:4",
+      "source": {
+        "split": "train",
+        "dialogue": 10951,
+        "turn": 6,
+        "segment": 4,
+        "span": [
+          51,
+          83
+        ],
+        "text": "I'm flying sixteen thousand CMS!",
+        "context": [
+          "Next please! Hello sir, may I see your passport please?",
+          "Yes, here you go.",
+          "Will you be checking any bags today.",
+          "Yes, I'd like to check three pieces.",
+          "I'm sorry, sir. Airline policy allows only two pieces of checked luggage, at twenty kilograms each, plus one piece of carry-on luggage. I will have to charge you extra for the additional suitcase.",
+          "What? Why! I am taking an intercontinental flight! I'm flying sixteen thousand CMS! How am I supposed to only take two, twenty kilo bags? That'absurd!",
+          "I am sorry, sir, there's nothing I can do. You cannot board the flight with that large bag either. Carry - on bags must fit in the over-head compartment or under your seat. That bag is clearly too big.",
+          "Now I see. You charge next to nothing for an international ticket, but when it comes to charging for any other small thing, you charge an arm and a leg! So tell me, miss, how much will I have to pay for all of this.",
+          "Let's see... six hundred and twenty-five US dollars.",
+          "That's more than my round-trip ticket!"
+        ]
+      },
+      "candidate_text": "I'm flying sixteen thousand CMS!",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "complaint",
+        "event_status": "flight_distance_with_unclear_unit",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker emphasizes the length of an intercontinental flight as sixteen thousand CMS. Do not expand or convert the unit, or assert that the flight is completed."
+        },
+        "unknown": [
+          "The distance unit CMS is not established."
+        ]
+      },
+      "adapter_id": "dd_v24_train_10951_6_4",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    }
+  ]
+}

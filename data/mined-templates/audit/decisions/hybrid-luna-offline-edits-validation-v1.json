@@ -1,0 +1,32 @@
+{
+  "version": "luna-offline-explicit-edits-v1",
+  "source": "artifacts/dailydialog-hybrid-random-quality-v1",
+  "reviews": "data/dailydialog/review-parts/hybrid-luna-offline-context-reviews-v1.jsonl",
+  "reviews_sha256": "fbe54dd6955345053de8979b196251712f2e8f177c12a9b3dbbb80a1de252e0f",
+  "cases": 13,
+  "token_changes": 16,
+  "case_ids": [
+    "train:10038:1:1",
+    "test:32:2:1",
+    "train:10997:6:2",
+    "test:666:3:1",
+    "train:2176:8:1",
+    "test:343:8:2",
+    "train:2002:11:2",
+    "train:1947:2:1",
+    "train:1956:1:1",
+    "test:627:1:1",
+    "test:953:4:1",
+    "train:10265:2:1",
+    "test:753:8:3"
+  ],
+  "source_text_and_context_preserved": true,
+  "token_count_and_spans_preserved": true,
+  "unlisted_syntax_fields_preserved": true,
+  "dictionary_alternatives_preserved": true,
+  "roundtrip_passed": true,
+  "compiled_examples": "artifacts/dailydialog-luna-offline-edits-v1/compiled.jsonl",
+  "status": "compiled_in_isolation_pending_combined_bank_rebuild",
+  "published": false,
+  "api_calls": 0
+}

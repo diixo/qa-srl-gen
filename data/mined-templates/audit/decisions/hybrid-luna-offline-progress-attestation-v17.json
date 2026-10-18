@@ -1,0 +1,584 @@
+{
+  "version": "offline-contextual-attestation-v17",
+  "date": "2026-10-17",
+  "previous_progress": "data/dailydialog/review-parts/hybrid-luna-offline-progress-source-v16.json",
+  "candidate": "artifacts/dailydialog-hybrid-attestation-v17",
+  "ledger": "data/dailydialog/review-parts/luna-offline-attestation-v17",
+  "review_status": "UNREVIEWED",
+  "full_candidate_published": false,
+  "semantic_review_complete": false,
+  "api_calls": 0,
+  "parser_inference_calls": 0,
+  "reviewed_segments": 35,
+  "reviewed_dialogues": 32,
+  "syntax_repaired_segments": 2,
+  "entity_repaired_segments": 0,
+  "property_reviewed_segments": 5,
+  "previous_warning_closures_reconfirmed": 51,
+  "newly_closed_api_warnings": 0,
+  "saved_warnings": 12978,
+  "quarantined_api_warnings": 705,
+  "quarantined_current_occurrences": 687,
+  "quarantine_groups": {
+    "source": 616,
+    "ambiguity": 73,
+    "other_syntax": 7,
+    "sentence_boundary": 2,
+    "property_attachment": 1,
+    "negation_or_modality": 1,
+    "coordination": 3,
+    "clause_attachment": 2
+  },
+  "new_local_semantic_ambiguities": 3,
+  "total_supplemental_semantic_ambiguities": 5,
+  "reviewed_fragments_awaiting_adapters": 0,
+  "decisions": {
+    "hybrid-attestation-context-v17.jsonl": {
+      "path": "data/dailydialog/review-parts/hybrid-attestation-context-v17.jsonl",
+      "sha256": "511275022e80f55a0a2eeed8c1a7ee40e45dcf10db3737fb6e01c0f7b0cd175a"
+    },
+    "hybrid-attestation-warning-rechecks-v17.jsonl": {
+      "path": "data/dailydialog/review-parts/hybrid-attestation-warning-rechecks-v17.jsonl",
+      "sha256": "143a4c9589cd528b3134c34b40014efb4320301a9115e91b3a824202aca476eb"
+    },
+    "hybrid-attestation-snapshot-v17.jsonl.gz": {
+      "path": "data/dailydialog/review-parts/hybrid-attestation-snapshot-v17.jsonl.gz",
+      "sha256": "f01c6e25d71e86e568a3ab4439e9e2d3092d40fa2fd3fac6ff53d10ce24f6389"
+    },
+    "hybrid-attestation-admission-v17.jsonl": {
+      "path": "data/dailydialog/review-parts/hybrid-attestation-admission-v17.jsonl",
+      "sha256": "e76fc98820c7ee6a9b322fcc9e8ad9a6e81b90d56fa5d7a7465b082df3bd26ec"
+    },
+    "hybrid-fragment-adapters-v17.json": {
+      "path": "data/dailydialog/review-parts/hybrid-fragment-adapters-v17.json",
+      "sha256": "9ddeb144f5696909d0a7818098d7bd07f35cd1c0591f9490b2ff8d7068fab87d"
+    },
+    "hybrid-attestation-held-v17.json": {
+      "path": "data/dailydialog/review-parts/hybrid-attestation-held-v17.json",
+      "sha256": "4a12f73bdbd940d54813b4d13cba0e0aee6ee69942295578c26b5024ed9531a8"
+    }
+  },
+  "validation": {
+    "status": "passed",
+    "source_sha256": "ce392213b08954d85125e84eb2a3d9ae5b5cda1cfd14901d682b35d4f90e4a13",
+    "templates": 101146,
+    "attested_roundtrips": 110061,
+    "source_records": 161316,
+    "token_spans": 1378081,
+    "verbs_occurrences": 289418,
+    "adjectives_occurrences": 71914
+  },
+  "conservation": {
+    "status": "passed",
+    "counts": {
+      "old_segments": 161316,
+      "old_tokens": 1378081,
+      "new_segments": 161316,
+      "new_tokens": 1378081,
+      "unchanged_analyses": 161281,
+      "revised_outputs": 35
+    },
+    "explicit_token_delta": 0,
+    "reference_expansion_token_delta": 0,
+    "previous_preimages_retained": true
+  },
+  "apostrophes": {
+    "status": "passed",
+    "normalized_segments": 161316,
+    "ascii_apostrophes": 49409,
+    "noncanonical_apostrophes": 0,
+    "target": "'",
+    "original_contexts_preserved": true,
+    "previous_contexts_retained_in_source_candidate": true,
+    "source_corrections_explicit": true
+  },
+  "independent_verification": {
+    "status": "passed",
+    "reviewed_occurrences": 35,
+    "exact_renders": 35,
+    "syntax_repairs": [
+      "test:430:4:1",
+      "test:605:8:1"
+    ],
+    "entity_repairs": [],
+    "held": [
+      {
+        "id": "test:215:9:4",
+        "unit": "sentence",
+        "meaning": {
+          "speech_act": "statement",
+          "event_status": "claimed_quality_selection",
+          "content": {
+            "interpretation": "The salesperson claims that only the creme makes it through inspection in a discussion of chocolate quality. Makes it through means passes the inspection, not manufactures an object. The source word creme is retained; no ingredient or precise selected product is inferred."
+          },
+          "completed_action_asserted": false,
+          "unknown": [
+            "Creme could be literal cream or a figurative reference to the best quality; the dialogue does not establish which."
+          ]
+        },
+        "evidence_turns": [
+          7,
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      {
+        "id": "test:423:4:2",
+        "unit": "sentence",
+        "meaning": {
+          "speech_act": "attributed_statement",
+          "event_status": "reported_credit_description",
+          "content": {
+            "interpretation": "The speaker attributes a high credit reading to a record in a loan discussion. The statement provides no numeric score, approval or disbursement. Keep reading as printed; the text correction addressed shows only."
+          },
+          "completed_action_asserted": false,
+          "unknown": [
+            "The intended term credit reading is unclear; do not silently replace it with credit rating or infer a loan decision."
+          ]
+        },
+        "evidence_turns": [
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "id": "test:605:6:2",
+        "unit": "sentence",
+        "meaning": {
+          "speech_act": "statement",
+          "event_status": "negative_preference_with_awkward_linkage",
+          "content": {
+            "interpretation": "The speaker reports not liking to drink alone and mentions someone sitting next to them. The negation concerns liking solitary drinking, not all drinking or the existence of the other person. No completed drink is inferred."
+          },
+          "completed_action_asserted": false,
+          "unknown": [
+            "Especially there is has defective linkage; whether a conditional or other connective is omitted cannot be recovered reliably."
+          ]
+        },
+        "evidence_turns": [
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "id": "test:63:6:2",
+        "unit": "fragment",
+        "meaning": {
+          "speech_act": "thanks",
+          "event_status": "gratitude_for_order",
+          "content": {
+            "interpretation": "The server politely thanks the customer after the customer specifies beer. Sir is direct address. The formula does not assert that beer has been delivered, consumed or paid for."
+          },
+          "completed_action_asserted": false,
+          "unknown": []
+        },
+        "evidence_turns": [
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "id": "test:809:9:1",
+        "unit": "fragment",
+        "meaning": {
+          "speech_act": "acknowledgment",
+          "event_status": "advice_acknowledgment",
+          "content": {
+            "interpretation": "All right acknowledges the advice about prioritizing study topics for the history exam. It does not establish that studying, going to the library or taking the exam has happened."
+          },
+          "completed_action_asserted": false,
+          "unknown": []
+        },
+        "evidence_turns": [
+          7,
+          8,
+          9,
+          10,
+          11
+        ]
+      }
+    ],
+    "proposed_admission": 30,
+    "candidate_segments": 161316,
+    "source_part_and_manual_files_unchanged": 109,
+    "manual_dialogues_preserved": 510,
+    "original_candidate_unchanged": true,
+    "warnings_preserved": 12978,
+    "quarantined_warnings": 705,
+    "warning_rechecks": 51,
+    "paid_evidence_identical": true,
+    "slot_replacement_blocked": true,
+    "dependency_qa_blocked": true,
+    "action_realization_blocked": true
+  },
+  "admission": {
+    "bank_id": "dailydialog-attestation-admission-v17",
+    "published": true,
+    "central_pool": "data/mined-templates",
+    "central_manifest_sha256": "c1e877b426114d174fb8b2cd2d161b604a2d882fd561d9ebf9d74d3e47d83607",
+    "admitted_occurrences": [
+      "test:1000:9:1",
+      "test:142:5:1",
+      "test:168:3:1",
+      "test:18:7:2",
+      "test:225:2:4",
+      "test:262:4:1",
+      "test:279:2:1",
+      "test:430:4:1",
+      "test:434:16:2",
+      "test:568:1:2",
+      "test:568:9:2",
+      "test:587:5:2",
+      "test:605:8:1",
+      "test:610:12:8",
+      "test:610:9:2",
+      "test:656:4:1",
+      "test:660:14:1",
+      "test:664:4:1",
+      "test:680:12:2",
+      "test:699:11:1",
+      "test:716:2:2",
+      "test:765:4:1",
+      "test:776:1:1",
+      "test:784:1:1",
+      "test:813:6:1",
+      "test:832:5:2",
+      "test:854:5:1",
+      "test:867:5:1",
+      "test:951:3:2",
+      "test:976:8:1"
+    ],
+    "validation": {
+      "status": "passed",
+      "source_sha256": "4c22837dd959599ec37320f7a6c0b7078030c8e638c40f5f974b60ee654de52e",
+      "templates": 30,
+      "attested_roundtrips": 30,
+      "source_records": 30,
+      "token_spans": 416,
+      "verbs_occurrences": 86,
+      "adjectives_occurrences": 23
+    },
+    "previous_files_preserved": 344,
+    "candidate_unchanged": true,
+    "generation_smoke": {
+      "status": "passed",
+      "published": true,
+      "exact_renders": 30,
+      "builtin_documents": 11,
+      "records": [
+        {
+          "id": "test:765:4:1",
+          "text": "I began blogging when I first went to the US for my graduate studies."
+        },
+        {
+          "id": "test:605:8:1",
+          "text": "Bottoms up, and you're right."
+        },
+        {
+          "id": "test:976:8:1",
+          "text": "She started arguing back to my dad how much she loves her boyfriend, how they're in love and it's not hurting anybody, and so on."
+        },
+        {
+          "id": "test:587:5:2",
+          "text": "Good manner and style of conversation can let others feel your good self-cultivation."
+        },
+        {
+          "id": "test:610:12:8",
+          "text": "It's on the tip of my tongue."
+        },
+        {
+          "id": "test:225:2:4",
+          "text": "And wait for the feedback of the company."
+        },
+        {
+          "id": "test:832:5:2",
+          "text": "I'll pick you up at your hotel at 6 thirty pm."
+        },
+        {
+          "id": "test:813:6:1",
+          "text": "I wish I could, but it's my mum's birthday."
+        },
+        {
+          "id": "test:664:4:1",
+          "text": "I would recommend the mall; it's about 20 minutes' drive to the south in a taxi."
+        },
+        {
+          "id": "test:430:4:1",
+          "text": "Ah, some products are successful at home, but not popular overseas."
+        },
+        {
+          "id": "test:142:5:1",
+          "text": "I should not be surprised; many customers have the same opinion."
+        },
+        {
+          "id": "test:951:3:2",
+          "text": "Love built on the sand will soon be on the rocks."
+        },
+        {
+          "id": "test:656:4:1",
+          "text": "Then I will have to pay quite a lot to listen to music on line, won't I?"
+        },
+        {
+          "id": "test:568:9:2",
+          "text": "But this doesn't work; instead he picks up another bad habit."
+        },
+        {
+          "id": "test:699:11:1",
+          "text": "I think that these kids haven't learnt to be afraid yet."
+        },
+        {
+          "id": "test:867:5:1",
+          "text": "No, they made him vice president in charge of sales."
+        },
+        {
+          "id": "test:784:1:1",
+          "text": "Look, those bamboo groves are flourishing."
+        },
+        {
+          "id": "test:568:1:2",
+          "text": "He says painful words every day."
+        },
+        {
+          "id": "test:1000:9:1",
+          "text": "Never mind that; I'll take care of it."
+        },
+        {
+          "id": "test:716:2:2",
+          "text": "It's interesting to see who is considered the best in their field and which films are thought to be particularly good."
+        },
+        {
+          "id": "test:279:2:1",
+          "text": "We have thought of you carefully with discretion, but the other candidate has more experience."
+        },
+        {
+          "id": "test:854:5:1",
+          "text": "What do you think our chances are in other events."
+        },
+        {
+          "id": "test:610:9:2",
+          "text": "But I think Mars will be visited by men before the end of this century."
+        },
+        {
+          "id": "test:434:16:2",
+          "text": "As far as the computer is concerned I can use the computer for word processing."
+        },
+        {
+          "id": "test:776:1:1",
+          "text": "The Johnsons are on their way back."
+        },
+        {
+          "id": "test:680:12:2",
+          "text": "The nurses were very kind, though they were strict about what I could drink."
+        },
+        {
+          "id": "test:262:4:1",
+          "text": "Yes, the meal was very delicious and I enjoyed it very much."
+        },
+        {
+          "id": "test:18:7:2",
+          "text": "Please accept our sincere apologies; I'll be glad to change it for another one if you wish."
+        },
+        {
+          "id": "test:660:14:1",
+          "text": "I've actually never tried."
+        },
+        {
+          "id": "test:168:3:1",
+          "text": "No, I never wear a suit in my everyday life."
+        }
+      ],
+      "builtin_occurrences": [
+        "test:1000:9:1",
+        "test:168:3:1",
+        "test:225:2:4",
+        "test:434:16:2",
+        "test:568:1:2",
+        "test:568:9:2",
+        "test:610:9:2",
+        "test:660:14:1",
+        "test:784:1:1",
+        "test:832:5:2",
+        "test:867:5:1"
+      ],
+      "normal_controlled_predicate_exclusions": [
+        "test:142:5:1",
+        "test:18:7:2",
+        "test:262:4:1",
+        "test:279:2:1",
+        "test:430:4:1",
+        "test:587:5:2",
+        "test:605:8:1",
+        "test:610:12:8",
+        "test:656:4:1",
+        "test:664:4:1",
+        "test:680:12:2",
+        "test:699:11:1",
+        "test:716:2:2",
+        "test:765:4:1",
+        "test:776:1:1",
+        "test:813:6:1",
+        "test:854:5:1",
+        "test:951:3:2",
+        "test:976:8:1"
+      ],
+      "meanings_contexts_tokens_preserved": true,
+      "slot_replacement_blocked": true,
+      "dependency_qa_blocked": true,
+      "action_realization_blocked": true
+    },
+    "usage": "Exact attested sentences with embedded contexts and scoped meanings. No recombination, dependency-derived factual QA or generic action realization. The existing controlled-predicate filter selects 11 of 30; all 30 are preserved and render exactly."
+  },
+  "fragments": {
+    "publication": {
+      "status": "passed",
+      "published": true,
+      "new_patterns": 2,
+      "checked_patterns": 2,
+      "catalog_patterns": 61,
+      "source_dialogues": 2,
+      "episodes_checked": 4,
+      "transitions_checked": 12,
+      "previous_patterns_preserved": 59,
+      "previous_catalog_sha256": "465f7a30796ec729152fb9f262aa27951189e1d120b957106b00edd9833c80b5",
+      "result_catalog_sha256": "605f9a9f7f4cf3106b4dc863d433a37d16ebd1d7e4d0eb3be4cab805872389f0",
+      "template_bank_changed": false,
+      "api_calls": 0,
+      "parser_inference_calls": 0
+    },
+    "generation": {
+      "status": "passed",
+      "seed": 17,
+      "task": "fragment_meaning",
+      "catalog_patterns": 61,
+      "new_patterns": 2,
+      "previous_patterns_preserved": 59,
+      "catalog_sha256": "ff335590e10749974502c55121c4fcf3f04db1591838f2e3817d7bdccf81d605",
+      "splits": {
+        "user-assistant/train": {
+          "episodes": 2,
+          "history": 2,
+          "memory": 2,
+          "extraction": 6
+        },
+        "user-assistant/validation": {
+          "episodes": 2,
+          "history": 2,
+          "memory": 2,
+          "extraction": 6
+        },
+        "user-assistant/test": {
+          "episodes": 2,
+          "history": 2,
+          "memory": 2,
+          "extraction": 6
+        },
+        "named-people/train": {
+          "episodes": 2,
+          "history": 2,
+          "memory": 2,
+          "extraction": 6
+        },
+        "named-people/validation": {
+          "episodes": 2,
+          "history": 2,
+          "memory": 2,
+          "extraction": 6
+        },
+        "named-people/test": {
+          "episodes": 2,
+          "history": 2,
+          "memory": 2,
+          "extraction": 6
+        }
+      },
+      "generated_episodes": 12,
+      "extraction_rows": 36,
+      "history_rows": 12,
+      "memory_rows": 12,
+      "json_inside_content": false,
+      "api_calls": 0,
+      "parser_inference_calls": 0,
+      "uses_existing_generator": true,
+      "examples": [
+        {
+          "pattern": "dd_v17_thanks_order",
+          "assistant": "Just a beer, please.",
+          "user": "Thank you, sir.",
+          "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | thanked me for specifying my drink order",
+          "answer": "You thanked me for specifying my drink order."
+        },
+        {
+          "pattern": "dd_v17_acknowledge_study_advice",
+          "assistant": "Focusing on the civil war is probably the best way to prepare for the history exam if you cannot study everything.",
+          "user": "All right.",
+          "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | acknowledged my advice about focusing on the civil war for the exam",
+          "answer": "You acknowledged my advice about focusing on the civil war for the exam."
+        }
+      ]
+    },
+    "datasets": "artifacts/dailydialog-fragments-v17/datasets",
+    "resolved": [
+      {
+        "id": "test:63:6:2",
+        "pattern_id": "dd_v17_thanks_order",
+        "status": "adapted_visible_pair_published",
+        "catalog": "data/mined-templates/reviewed/dialogue-fragments.json",
+        "scope": "Only the explicitly adapted visible preceding utterance and reply. No generic semantic approval of the source template."
+      },
+      {
+        "id": "test:809:9:1",
+        "pattern_id": "dd_v17_acknowledge_study_advice",
+        "status": "adapted_visible_pair_published",
+        "catalog": "data/mined-templates/reviewed/dialogue-fragments.json",
+        "scope": "Only the explicitly adapted visible preceding utterance and reply. No generic semantic approval of the source template."
+      }
+    ]
+  },
+  "checks": {
+    "tests": 351,
+    "test_runs": [
+      {
+        "passed": 165,
+        "seconds": 24.1,
+        "command": "python -X utf8 -B -m pytest -q tests/test_dailydialog_source_segmentation.py tests/test_dailydialog_source_rebase.py tests/test_dailydialog_quarantine_finalization.py tests/test_dailydialog_admission.py tests/test_template_usage.py"
+      },
+      {
+        "passed": 186,
+        "seconds": 90.4,
+        "command": "python -X utf8 -B -m pytest -q tests/test_dialogue_fragments.py tests/test_dailydialog_fragment_admission.py tests/test_dialogue_extraction_text.py"
+      }
+    ],
+    "received_evidence_sha256": "68f72401d4ccd5e4a26eaaf23e1558dc268f136195680c658a2f857f8be68391"
+  },
+  "reproduction": {
+    "commands": [
+      "python -X utf8 -B scripts/resegment_dailydialog_hybrid_source.py --source artifacts/dailydialog-hybrid-source-final-v16 --reviews data/dailydialog/review-parts/hybrid-attestation-context-v17.jsonl --out artifacts/dailydialog-hybrid-attestation-v17",
+      "python -X utf8 -B scripts/finalize_dailydialog_quarantine.py --candidate artifacts/dailydialog-hybrid-attestation-v17 --ledger data/dailydialog/review-parts/luna-offline-source-v16 --reviews data/dailydialog/review-parts/hybrid-attestation-warning-rechecks-v17.jsonl --out data/dailydialog/review-parts/luna-offline-attestation-v17",
+      "python -X utf8 -B scripts/admit_dailydialog_hybrid.py --source artifacts/dailydialog-hybrid-attestation-v17 --reviews data/dailydialog/review-parts/hybrid-attestation-admission-v17.jsonl --quarantine data/dailydialog/review-parts/luna-offline-attestation-v17 --out artifacts/dailydialog-attestation-admission-v17",
+      "python -X utf8 -B scripts/admit_dailydialog_hybrid.py --out artifacts/dailydialog-attestation-admission-v17 --publish --bank-id dailydialog-attestation-admission-v17",
+      "python -X utf8 -B scripts/admit_dailydialog_fragments.py --reviews data/dailydialog/review-parts/hybrid-fragment-adapters-v17.json --contexts artifacts/dailydialog-hybrid-attestation-v17/contexts.jsonl.gz --report artifacts/dailydialog-fragments-v17/publication.json --publish"
+    ],
+    "note": "Already completed. Runners refuse existing output directories; use new paths to replay. Authoritative JSON reviews and existing scripts suffice; ignored authoring helpers are not required. Fragment publication is idempotent for identical patterns."
+  },
+  "next_step": {
+    "local_queue": "data/dailydialog/review-parts/hybrid-attestation-held-v17.json",
+    "warning_queue": "data/dailydialog/review-parts/luna-offline-attestation-v17/quarantine-cases.jsonl.gz",
+    "priorities": [
+      "Continue 616 source warnings and 89 other warnings in substantive groups.",
+      "Keep five supplemental meaning ambiguities restricted unless context genuinely resolves them.",
+      "Review and admit concrete further sentences or explicit dialogue adapters. Do not treat wording fixes or API clear as blanket approval."
+    ],
+    "full_semantic_review_still_required": true
+  }
+}

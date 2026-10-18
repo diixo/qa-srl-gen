@@ -1,0 +1,291 @@
+{
+  "version": "explicit_issue_resolutions_v2",
+  "review_sha256": "36788214560eae471c902dd1f72a5d24df8cfd9c14679b6e59f758ecccfaf479",
+  "resolved_issue_indices": {
+    "train:10038:1:1": [
+      0
+    ],
+    "test:32:2:1": [
+      0
+    ],
+    "train:1957:10:2": [
+      0
+    ],
+    "train:1683:1:1": [
+      1
+    ],
+    "train:10997:6:2": [
+      0
+    ],
+    "train:1563:4:1": [
+      0,
+      1
+    ],
+    "test:666:3:1": [
+      0
+    ],
+    "train:10580:14:1": [
+      1,
+      2
+    ],
+    "train:10468:9:1": [
+      0
+    ],
+    "test:379:15:2": [
+      0
+    ],
+    "train:2333:11:2": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "train:2176:8:1": [
+      0
+    ],
+    "test:343:8:2": [
+      0
+    ],
+    "train:1947:2:1": [
+      0
+    ],
+    "test:980:6:2": [
+      0
+    ],
+    "test:813:9:1": [
+      0
+    ],
+    "train:1956:1:1": [
+      0
+    ],
+    "train:10680:4:2": [
+      0
+    ],
+    "train:1576:4:1": [
+      0
+    ],
+    "train:10704:3:1": [
+      0,
+      1
+    ],
+    "test:915:4:1": [
+      0,
+      1
+    ],
+    "train:10092:6:1": [
+      0
+    ],
+    "train:1051:3:3": [
+      0
+    ],
+    "train:1461:12:1": [
+      0
+    ],
+    "train:2607:1:1": [
+      0
+    ],
+    "test:627:1:1": [
+      0
+    ],
+    "test:953:4:1": [
+      0
+    ],
+    "test:195:9:2": [
+      0
+    ],
+    "train:10265:2:1": [
+      0,
+      1
+    ],
+    "test:753:8:3": [
+      0
+    ],
+    "train:11077:7:1": [
+      0
+    ],
+    "test:135:9:1": [
+      0
+    ],
+    "test:232:2:2": [
+      0
+    ],
+    "test:25:7:1": [
+      0,
+      1
+    ],
+    "test:292:5:1": [
+      0
+    ],
+    "test:295:8:1": [
+      0
+    ],
+    "test:488:17:1": [
+      0,
+      1
+    ],
+    "test:529:12:1": [
+      0
+    ],
+    "test:568:6:2": [
+      0,
+      1
+    ],
+    "test:985:3:2": [
+      0,
+      1
+    ],
+    "train:10127:4:3": [
+      0,
+      1,
+      2
+    ],
+    "train:10172:2:1": [
+      0
+    ],
+    "train:10416:6:1": [
+      0
+    ],
+    "train:10471:7:1": [
+      0
+    ],
+    "train:10540:6:1": [
+      0
+    ],
+    "train:10547:10:1": [
+      0
+    ],
+    "train:10554:1:1": [
+      0
+    ],
+    "train:10589:8:1": [
+      0
+    ],
+    "train:10689:4:2": [
+      0
+    ],
+    "train:10763:3:1": [
+      0
+    ],
+    "train:10880:3:1": [
+      0
+    ],
+    "train:10956:11:1": [
+      0
+    ],
+    "train:11108:5:1": [
+      0
+    ],
+    "train:1130:10:1": [
+      0
+    ],
+    "train:1161:10:2": [
+      0
+    ],
+    "train:1318:8:1": [
+      0
+    ],
+    "train:1390:9:1": [
+      0
+    ],
+    "train:1402:4:1": [
+      0
+    ],
+    "train:1580:12:1": [
+      0,
+      1
+    ],
+    "train:1714:3:1": [
+      0
+    ],
+    "train:1832:2:1": [
+      0
+    ],
+    "train:1948:2:1": [
+      0
+    ],
+    "train:1978:7:1": [
+      0,
+      1
+    ],
+    "train:2244:7:1": [
+      0
+    ],
+    "train:2336:4:1": [
+      0,
+      1
+    ],
+    "train:2384:12:1": [
+      0
+    ]
+  },
+  "applied_review_sha256": {
+    "train:10038:1:1": "3394a59bb92f882edb6565f022ae5ae78fa1b465b55821096aa16440108fab46",
+    "test:32:2:1": "39b73cac6737e984d0fdce40746a4c86c8b57f6a1b9b1317a8964e64b50cc192",
+    "train:1957:10:2": "eb026a321a3ce7eeef62e8433dcdbb9ec6c024e60059b92e238838f94d980e7a",
+    "train:1683:1:1": "49c74be4bfedfdbd5a3e253592af4edf0932f439457d999582adf88c71c7e398",
+    "train:10997:6:2": "3fb2744aa74788e53407409bc1ea809cc66350f7b26348c465b11571b683a924",
+    "train:1563:4:1": "ac5ef4c570db18a2f675db5a42d6f41591d4c793f03961251d18ecffe625394a",
+    "test:666:3:1": "6d5b972b9d64726e9ea439e9a7d49cee456f76da3c102718e6e65642efc9ade0",
+    "train:10580:14:1": "975c39701d00a95f4136bfd9ec09eee6949386c6ceebcb3392c52ad1a18059fc",
+    "train:10468:9:1": "3d726503d823342e85c9482b170f022e479947b89aae9fe1ffabf5d2d7eef0cf",
+    "test:379:15:2": "58b4081a8407a622e6d6433442c442fb4036d44225ea5d863c9f50b32c1d6a5e",
+    "train:2333:11:2": "d6d9987887f01289cbddb4e6de5a97885b56d5124fa1f14c862bf4da502ecac0",
+    "train:2176:8:1": "045ab70c6270bbebbf2a48514e53519f7aaee7615848bd124646a32f0612341f",
+    "test:343:8:2": "3c9b2520e69ab8d06c7911849c0569ae3284070d2461db6f979d931cc8360b8a",
+    "train:1947:2:1": "3db66780cc7d8f5de0e6deae9f7bbaf7dadd3e4ac351fa3a7707b15fed3b7d4e",
+    "test:980:6:2": "76a1b26aff80519f75bfea8bbb7e3f44e7157ebde3d1ad1b513568ebb16cf963",
+    "test:813:9:1": "a0a2d2149e0947772d1a52fabef30a0cecda0f86804c56ef55300a4d621c7fe0",
+    "train:1956:1:1": "80e53e8956c8f2aed5463b3cb7959392088df59a0f48da0bb74db5c69f7a204e",
+    "train:10680:4:2": "6b639ba2687d63dcb5fa38ca68c0a2f21d729e9e3e535c7d3ad4e774339c7eec",
+    "train:1576:4:1": "c4f52f0fb8e9d0d5b0055c4a15bc97fb44de488c9c62df16615b01897fdf961f",
+    "train:10704:3:1": "e6ae13d1ae9cc069725d224f888d62d732fad899559f21ccecd3bced9ef3bb07",
+    "test:915:4:1": "45e497d7dca17b92f4f4b29f58db99c9cb400a308583fbf6bfaac3dad6ac9f96",
+    "train:10092:6:1": "7023643749655469843caa68af619eea0da15a748f6cd3911c8962a7fbcdaf9a",
+    "train:1051:3:3": "120acd716b377533370057c10138b162673da20215a9dd655fd2bd4e81f0ed48",
+    "train:1461:12:1": "a1f6f194e4939c85598fcf9b480e79d281e044382884dc98a3904d9276cc288b",
+    "train:2607:1:1": "46f9154c22345696aaa70476dc66683fce830992ad4beba6a527eeb7b81049cb",
+    "test:627:1:1": "b33e12274eb7f1c8f99c40a31bf05ba1b68cdf338a1a6c35d7ed2cd73608b639",
+    "test:953:4:1": "323a4233453a18010aea33ebd08847d642adbd545d01d9e82d67e24afcc3fc96",
+    "test:195:9:2": "4f8506baa5bf2a76758e503b2cefcb87e261154e14a63bfa0531ac96d71867d3",
+    "train:10265:2:1": "6bd8703340370d292293fdb96b9cce27de65cca302dc672ea7902473f00f42b3",
+    "test:753:8:3": "c6d17a2c011e3687f4ce5b8626269e0e217aa9dd090895d776cde6e21d01daff",
+    "train:11077:7:1": "6769aa1affe73a7949e3d2615615dc05e25ed85e66671643b5c376349f668f99",
+    "test:135:9:1": "cf0f1780a943eaef95e55bf6188f842dbadf2f0215037ad4115bd83ce636ebe6",
+    "test:232:2:2": "fd231de66cd5bbc4ca5f5da15e292457464a5584436fb9b28fe5fda2f4d535dc",
+    "test:25:7:1": "4022370b42ba21d2dcf9918dddc21bf744fd370a84acc2917b71834625c216a5",
+    "test:292:5:1": "102c988dc6eef7f91b9154441514ad1326e586114ed9cf185e174e41d1ca1c50",
+    "test:295:8:1": "57534ffafd569d5658e0270fa56bbb6ff0a2b821e91400e205fca762078fdf2c",
+    "test:488:17:1": "2254df03678df04c133b84848600ec782f67b4f51acbe297b314210027e786d2",
+    "test:529:12:1": "54299a495d3b1bfe7a0f88273193398582e4750834c43952c3ae784231d8a732",
+    "test:568:6:2": "944074dff57b92d64d9b8370515048047a747866cc910aad156ceabaf6a2f094",
+    "test:985:3:2": "b85b75dde37e613e45831ceda158032e75b00d977303001f85c4f8e5a49713ce",
+    "train:10127:4:3": "0c3f38e146654373e1dd3683ec75d8e8cb2f951e72b150d7460271bf7f0803b9",
+    "train:10172:2:1": "07c6aa5c2d6d597f307bd41fe3c0e0d246504f9c5b436aa507934bfcf3d2617f",
+    "train:10416:6:1": "f4a4c19b18beec614eb96e10ce3ebed6e838f904f4b31c0f26c16cfa0d59819b",
+    "train:10471:7:1": "bc330304d3f18970e1f35f28cc9cf5c8b0847e0518cc0ce7da52f6075bd2989c",
+    "train:10540:6:1": "c6a37f06759ad5a79f752c79e568fbb938cbeeb3d1f094a4a0eef06a1d09af8a",
+    "train:10547:10:1": "57e3b38e4ddc56900dabcd2bf0da327353d17edc795cbe730bb6af300ba1647e",
+    "train:10554:1:1": "eb03b4c1a21dc3f5b87737bffb69debc34a9fc1eb8563c667b0269bb29374096",
+    "train:10589:8:1": "bdd0878ff30e3497d08c0c89bbe8121274c42c7eb641885723a101ed0c81c5e9",
+    "train:10689:4:2": "81ea13650ffb19f80ced933e276005e9c427f44273d8febef21ecb119dbe3e70",
+    "train:10763:3:1": "90fe1a41624d7ccd3b90f55dd9805b489e4dd782bdb365a0f1eff45db5234052",
+    "train:10880:3:1": "a21da94ee5008ad1d54a1164569a077181432a3b5c489d54bb9089d6bd0af053",
+    "train:10956:11:1": "79d688ac299e0df6eac801323ff7cb33e03c615add0e20e7931f1a6a6e307d70",
+    "train:11108:5:1": "b9761351aa1ffc9c186eada8c09cc465178854daeff9f89f8589c6ffcc6007cf",
+    "train:1130:10:1": "eba9f799c24a1719e21bb9c4f03ddfc2eae33f42d184eb04f2bd1b8bd9f60906",
+    "train:1161:10:2": "907dd04a53ad6914a8e8a5dce6d46c7c953f606742bc5620ebd1622fb2d9a53e",
+    "train:1318:8:1": "c6ab03f580f4132394953c8313ebf77b5d27ba8698d159cd4c1a30b313b7b407",
+    "train:1390:9:1": "6ec455b068679dd934d1f404ea7baae526cddb796b39cc5d93bb8f9b43b59ba5",
+    "train:1402:4:1": "e8b925e7acd2a3d7819bc310858908b4b1c08dd28ba47b51f64f1efa91b52397",
+    "train:1580:12:1": "15797a7b87db80059bc33c689d4857e46aecb8a4e4559b3dd0383a1c49d9e7d5",
+    "train:1714:3:1": "2840389b3b383a4671b912bc4d1f360fdf7d0a9f512a340884c06e25bdbb77bf",
+    "train:1832:2:1": "c8d4a72e664291f5c8bc4eaf8ac6a8bf9bfe1bf589da729e8a34ec2d786d0086",
+    "train:1948:2:1": "3b730a1e6ed4e7a33788a7e54bcc50e62cecd5891fbc4c2dd4c8b1fc711e4b1f",
+    "train:1978:7:1": "d90d52e7cf3118575030b08fb8034f454e7ba483616b88ea4b1ae099b1191f5b",
+    "train:2244:7:1": "f38cfc7a8c2d39e7eccf8d8b368b40fa82fdc30c20786475dd967823475a023f",
+    "train:2336:4:1": "add9607f41b6187e42cc8578a7ee2dd2879b6a2caf54072cadaf709024461d3b",
+    "train:2384:12:1": "01fbc6aaadf00e1f569e70ec059a7c368882b84ecf30bf46de9a3e2673dc874f"
+  },
+  "note": "Exact authored-review bindings, including retained earlier repairs. Each warning is closed individually, never by category."
+}

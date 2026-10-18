@@ -1,0 +1,403 @@
+{
+  "method": "direct_assistant_local_repair_review",
+  "seed": 20261015,
+  "sample_size": 20,
+  "local_repairs_accepted": 20,
+  "whole_sentence_semantic_admissions": 0,
+  "independent_accuracy_estimate": false,
+  "rows": [
+    {
+      "id": "test:987:12:1",
+      "text": "Just stare at the newspaper held in the hands of the one next to him?",
+      "edits": [
+        {
+          "token": 12,
+          "set": {
+            "pos": "ADV",
+            "tag": "RB",
+            "morph": "",
+            "head": 11
+          }
+        }
+      ],
+      "decision": "accept_local_repair",
+      "note": "Inspected the changed words and dependency heads in the full sentence; the local changes preserve the overt words, tense and clause boundaries."
+    },
+    {
+      "id": "test:907:5:1",
+      "text": "Yeah, you are right; I used to not watch horror films, but after seeing Silence of the Lamb with Mike last month, I fell in love with them.",
+      "edits": [
+        {
+          "token": 30,
+          "set": {
+            "head": 29
+          }
+        }
+      ],
+      "decision": "accept_local_repair",
+      "note": "Inspected the changed words and dependency heads in the full sentence; the local changes preserve the overt words, tense and clause boundaries."
+    },
+    {
+      "id": "train:11084:4:1",
+      "text": "She usually doesn't wear anything but a few drops of Chanel No. 5.",
+      "edits": [
+        {
+          "token": 6,
+          "set": {
+            "pos": "ADP",
+            "dep": "prep",
+            "head": 5
+          }
+        }
+      ],
+      "decision": "accept_local_repair",
+      "note": "Inspected the changed words and dependency heads in the full sentence; the local changes preserve the overt words, tense and clause boundaries."
+    },
+    {
+      "id": "train:1251:4:1",
+      "text": "Thank you, honey; it means a lot to me.",
+      "edits": [
+        {
+          "token": 0,
+          "set": {
+            "dep": "parataxis"
+          }
+        },
+        {
+          "token": 3,
+          "set": {
+            "dep": "vocative"
+          }
+        }
+      ],
+      "decision": "accept_local_repair",
+      "note": "Inspected the changed words and dependency heads in the full sentence; the local changes preserve the overt words, tense and clause boundaries."
+    },
+    {
+      "id": "test:200:3:1",
+      "text": "If you could be ready by, say 6:30, I'll be at the hotel to pick you up.",
+      "edits": [
+        {
+          "token": 3,
+          "set": {
+            "head": 12
+          }
+        },
+        {
+          "token": 7,
+          "set": {
+            "dep": "parataxis",
+            "head": 8
+          }
+        },
+        {
+          "token": 8,
+          "set": {
+            "dep": "pobj",
+            "head": 5
+          }
+        },
+        {
+          "token": 12,
+          "set": {
+            "dep": "ROOT",
+            "head": 12
+          }
+        }
+      ],
+      "decision": "accept_local_repair",
+      "note": "Parenthetic say attaches to the clock value; the conditional be attaches to the matrix be."
+    },
+    {
+      "id": "test:305:4:3",
+      "text": "It's my second wedding anniversary, and we're supposed to be having a big dinner; Susan would kill me if I missed it.",
+      "edits": [
+        {
+          "token": 1,
+          "set": {
+            "dep": "parataxis"
+          }
+        }
+      ],
+      "decision": "accept_local_repair",
+      "note": "Inspected the changed words and dependency heads in the full sentence; the local changes preserve the overt words, tense and clause boundaries."
+    },
+    {
+      "id": "test:273:4:1",
+      "text": "This is Bill Burton from Milford Insurance; I'm calling in regards to our meeting next Tuesday.",
+      "edits": [
+        {
+          "token": 1,
+          "set": {
+            "dep": "parataxis"
+          }
+        },
+        {
+          "token": 16,
+          "set": {
+            "pos": "ADJ",
+            "tag": "JJ",
+            "morph": "Degree=Pos"
+          }
+        }
+      ],
+      "decision": "accept_local_repair",
+      "note": "Inspected the changed words and dependency heads in the full sentence; the local changes preserve the overt words, tense and clause boundaries."
+    },
+    {
+      "id": "train:1882:6:2",
+      "text": "Even though German attackers are not good at dribbling past opposing defenders, they breach the defensive line through quick movements to the right attacking positions and through accurate, well-timed passes.",
+      "edits": [
+        {
+          "token": 0,
+          "set": {
+            "head": 1
+          }
+        },
+        {
+          "token": 7,
+          "set": {
+            "head": 6
+          }
+        }
+      ],
+      "decision": "accept_local_repair",
+      "note": "Inspected the changed words and dependency heads in the full sentence; the local changes preserve the overt words, tense and clause boundaries."
+    },
+    {
+      "id": "test:886:3:1",
+      "text": "Well, Lili, we can visit different places in the state in our van.",
+      "edits": [
+        {
+          "token": 2,
+          "set": {
+            "dep": "vocative"
+          }
+        }
+      ],
+      "decision": "accept_local_repair",
+      "note": "Inspected the changed words and dependency heads in the full sentence; the local changes preserve the overt words, tense and clause boundaries."
+    },
+    {
+      "id": "train:1434:5:2",
+      "text": "I believe that both topics are important and that we can't ignore them; the mistreatment of animals can cause a great environmental imbalance.",
+      "edits": [
+        {
+          "token": 1,
+          "set": {
+            "dep": "ROOT",
+            "head": 1
+          }
+        },
+        {
+          "token": 20,
+          "set": {
+            "dep": "parataxis",
+            "head": 1
+          }
+        }
+      ],
+      "decision": "accept_local_repair",
+      "note": "Inspected the changed words and dependency heads in the full sentence; the local changes preserve the overt words, tense and clause boundaries."
+    },
+    {
+      "id": "train:11008:6:1",
+      "text": "Does today at 6 p. m. sound okay to you?",
+      "edits": [
+        {
+          "token": 0,
+          "set": {
+            "pos": "AUX",
+            "dep": "aux",
+            "head": 6
+          }
+        },
+        {
+          "token": 1,
+          "set": {
+            "dep": "nsubj",
+            "head": 6
+          }
+        },
+        {
+          "token": 3,
+          "set": {
+            "head": 5
+          }
+        },
+        {
+          "token": 5,
+          "set": {
+            "dep": "pobj",
+            "head": 2
+          }
+        },
+        {
+          "token": 6,
+          "set": {
+            "pos": "VERB",
+            "tag": "VB",
+            "morph": "VerbForm=Inf",
+            "dep": "ROOT",
+            "head": 6
+          }
+        },
+        {
+          "token": 7,
+          "set": {
+            "dep": "acomp"
+          }
+        }
+      ],
+      "decision": "accept_local_repair",
+      "note": "The auxiliary, subject and verbal sound are corrected; the spaced time abbreviation is preserved."
+    },
+    {
+      "id": "train:10892:7:1",
+      "text": "We are looking for someone who is familiar with the market and cultural issues to act as an advisor to our marketing staff.",
+      "edits": [
+        {
+          "token": 12,
+          "set": {
+            "dep": "amod",
+            "head": 13
+          }
+        },
+        {
+          "token": 15,
+          "set": {
+            "dep": "acl",
+            "head": 4
+          }
+        }
+      ],
+      "decision": "accept_local_repair",
+      "note": "Cultural modifies issues, not market. The infinitive act modifies the intended someone."
+    },
+    {
+      "id": "train:1727:1:1",
+      "text": "I heard that your previous manager was very capable; he is a good manager.",
+      "edits": [
+        {
+          "token": 1,
+          "set": {
+            "dep": "parataxis"
+          }
+        }
+      ],
+      "decision": "accept_local_repair",
+      "note": "Inspected the changed words and dependency heads in the full sentence; the local changes preserve the overt words, tense and clause boundaries."
+    },
+    {
+      "id": "train:2144:3:3",
+      "text": "I'm awfully worried; I can't reply as quickly as she seems to expect.",
+      "edits": [
+        {
+          "token": 1,
+          "set": {
+            "dep": "parataxis"
+          }
+        }
+      ],
+      "decision": "accept_local_repair",
+      "note": "Inspected the changed words and dependency heads in the full sentence; the local changes preserve the overt words, tense and clause boundaries."
+    },
+    {
+      "id": "train:2349:12:3",
+      "text": "I'll just log off and shut down my computer and we can go for a coffee.",
+      "edits": [
+        {
+          "token": 13,
+          "set": {
+            "head": 3
+          }
+        }
+      ],
+      "decision": "accept_local_repair",
+      "note": "Inspected the changed words and dependency heads in the full sentence; the local changes preserve the overt words, tense and clause boundaries."
+    },
+    {
+      "id": "train:2013:7:1",
+      "text": "Yes, he's very good, isn't he?",
+      "edits": [
+        {
+          "token": 3,
+          "set": {
+            "dep": "ROOT",
+            "head": 3
+          }
+        },
+        {
+          "token": 7,
+          "set": {
+            "dep": "parataxis",
+            "head": 3
+          }
+        }
+      ],
+      "decision": "accept_local_repair",
+      "note": "Inspected the changed words and dependency heads in the full sentence; the local changes preserve the overt words, tense and clause boundaries."
+    },
+    {
+      "id": "train:10874:10:1",
+      "text": "Thank you very much. Bye.",
+      "edits": [
+        {
+          "token": 5,
+          "set": {
+            "pos": "INTJ",
+            "tag": "UH",
+            "morph": ""
+          }
+        }
+      ],
+      "decision": "accept_local_repair",
+      "note": "Bye is correctly an interjection. The still-unsplit two-sentence occurrence remains separately quarantined."
+    },
+    {
+      "id": "train:10048:8:2",
+      "text": "Wait a minute, CRASH??!!",
+      "edits": [
+        {
+          "token": 4,
+          "set": {
+            "dep": "parataxis",
+            "head": 0
+          }
+        }
+      ],
+      "decision": "accept_local_repair",
+      "note": "Inspected the changed words and dependency heads in the full sentence; the local changes preserve the overt words, tense and clause boundaries."
+    },
+    {
+      "id": "train:1316:10:1",
+      "text": "Almost; the most important piece of information for your investors will be the financial analysis.",
+      "edits": [
+        {
+          "token": 0,
+          "set": {
+            "dep": "parataxis"
+          }
+        }
+      ],
+      "decision": "accept_local_repair",
+      "note": "Almost is a standalone response fragment, not a modifier of the following copula."
+    },
+    {
+      "id": "train:2337:9:2",
+      "text": "I sent most of them a week ago.",
+      "edits": [
+        {
+          "token": 2,
+          "set": {
+            "pos": "PRON",
+            "tag": "DT",
+            "morph": "PronType=Ind"
+          }
+        }
+      ],
+      "decision": "accept_local_repair",
+      "note": "Inspected the changed words and dependency heads in the full sentence; the local changes preserve the overt words, tense and clause boundaries."
+    }
+  ]
+}

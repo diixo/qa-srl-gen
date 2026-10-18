@@ -1,0 +1,263 @@
+{
+  "method": "direct_assistant_context_review",
+  "selection": "two deterministic hash-ranked cases per diagnostic stratum; idiom stratum selected by three explicit phrase strings",
+  "selection_seed": "source-v1-control",
+  "reviewed_segments": 12,
+  "full_dialogue_contexts": 12,
+  "representative_accuracy_estimate": false,
+  "corpus_wide_approval": false,
+  "published": false,
+  "cases": [
+    {
+      "id": "test:763:4:2",
+      "categories": [
+        "ordinary"
+      ],
+      "text": "I appreciate the compliment.",
+      "source_sha256": "a8dff0a61fc1728388c3617d2198aaaf334651b09a722176f1028bc2562ab90a",
+      "context_sha256": "8e0f45bb16bd0661c39e026e3c9a1a41b1fef2d23d01ea5a9ab7a95cf91cfe45",
+      "payload_sha256": "cf063dbb362945b45cc895f9e860d3d8e3cae41dbd51fe1446b89c44bf949073",
+      "verdict": "sentence_candidate",
+      "meaning": {
+        "act": "express_appreciation",
+        "status": "present_attitude"
+      },
+      "unknown": [],
+      "note": "Gratitude and present appreciation of a compliment; the simple subject-predicate-object parse matches the context. No completed physical action.",
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:9423:1:3",
+      "categories": [
+        "ordinary"
+      ],
+      "text": "It just moved!",
+      "source_sha256": "ad3e810382671f93d7a91f68db9d4859f0b73ce088ee32333ec0bee8c096a30c",
+      "context_sha256": "3942a4ba7f0d19f12322728c184491325c0874439e9efe77d55e50b656b6d2a6",
+      "payload_sha256": "83d2d4ae5ba39b23986a74ca31f264d9e6e27080bf915c23b821ced3bb9606eb",
+      "verdict": "sentence_candidate",
+      "meaning": {
+        "act": "report",
+        "status": "recent_motion",
+        "referent": "pet lizard"
+      },
+      "unknown": [
+        "destination and kind of movement"
+      ],
+      "note": "A reported recent movement. It refers to the pet lizard identified in the next turn; preserve this context when using the example.",
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:3576:5:1",
+      "categories": [
+        "participle"
+      ],
+      "text": "There have been so many dry winters lately that it's about time, don't you think?",
+      "source_sha256": "78674b87a22935ae08dc153a749455f8b1f00923cd84b786ba7575291b8577d0",
+      "context_sha256": "3df3eb3938590edb851092eb363b9991c9c23bc96b53975b51f6f106d6a32c40",
+      "payload_sha256": "18f75b039778f5f14bfda4948bea5a8ea176a100349388237722563944583297",
+      "verdict": "scope_review_required",
+      "meaning": {
+        "act": "seek_agreement",
+        "status": "past_climate_description_and_evaluation"
+      },
+      "unknown": [
+        "tag-question dependency convention",
+        "whether forecast snow occurs"
+      ],
+      "note": "The is contraction belongs to about time. Its dependency head happens to be been in the other clause; this queue flag is not evidence of an is/has ambiguity. Dry winters are reported, while future snow remains a forecast elsewhere in the dialogue. The tag-question attachment needs review.",
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:6300:2:2",
+      "categories": [
+        "participle"
+      ],
+      "text": "I only hear it's financed by a famous film star.",
+      "source_sha256": "97ef67b78c9dcc1e0448070130e27b91d3c3719738f87632d20b5970cb248570",
+      "context_sha256": "92afd052c189900a5114da2fc57e56ad4026f317919025d73451b0c22ec5c1c2",
+      "payload_sha256": "90e08cfda83f199c6e52e486046d4ad85470c357476e0b398cd92375f3228b98",
+      "verdict": "syntax_pass_reported_scope_required",
+      "meaning": {
+        "act": "report_hearsay",
+        "status": "reported_funding_relationship",
+        "patient": "magazine",
+        "reported_agent": "film star"
+      },
+      "unknown": [
+        "identity of the star",
+        "truth of the report"
+      ],
+      "note": "Is financed by a film star is a passive within I only hear. The current be analysis is appropriate; preserve hearsay and do not turn financing into an independently verified completed event.",
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:1691:7:1",
+      "categories": [
+        "adjective"
+      ],
+      "text": "Is English pronunciation easy or difficult?",
+      "source_sha256": "83c25dad6c0ad480d841da5454e263fe96596d4e57d412ed16d20c3c57ca1b45",
+      "context_sha256": "e7c7c8fe51475118ef0df6dd7155fd275fb0c8237d64a8908876bc2a73b705f3",
+      "payload_sha256": "98d572f5501738923eeaa6b9f3fd32658f3160a57e567550b9888aa49ef43557",
+      "verdict": "alternative_scope_required",
+      "meaning": {
+        "act": "alternative_question",
+        "status": "queried_difficulty",
+        "target": "English pronunciation"
+      },
+      "unknown": [
+        "answer to the alternative question in the target segment"
+      ],
+      "note": "Both easy and difficult concern English pronunciation, but are alternatives in a question. The missing target can be supplied only together with question/disjunction scope, not as two asserted properties.",
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:1683:4:2",
+      "categories": [
+        "adjective"
+      ],
+      "text": "Are you identical or fraternal?",
+      "source_sha256": "8c979d78e400ed5e3de9bdb3407fb2cca500501b10ffdc9045420bc775fbed58",
+      "context_sha256": "17bfffd0227ea9003e5645b3ada91009b5d163991066a33e1ead02d1886042cd",
+      "payload_sha256": "887c314b5545ccdb32e2746df7180a6e770507d9ea677a6ca08d381a79193a3d",
+      "verdict": "alternative_scope_required",
+      "meaning": {
+        "act": "alternative_question",
+        "status": "queried_twin_type",
+        "target": "addressee and twin sister"
+      },
+      "unknown": [
+        "identity-versus-fraternal choice before the answer"
+      ],
+      "note": "You denotes the twins collectively. Identical and fraternal are queried alternatives; the next turn answers identical. Do not label this question itself as two simultaneous properties.",
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:1516:10:6",
+      "categories": [
+        "boundary"
+      ],
+      "text": "But, what if I'm wrong.",
+      "source_sha256": "75f8c50395085d2f21c421c43fa563e17c988cf62e41b5705dec11e92305e5ae",
+      "context_sha256": "f2e12fd49e684fce9f4d7389197ad50354a1e6fc2602faef786694eb0ee17251",
+      "payload_sha256": "6686b5910626854994ff293db559eea83f8ede68ba808e689748c03bf6de9e77",
+      "verdict": "pragmatic_question_required",
+      "meaning": {
+        "act": "express_hypothetical_worry",
+        "status": "conditional_uncertainty"
+      },
+      "unknown": [
+        "whether Diana reciprocates at this point in the dialogue"
+      ],
+      "note": "What if I am wrong is a hypothetical worry despite the source full stop. It does not assert that the speaker is wrong. The broader turn contains ellipses, but this segment boundary itself is reasonable.",
+      "template_semantics_approved": false
+    },
+    {
+      "id": "test:610:12:2",
+      "categories": [
+        "boundary"
+      ],
+      "text": "It's.. er.",
+      "source_sha256": "48e8ac11d8fcbfab4b4e01d2c4c0787b8a01b1c9734838e653ed1d6eb4ca1086",
+      "context_sha256": "e319a38825a26db9a681c1dad2786c001325d15b5f3f4ce08bb400aa4b6ea660",
+      "payload_sha256": "b32a61bedbfd7a868a5be36ca66fe3afa0d6795c75af2188a9a39f1d490f198f",
+      "verdict": "fragment_boundary_review_required",
+      "meaning": {
+        "act": "hesitate",
+        "status": "unfinished_answer",
+        "topic": "nearest planet to the Sun"
+      },
+      "unknown": [
+        "completed intended answer",
+        "repair boundaries across subsequent fragments"
+      ],
+      "note": "An unfinished attempted answer with hesitation. Keep the surrounding Venus / No / Pluto / No repairs and the planet question; none of the attempted answers is a settled factual answer.",
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:7556:7:1",
+      "categories": [
+        "fragment"
+      ],
+      "text": "After the meals.",
+      "source_sha256": "5ee22117c90c9f06d3ecf915dee4b1eb71f28eda0d3fb13d810e5a849bc90817",
+      "context_sha256": "fdd4deb294b28543c2b24932aecc8a0cfe5f9b1b42cf9f3402d269f43cd33a8a",
+      "payload_sha256": "d953191acd14e65a71049a74a34b1d92d02e36f9d706777cab270ffe4891d6e1",
+      "verdict": "contextual_fragment",
+      "meaning": {
+        "act": "answer_timing",
+        "status": "instruction",
+        "time_relation": "after meals"
+      },
+      "unknown": [
+        "whether the instruction is followed"
+      ],
+      "note": "After the meals answers the preceding timing alternative. It conveys the timing of advised pill-taking, not evidence that medication has been taken.",
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:3754:14:1",
+      "categories": [
+        "fragment"
+      ],
+      "text": "Thanks, Daisy.",
+      "source_sha256": "23414f1802b05c6ab3ee9fbf1b42d176946551574f0ef247b78e8be1aa79f996",
+      "context_sha256": "2ec6efbbf2aa9954ee3469d7f928193b12e03f290ddbc091932b89851f6ba03b",
+      "payload_sha256": "4e7d69f566b4098e83d4d7c5366574f1afae03066977f5ede1f5a1f2865d6224",
+      "verdict": "vocative_repair_required",
+      "meaning": {
+        "act": "thank",
+        "status": "social_response",
+        "addressee": "Daisy"
+      },
+      "unknown": [],
+      "note": "Thanks is a gratitude formula; Daisy is the addressee. The npadvmod label should not be used as an event argument; review it as a vocative.",
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:8172:3:1",
+      "categories": [
+        "idiom"
+      ],
+      "text": "Ryan, this is Malia, and I am afraid that I am feeling a bit under the weather.",
+      "source_sha256": "527e37e286d7a5a23e5e93bf32352a252ea74a25c11ddbab6b7a5e28d612316e",
+      "context_sha256": "2d4db5030b48df9c2c51ddc4993509caec957c65fed8d3dd7046f68b8d425b75",
+      "payload_sha256": "b9be92867aa2d8aed014c52296154ee223d2bc000b41bc1a8dd1187d8afc261a",
+      "verdict": "idiom_and_vocative_required",
+      "meaning": {
+        "act": "self_identify_and_report_discomfort",
+        "status": "reported_unwellness",
+        "speaker": "Malia",
+        "addressee": "Ryan"
+      },
+      "unknown": [
+        "medical diagnosis; not independently established by the text"
+      ],
+      "note": "Malia reports feeling unwell, supported by the following rash complaint. Under the weather is an idiom, not a spatial relation to weather. Ryan is a vocative; I am afraid softens the report, not necessarily literal fear.",
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:7367:3:2",
+      "categories": [
+        "idiom"
+      ],
+      "text": "You seem sort of under the weather.",
+      "source_sha256": "ec54b3cf5bd2fb47c665188361858f0642f664e7b8d79bde2a4f7424f0d3f4b7",
+      "context_sha256": "594755f647d62615b72e17b9f937d971a79328e9eda715b033e460f233e13ab5",
+      "payload_sha256": "7e3ac9b51d081b6bb94b480f8ee53e485c04b2766bd25a6bc1ca6a5c56a6c20c",
+      "verdict": "idiom_and_evidential_scope_required",
+      "meaning": {
+        "act": "tentative_observation",
+        "status": "apparent_unwellness_or_low_mood",
+        "subject": "Lisa"
+      },
+      "unknown": [
+        "physical illness",
+        "whether Lisa resigns"
+      ],
+      "note": "The speaker tentatively observes that Lisa seems unwell or low. The following explanation is job dissatisfaction; do not infer physical illness, meteorological facts, or a confirmed resignation.",
+      "template_semantics_approved": false
+    }
+  ]
+}

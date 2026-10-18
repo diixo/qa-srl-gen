@@ -1,0 +1,784 @@
+{
+  "version": "original-text-use-v19",
+  "cases": [
+    {
+      "warning_key": [
+        "train:1003:1:3",
+        0,
+        "9ae06409c8940ad2bc5671ac7d18704db0927de9921969b2d91c01d9870d016f"
+      ],
+      "current_ids": [
+        "train:1003:1:3"
+      ],
+      "status": "closed_representation_only",
+      "reason": "Accepted as original wording for the explicitly reviewed limited meaning. The source spelling is deliberately retained; this is not a repaired-spelling claim. The speaker asks whether the addressee plans to stay here or travel during the May Day holiday. Neither alternative is asserted to occur. The awkward nominal traveling remains unchanged.",
+      "original_text_adapters": [
+        "dd_v19_train_1003_1_3"
+      ],
+      "supported_meaning_in_use": true,
+      "source_text_rewritten": false,
+      "unresolved": []
+    },
+    {
+      "warning_key": [
+        "train:1019:4:1",
+        0,
+        "d711d76c086e5bb52950b16d2f568530d0a1ea4df7b8955ef88d2a648c538a44"
+      ],
+      "current_ids": [
+        "train:1019:4:1"
+      ],
+      "status": "quarantined_unresolved",
+      "reason": "The unresolved source portion remains in quarantine; a separately reviewed original-text adapter may use only the supported partial meaning. The intended conventional subject name behind maps is not established; do not replace it with mathematics.",
+      "original_text_adapters": [
+        "dd_v19_train_1019_4_1"
+      ],
+      "supported_meaning_in_use": true,
+      "source_text_rewritten": false,
+      "unresolved": [
+        "The intended conventional subject name behind maps is not established; do not replace it with mathematics."
+      ]
+    },
+    {
+      "warning_key": [
+        "train:1019:5:1",
+        1,
+        "ccfe3590ba78b8ab5641f278d89f3622642af340e30d8abf3a29fd1f596023c3"
+      ],
+      "current_ids": [
+        "train:1019:5:1"
+      ],
+      "status": "quarantined_unresolved",
+      "reason": "The unresolved source portion remains in quarantine; a separately reviewed original-text adapter may use only the supported partial meaning. The conventional subject represented by maps is unknown.",
+      "original_text_adapters": [
+        "dd_v19_train_1019_5_1"
+      ],
+      "supported_meaning_in_use": true,
+      "source_text_rewritten": false,
+      "unresolved": [
+        "The conventional subject represented by maps is unknown."
+      ]
+    },
+    {
+      "warning_key": [
+        "train:1024:5:2",
+        1,
+        "c1f9f6e9d5da6a7dd44fc97ff85a14542fda9b12ceef573bc5fdce8d0f0ba747"
+      ],
+      "current_ids": [
+        "train:1024:5:2"
+      ],
+      "status": "quarantined_unresolved",
+      "reason": "The unresolved source portion remains in quarantine; a separately reviewed original-text adapter may use only the supported partial meaning. The intended number and identity of doctor and the scope of cleanness are unspecified.",
+      "original_text_adapters": [
+        "dd_v19_train_1024_5_2"
+      ],
+      "supported_meaning_in_use": true,
+      "source_text_rewritten": false,
+      "unresolved": [
+        "The intended number and identity of doctor and the scope of cleanness are unspecified."
+      ]
+    },
+    {
+      "warning_key": [
+        "train:1040:1:5",
+        0,
+        "ccd6e10ce5069b03f0dff1fecad407f01da40c16d84f5ad65df59af433585a43"
+      ],
+      "current_ids": [
+        "train:1040:1:5"
+      ],
+      "status": "quarantined_unresolved",
+      "reason": "The unresolved source portion remains in quarantine; a separately reviewed original-text adapter may use only the supported partial meaning. The word and continuation are absent.",
+      "original_text_adapters": [],
+      "supported_meaning_in_use": false,
+      "source_text_rewritten": false,
+      "unresolved": [
+        "The word and continuation are absent."
+      ]
+    },
+    {
+      "warning_key": [
+        "train:1040:2:4",
+        2,
+        "0f7268bf624a8544ef027a458e4cbbdd9883f019ba90b045f8beb07e3acd024f"
+      ],
+      "current_ids": [
+        "train:1040:2:4"
+      ],
+      "status": "quarantined_unresolved",
+      "reason": "The unresolved source portion remains in quarantine; a separately reviewed original-text adapter may use only the supported partial meaning. The object and completion of set up ca are missing.",
+      "original_text_adapters": [
+        "dd_v19_train_1040_2_4"
+      ],
+      "supported_meaning_in_use": true,
+      "source_text_rewritten": false,
+      "unresolved": [
+        "The object and completion of set up ca are missing."
+      ]
+    },
+    {
+      "warning_key": [
+        "train:1110:4:2",
+        0,
+        "063dd31014bbb65fd2ba975184ba88ace2cf3b319bbcb052475a4e3b06b118ef"
+      ],
+      "current_ids": [
+        "train:1110:4:2"
+      ],
+      "status": "closed_representation_only",
+      "reason": "Accepted as original wording for the explicitly reviewed limited meaning. The source spelling is deliberately retained; this is not a repaired-spelling claim. The visitor expresses a wish to see Dean Mr. Lee first. The immediately following office-location question confirms the request function. The malformed wonder see is preserved, not treated as proof of seeing him.",
+      "original_text_adapters": [
+        "dd_v19_train_1110_4_2"
+      ],
+      "supported_meaning_in_use": true,
+      "source_text_rewritten": false,
+      "unresolved": []
+    },
+    {
+      "warning_key": [
+        "train:1112:7:5",
+        1,
+        "0968a2187a40139c61dd8b425bf353e29859b24eba889cbbe25427bd85277f4b"
+      ],
+      "current_ids": [
+        "train:1112:7:5"
+      ],
+      "status": "closed_representation_only",
+      "reason": "Accepted as original wording for the explicitly reviewed limited meaning. The source spelling is deliberately retained; this is not a repaired-spelling claim. The speaker asks the age of the person whose supplied name is Jacky Chan. Preserve that name without claiming an externally verified identity or supplying an age.",
+      "original_text_adapters": [
+        "dd_v19_train_1112_7_5"
+      ],
+      "supported_meaning_in_use": true,
+      "source_text_rewritten": false,
+      "unresolved": []
+    },
+    {
+      "warning_key": [
+        "train:1121:4:1",
+        0,
+        "803a0b1c53f605f57102e4cc88d2f6252a3d01ecc1ae798aa21a2f54f2768c6d"
+      ],
+      "current_ids": [
+        "train:1121:4:1"
+      ],
+      "status": "closed_representation_only",
+      "reason": "Accepted as original wording for the explicitly reviewed limited meaning. The source spelling is deliberately retained; this is not a repaired-spelling claim. The speaker expresses being a fan of the artist named Snoop Dog in the source. Keep the name literally; the utterance does not report meeting the artist.",
+      "original_text_adapters": [
+        "dd_v19_train_1121_4_1"
+      ],
+      "supported_meaning_in_use": true,
+      "source_text_rewritten": false,
+      "unresolved": []
+    },
+    {
+      "warning_key": [
+        "train:1127:4:2",
+        1,
+        "183592165ea49e4d1ef260ae4f45055ad20837fd01103d2914c203b30d3dfa78"
+      ],
+      "current_ids": [
+        "train:1127:4:2"
+      ],
+      "status": "quarantined_unresolved",
+      "reason": "The unresolved source portion remains in quarantine; a separately reviewed original-text adapter may use only the supported partial meaning. The wording over-spend does not settle whether spending is ongoing or completed or its exact excess amount.",
+      "original_text_adapters": [
+        "dd_v19_train_1127_4_2"
+      ],
+      "supported_meaning_in_use": true,
+      "source_text_rewritten": false,
+      "unresolved": [
+        "The wording over-spend does not settle whether spending is ongoing or completed or its exact excess amount."
+      ]
+    },
+    {
+      "warning_key": [
+        "train:1149:11:2",
+        1,
+        "01483fd90839d0259d6f8af6fdb4ae9d7832cb00526ad2d125665a536fb6576b"
+      ],
+      "current_ids": [
+        "train:1149:11:2"
+      ],
+      "status": "quarantined_unresolved",
+      "reason": "The unresolved source portion remains in quarantine; a separately reviewed original-text adapter may use only the supported partial meaning. The second job requirement and its resulting advice are unfinished.",
+      "original_text_adapters": [
+        "dd_v19_train_1149_11_2"
+      ],
+      "supported_meaning_in_use": true,
+      "source_text_rewritten": false,
+      "unresolved": [
+        "The second job requirement and its resulting advice are unfinished."
+      ]
+    },
+    {
+      "warning_key": [
+        "train:1150:1:1",
+        0,
+        "98b1c3abdaf0b21bff55a1b73c7d87c39fdb60b5e73883d648d49d88c211bd76"
+      ],
+      "current_ids": [
+        "train:1150:1:1"
+      ],
+      "status": "closed_representation_only",
+      "reason": "Accepted as original wording for the explicitly reviewed limited meaning. The source spelling is deliberately retained; this is not a repaired-spelling claim. Look at directs attention to clothes described as designed by top fashion designers, listing Versacci, Calvin Klein and Vivienne Westwood. Literal names are retained; there is no purchased item or universal designer attribution.",
+      "original_text_adapters": [
+        "dd_v19_train_1150_1_1"
+      ],
+      "supported_meaning_in_use": true,
+      "source_text_rewritten": false,
+      "unresolved": []
+    },
+    {
+      "warning_key": [
+        "train:1152:4:1",
+        0,
+        "a72459c85c376552439b4c407b8c26b487c852bdd4d8ac0e5b93971ff41c2845"
+      ],
+      "current_ids": [
+        "train:1152:4:1"
+      ],
+      "status": "quarantined_unresolved",
+      "reason": "The unresolved source portion remains in quarantine; a separately reviewed original-text adapter may use only the supported partial meaning. The malformed connective with does not distinguish a conditional from a causal relation.",
+      "original_text_adapters": [
+        "dd_v19_train_1152_4_1"
+      ],
+      "supported_meaning_in_use": true,
+      "source_text_rewritten": false,
+      "unresolved": [
+        "The malformed connective with does not distinguish a conditional from a causal relation."
+      ]
+    },
+    {
+      "warning_key": [
+        "train:1163:5:1",
+        0,
+        "a7e7930da3d02032618326b4c2555e35e79383c578d28dfb043c50cc9a83caf7"
+      ],
+      "current_ids": [
+        "train:1163:5:1"
+      ],
+      "status": "quarantined_unresolved",
+      "reason": "The unresolved source portion remains in quarantine; a separately reviewed original-text adapter may use only the supported partial meaning. The day represented by Borrow is unknown; no tomorrow is inferred.",
+      "original_text_adapters": [
+        "dd_v19_train_1163_5_1"
+      ],
+      "supported_meaning_in_use": true,
+      "source_text_rewritten": false,
+      "unresolved": [
+        "The day represented by Borrow is unknown; no tomorrow is inferred."
+      ]
+    },
+    {
+      "warning_key": [
+        "train:1163:7:2",
+        0,
+        "4e3b007c11bbf6a0ab47c99ee02353071d2f8c08960fdb89b3dec112f3e3c892"
+      ],
+      "current_ids": [
+        "train:1163:7:2"
+      ],
+      "status": "quarantined_unresolved",
+      "reason": "The unresolved source portion remains in quarantine; a separately reviewed original-text adapter may use only the supported partial meaning. The pickup day or time represented by Borrow is unknown.",
+      "original_text_adapters": [
+        "dd_v19_train_1163_7_2"
+      ],
+      "supported_meaning_in_use": true,
+      "source_text_rewritten": false,
+      "unresolved": [
+        "The pickup day or time represented by Borrow is unknown."
+      ]
+    },
+    {
+      "warning_key": [
+        "train:1163:9:1",
+        0,
+        "5e73a7f5952e7170dc35a02c8f3f97abce20dff2a7c6a8a005a140ef5b94859f"
+      ],
+      "current_ids": [
+        "train:1163:9:1"
+      ],
+      "status": "quarantined_unresolved",
+      "reason": "The unresolved source portion remains in quarantine; a separately reviewed original-text adapter may use only the supported partial meaning. Borrow does not identify a reliable date.",
+      "original_text_adapters": [
+        "dd_v19_train_1163_9_1"
+      ],
+      "supported_meaning_in_use": true,
+      "source_text_rewritten": false,
+      "unresolved": [
+        "Borrow does not identify a reliable date."
+      ]
+    },
+    {
+      "warning_key": [
+        "train:1177:3:2",
+        0,
+        "62e5fbdbef74d3242be8457f2aaf854ebd44715d8985fe6b9fa36e419f852044"
+      ],
+      "current_ids": [
+        "train:1177:3:2"
+      ],
+      "status": "closed_representation_only",
+      "reason": "Accepted as original wording for the explicitly reviewed limited meaning. The source spelling is deliberately retained; this is not a repaired-spelling claim. In the jazz discussion the speaker reports being a fan of Wanton Marsalis, keeping the literal supplied name without identifying it with a corrected external name.",
+      "original_text_adapters": [
+        "dd_v19_train_1177_3_2"
+      ],
+      "supported_meaning_in_use": true,
+      "source_text_rewritten": false,
+      "unresolved": []
+    },
+    {
+      "warning_key": [
+        "train:1185:2:6",
+        0,
+        "f4d9bf163fc73299587c06479fdb11ef4494ef7a89db335895ab603ab3d59907"
+      ],
+      "current_ids": [
+        "train:1185:2:6"
+      ],
+      "status": "quarantined_unresolved",
+      "reason": "The unresolved source portion remains in quarantine; a separately reviewed original-text adapter may use only the supported partial meaning. The intended identity of white gorse is unknown.",
+      "original_text_adapters": [
+        "dd_v19_train_1185_2_6"
+      ],
+      "supported_meaning_in_use": true,
+      "source_text_rewritten": false,
+      "unresolved": [
+        "The intended identity of white gorse is unknown."
+      ]
+    },
+    {
+      "warning_key": [
+        "train:1193:6:1",
+        0,
+        "1441b84528a3e9175187ab773d86ac3c6aa71a5516b066e4fcf77bd18bc2cd04"
+      ],
+      "current_ids": [
+        "train:1193:6:1"
+      ],
+      "status": "quarantined_unresolved",
+      "reason": "The unresolved source portion remains in quarantine; a separately reviewed original-text adapter may use only the supported partial meaning. Whether the question asks why or how is unresolved; do not use the following answer to silently repair it.",
+      "original_text_adapters": [
+        "dd_v19_train_1193_6_1"
+      ],
+      "supported_meaning_in_use": true,
+      "source_text_rewritten": false,
+      "unresolved": [
+        "Whether the question asks why or how is unresolved; do not use the following answer to silently repair it."
+      ]
+    },
+    {
+      "warning_key": [
+        "train:1203:7:1",
+        0,
+        "76c099ee13b3e5aca67a4491769f01ce6a33ae7db6300bc514f2f15e9ee4d068"
+      ],
+      "current_ids": [
+        "train:1203:7:1"
+      ],
+      "status": "quarantined_unresolved",
+      "reason": "The unresolved source portion remains in quarantine; a separately reviewed original-text adapter may use only the supported partial meaning. The domain written the wheres is unknown.",
+      "original_text_adapters": [
+        "dd_v19_train_1203_7_1"
+      ],
+      "supported_meaning_in_use": true,
+      "source_text_rewritten": false,
+      "unresolved": [
+        "The domain written the wheres is unknown."
+      ]
+    },
+    {
+      "warning_key": [
+        "train:1203:9:1",
+        0,
+        "f1d50ead43d7fd127afa4080e25ad88f2c4188497ad35a2ba2241fee1583ff74"
+      ],
+      "current_ids": [
+        "train:1203:9:1"
+      ],
+      "status": "quarantined_unresolved",
+      "reason": "The unresolved source portion remains in quarantine; a separately reviewed original-text adapter may use only the supported partial meaning. The intended desired object and response expressed by wonder run reget cannot be reliably recovered.",
+      "original_text_adapters": [
+        "dd_v19_train_1203_9_1"
+      ],
+      "supported_meaning_in_use": true,
+      "source_text_rewritten": false,
+      "unresolved": [
+        "The intended desired object and response expressed by wonder run reget cannot be reliably recovered."
+      ]
+    },
+    {
+      "warning_key": [
+        "train:1203:10:1",
+        0,
+        "b9fe0fc21d3838f949d15abd7a5f8cb7e4ca4f9ab3f5cb65f8bd20e96d1673cb"
+      ],
+      "current_ids": [
+        "train:1203:10:1"
+      ],
+      "status": "quarantined_unresolved",
+      "reason": "The unresolved source portion remains in quarantine; a separately reviewed original-text adapter may use only the supported partial meaning. The opening a ~ got give, the modifier flyby and the final response to anyone getting close remain unresolved.",
+      "original_text_adapters": [
+        "dd_v19_train_1203_10_1"
+      ],
+      "supported_meaning_in_use": true,
+      "source_text_rewritten": false,
+      "unresolved": [
+        "The opening a ~ got give, the modifier flyby and the final response to anyone getting close remain unresolved."
+      ]
+    },
+    {
+      "warning_key": [
+        "train:1236:4:3",
+        1,
+        "760a6b27f464e0bf6d4cee426817e74c2b8a8a91b0f40263ea7b292e22a1fe86"
+      ],
+      "current_ids": [
+        "train:1236:4:3"
+      ],
+      "status": "quarantined_unresolved",
+      "reason": "The unresolved source portion remains in quarantine; a separately reviewed original-text adapter may use only the supported partial meaning. Subjects, exact timing and grammatical links in the damaged college clause are not fully recoverable.",
+      "original_text_adapters": [
+        "dd_v19_train_1236_4_3"
+      ],
+      "supported_meaning_in_use": true,
+      "source_text_rewritten": false,
+      "unresolved": [
+        "Subjects, exact timing and grammatical links in the damaged college clause are not fully recoverable."
+      ]
+    },
+    {
+      "warning_key": [
+        "train:1292:4:2",
+        1,
+        "382614ed6e461fd497690d24d72ba0673986add3049a9c7d30fada33b60c50b9"
+      ],
+      "current_ids": [
+        "train:1292:4:2"
+      ],
+      "status": "quarantined_unresolved",
+      "reason": "The unresolved source portion remains in quarantine; a separately reviewed original-text adapter may use only the supported partial meaning. The emissary relation, the supplied name Tom Higgins and the subject of wakes up are not safely reconstructed.",
+      "original_text_adapters": [
+        "dd_v19_train_1292_4_2"
+      ],
+      "supported_meaning_in_use": true,
+      "source_text_rewritten": false,
+      "unresolved": [
+        "The emissary relation, the supplied name Tom Higgins and the subject of wakes up are not safely reconstructed."
+      ]
+    },
+    {
+      "warning_key": [
+        "train:1302:4:1",
+        0,
+        "2254107303f37761f15a4c88d8a3fddce94dbbbb6425e1850a5628e56ea547d2"
+      ],
+      "current_ids": [
+        "train:1302:4:1"
+      ],
+      "status": "quarantined_unresolved",
+      "reason": "The unresolved source portion remains in quarantine; a separately reviewed original-text adapter may use only the supported partial meaning. The exact wording and internal relations of the corrupted saying work value work, play value play are unknown.",
+      "original_text_adapters": [
+        "dd_v19_train_1302_4_1"
+      ],
+      "supported_meaning_in_use": true,
+      "source_text_rewritten": false,
+      "unresolved": [
+        "The exact wording and internal relations of the corrupted saying work value work, play value play are unknown."
+      ]
+    },
+    {
+      "warning_key": [
+        "train:1302:4:2",
+        0,
+        "7a86d1c77ee2dd222e5c9e5834947ddbb9dc971264fc735712be99ad7a627cd3"
+      ],
+      "current_ids": [
+        "train:1302:4:2"
+      ],
+      "status": "quarantined_unresolved",
+      "reason": "The unresolved source portion remains in quarantine; a separately reviewed original-text adapter may use only the supported partial meaning. The word jucky is unresolved and is not silently replaced with a name.",
+      "original_text_adapters": [
+        "dd_v19_train_1302_4_2"
+      ],
+      "supported_meaning_in_use": true,
+      "source_text_rewritten": false,
+      "unresolved": [
+        "The word jucky is unresolved and is not silently replaced with a name."
+      ]
+    },
+    {
+      "warning_key": [
+        "train:1310:7:1",
+        1,
+        "2a360458f55394fcd9b53869d3565462e09a9c9c3fff64068d66a379f9cd292e"
+      ],
+      "current_ids": [
+        "train:1310:7:1",
+        "train:1310:7:2"
+      ],
+      "status": "quarantined_unresolved",
+      "reason": "The unresolved source portion remains in quarantine; a separately reviewed original-text adapter may use only the supported partial meaning. The recipient versus reason links in giving thanks the land and the damaged healthy list remain uncertain.",
+      "original_text_adapters": [
+        "dd_v19_train_1310_7_1",
+        "dd_v19_train_1310_7_2"
+      ],
+      "supported_meaning_in_use": true,
+      "source_text_rewritten": false,
+      "unresolved": [
+        "The recipient versus reason links in giving thanks the land and the damaged healthy list remain uncertain."
+      ]
+    },
+    {
+      "warning_key": [
+        "train:1322:11:3",
+        0,
+        "546627e848d68bcceb17c364a629dc21dbfbb6dbc33b197561bd504da5ac6474"
+      ],
+      "current_ids": [
+        "train:1322:11:3"
+      ],
+      "status": "quarantined_unresolved",
+      "reason": "The unresolved source portion remains in quarantine; a separately reviewed original-text adapter may use only the supported partial meaning. The exact lexical form of Miun - Verstand is unresolved; no physical hug or kiss is inferred.",
+      "original_text_adapters": [
+        "dd_v19_train_1322_11_3"
+      ],
+      "supported_meaning_in_use": true,
+      "source_text_rewritten": false,
+      "unresolved": [
+        "The exact lexical form of Miun - Verstand is unresolved; no physical hug or kiss is inferred."
+      ]
+    },
+    {
+      "warning_key": [
+        "train:1328:11:1",
+        0,
+        "1d369cb60e2ce29395dd161ba1ffa82370a2ffeeaf72f49c416d77ae52dfd2b2"
+      ],
+      "current_ids": [
+        "train:1328:11:1"
+      ],
+      "status": "quarantined_unresolved",
+      "reason": "The unresolved source portion remains in quarantine; a separately reviewed original-text adapter may use only the supported partial meaning. The malformed fon is preserved without selecting a replacement adjective.",
+      "original_text_adapters": [
+        "dd_v19_train_1328_11_1"
+      ],
+      "supported_meaning_in_use": true,
+      "source_text_rewritten": false,
+      "unresolved": [
+        "The malformed fon is preserved without selecting a replacement adjective."
+      ]
+    },
+    {
+      "warning_key": [
+        "train:1341:1:1",
+        1,
+        "0358c8a86311c00337e67768a40f673518d18a225162af177983811b4bcc3a34"
+      ],
+      "current_ids": [
+        "train:1341:1:1"
+      ],
+      "status": "quarantined_unresolved",
+      "reason": "The unresolved source portion remains in quarantine; a separately reviewed original-text adapter may use only the supported partial meaning. The timing of the possible appointment is unspecified by become, and the rumor is unverified.",
+      "original_text_adapters": [
+        "dd_v19_train_1341_1_1"
+      ],
+      "supported_meaning_in_use": true,
+      "source_text_rewritten": false,
+      "unresolved": [
+        "The timing of the possible appointment is unspecified by become, and the rumor is unverified."
+      ]
+    },
+    {
+      "warning_key": [
+        "train:1348:9:3",
+        0,
+        "67942685cce4d356fa3ae06719c96cdd95f181e4dade5b83a3407658c13c39fd"
+      ],
+      "current_ids": [
+        "train:1348:9:3"
+      ],
+      "status": "quarantined_unresolved",
+      "reason": "The unresolved source portion remains in quarantine; a separately reviewed original-text adapter may use only the supported partial meaning. The ending one da is truncated and is not completed.",
+      "original_text_adapters": [
+        "dd_v19_train_1348_9_3"
+      ],
+      "supported_meaning_in_use": true,
+      "source_text_rewritten": false,
+      "unresolved": [
+        "The ending one da is truncated and is not completed."
+      ]
+    },
+    {
+      "warning_key": [
+        "train:1350:1:2",
+        0,
+        "2f300f5916599161f70902deb61c3645bfcc69b11e659b062623483aca6b330d"
+      ],
+      "current_ids": [
+        "train:1350:1:2"
+      ],
+      "status": "closed_representation_only",
+      "reason": "Accepted as original wording for the explicitly reviewed limited meaning. The source spelling is deliberately retained; this is not a repaired-spelling claim. The speaker reports that an unspecified text ranks spending more time with friends and family as the number-one New Year's resolution. This is reported content, not the speaker's own commitment or completed time spent.",
+      "original_text_adapters": [
+        "dd_v19_train_1350_1_2"
+      ],
+      "supported_meaning_in_use": true,
+      "source_text_rewritten": false,
+      "unresolved": []
+    },
+    {
+      "warning_key": [
+        "train:1372:2:1",
+        0,
+        "7319bfa02794f9ed2d6dc499a52debf9679faa917ce512ab6022b4d95ef0c7a2"
+      ],
+      "current_ids": [
+        "train:1372:2:1"
+      ],
+      "status": "quarantined_unresolved",
+      "reason": "The unresolved source portion remains in quarantine; a separately reviewed original-text adapter may use only the supported partial meaning. The words cut it upland and original hi are not reconstructed; the precise pronoun form and reasoning steps remain unknown.",
+      "original_text_adapters": [
+        "dd_v19_train_1372_2_1"
+      ],
+      "supported_meaning_in_use": true,
+      "source_text_rewritten": false,
+      "unresolved": [
+        "The words cut it upland and original hi are not reconstructed; the precise pronoun form and reasoning steps remain unknown."
+      ]
+    },
+    {
+      "warning_key": [
+        "train:1375:8:3",
+        0,
+        "05c1448bda7ed1d739cb1d3e629da4b56f812bf0773b0563767cc4f97fd60b91"
+      ],
+      "current_ids": [
+        "train:1375:8:3"
+      ],
+      "status": "closed_representation_only",
+      "reason": "Accepted as original wording for the explicitly reviewed limited meaning. The source spelling is deliberately retained; this is not a repaired-spelling claim. The if-clause supplies a condition that something should not be too much trouble for the listener. It does not assert absence of trouble or completed help. Its request can be retained in the surrounding turn without changing the printed period.",
+      "original_text_adapters": [
+        "dd_v19_train_1375_8_3"
+      ],
+      "supported_meaning_in_use": true,
+      "source_text_rewritten": false,
+      "unresolved": []
+    },
+    {
+      "warning_key": [
+        "train:1432:12:2",
+        0,
+        "89d6fc781f9609971b9d46053ece85ac1fbca727def6c103f48c794135d4c945"
+      ],
+      "current_ids": [
+        "train:1432:12:2"
+      ],
+      "status": "quarantined_unresolved",
+      "reason": "The unresolved source portion remains in quarantine; a separately reviewed original-text adapter may use only the supported partial meaning. The intended intensifier and exact wording before ugly are uncertain.",
+      "original_text_adapters": [
+        "dd_v19_train_1432_12_2"
+      ],
+      "supported_meaning_in_use": true,
+      "source_text_rewritten": false,
+      "unresolved": [
+        "The intended intensifier and exact wording before ugly are uncertain."
+      ]
+    },
+    {
+      "warning_key": [
+        "train:1436:4:6",
+        0,
+        "bde83b894db78e9f6dc171772e509734004f04df041331eb6351b7c81135bf4e"
+      ],
+      "current_ids": [
+        "train:1436:4:6"
+      ],
+      "status": "quarantined_unresolved",
+      "reason": "The unresolved source portion remains in quarantine; a separately reviewed original-text adapter may use only the supported partial meaning. The comparison class after someone hi is missing.",
+      "original_text_adapters": [
+        "dd_v19_train_1436_4_6"
+      ],
+      "supported_meaning_in_use": true,
+      "source_text_rewritten": false,
+      "unresolved": [
+        "The comparison class after someone hi is missing."
+      ]
+    },
+    {
+      "warning_key": [
+        "train:1444:12:3",
+        0,
+        "9941bf1c5ee694d6874c48d3258599a7356d853a251445137e8a646281955920"
+      ],
+      "current_ids": [
+        "train:1444:12:3"
+      ],
+      "status": "closed_representation_only",
+      "reason": "Accepted as original wording for the explicitly reviewed limited meaning. The source spelling is deliberately retained; this is not a repaired-spelling claim. The speaker recalls a plan to visit the place named Trev fountain and separately reports getting caught in rain. Planned visiting is not completed visiting; retain the place name as printed without external identification.",
+      "original_text_adapters": [
+        "dd_v19_train_1444_12_3"
+      ],
+      "supported_meaning_in_use": true,
+      "source_text_rewritten": false,
+      "unresolved": []
+    },
+    {
+      "warning_key": [
+        "train:1445:4:1",
+        0,
+        "22b9fa7dff3a6f8858047e36a480e9243002e78d66c8438b802bae9bd529062b"
+      ],
+      "current_ids": [
+        "train:1445:4:1"
+      ],
+      "status": "quarantined_unresolved",
+      "reason": "The unresolved source portion remains in quarantine; a separately reviewed original-text adapter may use only the supported partial meaning. The first time expression is damaged; no clock time or time of day is recovered.",
+      "original_text_adapters": [
+        "dd_v19_train_1445_4_1"
+      ],
+      "supported_meaning_in_use": true,
+      "source_text_rewritten": false,
+      "unresolved": [
+        "The first time expression is damaged; no clock time or time of day is recovered."
+      ]
+    },
+    {
+      "warning_key": [
+        "train:1460:5:2",
+        0,
+        "fdc1a9da8d85063d5f54c8f0329d90c8ce498b656fd0a908227543afa90ec41b"
+      ],
+      "current_ids": [
+        "train:1460:5:2"
+      ],
+      "status": "closed_representation_only",
+      "reason": "Accepted as original wording for the explicitly reviewed limited meaning. The source spelling is deliberately retained; this is not a repaired-spelling claim. The speaker paraphrases the listener's account of reading sports papers to feel relaxed: reading is their way to deal with work-related pressure. Solve pressure remains unchanged; no specific successful stress reduction is asserted.",
+      "original_text_adapters": [
+        "dd_v19_train_1460_5_2"
+      ],
+      "supported_meaning_in_use": true,
+      "source_text_rewritten": false,
+      "unresolved": []
+    },
+    {
+      "warning_key": [
+        "train:1466:6:4",
+        0,
+        "8aec10f9bc99bc38b417f3e8c3de62fabaed4266ebe6dbc0a0ebb1362f9cd9ee"
+      ],
+      "current_ids": [
+        "train:1466:6:4"
+      ],
+      "status": "quarantined_unresolved",
+      "reason": "The unresolved source portion remains in quarantine; a separately reviewed original-text adapter may use only the supported partial meaning. The noun beginning with s is missing; no shops, shows or other referent is guessed.",
+      "original_text_adapters": [],
+      "supported_meaning_in_use": false,
+      "source_text_rewritten": false,
+      "unresolved": [
+        "The noun beginning with s is missing; no shops, shows or other referent is guessed."
+      ]
+    }
+  ],
+  "note": "Usability and source uncertainty are separate: a restricted interpretation can be in use while an unknown part remains quarantined. The original training reply is not rewritten."
+}

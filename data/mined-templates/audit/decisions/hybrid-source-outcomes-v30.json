@@ -1,0 +1,788 @@
+{
+  "version": "source-wording-and-boundaries-v30",
+  "source_candidate": "artifacts/dailydialog-hybrid-reviewed-v29",
+  "source_ledger": "data/dailydialog/review-parts/luna-offline-reviewed-v29",
+  "source_warning_triage": 228,
+  "full_context_warning_reviews": 35,
+  "representation_only_closures": 33,
+  "boundary_repairs": 2,
+  "context_revisions": 34,
+  "consumed_segments": 36,
+  "warning_rechecks": 49,
+  "cases": [
+    {
+      "id": "test:153:2:1",
+      "input_ids": [
+        "test:153:2:1"
+      ],
+      "note": "The reply to the medical concern identifies blood pressure, with I am afraid as a hedge. Accept this elliptical wording without inserting an initial subject, diagnosis or numeric measurement.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "identified blood pressure as the concern, with I'm afraid functioning as a hedge"
+        },
+        "unknown": [
+          "The missing initial subject is not inserted; this interpretation does not add a diagnosis or measurement."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false
+    },
+    {
+      "id": "test:186:4:2",
+      "input_ids": [
+        "test:186:4:2"
+      ],
+      "note": "Retain King Dynasty as the attributed period label in the painting description. Do not equate it with another dynasty or verify historical provenance.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "reported_completion",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "reported that a famous Chinese painter painted it in a period called King Dynasty"
+        },
+        "unknown": [
+          "The dynasty name is not corrected or identified with another dynasty; this is a reported attribution, not verified provenance."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": true
+    },
+    {
+      "id": "test:190:6:2",
+      "input_ids": [
+        "test:190:6:2"
+      ],
+      "note": "The camera-shopping prefix identifies the requested class only by the written label Sirs. A request to inspect it is supported; an SLR expansion or completed purchase is not.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "requested a look at the camera items called Sirs, without reporting buying or inspecting them"
+        },
+        "unknown": [
+          "The exact model class meant by Sirs is not established."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": true
+    },
+    {
+      "id": "test:203:1:2",
+      "input_ids": [
+        "test:203:1:2"
+      ],
+      "note": "China dress is the supplied description of the reported purchase. Retain it without selecting a style, fabric, country of manufacture or corrected adjective.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "reported_completion",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "reported buying a dress described as China dress at the shop that morning"
+        },
+        "unknown": [
+          "China is retained as the supplied description without choosing a particular origin, fabric or style."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": true
+    },
+    {
+      "id": "test:28:6:2",
+      "input_ids": [
+        "test:28:6:2"
+      ],
+      "note": "This is the notes presents something as notes despite number disagreement. Accept that limited presentation without inferring a document type, exact count or corrected demonstrative.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "presented something described as the notes, without establishing its precise identity or number"
+        },
+        "unknown": [
+          "The demonstrative and noun disagree; the kind and number of notes are not settled."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false
+    },
+    {
+      "id": "test:360:2:2",
+      "input_ids": [
+        "test:360:2:2"
+      ],
+      "note": "Accept reservation clearly describes a work duty despite the absent determiner. It does not report a booking; the separate customer-number ambiguity remains restricted.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "described duties involving customer-number information and accepting reservations"
+        },
+        "unknown": [
+          "The number of the customer may be a count or another number; no completed reservation is asserted."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false
+    },
+    {
+      "id": "test:366:6:1",
+      "input_ids": [
+        "test:366:6:1"
+      ],
+      "note": "Both amounts explicitly say yuan. The quoted fare is 10 yuan initially and 2 yuan per kilometer even though RIB is unexplained; do not replace or expand that abbreviation.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "quoted an initial fare of 10 yuan and 2 yuan per kilometer, leaving RIB unexplained"
+        },
+        "unknown": [
+          "Do not replace RIB with an inferred abbreviation; no fare payment is asserted."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false
+    },
+    {
+      "id": "test:378:5:2",
+      "input_ids": [
+        "test:378:5:2"
+      ],
+      "note": "Mach Pitch is the written landmark label and Peru the explicitly supplied location. Preserve reported-list scope without resolving the canonical landmark. Chichenitza is the written location label for the pyramid. The source supplies Mexico; no canonical spelling or external ranking is asserted.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "listed Petra in Jordan, a place named Mach Pitch in Peru, and a pyramid in Chichenitza in Mexico as reported winners"
+        },
+        "unknown": [
+          "The supplied place names are retained without canonical-name correction or external verification."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": true
+    },
+    {
+      "id": "test:378:6:2",
+      "input_ids": [
+        "test:378:6:2"
+      ],
+      "note": "Retain Christ Re-deemer as the statue name within what the article says, with Brazil as supplied. The embedded hyphen and source spelling are not normalized.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "reported that the article listed the Christ Re-deemer statue in Brazil and the Colosseum in Rome as wonders"
+        },
+        "unknown": [
+          "The title spelling is retained; no external ranking or canonical name is verified."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": true
+    },
+    {
+      "id": "test:408:5:1",
+      "input_ids": [
+        "test:408:5:1"
+      ],
+      "note": "The utterance questions computer-model compatibility despite agreement errors. Accept the question without asserting incompatibility or selecting the intended grammatical number.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "asked whether the computer models were incompatible, without asserting incompatibility"
+        },
+        "unknown": [
+          "The source leaves singular versus plural model wording unsettled."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false
+    },
+    {
+      "id": "test:415:2:2",
+      "input_ids": [
+        "test:415:2:2"
+      ],
+      "note": "British Airway's is the source airline designation in directions to a reporting desk. Keep it unchanged; no completed check-in or canonical name is inferred.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "pointed out the reporting desk for the flight described as British Airway's to London"
+        },
+        "unknown": [
+          "The airline-name spelling is not normalized; no check-in is completed."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": true
+    },
+    {
+      "id": "test:420:10:1",
+      "input_ids": [
+        "test:420:10:1"
+      ],
+      "note": "The response to the payment-method question specifies the card labelled Bank of American. Preserve the designation without identifying a real bank or asserting payment.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "specified a card described as Bank of American as the intended payment method"
+        },
+        "unknown": [
+          "The institution name is not resolved and no completed charge or payment is asserted."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": true
+    },
+    {
+      "id": "test:542:2:1",
+      "input_ids": [
+        "test:542:2:1"
+      ],
+      "note": "Marry Lin is the explicit requested contact. A possible alternative spelling does not invalidate the request as written; no call connection is asserted.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "requested the person named Marry Lin, without correcting the supplied name"
+        },
+        "unknown": [
+          "Do not silently substitute Mary or assert that the call was connected."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": true
+    },
+    {
+      "id": "test:609:3:2",
+      "input_ids": [
+        "test:609:3:2"
+      ],
+      "note": "Bungfu is the supplied name of an activity in a know-how question. No equivalence with kung fu or affirmative ability is inferred.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "asked whether the addressee knew how to practise the activity called Bungfu"
+        },
+        "unknown": [
+          "The activity is not silently identified with kung fu; no ability or practice is asserted."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": true
+    },
+    {
+      "id": "test:640:5:2",
+      "input_ids": [
+        "test:640:5:2"
+      ],
+      "note": "The speaker identifies the book written Thom Birds as the favorite. Preserve the title without canonical spelling or a claim of reading completion.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "named the book called the Thom Birds as the favorite"
+        },
+        "unknown": [
+          "The title is not corrected or linked to a canonical title."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": true
+    },
+    {
+      "id": "test:752:3:1",
+      "input_ids": [
+        "test:752:3:1"
+      ],
+      "note": "The conditional wording and birthday-party context establish an invitation. Preserve and having without creating a second event, acceptance or attendance.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "invited Alice to a small birthday party if available, without reporting attendance"
+        },
+        "unknown": [
+          "The construction and having is not reconstructed and does not establish a separate completed action."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false
+    },
+    {
+      "id": "test:774:3:1",
+      "input_ids": [
+        "test:774:3:1"
+      ],
+      "note": "Has been grown up is usable as the stated basis for reassurance about his being grown up. No grammatical repair is claimed; the separate take himself warning remains open.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "offered reassurance based on his being grown up, while leaving take himself very well unresolved"
+        },
+        "unknown": [
+          "The exact ability claimed and the malformed grow-up construction are not reconstructed."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false
+    },
+    {
+      "id": "test:807:4:1",
+      "input_ids": [
+        "test:807:4:1",
+        "test:807:4:2"
+      ],
+      "note": "Join the two adjacent segments into the complete original reply Need a new. Girlfriend, huh? The determiner and adjective modify girlfriend; huh cues a confirmation question. Keep the internal period and do not add a subject or any future-turn facts.",
+      "meaning": {
+        "speech_act": "confirmation_question",
+        "event_status": "unconfirmed_need",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker asks whether the addressee needs a new girlfriend. The internal period is retained as a source interruption; no need, breakup or new relationship is asserted."
+        },
+        "unknown": []
+      },
+      "token_edits": {
+        "1": {
+          "head": 4
+        },
+        "2": {
+          "dep": "amod",
+          "head": 4
+        },
+        "4": {
+          "dep": "dobj",
+          "head": 0
+        },
+        "6": {
+          "head": 0
+        },
+        "7": {
+          "head": 0
+        }
+      },
+      "source_text_changed": false,
+      "joined": true,
+      "source_label_only": false
+    },
+    {
+      "id": "test:899:11:2",
+      "input_ids": [
+        "test:899:11:2"
+      ],
+      "note": "Ally McNeal is the explicitly repeated show title. The speaker insists on that choice; retain the title without canonical correction, completed viewing or a decision about whether viewing has begun.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "insisted on watching the show named Ally McNeal, without correcting the title or asserting a completed viewing"
+        },
+        "unknown": [
+          "The canonical show title and whether watching has already begun are not settled."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": true
+    },
+    {
+      "id": "test:925:12:1",
+      "input_ids": [
+        "test:925:12:1"
+      ],
+      "note": "Tag Heer is the supplied watch designation in a direct answer. Do not identify a different brand or change the source spelling.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "identified the watch by the supplied name Tag Heer"
+        },
+        "unknown": [
+          "The brand spelling is not corrected or linked to another brand."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": true
+    },
+    {
+      "id": "test:95:9:1",
+      "input_ids": [
+        "test:95:9:1"
+      ],
+      "note": "The speaker reports finding the trousers at the named place JC Pennies. Retain the label; finding is not payment and the actual retailer is not externally resolved.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "reported_completion",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "reported finding the trousers at a place named JC Pennies, without correcting or resolving that name"
+        },
+        "unknown": [
+          "The canonical retailer spelling and identity are not verified; finding does not establish payment."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": true
+    },
+    {
+      "id": "test:971:2:1",
+      "input_ids": [
+        "test:971:2:1"
+      ],
+      "note": "The visible greeting addresses Isabelle exactly as written. Later spelling variants do not license rewriting this turn or proving identity across those variants.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "greeted the addressee with the supplied name Isabelle"
+        },
+        "unknown": [
+          "Do not resolve it to Isabella or assert that differently spelled names identify the same person."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": true
+    },
+    {
+      "id": "test:980:2:2",
+      "input_ids": [
+        "test:980:2:2",
+        "test:980:2:3"
+      ],
+      "note": "Join Miss. and Parker speaks to us only in English. The title belongs to Parker, who is the subject of speaks. Preserve the title period and the earlier independent Spanish statement as a separate segment.",
+      "meaning": {
+        "speech_act": "statement",
+        "event_status": "reported_language_practice",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker reports that Miss. Parker speaks to them only in English. The title and name form the subject of the same clause; no specific completed conversation is asserted."
+        },
+        "unknown": []
+      },
+      "token_edits": {
+        "0": {
+          "dep": "compound",
+          "head": 1
+        }
+      },
+      "source_text_changed": false,
+      "joined": true,
+      "source_label_only": false
+    },
+    {
+      "id": "train:1019:4:1",
+      "input_ids": [
+        "train:1019:4:1"
+      ],
+      "note": "Maps is a written member of the required-course list. Requirement does not assert attendance; do not silently substitute mathematics.",
+      "meaning": {
+        "speech_act": "statement",
+        "event_status": "reported_course_requirement",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker reports having to take biology, chemistry, maps and physics. Have to expresses a course requirement, not completed attendance. Maps is kept as the supplied course label."
+        },
+        "unknown": [
+          "The intended conventional subject name behind maps is not established; do not replace it with mathematics."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": true
+    },
+    {
+      "id": "train:1019:5:1",
+      "input_ids": [
+        "train:1019:5:1"
+      ],
+      "note": "The speaker reports weakness in the supplied subject maps and separately describes poor high-school performance. Do not normalize the subject label or scope the weakness over every preceding course.",
+      "meaning": {
+        "speech_act": "statement",
+        "event_status": "reported_weakness_and_past_performance",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "The speaker reports current weakness in the subject written maps and poor high-school performance. These are independent clauses; weakness does not scope over every course in the preceding list."
+        },
+        "unknown": [
+          "The conventional subject represented by maps is unknown."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": true
+    },
+    {
+      "id": "train:10329:2:1",
+      "input_ids": [
+        "train:10329:2:1"
+      ],
+      "note": "The past purchase and current malfunction are explicit. A week before can remain an unanchored relative interval; accept the original without changing it to one week ago or assigning a date.",
+      "meaning": {
+        "speech_act": "complaint",
+        "event_status": "past_purchase_and_current_failure",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "The speaker reports buying an MP4 player from the store and says it does not work today. A week before supplies a relative interval but no secure reference point; do not silently rewrite it as one week ago."
+        },
+        "unknown": [
+          "The reference point for a week before is unspecified."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false
+    },
+    {
+      "id": "train:10480:6:1",
+      "input_ids": [
+        "train:10480:6:1"
+      ],
+      "note": "That maybe true marks a provisional concession, followed by opposition to job loss and a challenge to the bailout. Preserve maybe and the unexplained label Ces; do not upgrade the concession to certainty.",
+      "meaning": {
+        "speech_act": "objection",
+        "event_status": "bailout_objection_with_unclear_group_label",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker provisionally concedes the job-saving argument and opposes job losses, but challenges a bailout request by high earners labelled Ces. Do not expand Ces into an established job title."
+        },
+        "unknown": [
+          "The exact group or title represented by Ces is unspecified."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false
+    },
+    {
+      "id": "train:10621:4:2",
+      "input_ids": [
+        "train:10621:4:2"
+      ],
+      "note": "Compare is the written drink designation in a request following the aperitif suggestion. Preserve the request without substituting a brand, specifying ingredients or asserting service.",
+      "meaning": {
+        "speech_act": "request",
+        "event_status": "drink_request_with_uncertain_name",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker requests to start with a drink written Compare after discussing aperitifs. Do not substitute a recognized brand or assert that it was served."
+        },
+        "unknown": [
+          "The intended beverage identity behind Compare is unknown."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": true
+    },
+    {
+      "id": "train:10816:6:2",
+      "input_ids": [
+        "train:10816:6:2"
+      ],
+      "note": "The speaker reports coming to discuss cameras for the product written methone. Preserve the product designation and distinguish the reported arrival from a completed order.",
+      "meaning": {
+        "speech_act": "purpose_statement",
+        "event_status": "visit_to_discuss_camera_order",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "The speaker says they have come to discuss ordering eight-megapixel cameras for a product written methone. The visit is reported, but neither discussion outcome nor an order is complete."
+        },
+        "unknown": [
+          "The product identity represented by methone is unclear."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": true
+    },
+    {
+      "id": "train:1885:6:1",
+      "input_ids": [
+        "train:1885:6:1"
+      ],
+      "note": "The malformed face looks are manly still supports a manly appearance assessment and a straight nose. Accept that restricted meaning; infinite eyes is not converted into another eye property or a count.",
+      "meaning": {
+        "speech_act": "evaluation",
+        "event_status": "appearance_description_with_unclear_eye_property",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker describes the footballer under discussion as manly-looking with a straight nose. Infinite eyes is retained without inventing a conventional appearance trait or infinitely many eyes."
+        },
+        "unknown": [
+          "The intended property behind infinite eyes is uncertain."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false
+    },
+    {
+      "id": "train:1925:14:2",
+      "input_ids": [
+        "train:1925:14:2"
+      ],
+      "note": "Oops and almost support a near-forgetting realization. Accept the unedited tense without asserting complete forgetting or identifying the referent of it.",
+      "meaning": {
+        "speech_act": "realization",
+        "event_status": "near_forgetting_unspecified_referent",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker acknowledges almost forgetting something after the banter about asking a friend. Almost does not assert complete forgetting."
+        },
+        "unknown": [
+          "The exact referent of it is not sufficiently identified."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false
+    },
+    {
+      "id": "train:1966:5:2",
+      "input_ids": [
+        "train:1966:5:2"
+      ],
+      "note": "The source places commute-start at about six thirty, under must, and explicitly leaves wake-up time unknown. Accept the get start wording without selecting inference versus obligation, adding AM/PM, or asserting departure.",
+      "meaning": {
+        "speech_act": "inference",
+        "event_status": "inferred_or_required_commute_start",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker places Bill's commute start at about six thirty and says his wake-up time is unknown. Must may express inference or practical necessity; no actual departure is confirmed."
+        },
+        "unknown": [
+          "The force of must, explicit AM or PM, and actual wake-up time are not fixed."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false
+    },
+    {
+      "id": "train:2025:6:3",
+      "input_ids": [
+        "train:2025:6:3"
+      ],
+      "note": "All my shopping in one ... trip supports a single-trip preference. Keep bag unchanged and uninterpreted; do not infer a one-bag limit, a big trip or an actual shopping event.",
+      "meaning": {
+        "speech_act": "preference",
+        "event_status": "single_trip_shopping_with_unclear_modifier",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker prefers doing all shopping in one supermarket trip. Bag is retained without inferring a one-bag limit or silently substituting big."
+        },
+        "unknown": [
+          "The modifier bag in one bag trip is unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false
+    },
+    {
+      "id": "train:2641:12:4",
+      "input_ids": [
+        "train:2641:12:4"
+      ],
+      "note": "Hot in sunny supports the weather condition for a stated preference. Preserve the activity label sand bath without equating it with sunbathing or asserting an actual beach visit.",
+      "meaning": {
+        "speech_act": "preference",
+        "event_status": "beach_activity_with_unclear_label",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker prefers the activity written sand bath on the beach in hot and sunny weather. Sand bathing and sunbathing are not silently equated, and no activity is completed."
+        },
+        "unknown": [
+          "The exact activity represented by sand bath is uncertain."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false
+    }
+  ],
+  "source_text_changes": 0,
+  "api_calls": 0,
+  "parser_inference_calls": 0,
+  "new_adapters": 0,
+  "catalog_unchanged": true
+}

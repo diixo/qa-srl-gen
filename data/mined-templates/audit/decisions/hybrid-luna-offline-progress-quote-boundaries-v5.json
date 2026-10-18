@@ -1,0 +1,158 @@
+{
+  "version": "offline-quote-boundaries-v5",
+  "date": "2026-10-16",
+  "previous_progress": "data/dailydialog/review-parts/hybrid-luna-offline-progress-token-boundaries-v4.json",
+  "candidate": "artifacts/dailydialog-hybrid-quote-boundaries-v5",
+  "ledger": "data/dailydialog/review-parts/luna-offline-quote-boundaries-v5",
+  "api_calls": 0,
+  "parser_inference_calls": 0,
+  "full_candidate_published": false,
+  "review_status": "UNREVIEWED",
+  "semantic_review_complete": false,
+  "reviewed_input_occurrences": 14,
+  "reviewed_output_occurrences": 10,
+  "joined_quote_only_segments": 4,
+  "warning_rechecks": 24,
+  "closed_previously_open_warnings": 20,
+  "reconfirmed_previous_closures": 4,
+  "saved_warnings": 12978,
+  "quarantined_warnings": 1312,
+  "quarantined_current_occurrences": 1203,
+  "decisions": {
+    "reviews": "data/dailydialog/review-parts/hybrid-quote-boundaries-reviews-v5.jsonl",
+    "warning_rechecks": "data/dailydialog/review-parts/hybrid-quote-boundaries-warning-rechecks-v5.jsonl",
+    "snapshot": "data/dailydialog/review-parts/hybrid-quote-boundaries-snapshot-v5.jsonl.gz",
+    "admission": "data/dailydialog/review-parts/hybrid-quote-boundaries-admission-reviews-v5.jsonl"
+  },
+  "snapshot_sha256": "3b4a6c80d711760e58b08dd7f87a0422e05724ffc79cbfd0d1140aefb39b9e4b",
+  "changes": [
+    "Split fused words and quotes in menu questions, movie titles, abbreviation definitions and reported speech.",
+    "Correct going'on and the escaped I would contraction; synchronize the four explicitly addressed turns in filtered sources and their parts.",
+    "Join four closing-quote-only segments to their quoted units; retain retired records and all original tokens in preimages.",
+    "Restore wondered/relative/quoted complement scopes and the reported made-it-popular object property.",
+    "Keep conditional jokes, hypothetical learning, disputed viewing, negative knowledge and reported claims distinct from verified completed actions.",
+    "Bind a separately inspected source context when the candidate already has an unrelated earlier wording correction; change only the addressed source turn.",
+    "Finalization maps retired quote addresses to current sentences and requires new warning reviews for every revised input."
+  ],
+  "scope": {
+    "all_10_candidate_outputs_context_only": true,
+    "unseen_group_members_approved": false,
+    "semantic_approval": false,
+    "missing_meaning_not_inferred": true,
+    "retained_unknowns": {
+      "test:188:8:1": "Uncertain spelling of the literal foreign menu expression.",
+      "test:781:7:3": "The quoted elliptical body range does not specify injury events.",
+      "train:1322:6:2": "Redundant comma in the slash-delimited quoted labels is preserved."
+    },
+    "source_version_note": "In train:1425 the raw turn 1 still has got where the candidate previously corrected go. This pass changes only turn 5 in the raw source; the inspected raw snapshot is embedded in the decision."
+  },
+  "verification": {
+    "validation": {
+      "status": "passed",
+      "source_sha256": "12fb0c0c7d3896e23fd683dd2baf2c60a0eef13c87761e34bbcc775c674c8da5",
+      "templates": 100838,
+      "attested_roundtrips": 109773,
+      "source_records": 161260,
+      "token_spans": 1378184,
+      "verbs_occurrences": 289426,
+      "adjectives_occurrences": 71888
+    },
+    "conservation": {
+      "status": "passed",
+      "counts": {
+        "old_segments": 161264,
+        "old_tokens": 1378168,
+        "new_segments": 161260,
+        "new_tokens": 1378184,
+        "unchanged_analyses": 161250,
+        "revised_outputs": 10,
+        "grouped_input_segments": 6,
+        "joined_input_segments": 4
+      },
+      "explicit_token_delta": 16,
+      "reference_expansion_token_delta": 0,
+      "previous_preimages_retained": true
+    },
+    "protected_files": 796,
+    "source_files_updated": 6,
+    "source_dialogues_preserved": 13118,
+    "source_part_and_manual_files_unchanged": 104,
+    "manual_annotation_files_unchanged": 6,
+    "manual_reference_dialogues_preserved": 510,
+    "all_100_parts_match_filtered": true,
+    "source_files_report": "artifacts/dailydialog-hybrid-quote-boundaries-v5/source-files.json",
+    "original_file_backups": "artifacts/dailydialog-hybrid-quote-boundaries-v5/source-before",
+    "changed_source_turns": [
+      "train:1007:1",
+      "train:1425:5",
+      "test:188:8",
+      "test:199:2"
+    ],
+    "retired_quote_preimages_preserved": true,
+    "paid_evidence_identical": true,
+    "received_evidence_sha256": "68f72401d4ccd5e4a26eaaf23e1558dc268f136195680c658a2f857f8be68391",
+    "generation_smoke": "artifacts/dailydialog-hybrid-quote-boundaries-v5/generation-smoke.json",
+    "exact_candidate_renders": 10,
+    "dialogue_action_realization_blocked": true,
+    "apostrophes": {
+      "normalized_segments": 161260,
+      "ascii_apostrophes": 49412,
+      "noncanonical_apostrophes": 0,
+      "target": "'"
+    }
+  },
+  "admission": {
+    "bank": "data/mined-templates",
+    "source_id": "dailydialog-quote-boundaries-admission-v5",
+    "published": true,
+    "report": "artifacts/dailydialog-quote-boundaries-admission-v5/report.json",
+    "occurrences": [
+      "train:1007:1:3",
+      "train:1425:5:2",
+      "train:1588:9:2",
+      "train:1762:5:1",
+      "test:188:8:2",
+      "test:199:2:2"
+    ],
+    "admitted_occurrences_count": 6,
+    "usage": "Exact attested sentence with its embedded context only; no recombination, factual dependency QA or action realization.",
+    "previous_pool_files_preserved": 344,
+    "generation_smoke": "artifacts/dailydialog-quote-boundaries-admission-v5/published-smoke.json",
+    "exact_published_renders": 6,
+    "builtin_documents": 1,
+    "normal_controlled_predicate_exclusions": [
+      "test:188:8:2",
+      "train:1007:1:3",
+      "train:1425:5:2",
+      "train:1588:9:2",
+      "train:1762:5:1"
+    ]
+  },
+  "tests": {
+    "passed": 151,
+    "command": "python -X utf8 -B -m pytest -q tests/test_dailydialog_source_segmentation.py tests/test_dailydialog_quarantine_finalization.py tests/test_dailydialog_admission.py tests/test_template_usage.py"
+  },
+  "next_step": {
+    "priority": "Continue contextual source/contraction review, including malformed possessives and detached or uncertain wording. Keep unresolved readings quarantined.",
+    "examples": [
+      "train:1007:2:2",
+      "train:10944:8:3",
+      "train:10979:2:1",
+      "train:10530:1:3",
+      "train:2244:5:2"
+    ],
+    "continuing_groups": {
+      "source": 714,
+      "other_syntax": 259,
+      "coordination": 91,
+      "clause_attachment": 37,
+      "ambiguity": 94,
+      "property_attachment": 78,
+      "sentence_boundary": 25,
+      "direct_address": 12,
+      "lemma_or_inflection": 1,
+      "negation_or_modality": 1
+    },
+    "full_semantic_review_still_required": true
+  }
+}

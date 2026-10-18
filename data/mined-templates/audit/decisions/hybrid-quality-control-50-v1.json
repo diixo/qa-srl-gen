@@ -1,0 +1,4097 @@
+{
+  "version": "dailydialog_diagnostic_quality_control_v1",
+  "status": "COMPLETED_DIAGNOSTIC_REVIEW",
+  "method": "direct_assistant_review_of_saved_parse_and_full_dialogue_context",
+  "source": "artifacts\\dailydialog-hybrid-parentheses-v1",
+  "selection": {
+    "status": "PLANNED_UNREVIEWED",
+    "source": "artifacts\\dailydialog-hybrid-parentheses-v1",
+    "seed": 20261013,
+    "selection": "Preserve the original 16 checked body preimages; add hash-ranked cases from distinct dialogues. Additions have no length cap. 20 unflagged, 10 boundaries, 10 properties, 6 fragment candidates and 4 explicit idiom-string matches.",
+    "limitations": [
+      "Diagnostic stratified sample; not a corpus accuracy estimate.",
+      "Original 16 have length 5..140; added 34 have no length restriction.",
+      "Only selected occurrences are reviewed, not every turn in the 50 contexts."
+    ],
+    "cases": [
+      {
+        "id": "train:10411:3:1",
+        "group": "ordinary",
+        "text": "I used your computer.",
+        "reasons": [],
+        "body_sha256": "f2702ba727f28e8123db6ef9c5ccab6d7e53d96870d40f67b4029c83677936d7",
+        "payload_sha256": "aa707361b518cae2626ed810c981fafc2b589ba148b6df7bea8494785e0df68a",
+        "context_sha256": "cd8cc1e7570ae3c640cb842ca0970103ffa80b5bdfc27d38e19425009b939ee5"
+      },
+      {
+        "id": "train:3612:2:1",
+        "group": "ordinary",
+        "text": "Oh, thank you.",
+        "reasons": [],
+        "body_sha256": "bda253793ff8f8864c6938db3e35477e1d8a5b16f3ded22c32d05af6bd249774",
+        "payload_sha256": "a1a57151184544ef29a1f408aa9602f855c03e6d7f2a27e257bba5d0f6afcec2",
+        "context_sha256": "02a0b651e0db8e8827f97cfe9f3de0e436c1889a7ab18debfaffa4baf9c86a38"
+      },
+      {
+        "id": "train:1011:1:1",
+        "group": "ordinary",
+        "text": "I like your new skirt.",
+        "reasons": [],
+        "body_sha256": "b7f4ef6d02b60d52d4ec0f9465bc07677cef7555c353e05e9dbfbda89b15f331",
+        "payload_sha256": "9102ea6453e666b1339fe5f64dc37a12326b4d9a7cebc3d539d6193d56c73330",
+        "context_sha256": "fcae94ca12ceb39dad0433b78c7f9cc34c656c9671f8985a67075e18c806e84e"
+      },
+      {
+        "id": "train:925:3:1",
+        "group": "ordinary",
+        "text": "There we go.",
+        "reasons": [],
+        "body_sha256": "951ff9a2548550687622d9762c1db3501b0572cf40953296f1455dbedd3e4af4",
+        "payload_sha256": "1bff4c6665172277c4932437c915f438c1e2d86426e927a952cb8651856a088c",
+        "context_sha256": "624ede459ca3fbf630a0c85d1a32476d94e952a8ac3894ea6dbcfeba6267a69a"
+      },
+      {
+        "id": "train:2115:5:1",
+        "group": "ordinary",
+        "text": "Thank you,",
+        "reasons": [],
+        "body_sha256": "1db43b7665b0f21154ccd4a30f8b12bb226e6f286030734b72d49da5ac03c7a6",
+        "payload_sha256": "96007ffac6ff0b0ee6980c26270f42f8422e65c57c9deee5d05d0e075a10412f",
+        "context_sha256": "27919ca2c621343e04113fcc5b94ab1e8ee7a10fee49a0bfb1d0e6629e5ade86"
+      },
+      {
+        "id": "train:1770:4:3",
+        "group": "ordinary",
+        "text": "He assigned me two projects.",
+        "reasons": [],
+        "body_sha256": "52a44d7d03a1b71fea9a5e752b66f7fa57dbf36625cc08ed19fa93fcdf9744b4",
+        "payload_sha256": "90606de107b2d02b9f8ce69398198815f0b07a80a1e30513017985b5bf9b6cbc",
+        "context_sha256": "8ed71f3b80cff9d54240a32108f2e810d5bbb0603de1ec0d7f14f066795f1dcd"
+      },
+      {
+        "id": "train:11016:8:2",
+        "group": "ordinary",
+        "text": "Thank you!",
+        "reasons": [],
+        "body_sha256": "7eb61fc741c37ddcbf4ff099717a0a345fa22c7feb9e4052da1380c4d8abd40c",
+        "payload_sha256": "6baa2093555a5e71b6367dd5527cd08e6a3c816405a29c7f37c6331070880ab4",
+        "context_sha256": "2a51797fffefc9f1ba30dc593a2e87eca3c5f6b4fe772a5098fa6812fabc609a"
+      },
+      {
+        "id": "train:801:5:2",
+        "group": "ordinary",
+        "text": "Thank you.",
+        "reasons": [],
+        "body_sha256": "520bbc686a892cd171b192cc91a8cc89eee2a9a6d3543d86c0ed589c96bfd2f9",
+        "payload_sha256": "29b0a9f3b64974e3b724767aec7047307272c086f74237e29978e0d366f39d80",
+        "context_sha256": "cb5799ad4ee170ff3064d139755d46e2082318ad9ed1542b233386cca3e76495"
+      },
+      {
+        "id": "train:9228:6:1",
+        "group": "ordinary",
+        "text": "I know.",
+        "reasons": [],
+        "body_sha256": "b051b66d629893413f489324789eafc9a20972e4baa6ae34eaa5fb3d0ee7f0fb",
+        "payload_sha256": "e0834c4ba2ec0a49259aa8fdb5a21ceb4789a07081258408f17657c03c4ba718",
+        "context_sha256": "344f2eb3072c49892c5d99c9c062c8f029bf2ffb4de95d82a323ae72a7c54b64"
+      },
+      {
+        "id": "train:546:4:1",
+        "group": "ordinary",
+        "text": "Well, I missed several buses.",
+        "reasons": [],
+        "body_sha256": "e6ec1e33fc1355cede6ee19077a8b90530edf6387a27df5c3cc4dcb377641df8",
+        "payload_sha256": "d911f1878a23d6fb3efd5e0c1007513eead77cbee3bb0c7831e378f23441a248",
+        "context_sha256": "680caa80eacfd74978113f70371cf31b613fc8cb5c063d26fbf8f34ab742c7e3"
+      },
+      {
+        "id": "val:683:3:1",
+        "group": "ordinary",
+        "text": "Yes, I realise that.",
+        "reasons": [],
+        "body_sha256": "ef1d81ecd1abb49ee14d8c160f2f92f0ad96b0f72c8022e8ec633114b64d616d",
+        "payload_sha256": "ca2c41ae90d96430ae0501f7dba5144171014b47d75f4d8b1b1d36d94cbba888",
+        "context_sha256": "239dabe997e4e56f474372dec274a30ae6425cdc0d82786df4a5d98bfbce9bbe"
+      },
+      {
+        "id": "train:5811:5:1",
+        "group": "ordinary",
+        "text": "Ok, I see.",
+        "reasons": [],
+        "body_sha256": "3e4d338f9b00cf356c1bdc8b8a247b3add2fa14d32c8b845f879ba0edc6cf081",
+        "payload_sha256": "705c39f7cfa68b30f26a261c38cd5850cb4b2aa1a4f295b58e16509d90e299c2",
+        "context_sha256": "89c0983e4d097eef776d7a8066d86980d4f14662f6f05b0112b0deccc9741368"
+      },
+      {
+        "id": "train:507:2:2",
+        "group": "ordinary",
+        "text": "I understand.",
+        "reasons": [],
+        "body_sha256": "1404145d830c9ab0a77c464e8fbe6d66c70e7b2decd0108052a382ab384b8103",
+        "payload_sha256": "917164de1f1500932c4663ea39b339ac0a0e1fbe951cb8004b73804771d20504",
+        "context_sha256": "433d10812d29e53b63bf240868baf9dd209c327d436e99c143480fa6a864f0e4"
+      },
+      {
+        "id": "train:2935:2:1",
+        "group": "ordinary",
+        "text": "I love dogs.",
+        "reasons": [],
+        "body_sha256": "c8d9fb968c9e9654a584ca24cb7be51cb66af82b83019058564ed2165992f403",
+        "payload_sha256": "7ab543b1c3987a87a77c3eb8387476c984b54fe7f97df53caf7f0c7267fd660e",
+        "context_sha256": "66c57f3215f6606322344b0c82620309a640e26e033dd6122c2a71914ac9de15"
+      },
+      {
+        "id": "train:6372:7:2",
+        "group": "ordinary",
+        "text": "Here you go.",
+        "reasons": [],
+        "body_sha256": "e5f01e5d9f02589a41631138be0008f8244d17961670bbb3116c6d288ef4c8ee",
+        "payload_sha256": "36e5f4977219edd8c5effdc3ee29516e87fd6c14af0150f842a97f5c864e5ce9",
+        "context_sha256": "54fce6b2a0ab2531e623d47da04811e984bd65a3664656c36d4a1daac5bd89bf"
+      },
+      {
+        "id": "train:2920:9:1",
+        "group": "ordinary",
+        "text": "I see.",
+        "reasons": [],
+        "body_sha256": "e1641bd79f70998244c0c65eb75edc5577d3a7c34e0c783fd506bd42cd535626",
+        "payload_sha256": "b81008daafd7e5213da0869ff7893b181d36016d07ef76aac54ee25a3ef4ba63",
+        "context_sha256": "e86a83fa61cb19202cd62e8b1c60ad4c541a2f3221d85ba3a31ab0837679ea99"
+      },
+      {
+        "id": "train:6376:9:1",
+        "group": "ordinary",
+        "text": "I see.",
+        "reasons": [],
+        "body_sha256": "8378afbadd1dd045e05c75b32dac3ef9c7635793cdfc2d4ae22aa4077ac14ec4",
+        "payload_sha256": "b81008daafd7e5213da0869ff7893b181d36016d07ef76aac54ee25a3ef4ba63",
+        "context_sha256": "dc7c1665a76af1c23cb80dc842f545979840e12556a686c9f60c26a1504849f8"
+      },
+      {
+        "id": "val:106:12:1",
+        "group": "ordinary",
+        "text": "I mean, most reptiles carry some harmful bacteria.",
+        "reasons": [],
+        "body_sha256": "bbd4f4b397a252a601b800230060fa88e619aa6b8376f40d7b575b8336b9aad0",
+        "payload_sha256": "2c56653c21c676cd4f4c6930f531364f3eed3129bb366d92dc30a918b37ecf9d",
+        "context_sha256": "4e776d9fe671f5043013a1d5448f806fb0f4f28a587923d6d328a65fc94a56aa"
+      },
+      {
+        "id": "train:10866:11:1",
+        "group": "ordinary",
+        "text": "That sounds interesting.",
+        "reasons": [],
+        "body_sha256": "3a45c6a96b2e50468cdbbd529937d2e8fffe148e8031712804f2d8a60afea315",
+        "payload_sha256": "dce4bc32080b3f8512df07fb4499fb7786f62cffc3c26ee2a120b2922b109d31",
+        "context_sha256": "df82216f99fae82ab61a0affa5f754970a631d7ab3a3f047ced55ca7784ce3f0"
+      },
+      {
+        "id": "val:727:5:3",
+        "group": "ordinary",
+        "text": "I really appreciate it!",
+        "reasons": [],
+        "body_sha256": "39439f8ec7470cc7dfb784469ad6aa5b9fb0370747f2ff6f065ccb0cff542494",
+        "payload_sha256": "6e87703c8e4c364f3b7700512ecea0bef2e3d0c43c1518572896ae9a2c974444",
+        "context_sha256": "f92bb1f60cc63159b97d16d96f8a2b47d8d471e315b37084516a2e1f5c4dc882"
+      },
+      {
+        "id": "train:8875:6:2",
+        "group": "boundaries",
+        "text": "I will arrange a table for 5 at 12:00 for you.",
+        "reasons": [
+          "abbreviation_boundary",
+          "modality_or_intention",
+          "particle_or_prepositional_unit"
+        ],
+        "body_sha256": "970287668514a3b4e98edb60f8526c9446e12ad482f8e37cc1712b34eb360ecb",
+        "payload_sha256": "b426ae7d944fa42010b7e5a8ddfef56ad36c7e46eb564a0cac63ec99763160c4",
+        "context_sha256": "408baff705997e31206d18b4098c27cf77608a390dc6f2f3e2e7b9e3a99d27cf"
+      },
+      {
+        "id": "train:5794:1:1",
+        "group": "boundaries",
+        "text": "Since China was open to the outside world, its trade forms have become much more flexible.",
+        "reasons": [
+          "abbreviation_boundary",
+          "embedded_clause",
+          "nonfinite_root",
+          "proper_name"
+        ],
+        "body_sha256": "fd95064b8db9f23e6cd9072ba22154f909e79766f9369acb4c73b414bb5fe5e8",
+        "payload_sha256": "507d3be5a840e716e2747af0d635abdc54b8aaaa92533af5442b0b2273be2ccb",
+        "context_sha256": "f012783916652ea9b4bdb94e7728a0bbd7818114f4c7c5f6af270475368822b3"
+      },
+      {
+        "id": "train:7812:14:1",
+        "group": "boundaries",
+        "text": "Thank you for help.",
+        "reasons": [
+          "particle_or_prepositional_unit",
+          "unspaced_sentence_boundary"
+        ],
+        "body_sha256": "a9cedfff9635826128b8702d5c2f2ebbb57a790e763ade11fbc8d8fc69be35a2",
+        "payload_sha256": "27b10f299627bd2d901512556ad9af216797d55d25f78613b4c27b0e923d494b",
+        "context_sha256": "8fa07b909ecce58ff05e93f35bc50cef38b5388aa949bb84bf2dccb882ec90ec"
+      },
+      {
+        "id": "test:989:6:4",
+        "group": "boundaries",
+        "text": "com or www.",
+        "reasons": [
+          "contact_or_url_boundary",
+          "no_verb_or_fragment",
+          "unspaced_sentence_boundary"
+        ],
+        "body_sha256": "ed7b806d68cd4f70ac2a635373607e2c23c4056b075f06ee37673bead0cfceea",
+        "payload_sha256": "b05d26881e91387243e18c45d374daa7e6edc07a1e99804f35ecadba582469f7",
+        "context_sha256": "efe513984e956989100f6df56e93b6948b292dd9ec09808329d3d0d8f31e3cba"
+      },
+      {
+        "id": "train:2641:5:1",
+        "group": "boundaries",
+        "text": "In winter temperature often falls to zero at night temperature can be below that.",
+        "reasons": [
+          "embedded_clause",
+          "modality_or_intention",
+          "particle_or_prepositional_unit",
+          "unspaced_sentence_boundary"
+        ],
+        "body_sha256": "d3b48c3cf72e87878ca2141351bceb74fe8e301b69364bff6e21990d8d08deb1",
+        "payload_sha256": "2a00f959b11c1e128376a061d00c068f2906e06925297e0722c7103518a37db5",
+        "context_sha256": "4b436e28d70e075cff570c590835b28549c5de786cdac059da4650d9c5c9bc29"
+      },
+      {
+        "id": "test:423:6:1",
+        "group": "boundaries",
+        "text": "Our monthly interest is 1.5 % of the outstanding balance.",
+        "reasons": [
+          "abbreviation_boundary",
+          "controlled_or_elliptical_predicate"
+        ],
+        "body_sha256": "16a1b7c48978505d622bf622ccd80d46a0bfcb690fcde71be2b12636776c5107",
+        "payload_sha256": "1a1a1cf1d9bfd8e6bd7e82555d98508bf51708d4eb3ffefae434611bf2ef741e",
+        "context_sha256": "c55f0683c205e6d9d7026a75ec5139409b7c31c9931f39930bf832079b2f1bde"
+      },
+      {
+        "id": "val:164:1:1",
+        "group": "boundaries",
+        "text": "Hello, this is Steven from Blue Sky Co.",
+        "reasons": [
+          "abbreviation_boundary",
+          "controlled_or_elliptical_predicate",
+          "proper_name"
+        ],
+        "body_sha256": "c594004d3d087a3bbf76cdb39ac736b14eb55b839bbaeba604dbcf6c0fa4a3bc",
+        "payload_sha256": "fb6cddc7f15e903d96c1df32bfb5730204d113021efd19566c9ef06b3d726612",
+        "context_sha256": "2d980a57303787ace121da1d9562cfe17f0c585b8387326476242fd886e20cfa"
+      },
+      {
+        "id": "val:581:1:1",
+        "group": "boundaries",
+        "text": "What sort of shopping is nearby, Mr. Taylor?",
+        "reasons": [
+          "abbreviation_boundary",
+          "controlled_or_elliptical_predicate",
+          "nominal_role_or_vocative",
+          "particle_or_prepositional_unit",
+          "proper_name",
+          "question"
+        ],
+        "body_sha256": "b989c89a54163948b1553e8fe1c3bd36740c1130581e142eb58955da6c2a4fa3",
+        "payload_sha256": "fd3df23dbd8c3d83f4a5cc24bf0f849b8c32c7ff74f8ea86bc21bd41dedecd7e",
+        "context_sha256": "3862b044be66ce06e2c1081fba0e711f5311103647bd9d102ef2e23f1345a2a4"
+      },
+      {
+        "id": "train:1608:11:3",
+        "group": "boundaries",
+        "text": "I don't want him to be angry.",
+        "reasons": [
+          "abbreviation_boundary",
+          "embedded_clause",
+          "modality_or_intention",
+          "negation"
+        ],
+        "body_sha256": "01343c91a4380dab27c9331cfbfbee382a0584dd6ba414428cdcc42b6d0e9706",
+        "payload_sha256": "659181c9fa2b2d2b3b7c659694038aa5109b6e5d3623d5ebaefab0a7495b04f7",
+        "context_sha256": "3743046405a5d27c3673e2f37a145efc0bf90076fc4db76638723025670c817f"
+      },
+      {
+        "id": "val:380:4:1",
+        "group": "boundaries",
+        "text": "Glad to meet you, Mr. White.",
+        "reasons": [
+          "abbreviation_boundary",
+          "adjective_target_unresolved",
+          "embedded_clause",
+          "nominal_role_or_vocative",
+          "proper_name"
+        ],
+        "body_sha256": "981cc6b828b0da8eb693a2b1e37a65c6e9f079f6b78c413a53a9d6948fc6742b",
+        "payload_sha256": "e50b6c84d3356283c010fd5305be8bb5acafc0f9a9a7330e2bd24e45a7bd6ab8",
+        "context_sha256": "688270a826d99ecd24e9b0cfdf8f7e61a89c571610c7eedbdf05fec53291ba2a"
+      },
+      {
+        "id": "train:4908:1:1",
+        "group": "properties",
+        "text": "What's the matter, dear?",
+        "reasons": [
+          "adjective_target_unresolved",
+          "embedded_clause",
+          "question"
+        ],
+        "body_sha256": "8b9a826e5ade261b4b09cec1781db6261eb20bce40bc21b398090ebe8ecf624a",
+        "payload_sha256": "4d59d5919d3335a10fd718d1e07fd9012ee5945809d865cdcf33b826f30faf1e",
+        "context_sha256": "f04bcc1f612ba1af83b0be69217cf31a9fcd8f6e5e91e0fd0392dff8731e63ca"
+      },
+      {
+        "id": "train:2918:3:1",
+        "group": "properties",
+        "text": "I guess it is a formal one because the general director will give a speech there, and most of the staff will take part in.",
+        "reasons": [
+          "adjective_target_unresolved",
+          "coordinated_verbs",
+          "embedded_clause",
+          "modality_or_intention",
+          "particle_or_prepositional_unit"
+        ],
+        "body_sha256": "ef7659403a04c784212369979127c3eb75e7e12892e46f0f739322e2219626dd",
+        "payload_sha256": "238eef34f0f4f367b4349b1994a70db25d385921cb6017f5cb5dac38f9a77f62",
+        "context_sha256": "d6e2cb12d127d0076a64f0c4f1671660de521264862cdbc336f422e5b1024c44"
+      },
+      {
+        "id": "train:3857:5:1",
+        "group": "properties",
+        "text": "Great.",
+        "reasons": [
+          "adjective_target_unresolved",
+          "no_verb_or_fragment"
+        ],
+        "body_sha256": "f6c1472939060203481d28931296df079e82c2acd490638437ec371d00a4d00a",
+        "payload_sha256": "7d942ecef3f42b51bbcba07161678d0214fa966d350b6740144edfb03736675f",
+        "context_sha256": "967a639ecc853bf60ae7dbad1e9d345208d5cf7923c4a1263832022c1adac842"
+      },
+      {
+        "id": "train:8342:6:3",
+        "group": "properties",
+        "text": "At least then the warring parties could be forced to negotiate.",
+        "reasons": [
+          "adjective_target_unresolved",
+          "embedded_clause",
+          "modality_or_intention",
+          "nonfinite_root"
+        ],
+        "body_sha256": "c5b8afeaa6f89bf4e58eac2e706ede9b130771d675b92f1888c7e58601f8a73b",
+        "payload_sha256": "2aa0439483691adf648f83a86d13138c5322d7380cee1807b2c054a4850f4c35",
+        "context_sha256": "ddb9a67d9d2e0e64a2e61ce7c509213c4d8fa2d08f03b28b00b00c7583bd81be"
+      },
+      {
+        "id": "train:3234:4:1",
+        "group": "properties",
+        "text": "Great!",
+        "reasons": [
+          "adjective_target_unresolved",
+          "no_verb_or_fragment"
+        ],
+        "body_sha256": "1fe70e6251dc4fd20bd93884fa96cffe8c0c21e83262d1e7786104d30c45b00a",
+        "payload_sha256": "610eac32c9b52e0f44702f05aa313bc976acf5b5a5d21d5a3c95c397bfdd3eb0",
+        "context_sha256": "a85ec46c42ff723f5f6fafa519131fc09e8ca3f309e366ea7db197bb77538525"
+      },
+      {
+        "id": "test:377:4:1",
+        "group": "properties",
+        "text": "The food station was as crowded as usual.",
+        "reasons": [
+          "adjective_target_unresolved",
+          "controlled_or_elliptical_predicate",
+          "particle_or_prepositional_unit"
+        ],
+        "body_sha256": "dc8b23005cb8144fa02261f7cfc4dae80abb00eb83f9868e1063448fd428ab39",
+        "payload_sha256": "0595b2d964906d52e976b58e885a31d427362e2ad8c44585b80851d0c6e5a049",
+        "context_sha256": "18057090ad2c9490325c6d9e40f1c066dd8aa892d9433080a1d61f46b6736ec4"
+      },
+      {
+        "id": "train:7771:8:2",
+        "group": "properties",
+        "text": "How much?",
+        "reasons": [
+          "adjective_target_unresolved",
+          "no_verb_or_fragment",
+          "question"
+        ],
+        "body_sha256": "f149000442148071a3eab3a404883e3e401f9f75976b3d4631983996ccfc09ad",
+        "payload_sha256": "a26b024d2c7b98f23c8a6d4e8acd2a5ee9054f4b48dd9bbf822b8378aff19f5b",
+        "context_sha256": "3614ae5508622c17faabd36c8382bf086bc208b5ffd76743ada16f728f0c04bc"
+      },
+      {
+        "id": "train:9801:8:1",
+        "group": "properties",
+        "text": "We finally took off, but about 30 minutes later, the captain came on to the loudspeaker to warn us that there would be some bad turbulence for most of the flight.",
+        "reasons": [
+          "adjective_target_unresolved",
+          "coordinated_verbs",
+          "embedded_clause",
+          "modality_or_intention",
+          "nominal_role_or_vocative",
+          "particle_or_prepositional_unit"
+        ],
+        "body_sha256": "1eb051f57b09ca2a3337f3213f076ab60cdf1935690980372f3b9342bc8f98cd",
+        "payload_sha256": "ec1b2c6f50cbe6a59996660bf96b9c41134de8948d724891440da8b20cc1df68",
+        "context_sha256": "8b5d5812bc94cbeaf529fe344a489a5060d24c62f498d650ad4b745520f197f7"
+      },
+      {
+        "id": "test:310:17:1",
+        "group": "properties",
+        "text": "Good-bye.",
+        "reasons": [
+          "adjective_target_unresolved",
+          "dictionary_imperative_candidate",
+          "no_verb_or_fragment"
+        ],
+        "body_sha256": "bbadf3d9e8b770b38f77260aacddec255ab8246b2ec98951a1bff7d310f48285",
+        "payload_sha256": "d0f113bc7fec0462332d0a5cee33fe8fb20f5ec65352ebdf3b6cf1d8502afddb",
+        "context_sha256": "025ccf751873b365be41eabe95c141eb63c7f274d85856bf7db91aa13c141403"
+      },
+      {
+        "id": "train:1533:2:2",
+        "group": "properties",
+        "text": "Being a tourist is really tiring!",
+        "reasons": [
+          "adjective_target_unresolved",
+          "controlled_or_elliptical_predicate",
+          "embedded_clause"
+        ],
+        "body_sha256": "8286894812d5c5d14382ee46d788f9bc445d035d18a55d33d6bec481014f9e55",
+        "payload_sha256": "57f44498e3c96ad67c5b67bf275dc9d51f0ee4ffcdd3ccd7a72abd7cf577adb8",
+        "context_sha256": "29e07e2ec17502a8a0b5a8ea82489bffc9fcbeac3f82cdc37b1b55f68e1440a6"
+      },
+      {
+        "id": "train:10383:16:1",
+        "group": "fragments_or_idioms",
+        "text": "Good idea.",
+        "reasons": [
+          "dictionary_imperative_candidate",
+          "no_verb_or_fragment"
+        ],
+        "body_sha256": "2053efb1b8e4ba47745b7b6364394d192a1f850321e3ed77f0f50575bd540fa4",
+        "payload_sha256": "de3004a75d48d4de3673b93c02ecbe12b4512025f19caca4f96f6f3656390dff",
+        "context_sha256": "6408bd34fd52a622fd9ade19ca50880d71875f143064ad651877ab36ff18526a"
+      },
+      {
+        "id": "train:2101:4:1",
+        "group": "fragments_or_idioms",
+        "text": "No, not yet.",
+        "reasons": [
+          "negation",
+          "no_verb_or_fragment"
+        ],
+        "body_sha256": "fc3a1191ea614b0fb33fd11eb3480e11908e2fe9d34533890b5c2b0695b7cb76",
+        "payload_sha256": "18c6ca7671df128c7b11904f5f206c3f46f9f22671bf4aed9e5938eea8d1ccb7",
+        "context_sha256": "6d62da451016a98586d547058f06102ae110fc19b229409f67cee30f80aa902c"
+      },
+      {
+        "id": "train:7698:7:1",
+        "group": "fragments_or_idioms",
+        "text": "Sure!",
+        "reasons": [
+          "no_verb_or_fragment"
+        ],
+        "body_sha256": "535ae6ec465fa335efda61b806ce3edfd034e60b50b8ca9108b23cb46c9ed4c4",
+        "payload_sha256": "b69edeb3a37f3ce520a3adc4c22c64693bd5784e9ee8f2885772e95fec5ef2b8",
+        "context_sha256": "1dff6d7502194efc136a76019249ec8142f0dd1a383bad3c655219a3da0d5208"
+      },
+      {
+        "id": "train:6653:4:1",
+        "group": "fragments_or_idioms",
+        "text": "Thanks.",
+        "reasons": [
+          "no_verb_or_fragment"
+        ],
+        "body_sha256": "3481443a5ecc669eef6164ee49bbd203bd6d66e4b33d1e878a23965b090cccde",
+        "payload_sha256": "03245431663ad9a3133c4f923cf80c3d58b7e02d65019e34494c5ca0b208d7a4",
+        "context_sha256": "94b8dc7c4469c438ba07be85ef07be29ab149dff4982e9808250daa3d4d3b345"
+      },
+      {
+        "id": "train:10300:2:1",
+        "group": "fragments_or_idioms",
+        "text": "About 3 000 dollars.",
+        "reasons": [
+          "no_verb_or_fragment"
+        ],
+        "body_sha256": "1a7c64a1995a11b53882fd63b0b4031438a71a838f9a54ab546333355514edfd",
+        "payload_sha256": "1703c2c35f35b6ea4d0350ec1e704aa70330b38b7ca11edcea95e3adfb8f5f92",
+        "context_sha256": "f3c2cbb292dcc6718237019663fee3623538c1d093e35290a1c29fdd67ba34a6"
+      },
+      {
+        "id": "train:689:4:1",
+        "group": "fragments_or_idioms",
+        "text": "Thanks.",
+        "reasons": [
+          "no_verb_or_fragment"
+        ],
+        "body_sha256": "3d5b80fe52b6e03bbc2efcff29785dbb6cacd6f5e7436201f27b9dca2b38f278",
+        "payload_sha256": "03245431663ad9a3133c4f923cf80c3d58b7e02d65019e34494c5ca0b208d7a4",
+        "context_sha256": "2160be82d13479ae097bcc9aa7c514e8fd4c46615bc4e832e0d71434191d716a"
+      },
+      {
+        "id": "train:4359:4:3",
+        "group": "fragments_or_idioms",
+        "text": "No way, I am watching that, but I don't understand why everyone is so excited about these films about vampires.",
+        "reasons": [
+          "coordinated_verbs",
+          "embedded_clause",
+          "negation",
+          "nominal_role_or_vocative",
+          "nonfinite_root"
+        ],
+        "body_sha256": "3f7bd435aaa598dabc0a5c3970b3e922dec2facc53be00170c80b79558a0f0d7",
+        "payload_sha256": "4f5a5cb572ea5941b4d40a1eed33d680ae7c9268c27517bb1a17f4d3a4154997",
+        "context_sha256": "880d2cb556bb85100513968b3adc4725feabd264daf025fe9addc99f30608980"
+      },
+      {
+        "id": "val:347:14:1",
+        "group": "fragments_or_idioms",
+        "text": "You bet it!",
+        "reasons": [],
+        "body_sha256": "7f91dc062ceb9ca353559ade6909e09dbe3178e04efb3c1f9a395795566b1de0",
+        "payload_sha256": "da11aca8a4e86561ca76e163f6dc99f38207ad30932fb3d763c373f7d16f7609",
+        "context_sha256": "6c1ea6d78a784e802f9d164b45df7e1782f0b7efcfb9e616d5355f8780ecf5c2"
+      },
+      {
+        "id": "train:10944:7:2",
+        "group": "fragments_or_idioms",
+        "text": "No way.",
+        "reasons": [
+          "negation",
+          "no_verb_or_fragment"
+        ],
+        "body_sha256": "b39f384787b7dca5f7a74a9173f5dc393e042437f28b3cb2fad6d19b45ecc02e",
+        "payload_sha256": "c80cbc183fa4e606a55cbf73477040d74de62b7c8c0a474117fbac5c497748e5",
+        "context_sha256": "1ca8134a2332c9af989b6d41a179ab2ab61bba97ffbf58e5e092d94351c80523"
+      },
+      {
+        "id": "train:3934:2:1",
+        "group": "fragments_or_idioms",
+        "text": "No way.",
+        "reasons": [
+          "negation",
+          "no_verb_or_fragment"
+        ],
+        "body_sha256": "4fe1949f23af031bf924a18c9a18eafd71d8971ea5ad62533687b07dc504e9d9",
+        "payload_sha256": "c80cbc183fa4e606a55cbf73477040d74de62b7c8c0a474117fbac5c497748e5",
+        "context_sha256": "03af928bb7fe4403fccf4cedba43021e0d6c24ea4fc6741041263c1614088de8"
+      }
+    ]
+  },
+  "summary": {
+    "cases": 50,
+    "dialogue_contexts": 50,
+    "context_turns": 491,
+    "verdicts": {
+      "attested_only": 28,
+      "repair_required": 6,
+      "hold_source_ambiguity": 2,
+      "context_only": 14
+    },
+    "issue_kinds": {
+      "boundary_error": 2,
+      "syntax_error": 4,
+      "source_ambiguity": 2,
+      "construction_error": 1
+    },
+    "confirmed_structural_issue_cases": 7,
+    "source_ambiguity_cases": 2,
+    "queue_cases": 8,
+    "groups": {
+      "ordinary": {
+        "cases": 20,
+        "verdicts": {
+          "attested_only": 19,
+          "repair_required": 1
+        },
+        "issue_kinds": {
+          "boundary_error": 1
+        }
+      },
+      "boundaries": {
+        "cases": 10,
+        "verdicts": {
+          "attested_only": 6,
+          "repair_required": 2,
+          "hold_source_ambiguity": 1,
+          "context_only": 1
+        },
+        "issue_kinds": {
+          "boundary_error": 1,
+          "syntax_error": 2,
+          "source_ambiguity": 1
+        }
+      },
+      "properties": {
+        "cases": 10,
+        "verdicts": {
+          "repair_required": 3,
+          "context_only": 5,
+          "attested_only": 2
+        },
+        "issue_kinds": {
+          "syntax_error": 2,
+          "construction_error": 1
+        }
+      },
+      "fragments_or_idioms": {
+        "cases": 10,
+        "verdicts": {
+          "context_only": 8,
+          "hold_source_ambiguity": 1,
+          "attested_only": 1
+        },
+        "issue_kinds": {
+          "source_ambiguity": 1
+        }
+      }
+    }
+  },
+  "mechanical_validation": {
+    "status": "passed",
+    "source_span_matches": 50,
+    "rendered_roundtrips": 50,
+    "complete_token_ledgers": 50,
+    "acyclic_single_root_parses": 50,
+    "tokens": 353,
+    "ascii_apostrophes": 3,
+    "preserved_prior_context_text_corrections": 1,
+    "full_context_turn_coverage": 491,
+    "noncanonical_apostrophes": 0,
+    "original_16_materialized_preimages_preserved": true,
+    "explicit_edit_preflights": 3
+  },
+  "interpretation": "The verdict attested_only recommends restricted reproduction after an occurrence-scoped admission review; it is not semantic QA approval. An unresolved target, broad warning, inventory POS convention or semantic risk alone is not counted as a confirmed parse error.",
+  "limitations": [
+    "Diagnostic stratified sample; not a corpus accuracy estimate.",
+    "Original 16 have length 5..140; added 34 have no length restriction.",
+    "Only selected occurrences are reviewed, not every turn in the 50 contexts.",
+    "Exactly 50 selected occurrences were reviewed; reading their contexts does not annotate every turn.",
+    "Six fragment candidates and four whole-word idiom matches include context-dependent repeated phrases.",
+    "Warning-free stratum is rich in short social formulas; it does not represent the distribution of all sentence types.",
+    "No comparison with an independently double-annotated gold set; no corpus-wide accuracy or confidence interval is claimed.",
+    "A mechanical roundtrip may pass for an incorrect boundary, sense, construction or property attachment."
+  ],
+  "candidate_review_status": "UNREVIEWED",
+  "production_bank_changed": false,
+  "source_text_changed": false,
+  "published": false,
+  "api_calls": 0,
+  "parser_inference_calls": 0,
+  "frozen_inputs": {
+    "artifacts\\dailydialog-hybrid-parentheses-v1\\plan.json": "625ebad6ae18a96ca8bcbdee6eb4018885c1856d388fefeaa0f5ed502e4e9cce",
+    "artifacts\\dailydialog-hybrid-parentheses-v1\\report.json": "a5f36d5519c9b5c8bb78aa5425caf73bae536fc5dbcafe4101d08add00ddb303",
+    "artifacts\\dailydialog-hybrid-parentheses-v1\\revision.sqlite3": "25e69b166f1b8125bbb4a6e6ebcf572e27f1d15c098d712bad9e40431c4cf757",
+    "artifacts\\dailydialog-hybrid-parentheses-v1\\sentences.jsonl": "894944dbbe1b3b407b5e285359e997a055400c63bd3475052ed84a47e8766ddd",
+    "artifacts\\dailydialog-hybrid-parentheses-v1\\contexts.jsonl.gz": "2711c861603b93e989e3816bbf19056f1556798ea5ca3670efad2f69e477c8ac",
+    "artifacts\\dailydialog-hybrid-parentheses-v1\\coverage.jsonl.gz": "48a17f9c1cc88c31f554dd2ac17d27f108270de5f5ab547d01530c94c36a57fe",
+    "artifacts\\dailydialog-hybrid-parentheses-v1\\reviews.jsonl": "40c70e24bfbc76abe4ad7daf8d8117f1004b4fdfdb2e81d443209aa59546db54",
+    "data\\mined-templates\\manifest.json": "540af853cc1b15e7c06642f1bb1002189243686f52b7dd4b82c4176f87f369bb",
+    "data\\mined-templates\\reviewed\\dialogue-fragments.json": "e6e69a444c42b6f672ff24943f34e0e06b55cff020f85c796e31737f797e08cb",
+    "data\\dailydialog\\review-parts\\progress.json": "7317e3df695c9c9fdd833bfbeb3b105c533be85f7c2091d4827a4e8bd031ee32",
+    "data\\dailydialog\\review-parts\\annotations\\part-001.jsonl": "1b1de87037e3c61ebad58287db66b5acfd8941b8ad6fc2db6be0aeadf64bf4f4",
+    "data\\dailydialog\\review-parts\\annotations\\part-002.jsonl": "dec11b26a0b642223aca302c49e26d2ad330e89516f00dd43b50e991adb4e197",
+    "data\\dailydialog\\review-parts\\annotations\\part-003.jsonl": "e456dbefd63877bbbd5ac39991f170f513f6e302d1d2a1048a86ea5e266772c2",
+    "data\\dailydialog\\review-parts\\annotations\\part-004.jsonl": "4cee36ae2020be0d91f6e29d192f515f4a05f9bdf06ce9f8097dc70ddc0d5f6b",
+    "data\\dailydialog\\review-parts\\annotations\\part-085.jsonl": "8bb33f5f2083ace934f6962ee947ecd5e2b88dff3e1b06c66f8d80f5dd441fab",
+    "data\\dailydialog\\review-parts\\annotations\\part-093.jsonl": "2282671c53dbffadb88844344f2828b0019b491c59de1274eb816f94f7b477c2",
+    "data\\dailydialog\\filtered\\dailydialog-test.jsonl": "6bb7c5baee3480a93a9826b1d73b260f4cf440561613e4f4494cea73c33727d5",
+    "data\\dailydialog\\filtered\\dailydialog-train.jsonl": "b5fbc5e01a045152a0be720bff0ae89e2cd1fc573967c6f98cb29665032a18e7",
+    "data\\dailydialog\\filtered\\dailydialog-val.jsonl": "99305a7a4d05a2287f861e32c878c811325772a1d853d0273949632eb1ca31c9"
+  },
+  "cases": [
+    {
+      "id": "train:10411:3:1",
+      "group": "ordinary",
+      "text": "I used your computer.",
+      "original_reasons": [],
+      "source_sha256": "1bf60f7373b0d640789432166452bedbf970228a867456564ef93f5f92b6d908",
+      "body_sha256": "f2702ba727f28e8123db6ef9c5ccab6d7e53d96870d40f67b4029c83677936d7",
+      "payload_sha256": "aa707361b518cae2626ed810c981fafc2b589ba148b6df7bea8494785e0df68a",
+      "context_sha256": "cd8cc1e7570ae3c640cb842ca0970103ffa80b5bdfc27d38e19425009b939ee5",
+      "context": [
+        "Sam, you've got to forgive me.",
+        "Forgive you for what?",
+        "I used your computer. And I'm afraid I've erased your personal files accidentally.",
+        "No! Are you kidding me?",
+        "I'm afraid not. I apologize.",
+        "I can't believe it! I have all my important personal documents stored in that computer. It's no laughing matter.",
+        "I told you I'm sorry. What can I do to make it up to you?",
+        "Well, you should be sorry! Don't ever use my computer again! You can't do anything now, it's too late!"
+      ],
+      "source_span": [
+        0,
+        21
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 1,
+      "verdict": "attested_only",
+      "speech_act": "admission",
+      "event_status": "reported_past_use",
+      "completed_action_asserted": true,
+      "content": {
+        "actor": "current speaker",
+        "action": "used the addressee Sam's computer"
+      },
+      "unknown": [
+        "time and details of use"
+      ],
+      "risks": [
+        "speaker_report_not_independent_truth"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "note": "Subject, use in the past tense, possessive and object are correct. Accidental file deletion is asserted separately in the following sentence; do not merge its event into this predicate.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:3612:2:1",
+      "group": "ordinary",
+      "text": "Oh, thank you.",
+      "original_reasons": [],
+      "source_sha256": "ef602e6688b49db97fa188098ab37bcb574ba62cb5646798c41b55566d1da63b",
+      "body_sha256": "bda253793ff8f8864c6938db3e35477e1d8a5b16f3ded22c32d05af6bd249774",
+      "payload_sha256": "a1a57151184544ef29a1f408aa9602f855c03e6d7f2a27e257bba5d0f6afcec2",
+      "context_sha256": "02a0b651e0db8e8827f97cfe9f3de0e436c1889a7ab18debfaffa4baf9c86a38",
+      "context": [
+        "Your tie is handsome.",
+        "Oh, thank you. Your skirt looks beautiful, too."
+      ],
+      "source_span": [
+        0,
+        14
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 2,
+      "verdict": "attested_only",
+      "speech_act": "thanks",
+      "event_status": "current_social_act",
+      "completed_action_asserted": false,
+      "content": {
+        "reason": "compliment about the speaker's tie",
+        "recipient": "addressee"
+      },
+      "unknown": [],
+      "risks": [
+        "performative_formula"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        1,
+        2
+      ],
+      "note": "Thank you is a gratitude formula with an implicit speaker. The verbal parse is acceptable; it does not describe a previously completed physical task.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:1011:1:1",
+      "group": "ordinary",
+      "text": "I like your new skirt.",
+      "original_reasons": [],
+      "source_sha256": "fd10accca751df525c7b4c19c224981b537d2de8fea0ed5044fb78db95431762",
+      "body_sha256": "b7f4ef6d02b60d52d4ec0f9465bc07677cef7555c353e05e9dbfbda89b15f331",
+      "payload_sha256": "9102ea6453e666b1339fe5f64dc37a12326b4d9a7cebc3d539d6193d56c73330",
+      "context_sha256": "fcae94ca12ceb39dad0433b78c7f9cc34c656c9671f8985a67075e18c806e84e",
+      "context": [
+        "I like your new skirt.",
+        "Do you think it fits me?",
+        "Yes. It looks terrific!",
+        "I bought it at half price.",
+        "You were lucky to find it."
+      ],
+      "source_span": [
+        0,
+        22
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 3,
+      "verdict": "attested_only",
+      "speech_act": "compliment",
+      "event_status": "present_attitude",
+      "completed_action_asserted": false,
+      "content": {
+        "experiencer": "speaker",
+        "object": "addressee's new skirt",
+        "property_binding": {
+          "new": "skirt"
+        }
+      },
+      "unknown": [
+        "whether the speaker owns any skirt"
+      ],
+      "risks": [
+        "state_not_completed_action"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "note": "New is correctly attached to skirt. Like expresses the speaker's present evaluation; the other speaker's later purchase claim is a separate event.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:925:3:1",
+      "group": "ordinary",
+      "text": "There we go.",
+      "original_reasons": [],
+      "source_sha256": "39f98ba4b19f6db4408a120039181f87cfc8b818b73d85c4341bf133b4134b24",
+      "body_sha256": "951ff9a2548550687622d9762c1db3501b0572cf40953296f1455dbedd3e4af4",
+      "payload_sha256": "1bff4c6665172277c4932437c915f438c1e2d86426e927a952cb8651856a088c",
+      "context_sha256": "624ede459ca3fbf630a0c85d1a32476d94e952a8ac3894ea6dbcfeba6267a69a",
+      "context": [
+        "Oh, George, what a beautiful day it is today! The sun is hot and there are just a few clouds scattered here and there! What a perfect day to be at the beach! The kids are going to have so much fun! And we'll be able to relax in the sun while they're playing.",
+        "It does seem like the perfect day! I'm glad we chose to get out of the city and enjoy the nice weather! This looks like the perfect spot! Ok kids, put on your sunscreen while your mom and I set up camp. Here, Mary, help me lay down these beach towels.",
+        "There we go. Can you help me with the umbrella? Perfect.",
+        "Ok kids, here's a beach ball and a Frisbee, a pail and a shovel. I want to see an impressive sandcastle by the time we leave. Don't stray too far. Wait! Leave your sandals here or put on your wet shoes.",
+        "And stay in the shallow area. I don't want to see you go any farther than that sandbar! It's too deep out there and we didn't bring your floatier.",
+        "You're back already? The water was too cold, huh? I'll tell you a secret. Do you see that small pool of water over there? It'll be warmer in there. Go see if you can find some seashells or catch some minnows.",
+        "What is that? A jellyfish? Jeremy, put that down right now! It could sting you!",
+        "Ah! Not on me! Ow!"
+      ],
+      "source_span": [
+        0,
+        12
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 4,
+      "verdict": "attested_only",
+      "speech_act": "satisfied_acknowledgement",
+      "event_status": "setup_progress_formula",
+      "completed_action_asserted": false,
+      "content": {
+        "fixed_expression": "There we go",
+        "sense": "acknowledges progress while setting up at the beach"
+      },
+      "unknown": [
+        "exact subtask just finished",
+        "whether towels or umbrella are already fully positioned"
+      ],
+      "risks": [
+        "nonliteral_motion",
+        "context_dependent"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "note": "The syntactic subject and verb are plausible, but go does not assert motion to a location. The next request for umbrella help must remain a request.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:2115:5:1",
+      "group": "ordinary",
+      "text": "Thank you,",
+      "original_reasons": [],
+      "source_sha256": "d08c42503e04f37be0677b59acfe45b3f5c7a81a9fadc98d3474c690e223ba1c",
+      "body_sha256": "1db43b7665b0f21154ccd4a30f8b12bb226e6f286030734b72d49da5ac03c7a6",
+      "payload_sha256": "96007ffac6ff0b0ee6980c26270f42f8422e65c57c9deee5d05d0e075a10412f",
+      "context_sha256": "27919ca2c621343e04113fcc5b94ab1e8ee7a10fee49a0bfb1d0e6629e5ade86",
+      "context": [
+        "Come on in. I am so glad you are here. We have been expecting you.",
+        "Am I late for the party? Looks everyone is already here. Hope I didn't miss something interesting.",
+        "No, you are just on time. We haven't really started yet.",
+        "Great, here are some flowers for you. I hope you like them. I was not sure if the color will suit your new apartment.",
+        "Thank you, they're beautiful. You can hang your coat over there. Try this new couch, it is so comfortable. You will love it. Want something to drink, tea, coffee, juice or Cola?",
+        "Don't bother. I will help myself.",
+        "Make yourself at home.",
+        "It is such a nice place.",
+        "Well, I don't mean to boast but all the designs are done by myself and some colleagues are already trying to copy some of them for their new apartments. Look, they are making photos now of my designed kitchen."
+      ],
+      "source_span": [
+        0,
+        10
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 5,
+      "verdict": "repair_required",
+      "speech_act": "thanks",
+      "event_status": "current_social_act",
+      "completed_action_asserted": false,
+      "content": {
+        "reason": "flowers brought by the guest",
+        "following_clause": "they're beautiful refers to the flowers"
+      },
+      "unknown": [],
+      "risks": [
+        "performative_formula"
+      ],
+      "issues": [
+        {
+          "kind": "boundary_error",
+          "code": "comma_fragment_promoted_to_sentence",
+          "note": "The selected segment stops after a comma. Restore the whole source sentence Thank you, they're beautiful.",
+          "related_ids": [
+            "train:2115:5:1",
+            "train:2115:5:2"
+          ],
+          "repair": "merge_adjacent_segments_preserving_all_characters"
+        }
+      ],
+      "evidence_turns": [
+        4,
+        5
+      ],
+      "note": "This is a real whole-sentence extraction failure despite an empty diagnostic-reason list. The selected gratitude itself is interpretable, but its stored sentence boundary is wrong.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:1770:4:3",
+      "group": "ordinary",
+      "text": "He assigned me two projects.",
+      "original_reasons": [],
+      "source_sha256": "79a98156123f2d919afd076295d2f434eac9e677a0cdb603a3062157b92d4a77",
+      "body_sha256": "52a44d7d03a1b71fea9a5e752b66f7fa57dbf36625cc08ed19fa93fcdf9744b4",
+      "payload_sha256": "90606de107b2d02b9f8ce69398198815f0b07a80a1e30513017985b5bf9b6cbc",
+      "context_sha256": "8ed71f3b80cff9d54240a32108f2e810d5bbb0603de1ec0d7f14f066795f1dcd",
+      "context": [
+        "Bob, you look pale. What happened?",
+        "I didn't sleep a wink last night.",
+        "Did you have something on your mind? You look so concerned! Maybe I can help you.",
+        "Well, I'm under a lot of pressure. My boss is very pushy. He assigned me two projects. Now the deadlines are near and I still haven't finish one of them.",
+        "Is there anything I can do for you?",
+        "Well, I guess no one can help me but myself. For the moment, I just need someone to talk to so that I can relieve my stress.",
+        "I know your feeling. Take it easy."
+      ],
+      "source_span": [
+        58,
+        86
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 6,
+      "verdict": "attested_only",
+      "speech_act": "report",
+      "event_status": "past_assignment",
+      "completed_action_asserted": true,
+      "content": {
+        "actor": "speaker's boss",
+        "recipient": "speaker Bob",
+        "object": "two projects",
+        "action": "assigned"
+      },
+      "unknown": [
+        "project subjects",
+        "exact deadline dates"
+      ],
+      "risks": [
+        "coreference",
+        "assignment_not_project_completion"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        1,
+        3,
+        4,
+        5,
+        6
+      ],
+      "note": "He resolves to my boss in the preceding sentence of this turn. The indirect object and two-project quantity are preserved. Assignment happened in the report; the projects have not thereby been completed.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:11016:8:2",
+      "group": "ordinary",
+      "text": "Thank you!",
+      "original_reasons": [],
+      "source_sha256": "60eb39ddda03595c4cf161ef1c4a745f45ad2e7d8bc714e2b63e475c24160bbe",
+      "body_sha256": "7eb61fc741c37ddcbf4ff099717a0a345fa22c7feb9e4052da1380c4d8abd40c",
+      "payload_sha256": "6baa2093555a5e71b6367dd5527cd08e6a3c816405a29c7f37c6331070880ab4",
+      "context_sha256": "2a51797fffefc9f1ba30dc593a2e87eca3c5f6b4fe772a5098fa6812fabc609a",
+      "context": [
+        "What are you doing, Steven?",
+        "I'm going to Beijing tomorrow. I'm packing my luggage.",
+        "What will you bring along when traveling?",
+        "I will take some clothes to change and cleaning items.",
+        "Have you packed the camera yet?",
+        "Yes. I've already put it in my suitcase.",
+        "Pack some necessary medicine in your carry-on.",
+        "I almost forget it. Thank you!"
+      ],
+      "source_span": [
+        20,
+        30
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 7,
+      "verdict": "attested_only",
+      "speech_act": "thanks",
+      "event_status": "current_social_act",
+      "completed_action_asserted": false,
+      "content": {
+        "reason": "reminder to pack necessary medicine"
+      },
+      "unknown": [
+        "whether the medicine is subsequently packed"
+      ],
+      "risks": [
+        "performative_formula",
+        "reminder_not_completion"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        6,
+        7,
+        8
+      ],
+      "note": "The thanks is directed to the reminder, not evidence that the packing instruction has been executed. Its segmentation and verbal parse are acceptable.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:801:5:2",
+      "group": "ordinary",
+      "text": "Thank you.",
+      "original_reasons": [],
+      "source_sha256": "3befcbfc44044cd05dba2071c0142c87546e6447d85954bddb7902f0dfa73255",
+      "body_sha256": "520bbc686a892cd171b192cc91a8cc89eee2a9a6d3543d86c0ed589c96bfd2f9",
+      "payload_sha256": "29b0a9f3b64974e3b724767aec7047307272c086f74237e29978e0d366f39d80",
+      "context_sha256": "cb5799ad4ee170ff3064d139755d46e2082318ad9ed1542b233386cca3e76495",
+      "context": [
+        "I need some books on hardware.",
+        "There's many books here. What about these?",
+        "Great! They're the very books I want. May I borrow two books?",
+        "Sure. But you can only keep them for a week.",
+        "I see. Thank you."
+      ],
+      "source_span": [
+        7,
+        17
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 8,
+      "verdict": "attested_only",
+      "speech_act": "thanks",
+      "event_status": "current_social_act",
+      "completed_action_asserted": false,
+      "content": {
+        "reason": "permission to borrow two hardware books for one week"
+      },
+      "unknown": [
+        "whether the books were actually handed over"
+      ],
+      "risks": [
+        "performative_formula",
+        "permission_not_completion"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "note": "This exact Thank you text is reviewed in its own borrowing context. It must not inherit the medicine-packing meaning of another gratitude occurrence.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:9228:6:1",
+      "group": "ordinary",
+      "text": "I know.",
+      "original_reasons": [],
+      "source_sha256": "188a97b3576a4290c278e655eb9d3e9930da22842e8bd5adc21c035989cd7aeb",
+      "body_sha256": "b051b66d629893413f489324789eafc9a20972e4baa6ae34eaa5fb3d0ee7f0fb",
+      "payload_sha256": "e0834c4ba2ec0a49259aa8fdb5a21ceb4789a07081258408f17657c03c4ba718",
+      "context_sha256": "344f2eb3072c49892c5d99c9c062c8f029bf2ffb4de95d82a323ae72a7c54b64",
+      "context": [
+        "It sure is hot. Why don't we go in the Haunted House? At least it will be air conditioned.",
+        "I've told you a thousand times. I don't want to go in the Haunted House. It's too scary!",
+        "Well. Maybe I'll go alone then. I really don't want to miss it.",
+        "Go alone if you want. I will wait at that cafe and have a soda.",
+        "It might take a long time. Because there is a line, you know.",
+        "I know. But if you don't go in the Haunted House, you won't be happy. So I will wait for you. It's no problem.",
+        "Thanks.",
+        "How was it?",
+        "I'm sorry it took so long.",
+        "Don't worry about it. But how was it?"
+      ],
+      "source_span": [
+        0,
+        7
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 9,
+      "verdict": "attested_only",
+      "speech_act": "acknowledgement",
+      "event_status": "present_knowledge",
+      "completed_action_asserted": false,
+      "content": {
+        "understood_proposition": "the Haunted House queue may cause a long wait"
+      },
+      "unknown": [
+        "wait duration",
+        "whether the speaker actually waits at this point"
+      ],
+      "risks": [
+        "context_dependent",
+        "state_not_completed_action"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        4,
+        5,
+        6
+      ],
+      "note": "Know has an omitted discourse complement supplied by the previous warning. The future offer to wait and the later return are separate claims.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:546:4:1",
+      "group": "ordinary",
+      "text": "Well, I missed several buses.",
+      "original_reasons": [],
+      "source_sha256": "e299a8d9ab393cd6217f8c219883f9d2add29ca406e5c15538a4466989595a93",
+      "body_sha256": "e6ec1e33fc1355cede6ee19077a8b90530edf6387a27df5c3cc4dcb377641df8",
+      "payload_sha256": "d911f1878a23d6fb3efd5e0c1007513eead77cbee3bb0c7831e378f23441a248",
+      "context_sha256": "680caa80eacfd74978113f70371cf31b613fc8cb5c063d26fbf8f34ab742c7e3",
+      "context": [
+        "Gordon, you're ever so late.",
+        "Yes, I am sorry. I missed the bus.",
+        "But there's a bus every ten minutes, and you are over 1 hour late.",
+        "Well, I missed several buses.",
+        "How on earth can you miss several buses?",
+        "I, ah..., I got have late.",
+        "Oh, come on, Gordon, it's the afternoon now. Why were you late really?",
+        "Well, I... I lost my wallet, and I...",
+        "Have you got it now?",
+        "Yes, I found it again.",
+        "When?",
+        "This morning. I mean...",
+        "I am not convinced by your explanation."
+      ],
+      "source_span": [
+        0,
+        29
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 10,
+      "verdict": "attested_only",
+      "speech_act": "explanation",
+      "event_status": "disputed_past_missed_buses",
+      "completed_action_asserted": true,
+      "content": {
+        "speaker": "Gordon",
+        "claim": "missed several buses",
+        "quantity": "several, unspecified count"
+      },
+      "unknown": [
+        "truth of the explanation",
+        "number of buses"
+      ],
+      "risks": [
+        "speaker_report_not_independent_truth",
+        "quantifier_not_quality"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "note": "The addressee challenges the excuse, so retain attribution. Several is a quantifier even though the syntax inventory stores JJ/amod; the current semantic annotator explicitly excludes several from property QA. No syntax correction is required merely for that tag convention.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "val:683:3:1",
+      "group": "ordinary",
+      "text": "Yes, I realise that.",
+      "original_reasons": [],
+      "source_sha256": "4dabaa37c02d1f01d1dd0e88f62be7946231c53c1b361be257d3ffdaeeb379c3",
+      "body_sha256": "ef1d81ecd1abb49ee14d8c160f2f92f0ad96b0f72c8022e8ec633114b64d616d",
+      "payload_sha256": "ca2c41ae90d96430ae0501f7dba5144171014b47d75f4d8b1b1d36d94cbba888",
+      "context_sha256": "239dabe997e4e56f474372dec274a30ae6425cdc0d82786df4a5d98bfbce9bbe",
+      "context": [
+        "Our new production control program's going live on Monday. The old and the new programs will operate in tandem for four to six weeks. That should give us time to iron out any little problems.",
+        "Hope it all goes well. We're very busy at the moment and certainly don't want any problems at this time of year.",
+        "Yes, I realise that. We've spent a long time planning and preparing for the change-over. I'm confident we won't have any major problems."
+      ],
+      "source_span": [
+        0,
+        20
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 11,
+      "verdict": "attested_only",
+      "speech_act": "acknowledgement",
+      "event_status": "present_understanding",
+      "completed_action_asserted": false,
+      "content": {
+        "that": "the busy period and concern about disruption during the program change"
+      },
+      "unknown": [
+        "whether the rollout succeeds"
+      ],
+      "risks": [
+        "coreference",
+        "state_not_completed_action"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        1,
+        2,
+        3
+      ],
+      "note": "Realise has the explicit anaphoric object that. The statement acknowledges the concern; it is not a claim that the planned rollout has already completed.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:5811:5:1",
+      "group": "ordinary",
+      "text": "Ok, I see.",
+      "original_reasons": [],
+      "source_sha256": "bf3bdb89ef084f01ae9a2316c0479d205aa7d5d74e4eed65d6629570f7e283eb",
+      "body_sha256": "3e4d338f9b00cf356c1bdc8b8a247b3add2fa14d32c8b845f879ba0edc6cf081",
+      "payload_sha256": "705c39f7cfa68b30f26a261c38cd5850cb4b2aa1a4f295b58e16509d90e299c2",
+      "context_sha256": "89c0983e4d097eef776d7a8066d86980d4f14662f6f05b0112b0deccc9741368",
+      "context": [
+        "Hello, I am Richard from the Brooks Head-hunter company. Can I have a private talk with you?",
+        "Er? I am driving right now. Can you call back in 30 minutes?",
+        "Sure. Hi, Monica, Richard again. Have you ever heard about our company? It is an international one with good reputation. We have a lot of successful cases. If you're trying advance your career, I would love to help you. XYZ Company is one of our clients. They're in need of the talent like you. Would you be interested in taking part in an interview? It is scheduled some time within this week.",
+        "Thank you for calling. I really appreciate your kindness. But right now, I'm very busy preparing for an interview of another company. I don't think I am available for this opportunity.",
+        "Ok, I see. Good luck to you. You have my number. Call me when you change your mind. I can send you more detailed information about company and jobs you might be interested in if you give me your private e-mail address.",
+        "Well, I will text to you. Thank you, bye for now.",
+        "You're welcome. Bye."
+      ],
+      "source_span": [
+        0,
+        10
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 12,
+      "verdict": "attested_only",
+      "speech_act": "acknowledgement",
+      "event_status": "understanding_a_decline",
+      "completed_action_asserted": false,
+      "content": {
+        "speaker": "recruiter Richard",
+        "understood_proposition": "Monica is unavailable for this opportunity"
+      },
+      "unknown": [
+        "whether Monica later changes her mind"
+      ],
+      "risks": [
+        "nonvisual_see",
+        "context_dependent"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "note": "See means understand the response, not visually perceive a person or object. The source syntax is acceptable; literal vision-based role rules would be inappropriate.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:507:2:2",
+      "group": "ordinary",
+      "text": "I understand.",
+      "original_reasons": [],
+      "source_sha256": "2fbbb5e3581b62e2077cde3e7b8a295d56b6e45a941efc6dae04d303151a128b",
+      "body_sha256": "1404145d830c9ab0a77c464e8fbe6d66c70e7b2decd0108052a382ab384b8103",
+      "payload_sha256": "917164de1f1500932c4663ea39b339ac0a0e1fbe951cb8004b73804771d20504",
+      "context_sha256": "433d10812d29e53b63bf240868baf9dd209c327d436e99c143480fa6a864f0e4",
+      "context": [
+        "Oh, boy, I hate to say this, but I really have to leave now.",
+        "That's all right. I understand.",
+        "I'm so sorry.",
+        "That's ok. Don't be sorry. We'll talk later."
+      ],
+      "source_span": [
+        18,
+        31
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 13,
+      "verdict": "attested_only",
+      "speech_act": "accepting_acknowledgement",
+      "event_status": "present_understanding",
+      "completed_action_asserted": false,
+      "content": {
+        "understood_proposition": "the other speaker needs to leave now"
+      },
+      "unknown": [
+        "whether departure actually occurs",
+        "reason for leaving"
+      ],
+      "risks": [
+        "context_dependent",
+        "need_not_completion"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "note": "The omitted complement is recoverable from the prior turn. Understanding the need to leave is not evidence of a completed departure.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:2935:2:1",
+      "group": "ordinary",
+      "text": "I love dogs.",
+      "original_reasons": [],
+      "source_sha256": "a360668a6badeb95ec06f106f01d133714ac0febdd428e71adc5ef864b972f5c",
+      "body_sha256": "c8d9fb968c9e9654a584ca24cb7be51cb66af82b83019058564ed2165992f403",
+      "payload_sha256": "7ab543b1c3987a87a77c3eb8387476c984b54fe7f97df53caf7f0c7267fd660e",
+      "context_sha256": "66c57f3215f6606322344b0c82620309a640e26e033dd6122c2a71914ac9de15",
+      "context": [
+        "I was just watching a documentary on tv about people use dogs for various purpose. It was very interesting.",
+        "I love dogs. They have been used as guards for centuries. Nowadays, they are often used to find illegal drugs and bombs by the police and customs officers.",
+        "The documentary also pointed out that they are used by shepherds to round up sheep and by rescue workers to find people trapped under rubble or snow.",
+        "Horses are useful to people too. We use them for sports and recreation.",
+        "Don't forget that horses are still used in many countries to pull ploughs and carts.",
+        "Can you ride a horse?",
+        "Yes, I can. I don't ride regularly though. How about you?",
+        "I can ride too. Perhaps we could go horse riding together at the weekend?",
+        "What a good idea!"
+      ],
+      "source_span": [
+        0,
+        12
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 14,
+      "verdict": "attested_only",
+      "speech_act": "preference_statement",
+      "event_status": "generic_attitude",
+      "completed_action_asserted": false,
+      "content": {
+        "experiencer": "speaker",
+        "object": "dogs as a class"
+      },
+      "unknown": [
+        "whether the speaker owns or has handled a dog"
+      ],
+      "risks": [
+        "state_not_completed_action"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "note": "The simple subject-verb-object parse matches the text. Love is a preference here, unrelated to any completed use of working dogs described in neighboring sentences.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:6372:7:2",
+      "group": "ordinary",
+      "text": "Here you go.",
+      "original_reasons": [],
+      "source_sha256": "cc58a1fc5bb98881036f5bc209f26a2ee81229a079ee3ba7c01d3e434a67401c",
+      "body_sha256": "e5f01e5d9f02589a41631138be0008f8244d17961670bbb3116c6d288ef4c8ee",
+      "payload_sha256": "36e5f4977219edd8c5effdc3ee29516e87fd6c14af0150f842a97f5c864e5ce9",
+      "context_sha256": "54fce6b2a0ab2531e623d47da04811e984bd65a3664656c36d4a1daac5bd89bf",
+      "context": [
+        "What do you think?",
+        "It looks great.",
+        "I would like to purchase it.",
+        "Will this be cash or charge?",
+        "Here, take my credit card.",
+        "Just sign here, please.",
+        "Sure. Here you go.",
+        "Here's your receipt. Have a nice day."
+      ],
+      "source_span": [
+        6,
+        18
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 15,
+      "verdict": "attested_only",
+      "speech_act": "presentation_formula",
+      "event_status": "contextual_handover_cue",
+      "completed_action_asserted": false,
+      "content": {
+        "fixed_expression": "Here you go",
+        "sense": "presents something or signals compliance in a purchase/signature exchange"
+      },
+      "unknown": [
+        "exact object being handed over",
+        "whether a signature was actually completed"
+      ],
+      "risks": [
+        "nonliteral_motion",
+        "context_dependent",
+        "gesture_not_explicit_event"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "note": "The source suggests returning a signed item after a request to sign, but it never names that object. Do not turn go into travel or manufacture a completed signing event.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:2920:9:1",
+      "group": "ordinary",
+      "text": "I see.",
+      "original_reasons": [],
+      "source_sha256": "e9b955e577d817d5fddba24eb8d8bef6bea57d71ee82bd474e5f855458622c3d",
+      "body_sha256": "e1641bd79f70998244c0c65eb75edc5577d3a7c34e0c783fd506bd42cd535626",
+      "payload_sha256": "b81008daafd7e5213da0869ff7893b181d36016d07ef76aac54ee25a3ef4ba63",
+      "context_sha256": "e86a83fa61cb19202cd62e8b1c60ad4c541a2f3221d85ba3a31ab0837679ea99",
+      "context": [
+        "Well, no one could survive without water, but you see pollution has been making more and more water unable for drinking.",
+        "Yeah. Water pollution has for a long time been a major concern among the environmental issues.",
+        "But what are the sources of water pollution?",
+        "They could generally be divided into two categories, direct and indirect contaminant sources.",
+        "Well, direct ones are the pollution directly from factories, refineries waste treatment plants etc., aren't they?",
+        "Yeah. They are emitted directly into urban water supplies.",
+        "But what about the indirect ones?",
+        "Indirect sources include contaminants that enter the water supply from soils or groundwater systems and from the atmosphere via rainwater.",
+        "I see. For the sake of us all, we should be an active participator in the prevention of it.",
+        "Sure. It's an issue asking for everyone's participation."
+      ],
+      "source_span": [
+        0,
+        6
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 16,
+      "verdict": "attested_only",
+      "speech_act": "acknowledgement",
+      "event_status": "present_understanding",
+      "completed_action_asserted": false,
+      "content": {
+        "understood_proposition": "the explanation of indirect sources of water pollution"
+      },
+      "unknown": [
+        "any preventive action actually taken"
+      ],
+      "risks": [
+        "nonvisual_see",
+        "context_dependent"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        7,
+        8,
+        9,
+        10
+      ],
+      "note": "Same wording as other I see occurrences, different referent. The subsequent should statement is a recommendation, not executed pollution prevention.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:6376:9:1",
+      "group": "ordinary",
+      "text": "I see.",
+      "original_reasons": [],
+      "source_sha256": "e9b955e577d817d5fddba24eb8d8bef6bea57d71ee82bd474e5f855458622c3d",
+      "body_sha256": "8378afbadd1dd045e05c75b32dac3ef9c7635793cdfc2d4ae22aa4077ac14ec4",
+      "payload_sha256": "b81008daafd7e5213da0869ff7893b181d36016d07ef76aac54ee25a3ef4ba63",
+      "context_sha256": "dc7c1665a76af1c23cb80dc842f545979840e12556a686c9f60c26a1504849f8",
+      "context": [
+        "Hello, this is Mr. Smith in Room 502. Please send up a bellboy. I'm checking out. What time is checking out time?",
+        "Checking out time is twelve. Guests will avoid an additional days room charge by checking out on time.",
+        "It's nearly 12:00 now. Will I be charged extra?",
+        "We won't charge any extra if you'd vacate the room by two o'clock.",
+        "Thank you very much. May I leave my baggage here until Thursday?",
+        "Yes. We can put it in our storage room.",
+        "Will there be any extra charge?",
+        "There will be no charge on baggage left by guests who have checked out.",
+        "I see. Please prepare my bill and I will be right down to pay it."
+      ],
+      "source_span": [
+        0,
+        6
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 17,
+      "verdict": "attested_only",
+      "speech_act": "acknowledgement",
+      "event_status": "present_understanding",
+      "completed_action_asserted": false,
+      "content": {
+        "speaker": "guest Mr. Smith",
+        "understood_proposition": "no charge for baggage left by guests who have checked out"
+      },
+      "unknown": [
+        "whether the guest has paid or checked out yet"
+      ],
+      "risks": [
+        "nonvisual_see",
+        "context_dependent"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "note": "The same short phrase now acknowledges hotel policy. The bill request and promise to come down to pay remain distinct prospective actions.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "val:106:12:1",
+      "group": "ordinary",
+      "text": "I mean, most reptiles carry some harmful bacteria.",
+      "original_reasons": [],
+      "source_sha256": "009c8414fe6e3c4381dd6dcd85480cc9837491a2804e400ab8a2f891925833f8",
+      "body_sha256": "bbd4f4b397a252a601b800230060fa88e619aa6b8376f40d7b575b8336b9aad0",
+      "payload_sha256": "2c56653c21c676cd4f4c6930f531364f3eed3129bb366d92dc30a918b37ecf9d",
+      "context_sha256": "4e776d9fe671f5043013a1d5448f806fb0f4f28a587923d6d328a65fc94a56aa",
+      "context": [
+        "Hi, Sam. I want to buy a pet. Do you have any ideas?",
+        "You really should go to Rachel's pet store.",
+        "Why? Anything special there?",
+        "It's more than special. You can find as many kinds of animals as you can put a name to and more.",
+        "Oh, really? Are there any snakes?",
+        "Snakes? There are even rodents and monkeys! It's a world of exotic pets.",
+        "That's terrific. I can't wait to check it out.",
+        "Hang on. Are you sure you want to keep a non-traditional pet?",
+        "Why not? It's so cool.",
+        "But it will pose a risk to your health.",
+        "Pardon?",
+        "I mean, most reptiles carry some harmful bacteria. They are likely to cause immune system problems.",
+        "Well, I didn't realize that.",
+        "I don't believe it's a good choice to keep those pets, especially for families with young children.",
+        "Oh, I should have thought of my brother's baby girl. Maybe I'll just have a dog instead of an exotic pet.",
+        "Yes, good luck, Maria."
+      ],
+      "source_span": [
+        0,
+        50
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 18,
+      "verdict": "attested_only",
+      "speech_act": "clarification",
+      "event_status": "attributed_generic_claim",
+      "completed_action_asserted": false,
+      "content": {
+        "discourse_marker": "I mean",
+        "speaker_claim": "most reptiles carry some harmful bacteria",
+        "property_binding": {
+          "harmful": "bacteria"
+        },
+        "quantity": "most reptiles, not all"
+      },
+      "unknown": [
+        "independent scientific truth of the speaker's claim",
+        "any particular animal carrying bacteria"
+      ],
+      "risks": [
+        "discourse_predicate",
+        "quantifier_not_quality",
+        "generic_not_specific_event"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "note": "Parataxis for I mean and the main carry clause are compatible with the source. Most is a quantity determiner, not an intrinsic superlative property of reptiles; JJS is a parser inventory feature and is not admitted by the annotator's JJ-only property rule. No health claim is independently validated here.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:10866:11:1",
+      "group": "ordinary",
+      "text": "That sounds interesting.",
+      "original_reasons": [],
+      "source_sha256": "33b5184b4f2cc43e86bd44f9a9be5f8950ea02041ac8f01e46f83c8eb5344b34",
+      "body_sha256": "3a45c6a96b2e50468cdbbd529937d2e8fffe148e8031712804f2d8a60afea315",
+      "payload_sha256": "dce4bc32080b3f8512df07fb4499fb7786f62cffc3c26ee2a120b2922b109d31",
+      "context_sha256": "df82216f99fae82ab61a0affa5f754970a631d7ab3a3f047ced55ca7784ce3f0",
+      "context": [
+        "Excuse me, I'm looking for a good novel. Can you recommend anything?",
+        "Certainly. What kind of novel did you have in mind?",
+        "I'm not really sure. I don't like romance novels, but any other genre is okay, as long as the book's good.",
+        "Well, let me see... This Stephen King novel is a real thriller.",
+        "Sorry, I forgot to mention that I don't like horror much, either.",
+        "That's okay. Well, let me think. How about a mystery novel?",
+        "Hmm... I sometimes like mysteries, but I don't think I'm in the mood for one right now.",
+        "There are a number of science fiction and fantasy novels I can recommend.",
+        "I love science fiction and fantasy, but I've been reading a lot of both lately, so I'd prefer to get something else.",
+        "How about a good historical novel? This one set in medieval France is excellent. The story is exciting and the characterization is very well done.",
+        "That sounds interesting. Okay, I'll get this one. Thanks for all your help.",
+        "Don't mention it."
+      ],
+      "source_span": [
+        0,
+        24
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 19,
+      "verdict": "attested_only",
+      "speech_act": "evaluation",
+      "event_status": "present_impression",
+      "completed_action_asserted": false,
+      "content": {
+        "that": "recommended historical novel or its description",
+        "evaluation": "sounds interesting"
+      },
+      "unknown": [
+        "whether the book is ultimately bought or read"
+      ],
+      "risks": [
+        "coreference",
+        "nonacoustic_sound",
+        "evaluation_not_completion"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        9,
+        10,
+        11,
+        12
+      ],
+      "note": "Interesting correctly targets that in the saved syntax. Sound is an evidential linking verb, not an acoustic event; the following purchase intention is separate.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "val:727:5:3",
+      "group": "ordinary",
+      "text": "I really appreciate it!",
+      "original_reasons": [],
+      "source_sha256": "163ede301276bc9963108be8a76b782a72ec8bb3bf47f1edcf0ca3209843c1a0",
+      "body_sha256": "39439f8ec7470cc7dfb784469ad6aa5b9fb0370747f2ff6f065ccb0cff542494",
+      "payload_sha256": "6e87703c8e4c364f3b7700512ecea0bef2e3d0c43c1518572896ae9a2c974444",
+      "context_sha256": "f92bb1f60cc63159b97d16d96f8a2b47d8d471e315b37084516a2e1f5c4dc882",
+      "context": [
+        "Thank you for organizing this great baby shower for me! I've always been to baby showers but never actually had one held for me! Let's get started!",
+        "Ok, let's start opening some presents!",
+        "Oh look! What a great little bib for the baby! This will definitely come in handy! Oh wow, you also got me a stroller! That's so great! Thank you!",
+        "This next one is from Betty.",
+        "A highchair and car seat! Wow Betty, thank you so much! I really appreciate it!",
+        "One more from Carla.",
+        "A playpen and crib! Thanks Carla! This is just what I needed!",
+        "OK, that's all of them. No more gifts. Now who wants to guess when the baby is due?",
+        "Umm. I think my water just broke! Get me to a hospital!"
+      ],
+      "source_span": [
+        56,
+        79
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 20,
+      "verdict": "attested_only",
+      "speech_act": "thanks",
+      "event_status": "present_appreciation",
+      "completed_action_asserted": false,
+      "content": {
+        "it": "Betty's highchair and car-seat gift or the act of giving it"
+      },
+      "unknown": [
+        "single intended referent of it"
+      ],
+      "risks": [
+        "coreference",
+        "performative_formula"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        4,
+        5,
+        6
+      ],
+      "note": "The syntax is sound. The appreciation is directed to Betty's gift, not to the later presents or the subsequent hospital emergency.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:8875:6:2",
+      "group": "boundaries",
+      "text": "I will arrange a table for 5 at 12:00 for you.",
+      "original_reasons": [
+        "abbreviation_boundary",
+        "modality_or_intention",
+        "particle_or_prepositional_unit"
+      ],
+      "source_sha256": "3e1c70ee9de8639ded31f776b48513ecbd843adc7b72e4ca1dfcf14c4e082151",
+      "body_sha256": "970287668514a3b4e98edb60f8526c9446e12ad482f8e37cc1712b34eb360ecb",
+      "payload_sha256": "b426ae7d944fa42010b7e5a8ddfef56ad36c7e46eb564a0cac63ec99763160c4",
+      "context_sha256": "408baff705997e31206d18b4098c27cf77608a390dc6f2f3e2e7b9e3a99d27cf",
+      "context": [
+        "I want to make a reservation under the name of William Smith.",
+        "OK, Mr. Smith. When will you arrive?",
+        "Around 12:00.",
+        "Party of two?",
+        "No, we have five persons.",
+        "All right, Mr. Smith. I will arrange a table for 5 at 12:00 for you.",
+        "Thank you."
+      ],
+      "source_span": [
+        22,
+        68
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 21,
+      "verdict": "attested_only",
+      "speech_act": "promise",
+      "event_status": "future_arrangement",
+      "completed_action_asserted": false,
+      "content": {
+        "actor": "restaurant staff speaker",
+        "recipient": "William Smith",
+        "object": "table for five people",
+        "time": "12:00"
+      },
+      "unknown": [
+        "whether the reservation has been made",
+        "AM or PM without further context"
+      ],
+      "risks": [
+        "future_not_completion",
+        "preposition_candidate_not_lexical_phrasal_verb"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "note": "Five is a party size, not a clock time. The entire sentence is present; abbreviation_boundary was inherited from Mr. Smith in the preceding sentence. Arrange at/for are stored candidates and do not prove separate lexical phrasal verbs.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:5794:1:1",
+      "group": "boundaries",
+      "text": "Since China was open to the outside world, its trade forms have become much more flexible.",
+      "original_reasons": [
+        "abbreviation_boundary",
+        "embedded_clause",
+        "nonfinite_root",
+        "proper_name"
+      ],
+      "source_sha256": "fe7bca40e026e19a36206cb5c910356110ae22c70142cd37b6bbd29e2f082fd7",
+      "body_sha256": "fd95064b8db9f23e6cd9072ba22154f909e79766f9369acb4c73b414bb5fe5e8",
+      "payload_sha256": "507d3be5a840e716e2747af0d635abdc54b8aaaa92533af5442b0b2273be2ccb",
+      "context_sha256": "f012783916652ea9b4bdb94e7728a0bbd7818114f4c7c5f6af270475368822b3",
+      "context": [
+        "Since China was open to the outside world, its trade forms have become much more flexible. One of these commonly used forms is co-production. Would you please do a bit explanation of it, Mr. Walker?",
+        "Well, under this arrangement two parties cooperate to manufacture a product or a category of products, for example, machine tools for export. Each party produces and supplies a part of the components and parts; one party is a Chinese enterprise, the other, an overseas firm. Most probably, the foreign counterpart contributes technology and equipment, and sometimes, parts and components, while the Chinese enterprises factory building, labor and other resources to the cooperative production. They join hands and fulfill orders together by an agreement or a contract.",
+        "I suppose that the assembling of these components and parts, particularly the marketing of the finished products should take place in China.",
+        "Not necessarily. It depends on the contract stipulations. They may be marketed in the foreign country where the other party is located, or even in a third country.",
+        "I think the principle of co-production is to expand export trade. It's a reciprocal business, isn't it?",
+        "Yes, you are right. Either party is not well-equipped to produce the final products single-handedly, but they can enter into an agreement. In such case, each side contributes different resources to make the manufacture of a certain product or a category of products possible."
+      ],
+      "source_span": [
+        0,
+        90
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 22,
+      "verdict": "attested_only",
+      "speech_act": "explanation",
+      "event_status": "past_state_and_present_perfect_change",
+      "completed_action_asserted": false,
+      "content": {
+        "context": "China's openness to the outside world",
+        "asserted_change": "trade forms have become much more flexible",
+        "property_bindings": {
+          "open": "China",
+          "outside": "world",
+          "flexible": "trade forms"
+        }
+      },
+      "unknown": [
+        "specific dates",
+        "whether Since is exclusively temporal rather than partly causal"
+      ],
+      "risks": [
+        "clause_scope",
+        "comparative_modifier",
+        "state_not_discrete_completed_action"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "note": "The complete multi-clause sentence is retained. Have become is present perfect, not an unlicensed nonfinite root. More remains an explicit modifier of flexible. The abbreviation flag comes from a different sentence in the turn.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:7812:14:1",
+      "group": "boundaries",
+      "text": "Thank you for help.",
+      "original_reasons": [
+        "particle_or_prepositional_unit",
+        "unspaced_sentence_boundary"
+      ],
+      "source_sha256": "f45ac71d44854436b4a669956bce917bb9104e02905c6ad7bc9e0f31ce68907a",
+      "body_sha256": "a9cedfff9635826128b8702d5c2f2ebbb57a790e763ade11fbc8d8fc69be35a2",
+      "payload_sha256": "27b10f299627bd2d901512556ad9af216797d55d25f78613b4c27b0e923d494b",
+      "context_sha256": "8fa07b909ecce58ff05e93f35bc50cef38b5388aa949bb84bf2dccb882ec90ec",
+      "context": [
+        "Good afternoon, sales department. May I help you?",
+        "Could I speak to Mr Wood, please?",
+        "I'll see a piece available, who should I say is calling, please?",
+        "John eng",
+        "Hold the line, please. Mr Wood is in the meeting with managing director at the moment I afraid. Can I help you?",
+        "Well, I want to discuss with them the new control we said last week.",
+        "I don't think the meet will go on much longer, should I ask him to call you when he is free.",
+        "Yes, that will be easiest.",
+        "Could I have your name again, please?",
+        "Yes, It's John eng.",
+        "And the number?",
+        "01088256798",
+        "Ok, you will be hearing from Mr Wood later in the afternoon then, Mr John.",
+        "Thank you for help.good bye.",
+        "You are welcome, goodbye."
+      ],
+      "source_span": [
+        0,
+        19
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 23,
+      "verdict": "attested_only",
+      "speech_act": "thanks",
+      "event_status": "current_social_act",
+      "completed_action_asserted": false,
+      "content": {
+        "reason": "help arranging a return call from Mr Wood"
+      },
+      "unknown": [
+        "whether a return call occurs"
+      ],
+      "risks": [
+        "performative_formula",
+        "source_grammar_preserved"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "note": "The source has help.good bye without a space. The selected span nevertheless ends at the correct sentence boundary. Preserve the non-native wording for help; do not silently add your or assert the future call already happened.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "test:989:6:4",
+      "group": "boundaries",
+      "text": "com or www.",
+      "original_reasons": [
+        "contact_or_url_boundary",
+        "no_verb_or_fragment",
+        "unspaced_sentence_boundary"
+      ],
+      "source_sha256": "b59779c2a4db8b55028d434984bec35db8b56e29fcfa080c2eb5fdb0af593cba",
+      "body_sha256": "ed7b806d68cd4f70ac2a635373607e2c23c4056b075f06ee37673bead0cfceea",
+      "payload_sha256": "b05d26881e91387243e18c45d374daa7e6edc07a1e99804f35ecadba582469f7",
+      "context_sha256": "efe513984e956989100f6df56e93b6948b292dd9ec09808329d3d0d8f31e3cba",
+      "context": [
+        "Hi. Have you got a personal computer?",
+        "Certainly. What's the matter?",
+        "I wonder if you often trade with others on the internet.",
+        "Sure. I often buy things or do business through it without going out to the physical stores.",
+        "Great! It's just like viewless stores. But how can you shop or order on line or trade on line?",
+        "That's simple. Just click the hyperlink, www.taobao.com or www. ebay.com, and you can see the specimen of the goods shown on the screen, and then you can place an order online with the sales company. And the goods will be delivered to your place.",
+        "Is the service charged?",
+        "No. it's free.",
+        "Really. I'll get a computer at once."
+      ],
+      "source_span": [
+        52,
+        63
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 24,
+      "verdict": "repair_required",
+      "speech_act": "instruction_fragment",
+      "event_status": "damaged_sentence_segmentation",
+      "completed_action_asserted": false,
+      "content": {
+        "whole_sentence_function": "instructions for visiting online shops and placing an order",
+        "URLs": [
+          "www.taobao.com",
+          "www. ebay.com"
+        ]
+      },
+      "unknown": [
+        "whether anyone follows the instructions"
+      ],
+      "risks": [
+        "instruction_not_completion",
+        "URL_not_nominal_event"
+      ],
+      "issues": [
+        {
+          "kind": "boundary_error",
+          "code": "URL_split_into_sentences",
+          "note": "The fragment is the middle of a URL-containing sentence. The two URL dots and the existing space after www. must remain inside the sentence.",
+          "related_ids": [
+            "test:989:6:2",
+            "test:989:6:3",
+            "test:989:6:4",
+            "test:989:6:5",
+            "test:989:6:6"
+          ],
+          "repair": "merge_segments_2_through_6_preserve_original_URL_spacing"
+        }
+      ],
+      "evidence_turns": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "note": "The saved com/or/www noun parse is not a useful sentence template. The source sentence spans characters 15..199 of turn 6; the final delivery sentence is separate.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:2641:5:1",
+      "group": "boundaries",
+      "text": "In winter temperature often falls to zero at night temperature can be below that.",
+      "original_reasons": [
+        "embedded_clause",
+        "modality_or_intention",
+        "particle_or_prepositional_unit",
+        "unspaced_sentence_boundary"
+      ],
+      "source_sha256": "3925c1c2931719e2e5318110ada9f2d87f9880aaa91293dc6b8432410eda31ce",
+      "body_sha256": "d3b48c3cf72e87878ca2141351bceb74fe8e301b69364bff6e21990d8d08deb1",
+      "payload_sha256": "2a00f959b11c1e128376a061d00c068f2906e06925297e0722c7103518a37db5",
+      "context_sha256": "4b436e28d70e075cff570c590835b28549c5de786cdac059da4650d9c5c9bc29",
+      "context": [
+        "What's the weather like in your city?",
+        "In the summer it gets very hot.the temperature is often between 37 and 40 centigrade.when it is hot we often get rains.the winters are drier.",
+        "The summer temperature usually often reaches about 20 or25 in my city.the rain falls mostly in the winter.and we often get snow.",
+        "What are the temperatures in winter? In my city it is about 15 or 20 degrees.",
+        "In winter temperature often falls to zero at night temperature can be below that.the streets are often icing in the morning.with high such temperatures you must get some thunderstorms.",
+        "Yeah, we do. In the middle of summer there can be thunderstorms every day usually in the afternoon. I heard your city has a lot of fog, is that true?",
+        "We do have a few foggy days in winter.but I would not say we have a lot of fogs.the sky are usually clearly over your city, are they?",
+        "Yes, they are. Like I said we have thunderstorms.but each one usually only last a few hours.then the skys are clear again.",
+        "Have you ever had snow in your city?",
+        "My grandmother said there was snow once when she was a child.but my parents and I only see it outside of our city.",
+        "The river in my city sometime freeze over.people go ice-skating on it.on summer people go boating on the river.but few people go swimming because it is not very clean.",
+        "As you know, my city is on the coast.the water is also not clean.but people still go swimming all year around. I prefer to sand bath on the beach when the weather is hot in sunny."
+      ],
+      "source_span": [
+        0,
+        81
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 25,
+      "verdict": "hold_source_ambiguity",
+      "speech_act": "weather_description",
+      "event_status": "habitual_conditions_and_possibility",
+      "completed_action_asserted": false,
+      "content": {
+        "recoverable": "winter temperatures often fall to zero; temperatures can be below that",
+        "that": "zero"
+      },
+      "unknown": [
+        "whether at night modifies the first or second clause",
+        "intended punctuation between the clauses"
+      ],
+      "risks": [
+        "run_on_source",
+        "modality_not_occurrence"
+      ],
+      "issues": [
+        {
+          "kind": "syntax_error",
+          "code": "subjects_absorbed_into_prepositional_phrases",
+          "note": "Both temperature nouns are marked pobj; neither clause retains its overt subject. Winter and night have become compound noun modifiers.",
+          "repair": "restore_two_clause_subject_structure_after_boundary_review"
+        },
+        {
+          "kind": "source_ambiguity",
+          "code": "missing_clause_punctuation",
+          "note": "There is no explicit boundary around at night temperature. Keep both plausible attachments and do not insert punctuation or select a boundary by guesswork.",
+          "repair": "preserve_source_and_record_alternative_attachments"
+        }
+      ],
+      "evidence_turns": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "note": "This differs from the correctly split later .the in the turn. It is a genuinely damaged run-on source, not merely a false abbreviation warning.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "test:423:6:1",
+      "group": "boundaries",
+      "text": "Our monthly interest is 1.5 % of the outstanding balance.",
+      "original_reasons": [
+        "abbreviation_boundary",
+        "controlled_or_elliptical_predicate"
+      ],
+      "source_sha256": "ef1c8760fa0c7fe98aca3e29807ba1d295cbc111dc2b6801fbc3d727c2e21c72",
+      "body_sha256": "16a1b7c48978505d622bf622ccd80d46a0bfcb690fcde71be2b12636776c5107",
+      "payload_sha256": "1a1a1cf1d9bfd8e6bd7e82555d98508bf51708d4eb3ffefae434611bf2ef741e",
+      "context_sha256": "c55f0683c205e6d9d7026a75ec5139409b7c31c9931f39930bf832079b2f1bde",
+      "context": [
+        "I'd like to apply for a personal loan.",
+        "How much would you like to borrow?",
+        "A thousand dollars.",
+        "Let me check with a credit manager. A record show your credit reading is quite high. I don't think you have any problems.",
+        "What's the current interest rate?",
+        "Our monthly interest is 1.5 % of the outstanding balance. Would you please fill out the application the form?"
+      ],
+      "source_span": [
+        0,
+        57
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 26,
+      "verdict": "attested_only",
+      "speech_act": "rate_information",
+      "event_status": "current_reported_policy",
+      "completed_action_asserted": false,
+      "content": {
+        "rate": "1.5 percent monthly",
+        "basis": "outstanding balance",
+        "outstanding_sense": "unpaid, not excellent"
+      },
+      "unknown": [
+        "loan approval",
+        "actual interest charged"
+      ],
+      "risks": [
+        "decimal_boundary",
+        "domain_specific_adjective",
+        "policy_not_completed_transaction"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "note": "The decimal and full sentence are intact. Monthly binds interest and outstanding binds balance correctly. This is a source speaker's loan-policy claim, not financial advice or a finished loan transaction.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "val:164:1:1",
+      "group": "boundaries",
+      "text": "Hello, this is Steven from Blue Sky Co.",
+      "original_reasons": [
+        "abbreviation_boundary",
+        "controlled_or_elliptical_predicate",
+        "proper_name"
+      ],
+      "source_sha256": "66a592f5620865f43778794e11d6ba63df99c3ab3bef1a0dc6b2a21b00df341f",
+      "body_sha256": "c594004d3d087a3bbf76cdb39ac736b14eb55b839bbaeba604dbcf6c0fa4a3bc",
+      "payload_sha256": "fb6cddc7f15e903d96c1df32bfb5730204d113021efd19566c9ef06b3d726612",
+      "context_sha256": "2d980a57303787ace121da1d9562cfe17f0c585b8387326476242fd886e20cfa",
+      "context": [
+        "Hello, this is Steven from Blue Sky Co. May I speak to Mr. James?",
+        "Speaking.",
+        "Excuse my troubling you. You purchased our products last year and now I am following up to find out about their workings. Are they still in good condition now?",
+        "Yeah, exactly! I bought them last year. En... at present, they are still in good state.",
+        "That's it! All of them have first-class quality and performance. Besides, we adopt advanced technology. Now we have developed new products. They are much better than what you have bought.",
+        "Your company is developing so fast. Maybe later on I will plan to buy more.",
+        "That's great! Thanks for your support. If any, please remember to call us. I am afraid I have to say goodbye now! Bye, Mr. James!",
+        "Bye!"
+      ],
+      "source_span": [
+        0,
+        39
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 27,
+      "verdict": "attested_only",
+      "speech_act": "self_introduction",
+      "event_status": "present_identity_and_affiliation",
+      "completed_action_asserted": false,
+      "content": {
+        "speaker": "Steven",
+        "organization": "Blue Sky Co."
+      },
+      "unknown": [
+        "speaker's job title",
+        "physical origin or travel"
+      ],
+      "risks": [
+        "name_span",
+        "affiliation_not_motion"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        1,
+        2,
+        3
+      ],
+      "note": "Co. ends the introduction and is followed by a separate request to speak to Mr. James. The boundary is correct; Blue Sky Co. must remain one organization name and from expresses affiliation.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "val:581:1:1",
+      "group": "boundaries",
+      "text": "What sort of shopping is nearby, Mr. Taylor?",
+      "original_reasons": [
+        "abbreviation_boundary",
+        "controlled_or_elliptical_predicate",
+        "nominal_role_or_vocative",
+        "particle_or_prepositional_unit",
+        "proper_name",
+        "question"
+      ],
+      "source_sha256": "19f792f83c12205d5a64d3c83257a260a1296013338dc0389206209efa5ed63c",
+      "body_sha256": "b989c89a54163948b1553e8fe1c3bd36740c1130581e142eb58955da6c2a4fa3",
+      "payload_sha256": "fd3df23dbd8c3d83f4a5cc24bf0f849b8c32c7ff74f8ea86bc21bd41dedecd7e",
+      "context_sha256": "3862b044be66ce06e2c1081fba0e711f5311103647bd9d102ef2e23f1345a2a4",
+      "context": [
+        "What sort of shopping is nearby, Mr. Taylor?",
+        "Call me John. This is a great area of the city for shopping. There's a grocery store just around the corner.",
+        "What about things other than food?",
+        "Well, the Riverside Mall has 200 stores in it, including four major department stores.",
+        "Are there small shops near here as well?",
+        "Yes, on 4th street, near the movie theater there are many specialty shops, including clothing boutiques.",
+        "Well, that sounds just wonderful.",
+        "Yes, it's a really nice neighborhood."
+      ],
+      "source_span": [
+        0,
+        44
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 28,
+      "verdict": "repair_required",
+      "speech_act": "information_question",
+      "event_status": "asks_about_shopping_availability",
+      "completed_action_asserted": false,
+      "content": {
+        "asked_about": "sorts of shopping nearby",
+        "addressee": "Mr. Taylor, who asks to be called John"
+      },
+      "unknown": [
+        "specific shop locations until the reply"
+      ],
+      "risks": [
+        "vocative_not_argument",
+        "question_not_fact"
+      ],
+      "issues": [
+        {
+          "kind": "syntax_error",
+          "code": "interrogative_subject_marked_attribute",
+          "note": "What sort of shopping is the subject of is nearby. Sort is stored as attr, leaving the clause without its overt subject.",
+          "token_edits": [
+            {
+              "token": 1,
+              "set": {
+                "dep": "nsubj",
+                "head": 4
+              }
+            },
+            {
+              "token": 8,
+              "set": {
+                "dep": "vocative",
+                "head": 4
+              }
+            }
+          ],
+          "repair": "apply_occurrence_scoped_dependency_correction"
+        }
+      ],
+      "evidence_turns": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "note": "No split is needed at Mr. Taylor. Treat nearby as location, not a lexical be nearby action; Taylor is an address, not a participant of a completed event.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:1608:11:3",
+      "group": "boundaries",
+      "text": "I don't want him to be angry.",
+      "original_reasons": [
+        "abbreviation_boundary",
+        "embedded_clause",
+        "modality_or_intention",
+        "negation"
+      ],
+      "source_sha256": "1eabb3ca7ed423065befd8f15ac69d32589b053458dc70a756e36358c81a3901",
+      "body_sha256": "01343c91a4380dab27c9331cfbfbee382a0584dd6ba414428cdcc42b6d0e9706",
+      "payload_sha256": "659181c9fa2b2d2b3b7c659694038aa5109b6e5d3623d5ebaefab0a7495b04f7",
+      "context_sha256": "3743046405a5d27c3673e2f37a145efc0bf90076fc4db76638723025670c817f",
+      "context": [
+        "Karen, do you have a minute? I'd like to ask you about something.",
+        "Sure. What is it?",
+        "I think you can give me some advice. You have worked here longer, and I just want to know what you think.",
+        "I'm glad to help you. But what is it you want to ask about?",
+        "I am worried about the meeting this morning.",
+        "Why? I think the meeting went well.",
+        "Really?",
+        "Yes. But what are you worried about?",
+        "I'm afraid I was too rude.",
+        "Rude? You weren't rude at all, Annie. Why do you think you were rude?",
+        "Well, I maybe talked to Mr. Drummond too directly. I thought I maybe said too much. I don't want him to be angry.",
+        "I understand. But really you weren't rude at all. You said what you thought. I think he appreciates that.",
+        "Really?",
+        "Yes.",
+        "But I am new here, and I'm not sure he is used to that.",
+        "You mean because you are a woman?",
+        "Yes. And he is the president of the company.",
+        "Listen, Annie. You shouldn't worry about Mr. Drummond. He is a very good man to work for. He is not sexist at all. He appreciates people for their ideas. And he is willing to take suggestions from men or women.",
+        "I am very happy to hear that, Karen. It's good to know I'm working in such a company.",
+        "I agree with you on that, Annie. I've worked for Derek Drummond for nine years now. I feel he appreciates his employees for their work, not their gender. I would never change jobs.",
+        "Good. Thank you for telling me this.",
+        "Any time. If you have a good idea, don't be afraid to speak up. This is a company that appreciates initiative."
+      ],
+      "source_span": [
+        84,
+        113
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 29,
+      "verdict": "attested_only",
+      "speech_act": "expressed_preference",
+      "event_status": "negated_desire",
+      "completed_action_asserted": false,
+      "content": {
+        "experiencer": "Annie",
+        "desired_state_avoided": "Mr. Drummond being angry",
+        "property_binding": {
+          "angry": "him, referring to Mr. Drummond"
+        }
+      },
+      "unknown": [
+        "whether Mr. Drummond is actually angry"
+      ],
+      "risks": [
+        "negation_scope",
+        "desire_not_state_assertion",
+        "coreference"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        9,
+        10,
+        11,
+        12,
+        15,
+        17,
+        18,
+        19,
+        20
+      ],
+      "note": "Negation attaches to want and angry belongs to the embedded him. Neither anger nor its absence is asserted. This is an important correct parse with nonfactual embedded content.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "val:380:4:1",
+      "group": "boundaries",
+      "text": "Glad to meet you, Mr. White.",
+      "original_reasons": [
+        "abbreviation_boundary",
+        "adjective_target_unresolved",
+        "embedded_clause",
+        "nominal_role_or_vocative",
+        "proper_name"
+      ],
+      "source_sha256": "119e7a0f8e4f6b2f5ecc0db4ad5ed648c4bc68ffebdd5945e287e240ce93549c",
+      "body_sha256": "981cc6b828b0da8eb693a2b1e37a65c6e9f079f6b78c413a53a9d6948fc6742b",
+      "payload_sha256": "e50b6c84d3356283c010fd5305be8bb5acafc0f9a9a7330e2bd24e45a7bd6ab8",
+      "context_sha256": "688270a826d99ecd24e9b0cfdf8f7e61a89c571610c7eedbdf05fec53291ba2a",
+      "context": [
+        "Come in, please.",
+        "Good morning! I am Anna Lu. I've come for an interview which was arranged.",
+        "Oh, I see. I am Jack White, Personnel Manager. Take a seat, please.",
+        "Glad to meet you, Mr. White.",
+        "Miss Lu, have you got any experience in restaurant service?",
+        "Yes. Since I entered college, I have been working at a fast food restaurant as a part-time waitress.",
+        "For how long?",
+        "3 years.",
+        "Our restaurant receives a lot of foreign customers. Can you serve them in English?",
+        "That's why I applied for this job. Now I am studying Hotel English in my college, and I am quite familiar with the western courtesy and restaurant etiquette. I am sure my public relation skills will leave a strong impression on your customers.",
+        "You must know our working hours are very long and overtime work is frequent.",
+        "I don't mind that.",
+        "I think I will give you a 3 months'trial. The salary for this period is 800 yuan a month with no bonus. After that period if we both feel satisfied, a formal contract would be signed.",
+        "When am I supposed to start working?",
+        "Next Monday. Bring your resume and diploma with you.",
+        "Yes, I will. Thank you, Mr. White. Goodbye!",
+        "Goodbye!"
+      ],
+      "source_span": [
+        0,
+        28
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 30,
+      "verdict": "context_only",
+      "speech_act": "polite_greeting",
+      "event_status": "elliptical_present_evaluation",
+      "completed_action_asserted": false,
+      "content": {
+        "implicit_experiencer": "speaker Anna Lu",
+        "addressee": "Mr. Jack White",
+        "evaluation": "glad to meet the addressee"
+      },
+      "unknown": [
+        "an independently completed meeting beyond the current greeting"
+      ],
+      "risks": [
+        "implicit_subject",
+        "vocative_not_property_target",
+        "performative_formula"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "note": "Glad is legitimately unresolved in a nominal-only attribute inventory because its subject I is omitted. White is a vocative, not the person who is glad. Preserve the fragment and add an implicit-participant interpretation before any use beyond context.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:4908:1:1",
+      "group": "properties",
+      "text": "What's the matter, dear?",
+      "original_reasons": [
+        "adjective_target_unresolved",
+        "embedded_clause",
+        "question"
+      ],
+      "source_sha256": "8041de8962f971f7225081eb5929b8d8a44b9010d0112d557d80f01152f65b6c",
+      "body_sha256": "8b9a826e5ade261b4b09cec1781db6261eb20bce40bc21b398090ebe8ecf624a",
+      "payload_sha256": "4d59d5919d3335a10fd718d1e07fd9012ee5945809d865cdcf33b826f30faf1e",
+      "context_sha256": "f04bcc1f612ba1af83b0be69217cf31a9fcd8f6e5e91e0fd0392dff8731e63ca",
+      "context": [
+        "What's the matter, dear?",
+        "Something awful happened. We went to the Portobello Road, and someone stole my handbag.",
+        "Oh, dear. Did you lose a lot of money?",
+        "No. Only a few pounds. But my passport was in the bag. That's what I'm really worry about.",
+        "You must tell the embassy about it. And I think they'll issue you with a new one.",
+        "I'd better go tomorrow.",
+        "No. But you mustn't leave it too long. Did you report it the police?",
+        "No. I couldn't find a policeman.",
+        "Well. You must report that it's been stolen. And give the police description of your bag. You'd better go to the local police station tomorrow morning.",
+        "Yes. I'll do it tomorrow.",
+        "And Lisa.",
+        "Yes?",
+        "Don't be too upset. It's not the end of the world."
+      ],
+      "source_span": [
+        0,
+        24
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 31,
+      "verdict": "repair_required",
+      "speech_act": "concern_question",
+      "event_status": "asks_about_problem",
+      "completed_action_asserted": false,
+      "content": {
+        "question": "what is the matter",
+        "dear": "affectionate address to the interlocutor, later named Lisa"
+      },
+      "unknown": [
+        "the problem before the answer"
+      ],
+      "risks": [
+        "vocative_not_property",
+        "question_not_fact"
+      ],
+      "issues": [
+        {
+          "kind": "syntax_error",
+          "code": "vocative_promoted_to_predicate_root",
+          "note": "Dear is ROOT and the interrogative is is attached beneath it as ccomp. Dear does not evaluate the matter or introduce an embedded question.",
+          "token_edits": [
+            {
+              "token": 1,
+              "set": {
+                "dep": "ROOT",
+                "head": 1
+              }
+            },
+            {
+              "token": 4,
+              "set": {
+                "head": 1
+              }
+            },
+            {
+              "token": 5,
+              "set": {
+                "parser_lemma": "dear",
+                "pos": "NOUN",
+                "tag": "NN",
+                "dep": "vocative",
+                "head": 1,
+                "morph": "Number=Sing"
+              }
+            },
+            {
+              "token": 6,
+              "set": {
+                "head": 1
+              }
+            }
+          ],
+          "repair": "restore_copular_question_and_nominal_vocative"
+        }
+      ],
+      "evidence_turns": [
+        1,
+        2,
+        3,
+        4,
+        11,
+        12,
+        13
+      ],
+      "note": "The following theft report is not contained in this question. Retain dear as an address; it is not an adjective property needing a guessed target.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:2918:3:1",
+      "group": "properties",
+      "text": "I guess it is a formal one because the general director will give a speech there, and most of the staff will take part in.",
+      "original_reasons": [
+        "adjective_target_unresolved",
+        "coordinated_verbs",
+        "embedded_clause",
+        "modality_or_intention",
+        "particle_or_prepositional_unit"
+      ],
+      "source_sha256": "03072656529ec0432902c111e165a63ddbbd87a6e6bd3bc2af7c935efe6d7d1a",
+      "body_sha256": "ef7659403a04c784212369979127c3eb75e7e12892e46f0f739322e2219626dd",
+      "payload_sha256": "238eef34f0f4f367b4349b1994a70db25d385921cb6017f5cb5dac38f9a77f62",
+      "context_sha256": "d6e2cb12d127d0076a64f0c4f1671660de521264862cdbc336f422e5b1024c44",
+      "context": [
+        "There will be a party in my company; what shall I wear?",
+        "Is it formal or informal?",
+        "I guess it is a formal one because the general director will give a speech there, and most of the staff will take part in.",
+        "In that case, formal suit with a nice tie will be better.",
+        "You are right. What about shoes?",
+        "The brown leather shoes are OK.",
+        "Thanks a lot.",
+        "Don't mention it."
+      ],
+      "source_span": [
+        0,
+        122
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 32,
+      "verdict": "repair_required",
+      "speech_act": "tentative_assessment",
+      "event_status": "guess_and_future_participation",
+      "completed_action_asserted": false,
+      "content": {
+        "it_and_one": "upcoming company party",
+        "formal": "party",
+        "general": "director's title",
+        "take_part_in": "participate in the party",
+        "most": "majority of staff"
+      },
+      "unknown": [
+        "actual formality",
+        "whether the speech or participation occurs",
+        "exact scope of the final coordination under guess/because"
+      ],
+      "risks": [
+        "epistemic_scope",
+        "future_not_completion",
+        "elliptical_prepositional_object",
+        "quantifier_not_quality"
+      ],
+      "issues": [
+        {
+          "kind": "construction_error",
+          "code": "take_part_in_reduced_to_take_in",
+          "note": "In is tagged prt of take, producing the particle predicate take in while part is treated as an unrelated object. The expression means participate.",
+          "repair": "preserve_take_part_in_as_fixed_expression_and_mark_its_omitted_complement"
+        }
+      ],
+      "evidence_turns": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "note": "Do not infer that staff have already participated. Formal attaches to one (the party), not to the director. Most of the staff is a quantified subject rather than a superlative property.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:3857:5:1",
+      "group": "properties",
+      "text": "Great.",
+      "original_reasons": [
+        "adjective_target_unresolved",
+        "no_verb_or_fragment"
+      ],
+      "source_sha256": "86fa18bf915254bfcd8a18d24fdf305ae865e1d8d918c62178632ac55276215e",
+      "body_sha256": "f6c1472939060203481d28931296df079e82c2acd490638437ec371d00a4d00a",
+      "payload_sha256": "7d942ecef3f42b51bbcba07161678d0214fa966d350b6740144edfb03736675f",
+      "context_sha256": "967a639ecc853bf60ae7dbad1e9d345208d5cf7923c4a1263832022c1adac842",
+      "context": [
+        "What do you like to do in your spare time?",
+        "I am a girl of many interests. I like dance, chess, collecting stamps, travelling and taking photos.",
+        "What kind of dance do you like?",
+        "I like rumba and tango.",
+        "Great. I am not interested in Chinese chess. It is too difficult for me.",
+        "You can learn Chinese checkers or military chess. Both of them are much easier.",
+        "OK, I will try. As for stamp, don't you think it is an expensive hobby?",
+        "Yes, it is. But it is full of fun and knowledge. What about you, what do you like to do as hobby?",
+        "I like gardening. I take care of them everyday. I like those flowers and the swing in my garden. If the weather is nice, I would like to lie on the lawn.",
+        "Sounds pleasant."
+      ],
+      "source_span": [
+        0,
+        6
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 33,
+      "verdict": "context_only",
+      "speech_act": "positive_acknowledgement",
+      "event_status": "elliptical_evaluation",
+      "completed_action_asserted": false,
+      "content": {
+        "reaction_to": "the interlocutor's interest in rumba and tango"
+      },
+      "unknown": [
+        "whether great evaluates the dances, the preference, or the exchange in general"
+      ],
+      "risks": [
+        "fragment",
+        "adjective_target_ambiguous"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "note": "Leaving the property target unset is correct for the automatic candidate. Do not attach Great to Chinese chess in the following negative sentence or invent a completed dance event.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:8342:6:3",
+      "group": "properties",
+      "text": "At least then the warring parties could be forced to negotiate.",
+      "original_reasons": [
+        "adjective_target_unresolved",
+        "embedded_clause",
+        "modality_or_intention",
+        "nonfinite_root"
+      ],
+      "source_sha256": "f366ac71483529b3047336861468db0192d21de0526491103843c6d6ff5fc48d",
+      "body_sha256": "c5b8afeaa6f89bf4e58eac2e706ede9b130771d675b92f1888c7e58601f8a73b",
+      "payload_sha256": "2aa0439483691adf648f83a86d13138c5322d7380cee1807b2c054a4850f4c35",
+      "context_sha256": "ddb9a67d9d2e0e64a2e61ce7c509213c4d8fa2d08f03b28b00b00c7583bd81be",
+      "context": [
+        "What do you think are the main causes of war today?",
+        "I'd say the main reason is poverty. Countries and their people get frustrated because they have so little. If their neighbors have some resources, they try to steal them by military force.",
+        "It seems that a lot of wars nowadays are really civil wars. People from different ethnic groups in the same country sometimes fight for power in that country.",
+        "Several of those civil wars have been going on for years and years. It seems they will never end.",
+        "How do you think they could be ended?",
+        "I don't think that there is any easy way. The United Nations could send peacekeepers into the country. At least then the warring parties could be forced to negotiate. The thing is to find the real pro",
+        "So, if the cause is poverty, there should be a programme to make the country richer. If the problem is resources, share them.",
+        "It sounds easy when you say it like that. In reality, it's harder to make peace between countries.",
+        "Yes. It is. One way to stop countries fighting is to cut off their financial support. Wars are very expensive.",
+        "The problem is that many poor people might suffer."
+      ],
+      "source_span": [
+        103,
+        166
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 34,
+      "verdict": "attested_only",
+      "speech_act": "proposal_consequence",
+      "event_status": "hypothetical_passive_possibility",
+      "completed_action_asserted": false,
+      "content": {
+        "participants": "warring parties",
+        "possible_event": "could be forced to negotiate if peacekeepers are sent",
+        "at_least": "discourse scalar expression"
+      },
+      "unknown": [
+        "whether peacekeepers are sent",
+        "who would compel the parties",
+        "whether negotiation occurs"
+      ],
+      "risks": [
+        "modal_scope",
+        "passive_patient_not_agent",
+        "fixed_expression_not_superlative_property",
+        "attributive_participle_not_separate_completed_event"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "note": "The passive subject and could/be auxiliaries are represented. Warring is an attributive participle; at least must remain a phrase rather than acquiring a nominal adjective target. The unresolved least attribute is a limitation to constrain, not evidence of an actual least-valued entity.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:3234:4:1",
+      "group": "properties",
+      "text": "Great!",
+      "original_reasons": [
+        "adjective_target_unresolved",
+        "no_verb_or_fragment"
+      ],
+      "source_sha256": "13e31a29ce39ab70ede89de86619c7aa8b21bc2b4b371a6ec6e8d7d7224dabb0",
+      "body_sha256": "1fe70e6251dc4fd20bd93884fa96cffe8c0c21e83262d1e7786104d30c45b00a",
+      "payload_sha256": "610eac32c9b52e0f44702f05aa313bc976acf5b5a5d21d5a3c95c397bfdd3eb0",
+      "context_sha256": "a85ec46c42ff723f5f6fafa519131fc09e8ca3f309e366ea7db197bb77538525",
+      "context": [
+        "(Before Christmas Party) Are you ready for the Christmas party tonight",
+        "Almost. I have to get dressed. It's a formal party and I have special party make up!",
+        "Use this lipstick and it will make your lips shine!",
+        "Great! Uh, remember that there's a gift exchange, too. We all have to bring a gift.",
+        "I've already got mine.",
+        "(At the Party) It's Christmas Eve! Time to open presents!",
+        "Here! Open mine first.",
+        "Wow! It's just what I wanted!",
+        "Hey! Why don't I have any presents!"
+      ],
+      "source_span": [
+        0,
+        6
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 35,
+      "verdict": "context_only",
+      "speech_act": "positive_reaction",
+      "event_status": "elliptical_evaluation",
+      "completed_action_asserted": false,
+      "content": {
+        "reaction_to": "the lipstick suggestion before the party"
+      },
+      "unknown": [
+        "whether the speaker already used the lipstick",
+        "precise nominal target of Great"
+      ],
+      "risks": [
+        "fragment",
+        "adjective_target_ambiguous"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "note": "The same Great text now answers a makeup suggestion, not a discussion of dancing. No property should be propagated between these two contexts.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "test:377:4:1",
+      "group": "properties",
+      "text": "The food station was as crowded as usual.",
+      "original_reasons": [
+        "adjective_target_unresolved",
+        "controlled_or_elliptical_predicate",
+        "particle_or_prepositional_unit"
+      ],
+      "source_sha256": "9189d02992e5dd1c1b77756e89b860144ad97658c943923ae066bccc68b3e364",
+      "body_sha256": "dc8b23005cb8144fa02261f7cfc4dae80abb00eb83f9868e1063448fd428ab39",
+      "payload_sha256": "0595b2d964906d52e976b58e885a31d427362e2ad8c44585b80851d0c6e5a049",
+      "context_sha256": "18057090ad2c9490325c6d9e40f1c066dd8aa892d9433080a1d61f46b6736ec4",
+      "context": [
+        "Hey, Tom, did you enjoy your lunch?",
+        "Oh, don't mention it. It was terrible.",
+        "What'the matter?",
+        "The food station was as crowded as usual. I waited for 20 minutes for my sandwich, and when I finally got it the chicken was underdone.",
+        "I see. You simply can't blame the server for this.",
+        "Yes, I know. Fast food is so popular in this district.",
+        "That's true.",
+        "Anyway, how was your such, Catherine?",
+        "It was good. I brought lunch from home today.",
+        "You did? I thought you must feel right at home here as we get as many fast food restaurants as you do in America.",
+        "Well, I personally don't like them because I don't believe that they are healthy.",
+        "I guess you're right. More often than not, people go there only for convenience. The foods may taste good, but generally speaking, they are high in calories, salt and fat.",
+        "Yes. I am wondering that you must believe fast food is our lifestyle, don't you?",
+        "You bet. Almost all top brands such as McDonald's and KFC are from America.",
+        "Well, actually two-thirds of Americans may avoid these places.",
+        "Seriously?",
+        "Yeah, it's hard to believe but true."
+      ],
+      "source_span": [
+        0,
+        41
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 36,
+      "verdict": "repair_required",
+      "speech_act": "complaint_report",
+      "event_status": "past_crowded_state",
+      "completed_action_asserted": false,
+      "content": {
+        "entity": "food station",
+        "state": "as crowded as it normally is",
+        "usual": "comparison baseline, not an intrinsic property of a nominal entity"
+      },
+      "unknown": [
+        "who caused the crowd",
+        "number of people"
+      ],
+      "risks": [
+        "state_not_completed_action",
+        "comparison_scope"
+      ],
+      "issues": [
+        {
+          "kind": "syntax_error",
+          "code": "participial_state_compiled_as_event_verb",
+          "note": "Crowded is stored as VERB/VBN with lemma crowd although the equative degree phrase as crowded as usual predicates a state. This creates a spurious crowd/crowd as event candidate.",
+          "token_edits": [
+            {
+              "token": 5,
+              "set": {
+                "parser_lemma": "crowded",
+                "pos": "ADJ",
+                "tag": "JJ",
+                "morph": "Degree=Pos"
+              }
+            },
+            {
+              "token": 7,
+              "set": {
+                "dep": "pobj",
+                "head": 6
+              }
+            }
+          ],
+          "repair": "compile_crowded_state_and_preserve_as_usual_comparison"
+        }
+      ],
+      "evidence_turns": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "note": "Crowded should bind the food station. Usual must not be assigned to a person or food item. The later sandwich wait is a separate event.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:7771:8:2",
+      "group": "properties",
+      "text": "How much?",
+      "original_reasons": [
+        "adjective_target_unresolved",
+        "no_verb_or_fragment",
+        "question"
+      ],
+      "source_sha256": "3b9a0b5f9145ee7c3c7c833019c2f078b397b211e323ca754ef6140892ecdf29",
+      "body_sha256": "f149000442148071a3eab3a404883e3e401f9f75976b3d4631983996ccfc09ad",
+      "payload_sha256": "a26b024d2c7b98f23c8a6d4e8acd2a5ee9054f4b48dd9bbf822b8378aff19f5b",
+      "context_sha256": "3614ae5508622c17faabd36c8382bf086bc208b5ffd76743ada16f728f0c04bc",
+      "context": [
+        "What can I do for you?",
+        "I would like to have a roll developed.",
+        "When do you need them, sir?",
+        "How about tomorrow morning?",
+        "No problem. Do you want 3 x 5 or 4 x 6?",
+        "The 4 x6 will be OK. Thanks.",
+        "And do you want the glossy or matted finish?",
+        "I prefer glossy. How much?",
+        "You pay when you pick them up. I don't need a deposit for just one roll of film.",
+        "Thanks!"
+      ],
+      "source_span": [
+        17,
+        26
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 37,
+      "verdict": "context_only",
+      "speech_act": "price_question",
+      "event_status": "elliptical_information_request",
+      "completed_action_asserted": false,
+      "content": {
+        "queried_price": "developing the film roll with the selected size and glossy finish"
+      },
+      "unknown": [
+        "actual price",
+        "whether payment or developing has occurred"
+      ],
+      "risks": [
+        "fragment",
+        "quantity_not_quality",
+        "question_not_fact"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "note": "How much refers to price in this dialogue, not the physical amount of gloss or number of rolls. The response gives payment timing, not a numeric price. The null adjective target must remain unfilled.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:9801:8:1",
+      "group": "properties",
+      "text": "We finally took off, but about 30 minutes later, the captain came on to the loudspeaker to warn us that there would be some bad turbulence for most of the flight.",
+      "original_reasons": [
+        "adjective_target_unresolved",
+        "coordinated_verbs",
+        "embedded_clause",
+        "modality_or_intention",
+        "nominal_role_or_vocative",
+        "particle_or_prepositional_unit"
+      ],
+      "source_sha256": "46b4d8c21e1071e5ee6ad850c30fb9415dde254ddfb2efbf7e484fd2d9a9776d",
+      "body_sha256": "1eb051f57b09ca2a3337f3213f076ab60cdf1935690980372f3b9342bc8f98cd",
+      "payload_sha256": "ec1b2c6f50cbe6a59996660bf96b9c41134de8948d724891440da8b20cc1df68",
+      "context_sha256": "8b5d5812bc94cbeaf529fe344a489a5060d24c62f498d650ad4b745520f197f7",
+      "context": [
+        "Is everything alright?",
+        "Yes, everything is fine.",
+        "What took so long? I thought your flight was supposed to arrive 3 hours ago!",
+        "Didn't they announce that our flight was delayed?",
+        "I didn't hear anything about a delay. I thought everything was running on time. What happened?",
+        "We boarded the plane on time, but then we were held up for almost an hour due to a maintenance problem.",
+        "Then what? Your plane was three hours late!",
+        "We finally took off, but about 30 minutes later, the captain came on to the loudspeaker to warn us that there would be some bad turbulence for most of the flight.",
+        "Turbulence is pretty normal, isn't it?",
+        "Yes, but this was the worst turbulence I'd ever experienced in my life! Everyone started getting sick. The flight attendants had to stay in their seats. The captain decided to land early.",
+        "So where did you land?",
+        "We landed in Southampton and waited an hour for the storms to pass and then took off again.",
+        "That sounds like a nightmare!",
+        "It wasn't too bad. At lease I'm alive.",
+        "Have you had anything to eat?",
+        "I managed to get a sandwich from a flight attendant. How about you?",
+        "I had a few coffees while I was waiting. Let's get out of here!"
+      ],
+      "source_span": [
+        0,
+        162
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 38,
+      "verdict": "attested_only",
+      "speech_act": "travel_report",
+      "event_status": "past_takeoff_and_announcement_with_embedded_forecast",
+      "completed_action_asserted": true,
+      "content": {
+        "reported_events": [
+          "flight took off",
+          "captain came onto the loudspeaker to warn passengers"
+        ],
+        "embedded_forecast": "there would be bad turbulence for most of the flight",
+        "take_off_sense": "aircraft departure",
+        "come_on_sense": "begin speaking over the announcement system"
+      },
+      "unknown": [
+        "turbulence occurrence from this sentence alone",
+        "precise scope of the warning's truth"
+      ],
+      "risks": [
+        "reported_future",
+        "purpose_not_automatic_completion",
+        "phrasal_sense",
+        "quantifier_not_quality"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "note": "The multi-clause sentence and take off particle are intact. Come on to must not be assigned an interpersonal/sexual idiom meaning. Most is a flight-duration quantifier. Later turn 10 reports actual turbulence independently; that evidence must not change the forecast embedded in turn 8 into an unqualified fact.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "test:310:17:1",
+      "group": "properties",
+      "text": "Good-bye.",
+      "original_reasons": [
+        "adjective_target_unresolved",
+        "dictionary_imperative_candidate",
+        "no_verb_or_fragment"
+      ],
+      "source_sha256": "7db226f167990c650ca3e6c91dec694ded923c67316e667af16d92045f33f0a6",
+      "body_sha256": "bbadf3d9e8b770b38f77260aacddec255ab8246b2ec98951a1bff7d310f48285",
+      "payload_sha256": "d0f113bc7fec0462332d0a5cee33fe8fb20f5ec65352ebdf3b6cf1d8502afddb",
+      "context_sha256": "025ccf751873b365be41eabe95c141eb63c7f274d85856bf7db91aa13c141403",
+      "context": [
+        "Good morning. Craftsman Company. Can I help you?",
+        "Yes, good morning. This is Mr. Suzuki from Video TV. May I speak to Mr. Johnson?",
+        "I'm sorry, but Mr. Johnson is out at the moment. Can I take a message?",
+        "Uh, yes, okay. Tell him John Suzuki called. That's S-U-Z-U-K-I.",
+        "Yes.",
+        "From Video TV.",
+        "Yes, Video TV.",
+        "Tell him I telephoned. I'd like to see him about the videotapes. Can he call me this afternoon?",
+        "Yes, Of course. What's your telephone number?",
+        "It's, area code 413, 447-9626.",
+        "That is 413-447-9662?",
+        "No, that's 447-9626.",
+        "Oh, I'm sorry, 447-9626.",
+        "Yes, that's right. Extension 162.",
+        "Extension 162. Okay, Mr. Suzuki. I'll give him the message.",
+        "Thank you. Good-bye.",
+        "Good-bye."
+      ],
+      "source_span": [
+        0,
+        9
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 39,
+      "verdict": "context_only",
+      "speech_act": "farewell",
+      "event_status": "current_social_act",
+      "completed_action_asserted": false,
+      "content": {
+        "fixed_expression": "Good-bye",
+        "role": "closes the phone exchange"
+      },
+      "unknown": [
+        "whether the promised message is delivered later"
+      ],
+      "risks": [
+        "fixed_expression_not_compositional_property",
+        "fragment"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        14,
+        15,
+        16,
+        17
+      ],
+      "note": "Good-bye is a complete discourse formula even though the tokenizer stores Good, hyphen and bye. Do not turn good into a property of a bye entity; preserve the fixed phrase, not a recombinable adjective slot.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:1533:2:2",
+      "group": "properties",
+      "text": "Being a tourist is really tiring!",
+      "original_reasons": [
+        "adjective_target_unresolved",
+        "controlled_or_elliptical_predicate",
+        "embedded_clause"
+      ],
+      "source_sha256": "e5e0d1d2c459e837aafc5cea1091e18a71335f7e508cf8ae2f7372ffc8aad0df",
+      "body_sha256": "8286894812d5c5d14382ee46d788f9bc445d035d18a55d33d6bec481014f9e55",
+      "payload_sha256": "57f44498e3c96ad67c5b67bf275dc9d51f0ee4ffcdd3ccd7a72abd7cf577adb8",
+      "context_sha256": "29e07e2ec17502a8a0b5a8ea82489bffc9fcbeac3f82cdc37b1b55f68e1440a6",
+      "context": [
+        "Welcome back! How was your vacation?",
+        "It was fantastic, but I'm glad to be back! Being a tourist is really tiring!",
+        "Where did you end up going?",
+        "Because it's off-season, we got a really good package deal to Paris, so we went there.",
+        "I've always wanted to go to Paris. The Eiffel Tower is one of the most famous tourist attractions in the world! Did you go to the top?",
+        "That was the first thing we did. I have a few pictures. Do you want to see them?",
+        "Sure. What's this one a picture of?",
+        "Oh, that's a picture of me on our fourth day of travelling. I'm standing next to a famous foundation in the centre of the city.",
+        "You don't look very happy in that picture.",
+        "No, by that time, I was sick of sightseeing. I had had enough of art galleries, cathedrals, fountains, statues, and palaces!",
+        "So what did you do?",
+        "We spent that afternoon walking around a flea market. We had a few coffees, watched a movie, and went for a swim in the pool at the hotel.",
+        "My travel agent always reminds me to plan a day of relaxing for every 3 days of sightseeing. Did you go to the Louvre?",
+        "Of course! You can't go to Paris without going to their famous art gallery! I was surprised by how small the Mona Lisa was though.",
+        "That's what everyone says! I can't wait to see it for myself some day."
+      ],
+      "source_span": [
+        43,
+        76
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 40,
+      "verdict": "context_only",
+      "speech_act": "evaluation",
+      "event_status": "generic_activity_evaluation",
+      "completed_action_asserted": false,
+      "content": {
+        "evaluated_activity": "being a tourist",
+        "property": "tiring",
+        "experiencer_context": "speaker describing the vacation"
+      },
+      "unknown": [
+        "a single explicit nominal target for tiring"
+      ],
+      "risks": [
+        "clausal_property_target",
+        "activity_not_participant_property"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        1,
+        2,
+        3,
+        4,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "note": "The csubj Being a tourist is the correct target of the evaluation. The null target is a known nominal-only representation limit. Do not attach tiring to tourist as a person or rewrite it as tired.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:10383:16:1",
+      "group": "fragments_or_idioms",
+      "text": "Good idea.",
+      "original_reasons": [
+        "dictionary_imperative_candidate",
+        "no_verb_or_fragment"
+      ],
+      "source_sha256": "876027e00600dcc7a5617d4f68cb373de3c3245bdd3be9de8fbdf44299ebdac4",
+      "body_sha256": "2053efb1b8e4ba47745b7b6364394d192a1f850321e3ed77f0f50575bd540fa4",
+      "payload_sha256": "de3004a75d48d4de3673b93c02ecbe12b4512025f19caca4f96f6f3656390dff",
+      "context_sha256": "6408bd34fd52a622fd9ade19ca50880d71875f143064ad651877ab36ff18526a",
+      "context": [
+        "Are your ready to go to the supermarket?",
+        "Yes, are you?",
+        "I've got my money and my keys, so I'm ready.",
+        "You do know that it's absolutely freezing out, don't you? I'd put a coat on if I were you.",
+        "It wasn't cold out this morning.",
+        "Well, it's started raining since then. Look out the window! It's pouring rain out there!",
+        "Well, I guess we'd better grab our umbrellas then, as well.",
+        "Have a look outside for me. Does that look like hail to you?",
+        "It does, actually. Maybe we should wait for it to clear up before we go shopping.",
+        "That's a good idea. But maybe we should move the car so that the hail doesn't dent it.",
+        "Ok. I'll go move the car if you turn the heat on. It's a bit chilly in here.",
+        "How long do you think this hailstorm is supposed to last?",
+        "I don't know. The weatherman didn't say anything about this in his weather report last night.",
+        "Maybe we should turn on the news in case it's supposed to get worse.",
+        "I don't think we have anything to worry about. Do you want to put on a cup of tea as well?",
+        "Good idea. That will help us to warm up.",
+        "If I'm not back in ten minutes, come and find me.",
+        "Alright. I'll have a cup of tea waiting for you."
+      ],
+      "source_span": [
+        0,
+        10
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 41,
+      "verdict": "context_only",
+      "speech_act": "agreement",
+      "event_status": "approval_of_suggestion",
+      "completed_action_asserted": false,
+      "content": {
+        "idea": "make tea to help warm up"
+      },
+      "unknown": [
+        "whether tea is made or served"
+      ],
+      "risks": [
+        "fragment",
+        "proposal_not_completion"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "note": "Good correctly modifies idea; the referent is the immediately preceding tea suggestion, not the older suggestion to move the car. Approval and a later promise do not prove execution.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:2101:4:1",
+      "group": "fragments_or_idioms",
+      "text": "No, not yet.",
+      "original_reasons": [
+        "negation",
+        "no_verb_or_fragment"
+      ],
+      "source_sha256": "144c1761d337a60c618e0c4f0c3c92f1ef98eec4c9f6eb9edc1e25b9a7d7b828",
+      "body_sha256": "fc3a1191ea614b0fb33fd11eb3480e11908e2fe9d34533890b5c2b0695b7cb76",
+      "payload_sha256": "18c6ca7671df128c7b11904f5f206c3f46f9f22671bf4aed9e5938eea8d1ccb7",
+      "context_sha256": "6d62da451016a98586d547058f06102ae110fc19b229409f67cee30f80aa902c",
+      "context": [
+        "Whose handset sounds so beautiful",
+        "Mine. It's My Heart Will Go On, the theme song of Titanic. Isn't it of strong character?",
+        "Are you able to compose music?",
+        "No, not yet.",
+        "Who composed it for your?",
+        "You needn't ask anyone. You can get on line to search for one.",
+        "Can I get on line to search one, too?",
+        "Yeah. Web sites provide many melodies for handsets like my ERICSSON.",
+        "What about my SIEMENS?",
+        "Numerous. It's time that everybody is particular about personality. Find one and change yours."
+      ],
+      "source_span": [
+        0,
+        12
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 42,
+      "verdict": "context_only",
+      "speech_act": "negative_answer",
+      "event_status": "current_absence_of_ability",
+      "completed_action_asserted": false,
+      "content": {
+        "question_answered": "Are you able to compose music?",
+        "answer": "not able yet"
+      },
+      "unknown": [
+        "whether the speaker ever learns",
+        "whether any music was composed by the speaker"
+      ],
+      "risks": [
+        "fragment",
+        "ability_not_completion",
+        "context_dependent_negation"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "note": "Not yet negates present ability in this context; it is not simply a statement that a particular composition task has not been completed. Keep the ringtone's origin separate.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:7698:7:1",
+      "group": "fragments_or_idioms",
+      "text": "Sure!",
+      "original_reasons": [
+        "no_verb_or_fragment"
+      ],
+      "source_sha256": "ba9c8531a637d4c6f896bbb7b721e669298a757db79b7bf3709597e8ad6301bd",
+      "body_sha256": "535ae6ec465fa335efda61b806ce3edfd034e60b50b8ca9108b23cb46c9ed4c4",
+      "payload_sha256": "b69edeb3a37f3ce520a3adc4c22c64693bd5784e9ee8f2885772e95fec5ef2b8",
+      "context_sha256": "1dff6d7502194efc136a76019249ec8142f0dd1a383bad3c655219a3da0d5208",
+      "context": [
+        "Can I help you?",
+        "I'd like to buy a tie to match this suit.",
+        "We have various colors. How about this one?",
+        "Well, the color is all right. But it looks outdated. Can you show me that one?",
+        "You have a very good taste. It's our best seller.",
+        "Really?",
+        "Sure! Look, it suits you well."
+      ],
+      "source_span": [
+        0,
+        5
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 43,
+      "verdict": "context_only",
+      "speech_act": "confirmation",
+      "event_status": "reassertion_of_sales_claim",
+      "completed_action_asserted": false,
+      "content": {
+        "confirmed_proposition": "the tie is the shop's best seller"
+      },
+      "unknown": [
+        "independent sales statistics",
+        "whether the customer buys it"
+      ],
+      "risks": [
+        "fragment",
+        "context_dependent_confirmation"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "note": "Sure answers Really? about the preceding best-seller claim. It is not permission or an agreement to execute a newly requested action.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:6653:4:1",
+      "group": "fragments_or_idioms",
+      "text": "Thanks.",
+      "original_reasons": [
+        "no_verb_or_fragment"
+      ],
+      "source_sha256": "2c8fab6c3ae2e5bf97d6cbd76124a4cdc6a86126644b4184b5126fdcd91b333c",
+      "body_sha256": "3481443a5ecc669eef6164ee49bbd203bd6d66e4b33d1e878a23965b090cccde",
+      "payload_sha256": "03245431663ad9a3133c4f923cf80c3d58b7e02d65019e34494c5ca0b208d7a4",
+      "context_sha256": "94b8dc7c4469c438ba07be85ef07be29ab149dff4982e9808250daa3d4d3b345",
+      "context": [
+        "We're having a department meeting at 10 o'clock, ok?",
+        "That's fine... I need to pick up some stationary-you know, a stapler, scissors, files, who should I see about that?",
+        "See Julie, the receptionist. She knows where all that stuff is kept. You might like a calendar for you desk. She can give you one of those too.",
+        "Thanks. I need to make a few photocopies.",
+        "The photocopier is near my office. Come on, I'll show you where it is.",
+        "Do you enjoy working in this office?",
+        "Yes, I do. Everyone's really friendly. Sometimes, I wish I worked outdoors more, especially during the summer.",
+        "What's usually discussed at the department meetings?",
+        "We usually tell each other where we are with various clients and potential clients. The boss assigns extra duties to people who she thinks can best deal with them. It's also a chance to put forward suggestions and ideas. Be sure to speak up if you have any."
+      ],
+      "source_span": [
+        0,
+        7
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 44,
+      "verdict": "context_only",
+      "speech_act": "thanks",
+      "event_status": "current_social_act",
+      "completed_action_asserted": false,
+      "content": {
+        "reason": "directions to Julie for stationery and a calendar"
+      },
+      "unknown": [
+        "whether supplies are obtained",
+        "whether photocopies are made"
+      ],
+      "risks": [
+        "fragment",
+        "performative_formula"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "note": "The noun-form Thanks is a gratitude formula. The neighboring need to photocopy is not a completed action. Preserve this office context rather than sharing the bank-visit context of the other Thanks sample.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:10300:2:1",
+      "group": "fragments_or_idioms",
+      "text": "About 3 000 dollars.",
+      "original_reasons": [
+        "no_verb_or_fragment"
+      ],
+      "source_sha256": "9b7e56ac34d3724965abb7f33a33f6634679b338a0d74e2fac80c4ab278f0695",
+      "body_sha256": "1a7c64a1995a11b53882fd63b0b4031438a71a838f9a54ab546333355514edfd",
+      "payload_sha256": "1703c2c35f35b6ea4d0350ec1e704aa70330b38b7ca11edcea95e3adfb8f5f92",
+      "context_sha256": "f3c2cbb292dcc6718237019663fee3623538c1d093e35290a1c29fdd67ba34a6",
+      "context": [
+        "Steven, what's the expense of moving house?",
+        "About 3 000 dollars.",
+        "It costs a lot of money. Hospital bills had already made deep in-roads into our savings. Do you think the rest of your salary will be enough to cover our daily expenses?",
+        "I am afraid not, darling. Our expenses are mounting.",
+        "We have to cut back on our shopping from now on.",
+        "Don't worry. Maybe I can find a part-time job to increase my income.",
+        "I hope so."
+      ],
+      "source_span": [
+        0,
+        20
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 45,
+      "verdict": "context_only",
+      "speech_act": "amount_answer",
+      "event_status": "approximate_moving_expense",
+      "completed_action_asserted": false,
+      "content": {
+        "amount": 3000,
+        "unit": "dollars",
+        "approximate": true,
+        "expense": "moving house"
+      },
+      "unknown": [
+        "currency country",
+        "whether the amount is a paid bill or an estimate"
+      ],
+      "risks": [
+        "fragment",
+        "numeric_composition",
+        "amount_not_payment"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "note": "The space-separated tokens 3 and 000 form 3000, not two amounts or zero dollars. About qualifies the full amount. The sentence alone does not establish payment.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:689:4:1",
+      "group": "fragments_or_idioms",
+      "text": "Thanks.",
+      "original_reasons": [
+        "no_verb_or_fragment"
+      ],
+      "source_sha256": "2c8fab6c3ae2e5bf97d6cbd76124a4cdc6a86126644b4184b5126fdcd91b333c",
+      "body_sha256": "3d5b80fe52b6e03bbc2efcff29785dbb6cacd6f5e7436201f27b9dca2b38f278",
+      "payload_sha256": "03245431663ad9a3133c4f923cf80c3d58b7e02d65019e34494c5ca0b208d7a4",
+      "context_sha256": "2160be82d13479ae097bcc9aa7c514e8fd4c46615bc4e832e0d71434191d716a",
+      "context": [
+        "Hi, Mr. James, what's the rush?",
+        "The bank closes in 30 minutes and I need to cash a check.",
+        "I can lend you some money.",
+        "Thanks. But it's necessary for me to buy a TV set.",
+        "Can I help you in anyway?",
+        "You can take me to the bank if you want to.",
+        "Sure. Let's go."
+      ],
+      "source_span": [
+        0,
+        7
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 46,
+      "verdict": "context_only",
+      "speech_act": "thanks",
+      "event_status": "response_to_help_offer",
+      "completed_action_asserted": false,
+      "content": {
+        "reason": "offer to lend money"
+      },
+      "unknown": [
+        "whether the loan offer is accepted",
+        "whether money is transferred"
+      ],
+      "risks": [
+        "fragment",
+        "gratitude_not_acceptance",
+        "context_dependent"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "note": "The subsequent bank-trip request suggests a different form of help, but Thanks alone neither accepts nor rejects the money offer conclusively. No loan or TV purchase is asserted as completed.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:4359:4:3",
+      "group": "fragments_or_idioms",
+      "text": "No way, I am watching that, but I don't understand why everyone is so excited about these films about vampires.",
+      "original_reasons": [
+        "coordinated_verbs",
+        "embedded_clause",
+        "negation",
+        "nominal_role_or_vocative",
+        "nonfinite_root"
+      ],
+      "source_sha256": "6329da3d6ac549b176073b0cb4b363d71e8462e97ed77a0dcf7bfd711baeb6ff",
+      "body_sha256": "3f7bd435aaa598dabc0a5c3970b3e922dec2facc53be00170c80b79558a0f0d7",
+      "payload_sha256": "4f5a5cb572ea5941b4d40a1eed33d680ae7c9268c27517bb1a17f4d3a4154997",
+      "context_sha256": "880d2cb556bb85100513968b3adc4725feabd264daf025fe9addc99f30608980",
+      "context": [
+        "You want to go to the movies tonight?",
+        "Sure! What's playing?",
+        "The new Twilight movie!",
+        "Twilight? As in the vampire movies? No way, I am watching that, but I don't understand why everyone is so excited about these films about vampires. It doesn't make sense.",
+        "Of course it does. It's like a modern tale of Romeo and Juliet. You can see a couple who are in love but can't be together because they are so different. And in the fact that immortality and super human strengthen this really sexy and there you have it! Plus the cast is hip, young people that make the movie even more enticing.",
+        "I don't buy into that. I think it's just a fad. Pretty soon this will pass and everyone will be into wear-wolves or zombies!"
+      ],
+      "source_span": [
+        36,
+        147
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 47,
+      "verdict": "hold_source_ambiguity",
+      "speech_act": "objection_with_uncertain_watching_clause",
+      "event_status": "source_polarity_conflict",
+      "completed_action_asserted": false,
+      "content": {
+        "recoverable": "speaker rejects enthusiasm for Twilight and says they do not understand its appeal",
+        "surface_clause": "No way, I am watching that"
+      },
+      "unknown": [
+        "whether the intended wording was No way am I watching that",
+        "whether the comma separates surprise from a positive watching statement",
+        "whether a word or punctuation is missing"
+      ],
+      "risks": [
+        "idiomatic_negation_scope",
+        "damaged_or_ambiguous_source",
+        "nonliteral_buy_into_in_later_context"
+      ],
+      "issues": [
+        {
+          "kind": "source_ambiguity",
+          "code": "no_way_scope_conflicts_with_positive_clause",
+          "note": "The surrounding refusal makes a negative reading plausible, but the written comma and positive I am watching that support another surface parse. Do not silently insert not, reorder words or assert either watching polarity.",
+          "repair": "retain_both_readings_and_quarantine_action_extraction"
+        }
+      ],
+      "evidence_turns": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "note": "The parser can reconstruct the positive clause as written; that is not a license to report an ongoing watch event. This is a source ambiguity rather than a proven parser error.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "val:347:14:1",
+      "group": "fragments_or_idioms",
+      "text": "You bet it!",
+      "original_reasons": [],
+      "source_sha256": "6e88504fd6395ed17aa7cb0f834d34821c2c35faf58b20f1b7e65aec99517cb4",
+      "body_sha256": "7f91dc062ceb9ca353559ade6909e09dbe3178e04efb3c1f9a395795566b1de0",
+      "payload_sha256": "da11aca8a4e86561ca76e163f6dc99f38207ad30932fb3d763c373f7d16f7609",
+      "context_sha256": "6c1ea6d78a784e802f9d164b45df7e1782f0b7efcfb9e616d5355f8780ecf5c2",
+      "context": [
+        "Hey, you look great! How's everything?",
+        "Yeah, you know what? I've been going to the club regularly. The training really pays off. Now I am in a good shape and I know more about how to keep fit.",
+        "Really? Tell me about it. I haven't gone to the club for a long time. I am too busy with work.",
+        "It's important to do proper exercises.",
+        "You're right. Too much or too little won't do any good.",
+        "The trainer tells me, besides regular sports activities, I should also have a healthy and balanced diet.",
+        "Sounds reasonable.",
+        "We should eat more vegetables instead of junk food to stay energetic.",
+        "And fruits!",
+        "Surely it is. Getting enough sleep is also crucial for fitness.",
+        "I've heard that. Does your trainer tell you anything about keeping fit?",
+        "Yeah, he advises me to stay in a good mood. That can help one to keep sound physical health.",
+        "I think if you follow your trainer's advice, you'll be on the right track.",
+        "You bet it!"
+      ],
+      "source_span": [
+        0,
+        11
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 48,
+      "verdict": "attested_only",
+      "speech_act": "emphatic_agreement",
+      "event_status": "agreement_with_advice",
+      "completed_action_asserted": false,
+      "content": {
+        "fixed_expression": "You bet it!",
+        "sense": "certainly; agrees with following the trainer's advice"
+      },
+      "unknown": [
+        "future compliance with advice"
+      ],
+      "risks": [
+        "idiomatic_bet_not_wager",
+        "source_noncanonical_formula"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "note": "Despite the unusual it compared with the common You bet!, context clearly supports agreement, not a gambling event. This idiom-selected occurrence also has no diagnostic warnings; keep its wording intact.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:10944:7:2",
+      "group": "fragments_or_idioms",
+      "text": "No way.",
+      "original_reasons": [
+        "negation",
+        "no_verb_or_fragment"
+      ],
+      "source_sha256": "40ab13d7073fec21ccf765c9dbb70a3ecf7909f2808f062b243ffa4cb17cb952",
+      "body_sha256": "b39f384787b7dca5f7a74a9173f5dc393e042437f28b3cb2fad6d19b45ecc02e",
+      "payload_sha256": "c80cbc183fa4e606a55cbf73477040d74de62b7c8c0a474117fbac5c497748e5",
+      "context_sha256": "1ca8134a2332c9af989b6d41a179ab2ab61bba97ffbf58e5e092d94351c80523",
+      "context": [
+        "Our company is going to do some cutbacks soon.",
+        "Really? Where did you hear that?",
+        "I met with the supervisor just this morning. I don't know, but I am a little worried. Who do you think will get sacked?",
+        "I'm not sure... Well, first, it couldn't be George. He is such a kiss-ass. He'd wash the boss's dog if he asked.",
+        "No, it's not going to be George. I don't think it's Andy either. He is involved with the boss's sister in-law. And you know how whipped our boss is.",
+        "That's true. What about Lisa? I bet there's nobody who could do a worse job than her.",
+        "Lisa? No way. I've heard a rumor that she and the boss were having an affair. You know rumors can't come out from nowhere.",
+        "Well, okay. Then there is still Michael. But he's the boss'pet after having the best sales record for three months in a row. It definitely won't be Michael.",
+        "No, that would be crazy. But then who will it be? Oh dear, it must be me. I should have known it! Why else would he have talked to me alone about the downsizing. What should I do? I've got a family to support.",
+        "Well, it could be me too. But I am not too worried. This place is suffocating me with this boss being such a hard-ass and colleagues who barely know how to get dressed in the morning. It would almost be a blessing to be fired from this place."
+      ],
+      "source_span": [
+        6,
+        13
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 49,
+      "verdict": "context_only",
+      "speech_act": "rejection_of_speculation",
+      "event_status": "speaker_disbelief_about_future_layoff",
+      "completed_action_asserted": false,
+      "content": {
+        "rejected_proposition": "Lisa will be sacked"
+      },
+      "unknown": [
+        "who will actually lose a job",
+        "truth of the affair rumor"
+      ],
+      "risks": [
+        "fragment",
+        "idiomatic_negation",
+        "hearsay_not_fact"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "note": "No way rejects Lisa as the likely dismissal target. It does not establish her job security as a fact. The subsequent affair story is explicitly a rumor and must retain that status.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    },
+    {
+      "id": "train:3934:2:1",
+      "group": "fragments_or_idioms",
+      "text": "No way.",
+      "original_reasons": [
+        "negation",
+        "no_verb_or_fragment"
+      ],
+      "source_sha256": "40ab13d7073fec21ccf765c9dbb70a3ecf7909f2808f062b243ffa4cb17cb952",
+      "body_sha256": "4fe1949f23af031bf924a18c9a18eafd71d8971ea5ad62533687b07dc504e9d9",
+      "payload_sha256": "c80cbc183fa4e606a55cbf73477040d74de62b7c8c0a474117fbac5c497748e5",
+      "context_sha256": "03af928bb7fe4403fccf4cedba43021e0d6c24ea4fc6741041263c1614088de8",
+      "context": [
+        "Do you think maybe it would be better to just talk to Vince? Explain the situation?",
+        "No way. I want the satisfaction of squishing this bug myself. Plus, what if it's Vince?",
+        "I don't think so. Your admirer seems kind of sweet. Aren't you even a little curious about him?",
+        "He's just a distraction, like a mosquito buzzing in my ear. I want no distractions.",
+        "A little distraction might do you some good, Zina."
+      ],
+      "source_span": [
+        0,
+        7
+      ],
+      "reviewed_unit": "selected_occurrence_with_full_dialogue_context",
+      "review_status": "DIAGNOSTIC_OCCURRENCE_REVIEW_ONLY",
+      "case": 50,
+      "verdict": "context_only",
+      "speech_act": "refusal",
+      "event_status": "rejects_suggested_conversation",
+      "completed_action_asserted": false,
+      "content": {
+        "rejected_action": "talk to Vince and explain the situation"
+      },
+      "unknown": [
+        "identity of the admirer",
+        "whether any later conversation occurs"
+      ],
+      "risks": [
+        "fragment",
+        "idiomatic_negation",
+        "intention_not_completion"
+      ],
+      "issues": [],
+      "evidence_turns": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "note": "This No way is a refusal of an offered course of action, unlike disbelief about Lisa's dismissal. The subsequent bug/mosquito language is metaphorical and does not assert an actual killing.",
+      "usage_recommendation_only": true,
+      "published": false,
+      "template_semantics_approved": false
+    }
+  ],
+  "repair_queue": [
+    {
+      "id": "train:2115:5:1",
+      "group": "ordinary",
+      "verdict": "repair_required",
+      "issues": [
+        {
+          "kind": "boundary_error",
+          "code": "comma_fragment_promoted_to_sentence",
+          "note": "The selected segment stops after a comma. Restore the whole source sentence Thank you, they're beautiful.",
+          "related_ids": [
+            "train:2115:5:1",
+            "train:2115:5:2"
+          ],
+          "repair": "merge_adjacent_segments_preserving_all_characters"
+        }
+      ],
+      "source_sha256": "d08c42503e04f37be0677b59acfe45b3f5c7a81a9fadc98d3474c690e223ba1c",
+      "body_sha256": "1db43b7665b0f21154ccd4a30f8b12bb226e6f286030734b72d49da5ac03c7a6",
+      "payload_sha256": "96007ffac6ff0b0ee6980c26270f42f8422e65c57c9deee5d05d0e075a10412f",
+      "context_sha256": "27919ca2c621343e04113fcc5b94ab1e8ee7a10fee49a0bfb1d0e6629e5ade86",
+      "applied": false,
+      "additional_context_review_before_rebuild": true
+    },
+    {
+      "id": "test:989:6:4",
+      "group": "boundaries",
+      "verdict": "repair_required",
+      "issues": [
+        {
+          "kind": "boundary_error",
+          "code": "URL_split_into_sentences",
+          "note": "The fragment is the middle of a URL-containing sentence. The two URL dots and the existing space after www. must remain inside the sentence.",
+          "related_ids": [
+            "test:989:6:2",
+            "test:989:6:3",
+            "test:989:6:4",
+            "test:989:6:5",
+            "test:989:6:6"
+          ],
+          "repair": "merge_segments_2_through_6_preserve_original_URL_spacing"
+        }
+      ],
+      "source_sha256": "b59779c2a4db8b55028d434984bec35db8b56e29fcfa080c2eb5fdb0af593cba",
+      "body_sha256": "ed7b806d68cd4f70ac2a635373607e2c23c4056b075f06ee37673bead0cfceea",
+      "payload_sha256": "b05d26881e91387243e18c45d374daa7e6edc07a1e99804f35ecadba582469f7",
+      "context_sha256": "efe513984e956989100f6df56e93b6948b292dd9ec09808329d3d0d8f31e3cba",
+      "applied": false,
+      "additional_context_review_before_rebuild": true
+    },
+    {
+      "id": "train:2641:5:1",
+      "group": "boundaries",
+      "verdict": "hold_source_ambiguity",
+      "issues": [
+        {
+          "kind": "syntax_error",
+          "code": "subjects_absorbed_into_prepositional_phrases",
+          "note": "Both temperature nouns are marked pobj; neither clause retains its overt subject. Winter and night have become compound noun modifiers.",
+          "repair": "restore_two_clause_subject_structure_after_boundary_review"
+        },
+        {
+          "kind": "source_ambiguity",
+          "code": "missing_clause_punctuation",
+          "note": "There is no explicit boundary around at night temperature. Keep both plausible attachments and do not insert punctuation or select a boundary by guesswork.",
+          "repair": "preserve_source_and_record_alternative_attachments"
+        }
+      ],
+      "source_sha256": "3925c1c2931719e2e5318110ada9f2d87f9880aaa91293dc6b8432410eda31ce",
+      "body_sha256": "d3b48c3cf72e87878ca2141351bceb74fe8e301b69364bff6e21990d8d08deb1",
+      "payload_sha256": "2a00f959b11c1e128376a061d00c068f2906e06925297e0722c7103518a37db5",
+      "context_sha256": "4b436e28d70e075cff570c590835b28549c5de786cdac059da4650d9c5c9bc29",
+      "applied": false,
+      "additional_context_review_before_rebuild": false
+    },
+    {
+      "id": "val:581:1:1",
+      "group": "boundaries",
+      "verdict": "repair_required",
+      "issues": [
+        {
+          "kind": "syntax_error",
+          "code": "interrogative_subject_marked_attribute",
+          "note": "What sort of shopping is the subject of is nearby. Sort is stored as attr, leaving the clause without its overt subject.",
+          "token_edits": [
+            {
+              "token": 1,
+              "set": {
+                "dep": "nsubj",
+                "head": 4
+              }
+            },
+            {
+              "token": 8,
+              "set": {
+                "dep": "vocative",
+                "head": 4
+              }
+            }
+          ],
+          "repair": "apply_occurrence_scoped_dependency_correction"
+        }
+      ],
+      "source_sha256": "19f792f83c12205d5a64d3c83257a260a1296013338dc0389206209efa5ed63c",
+      "body_sha256": "b989c89a54163948b1553e8fe1c3bd36740c1130581e142eb58955da6c2a4fa3",
+      "payload_sha256": "fd3df23dbd8c3d83f4a5cc24bf0f849b8c32c7ff74f8ea86bc21bd41dedecd7e",
+      "context_sha256": "3862b044be66ce06e2c1081fba0e711f5311103647bd9d102ef2e23f1345a2a4",
+      "applied": false,
+      "additional_context_review_before_rebuild": false
+    },
+    {
+      "id": "train:4908:1:1",
+      "group": "properties",
+      "verdict": "repair_required",
+      "issues": [
+        {
+          "kind": "syntax_error",
+          "code": "vocative_promoted_to_predicate_root",
+          "note": "Dear is ROOT and the interrogative is is attached beneath it as ccomp. Dear does not evaluate the matter or introduce an embedded question.",
+          "token_edits": [
+            {
+              "token": 1,
+              "set": {
+                "dep": "ROOT",
+                "head": 1
+              }
+            },
+            {
+              "token": 4,
+              "set": {
+                "head": 1
+              }
+            },
+            {
+              "token": 5,
+              "set": {
+                "parser_lemma": "dear",
+                "pos": "NOUN",
+                "tag": "NN",
+                "dep": "vocative",
+                "head": 1,
+                "morph": "Number=Sing"
+              }
+            },
+            {
+              "token": 6,
+              "set": {
+                "head": 1
+              }
+            }
+          ],
+          "repair": "restore_copular_question_and_nominal_vocative"
+        }
+      ],
+      "source_sha256": "8041de8962f971f7225081eb5929b8d8a44b9010d0112d557d80f01152f65b6c",
+      "body_sha256": "8b9a826e5ade261b4b09cec1781db6261eb20bce40bc21b398090ebe8ecf624a",
+      "payload_sha256": "4d59d5919d3335a10fd718d1e07fd9012ee5945809d865cdcf33b826f30faf1e",
+      "context_sha256": "f04bcc1f612ba1af83b0be69217cf31a9fcd8f6e5e91e0fd0392dff8731e63ca",
+      "applied": false,
+      "additional_context_review_before_rebuild": false
+    },
+    {
+      "id": "train:2918:3:1",
+      "group": "properties",
+      "verdict": "repair_required",
+      "issues": [
+        {
+          "kind": "construction_error",
+          "code": "take_part_in_reduced_to_take_in",
+          "note": "In is tagged prt of take, producing the particle predicate take in while part is treated as an unrelated object. The expression means participate.",
+          "repair": "preserve_take_part_in_as_fixed_expression_and_mark_its_omitted_complement"
+        }
+      ],
+      "source_sha256": "03072656529ec0432902c111e165a63ddbbd87a6e6bd3bc2af7c935efe6d7d1a",
+      "body_sha256": "ef7659403a04c784212369979127c3eb75e7e12892e46f0f739322e2219626dd",
+      "payload_sha256": "238eef34f0f4f367b4349b1994a70db25d385921cb6017f5cb5dac38f9a77f62",
+      "context_sha256": "d6e2cb12d127d0076a64f0c4f1671660de521264862cdbc336f422e5b1024c44",
+      "applied": false,
+      "additional_context_review_before_rebuild": false
+    },
+    {
+      "id": "test:377:4:1",
+      "group": "properties",
+      "verdict": "repair_required",
+      "issues": [
+        {
+          "kind": "syntax_error",
+          "code": "participial_state_compiled_as_event_verb",
+          "note": "Crowded is stored as VERB/VBN with lemma crowd although the equative degree phrase as crowded as usual predicates a state. This creates a spurious crowd/crowd as event candidate.",
+          "token_edits": [
+            {
+              "token": 5,
+              "set": {
+                "parser_lemma": "crowded",
+                "pos": "ADJ",
+                "tag": "JJ",
+                "morph": "Degree=Pos"
+              }
+            },
+            {
+              "token": 7,
+              "set": {
+                "dep": "pobj",
+                "head": 6
+              }
+            }
+          ],
+          "repair": "compile_crowded_state_and_preserve_as_usual_comparison"
+        }
+      ],
+      "source_sha256": "9189d02992e5dd1c1b77756e89b860144ad97658c943923ae066bccc68b3e364",
+      "body_sha256": "dc8b23005cb8144fa02261f7cfc4dae80abb00eb83f9868e1063448fd428ab39",
+      "payload_sha256": "0595b2d964906d52e976b58e885a31d427362e2ad8c44585b80851d0c6e5a049",
+      "context_sha256": "18057090ad2c9490325c6d9e40f1c066dd8aa892d9433080a1d61f46b6736ec4",
+      "applied": false,
+      "additional_context_review_before_rebuild": false
+    },
+    {
+      "id": "train:4359:4:3",
+      "group": "fragments_or_idioms",
+      "verdict": "hold_source_ambiguity",
+      "issues": [
+        {
+          "kind": "source_ambiguity",
+          "code": "no_way_scope_conflicts_with_positive_clause",
+          "note": "The surrounding refusal makes a negative reading plausible, but the written comma and positive I am watching that support another surface parse. Do not silently insert not, reorder words or assert either watching polarity.",
+          "repair": "retain_both_readings_and_quarantine_action_extraction"
+        }
+      ],
+      "source_sha256": "6329da3d6ac549b176073b0cb4b363d71e8462e97ed77a0dcf7bfd711baeb6ff",
+      "body_sha256": "3f7bd435aaa598dabc0a5c3970b3e922dec2facc53be00170c80b79558a0f0d7",
+      "payload_sha256": "4f5a5cb572ea5941b4d40a1eed33d680ae7c9268c27517bb1a17f4d3a4154997",
+      "context_sha256": "880d2cb556bb85100513968b3adc4725feabd264daf025fe9addc99f30608980",
+      "applied": false,
+      "additional_context_review_before_rebuild": false
+    }
+  ],
+  "next_batch": "Resolve the six repair_required cases together, retain the two source-ambiguity cases in context-only quarantine, then run one preservation-checked rebuild and admission check. Do not propagate these decisions to same-text occurrences in other contexts."
+}

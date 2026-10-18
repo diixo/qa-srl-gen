@@ -1,0 +1,1047 @@
+{
+  "version": "offline-original-wording-queue-v25",
+  "date": "2026-10-18",
+  "previous_progress": "data/dailydialog/review-parts/hybrid-luna-offline-progress-queue-v24.json",
+  "candidate": "artifacts/dailydialog-hybrid-originals-v25",
+  "ledger": "data/dailydialog/review-parts/luna-offline-originals-v25",
+  "review_status": "UNREVIEWED",
+  "full_candidate_published": false,
+  "semantic_review_complete": false,
+  "selected_source_warnings": 33,
+  "contextual_segments": 32,
+  "warning_rechecks": 47,
+  "source_warnings_closed_as_representation_only": 25,
+  "source_warnings_held": 8,
+  "related_structural_or_ambiguity_warnings_held": 0,
+  "previous_closures_reconfirmed": 14,
+  "source_text_corrections": 0,
+  "token_text_changes": 0,
+  "token_annotation_changes": {},
+  "api_calls": 0,
+  "parser_inference_calls": 0,
+  "supported_original_adapters": 32,
+  "partial_adapters": 8,
+  "source_dialogues_for_adapters": 27,
+  "insufficient_proposition": [],
+  "original_training_wording_restored_from_source": [
+    "train:10965:4:1",
+    "train:11114:3:1"
+  ],
+  "original_wording_policy": "All training adapters retain the exact original source span or full original turn. Missing words, labels, quantities and completion status are not guessed. Two adapters restore the original wording instead of earlier candidate corrections, which remain as historical evidence. No tokens or their annotations changed in this block.",
+  "prior_property_bindings_preserved": [],
+  "quarantined_api_warnings": 372,
+  "quarantined_current_occurrences": 364,
+  "quarantine_groups": {
+    "source": 284,
+    "ambiguity": 72,
+    "other_syntax": 7,
+    "sentence_boundary": 2,
+    "property_attachment": 1,
+    "negation_or_modality": 1,
+    "coordination": 3,
+    "clause_attachment": 2
+  },
+  "saved_warnings": 12978,
+  "supplemental_semantic_ambiguities": 5,
+  "invalidated_without_new_review": 0,
+  "decisions": {
+    "hybrid-queue-context-v25.jsonl": {
+      "path": "data/dailydialog/review-parts/hybrid-queue-context-v25.jsonl",
+      "sha256": "b8369e56dd6e6f95c57b856fbeb91eefe487f9bd5b8dbec5984e58d822fa5ee1"
+    },
+    "hybrid-queue-snapshot-v25.jsonl.gz": {
+      "path": "data/dailydialog/review-parts/hybrid-queue-snapshot-v25.jsonl.gz",
+      "sha256": "e10784570b12725824e2c0f22a26820ede0147e3b854559087ab7aaadaf50c2d"
+    },
+    "hybrid-queue-warning-rechecks-v25.jsonl": {
+      "path": "data/dailydialog/review-parts/hybrid-queue-warning-rechecks-v25.jsonl",
+      "sha256": "630bd7985f6bb94db5158bb9d0719a81f0c5b0dfddf1b13e3c021efd1cc5815f"
+    },
+    "hybrid-queue-adapters-v25.json": {
+      "path": "data/dailydialog/review-parts/hybrid-queue-adapters-v25.json",
+      "sha256": "839cbf4f76dec362b36aa83ee37466d35f64249272612da625b1b9f3140141e8"
+    },
+    "hybrid-queue-original-contexts-v25.jsonl.gz": {
+      "path": "data/dailydialog/review-parts/hybrid-queue-original-contexts-v25.jsonl.gz",
+      "sha256": "b7764e74fa341da030922c0d17cf896688b7f4a17b20c61a9118cffeafbd432e"
+    },
+    "hybrid-queue-outcomes-v25.json": {
+      "path": "data/dailydialog/review-parts/hybrid-queue-outcomes-v25.json",
+      "sha256": "8f9fc9675dd38e8b7d42fc47d84174b549588e52deeeeb06e3c4757e3811f50a"
+    }
+  },
+  "validation": {
+    "status": "passed",
+    "source_sha256": "80d2e4c794aa67208470c130863f85397555ede69e6bd2d56269491850c5dc47",
+    "templates": 101252,
+    "attested_roundtrips": 110155,
+    "source_records": 161316,
+    "token_spans": 1378085,
+    "verbs_occurrences": 289417,
+    "adjectives_occurrences": 71912
+  },
+  "conservation": {
+    "status": "passed",
+    "counts": {
+      "old_segments": 161316,
+      "old_tokens": 1378085,
+      "new_segments": 161316,
+      "new_tokens": 1378085,
+      "unchanged_analyses": 161284,
+      "revised_outputs": 32
+    },
+    "explicit_token_delta": 0,
+    "reference_expansion_token_delta": 0,
+    "previous_preimages_retained": true
+  },
+  "independent_verification": {
+    "status": "passed",
+    "selected_source_warnings": 33,
+    "contextual_segments": 32,
+    "warning_rechecks": 47,
+    "source_warnings_accepted_as_original": 25,
+    "source_warnings_still_held": 8,
+    "additional_structural_or_ambiguity_warnings_held": 0,
+    "previous_closures_reconfirmed": 14,
+    "quarantine_warnings": 372,
+    "quarantine_occurrences": 364,
+    "original_text_adapters": 32,
+    "partial_adapters": 8,
+    "source_dialogues_for_adapters": 27,
+    "insufficient_proposition": [],
+    "expanded_original_turns": [
+      "train:11050:4:1"
+    ],
+    "original_wording_instead_of_earlier_correction": [
+      "train:10965:4:1",
+      "train:11114:3:1"
+    ],
+    "original_dialogues_preserved": 13118,
+    "parts_preserved": 100,
+    "manual_dialogues_preserved": 510,
+    "paid_evidence_identical": true,
+    "full_candidate_segments": 161316,
+    "ascii_apostrophes": 49411,
+    "source_text_changes": 0,
+    "token_text_changes": 0,
+    "token_annotation_changes": {},
+    "unchanged_boundaries": true,
+    "unchanged_contexts": true,
+    "recombination_blocked": true,
+    "dependency_qa_blocked": true,
+    "prior_property_bindings_preserved": [],
+    "generic_action_realization_blocked": true,
+    "full_candidate_published": false,
+    "api_calls": 0
+  },
+  "fragment_publication": {
+    "status": "passed",
+    "published": true,
+    "new_patterns": 32,
+    "checked_patterns": 32,
+    "catalog_patterns": 530,
+    "source_dialogues": 27,
+    "episodes_checked": 64,
+    "transitions_checked": 192,
+    "previous_patterns_preserved": 498,
+    "previous_catalog_sha256": "f2e3b3c0e634e7f0015da111c8d68ffe41af2860f7e9e257f6ca0ddbd61aa297",
+    "result_catalog_sha256": "9330d333c6fe15eb4762db63cf153aaae0b543109ac91751bdfbddb7496e1f82",
+    "template_bank_changed": false,
+    "api_calls": 0,
+    "parser_inference_calls": 0
+  },
+  "fragment_generation_smoke": {
+    "status": "passed",
+    "task": "fragment_meaning",
+    "seed": 25,
+    "catalog_patterns": 530,
+    "new_patterns": 32,
+    "previous_patterns_preserved": 498,
+    "catalog_sha256": "46a8eed10c92460dd8e4d32e1f3d147f6a6d56ba46103852e1db4619f6eb4558",
+    "splits": {
+      "user-assistant/train": {
+        "episodes": 32,
+        "history": 32,
+        "memory": 32,
+        "extraction": 96
+      },
+      "user-assistant/validation": {
+        "episodes": 32,
+        "history": 32,
+        "memory": 32,
+        "extraction": 96
+      },
+      "user-assistant/test": {
+        "episodes": 32,
+        "history": 32,
+        "memory": 32,
+        "extraction": 96
+      },
+      "named-people/train": {
+        "episodes": 32,
+        "history": 32,
+        "memory": 32,
+        "extraction": 96
+      },
+      "named-people/validation": {
+        "episodes": 32,
+        "history": 32,
+        "memory": 32,
+        "extraction": 96
+      },
+      "named-people/test": {
+        "episodes": 32,
+        "history": 32,
+        "memory": 32,
+        "extraction": 96
+      }
+    },
+    "generated_episodes": 192,
+    "extraction_rows": 576,
+    "history_rows": 192,
+    "memory_rows": 192,
+    "original_reply_text_unchanged": true,
+    "json_inside_content": false,
+    "invented_completed_events": 0,
+    "extraction_scope": "Explicit textual utterance_interpretation; no generic action-role extraction or completion is inferred.",
+    "api_calls": 0,
+    "parser_inference_calls": 0,
+    "examples": [
+      {
+        "pattern": "dd_v25_train_11102_10_1",
+        "assistant": "What traditional food do you usually eat besides the Sunday roast?",
+        "original_reply": "Aside from the Sunday roast, we usually eat dangers and mash, toad-in-the-hole, or fish'n chips once a week.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | described weekly choices of dangers and mash, toad-in-the-hole or fish'n chips; dangers remains unclear and no particular completed meal was reported",
+        "answer": "You described weekly choices of dangers and mash, toad-in-the-hole or fish'n chips; dangers remains unclear and no particular completed meal was reported."
+      },
+      {
+        "pattern": "dd_v25_train_11048_9_4",
+        "assistant": "What financing plan are you offering with the mattress?",
+        "original_reply": "There is no payment no interest until next June.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | described an offer with no payment and no interest until next June, without confirming a purchase or independently verifying the terms",
+        "answer": "You described an offer with no payment and no interest until next June, without confirming a purchase or independently verifying the terms."
+      },
+      {
+        "pattern": "dd_v25_train_11107_3_2",
+        "assistant": "The contract ends automatically if neither side renews it at expiry.",
+        "original_reply": "What I was saying just now was that how to terminate the contract before its term's up?",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | clarified the request for a way to terminate the contract before expiry, without asserting termination",
+        "answer": "You clarified the request for a way to terminate the contract before expiry, without asserting termination."
+      },
+      {
+        "pattern": "dd_v25_train_11117_2_1",
+        "assistant": "What would you like to buy?",
+        "original_reply": "I want a pair of locus.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | requested a pair of the item written locus; its identity remains unknown and purchase was not confirmed",
+        "answer": "You requested a pair of the item written locus; its identity remains unknown and purchase was not confirmed."
+      },
+      {
+        "pattern": "dd_v25_train_10965_4_1",
+        "assistant": "Which facial would you recommend?",
+        "original_reply": "Well, since it's summer, and I had looked that you had quite a bit sun, I'll recommend our summer special, it's specially suited for individuals with sensitive skin.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | recommended the summer special based on perceived sun exposure and claimed suitability for sensitive skin, without verifying a diagnosis or reporting treatment",
+        "answer": "You recommended the summer special based on perceived sun exposure and claimed suitability for sensitive skin, without verifying a diagnosis or reporting treatment."
+      },
+      {
+        "pattern": "dd_v25_train_11050_9_1",
+        "assistant": "The bank is near the war memorial and has a large sign on the front.",
+        "original_reply": "God it.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | acknowledged the directions, without referring to a deity or confirming arrival",
+        "answer": "You acknowledged the directions, without referring to a deity or confirming arrival."
+      },
+      {
+        "pattern": "dd_v25_train_11004_3_1",
+        "assistant": "What would you like to know about the area near the hotel?",
+        "original_reply": "Do you know if there is Japanese restaurant near the hotel?",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | asked whether a Japanese restaurant is nearby, without asserting its existence or location",
+        "answer": "You asked whether a Japanese restaurant is nearby, without asserting its existence or location."
+      },
+      {
+        "pattern": "dd_v25_train_11101_8_1",
+        "assistant": "Does your backpack zip closed?",
+        "original_reply": "No, it's straps closed, and it has a buckle in the front.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | denied a zip closure and described straps and a front buckle, without reporting a closing action",
+        "answer": "You denied a zip closure and described straps and a front buckle, without reporting a closing action."
+      },
+      {
+        "pattern": "dd_v25_train_11054_9_1",
+        "assistant": "Where is the medicine kit?",
+        "original_reply": "Probably on the of the cabinet.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | tentatively associated the medicine kit's location with the cabinet, but the exact part or position is unspecified",
+        "answer": "You tentatively associated the medicine kit's location with the cabinet, but the exact part or position is unspecified."
+      },
+      {
+        "pattern": "dd_v25_train_11099_2_2",
+        "assistant": "What is your favorite sport?",
+        "original_reply": "I like golf a lot-but I guess like skating better.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | said they like golf but tentatively prefer skating, without reporting participation in either",
+        "answer": "You said they like golf but tentatively prefer skating, without reporting participation in either."
+      },
+      {
+        "pattern": "dd_v25_train_10956_13_1",
+        "assistant": "Here is to our friendship and health!",
+        "original_reply": "Bottom is up.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | responded to the toast, without describing physical orientation or confirming completed drinking",
+        "answer": "You responded to the toast, without describing physical orientation or confirming completed drinking."
+      },
+      {
+        "pattern": "dd_v25_train_11007_1_1",
+        "assistant": "How can I help you find your way?",
+        "original_reply": "Excuse me, which way is to the post office?",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | requested directions to the post office, without specifying a route or confirming arrival",
+        "answer": "You requested directions to the post office, without specifying a route or confirming arrival."
+      },
+      {
+        "pattern": "dd_v25_train_11101_24_1",
+        "assistant": "Does the backpack you are identifying zip closed?",
+        "original_reply": "No, it's straps closed, and it has a buckle in the front.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | denied a zip closure and described straps with a front buckle, without reporting a new closing event",
+        "answer": "You denied a zip closure and described straps with a front buckle, without reporting a new closing event."
+      },
+      {
+        "pattern": "dd_v25_train_11114_3_1",
+        "assistant": "What is wrong with the pen you bought?",
+        "original_reply": "Now I came back to the hotel and try to show it to my friend, the pen is broken, I am afraid.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | reported returning to the hotel and a broken pen while discussing an attempt to show it to a friend; the attempt's precise timing and completion remain uncertain",
+        "answer": "You reported returning to the hotel and a broken pen while discussing an attempt to show it to a friend; the attempt's precise timing and completion remain uncertain."
+      },
+      {
+        "pattern": "dd_v25_train_11016_8_1",
+        "assistant": "Pack some necessary medicine in your carry-on.",
+        "original_reply": "I almost forget it.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | acknowledged nearly overlooking the medicine, without asserting that it was completely forgotten or already packed",
+        "answer": "You acknowledged nearly overlooking the medicine, without asserting that it was completely forgotten or already packed."
+      },
+      {
+        "pattern": "dd_v25_train_11064_8_2",
+        "assistant": "What other shipping arrangement would you suggest?",
+        "original_reply": "How about shipping them from Seattle instead of network?",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | suggested shipping from Seattle instead of the alternative written network; that alternative remains unclear and shipment was not completed",
+        "answer": "You suggested shipping from Seattle instead of the alternative written network; that alternative remains unclear and shipment was not completed."
+      },
+      {
+        "pattern": "dd_v25_train_11038_12_2",
+        "assistant": "Can I use the phone while I am on the internet?",
+        "original_reply": "With DEL you can do both.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | claimed that the service labelled DEL allows both simultaneously, without confirming actual use or correcting its name",
+        "answer": "You claimed that the service labelled DEL allows both simultaneously, without confirming actual use or correcting its name."
+      },
+      {
+        "pattern": "dd_v25_train_10985_3_1",
+        "assistant": "Which places in Vancouver are worth visiting?",
+        "original_reply": "There are many famous places such as Robson Street, Stanley Park, Gaston, Lion Gate Bridge, The Vancouver Art Gallery, and The Canadian Crafts Museum.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | listed Robson Street, Stanley Park, Gaston, Lion Gate Bridge, The Vancouver Art Gallery and The Canadian Crafts Museum, retaining their supplied names without confirming visits",
+        "answer": "You listed Robson Street, Stanley Park, Gaston, Lion Gate Bridge, The Vancouver Art Gallery and The Canadian Crafts Museum, retaining their supplied names without confirming visits."
+      },
+      {
+        "pattern": "dd_v25_train_10956_6_3",
+        "assistant": "What food and drink are available?",
+        "original_reply": "We have cocktail and salad, fried chicken, French fries and icecream for dessert.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | listed cocktail, salad, fried chicken, French fries and icecream for dessert, without reporting consumption",
+        "answer": "You listed cocktail, salad, fried chicken, French fries and icecream for dessert, without reporting consumption."
+      },
+      {
+        "pattern": "dd_v25_train_11084_2_1",
+        "assistant": "How can I help you?",
+        "original_reply": "I'd like to buy some perform for my girlfriend.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | expressed a wish to buy the item written perform for their girlfriend; its identity remains unknown and no purchase was confirmed",
+        "answer": "You expressed a wish to buy the item written perform for their girlfriend; its identity remains unknown and no purchase was confirmed."
+      },
+      {
+        "pattern": "dd_v25_train_11047_8_1",
+        "assistant": "I remember a busy street near the hotel, but not its name.",
+        "original_reply": "Oh, is there a bank near there, Standard Charted possibly?",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | asked whether a nearby bank might be Standard Charted, retaining the name and treating it as a hypothesis",
+        "answer": "You asked whether a nearby bank might be Standard Charted, retaining the name and treating it as a hypothesis."
+      },
+      {
+        "pattern": "dd_v25_train_11043_2_3",
+        "assistant": "I would like to check out and pay my hotel bill.",
+        "original_reply": "How would like to pay your bill?",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | asked how the guest would like to pay the bill, without selecting a method or confirming payment",
+        "answer": "You asked how the guest would like to pay the bill, without selecting a method or confirming payment."
+      },
+      {
+        "pattern": "dd_v25_train_11038_10_1",
+        "assistant": "How do the services you called DEL and dial-up differ?",
+        "original_reply": "DEL isn't connected through your phone line, but dial-up is.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | claimed that DEL does not use the phone-line connection whereas dial-up does, retaining the supplied service label without verification",
+        "answer": "You claimed that DEL does not use the phone-line connection whereas dial-up does, retaining the supplied service label without verification."
+      },
+      {
+        "pattern": "dd_v25_train_10991_3_1",
+        "assistant": "Why are greetings important in an interview?",
+        "original_reply": "Appropriate greetings will win the interviewer's favorable impression",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | predicted that appropriate greetings would make a favorable impression on the interviewer, without confirming an outcome",
+        "answer": "You predicted that appropriate greetings would make a favorable impression on the interviewer, without confirming an outcome."
+      },
+      {
+        "pattern": "dd_v25_train_11067_4_2",
+        "assistant": "I intend to ride at weekends for exercise.",
+        "original_reply": "Do you me riding on the mountainous countryside just the neighboring towns?",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | asked about the intended weekend riding, mentioning mountainous countryside and neighboring towns; their exact contrast remains unclear",
+        "answer": "You asked about the intended weekend riding, mentioning mountainous countryside and neighboring towns; their exact contrast remains unclear."
+      },
+      {
+        "pattern": "dd_v25_train_11108_4_1",
+        "assistant": "Which foreign-currency account do you need?",
+        "original_reply": "I need to open a US dollar account, trade with America is going up each year.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | expressed a need for a US dollar account because trade with America is growing, without confirming that the account was opened",
+        "answer": "You expressed a need for a US dollar account because trade with America is growing, without confirming that the account was opened."
+      },
+      {
+        "pattern": "dd_v25_train_11050_4_1",
+        "assistant": "How far up the street are the traffic lights?",
+        "original_reply": "Now far. About 150 meters perhaps.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | estimated the traffic lights to be about 150 meters away, without guaranteeing an exact distance or reporting arrival",
+        "answer": "You estimated the traffic lights to be about 150 meters away, without guaranteeing an exact distance or reporting arrival."
+      },
+      {
+        "pattern": "dd_v25_train_10991_9_1",
+        "assistant": "What should I do at the end of an interview?",
+        "original_reply": "At the end of the interview, you should make your acknowledgements and say Goode.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | advised making acknowledgements and saying the closing word written Goode; that word remains unclear and the actions were not completed",
+        "answer": "You advised making acknowledgements and saying the closing word written Goode; that word remains unclear and the actions were not completed."
+      },
+      {
+        "pattern": "dd_v25_train_10972_4_3",
+        "assistant": "Do you think the manager will agree to my day off?",
+        "original_reply": "I think the manager will understand and approve you a day off.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | predicted that the manager would understand and approve the day off, without confirming approval",
+        "answer": "You predicted that the manager would understand and approve the day off, without confirming approval."
+      },
+      {
+        "pattern": "dd_v25_train_10970_8_1",
+        "assistant": "What made you want a computer?",
+        "original_reply": "Ever since I saw computer can do your project, I wanted to have a computer.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | recalled wanting a computer after observing its project-related capability, without claiming ownership or project completion",
+        "answer": "You recalled wanting a computer after observing its project-related capability, without claiming ownership or project completion."
+      },
+      {
+        "pattern": "dd_v25_train_10969_4_6",
+        "assistant": "What does my phone bill for this month come to?",
+        "original_reply": "Your bill for this month comes to 87.42 RIB.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | quoted the monthly phone bill as 87.42 RIB, without correcting the unit or confirming payment",
+        "answer": "You quoted the monthly phone bill as 87.42 RIB, without correcting the unit or confirming payment."
+      },
+      {
+        "pattern": "dd_v25_train_11029_5_2",
+        "assistant": "I was thinking of heating a frozen pizza for dinner.",
+        "original_reply": "Frozen pizza are so bad for you!",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | characterized frozen pizza as unhealthy for the listener, as the speaker's judgment without reporting consumption",
+        "answer": "You characterized frozen pizza as unhealthy for the listener, as the speaker's judgment without reporting consumption."
+      }
+    ]
+  },
+  "extraction_scope": "Explicit utterance_interpretation in a reviewed visible pair. Original wording and unknowns retained; generic role extraction and template recombination are not licensed.",
+  "checks": {
+    "total_tests": 1233,
+    "source_and_ledger_tests": {
+      "passed": 106,
+      "seconds": 19.07,
+      "command": "python -X utf8 -B -m pytest -q tests/test_dailydialog_source_segmentation.py tests/test_dailydialog_quarantine_finalization.py",
+      "performed_in_same_turn": "artifacts/dailydialog-originals-v24/test-results.json",
+      "note": "Source segmentation and ledger code remained unchanged; the v25 candidate and ledger were additionally verified against all explicit v25 decisions."
+    },
+    "published_catalog_tests": {
+      "passed": 1127,
+      "seconds": 19.56,
+      "command": "python -X utf8 -B -m pytest -q tests/test_dialogue_fragments.py tests/test_dailydialog_fragment_admission.py tests/test_dialogue_extraction_text.py"
+    },
+    "received_evidence_sha256": "68f72401d4ccd5e4a26eaaf23e1558dc268f136195680c658a2f857f8be68391",
+    "only_intentional_post_validation_change": "data/mined-templates/reviewed/dialogue-fragments.json",
+    "prior_catalog_patterns_preserved": 498,
+    "fragment_generator_source": "semantic_corpus/dialogue_generator/fragments.py",
+    "fragment_generator_sha256": "2b65fe206eede198daee9e07732bd5904ede2ba1a66a4fd285d999d9fee88347"
+  },
+  "reproduction": {
+    "commands": [
+      "python -X utf8 -B scripts/resegment_dailydialog_hybrid_source.py --source artifacts/dailydialog-hybrid-originals-v24 --reviews data/dailydialog/review-parts/hybrid-queue-context-v25.jsonl --out artifacts/dailydialog-hybrid-originals-v25",
+      "python -X utf8 -B scripts/finalize_dailydialog_quarantine.py --candidate artifacts/dailydialog-hybrid-originals-v25 --ledger data/dailydialog/review-parts/luna-offline-originals-v24 --reviews data/dailydialog/review-parts/hybrid-queue-warning-rechecks-v25.jsonl --out data/dailydialog/review-parts/luna-offline-originals-v25",
+      "python -X utf8 -B scripts/admit_dailydialog_fragments.py --reviews data/dailydialog/review-parts/hybrid-queue-adapters-v25.json --contexts data/dailydialog/review-parts/hybrid-queue-original-contexts-v25.jsonl.gz --publish --report artifacts/dailydialog-originals-v25-replay/publication.json"
+    ],
+    "generation": {
+      "generator": "semantic_corpus.dialogue_generator.DialogueGenerator",
+      "task": "fragment_meaning",
+      "seed": 25,
+      "count_per_mode_per_split": 530,
+      "user_assistant_only": [
+        true,
+        false
+      ],
+      "splits": [
+        "train",
+        "validation",
+        "test"
+      ],
+      "selected_condition_prefix": "dd_v25_",
+      "catalog_sha256": "46a8eed10c92460dd8e4d32e1f3d147f6a6d56ba46103852e1db4619f6eb4558",
+      "outputs": "artifacts/dailydialog-originals-v25/datasets"
+    },
+    "note": "Authoritative review files carry all decisions; ignored authoring helpers are unnecessary. Use new output directories on replay and validate before publishing."
+  },
+  "next_step": {
+    "original_text_policy_applies": true,
+    "previous_corrected_segments_pending_original_text_review": [],
+    "previous_corrected_segments_now_usable_as_original": [
+      "train:1372:2:1",
+      "train:1006:2:3",
+      "train:1009:4:1",
+      "train:1025:4:2",
+      "train:1043:4:1",
+      "train:1056:4:1",
+      "train:1082:1:1",
+      "train:1082:1:2",
+      "train:1084:1:2",
+      "train:1084:8:1",
+      "train:1089:17:2",
+      "train:1128:2:1",
+      "train:1139:11:2",
+      "train:1157:1:1",
+      "train:1157:4:1",
+      "train:1161:10:1",
+      "train:1161:1:2",
+      "train:1172:5:2",
+      "train:1203:5:1",
+      "train:1203:6:1",
+      "train:1209:5:2",
+      "train:1211:7:1",
+      "train:1213:4:2",
+      "train:1236:4:5",
+      "train:1238:3:1",
+      "train:1268:2:2",
+      "train:1305:12:1",
+      "train:1314:2:3",
+      "train:1317:4:1",
+      "train:1322:10:2",
+      "train:1339:1:2",
+      "train:1344:3:2",
+      "train:1371:2:3",
+      "train:1372:2:3",
+      "train:1380:2:1",
+      "train:1388:6:4",
+      "train:1392:1:1",
+      "train:1396:2:1",
+      "train:1406:8:2",
+      "train:1410:4:2",
+      "train:1436:11:1",
+      "train:1436:12:1",
+      "train:1440:10:1",
+      "train:1442:3:2",
+      "train:1453:6:2",
+      "train:1462:12:1",
+      "train:1462:13:2",
+      "train:1473:7:3",
+      "train:10186:1:1",
+      "train:10447:10:4",
+      "train:10965:4:1",
+      "train:11114:3:1"
+    ],
+    "warning_queue": "data/dailydialog/review-parts/luna-offline-originals-v25/quarantine-cases.jsonl.gz",
+    "supplemental_queue": "data/dailydialog/review-parts/hybrid-attestation-held-v17.json",
+    "this_block_held_source_warning_keys": [
+      [
+        "train:10991:9:1",
+        0,
+        "e6516cc0bfe12a524f27080ad979e8223df29f3eef15506ee9f8698c719de706"
+      ],
+      [
+        "train:11054:9:1",
+        0,
+        "2a819c49b35d77d49f348a3ad35348b2ac19c04fc4c15cc15621471dfef2daf9"
+      ],
+      [
+        "train:11064:8:2",
+        0,
+        "b24c4711c375aa7b91380c8da5c744bce332ca050bb2c43268e5a9980c3b374f"
+      ],
+      [
+        "train:11067:4:2",
+        0,
+        "8dadfc56fba7e7393e2d124a5d3c4c3fb4c32c549f672b927ad2c33feabba713"
+      ],
+      [
+        "train:11084:2:1",
+        0,
+        "a830289e783e14c2e2c163c8a289b6251a018258de8843d38815ea0800f3d619"
+      ],
+      [
+        "train:11102:10:1",
+        0,
+        "7a8e9720a077e3f396a9478a3022346de8097bfbbcf12f5ab55fc3d22d7df32a"
+      ],
+      [
+        "train:11114:3:1",
+        0,
+        "cc9e55c70a3e0471ab0fa6e93d025b7c143306698b10d2f2ca730d67d0a8fa97"
+      ],
+      [
+        "train:11117:2:1",
+        0,
+        "d33cfdf5e7cedd33fad991c2f706268b6100b828a043039f1ec0b3e35dfb5439"
+      ]
+    ],
+    "this_block_partial_adapter_ids": [
+      "dd_v25_train_10991_9_1",
+      "dd_v25_train_11054_9_1",
+      "dd_v25_train_11064_8_2",
+      "dd_v25_train_11067_4_2",
+      "dd_v25_train_11084_2_1",
+      "dd_v25_train_11102_10_1",
+      "dd_v25_train_11114_3_1",
+      "dd_v25_train_11117_2_1"
+    ],
+    "this_block_insufficient_proposition": [],
+    "next_train_source_warning_keys": [],
+    "remaining_train_source_warnings_after_this_block": 0,
+    "first_pass_train_source_queue_complete": true,
+    "next_semantic_warning_keys": [
+      [
+        "test:177:3:2",
+        0,
+        "6a55b99ed545ca11ca94585189bece21771630e986d65869c40c6298f31c8c9a"
+      ],
+      [
+        "test:234:4:1",
+        0,
+        "c2ae41d518db758abef2357b85d8bfff3a8848fb63754217527c943f3ada36bd"
+      ],
+      [
+        "test:234:7:1",
+        0,
+        "65f3d22c7d56859b681aa22a4c583635af4a563b8f0a005ff994de2cab2631ef"
+      ],
+      [
+        "test:234:9:2",
+        0,
+        "379d596e0a3667f715171b5c0f842c2a5ba96fa269a67798d0476a2c703dc747"
+      ],
+      [
+        "test:234:11:2",
+        1,
+        "f57736166a1d2df3f428d8b51897998c2fd6699dfd145b1ceef8775bd74c4bef"
+      ],
+      [
+        "test:256:6:2",
+        0,
+        "58d22cdc5d2f0971401e5be08240872d3899b73136e19e8b1e3057ea22583d30"
+      ],
+      [
+        "test:330:5:2",
+        0,
+        "d0891d8917472bf8e9f413bc26a5228ee091ece5a59cf72ce372578b79910878"
+      ],
+      [
+        "test:377:13:2",
+        0,
+        "483ec1592b20b9ea6393c33bd2b75373df001cd81fa93ad112e0267b7501845c"
+      ],
+      [
+        "test:409:4:1",
+        0,
+        "c4e4dbb6b6e11fe6663be7ecbc882977c45bc52fa710346eb5f8ee2c01361d37"
+      ],
+      [
+        "test:423:6:2",
+        0,
+        "8a05b74220d63f661bf459b34b9301d4f0e453c5308814b0ad00131f05bf09a7"
+      ],
+      [
+        "test:471:8:1",
+        0,
+        "c112d8af4dcd0c70ddd8813a7d1d041bfc9d3f83cb755de7d39e58485bb9fabe"
+      ],
+      [
+        "test:471:8:1",
+        1,
+        "d99288a1871c13d165f15d5beaa2825b0137e2bd5e0296ee57fce20a901c634a"
+      ],
+      [
+        "test:493:3:2",
+        0,
+        "a8fee753044af9d93ea285885b94ba5d7b33ceb95533eda56ce51424beb07d2d"
+      ],
+      [
+        "test:588:10:2",
+        0,
+        "58c0be0758187c1e153fa09dcc0758af0939206ab6f1b6ef6d5f8dc30eef317c"
+      ],
+      [
+        "test:605:8:5",
+        0,
+        "0215eb451f3d536c8a4fff28509009ab21480a36f0910eccf21dbcd7836a6f6a"
+      ],
+      [
+        "test:614:3:2",
+        0,
+        "764491a8c8bb0aac5a70e009866618150a61790f37e7bba7ab15175de420c81e"
+      ],
+      [
+        "test:636:4:1",
+        0,
+        "92aa1118fd5af93845f2388d68c5d993e572e8573296d775715742341b0f8fca"
+      ],
+      [
+        "test:638:6:3",
+        0,
+        "c5b3c7011c4ef82aa8784abcc530e4817709eda0dc26c9f15c7390e82a7882f9"
+      ],
+      [
+        "test:653:8:1",
+        0,
+        "b91f38e04d20e4df448c2e386b7813a328f811a0b511795ad9d5886553856274"
+      ],
+      [
+        "test:723:4:2",
+        0,
+        "90ce4f86590cb31a1bd8e334823664013f9bed196eb2c891d636c244a917dcf4"
+      ],
+      [
+        "test:781:6:1",
+        0,
+        "ee5b48b98024c94c5c4ed9ab3c70c5ab6bcca9d22fd40e5a1d5324958c0b317a"
+      ],
+      [
+        "test:794:7:3",
+        0,
+        "8ecbe8543c3902e57b2ad1caf8b58bfcdd69c3f5d4412a02cecd161d116e3905"
+      ],
+      [
+        "test:860:3:1",
+        0,
+        "fee42365e885d4114db7325d9967117270d06e994751f02829fe12dc150f227a"
+      ],
+      [
+        "test:928:2:4",
+        0,
+        "53841d9a8e36981a6bde9feb62bc0327ba63eb5e8206495f2047fc828abf39aa"
+      ],
+      [
+        "test:975:10:2",
+        0,
+        "48d5c5ced85533768b44f4dd37c42c554ce8c2d9160653976df3614b81369ce0"
+      ],
+      [
+        "test:997:3:1",
+        1,
+        "d53ae00e50625d0012cd60d4a14866b46acf54b5fead658eae5c0600efe999af"
+      ],
+      [
+        "train:1040:5:3",
+        0,
+        "8662d36b0e0f89d74b8dd3cb4edaf8135e0bf7ba25585254736dccf327ce4a74"
+      ],
+      [
+        "train:1061:1:1",
+        0,
+        "ae2730ae19096af2a16bb0fe1c51c49ad317dbf75467baf999066bdf7cbc115b"
+      ],
+      [
+        "train:1061:2:1",
+        0,
+        "ae2730ae19096af2a16bb0fe1c51c49ad317dbf75467baf999066bdf7cbc115b"
+      ],
+      [
+        "train:1069:5:2",
+        1,
+        "24feda164def23dae82d4f6c9a4677bec30584272c354ae18af53145babb5b8f"
+      ],
+      [
+        "train:1128:1:1",
+        0,
+        "b4bded5084189697cc26a0fd66b4e3a9f5c89334582ce1a31e434d4c32621f86"
+      ],
+      [
+        "train:1299:1:1",
+        0,
+        "6f0b623a819a8ca5e8edc2fbf6b8408c37aa8cf7ff855335336d39767f1ae251"
+      ],
+      [
+        "train:1345:8:2",
+        0,
+        "eac1ec518227112d039316269bfc19b81b1e8b05d1170294c920c945dea5d273"
+      ],
+      [
+        "train:1404:4:1",
+        0,
+        "f6e54966ca84775f5bbb2e175321dc05e06203ae0d41af0b6bcf73c595ac5ccd"
+      ],
+      [
+        "train:1416:7:1",
+        0,
+        "a1f9e4496ef484f861518898a872bfa94a3f95a8482b2bec0ce2e12af6ccc1e4"
+      ],
+      [
+        "train:1432:5:1",
+        0,
+        "a23b624b30b18a4b39a76e3a2f77e853ccc7fbea9e9460d214a63509e3e9f801"
+      ],
+      [
+        "train:1434:6:2",
+        0,
+        "054284d159c6170377904ae59bb9b74d93bf9690482d7bf8ecdbcd1268fae670"
+      ],
+      [
+        "train:1440:3:1",
+        0,
+        "085420d8938104835cf0dfece880f802100750978e2f5fc167b7175830ea1a9e"
+      ],
+      [
+        "train:1535:1:1",
+        0,
+        "ffcabd216f417a39961ad003b30dc3d54987143e9fb22370318a2586927ad9a4"
+      ],
+      [
+        "train:1549:5:1",
+        0,
+        "712c4d600819b989d59b3f32d45f292da99519ad060daa89f03b5b9dd85d748b"
+      ],
+      [
+        "train:1771:2:1",
+        0,
+        "e1cf5acd027670c833c81d441144a7fb7590336578dd0cf997b94f3311938fe5"
+      ],
+      [
+        "train:1893:12:1",
+        0,
+        "1c7b6e0b4d8cd44d039c8c9c3f95b1abf2dbd937d40ed16310a80b37a3773701"
+      ],
+      [
+        "train:1941:2:1",
+        0,
+        "11291e5fb9803005f2281fcf5b2e32c2c7814b11cecc2643fb4e8fe44aa65eeb"
+      ],
+      [
+        "train:1941:5:1",
+        0,
+        "bbc5250b352c5cdce1af093757f51a7f7772c99600d63e5339eb4379819f8e88"
+      ],
+      [
+        "train:2154:2:1",
+        0,
+        "c7a5041677309300bd9edcbc2f06f6e72b455d52b3e891c76153a378527c60b3"
+      ],
+      [
+        "train:2301:4:2",
+        3,
+        "e9aa97c3e85b1096055f9d565a422d4cb8a1de11993033fe795d8a38c184693e"
+      ],
+      [
+        "train:2383:1:1",
+        0,
+        "f52870efab0301a00fff09adc594f76302e89965842e605944371ffbe5f02a5a"
+      ],
+      [
+        "train:2440:4:2",
+        1,
+        "1128808c5a5e6997f34cd08ba4baa0309d7e3b7ea5a0895e6b8931204a463dbc"
+      ],
+      [
+        "train:2562:4:4",
+        1,
+        "60334bc8b0a65288ffe3722045c48f326f1785d7f3d9f41586564cc6c05bbf2e"
+      ],
+      [
+        "train:2570:4:4",
+        0,
+        "b4657b58a391e6ca84788402287e20900da90e0ea019beea4c771b59440c14c6"
+      ],
+      [
+        "train:2594:9:2",
+        0,
+        "3beada87b8f41a67b739328a848d232581cdcaaaf9980fa725392884daee9665"
+      ],
+      [
+        "train:2620:9:1",
+        0,
+        "9ff31ab5686c2225d082d94c489ff59bb2617c146115d59d5a4aac032c56b033"
+      ],
+      [
+        "train:10070:11:1",
+        0,
+        "a7d5c0a3a2cb2519725f5375d6e97a1778e33e3aa3675047368305cf05a7f223"
+      ],
+      [
+        "train:10071:1:2",
+        0,
+        "ba3453d987382b99cfe116aa1df3ad931f7c442086bf43e4b7c96964200e4191"
+      ],
+      [
+        "train:10077:3:1",
+        0,
+        "76da976f8ddac4476d89611467d7bacd73eccffa1f3af3b25fa3b22d0929dc5f"
+      ],
+      [
+        "train:10151:1:2",
+        0,
+        "8c766bea09ddf92bb17c0212534c6f558686cb3e18cb7237075453b210889777"
+      ],
+      [
+        "train:10318:2:1",
+        0,
+        "22fba7b11fb98053de930cbc11317b62808402ad65d19b92de115a6d60e17bc4"
+      ],
+      [
+        "train:10354:8:2",
+        0,
+        "1c3cc090dffe9d4a3c7d9fbe4a0bb49ca7406aec01a8e75789de1de3cebae92f"
+      ],
+      [
+        "train:10388:6:2",
+        0,
+        "1ffaf66978a0fecc7b6aeb9a6a8b598a6eb1ad2de76c014034f6c0afc752fedc"
+      ],
+      [
+        "train:10499:3:2",
+        0,
+        "a4392909050f3dcbd299d487d3d42ad4851fc8ba4339bdf9710090848cbcdf83"
+      ],
+      [
+        "train:10525:4:1",
+        0,
+        "6628b27178a92442bd63260983baca27dfc442046d6137647bcfb3d2c97e2690"
+      ],
+      [
+        "train:10586:2:3",
+        0,
+        "3889f455c896d668277717f51242097ac5c44ffaaa26f53a1128aea9bc4a6db7"
+      ],
+      [
+        "train:10634:3:1",
+        0,
+        "724cff1539dd4bdbd6ffde3171d269c0a040bc5963d937a677acd394412d7058"
+      ],
+      [
+        "train:10785:3:1",
+        0,
+        "cf5de682093bcd96a575a6ba0b8000f033f5dc51ee7e573f972ddac339109613"
+      ],
+      [
+        "train:10794:9:1",
+        0,
+        "abe823eb05f7f27d22f6382165f94622c3194f3f27f19e3906d6278b05a903ed"
+      ],
+      [
+        "train:10882:5:4",
+        0,
+        "3c559a37f45ae0f7cca12e1be113c3f1df254aed8c326c4e54d90092cc5cce24"
+      ],
+      [
+        "train:10920:7:2",
+        0,
+        "eec7f5b727f1744fb004a5b322c34be11add4ce62870b3c3879170ab8aa7f3a3"
+      ],
+      [
+        "train:10986:8:1",
+        0,
+        "8927003ec44bda31bd9b2ecbe62fa79cad3f5231c15ba698a21bd77762f3f3bc"
+      ],
+      [
+        "train:11038:4:1",
+        0,
+        "7f2a8fa326d6063c242dc26952f4598de980080c1014539f8c81df19e89e9d0e"
+      ],
+      [
+        "train:11038:6:1",
+        0,
+        "7f2a8fa326d6063c242dc26952f4598de980080c1014539f8c81df19e89e9d0e"
+      ],
+      [
+        "train:11054:12:1",
+        0,
+        "c114521fa236ff99cec70ef69e01fa4b3cb6623c243379911539d0dbc14809ce"
+      ],
+      [
+        "train:11116:2:1",
+        1,
+        "937828752ae0ac12606793b026cd3faa6c038f0fd7c334089c4d52f43054cb10"
+      ],
+      [
+        "test:364:10:3",
+        0,
+        "6b3244c2b35b8b548257ff690ddf7259446b68c1dc2517b18699f1eef2d2a7eb"
+      ],
+      [
+        "test:768:2:2",
+        0,
+        "2851135f65305ee7582d08d3367b55af5d3a8108a6f5e8667bf13734ef4d8fa9"
+      ],
+      [
+        "train:1128:3:4",
+        0,
+        "fe5a9374a812895d9a966c2974997ebf6f09df9d2f87575467228fcc8a991563"
+      ],
+      [
+        "train:1273:1:1",
+        0,
+        "b26a95ed612398b3ff8b006cdcc80caf173ec43b05106b084e10eb0245699169"
+      ],
+      [
+        "train:1592:10:2",
+        0,
+        "dec41c6823d7a5e25b9281d39d2f0eb1f07b4d7f2e4f6756fdc0d2e1affbe812"
+      ],
+      [
+        "train:1721:3:1",
+        0,
+        "ef49fe9f20003da756169535e1fb897e18138b307f66c216d9c3427ab0cac9df"
+      ],
+      [
+        "train:1778:4:1",
+        0,
+        "d54cfa165375d21754182794440a06f9a1a5dab0b13e996f0b0fcad4e047ed81"
+      ],
+      [
+        "train:1934:13:2",
+        0,
+        "dde0739b4d902c8c9d93b0ca225dc63a68549c5104fef02bab078d302c9ea5ff"
+      ],
+      [
+        "train:1934:13:2",
+        1,
+        "4bb91e5e6fe2d46ff09f6da21d5c10b937f33ad68fce266059d658e70789bb47"
+      ],
+      [
+        "train:1935:1:1",
+        0,
+        "bdb7041697c7985d5431329bf2bcb2465dd19ce395c3141a50331d2f84219ba9"
+      ],
+      [
+        "train:2100:5:2",
+        0,
+        "a8d8313834b0a7e524458438b6e8843148dfb41734781af5875f3fa05372778e"
+      ],
+      [
+        "train:2112:1:3",
+        0,
+        "fa33bc5f2fbf5aa7d74367cec8f5863bc857c1ce31aa6e9319a297cc4430b2c5"
+      ],
+      [
+        "train:2195:4:5",
+        0,
+        "859a18526d89e0baa6bda2944ff6e6c6fd73c10beb5faaf756597747baf11326"
+      ],
+      [
+        "train:10579:7:2",
+        0,
+        "944b3341ec9df22ae8bb550948bd12dfcc5268bf7f9e8eaa22b288f9636e2266"
+      ],
+      [
+        "train:10665:5:2",
+        0,
+        "3629e88a19a09d9606e4ba1b8d820bffe79b02fbf61abf98328b0b08c7b80dbd"
+      ],
+      [
+        "train:10941:3:3",
+        1,
+        "cd9ae3979c5a9d9edd5adeebe2dbe4d7c62725b329ed3fa5bf75d6fb57f561ae"
+      ]
+    ],
+    "priorities": [
+      "Review the 72 remaining ambiguity warnings and 16 structural warnings, beginning at test:177:3:2.",
+      "Use understandable original wording with explicit partial meanings.",
+      "Keep unspecified words, measurements, times and structural ambiguities unresolved."
+    ],
+    "full_semantic_review_still_required": true
+  }
+}

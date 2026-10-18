@@ -1,0 +1,2317 @@
+{
+  "version": "source-wording-and-boundaries-v33",
+  "source_candidate": "artifacts/dailydialog-hybrid-source-v32",
+  "source_ledger": "data/dailydialog/review-parts/luna-offline-source-v32",
+  "source_warning_triage": 112,
+  "full_context_warning_reviews": 112,
+  "representation_only_closures": 99,
+  "boundary_repairs": 0,
+  "context_revisions": 100,
+  "consumed_segments": 100,
+  "warning_rechecks": 144,
+  "cases": [
+    {
+      "id": "test:171:5:1",
+      "input_ids": [
+        "test:171:5:1"
+      ],
+      "note": "Preserve the scope of remember over never saw: the speaker recalls not having seen an X-rated display, rather than failing to remember a sighting. Retain moves and leave the type of display unspecified.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "recalled never having seen an X-rated movie displayed, while retaining the source word moves"
+        },
+        "unknown": [
+          "The anomalous moves is not rewritten and displayed does not specify a particular kind of advertisement or screening."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": true
+    },
+    {
+      "id": "test:278:11:1",
+      "input_ids": [
+        "test:278:11:1"
+      ],
+      "note": "Trashed it last week reports damage to the outfit. The earlier replacement clause does not establish a purchase, obligation or completed replacement.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "reported_completion",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "reported trashing the outfit last week and mentioned replacement in an unclear construction"
+        },
+        "unknown": [
+          "The modality and exact construction in got a replace remain unresolved; no replacement purchase is asserted."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "test:284:7:1",
+      "input_ids": [
+        "test:284:7:1"
+      ],
+      "note": "The medication exchange licenses an attributed after-each-meal instruction, not a dose: on is not one. Do not endorse the instruction or infer tablets were taken.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "gave an instruction to take the tablets after each meal, without establishing a dose"
+        },
+        "unknown": [
+          "The word on is not changed to one; tablet quantity remains unspecified."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "test:299:4:1",
+      "input_ids": [
+        "test:299:4:1"
+      ],
+      "note": "The caller asks about return time after being told the requested person is out. Keep suspect back them and its unresolved construction; supply neither a time nor a return.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "asked about a return time, using wording whose exact participants and construction remain unclear"
+        },
+        "unknown": [
+          "Do not repair suspect back them or assert a particular return time."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "test:377:8:1",
+      "input_ids": [
+        "test:377:8:1"
+      ],
+      "note": "How was requests an assessment and Catherine is addressed. The lunch discussion does not license silently replacing such or inventing her answer.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "asked Catherine for an assessment, while the object written as your such remained unclear"
+        },
+        "unknown": [
+          "Do not silently replace such with lunch or assert her opinion."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "test:396:12:1",
+      "input_ids": [
+        "test:396:12:1"
+      ],
+      "note": "Both the injury and continued play are reported, but plural goalkeepers and singular he do not reliably identify the same participant or settle the number. Preserve this separation.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "reported_completion",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "reported a goalkeeper injury after the first goal and a male player's continued play"
+        },
+        "unknown": [
+          "The number of goalkeepers and the identity linking he to the injured participant are unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "test:512:8:3",
+      "input_ids": [
+        "test:512:8:3"
+      ],
+      "note": "The speaker describes advance visualization of possibilities in a habitual planning account. Do not complete the schedule predicate or turn imagined events into actual ones.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "described visualizing possible events and reactions in advance, while leaving the claim about the schedule incomplete"
+        },
+        "unknown": [
+          "The missing predicate after schedule is not reconstructed; imagined events are not actual events."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "test:584:1:2",
+      "input_ids": [
+        "test:584:1:2"
+      ],
+      "note": "The schedule-availability question is recoverable. Preserve the comma and leave the sender and addressee roles of Macmillan and Emory unresolved; do not assert that the schedule exists.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "asked whether the completed schedule for next week was available"
+        },
+        "unknown": [
+          "The punctuation leaves the precise role of Mr. Macmillan uncertain; no sender or addressee identity is imposed."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "test:638:10:1",
+      "input_ids": [
+        "test:638:10:1"
+      ],
+      "note": "The source complains about excessive watching. Preserve original watch in training and the earlier candidate watches unchanged. Tob remains an unidentified object rather than television.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "complained that he watches something called tob too much"
+        },
+        "unknown": [
+          "The object is not identified as a television or another guessed object."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "test:646:3:1",
+      "input_ids": [
+        "test:646:3:1"
+      ],
+      "note": "Yes answers the question about giving the course again. Applying on it does not establish a student application, enrollment or a firm teaching arrangement.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "answered affirmatively about the course, followed by an unclear statement about applying on it"
+        },
+        "unknown": [
+          "The applying construction does not establish enrollment, an application, or a firm teaching arrangement."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "test:774:3:1",
+      "input_ids": [
+        "test:774:3:1"
+      ],
+      "note": "The reply offers reassurance and invokes being grown up. Do not supply a missing care verb or infer a specific ability from take himself very well.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "offered reassurance based on his being grown up, while leaving take himself very well unresolved"
+        },
+        "unknown": [
+          "The exact ability claimed and the malformed grow-up construction are not reconstructed."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "test:827:3:1",
+      "input_ids": [
+        "test:827:3:1"
+      ],
+      "note": "The visible pair supports a reaction during a movie discussion. The shared-interest claim requires the later sentence omitted from the adapter; remove it from the target. Keep confidence unresolved, without a coincidence repair.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "reacted with an exclamation during a movie discussion; the word confidence remains unresolved"
+        },
+        "unknown": [
+          "Do not silently replace confidence with coincidence or assert a confidence state."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": true
+    },
+    {
+      "id": "test:834:8:3",
+      "input_ids": [
+        "test:834:8:3"
+      ],
+      "note": "Preserve the if scope: learning is predicted conditionally in connection with the malformed would-like clause. Do not assert that the boss actually wants, forms or improves a team.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "conditionally predicted that the boss would learn from those practices; the if-clause mentions an efficient and healthy team but leaves the intended predicate unresolved"
+        },
+        "unknown": [
+          "The predicate missing after would like to is not inserted; no organizational change is asserted."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": true
+    },
+    {
+      "id": "test:847:3:2",
+      "input_ids": [
+        "test:847:3:2"
+      ],
+      "note": "The final tag asks whether the dress rule is strict. The damaged preamble supplies neither a definite male person nor a leaf or returning event.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "questioned whether the rule was strict while leaving the preceding male leaf and returning the rule clause unresolved"
+        },
+        "unknown": [
+          "The damaged preamble does not establish a person, leaf, or return action."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "test:867:7:2",
+      "input_ids": [
+        "test:867:7:2"
+      ],
+      "note": "The preceding promotion report supports Paul being chosen. Preserve the damaged board clause without inventing a meeting, Thursday or a calendar date.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "reported_completion",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "reported that Paul was chosen, leaving the preceding board phrase and timing unresolved"
+        },
+        "unknown": [
+          "Do not reconstruct man last thirdly as a meeting date or event."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "test:878:7:2",
+      "input_ids": [
+        "test:878:7:2"
+      ],
+      "note": "This separate original promotion dialogue supports the reported choice of Paul. Do not import a meeting date or repair man last thirdly from another occurrence.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "reported_completion",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "reported that Paul was chosen, while leaving the first clause about the board and its timing unclear"
+        },
+        "unknown": [
+          "Do not infer a meeting or Thursday from man last thirdly."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "test:942:5:1",
+      "input_ids": [
+        "test:942:5:1"
+      ],
+      "note": "You mean queries the other speaker about a claimed ability. The absent verb remains absent; neither seeing nor canning UFOs is an asserted event.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "asked about the other speaker's claimed ability while leaving the verb after can unstated"
+        },
+        "unknown": [
+          "Do not insert see or assert that UFOs were seen."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "test:954:2:3",
+      "input_ids": [
+        "test:954:2:3"
+      ],
+      "note": "Within a newspaper account the source reports a fire covering land and mentions destruction of a greater area. Preserve the missing connector and unspecified exact area; these are attributed reports.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "reported_completion",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "reported a fire covering several square kilometers and mentioned destruction of a larger area"
+        },
+        "unknown": [
+          "The missing connector or subject before has destroyed is not inserted; no exact area is invented."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "test:997:3:1",
+      "input_ids": [
+        "test:997:3:1"
+      ],
+      "note": "Yes answers the immediately preceding question about restarting class. Preserve to the heath and the damaged break clause; do not invent its missing predicate.",
+      "meaning": {
+        "speech_act": "classroom_instruction",
+        "event_status": "resumption_context",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The classroom exchange supports resuming class after a break, while the middle phrase remains unclear."
+        },
+        "unknown": [
+          "To the heath and the missing predicate after has cannot be reconstructed."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:10014:8:1",
+      "input_ids": [
+        "train:10014:8:1"
+      ],
+      "note": "If scopes the financial consequence of an early move. Keep deductible as the raw financial label and distinguish an unreported move from a claim that no move happened.",
+      "meaning": {
+        "speech_act": "conditional_warning",
+        "event_status": "early_move_financial_consequence",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker conditionally says moving out before the lease ends would prevent receiving the item called deductible. Keep that financial label unidentified; the conditional does not report a completed move."
+        },
+        "unknown": [
+          "The financial item intended by deductible is unclear."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": true
+    },
+    {
+      "id": "train:10016:9:4",
+      "input_ids": [
+        "train:10016:9:4"
+      ],
+      "note": "Only restricts the group passing inspection to the raw label creme. Category versus quality remains unknown; this is a sales quality claim, not a verified completed inspection.",
+      "meaning": {
+        "speech_act": "quality_claim",
+        "event_status": "inspection_selection_with_unclear_category",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "In the chocolate sales discussion the speaker says only the group labelled creme passes inspection. It may be a product type or a best-quality expression; the distinction is unresolved."
+        },
+        "unknown": [
+          "The category or quality sense of creme is uncertain."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:10041:4:2",
+      "input_ids": [
+        "train:10041:4:2"
+      ],
+      "note": "The caller reports learned information about cloth export connected with Hummed company. Preserve export and by rather than assigning an exporter, agent or company relationship.",
+      "meaning": {
+        "speech_act": "reported_information",
+        "event_status": "cloth_export_relationship_unclear",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The caller reports learning of the addressee's leading role in cloth export connected with Hummed company. Export does not settle whether the addressee is a person, exporter company or agent."
+        },
+        "unknown": [
+          "The precise commercial role and relationship encoded by export and by Hummed company are unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:10052:5:2",
+      "input_ids": [
+        "train:10052:5:2"
+      ],
+      "note": "Two meters is the explicit maximum depth. Preserve l. 4 as an uninterpreted shallow measurement; do not normalize it to 1.4 or assert suitability for swimming.",
+      "meaning": {
+        "speech_act": "information",
+        "event_status": "pool_depth_with_uncertain_shallow_measurement",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker gives a maximum pool depth of two meters and identifies a shallower swimming area. The shallow depth written l. 4 meter is not silently interpreted as 1.4 meters. The advice remains attributed, not a safety guarantee."
+        },
+        "unknown": [
+          "The numeric shallow-depth value represented by l. 4 is unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:10145:7:2",
+      "input_ids": [
+        "train:10145:7:2"
+      ],
+      "note": "Will predicts a pleasurable response to a product. Be hold does not decide holding versus beholding and establishes no completed experience.",
+      "meaning": {
+        "speech_act": "prediction",
+        "event_status": "favorable_product_prediction_with_unclear_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker predicts that the new product will be a pleasure, but be hold may reflect holding or behold. Do not turn the damaged wording into an asserted tactile or visual experience."
+        },
+        "unknown": [
+          "The intended action behind be hold is ambiguous between possible readings."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:10217:5:1",
+      "input_ids": [
+        "train:10217:5:1"
+      ],
+      "note": "The adapter includes the full original question and the extra-discount request. What if is hypothetical; around does not establish round-trip or any completed purchase.",
+      "meaning": {
+        "speech_act": "question",
+        "event_status": "conditional_ticket_discount_query",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The full original turn asks whether buying the ticket type written around would bring an additional discount. Do not silently interpret it as a round-trip ticket or assert a purchase."
+        },
+        "unknown": [
+          "The precise ticket type represented by around is unclear."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1024:5:2",
+      "input_ids": [
+        "train:1024:5:2"
+      ],
+      "note": "This is the speaker attributing a prevention claim to doctor. Preserve the uncertain number, identity and cleanness sense, without endorsing or turning it into medical instructions.",
+      "meaning": {
+        "speech_act": "attributed_statement",
+        "event_status": "attributed_health_claim",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker attributes an AIDS-prevention claim about cleanness to doctor. This records the attribution, not medical truth, an instruction, an identified doctor or an endorsement."
+        },
+        "unknown": [
+          "The intended number and identity of doctor and the scope of cleanness are unspecified."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:10423:3:2",
+      "input_ids": [
+        "train:10423:3:2"
+      ],
+      "note": "The full adapter explicitly requires waiting a few minutes for fries. Preserve flyer as an unknown place label; absence of delivery confirmation is not a negative delivery fact.",
+      "meaning": {
+        "speech_act": "explanation",
+        "event_status": "fries_wait_with_unclear_location",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The full turn says the fries require a few more minutes and are still in the place written flyer. The intended appliance or location is unresolved; no completed delivery is asserted."
+        },
+        "unknown": [
+          "The location or appliance represented by flyer is unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": true
+    },
+    {
+      "id": "train:10447:9:2",
+      "input_ids": [
+        "train:10447:9:2"
+      ],
+      "note": "The complete original reply calls the food terrific and asks how it was prepared. These support the target without silently changing floor into flavor or inferring affection for flooring.",
+      "meaning": {
+        "speech_act": "evaluation_and_question",
+        "event_status": "food_appreciation_with_unclear_object",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The full original reply calls the food terrific and asks how it was prepared. The object floor in the love statement remains unresolved; do not silently change it to flavor or assert affection for the literal floor."
+        },
+        "unknown": [
+          "The intended object of love in floor is unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:10468:7:1",
+      "input_ids": [
+        "train:10468:7:1"
+      ],
+      "note": "Retain ten 20am as the announced boarding-time string. No normalized clock value or actual boarding is licensed.",
+      "meaning": {
+        "speech_act": "announcement",
+        "event_status": "boarding_time_with_unclear_notation",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker announces boarding time using ten 20am. Preserve the notation without converting it to a clock value or treating boarding as completed."
+        },
+        "unknown": [
+          "The exact normalized clock time is not established."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:10506:4:1",
+      "input_ids": [
+        "train:10506:4:1"
+      ],
+      "note": "The speaker links their prior preference for enjoyable work to a best-teacher comparison. Keep its subject unclear instead of asserting that interest itself teaches.",
+      "meaning": {
+        "speech_act": "explanation",
+        "event_status": "enjoyment_and_learning_with_damaged_subject",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "After prioritizing enjoyable work, the speaker invokes a best-teacher comparison. Being interesting thing does not reliably identify whether interest, an activity or being interesting is the teacher."
+        },
+        "unknown": [
+          "The exact subject of the best-teacher comparison is unclear."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:10512:1:5",
+      "input_ids": [
+        "train:10512:1:5"
+      ],
+      "note": "The preceding logo description licenses associating office decoration and company identity. Preserve decorated identity without adding a particular design property or completed decorating action.",
+      "meaning": {
+        "speech_act": "assessment",
+        "event_status": "office_identity_with_unclear_predication",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The preceding account describes a company logo repeated throughout its offices. The speaker evaluates that presentation in the phrase decorated identity; its exact predication is unclear."
+        },
+        "unknown": [
+          "The precise relationship expressed by decorated identity is unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:10526:9:1",
+      "input_ids": [
+        "train:10526:9:1"
+      ],
+      "note": "Www is a response to a vomiting report. Its exact vocalization and polarity remain unknown; do not turn it into wow, disgust or a website.",
+      "meaning": {
+        "speech_act": "reaction",
+        "event_status": "unspecified_reaction_to_illness",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "Www is a reaction to the other person's account of repeated vomiting. Its spelling establishes neither a particular interjection nor a positive or negative evaluation."
+        },
+        "unknown": [
+          "The intended interjection and emotional polarity are unknown."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:10549:4:1",
+      "input_ids": [
+        "train:10549:4:1"
+      ],
+      "note": "The discussion links territorial claims to the conflict. Bout side does not settle the subject wording or number; no automatic both correction is needed for the limited interpretation.",
+      "meaning": {
+        "speech_act": "explanation",
+        "event_status": "territorial_dispute_with_unclear_subject_form",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "In the discussion of two opposing sides, the speaker links the conflict to claims over a small territory. Bout side is not silently repaired, and its exact subject number remains uncertain."
+        },
+        "unknown": [
+          "The precise subject and number expressed by Bout side are unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:10575:3:1",
+      "input_ids": [
+        "train:10575:3:1"
+      ],
+      "note": "Do you think asks for an evaluation of music. Warm matched remains an unknown property, not an asserted mood or a well-matched repair.",
+      "meaning": {
+        "speech_act": "question",
+        "event_status": "music_evaluation_with_unclear_property",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker asks for an evaluation of the music using warm matched. Do not replace it with well matched, warm or a particular mood."
+        },
+        "unknown": [
+          "The property meant by warm matched is unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:10631:3:2",
+      "input_ids": [
+        "train:10631:3:2"
+      ],
+      "note": "Keep the two explicit percentage values and the condition on the 1.6 percent quote. Do not reconcile the damaged fee relation or report that a fee was charged or paid.",
+      "meaning": {
+        "speech_act": "explanation",
+        "event_status": "fee_quote_with_unclear_rate_relation",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker mentions redeeming and a usual 0.5 percent rate, then conditionally quotes 1.6 percent if applying to buy after fundraising. The broken first clause does not securely assign the usual rate to a transaction or reconcile both fees."
+        },
+        "unknown": [
+          "The relation of the usual 0.5 percent to redemption and the conditional 1.6 percent is unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:10668:1:1",
+      "input_ids": [
+        "train:10668:1:1"
+      ],
+      "note": "The visible clause requests a restaurant location. Retain trailing not and its unknown scope without negating the request or inventing a supplied location.",
+      "meaning": {
+        "speech_act": "question",
+        "event_status": "restaurant_location_query_with_stray_negation",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The visible clause asks where a restaurant can be found. Trailing not is not enough to determine an intended contrast or to negate the entire request."
+        },
+        "unknown": [
+          "The function or missing continuation of trailing not is unknown."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:10752:4:1",
+      "input_ids": [
+        "train:10752:4:1"
+      ],
+      "note": "Independently inspect this duplicate-like work-preference dialogue. The best-teacher comparison is usable with its subject unknown; no missing noun is borrowed from another record.",
+      "meaning": {
+        "speech_act": "explanation",
+        "event_status": "enjoyment_and_learning_with_damaged_subject",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The prior turn prioritizes enjoyable work. This answer links that preference to a best-teacher comparison, but being interesting thing leaves its subject unclear."
+        },
+        "unknown": [
+          "The precise subject of the best-teacher comparison is unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:10758:3:1",
+      "input_ids": [
+        "train:10758:3:1"
+      ],
+      "note": "Why did not asks for an explanation of the absent call, also visible in the adapted preceding prompt. Callboy is not replaced by a booth, payphone or an identified person.",
+      "meaning": {
+        "speech_act": "question",
+        "event_status": "queried_failure_to_phone_from_unclear_source",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker asks why the other person did not phone using a source written callboy. Do not infer a payphone, booth or an intervening person from this word."
+        },
+        "unknown": [
+          "The intended calling source represented by callboy is unclear."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:10792:5:4",
+      "input_ids": [
+        "train:10792:5:4"
+      ],
+      "note": "Also get adds a shopping request. The object cut off at s and its quantity stay unknown; requesting is not buying.",
+      "meaning": {
+        "speech_act": "request",
+        "event_status": "additional_purchase_with_missing_item",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "In the shopping-list exchange, Also get is a request to obtain an additional item. The final s does not identify the item, quantity or completed purchase."
+        },
+        "unknown": [
+          "The additional item and missing continuation after s are unknown."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:10853:3:3",
+      "input_ids": [
+        "train:10853:3:3"
+      ],
+      "note": "The speaker describes a secured loan with the stated collateral examples. Undue is not repaired to unmatured and no approval, eligibility or transfer is inferred.",
+      "meaning": {
+        "speech_act": "description",
+        "event_status": "loan_collateral_with_unclear_qualification",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker describes a secured loan and gives Time Deposits and Visible Treasury Bonds as collateral examples. Undue certificates is not silently replaced with unmatured certificates; no eligibility or transfer is verified."
+        },
+        "unknown": [
+          "The collateral qualification meant by undue is unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:10868:2:1",
+      "input_ids": [
+        "train:10868:2:1"
+      ],
+      "note": "Keep fifteen minutes and the stated online activities. Spend and as so do not reliably settle habit, ongoing activity or completed booking; completed work elsewhere in the turn does not resolve these activities.",
+      "meaning": {
+        "speech_act": "self_report",
+        "event_status": "online_activity_with_unclear_aspect",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker mentions fifteen minutes checking stock bonds and booking a ticket for their mother. Present spend alongside the context does not safely distinguish a habitual allocation from an already completed instance; as so does not establish a reliable qualification."
+        },
+        "unknown": [
+          "Whether the activities are habitual, ongoing or completed, and the qualifier as so, remain unclear."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:10896:8:1",
+      "input_ids": [
+        "train:10896:8:1"
+      ],
+      "note": "Liking novels and wishing to read originals are explicit. Preserve Inches and the malformed have reading; neither the Chinese reading nor the wished original reading is upgraded to a completed event.",
+      "meaning": {
+        "speech_act": "preference_and_wish",
+        "event_status": "translated_reading_with_unclear_aspect",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker likes novels by the author labelled Inches and wishes to read them in the original. The malformed have reading mentions almost all in Chinese translation but does not securely distinguish completed reading from ongoing experience."
+        },
+        "unknown": [
+          "The exact aspect and completion of the Chinese-translation reading are uncertain."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:10901:6:4",
+      "input_ids": [
+        "train:10901:6:4"
+      ],
+      "note": "Many people bend begins a generalization. The missing object is not filled using elbows, backs or waists from context, and the fragment is not converted into an instruction.",
+      "meaning": {
+        "speech_act": "generalization",
+        "event_status": "bending_with_missing_object",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker begins a generalization that many people bend something during the push-up discussion. The object after the is missing; do not choose elbows, backs or waists or turn it into an instruction."
+        },
+        "unknown": [
+          "The thing being bent and the missing continuation are unknown."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:10941:3:3",
+      "input_ids": [
+        "train:10941:3:3"
+      ],
+      "note": "Have been learning for hours supplies ongoing learning of table manners. The predicate after cannot really remains unknown; no mastery or precise failed action is invented.",
+      "meaning": {
+        "speech_act": "difficulty_report",
+        "event_status": "ongoing_learning",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "Learning table manners for hours is reported, while the remaining inability lacks a predicate."
+        },
+        "unknown": [
+          "The missing predicate after can't really cannot be recovered; generic action roles remain blocked."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:11054:9:1",
+      "input_ids": [
+        "train:11054:9:1"
+      ],
+      "note": "Probably makes the medicine-kit location tentative. The cabinet is explicit but its top, shelf, side or other part is not.",
+      "meaning": {
+        "speech_act": "tentative_location",
+        "event_status": "medicine_kit_near_unspecified_cabinet_part",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker tentatively locates the medicine kit in relation to the cabinet. The missing noun in on the of does not identify its top, shelf, side or another part."
+        },
+        "unknown": [
+          "The exact cabinet part or position is missing."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:11067:4:2",
+      "input_ids": [
+        "train:11067:4:2"
+      ],
+      "note": "The reply seeks clarification about intended weekend cycling and mentions countryside and towns. Preserve the missing verb and contrast without selecting a route or reporting a ride.",
+      "meaning": {
+        "speech_act": "clarification_question",
+        "event_status": "cycling_location_with_unclear_contrast",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker seeks clarification about weekend cycling, mentioning mountainous countryside and neighboring towns. The malformed me and absent linkage do not settle the precise contrast or intended route."
+        },
+        "unknown": [
+          "The exact relationship between the countryside and neighboring-town alternatives is unclear."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1152:4:1",
+      "input_ids": [
+        "train:1152:4:1"
+      ],
+      "note": "The reply tentatively responds to the earlier-going proposal. Since with leaves causal versus conditional scope open, merely mention the visit desire instead of asserting it as an independent fact. No completed visit is reported.",
+      "meaning": {
+        "speech_act": "tentative_agreement",
+        "event_status": "possible_plan_and_desire",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "tentatively responded to the idea of going earlier and mentioned wanting to visit the museum; the unclear connective leaves conditional versus causal scope unresolved, and no completed visit was reported"
+        },
+        "unknown": [
+          "The malformed connective with does not distinguish a conditional from a causal relation."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": true
+    },
+    {
+      "id": "train:1193:6:1",
+      "input_ids": [
+        "train:1193:6:1"
+      ],
+      "note": "The question concerns Karl coming to Minnesota to live. Preserve hyoid and leave why versus how unresolved; no later answer is used to repair this turn.",
+      "meaning": {
+        "speech_act": "question",
+        "event_status": "queried_move",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker asks Karl about coming to Minnesota to live. The damaged hyoid leaves the requested aspect uncertain. The question itself does not assert completed relocation."
+        },
+        "unknown": [
+          "Whether the question asks why or how is unresolved; do not use the following answer to silently repair it."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1203:10:1",
+      "input_ids": [
+        "train:1203:10:1"
+      ],
+      "note": "The clear advice is keeping distance if head-touching is unacceptable and possibly wearing a hat. Keep the damaged introduction, flyby and ending unknown; the target must say completion was not reported, not that no action occurred.",
+      "meaning": {
+        "speech_act": "advice",
+        "event_status": "partially_recoverable_advice",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The visible advice includes keeping distance from people if head-touching is unacceptable and a why-not suggestion to wear a hat. The corrupted introduction and ending are not reconstructed. No instruction is treated as performed."
+        },
+        "unknown": [
+          "The opening a ~ got give, the modifier flyby and the final response to anyone getting close remain unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1203:7:1",
+      "input_ids": [
+        "train:1203:7:1"
+      ],
+      "note": "What if introduces a hypothetical about everybody going crazy in an unknown domain. Keep the wheres without a world repair or an actual mental-state assertion.",
+      "meaning": {
+        "speech_act": "question",
+        "event_status": "hypothetical_scenario",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "What if introduces a hypothetical in which everybody in an unclear domain goes crazy. This is not an assertion that anyone has become crazy."
+        },
+        "unknown": [
+          "The domain written the wheres is unknown."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1203:9:1",
+      "input_ids": [
+        "train:1203:9:1"
+      ],
+      "note": "Keep the question, conditional, might-want and supposed-to scopes. Neither the desired object nor the garbled required response is reconstructed, and no action is asserted as performed.",
+      "meaning": {
+        "speech_act": "question",
+        "event_status": "hypothetical_desire_and_obligation",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker questions whether a hypothetical possible desire would imply an obligation. Might want and supposed to remain under the question and conditional, not completed actions."
+        },
+        "unknown": [
+          "The intended desired object and response expressed by wonder run reget cannot be reliably recovered."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1236:4:3",
+      "input_ids": [
+        "train:1236:4:3"
+      ],
+      "note": "The reply compares continual workplace monitoring with college. Preserve the damaged subjects and timing of the paper and testing clause rather than inventing a specific submission.",
+      "meaning": {
+        "speech_act": "statement",
+        "event_status": "work_and_college_comparison",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker describes bosses continually watching and testing them and contrasts work with college, where handing in paper later and scheduled tests are mentioned."
+        },
+        "unknown": [
+          "Subjects, exact timing and grammatical links in the damaged college clause are not fully recoverable."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1292:4:2",
+      "input_ids": [
+        "train:1292:4:2"
+      ],
+      "note": "The prompt explicitly identifies a film scene. Keep the names and emissary relation as written; the horse-head scene is fictional described content, not events of the dialogue participants.",
+      "meaning": {
+        "speech_act": "story_reference",
+        "event_status": "quoted_fictional_scene",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker explains a quotation from The Godfather, mentioning a movie producer, Tom Higgins, Vito Corleone and the horse-head scene. These remain film-description contents, not events involving the dialogue participants."
+        },
+        "unknown": [
+          "The emissary relation, the supplied name Tom Higgins and the subject of wakes up are not safely reconstructed."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1302:4:1",
+      "input_ids": [
+        "train:1302:4:1"
+      ],
+      "note": "In the work-versus-basketball discussion the cited work/play saying functions as advice about recreation. Preserve both occurrences of value without converting them into literal valuing events.",
+      "meaning": {
+        "speech_act": "advice",
+        "event_status": "proverbial_work_play_balance",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "In the discussion of whether basketball would take too much time, the speaker invokes a saying contrasting work and play. Its general role supports making room for recreation, not a literal action of valuing work."
+        },
+        "unknown": [
+          "The exact wording and internal relations of the corrupted saying work value work, play value play are unknown."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1310:7:1",
+      "input_ids": [
+        "train:1310:7:1"
+      ],
+      "note": "Review both current segments: the first reports a harvest state in the story and the second a decision to hold a feast. Keep the recipient-versus-reason links in thanks unresolved; deciding does not prove holding the feast.",
+      "meaning": {
+        "speech_act": "story_statement",
+        "event_status": "attributed_historical_state",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "They refers to the settlers in the speaker's Thanksgiving account. The speaker says their harvests were enough for the next winter and celebration. Record the account, not independent verification of history."
+        },
+        "unknown": []
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1310:7:2",
+      "input_ids": [
+        "train:1310:7:2"
+      ],
+      "note": "Review both current segments: the first reports a harvest state in the story and the second a decision to hold a feast. Keep the recipient-versus-reason links in thanks unresolved; deciding does not prove holding the feast.",
+      "meaning": {
+        "speech_act": "story_statement",
+        "event_status": "reported_decision_with_unclear_thanks",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "Within the Thanksgiving story the speaker reports a decision to hold a feast for the natives. The decision is asserted, but holding the feast is not thereby completed. Gratitude involving land, people, foods and lives is mentioned."
+        },
+        "unknown": [
+          "The recipient versus reason links in giving thanks the land and the damaged healthy list remain uncertain."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1341:1:1",
+      "input_ids": [
+        "train:1341:1:1"
+      ],
+      "note": "I heard reports receipt of a rumor; probably and the damaged become keep the appointment unverified and temporally uncertain. Through the grapevine is hearsay, not literal grapes.",
+      "meaning": {
+        "speech_act": "hearsay_report",
+        "event_status": "uncertain_reported_appointment",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "The speaker reports hearing a rumor that Michael probably becomes the new sales manager. Only hearing the rumor is asserted, not an appointment. Through the grapevine means informal hearsay."
+        },
+        "unknown": [
+          "The timing of the possible appointment is unspecified by become, and the rumor is unverified."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1372:2:1",
+      "input_ids": [
+        "train:1372:2:1"
+      ],
+      "note": "The speaker presents an attributed conclusion about being sick of someone, meaning irritation. Preserve original hi and cut it upland in training and prior candidate normalization unchanged; infer no cutting or physical illness.",
+      "meaning": {
+        "speech_act": "opinion",
+        "event_status": "attributed_conclusion_with_damaged_intro",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker presents a conclusion that the person under discussion is sick of Jenny's brother. Sick of expresses irritation, not physical illness. The damaged introduction does not establish cutting something. The earlier candidate he correction is not needed to use the original hi input."
+        },
+        "unknown": [
+          "The words cut it upland and original hi are not reconstructed; the precise pronoun form and reasoning steps remain unknown."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1436:4:6",
+      "input_ids": [
+        "train:1436:4:6"
+      ],
+      "note": "Fine positively evaluates the previously described high-jump ability. Keep someone hi incomplete, without an age, height comparison or a particular achieved jump.",
+      "meaning": {
+        "speech_act": "evaluation",
+        "event_status": "positive_performance_judgment",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "That evaluates the previously mentioned high jump of over two meters positively. The unfinished someone hi does not license any missing age, height or comparison class."
+        },
+        "unknown": [
+          "The comparison class after someone hi is missing."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1445:4:1",
+      "input_ids": [
+        "train:1445:4:1"
+      ],
+      "note": "Before going to work answers when the watch is habitually wound. In the coming supplies no exact time of day and is not repaired to morning.",
+      "meaning": {
+        "speech_act": "answer",
+        "event_status": "habitual_relative_time",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "In answer to when the speaker usually winds the watch, before going to work supplies a relative habitual time. In the coming is not silently changed to in the morning."
+        },
+        "unknown": [
+          "The first time expression is damaged; no clock time or time of day is recovered."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1483:6:1",
+      "input_ids": [
+        "train:1483:6:1"
+      ],
+      "note": "The adapted visible pair has the rail setting but omits the later song. Narrow the target to an unclear self-description addressed to Jack; fling alone establishes neither flight-like sensation, actual flight nor throwing.",
+      "meaning": {
+        "speech_act": "exclamation",
+        "event_status": "unclear_self_description",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "addressed Jack with an unclear self-description using fling; neither flying nor throwing was established"
+        },
+        "unknown": [
+          "The intended verb form behind fling is uncertain."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": true
+    },
+    {
+      "id": "train:1574:7:3",
+      "input_ids": [
+        "train:1574:7:3"
+      ],
+      "note": "The source identifies the topic as people killing the admired animals for fur. Low does not reliably encode love, hatred or approval; leave the attitude unknown.",
+      "meaning": {
+        "speech_act": "statement",
+        "event_status": "unclear_attitude_to_fur_killers",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker refers to people who kill the admired animals for fur. Low does not securely encode the speaker's attitude; admiration for animals is not enough to supply a missing emotion verb."
+        },
+        "unknown": [
+          "The attitude expressed by low is unresolved; neither approval nor hatred is asserted."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1574:8:2",
+      "input_ids": [
+        "train:1574:8:2"
+      ],
+      "note": "This adapter contains the full original turn including cute, which supports a positive evaluation of mice. Carry about remains unresolved and does not assert transporting mice.",
+      "meaning": {
+        "speech_act": "statement",
+        "event_status": "positive_attitude_to_mice",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The full source reply explicitly calls mice cute, supporting a positive evaluation despite carry about. Do not treat carry as transporting an animal."
+        },
+        "unknown": [
+          "The precise expression carry about is unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1588:1:1",
+      "input_ids": [
+        "train:1588:1:1"
+      ],
+      "note": "Must see is an epistemic inference about film professionals viewing someone differently, with different light figurative. Preserve the fused word and leave the fee relationship unassigned.",
+      "meaning": {
+        "speech_act": "inference",
+        "event_status": "attributed_changed_professional_perception",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker links enormous fees to an inference that producers and directors view the listener differently. Must see is an inference and different light is figurative, not a command or literal illumination."
+        },
+        "unknown": [
+          "The fused verb you'recommending does not establish exactly how the fees are obtained or requested."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1592:10:2",
+      "input_ids": [
+        "train:1592:10:2"
+      ],
+      "note": "Would you like is an offer to view photographs. Look recently does not prove that the speaker took them or establish another completed photographic action.",
+      "meaning": {
+        "speech_act": "offer",
+        "event_status": "proposed_viewing",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker offers to show photos; the relative clause retains an unresolved look argument."
+        },
+        "unknown": [
+          "The role of that cannot be made a direct object without resolving the nonstandard look clause."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1607:2:1",
+      "input_ids": [
+        "train:1607:2:1"
+      ],
+      "note": "The Christmas question and we have support having a family tradition. Preserve so Ay without an inferred precise number or completion of a celebration.",
+      "meaning": {
+        "speech_act": "answer",
+        "event_status": "existence_of_family_traditions",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "In response to the Christmas-tradition question, the speaker indicates having family traditions. The malformed so Ay does not justify a precise number."
+        },
+        "unknown": [
+          "The quantity expression after so is unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1653:6:2",
+      "input_ids": [
+        "train:1653:6:2"
+      ],
+      "note": "The contrast with watercolors is explicit but will does not identify the preferred medium. Do not insert oil or reinterpret will as modal action.",
+      "meaning": {
+        "speech_act": "preference",
+        "event_status": "preferred_painting_medium_unknown",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker prefers painters using the material written will over watercolors. The contrast is clear but the preferred medium is not established; do not substitute oil automatically."
+        },
+        "unknown": [
+          "The painting medium represented by will is unknown."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1742:5:3",
+      "input_ids": [
+        "train:1742:5:3"
+      ],
+      "note": "The prior father-retirement report supplies the topic for the life-change assessment. Preserve turning going without inventing a new activity or independent retirement evidence from the fragment.",
+      "meaning": {
+        "speech_act": "evaluation",
+        "event_status": "retirement_as_life_change",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker characterizes the father's retirement as a significant life change. Turning going is not expanded into a specific new activity."
+        },
+        "unknown": [
+          "The exact expression behind turning going is uncertain."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1762:4:3",
+      "input_ids": [
+        "train:1762:4:3"
+      ],
+      "note": "The speaker attributes fame to a performance associated with the football World Cup and a song. Retain the title and unresolved attachment without correcting historical details.",
+      "meaning": {
+        "speech_act": "reported_fame",
+        "event_status": "performance_association_with_unclear_title",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker links Ricky Martin's fame to a performance connected with the football World Cup and a song. The printed title is retained; no independently verified title or performance record is supplied."
+        },
+        "unknown": [
+          "The precise song title and the attachment of performance to event versus song are uncertain."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1861:2:2",
+      "input_ids": [
+        "train:1861:2:2"
+      ],
+      "note": "The unwell speaker mentions a doctor but the missing predicate does not decide intended, ongoing or past contact. Keep timing and completion unknown.",
+      "meaning": {
+        "speech_act": "statement",
+        "event_status": "doctor_contact_with_unknown_phase",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The unwell speaker mentions contact with a doctor, but the missing predicate does not distinguish going, attending or having returned."
+        },
+        "unknown": [
+          "The timing and completion of the doctor visit are unknown."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1862:1:1",
+      "input_ids": [
+        "train:1862:1:1"
+      ],
+      "note": "If and will frame a conditional observation of scooter riders. Recently conflicts with that temporal frame; do not rewrite it or assert a particular observed ride.",
+      "meaning": {
+        "speech_act": "observation",
+        "event_status": "conditional_scooter_observation_with_unclear_time",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker describes seeing people riding scooters on streets if one goes out. Recently conflicts with the prospective wording, so an exact time reading is not imposed."
+        },
+        "unknown": [
+          "The temporal frame combining recently and will is unclear."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1885:4:4",
+      "input_ids": [
+        "train:1885:4:4"
+      ],
+      "note": "The immediately preceding free-kick discussion grounds the truncated topic of the contrast. The fragment supplies no predicate or outcome, so no value or success claim is invented.",
+      "meaning": {
+        "speech_act": "fragment",
+        "event_status": "incomplete_contrast_about_free_kicks",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The fragment begins a contrast about a few free kicks, recoverable from the immediately preceding sentences. It supplies no complete claim about their value or outcome."
+        },
+        "unknown": [
+          "The predicate and remainder of the contrasting claim are missing."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1894:2:1",
+      "input_ids": [
+        "train:1894:2:1"
+      ],
+      "note": "In the film discussion sorry concerns the hero or lead. Sympathy for a character and disappointment in an actor remain distinct unresolved possibilities.",
+      "meaning": {
+        "speech_act": "evaluation",
+        "event_status": "unclear_regret_toward_film_lead",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "In the film discussion the speaker expresses being sorry in relation to the hero or lead. The clause alone does not decide sympathy for a character versus disappointment in the actor."
+        },
+        "unknown": [
+          "The target and precise sense of sorry for hero remain uncertain."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1905:2:3",
+      "input_ids": [
+        "train:1905:2:3"
+      ],
+      "note": "The music-book question supplies the referent of it; that self points to a location without identifying its object. Do not replace self with shelf.",
+      "meaning": {
+        "speech_act": "answer",
+        "event_status": "deictic_book_location",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker points to a location for the music book using that self. The deictic location is present, but the object or furniture label is not securely supplied."
+        },
+        "unknown": [
+          "The location object represented by self is unresolved; do not silently substitute shelf."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1929:9:2",
+      "input_ids": [
+        "train:1929:9:2"
+      ],
+      "note": "The visible preceding prompt supplies E-bf/E-gf relationship context. The target may describe a relationship request, but must not claim an explicit liking statement omitted from the visible pair. Keep of and online/offline scope unresolved.",
+      "meaning": {
+        "speech_act": "request",
+        "event_status": "romantic_relationship_request_with_unclear_label",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "After expressing liking and discussing online bf/gf identities, the speaker requests a romantic relationship. The malformed of does not specify a reliable role label or whether the proposed relationship is online or offline."
+        },
+        "unknown": [
+          "The requested role label and online versus offline scope are uncertain."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1934:13:2",
+      "input_ids": [
+        "train:1934:13:2"
+      ],
+      "note": "Love to imagine and would preserve a hypothetical historical residence. Keep the incomplete 200 years a and coordination; no actual residence or renovation follows.",
+      "meaning": {
+        "speech_act": "imagined_scenario",
+        "event_status": "hypothetical",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker enjoys imagining historical life and an old-style house, not an actual residence."
+        },
+        "unknown": [
+          "The living coordination and the truncated a remain unresolved; a might begin a lost word rather than be an article."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1980:6:2",
+      "input_ids": [
+        "train:1980:6:2"
+      ],
+      "note": "The directions identify a route up the street to the crossroads. Was remains an unresolved motion expression, with no walk repair and no asserted completed or denied-completed journey.",
+      "meaning": {
+        "speech_act": "instruction",
+        "event_status": "route_to_crossroads_with_unclear_verb",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "In the directions, the speaker indicates proceeding up the street to the crossroads. Was is not silently repaired to walk and does not establish a past journey."
+        },
+        "unknown": [
+          "The intended motion verb or manner behind Was is unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1980:6:3",
+      "input_ids": [
+        "train:1980:6:3"
+      ],
+      "note": "Should see predicts a landmark on the right. The damaged as you was does not establish a past action or actual sighting.",
+      "meaning": {
+        "speech_act": "instruction",
+        "event_status": "prospective_landmark_sighting",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The directions predict a fast-food place on the listener's right while proceeding along the route. The malformed as you was does not establish a reliable action or past tense."
+        },
+        "unknown": [
+          "The action expressed by as you was is unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:2045:2:1",
+      "input_ids": [
+        "train:2045:2:1"
+      ],
+      "note": "Looking for a job is ongoing; the following market comment raises a difficulty without a reliable shard property. No job found or secured is inferred.",
+      "meaning": {
+        "speech_act": "statement",
+        "event_status": "job_search_and_unclear_market_assessment",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker reports looking for a job and refers to the job market as an obstacle. Shard does not establish a precise market property or supply a replacement adjective."
+        },
+        "unknown": [
+          "The intended description behind shard is unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:2080:6:2",
+      "input_ids": [
+        "train:2080:6:2"
+      ],
+      "note": "The preference contrasts an unstated medium with watercolors. Keep the missing object rather than importing oil or will from similar dialogues.",
+      "meaning": {
+        "speech_act": "preference",
+        "event_status": "missing_preferred_medium",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker prefers painters who use an unspecified medium rather than watercolors. The missing object cannot be filled with oil merely because a similar dialogue contains another damaged word."
+        },
+        "unknown": [
+          "The preferred painting medium is missing."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:2100:1:2",
+      "input_ids": [
+        "train:2100:1:2"
+      ],
+      "note": "The source reports a first visit to England and unfamiliarity in the taxi discussion. Preserve where I can do without guessing an exact place or activity.",
+      "meaning": {
+        "speech_act": "statement",
+        "event_status": "first_visit_and_uncertain_taxi_location",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker reports a first visit to England and unfamiliarity while asking where to get a taxi. The malformed where I can do leaves the exact scope of the unfamiliarity unclear."
+        },
+        "unknown": [
+          "The specific location or activity intended by where I can do is unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:2110:4:2",
+      "input_ids": [
+        "train:2110:4:2"
+      ],
+      "note": "Great gives a positive appraisal of the named ancestor. A remains an unidentified noun or label, with no profession or specific virtue inferred.",
+      "meaning": {
+        "speech_act": "evaluation",
+        "event_status": "positive_ancestor_assessment",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "After naming Peter Madsen, the speaker evaluates the ancestor positively. The final A does not identify a profession, noun or particular virtue."
+        },
+        "unknown": [
+          "The noun or label represented by A is missing or unclear."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:2110:5:2",
+      "input_ids": [
+        "train:2110:5:2"
+      ],
+      "note": "The question concerns an aspect of the ancestor, but active does not identify appreciation or another mental verb. Narrow the target to the question topic and leave the requested relation unknown.",
+      "meaning": {
+        "speech_act": "question",
+        "event_status": "queried_ancestor_aspect_with_unclear_relation",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "asked about an aspect of the ancestor; active leaves the requested relation unclear and no answer was supplied"
+        },
+        "unknown": [
+          "The intended verb behind active is unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": true
+    },
+    {
+      "id": "train:2169:4:1",
+      "input_ids": [
+        "train:2169:4:1"
+      ],
+      "note": "Record the speaker's stereotyped generalization without endorsing it. Bare woman does not settle a particular referent, number or a specific interaction.",
+      "meaning": {
+        "speech_act": "generalization",
+        "event_status": "attributed_susceptibility_to_women",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker generalizes that most bosses are easily influenced by women. This records the speaker's stereotype rather than endorsing it; the bare woman does not settle number or a particular referent."
+        },
+        "unknown": [
+          "The generic versus singular reference of woman is uncertain."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:2195:6:3",
+      "input_ids": [
+        "train:2195:6:3"
+      ],
+      "note": "The explicit prior prompt grounds figurative social radar. Preserve h and leave its continuation unknown; do not create possession of a radar device.",
+      "meaning": {
+        "speech_act": "figurative_self_description",
+        "event_status": "perceived_social_intuition",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "After saying they can judge potential friends on first meeting, the speaker compares this intuition to radar. The trailing h has no recoverable continuation and no actual radar device is asserted."
+        },
+        "unknown": [
+          "The continuation after h is missing."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:2214:7:2",
+      "input_ids": [
+        "train:2214:7:2"
+      ],
+      "note": "The reply evaluates opportunities in the college-offer discussion. Not that By supplies no recoverable quantity or property; it does not prove that opportunities are few.",
+      "meaning": {
+        "speech_act": "evaluation",
+        "event_status": "limited_opportunities_with_unclear_comparison",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "In urging care over the college offer, the speaker comments on the opportunities available to Jack. Not that By does not securely identify their quantity, quality or another property."
+        },
+        "unknown": [
+          "The compared property or quantity represented by By is unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:2227:12:1",
+      "input_ids": [
+        "train:2227:12:1"
+      ],
+      "note": "The modal reply expresses confidence about the proposed yoga challenge. Keep so and that unresolved; neither a precise action nor achieved mastery is asserted.",
+      "meaning": {
+        "speech_act": "response",
+        "event_status": "claimed_ability_with_unclear_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "After being told yoga requires perseverance, the speaker expresses confidence about coping with the proposed challenge. The malformed so does not identify a precise action or completed achievement."
+        },
+        "unknown": [
+          "The intended predicate and exact scope of that remain uncertain."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:2229:3:1",
+      "input_ids": [
+        "train:2229:3:1"
+      ],
+      "note": "Keep the allegation that incapable people occupy important positions attributed to the speaker. The damaged practice and causal link do not establish verified misconduct or a precise patronage mechanism.",
+      "meaning": {
+        "speech_act": "accusation",
+        "event_status": "officials_and_alleged_incompetent_appointments",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker alleges that incapable people occupy important positions and connects the situation to the mayor and a high official. The damaged crony is mand does not securely establish a specific patronage mechanism or verify misconduct."
+        },
+        "unknown": [
+          "The precise practice and causal link encoded by crony is mand are unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:2231:5:2",
+      "input_ids": [
+        "train:2231:5:2"
+      ],
+      "note": "The dialogue grounds Norway and the named fjords, waterfalls and mountains. Preserve pictures as and its scenery-versus-images uncertainty rather than repairing picturesque.",
+      "meaning": {
+        "speech_act": "description",
+        "event_status": "norway_landscape_association",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker associates Norway with fjords, waterfalls and mountains. Pictures as leaves unclear whether the wording describes actual scenery or images; do not silently replace it with picturesque."
+        },
+        "unknown": [
+          "The relation expressed by pictures as is uncertain."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:2234:7:3",
+      "input_ids": [
+        "train:2234:7:3"
+      ],
+      "note": "The source reports a habitual meeting of friends at a corner on the school route. Leave another go together and its participant linkage unresolved; no particular completed trip is asserted.",
+      "meaning": {
+        "speech_act": "description",
+        "event_status": "habitual_meeting_before_school",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "Jack habitually meets friends at the corner on the way to school. The damaged another go together suggests joint travel but does not securely identify its participants or syntax."
+        },
+        "unknown": [
+          "The subject and connective in another go together are unclear."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:2252:1:1",
+      "input_ids": [
+        "train:2252:1:1"
+      ],
+      "note": "How asks about the first meeting. Preserve Jack each other without assigning Jack to a unique participant or addressee role, or supplying an answer.",
+      "meaning": {
+        "speech_act": "question",
+        "event_status": "queried_first_meeting_with_unclear_participants",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker asks about a first meeting. The redundant Jack each other leaves Jack's exact role, as a participant or addressee, uncertain; no answer is supplied."
+        },
+        "unknown": [
+          "Jack's role and the exact set of meeting participants are unclear."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:2299:6:1",
+      "input_ids": [
+        "train:2299:6:1"
+      ],
+      "note": "Www reacts to the stated absence of a school day off. Its exact vocalization and emotion remain unknown; no website or specific emotional polarity is inferred.",
+      "meaning": {
+        "speech_act": "reaction",
+        "event_status": "reaction_to_denied_day_off",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The interjection reacts to being told there will be no day off school. Www does not securely establish a specific emotion or refer to a website."
+        },
+        "unknown": [
+          "The vocalization and exact emotion are unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:2390:7:2",
+      "input_ids": [
+        "train:2390:7:2"
+      ],
+      "note": "The question concerns how Simon handled an unspecified matter. Keep the stranded to and unresolved it without inventing an explanation, recipient or definite event.",
+      "meaning": {
+        "speech_act": "question",
+        "event_status": "queried_handling_of_unclear_situation",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker asks how Simon handled something in the discussion of missing the movie. The stranded to and the referent of it do not identify a definite event, explanation or recipient."
+        },
+        "unknown": [
+          "The event referred to by it and the continuation after to are unclear."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:2440:4:2",
+      "input_ids": [
+        "train:2440:4:2"
+      ],
+      "note": "The reply proposes attending to tasks and tidying. Keep the missing argument after Let and brass tasks unresolved; no completed tidying is reported.",
+      "meaning": {
+        "speech_act": "suggestion",
+        "event_status": "proposed_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "Tidying things up is proposed; no completed tidying is asserted."
+        },
+        "unknown": [
+          "The omitted argument after Let and the expression brass tasks remain unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:2460:4:2",
+      "input_ids": [
+        "train:2460:4:2"
+      ],
+      "note": "Every day describes a habitual destination written rye. A muscular appearance does not justify replacing it with gym or inventing an exercise.",
+      "meaning": {
+        "speech_act": "statement",
+        "event_status": "habitual_visit_to_unclear_place",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker reports going daily to the place written rye. The muscular appearance does not prove that the destination is a gym or that any particular exercise occurs."
+        },
+        "unknown": [
+          "The destination represented by rye is unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:2502:7:1",
+      "input_ids": [
+        "train:2502:7:1"
+      ],
+      "note": "Hope and negation express opposition to possible future cloning. Preserve decode to and leave the process unknown; no cloning plan, DNA decoding or completed experiment is established.",
+      "meaning": {
+        "speech_act": "wish",
+        "event_status": "negative_cloning_wish_with_unclear_decision_verb",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker hopes scientists will not make a future clone of them. Decode to is not silently repaired and does not establish an existing cloning plan, DNA decoding or a completed experiment."
+        },
+        "unknown": [
+          "The precise decision or process encoded by decode to is unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:2557:6:3",
+      "input_ids": [
+        "train:2557:6:3"
+      ],
+      "note": "Keep the claim about named conditions attributed to researchers within the speaker's book account. Preserve the corrupted phrase; this is neither independent medical verification nor advice.",
+      "meaning": {
+        "speech_act": "reported_claim",
+        "event_status": "attributed_research_claim_with_damaged_phrase",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker attributes to researchers a claim that coffee reduces risks of the named conditions. This records the speaker's report, not medical advice or verification of the research. The damaged phrase before including remains unresolved."
+        },
+        "unknown": [
+          "The words and stray characters in aimed 3'including are unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:2571:3:4",
+      "input_ids": [
+        "train:2571:3:4"
+      ],
+      "note": "Probably and should express a tentative clothing proposal. Preserve car key as an unidentified item; absence of completion evidence must not become a statement that dressing did not occur.",
+      "meaning": {
+        "speech_act": "tentative_plan",
+        "event_status": "clothing_choice_with_unclear_item",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker tentatively proposes a simple shirt and an item written car key for the first workday. The clothing context does not identify car key as khaki or another garment, and no completed dressing is asserted."
+        },
+        "unknown": [
+          "The intended clothing item behind car key is unknown."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": true
+    },
+    {
+      "id": "train:2602:1:1",
+      "input_ids": [
+        "train:2602:1:1"
+      ],
+      "note": "Would rather expresses preference for limited contact and not taking further action. The final modal question lacks a predicate, and her/it remain unidentified; no actual meeting follows.",
+      "meaning": {
+        "speech_act": "preference_and_question",
+        "event_status": "limited_contact_and_unclear_intervention",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker prefers seeing a woman once or twice without taking further action, then asks an incomplete rhetorical question about what they could do. The woman and the situation are not identified."
+        },
+        "unknown": [
+          "The reference of her and it, and the missing predicate after I, are unspecified."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:2637:12:2",
+      "input_ids": [
+        "train:2637:12:2"
+      ],
+      "note": "Will introduces planned letter contents and thanking Sue. Preserve round of you as an unknown emotional expression; no sending is reported rather than affirmatively denied.",
+      "meaning": {
+        "speech_act": "plan",
+        "event_status": "letter_contents_with_unclear_emotion_word",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker plans to describe their reaction to the promotion and thank Sue for her letter. Round of you is not physical roundness and its emotional label remains unresolved; completed sending is not reported."
+        },
+        "unknown": [
+          "The precise emotional expression behind round of you is unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": true
+    }
+  ],
+  "source_text_changes": 0,
+  "api_calls": 0,
+  "parser_inference_calls": 0,
+  "new_adapters": 0,
+  "previous_catalog_patterns_preserved": 731
+}

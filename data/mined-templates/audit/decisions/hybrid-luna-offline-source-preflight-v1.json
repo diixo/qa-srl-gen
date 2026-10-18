@@ -1,0 +1,19 @@
+{
+  "status": "all_source_dialogues_equal_review_parts",
+  "dialogues_checked": 13118,
+  "parts_checked": 100,
+  "previous_source_hashes": {
+    "train": "b5fbc5e01a045152a0be720bff0ae89e2cd1fc573967c6f98cb29665032a18e7",
+    "val": "99305a7a4d05a2287f861e32c878c811325772a1d853d0273949632eb1ca31c9",
+    "test": "6bb7c5baee3480a93a9826b1d73b260f4cf440561613e4f4494cea73c33727d5"
+  },
+  "current_source_hashes": {
+    "train": "9eda47a6445c4edf243dfac3c1d0aa98547eec7c9f63ad122db3185f7ad17596",
+    "val": "99305a7a4d05a2287f861e32c878c811325772a1d853d0273949632eb1ca31c9",
+    "test": "6bb7c5baee3480a93a9826b1d73b260f4cf440561613e4f4494cea73c33727d5"
+  },
+  "text_changed": false,
+  "reason": "Train file bytes differ, but every parsed JSON turn matches its archived part exactly. Refresh byte fingerprint without rewriting source.",
+  "before_manifest_sha256": "894b101173d60b19a84a7043f22a5ef1b3df9f1c355357ff8635eb7f21e3cc34",
+  "after_manifest_sha256": "1aaeb8e1ee7a531715fbe233c77415d472c784c1d4233862c4b08505b72db172"
+}

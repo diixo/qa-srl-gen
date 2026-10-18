@@ -1,0 +1,131 @@
+{
+  "version": "offline-luna-progress-v2",
+  "candidate": "artifacts/dailydialog-hybrid-luna-scopes-v1",
+  "bank": "artifacts/dailydialog-hybrid-luna-scopes-v1/bank",
+  "report": {
+    "status": "source_segmentation_complete",
+    "counts": {
+      "compiled_occurrences": 161292,
+      "reviewed_syntax_reuses": 1088,
+      "fragment_or_nonverbal_candidates": 26296,
+      "context_reviewed_occurrences": 427,
+      "context_syntax_corrections": 227,
+      "groups": 70876,
+      "entity_candidates": 10535,
+      "sample_cases": 110
+    },
+    "validation": {
+      "status": "passed",
+      "source_sha256": "3cdcd58fcb8f9f7e947a31372a8cddf93b31160d26f2681f35f2296eee82df44",
+      "templates": 98850,
+      "attested_roundtrips": 107682,
+      "source_records": 161292,
+      "token_spans": 1377797,
+      "verbs_occurrences": 289393,
+      "adjectives_occurrences": 71979
+    },
+    "conservation": {
+      "status": "passed",
+      "counts": {
+        "old_segments": 161292,
+        "old_tokens": 1377798,
+        "new_segments": 161292,
+        "new_tokens": 1377797,
+        "unchanged_analyses": 161255,
+        "revised_outputs": 37
+      },
+      "explicit_token_delta": -1,
+      "reference_expansion_token_delta": 0,
+      "previous_preimages_retained": true
+    },
+    "dialogues": 12608,
+    "turns": 99224,
+    "previous_bank_unchanged": true,
+    "protected_files": 510,
+    "source_files_updated": 6,
+    "api_calls": 0,
+    "parser_inference_calls": 0,
+    "published": false,
+    "elapsed_seconds": 237.27
+  },
+  "reviews": "data\\dailydialog\\review-parts\\hybrid-luna-offline-scope-reviews-v1.jsonl",
+  "queue": "data\\dailydialog\\review-parts\\luna-offline-v2\\pending-warnings.jsonl.gz",
+  "received_evidence": "data\\dailydialog\\review-parts\\luna-offline-v2\\received-evidence.jsonl.gz",
+  "warning_counts": {
+    "pending_context_or_source_review": 12460,
+    "closed_representation_only": 419,
+    "fixed_in_candidate": 84,
+    "closed_not_supported": 15
+  },
+  "case_counts": {
+    "api_clear_not_semantically_approved": 35884,
+    "with_pending_warnings": 10742,
+    "all_warnings_addressed_not_semantically_approved": 451
+  },
+  "outputs_sha256": "f792915163ff9f8a309ba840b55ebe1cf461c8f1d74d4de40b02990766f5c0e3",
+  "api_status": "offline_by_user_request",
+  "next_api_job_if_ever_resumed": 18376,
+  "tests": {
+    "passed": 91,
+    "suites": [
+      "test_dailydialog_api_reconciliation.py",
+      "test_dailydialog_source_segmentation.py",
+      "test_dailydialog_context_revision.py"
+    ]
+  },
+  "next_step": "Continue from luna-offline-v2/pending-warnings.jsonl.gz and the scopes-v1 candidate. Source offsets and duplicate contexts must remain synchronized. No gateway calls.",
+  "published": false,
+  "pending_groups": {
+    "ambiguity": 227,
+    "clause_attachment": 1027,
+    "coordination": 908,
+    "direct_address": 1495,
+    "lemma_or_inflection": 375,
+    "negation_or_modality": 5,
+    "other_syntax": 3366,
+    "particle_or_preposition": 845,
+    "property_attachment": 1770,
+    "sentence_boundary": 437,
+    "source": 2005
+  },
+  "source_parts_verified_dialogues": 13118,
+  "manual_reference_dialogues_preserved": 510,
+  "api_unanswered_cases": 112802,
+  "current_batch": {
+    "selection": "all previously pending negation_or_modality cases; other issues on these cases also reviewed",
+    "cases": 45,
+    "warnings_reviewed": 59,
+    "applied_reviews": 37,
+    "fixed_warnings": 44,
+    "unsupported_warnings": 6,
+    "still_pending_warnings": 9,
+    "random_quality_sample": false
+  },
+  "remaining_selected_cases": [
+    {
+      "id": "train:10144:9:1",
+      "reason": "Multiword so long as attachment requires an agreed convention; no unsupported automatic replacement."
+    },
+    {
+      "id": "train:10150:5:1",
+      "reason": "Missing existential copula; source and duplicate train:829 require coordinated correction."
+    },
+    {
+      "id": "train:10198:6:1",
+      "reason": "did't correction shifts later sentence addresses; coordinate the full-turn source update."
+    },
+    {
+      "id": "train:10941:3:3",
+      "reason": "Missing lexical predicate in cannot really it cannot be recovered uniquely. Keep quarantined."
+    },
+    {
+      "id": "train:2097:5:1",
+      "reason": "cant't correction shifts later sentence addresses; coordinate the full-turn source update."
+    }
+  ],
+  "remaining_steps": [
+    "Resolve source defects and remaining warning groups offline; accumulate explicit decisions before another rebuild.",
+    "Random contextual quality checks on API clear cases and the automatically parsed remainder without an API response.",
+    "Admit only confirmed templates to the central Built-in pool and run dataset-generation checks."
+  ]
+}

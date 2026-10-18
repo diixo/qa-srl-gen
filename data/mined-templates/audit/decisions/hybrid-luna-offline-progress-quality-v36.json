@@ -1,0 +1,148 @@
+{
+  "version": "offline-quarantine-and-independent-quality-v36",
+  "date": "2026-10-18",
+  "previous_progress": "data/dailydialog/review-parts/hybrid-luna-offline-progress-quarantine-v35.json",
+  "candidate": "artifacts/dailydialog-hybrid-quality-v36",
+  "ledger": "data/dailydialog/review-parts/luna-offline-quality-v36",
+  "review_status": "UNREVIEWED",
+  "full_candidate_published": false,
+  "semantic_review_complete": false,
+  "quarantine": {
+    "current_pass_complete": true,
+    "unresolved_warnings": 19,
+    "deferred_until_new_evidence": 19,
+    "blocked_template_occurrences": 21,
+    "allowed_adjacent_adapters": 2,
+    "active_retry_queue": [],
+    "resolved_by_archive_comparison": 0,
+    "archive_report": "data/dailydialog/review-parts/hybrid-quarantine-archive-comparison-v36.json",
+    "evidence": "The mirror archive has the same incomplete turns in split files and the monolithic file. No source continuation was recovered; deferral is not a correction."
+  },
+  "independent_quality": {
+    "sentences": 50,
+    "distinct_dialogues": 50,
+    "population": 148103,
+    "seed": "20261018-independent-quality-v36",
+    "outcomes": {
+      "no_specific_parse_error_identified": 36,
+      "confirmed_annotation_error": 14
+    },
+    "annotation_repairs": 14,
+    "source_text_changes": 0,
+    "plan": "data/dailydialog/review-parts/hybrid-independent-quality-plan-v36.json",
+    "report": "data/dailydialog/review-parts/hybrid-independent-quality-review-v36.json",
+    "limitation": "One direct model reviewer, not a human gold set or trained-model evaluation. The sample does not authorize corpus-wide semantic approval.",
+    "retained_partial_reading": "Case 47 preserves the unknown omitted predicate and can train only the visible parent-topic question."
+  },
+  "publication": {
+    "attested_sentences": 41,
+    "source_id": "dailydialog-independent-quality-v36",
+    "mode": "attested_sentence",
+    "generic_role_qa": false,
+    "recombination": false,
+    "new_dialogue_pairs": 14,
+    "catalog_patterns": 749,
+    "previous_adapter_patterns_preserved": 735,
+    "report": "artifacts/dailydialog-quality-v36/attested/report.json",
+    "adapter_report": "artifacts/dailydialog-quality-v36/fragment-admission.json"
+  },
+  "generation": {
+    "episodes": 84,
+    "extraction": 252,
+    "history": 84,
+    "memory": 84,
+    "participant_modes": [
+      "user-assistant",
+      "named-people"
+    ],
+    "splits": [
+      "train",
+      "validation",
+      "test"
+    ],
+    "json_inside_content": false,
+    "cross_split_prompt_overlaps": [],
+    "datasets": "artifacts/dailydialog-quality-v36/datasets",
+    "synthetic_eligible_templates": 17,
+    "synthetic_rows_by_split": {
+      "train": 16,
+      "dev": 1,
+      "test": 0
+    },
+    "templates_excluded_by_existing_controlled_verb_policy": 24,
+    "note": "The existing policy for manually controlled be/have/go/etc. remains active. Surface attestation admission is distinct from a reviewed dialogue Extraction adapter."
+  },
+  "validation": {
+    "status": "passed",
+    "source_sha256": "de18ebed39d017b2301f77c61ec96be7557325807eda74c67d3718ff79597f3c",
+    "templates": 101327,
+    "attested_roundtrips": 110213,
+    "source_records": 161312,
+    "token_spans": 1378085,
+    "verbs_occurrences": 289415,
+    "adjectives_occurrences": 71914
+  },
+  "conservation": {
+    "status": "passed",
+    "counts": {
+      "old_segments": 161312,
+      "old_tokens": 1378085,
+      "new_segments": 161312,
+      "new_tokens": 1378085,
+      "unchanged_analyses": 161262,
+      "revised_outputs": 50
+    },
+    "explicit_token_delta": 0,
+    "reference_expansion_token_delta": 0,
+    "previous_preimages_retained": true
+  },
+  "tests": {
+    "passed": 1625,
+    "seconds": 105.622,
+    "report": "artifacts/dailydialog-quality-v36/pytest-final.xml"
+  },
+  "final_audit": {
+    "path": "artifacts/dailydialog-quality-v36/quarantine-audit.json",
+    "published_templates_checked": 5579,
+    "fragment_patterns_checked": 749,
+    "blocked_template_admission_probes": 21,
+    "qa_probes": 91,
+    "recombination_probes": 552
+  },
+  "preserved": {
+    "source_dialogues": 13118,
+    "manual_dialogues": 510,
+    "paid_warnings": 12978,
+    "paid_evidence_sha256": "68f72401d4ccd5e4a26eaaf23e1558dc268f136195680c658a2f857f8be68391",
+    "non_pool_protected_files_unchanged": 914,
+    "source_text_changes": 0,
+    "token_text_changes": 0
+  },
+  "audit_fix": "The mutable catalog may append patterns only if its original 735-pattern prefix and metadata reproduce the historical file SHA-256. The register evidence hash and all 21 dispositions are unchanged; the prior register is saved.",
+  "api_calls": 0,
+  "parser_inference_calls": 0,
+  "verified_files": {
+    "data/dailydialog/review-parts/hybrid-fragment-adapters-v36.json": "1d62a0e49dd0c6fc86a7f51a5d6a9e31b346ddac0b0d47371d39f6b726349867",
+    "data/dailydialog/review-parts/hybrid-fragment-original-contexts-v36.jsonl": "f5cb1a3037db94e0ce024d0145cbf37b78142d4f21d512b3ea5384e9a5ca7b1e",
+    "data/dailydialog/review-parts/hybrid-independent-quality-admission-v36.jsonl": "44caf68243dd2d293520bf34464b2912eacde4bc67e88baf1c8fe36b9cff1fa2",
+    "data/dailydialog/review-parts/hybrid-independent-quality-after-v36.jsonl.gz": "3fab78f6f537eff81cb4d1b417c4fe4ccddfff539857cf52bace3df80b77b5d4",
+    "data/dailydialog/review-parts/hybrid-independent-quality-blind-v36.json": "9aa50e21db07405229068fcd36bd9257802b8db18dfeee505b00c12d03e8b8fa",
+    "data/dailydialog/review-parts/hybrid-independent-quality-context-v36.jsonl": "d1fa015022fa46790bfe095180e4f8f96e30f432f9731b4751cd00243f5f1429",
+    "data/dailydialog/review-parts/hybrid-independent-quality-plan-v36.json": "ed3cbb60101a0a77a429d3eb384fcc2d21df2bd3f139f63e9e90279398c69823",
+    "data/dailydialog/review-parts/hybrid-independent-quality-readings-v36.json": "43869fd6ae19e1e761564714a46df0180e6a9c9d6275c9ce9fae061db36aab7e",
+    "data/dailydialog/review-parts/hybrid-independent-quality-review-v36.json": "5c5e0d6183bb63d38cbe807a7cd7c78affa1afa5c4669cfd9ef608f09b8b3090",
+    "data/dailydialog/review-parts/hybrid-independent-quality-snapshot-v36.jsonl.gz": "76d470e35e92516bca4d4a2ea3a6b15a649424143dc2f2e038b88692260ed76c",
+    "data/dailydialog/review-parts/hybrid-independent-quality-warning-rechecks-v36.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "data/dailydialog/review-parts/hybrid-quarantine-archive-comparison-v36.json": "1ad504af874cc09d522d9b2172c806187bf4fcaba18af1856aba58d1fa1ddb3d",
+    "data/dailydialog/review-parts/hybrid-quarantine-register-before-v36.json": "9bf9c3569aea340ca05f57f83450a9e94e95f195b8b6c9fd55cbddca7a1897b9",
+    "scripts/audit_dailydialog_quarantine.py": "27597c0bb9746260332a87d445f450b236bbfde620338f20c79c8008e078eba3",
+    "tests/test_dailydialog_quarantine_policy.py": "2eacd1ef98294c2a2cc15c7bbbc2297822a565d80f8f31f33a57ba2f97c84edd",
+    "data/mined-templates/reviewed/dailydialog-quarantine.json": "6e099ca7cc6871791eec55117f23d2f87db5430a247b2ab508b4b7bc99e70390"
+  },
+  "next": [
+    "Do not repeatedly reprocess the 19 deferred warnings without new source evidence. Their full templates remain blocked.",
+    "Use the saved fourteen QC repair categories to inspect analogous candidate occurrences with their own context before applying broader rules. Do not extend these address-specific approvals automatically.",
+    "Evaluate a newly frozen sample after any broader repair. All 50 v36 cases are now reviewed development evidence and must not be reused as an independent quality estimate.",
+    "Continue expanding supported semantic adapters and evaluating Extraction separately from surface template reconstruction. No training was run in this step."
+  ]
+}

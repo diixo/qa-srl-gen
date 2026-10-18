@@ -1,0 +1,225 @@
+{
+  "version": "additional-limited-interpretations-v34",
+  "closed_for_limited_use": 7,
+  "linguistic_ambiguities_resolved": 0,
+  "full_template_semantic_approval": false,
+  "cases": [
+    {
+      "id": "train:1770:4:4",
+      "group": "supplemental",
+      "status": "closed_representation_only",
+      "previous_status": "partial_adapter_published_unknown_retained",
+      "previous_file": "data/dailydialog/review-parts/hybrid-supplemental-decisions-v27.json",
+      "previous_file_sha256": "f1dc06baf54b7247d4631106f8d7e8c1231c1f5cd03ba471da095d4ab7231c6a",
+      "previous_case_sha256": "c70da8ceb0fa53735bf9d3a992e144c8c54e7cf71f077b1eb27e69a75587f712",
+      "source_snapshot": "data/dailydialog/review-parts/hybrid-source-snapshot-v34.jsonl.gz",
+      "candidate": "artifacts/dailydialog-hybrid-source-v34",
+      "candidate_image_sha256": "7f044dcbc3dd34f50537e433d11f95d63e7aa48b272d320eb46ec2ad5a41acc2",
+      "context_review_sha256": "d82c5e694fd1be310dd1411124db30a251670083bf252958340bdbca76fb11b6",
+      "adapter_id": "dd_v27_train_1770_4_4",
+      "meaning": {
+        "speech_act": "statement",
+        "event_status": "negative_completion_with_deadline",
+        "content": {
+          "interpretation": "The deadlines for the two assigned projects are approaching and the speaker reports unfinished work. The wording still have not finished one of them does not safely fix how many of the two are complete; preserve the negative completion claim without choosing a quantifier reading."
+        },
+        "completed_action_asserted": false,
+        "unknown": [
+          "Whether one project is unfinished or neither is finished remains ambiguous."
+        ]
+      },
+      "note": "Accept the explicit unfinished-work report as deadlines approach. Preserve ambiguity between one unfinished project and neither completed; no exact completed count is supplied.",
+      "source_text_changed": false,
+      "ambiguity_resolved": false,
+      "unknown_retained": true,
+      "publication_scope": "adapted_visible_pair_only",
+      "full_template_semantic_approval": false
+    },
+    {
+      "id": "train:2641:3:1",
+      "group": "supplemental",
+      "status": "closed_representation_only",
+      "previous_status": "partial_adapter_published_unknown_retained",
+      "previous_file": "data/dailydialog/review-parts/hybrid-supplemental-decisions-v27.json",
+      "previous_file_sha256": "f1dc06baf54b7247d4631106f8d7e8c1231c1f5cd03ba471da095d4ab7231c6a",
+      "previous_case_sha256": "e5cabf31aa087a18534569ff326d43cfa2194b22b9ff453e79aa1fd223fafb0d",
+      "source_snapshot": "data/dailydialog/review-parts/hybrid-source-snapshot-v34.jsonl.gz",
+      "candidate": "artifacts/dailydialog-hybrid-source-v34",
+      "candidate_image_sha256": "7073c0f6edd9c4797600231eb764d1f516c7e2cd98addab45254d3c036f9b0af",
+      "context_review_sha256": "ecc6b350d9de93d673f95586560d6a8df56b5b2bf817b16999cc2748565f7093",
+      "adapter_id": "dd_v27_train_2641_3_1",
+      "meaning": {
+        "speech_act": "statement",
+        "event_status": "approximate_habitual_temperature",
+        "content": {
+          "interpretation": "The speaker reports a summer temperature of about 20 or 25 in their city. Preserve the approximate alternatives and recurring reading. Do not turn or into an exact closed range or supply a unit solely from the other speaker's city."
+        },
+        "completed_action_asserted": false,
+        "unknown": [
+          "The measurement unit for this speaker's figure is not explicitly established; usually often is redundant source wording."
+        ]
+      },
+      "note": "Accept the approximate habitual temperature alternatives about 20 or 25. Preserve the missing scale, redundant wording and original or25; do not impose Celsius or a closed range.",
+      "source_text_changed": false,
+      "ambiguity_resolved": false,
+      "unknown_retained": true,
+      "publication_scope": "adapted_visible_pair_only",
+      "full_template_semantic_approval": false
+    },
+    {
+      "id": "test:215:9:4",
+      "group": "supplemental",
+      "status": "closed_representation_only",
+      "previous_status": "partial_adapter_published_unknown_retained",
+      "previous_file": "data/dailydialog/review-parts/hybrid-supplemental-decisions-v27.json",
+      "previous_file_sha256": "f1dc06baf54b7247d4631106f8d7e8c1231c1f5cd03ba471da095d4ab7231c6a",
+      "previous_case_sha256": "18035e1aa47b53b023c961880e044b6c198e80df866a503f9f09c2d96cc0ad62",
+      "source_snapshot": "data/dailydialog/review-parts/hybrid-source-snapshot-v34.jsonl.gz",
+      "candidate": "artifacts/dailydialog-hybrid-source-v34",
+      "candidate_image_sha256": "89a144a4af4227c246803d780a18ad9c56b98e4672efc319a6d53d615081191b",
+      "context_review_sha256": "742dc6f4fc65ed3bd14d4cfd9049e36b05c7ad7445d2766d989f74298e637d0d",
+      "adapter_id": "dd_v27_test_215_9_4",
+      "meaning": {
+        "speech_act": "statement",
+        "event_status": "claimed_quality_selection",
+        "content": {
+          "interpretation": "The salesperson claims that only the creme makes it through inspection in a discussion of chocolate quality. Makes it through means passes the inspection, not manufactures an object. The source word creme is retained; no ingredient or precise selected product is inferred."
+        },
+        "completed_action_asserted": false,
+        "unknown": [
+          "Creme could be literal cream or a figurative reference to the best quality; the dialogue does not establish which."
+        ]
+      },
+      "note": "Accept the sales claim that only the group labelled creme passes inspection. Retain the ingredient/category/quality uncertainty and do not infer a particular passed inspection.",
+      "source_text_changed": false,
+      "ambiguity_resolved": false,
+      "unknown_retained": true,
+      "publication_scope": "adapted_visible_pair_only",
+      "full_template_semantic_approval": false
+    },
+    {
+      "id": "test:423:4:2",
+      "group": "supplemental",
+      "status": "closed_representation_only",
+      "previous_status": "partial_adapter_published_unknown_retained",
+      "previous_file": "data/dailydialog/review-parts/hybrid-supplemental-decisions-v27.json",
+      "previous_file_sha256": "f1dc06baf54b7247d4631106f8d7e8c1231c1f5cd03ba471da095d4ab7231c6a",
+      "previous_case_sha256": "966a1b8ef0134dd7033a203c1f5e69c7628ad59b54cf33bea8a530731eb0c8b0",
+      "source_snapshot": "data/dailydialog/review-parts/hybrid-source-snapshot-v34.jsonl.gz",
+      "candidate": "artifacts/dailydialog-hybrid-source-v34",
+      "candidate_image_sha256": "f191bcd2fc46e9ea9272e542862981dda8bcdc251896fc1433798d48bc15fd2c",
+      "context_review_sha256": "cdfd94ddb8b8d95b0d0adf7a5e55c0535cc302cc1998435cc34e0c0474744e95",
+      "adapter_id": "dd_v27_test_423_4_2",
+      "meaning": {
+        "speech_act": "attributed_statement",
+        "event_status": "reported_credit_description",
+        "content": {
+          "interpretation": "The speaker attributes a high credit reading to a record in a loan discussion. The statement provides no numeric score, approval or disbursement. Keep reading as printed; the text correction addressed shows only."
+        },
+        "completed_action_asserted": false,
+        "unknown": [
+          "The intended term credit reading is unclear; do not silently replace it with credit rating or infer a loan decision."
+        ]
+      },
+      "note": "Accept the attributed high credit reading. Preserve the source term and original show; no score, approval, disbursement or independently verified credit quality is licensed.",
+      "source_text_changed": false,
+      "ambiguity_resolved": false,
+      "unknown_retained": true,
+      "publication_scope": "adapted_visible_pair_only",
+      "full_template_semantic_approval": false
+    },
+    {
+      "id": "test:605:6:2",
+      "group": "supplemental",
+      "status": "closed_representation_only",
+      "previous_status": "partial_adapter_published_unknown_retained",
+      "previous_file": "data/dailydialog/review-parts/hybrid-supplemental-decisions-v27.json",
+      "previous_file_sha256": "f1dc06baf54b7247d4631106f8d7e8c1231c1f5cd03ba471da095d4ab7231c6a",
+      "previous_case_sha256": "7c66df3a0071642a998d6c519fb2b3ec8138900c3a844234ae576345e5070c54",
+      "source_snapshot": "data/dailydialog/review-parts/hybrid-source-snapshot-v34.jsonl.gz",
+      "candidate": "artifacts/dailydialog-hybrid-source-v34",
+      "candidate_image_sha256": "0700b246cc10015e40fddf030e1e8529eae57402d92d9efe6eeafbf1b3e5ec55",
+      "context_review_sha256": "61b1928e376df7be0e2e474ae7c4ce3447cb4330b57fe16659c790f58b7e190a",
+      "adapter_id": "dd_v27_test_605_6_2",
+      "meaning": {
+        "speech_act": "statement",
+        "event_status": "negative_preference_with_awkward_linkage",
+        "content": {
+          "interpretation": "The speaker reports not liking to drink alone and mentions someone sitting next to them. The negation concerns liking solitary drinking, not all drinking or the existence of the other person. No completed drink is inferred."
+        },
+        "completed_action_asserted": false,
+        "unknown": [
+          "Especially there is has defective linkage; whether a conditional or other connective is omitted cannot be recovered reliably."
+        ]
+      },
+      "note": "Accept the dislike of solitary drinking and mention of someone beside the speaker. Preserve the especially linkage uncertainty; negation does not deny all drinking or the other person.",
+      "source_text_changed": false,
+      "ambiguity_resolved": false,
+      "unknown_retained": true,
+      "publication_scope": "adapted_visible_pair_only",
+      "full_template_semantic_approval": false
+    },
+    {
+      "id": "train:8624:2:3",
+      "group": "quality",
+      "status": "closed_representation_only",
+      "previous_status": "quarantined_unresolved",
+      "previous_file": "data/dailydialog/review-parts/hybrid-quality-decisions-v29.json",
+      "previous_file_sha256": "ed61df95c0159270d99bea9e526141c853f66902a1a7829d87cb9a4f19ae2f91",
+      "previous_case_sha256": "4f86fb298407ac5adf75311f8b609c14ec59e08e9b4f6f24419362aa94a07acc",
+      "source_snapshot": "data/dailydialog/review-parts/hybrid-source-snapshot-v34.jsonl.gz",
+      "candidate": "artifacts/dailydialog-hybrid-source-v34",
+      "candidate_image_sha256": "7530ed3c7fc9b66ce47a5b040de1eb877fb6cc815a77e03c81cf3525feeca7f7",
+      "context_review_sha256": "c4ec9b1d7e23f7144bc1b0258b3d75a355edeb2078a26826e6b5cf656bbd9a57",
+      "adapter_id": "dd_v29_train_8624_2_3",
+      "meaning": {
+        "speech_act": "instruction",
+        "event_status": "possible_room_service_sign",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "presented putting up a sign as permitted or suggested during the room-service discussion; the sign label and trailing on remain unclear and no sign placement was confirmed"
+        },
+        "unknown": [
+          "The exact sign label and the attachment of the final on are unresolved."
+        ]
+      },
+      "note": "Can supports permission or a suggestion to put up a sign. Keep the exact sign label and final on unknown; no uniquely intended speech act, changed tree or completed sign placement is asserted.",
+      "source_text_changed": false,
+      "ambiguity_resolved": false,
+      "unknown_retained": true,
+      "publication_scope": "adapted_visible_pair_only",
+      "full_template_semantic_approval": false
+    },
+    {
+      "id": "val:616:1:1",
+      "group": "quality",
+      "status": "closed_representation_only",
+      "previous_status": "quarantined_unresolved",
+      "previous_file": "data/dailydialog/review-parts/hybrid-quality-decisions-v29.json",
+      "previous_file_sha256": "ed61df95c0159270d99bea9e526141c853f66902a1a7829d87cb9a4f19ae2f91",
+      "previous_case_sha256": "d74d84d243f279871e0b99ff17eebd96ae1da9f57126eb77c241a379d01d1a76",
+      "source_snapshot": "data/dailydialog/review-parts/hybrid-source-snapshot-v34.jsonl.gz",
+      "candidate": "artifacts/dailydialog-hybrid-source-v34",
+      "candidate_image_sha256": "bb181c17885427921c42d119b973e32d724df96cd7eb0ef1c1118d2ec75c8f17",
+      "context_review_sha256": "434fa1ad39256949c1728fea2ab6f691a0ebabf9a66caae4b7c9b8258ecfd8ca",
+      "adapter_id": "dd_v29_val_616_1_1",
+      "meaning": {
+        "speech_act": "assessment",
+        "event_status": "speaker_belief",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker believes the presentation impressed the client."
+        },
+        "unknown": [
+          "Daniel may be the addressee or the client's name; the local wording does not settle this identity attachment."
+        ]
+      },
+      "note": "Keep the positive assessment under think. Daniel may name the addressee or the client; neither identity nor a confirmed client reaction, contract or business result is supplied.",
+      "source_text_changed": false,
+      "ambiguity_resolved": false,
+      "unknown_retained": true,
+      "publication_scope": "adapted_visible_pair_only",
+      "full_template_semantic_approval": false
+    }
+  ]
+}

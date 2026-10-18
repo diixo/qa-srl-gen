@@ -1,0 +1,794 @@
+[
+  {
+    "case": 1,
+    "id": "train:548:6:2",
+    "text": "He didn't know how to express his opinion without putting at least one other person down.",
+    "original_prefix": [
+      "How's your new job going?",
+      "Really well, thanks.",
+      "How are you finding your new boss?",
+      "She's not bad. She's a bit bossy, but I'm sure I'll get used to her.",
+      "Would you rather have her or your old boss back?",
+      "She's far better than my old boss. He didn't know how to express his opinion without putting at least one other person down."
+    ],
+    "source_span": [
+      35,
+      124
+    ]
+  },
+  {
+    "case": 2,
+    "id": "train:8156:4:1",
+    "text": "Oh, dear, well, it looks like we have a few rooms available, can I put you into a room on the 17th floor?",
+    "original_prefix": [
+      "Excuse me, can you help me? I would like to change rooms if possible, I couldn't sleep at all last night, because the people in the room next to mine were making a lot of noise, also if at all possible, I'd like a room that doesn't overlook the street, between the noisy neighbors and the highway outside, I didn't sleep a wink.",
+      "I am so sorry to hear that sir, let me check and see what is available, what room are you in now?",
+      "I'm on the 6th floor, room 698, I've had many problems with that room, just this morning, I called someone up to fix the light fixture in the bathroom, it didn't work, and it still doesn't work.",
+      "Oh, dear, well, it looks like we have a few rooms available, can I put you into a room on the 17th floor? It has a balcony and it doesn't face the highway."
+    ],
+    "source_span": [
+      0,
+      105
+    ]
+  },
+  {
+    "case": 3,
+    "id": "test:667:11:2",
+    "text": "It's not fiction.",
+    "original_prefix": [
+      "Could you please help me to check out the book?",
+      "Sure, what's the author's name, please.",
+      "I can't remember that clearly. It probably be Charles...",
+      "Charles Dickens?",
+      "No, no, no. I'm not interested in literature.",
+      "OK, do you know the title of the book?",
+      "Oh, sorry. I'm always absent-minded. I remember that I've put a note in my pocket.",
+      "So, show me the note please.",
+      "I can't find it now.",
+      "Oh, such bad luck, sir. Can you please name the category of the book?",
+      "Let me see. It's not fiction. It's biography."
+    ],
+    "source_span": [
+      12,
+      29
+    ]
+  },
+  {
+    "case": 4,
+    "id": "train:8255:1:1",
+    "text": "Hello.",
+    "original_prefix": [
+      "Hello. Do you like this jewelry? I made most of these items myself."
+    ],
+    "source_span": [
+      0,
+      6
+    ]
+  },
+  {
+    "case": 5,
+    "id": "train:6395:2:1",
+    "text": "Yes.",
+    "original_prefix": [
+      "Good evening, madam. Did you ring for service? Who can I do for you?",
+      "Yes. The light in this room is too dim. Please get me a brighter one."
+    ],
+    "source_span": [
+      0,
+      4
+    ]
+  },
+  {
+    "case": 6,
+    "id": "train:7125:2:2",
+    "text": "Sit down, please.",
+    "original_prefix": [
+      "Good morning, I'm Daniel. I'm applying for the position of manager.",
+      "Yes. Sit down, please. How did you learn about our company?"
+    ],
+    "source_span": [
+      5,
+      22
+    ]
+  },
+  {
+    "case": 7,
+    "id": "train:6740:4:2",
+    "text": "This is Claire.",
+    "original_prefix": [
+      "Hello, this is Rich.",
+      "Hi, Rich. Is Jim here?",
+      "He's not in at the moment. Can I take a message?",
+      "Sure. This is Claire."
+    ],
+    "source_span": [
+      6,
+      21
+    ]
+  },
+  {
+    "case": 8,
+    "id": "train:5747:6:1",
+    "text": "I realize that, but I am not guilty.",
+    "original_prefix": [
+      "I need order in the court!",
+      "I am ready to make my plea.",
+      "What do you plead?",
+      "I plead not guilty.",
+      "All the evidence indicates that you are guilty.",
+      "I realize that, but I am not guilty."
+    ],
+    "source_span": [
+      0,
+      36
+    ]
+  },
+  {
+    "case": 9,
+    "id": "train:4175:1:1",
+    "text": "You seem really ticked off.",
+    "original_prefix": [
+      "You seem really ticked off. What's up?"
+    ],
+    "source_span": [
+      0,
+      27
+    ]
+  },
+  {
+    "case": 10,
+    "id": "train:8472:1:1",
+    "text": "Have you met the new manager in customer service?",
+    "original_prefix": [
+      "Have you met the new manager in customer service?"
+    ],
+    "source_span": [
+      0,
+      49
+    ]
+  },
+  {
+    "case": 11,
+    "id": "train:5234:9:1",
+    "text": "The conference room on the second floor, is that ok?",
+    "original_prefix": [
+      "Jane, we are going to have a board meeting next Friday. Will you please arrange it for me?",
+      "Certainly, Mr. Robert. But can I have your plan?",
+      "Sure. Actually it's a routine board meeting. The things to be discussed are all written here.",
+      "Very good. May I keep it? I need it to draw up a notice of the meeting and the agenda.",
+      "Go ahead. It's for your reference. While you are at it, make me a special agenda and don't forget to have enough room at the side for notes.",
+      "You mean you need a more detailed agenda for yourself?",
+      "Exactly. As I am supposed to the chair of the meeting, I don't want it to get out of control.",
+      "I see. Ok, then where do you think we will have the meeting?",
+      "The conference room on the second floor, is that ok?"
+    ],
+    "source_span": [
+      0,
+      52
+    ]
+  },
+  {
+    "case": 12,
+    "id": "train:6557:6:3",
+    "text": "I got a promotion.",
+    "original_prefix": [
+      "Hello, Anna speaking!",
+      "Hey, Anna, this is Jason.",
+      "Jason, where have you been hiding lately? You know it's been a long time since your last call. Have you been good?",
+      "Yes. How are you, Anna?",
+      "I am fine. What have you been doing?",
+      "Working. I've been really busy these days. I got a promotion."
+    ],
+    "source_span": [
+      43,
+      61
+    ]
+  },
+  {
+    "case": 13,
+    "id": "train:6493:5:1",
+    "text": "Well, if you just take a look here, see, with our chequing account, you can have unlimited daily transactions for a small monthly fee, and our savings account has a higher interest rate, but you must carry a minimum balance of $ 10,000 dollars.",
+    "original_prefix": [
+      "Next, please. May I help you, sir?",
+      "Hello, yes, I'd like to open a bank account.",
+      "Certainly, I can can help you with that. What type of account would you like to open? A chequing or a savings account?",
+      "What features do they offer?",
+      "Well, if you just take a look here, see, with our chequing account, you can have unlimited daily transactions for a small monthly fee, and our savings account has a higher interest rate, but you must carry a minimum balance of $ 10,000 dollars."
+    ],
+    "source_span": [
+      0,
+      244
+    ]
+  },
+  {
+    "case": 14,
+    "id": "train:10335:11:1",
+    "text": "If we go to Danshui in the morning on A weekday, we are sure to have seats since it's not during rush hour.",
+    "original_prefix": [
+      "(At the MET station) Hurry up! We are running late for school.",
+      "Let's take the MET. It's faster and cheap.",
+      "Which line should we take if we go to Danshui?",
+      "We should take the red line. Let's get the tickets at the automatic vending Machine.",
+      "How much money should I insert in the slot?",
+      "5o dollars. Later you have to place your ticket near the sensor.",
+      "I see.",
+      "It's so crowded. All the seats are taken. Let's go there. There is a seat over there.",
+      "It's a priority seat. We can not sit there. We should give the seats to those eld, pregnant and disabled people.",
+      "Yeah, you are right. Let's stand. It takes only about 20 minutes.",
+      "If we go to Danshui in the morning on A weekday, we are sure to have seats since it's not during rush hour."
+    ],
+    "source_span": [
+      0,
+      107
+    ]
+  },
+  {
+    "case": 15,
+    "id": "train:966:13:1",
+    "text": "You made a perfect choice, Jack.",
+    "original_prefix": [
+      "Hey, Jack, where's your car?",
+      "I got rid of that clunker. This is my new one.",
+      "Is that right? It sure beats the old one?",
+      "Jump in, I'll give you a ride.",
+      "Ok. Boy, this looks expensive.",
+      "Yeah, it costed a bundle alright.",
+      "Wow, this's sinking a hole.",
+      "Yeah, this sucker is the fastest thing I've ever owned.",
+      "I believe it. Hoo, this car corners like it's on rails.",
+      "We are on the high way. I'm the * *.",
+      "Wow, this car can really burn rubber.",
+      "It's a great feeling.",
+      "You made a perfect choice, Jack."
+    ],
+    "source_span": [
+      0,
+      32
+    ]
+  },
+  {
+    "case": 16,
+    "id": "train:6871:2:2",
+    "text": "When are you travelling?",
+    "original_prefix": [
+      "Good morning, I'd like to book a flight from Beijing to Shanghai, please.",
+      "I see. When are you travelling?"
+    ],
+    "source_span": [
+      7,
+      31
+    ]
+  },
+  {
+    "case": 17,
+    "id": "train:8850:1:1",
+    "text": "I'm going to quit this job.",
+    "original_prefix": [
+      "I'm going to quit this job. It's way too stressful."
+    ],
+    "source_span": [
+      0,
+      27
+    ]
+  },
+  {
+    "case": 18,
+    "id": "train:6876:4:1",
+    "text": "I'm kind of useless in that area, but I'll take a look at it.",
+    "original_prefix": [
+      "Evan, are you busy right now?",
+      "Not really. What's up?",
+      "Well, I need a hand with the fax machine. My fax is not going through.",
+      "I'm kind of useless in that area, but I'll take a look at it."
+    ],
+    "source_span": [
+      0,
+      61
+    ]
+  },
+  {
+    "case": 19,
+    "id": "val:82:4:1",
+    "text": "A pound of ground beef is $ 2.48.",
+    "original_prefix": [
+      "I would like to purchase some meat.",
+      "What kind of meat would you like to get today?",
+      "First off, I'm going to need a pound of ground beef.",
+      "A pound of ground beef is $ 2.48."
+    ],
+    "source_span": [
+      0,
+      33
+    ]
+  },
+  {
+    "case": 20,
+    "id": "train:3547:4:3",
+    "text": "I really don't enjoy music in a movie.",
+    "original_prefix": [
+      "What did you think of the movie?",
+      "I didn't like it. Not a bit. I couldn't stand the music. Besides the story was so boring that it put me to sleep.",
+      "I noticed that, it was not exciting as I expected, but the music was great. I'm always found Jazz. And that movie had a lot of Jazz.",
+      "I know. However, Jazz always annoys me. I really don't enjoy music in a movie."
+    ],
+    "source_span": [
+      40,
+      78
+    ]
+  },
+  {
+    "case": 21,
+    "id": "train:9785:2:1",
+    "text": "Hello, nice to meet you.",
+    "original_prefix": [
+      "Good morning, I am here for my interview.",
+      "Hello, nice to meet you. I'm Mr. Gotcha. Have any trouble finding the place?"
+    ],
+    "source_span": [
+      0,
+      24
+    ]
+  },
+  {
+    "case": 22,
+    "id": "val:782:8:1",
+    "text": "Nope, it's a gift.",
+    "original_prefix": [
+      "Donna! How are you? It's good to hear your voice.",
+      "Thank you. Jack, it's always a pleasure doing business with you.",
+      "So how are things in the land of the free and the home of brave?",
+      "Great! And, how are things in your neck of the woods?",
+      "Things are so great here. I almost smiled myself to death last week. One of my coworkers had to give me CPR.",
+      "Oh. Jack, I have missed your sense of humor. Ha ha ha! Nobody else sees things quite like you do. It's your gift.",
+      "Or a curse.",
+      "Nope, it's a gift. Anyway, we need some more of those mid-range speakers you tricked me into buying last time."
+    ],
+    "source_span": [
+      0,
+      18
+    ]
+  },
+  {
+    "case": 23,
+    "id": "train:10030:4:1",
+    "text": "Yes, please ask her to call John Smith.",
+    "original_prefix": [
+      "Diana's Flowers, Diana Lin's office, may I help you?",
+      "Is Diana in?",
+      "No, she's out for lunch. May I take a message?",
+      "Yes, please ask her to call John Smith."
+    ],
+    "source_span": [
+      0,
+      39
+    ]
+  },
+  {
+    "case": 24,
+    "id": "val:185:3:1",
+    "text": "What size are you looking for?",
+    "original_prefix": [
+      "Hello, ma'am. Can I help you?",
+      "I'm looking for a sweater.",
+      "What size are you looking for?"
+    ],
+    "source_span": [
+      0,
+      30
+    ]
+  },
+  {
+    "case": 25,
+    "id": "train:7943:1:1",
+    "text": "May I try this on?",
+    "original_prefix": [
+      "May I try this on?"
+    ],
+    "source_span": [
+      0,
+      18
+    ]
+  },
+  {
+    "case": 26,
+    "id": "train:7671:5:1",
+    "text": "Sure, would you like anything else?",
+    "original_prefix": [
+      "Hi, may I get you anything to drink?",
+      "Yes, please. May I get a glass of lemonade?",
+      "Would you like an appetizer?",
+      "May I get an order of barbeque wings?",
+      "Sure, would you like anything else?"
+    ],
+    "source_span": [
+      0,
+      35
+    ]
+  },
+  {
+    "case": 27,
+    "id": "train:4582:2:1",
+    "text": "Oh, really?",
+    "original_prefix": [
+      "Have you heard Jenny divorced her French husband?",
+      "Oh, really? No wonder that she looks quite depressed recently."
+    ],
+    "source_span": [
+      0,
+      11
+    ]
+  },
+  {
+    "case": 28,
+    "id": "train:7012:9:2",
+    "text": "That article certainly added fuel to the debate.",
+    "original_prefix": [
+      "Are there any interesting articles in today's newspapers?",
+      "The headlines are all about the presidential election in the United States. Few other stories made the front pages.",
+      "Is there anything of interest to us in the business sections?",
+      "There's an interesting feature article in the chronicle about doing business in China and the daily news has printed a report about the special economic zone near pairs. We have a subsidiary company located there.",
+      "Are the reports favorable?",
+      "Generally, the reporters take positive lines. They do point out a few problems that we need to be aware of, but there's nothing worrying in the reports. In the classifieds, one of our competitors is advertising for people who speak Japanese.",
+      "That's interesting. They must be thinking of moving into that market. Are there any interesting editorials?",
+      "Not really. They all seem to focus on the election. There have been several letters printed in the chronicle regarding that controversial article on drugs that they printed last week.",
+      "I'm not surprised. That article certainly added fuel to the debate. Ok. Thanks. Can you leave two articles and the advertisements with me? I'd like to read them."
+    ],
+    "source_span": [
+      19,
+      67
+    ]
+  },
+  {
+    "case": 29,
+    "id": "val:639:2:2",
+    "text": "I'm full.",
+    "original_prefix": [
+      "Would you like some more coffee?",
+      "No thanks. I'm full. We need to find our waitress and get our bill."
+    ],
+    "source_span": [
+      11,
+      20
+    ]
+  },
+  {
+    "case": 30,
+    "id": "train:2206:14:2",
+    "text": "But I still prefer to have no child.",
+    "original_prefix": [
+      "What's your opinion about childless couples? Will you choose to have no kids?",
+      "To be honest, I wouldn't.",
+      "Why? Do you have to make a choice now?",
+      "Not really. But it has puzzled me for a long time.",
+      "What's the puzzle?",
+      "My husband and I prefer to have no kids, but my mother-in-law is very traditional and wants grandkids.",
+      "Oh, I see. I think the older generation tend to think in a different way.",
+      "Yes. It seems she can never accept a childless marriage. We had a fight last night.",
+      "Oh, really? Maybe she is just eager to see her grandchildren.",
+      "But it's absolutely our own business to have a child or not.",
+      "Definitely.",
+      "You know, I often overhear our neighbor, the young couple, fighting about how to raise their kid and I really don't want kids to spoil our happiness.",
+      "Don't worry. I think in most cases, children are the glue that keeps a family together.",
+      "I guess you're right. But I still prefer to have no child."
+    ],
+    "source_span": [
+      22,
+      58
+    ]
+  },
+  {
+    "case": 31,
+    "id": "train:920:5:3",
+    "text": "The real estate agency says if I pay a 25 % down payment, I can move in at once.",
+    "original_prefix": [
+      "I am very interested in a new apartment near the Taxing Plaza, but the price is very high, I really can't afford it.",
+      "How much is it for each square meter? How large is the apartment?",
+      "It's 7500 yuan per square meter, and I really like the one with three bedrooms and a large living room. Its total area is about 80 square meters.",
+      "That surely will cost you a lot of money. Are you going to make a full payment?",
+      "Do you think I am rich enough to make it? I am thinking about buying the apartment by installments. The real estate agency says if I pay a 25 % down payment, I can move in at once."
+    ],
+    "source_span": [
+      100,
+      180
+    ]
+  },
+  {
+    "case": 32,
+    "id": "train:3293:2:1",
+    "text": "I have exactly the same feeling.",
+    "original_prefix": [
+      "Peter really is a remarkable expert! There is very little he doesn't know.",
+      "I have exactly the same feeling. This afternoon he explained the ins and outs of the stock market to me. He knows a lot about investments."
+    ],
+    "source_span": [
+      0,
+      32
+    ]
+  },
+  {
+    "case": 33,
+    "id": "val:720:4:3",
+    "text": "The design on it is traditional Paris architecture.",
+    "original_prefix": [
+      "I would like to buy some local handcrafts as gifts to my friends and relatives.",
+      "There are many stores selling handcrafts in Paris. Our store is well-known for vase, table wear and jewelry boxes. You can take your time and choose whatever you like.",
+      "Well, the tapestry is delicate and beautiful.",
+      "You have made an excellent choice, it is our newcomer. The tapestry is on hot sell with the design and quality. The design on it is traditional Paris architecture."
+    ],
+    "source_span": [
+      112,
+      163
+    ]
+  },
+  {
+    "case": 34,
+    "id": "val:920:4:1",
+    "text": "It's hard to say.",
+    "original_prefix": [
+      "Do you like animals?",
+      "Yes, doesn't everyone?",
+      "What's your favorite animal?",
+      "It's hard to say. While dogs are more affectionate, cats are much easier to take care of."
+    ],
+    "source_span": [
+      0,
+      17
+    ]
+  },
+  {
+    "case": 35,
+    "id": "train:2456:6:1",
+    "text": "No, I am not.",
+    "original_prefix": [
+      "Do you surf online regularly, Joe?",
+      "Of course. I stay online for four hours at least every day.",
+      "Are you crazy? What are you doing four hours online?",
+      "Millions of things. I surf the Net, check my e-mail, and most importantly, I chat with my friends.",
+      "Online chat? Aren't you afraid of meeting bad people who pretend to be what they are not?",
+      "No, I am not. And I love to meet new people in the chat rooms who share a lot in common with me."
+    ],
+    "source_span": [
+      0,
+      13
+    ]
+  },
+  {
+    "case": 36,
+    "id": "train:8077:5:4",
+    "text": "When they almost reached the ground, they suddenly stopped to prove their bravery and express that they were able to endure the hardships of life independently.",
+    "original_prefix": [
+      "I saw on TV that there is an entertainment item, bungee in Beijing Longtanhu Park. Except that the height is not exiting enough.",
+      "You say how high can be exciting?",
+      "The highest bungee spot in the world is located in Mount Kikicama, South Africa, which is 216 meters high. A cable car in a scenic spot in Switzerland is 160 meters high.",
+      "I know that Frenchmen installed the Bungee cord between two tall buildings.",
+      "It is said that Bungee was originally a grown-up ceremony of the indigenous people of New Guinea. People stood on branches of the tree, which was over 30 meters high. Their feet were fastened with canes and they jumped off from where they stood. When they almost reached the ground, they suddenly stopped to prove their bravery and express that they were able to endure the hardships of life independently."
+    ],
+    "source_span": [
+      246,
+      406
+    ]
+  },
+  {
+    "case": 37,
+    "id": "train:2992:1:1",
+    "text": "Do you like music?",
+    "original_prefix": [
+      "Do you like music?"
+    ],
+    "source_span": [
+      0,
+      18
+    ]
+  },
+  {
+    "case": 38,
+    "id": "train:8752:3:1",
+    "text": "How's this?",
+    "original_prefix": [
+      "Is there anything I can do for you?",
+      "I'm looking for a black, leather bag.",
+      "How's this?"
+    ],
+    "source_span": [
+      0,
+      11
+    ]
+  },
+  {
+    "case": 39,
+    "id": "train:953:5:1",
+    "text": "Goodbye.",
+    "original_prefix": [
+      "I've come to say goodbye.",
+      "When do you leave?",
+      "I'm catching the eleven o'clock train.",
+      "Take care of yourself and don't forget to keep in touch.",
+      "Goodbye. Hope to see you again next year."
+    ],
+    "source_span": [
+      0,
+      8
+    ]
+  },
+  {
+    "case": 40,
+    "id": "train:4944:10:1",
+    "text": "If you lose your job, you just have to go for a few months without buying all the junk you usually buy.",
+    "original_prefix": [
+      "I don't know what I'm going to do! It's going to be impossible to make ends meet if I lose my job!",
+      "Don't worry. I don't think you're going to lose your job over one mistake.",
+      "It was a rather big mistake. When you work as an investment adviser, ONC small mistake can cost the company millions.",
+      "But it wasn't just you who was involved, right? You were only doing what your supervisor told you to do.",
+      "That's true, but my supervisor is very dishonest. There's no reason he needs to tell our boss the truth. I'm sure he will tell our boss that it was all my fault, and there's nothing I can do about tha",
+      "Let's think realistically about what might happen. How much money do you have in your savings?",
+      "I have enough to live off of for about 3 months. But I really don't want to spend my life savings on just living! I'd rather invest my money somehow.",
+      "Well, that's good. If you lose your job, you can just move in with me until you find another job. That will save you plenty of money.",
+      "That's very generous of you. I guess that would work.",
+      "If you lose your job, you just have to go for a few months without buying all the junk you usually buy. If you live frugally, you'll save plenty of money."
+    ],
+    "source_span": [
+      0,
+      103
+    ]
+  },
+  {
+    "case": 41,
+    "id": "train:7606:2:1",
+    "text": "I'm Mr. Stephen's secretary.",
+    "original_prefix": [
+      "Hello, Green Trading Company. What can I do for you?",
+      "I'm Mr. Stephen's secretary. He has an appointment with Mr. Green today."
+    ],
+    "source_span": [
+      0,
+      28
+    ]
+  },
+  {
+    "case": 42,
+    "id": "train:5571:4:1",
+    "text": "Yes, absolutely.",
+    "original_prefix": [
+      "Do you have wool socks?",
+      "Yes. We have socks made of various materials. These socks are of imported wool.",
+      "Can you guarantee the quality?",
+      "Yes, absolutely."
+    ],
+    "source_span": [
+      0,
+      16
+    ]
+  },
+  {
+    "case": 43,
+    "id": "train:1800:2:1",
+    "text": "Yes.",
+    "original_prefix": [
+      "Does your child still believe in Santa Claus?",
+      "Yes. She believes everything about him."
+    ],
+    "source_span": [
+      0,
+      4
+    ]
+  },
+  {
+    "case": 44,
+    "id": "train:5495:5:1",
+    "text": "I think you should definitely consider it!",
+    "original_prefix": [
+      "Hey Mel! Are you up for some tennis today?",
+      "Sorry, I can't! I have to go to work, pick up Jake and Maddie from school, and make them an afternoon snack, then take Jake to soccer practice and Maddie to dance class.",
+      "You sound exhausted. Maybe you should hire a nanny to help you out! She can pick the kids up and take them to their after-school activities. She can also help you do some household chores, and run some errands.",
+      "Oh, I don't know... It's hard to find the right nanny. You have to consider her previous work experience, the responsibilities you give her, and how she interacts with the kids. I would love to have someone to help me out, though.",
+      "I think you should definitely consider it! This way you won't have to juggle such a busy schedule, and you'll still get to spend time with the kids in the evenings. I can refer you this great nanny Amy. She used to work for my neighbors, before they moved away. She's very responsible, a good cook, and great with kids."
+    ],
+    "source_span": [
+      0,
+      42
+    ]
+  },
+  {
+    "case": 45,
+    "id": "test:677:15:1",
+    "text": "Thanks for the offer.",
+    "original_prefix": [
+      "Hi. What's your name?",
+      "My name is Jung Min. What's your name?",
+      "My name is Jessica. It's nice to meet you.",
+      "Yes. It's nice to meet you too. Are you a new student too?",
+      "No. I'm a sophomore. I take it you are a new student?",
+      "Yeah. It's pretty exciting to be here.",
+      "Have fun while it lasts. The excitement wears off real quick. Especially after you see how much homework you get. Where are you from?",
+      "I'm from Korea. My parents wanted me to go to an American university, so I came here.",
+      "I have never been to Korea. I've been to Japan before, but never Korea.",
+      "Why were you in Japan?",
+      "My father thought it would be a good experience to take a vacation to a different country. He's so into learning about different cultures.",
+      "That's pretty cool.",
+      "I thought it would have been more fun if I went without my parents.",
+      "Well, if you ever want to visit Korea, I would be happy to show you around.",
+      "Thanks for the offer. I'll keep that in mind. Oh, the professor is coming. We'll talk more after class."
+    ],
+    "source_span": [
+      0,
+      21
+    ]
+  },
+  {
+    "case": 46,
+    "id": "train:4215:9:2",
+    "text": "If you step on the accelerator pedal you can flood the carburetor and your car will never start.",
+    "original_prefix": [
+      "Car trouble center. How may I help you?",
+      "My car won't start! Stupid old car!",
+      "Hold on, before you kick your car let's go through some possible problems.",
+      "Fine.",
+      "OK, first of all, can you turn the key in the ignition?",
+      "Yeah! I am here with my friend and he thinks it may be the spark plug or the starter motor.",
+      "Those are possible problems, but tell me, when you turn the key, do you hear the starter motor crank?",
+      "Yeah, it sounds like it usually does when I start the car, but nothing else happens. The engine won't start. Should I maybe press the accelerator?",
+      "No. If you step on the accelerator pedal you can flood the carburetor and your car will never start."
+    ],
+    "source_span": [
+      4,
+      100
+    ]
+  },
+  {
+    "case": 47,
+    "id": "train:1215:3:1",
+    "text": "What about your parents?",
+    "original_prefix": [
+      "Will you be okay when you immigrate to America?",
+      "Sure, I'm looking forward to it.",
+      "What about your parents?"
+    ],
+    "source_span": [
+      0,
+      24
+    ]
+  },
+  {
+    "case": 48,
+    "id": "train:3927:4:2",
+    "text": "It was birdseed.",
+    "original_prefix": [
+      "Thanks for inviting me to your friend's wedding. I was surprised to hear the bride and groom talking to each other that way during the marriage ceremony. Is that common?",
+      "Well, some people use a standard set of words, but many couples today write their own wedding vows.",
+      "Your tradition of throwing rice as they got into their car was interesting, but it didn't look like real rice to me.",
+      "It wasn't. It was birdseed. We don't throw rice anymore because someone discovered that birds come along and eat the rice and have trouble digesting it."
+    ],
+    "source_span": [
+      11,
+      27
+    ]
+  },
+  {
+    "case": 49,
+    "id": "train:8731:1:3",
+    "text": "Do you have anything like that?",
+    "original_prefix": [
+      "Excuse me. I need some storybooks in easy English. Do you have anything like that?"
+    ],
+    "source_span": [
+      51,
+      82
+    ]
+  },
+  {
+    "case": 50,
+    "id": "train:9562:5:5",
+    "text": "And then there's Social Security and Medicare, which are both federal programs to help you out after you retire or if you were unable to work.",
+    "original_prefix": [
+      "Hey, Susan. Have you got a sec? I have some questions about my paycheck.",
+      "You bet, Emily. Pull up a chair.",
+      "Well, this is my first paycheck here in the States and there are a few things I don't understand. First of all, what is this FICA, and SUI Y tax, and why are there deductions both for Medicare and for my health insurance plan?",
+      "OK, let's start from the top of your pay stub. This number here represents your gross pay.",
+      "Then here we have a series of deductions. First off are the federal ones. FICA stands for Federal Insurance Contribution Act, or something like that. It's your federal income tax. And then there's Social Security and Medicare, which are both federal programs to help you out after you retire or if you were unable to work."
+    ],
+    "source_span": [
+      180,
+      322
+    ]
+  }
+]

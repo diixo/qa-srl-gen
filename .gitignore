@@ -16,3 +16,4 @@
 !/artifacts/dialogue-gpt2-memory-challenge-v2/
 
 .env
+data/dailydialog/review-parts/

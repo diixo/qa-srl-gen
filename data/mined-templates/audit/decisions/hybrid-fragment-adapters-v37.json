@@ -1,0 +1,1100 @@
+{
+  "format": "reviewed-fragment-adapters-v1",
+  "patterns": [
+    {
+      "id": "dd_v37_train_9624_8_4",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "You have a dinner appointment at six, but you need to see the doctor soon.",
+      "reply": "The dinner appointment has to be canceled.",
+      "value": "say that the dinner appointment needs to be cancelled; you have not confirmed cancelling it",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v37_train_9624_8_4",
+      "source": {
+        "split": "train",
+        "dialogue": 9624,
+        "turn": 8,
+        "segment": 4,
+        "span": [
+          32,
+          74
+        ],
+        "text": "The dinner appointment has to be canceled.",
+        "context": [
+          "Can I help you, sir?",
+          "Hello, may I make an appointment for sometime early this afternoon?",
+          "I'm sorry. All the appointments are filled.",
+          "Oh, what a pity. I'd like to see the doctor as soon as possible. I have a sharp pain in my chest.",
+          "Let me see... Perhaps I could fit you in at five thirty.",
+          "Five thirty? I have a dinner appointment at six.",
+          "What about tomorrow morning, then?",
+          "No. I can't wait. I feel awful. The dinner appointment has to be canceled.",
+          "I guess it can't be helped.",
+          "You are right. Did you say 5:30? I'll make a note of it. Fine.",
+          "All right, then. See you this afternoon.",
+          "How kind of you! Good-bye."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "source_sha256": "b4ffe24285e6e7313d7e4d40259a1a65c09fcefe9985bb8eba409c16e15ecb17",
+        "context_sha256": "2ef31485f3a4c80ead517781e6f55886ebcc573d8e7520867b89a5f6ed977d84",
+        "adaptation": "Original reply unchanged. The prompt supplies only the topic required by this explicit reading; the target preserves uncertainty, negation, belief, intention or conditional scope. No full-template semantic approval."
+      }
+    },
+    {
+      "id": "dd_v37_val_785_8_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "That's Oolong tea.",
+      "reply": "Ok, I'll try that.",
+      "value": "agree to try the Oolong tea; you have not reported tasting it",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v37_val_785_8_1",
+      "source": {
+        "split": "val",
+        "dialogue": 785,
+        "turn": 8,
+        "segment": 1,
+        "span": [
+          0,
+          18
+        ],
+        "text": "Ok, I'll try that.",
+        "context": [
+          "Would you like something to drink?",
+          "Yes please. Do you have any teas?",
+          "Of course we have lots of teas?",
+          "What do you recommend?",
+          "What about a green tea or perhaps a jasmine tea?",
+          "What's this one?",
+          "That's Oolong tea – it's a Cantonese tea.",
+          "Ok, I'll try that."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "source_sha256": "6c0d82a73ab0641a3236124413108ecc32d453c891cd4e53bdf2857f97e011f8",
+        "context_sha256": "d75a079aa91a6d8c9e091ca15b1718e4fb86f162beaf70b380e329fb39c68922",
+        "adaptation": "Original reply unchanged. The prompt supplies only the topic required by this explicit reading; the target preserves uncertainty, negation, belief, intention or conditional scope. No full-template semantic approval."
+      }
+    },
+    {
+      "id": "dd_v37_train_8824_6_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "I can't just slow down.",
+      "reply": "You've got to, I'm afraid.",
+      "value": "insist that I must slow down, softening the advice with I am afraid; you do not confirm that I slowed down",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v37_train_8824_6_1",
+      "source": {
+        "split": "train",
+        "dialogue": 8824,
+        "turn": 6,
+        "segment": 1,
+        "span": [
+          0,
+          26
+        ],
+        "text": "You've got to, I'm afraid.",
+        "context": [
+          "What's the matter with me, Doctor? I feel so tired these days.",
+          "It's your blood pressure, I'm afraid. It's far too high.",
+          "And what's the cause of that?",
+          "Overwork-amongst other things. You can't work 24 hours a day. You've got to slow down.",
+          "But I can't just slow down.",
+          "You've got to, I'm afraid. And look at this. You weigh 200 stones. That's too much for a man of your size.",
+          "You mean I've got to lose weight?",
+          "Yes. You've got to cut down on bread and potatoes and take more exercise."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "source_sha256": "091c457acd11840aa33d89f30bcedc6ef4a8a313395ff2a71e1f0ffcf4e89a60",
+        "context_sha256": "c85bb849a005605bbcc1c5f320b094bc0ae24f5b756aee6f563c9833ffae0e73",
+        "adaptation": "Original reply unchanged. The prompt supplies only the topic required by this explicit reading; the target preserves uncertainty, negation, belief, intention or conditional scope. No full-template semantic approval."
+      }
+    },
+    {
+      "id": "dd_v37_test_459_4_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What problems are you having with your house?",
+      "reply": "The carpet in the living room is worn out, and I'd like to put in new wall-to-wall carpeting.",
+      "value": "describe the living-room carpet as worn out and want to install new wall-to-wall carpeting; installation is not confirmed",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v37_test_459_4_2",
+      "source": {
+        "split": "test",
+        "dialogue": 459,
+        "turn": 4,
+        "segment": 2,
+        "span": [
+          52,
+          145
+        ],
+        "text": "The carpet in the living room is worn out, and I'd like to put in new wall-to-wall carpeting.",
+        "context": [
+          "You have a lovely house, Jack.",
+          "Thank you. But a number of things have been going wrong lately.",
+          "That's too bad. What problems are you having.",
+          "Oh, the whole house needs re-painting for starters. The carpet in the living room is worn out, and I'd like to put in new wall-to-wall carpeting. Last week, I had to call the plumber to fix the toilet. Anyway, all par for the course when you own a house, I guess. I think I am going to hire an interior decorator to look the place over.",
+          "I've studied home decoration as a hobby. Could I make some suggestions?",
+          "Go right ahead.",
+          "Well, I think a crystal chandelier would look great in your living room, and maybe some new drapes for the windows. Also, a grandfather clock would look great in the den. Perhaps you could buy some potted plants for the dining room",
+          "Wow, you really do have a talent for this, Alice. Thanks for the suggestions.",
+          "You are welcome, Jack. Glad to be of help."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "source_sha256": "2720b0a09b020b941eb77b4f5c10159649320586c700fe3a06f3bba7e3cf53ad",
+        "context_sha256": "19be9d117c05cabdc45272966bd1a4bf90ae747ad2af5d32cf22aef22f16c91b",
+        "adaptation": "Original reply unchanged. The prompt supplies only the topic required by this explicit reading; the target preserves uncertainty, negation, belief, intention or conditional scope. No full-template semantic approval."
+      }
+    },
+    {
+      "id": "dd_v37_train_1211_15_3",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "We could watch the film together.",
+      "reply": "Let's go!",
+      "value": "propose going to see the film; you do not confirm departure or viewing",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v37_train_1211_15_3",
+      "source": {
+        "split": "train",
+        "dialogue": 1211,
+        "turn": 15,
+        "segment": 3,
+        "span": [
+          28,
+          37
+        ],
+        "text": "Let's go!",
+        "context": [
+          "Hello, Jason, there is going to be a screening of Final Destination 3 at our campus cinema tomorrow. I plan to go to see it.",
+          "Is it a horror movie?",
+          "Yeah, I love horror movies. Would you like to go with me tomorrow?",
+          "No way. I will be scared out of my wits.",
+          "That's funny, I didn't know a big fellow like you could be so soft and timid on the inside.",
+          "Hey, how would you like to taste my fist?",
+          "Alright, all joking aside, what kinds of moves do you like?",
+          "Um, let me see, romance, comedy. Documentary, action, science fiction, animated and so on.",
+          "That is to say, you like all genres except for horror movies.",
+          "Yeah. It seems like we don't speak the same language as far as movies are concerned.",
+          "Not quite. I also greatly enjoy romance and comedy.",
+          "The Notebook is this type of movie.",
+          "Really? I haven't heard of it.",
+          "Well then, this could be a nice opportunity to enjoy it together. I bet you'd love it.",
+          "Ok. I can't wait to see it. Let's go!"
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "source_sha256": "78274ac6c416b31e4121536e0a39362a1359bed0cd53b5b875f3b0900612de1e",
+        "context_sha256": "c96721e9c83bb11b168693337900906c6f5606fac88cfed587a71b0600832a8e",
+        "adaptation": "Original reply unchanged. The prompt supplies only the topic required by this explicit reading; the target preserves uncertainty, negation, belief, intention or conditional scope. No full-template semantic approval."
+      }
+    },
+    {
+      "id": "dd_v37_train_5575_1_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "We're driving and you said you were thirsty.",
+      "reply": "Pull over to that store, I'll buy some drinks.",
+      "value": "ask me to pull over at that store and intend to buy drinks; neither action is confirmed as completed",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v37_train_5575_1_2",
+      "source": {
+        "split": "train",
+        "dialogue": 5575,
+        "turn": 1,
+        "segment": 2,
+        "span": [
+          13,
+          59
+        ],
+        "text": "Pull over to that store, I'll buy some drinks.",
+        "context": [
+          "I'm thirsty. Pull over to that store, I'll buy some drinks.",
+          "I'm afraid I can't. Parking is not allowed here.",
+          "Oh, that's too bad. Where can you park around here?",
+          "There is a square in front of us, we can park the car there.",
+          "Is a shop there?",
+          "I'm not sure, you know I'm not familiar with the city, too.",
+          "Just stop here for a moment. The police will not notice.",
+          "No, that's too risky.",
+          "All right. Let's go to the square to have a look."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1
+        ],
+        "source_sha256": "4b99568c7c2d6fbf8efe49555b18a4d4ea333f368b3570131bf57cdba6a98e56",
+        "context_sha256": "1d2a248ac3f9997928fd60fc1418221a92c552722285be2d49ba4af6fa39df77",
+        "adaptation": "Original reply unchanged. The prompt supplies only the topic required by this explicit reading; the target preserves uncertainty, negation, belief, intention or conditional scope. No full-template semantic approval."
+      }
+    },
+    {
+      "id": "dd_v37_train_2357_5_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "George has a lot of problems, from what I hear.",
+      "reply": "Really?",
+      "value": "express surprise and seek confirmation; your reply does not independently verify the report about George",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v37_train_2357_5_1",
+      "source": {
+        "split": "train",
+        "dialogue": 2357,
+        "turn": 5,
+        "segment": 1,
+        "span": [
+          0,
+          7
+        ],
+        "text": "Really?",
+        "context": [
+          "Who's that tall guy over there?",
+          "Oh, that's George. He looks very drunk.",
+          "What's he like normally?",
+          "Oh, he's really reserved, normally. But, from what I hear, he's got lots of problems.",
+          "Really? What kind of problems?",
+          "Well, off the record, of course, but I hear that he's got terrible debts. He has his own company, and it's not going very well.",
+          "Really? Well, I hate to say this, but I'm not surprised.",
+          "Really? What makes you say that?",
+          "Well, he doesn't look very honest.",
+          "I know, that's the problem. He can't find any customers. It's a pity, really, because his products are very good. Oh, that reminds me. Did I tell you about my new laptop?",
+          "Oh, don't talk to me about laptops. Mine crashed on Friday and I lost everything. I hate them.",
+          "Oh, really?",
+          "Look, I need another drink. Do you want one?",
+          "Yes, I'll have another cocktail.",
+          "Vodka martini?",
+          "Absolutely.",
+          "I'll be back in a sec.",
+          "OK. I'll wait here for you."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "source_sha256": "91c77c2640f8ead7921b350ff237585e3367b26286c313df2e458660222e5bfa",
+        "context_sha256": "501d2dc2185e6178ecee155986e0e42cfe0bbdac6f52f758b8bad34c036bbdf1",
+        "adaptation": "Original reply unchanged. The prompt supplies only the topic required by this explicit reading; the target preserves uncertainty, negation, belief, intention or conditional scope. No full-template semantic approval."
+      }
+    },
+    {
+      "id": "dd_v37_train_711_4_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Are you watching anything interesting on TV?",
+      "reply": "Just watching the sports highlight on ESPN.",
+      "value": "say you are currently watching the sports highlight on ESPN; the viewing is ongoing, not completed",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v37_train_711_4_2",
+      "source": {
+        "split": "train",
+        "dialogue": 711,
+        "turn": 4,
+        "segment": 2,
+        "span": [
+          12,
+          55
+        ],
+        "text": "Just watching the sports highlight on ESPN.",
+        "context": [
+          "Hey Mark. What are you doing?",
+          "Just watching some TV.",
+          "Anything interesting on?",
+          "Not really. Just watching the sports highlight on ESPN.",
+          "So I take it you're pretty bored too.",
+          "Just killing time until I find something to do. What are you going to do?",
+          "It's Saturday and we are sitting at home doing nothing. What's wrong with us?",
+          "You wanna shoot some hoops?",
+          "I already tried to call up some of the guys, but they are all busy.",
+          "Where's your girlfriend? I thought you were going out with her today.",
+          "She's out shopping with her friends.",
+          "Let's go to Starbucks and think of something to do then.",
+          "Aright. Do you have any cigarettes?",
+          "I only have a couple left. Why don't you pick some up on the way.",
+          "Ok. See you there in about 30 minutes.",
+          "Aright. See you there."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "source_sha256": "5dfcbfd005212d3d874314ead4af0840927a97bad55ca5e60fd8d30f92a34cb2",
+        "context_sha256": "d29244fd0d6594a4b83a34779e1f0e3e54136decc44e90b7b469a65816bfc677",
+        "adaptation": "Original reply unchanged. The prompt supplies only the topic required by this explicit reading; the target preserves uncertainty, negation, belief, intention or conditional scope. No full-template semantic approval."
+      }
+    },
+    {
+      "id": "dd_v37_train_6754_2_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Could you please type this report for me? My name is Mr. Baker.",
+      "reply": "Certainly, Mr. Baker.",
+      "value": "agree to my request to type the report; you have not confirmed finishing it",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v37_train_6754_2_1",
+      "source": {
+        "split": "train",
+        "dialogue": 6754,
+        "turn": 2,
+        "segment": 1,
+        "span": [
+          0,
+          21
+        ],
+        "text": "Certainly, Mr. Baker.",
+        "context": [
+          "Miss Sun, could you please type this report for me?",
+          "Certainly, Mr. Baker.",
+          "Could you please double space it so I can make corrections?",
+          "Yes, I will. Do you need it finished right away?",
+          "No. This afternoon will be fine."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2
+        ],
+        "source_sha256": "64f765e547c811d7502c9b769cf09dc78fc23a36197f1ace6268d9232c159f81",
+        "context_sha256": "d8ffc76e32b7afcdb705db896e7f5d2be09814a9674ad6fa12f6a2745896b859",
+        "adaptation": "Original reply unchanged. The prompt supplies only the topic required by this explicit reading; the target preserves uncertainty, negation, belief, intention or conditional scope. No full-template semantic approval."
+      }
+    },
+    {
+      "id": "dd_v37_train_1859_3_3",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "You are disappointed by the accommodation booked for two weeks.",
+      "reply": "I don't think I can stand this place for two weeks.",
+      "value": "doubt that you can tolerate this place for two weeks; stand means tolerate, not stand upright",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v37_train_1859_3_3",
+      "source": {
+        "split": "train",
+        "dialogue": 1859,
+        "turn": 3,
+        "segment": 3,
+        "span": [
+          44,
+          95
+        ],
+        "text": "I don't think I can stand this place for two weeks.",
+        "context": [
+          "They promised us a sea view.",
+          "Well, you can just see the sea. Between the factory chimneys.",
+          "Isn't it awful? I can't bear to look at it. I don't think I can stand this place for two weeks.",
+          "Well, it can't be helped. We'll just have to put up with it."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3
+        ],
+        "source_sha256": "c9830121a676e10d62ef1306ce051999b1259d1e4d9a0d675bdac4049753a5b2",
+        "context_sha256": "1d3e4c996c77a64d7657ac583a44486aa39ddbd881f3c700024907ef7ba319c7",
+        "adaptation": "Original reply unchanged. The prompt supplies only the topic required by this explicit reading; the target preserves uncertainty, negation, belief, intention or conditional scope. No full-template semantic approval."
+      }
+    },
+    {
+      "id": "dd_v37_train_8245_5_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "You were at the opera. Do you know how it ended?",
+      "reply": "You know, I couldn't help falling asleep.",
+      "value": "report that you could not avoid falling asleep during the opera; this does not mean refusing to help someone",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v37_train_8245_5_2",
+      "source": {
+        "split": "train",
+        "dialogue": 8245,
+        "turn": 5,
+        "segment": 2,
+        "span": [
+          17,
+          58
+        ],
+        "text": "You know, I couldn't help falling asleep.",
+        "context": [
+          "Are you OK?",
+          "I'm fine. I'm just so touched by the sad story.",
+          "So I can say now that you must have enjoyed the opera. Which scene is your favorite?",
+          "I love them all. But if I had to name one as the best, I would say it's the ending.",
+          "What's it about? You know, I couldn't help falling asleep.",
+          "Did you? I didn't notice that. But still you should know it, for you have seen it with Laura before.",
+          "I guess I've done the same thing last time I was here with her, too. I mean falling asleep. For me, this one is not that attractive.",
+          "Then I doubt if you like operas at all.",
+          "Yes. I like Carmen very much. But I don't mind if you want to tell me about this one.",
+          "OK, then. The man was old and he was visiting his wife's grave, with a rose in his hand. When he got there, he saw someone already put a rose on her grave.",
+          "Very impressive. And I do like the leading actress who has an amazing voice.",
+          "Me, too. There was always a good round of applause every time she sings.",
+          "Yes, the applause! That was what kept waking me up during the show.",
+          "And it's been such a faultless performance with the perfect lighting, and music. Just amazing!",
+          "No doubt, it's not a simple thing to put on a'phantom show'.",
+          "Exactly."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "source_sha256": "546dd130b0b04c876174a4340ea5d71029374d6a8feecb8228923be3bb74358a",
+        "context_sha256": "1f03641aa2c2b5b5bcf4e3597a8e4cecf46b23d5b8e6b3c23e02da8e5a67753d",
+        "adaptation": "Original reply unchanged. The prompt supplies only the topic required by this explicit reading; the target preserves uncertainty, negation, belief, intention or conditional scope. No full-template semantic approval."
+      }
+    },
+    {
+      "id": "dd_v37_train_1591_6_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Did you meet your husband at work?",
+      "reply": "No, we met at university.",
+      "value": "correct the suggested meeting place: you met your husband at university, not at work",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v37_train_1591_6_1",
+      "source": {
+        "split": "train",
+        "dialogue": 1591,
+        "turn": 6,
+        "segment": 1,
+        "span": [
+          0,
+          25
+        ],
+        "text": "No, we met at university.",
+        "context": [
+          "Oh that's a lovely necklace.",
+          "Thank you. My husband gave it to me.",
+          "Oh I didn't know you were married.",
+          "Yes I am. I got married five years ago.",
+          "Oh I see. That's nice. Did you meet your husband at work?",
+          "No, we met at university."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "source_sha256": "019315de39d720da58c7a44af2554ef722df9634c51657c4d2c9d643a4a70548",
+        "context_sha256": "c81d83c22d60c86de4e987ea3bbe49bc8c68208373f075ca3ed358ec622905dc",
+        "adaptation": "Original reply unchanged. The prompt supplies only the topic required by this explicit reading; the target preserves uncertainty, negation, belief, intention or conditional scope. No full-template semantic approval."
+      }
+    },
+    {
+      "id": "dd_v37_train_4120_5_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Why do you like hanging out in bars?",
+      "reply": "For killing time and making new friends.",
+      "value": "give passing time and making new friends as your reasons; you do not report literal killing or successful friendship formation",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v37_train_4120_5_1",
+      "source": {
+        "split": "train",
+        "dialogue": 4120,
+        "turn": 5,
+        "segment": 1,
+        "span": [
+          0,
+          40
+        ],
+        "text": "For killing time and making new friends.",
+        "context": [
+          "Hey, David. Would you like some drinks?",
+          "OK. Shall we go to a bar?",
+          "Good idea. I like hanging out in bars at night.",
+          "Why?",
+          "For killing time and making new friends.",
+          "Don't you think it's too noisy here? The rock music! I can hardly bear it.",
+          "Calm down! My little guy! You'll get used to that after you come here several times.",
+          "Well, I'll try. Then what would you like to drink? It's on me.",
+          "I'd like a gin and tonic."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "source_sha256": "e268563bb9de8906799dc070a417d2991fb08ace54261edf5d80b6851f509eec",
+        "context_sha256": "2f6e05e86afa4015e0bb54c8cfa6fa58aba3e2586399aa1befcc9e4027915ac9",
+        "adaptation": "Original reply unchanged. The prompt supplies only the topic required by this explicit reading; the target preserves uncertainty, negation, belief, intention or conditional scope. No full-template semantic approval."
+      }
+    },
+    {
+      "id": "dd_v37_test_394_1_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "We are discussing possible jobs.",
+      "reply": "Why not come over to work in my company?",
+      "value": "suggest that I come to work at your company; you do not report that I accepted or started work",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v37_test_394_1_1",
+      "source": {
+        "split": "test",
+        "dialogue": 394,
+        "turn": 1,
+        "segment": 1,
+        "span": [
+          0,
+          40
+        ],
+        "text": "Why not come over to work in my company?",
+        "context": [
+          "Why not come over to work in my company?",
+          "I need to think it over.",
+          "Tell me what you need.",
+          "All right. I'm prepared to, if the pay is reasonable."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1
+        ],
+        "source_sha256": "1999f81e174ffd587252c4d18d6573d75f52e7247c2de494ef04e7b3a6505cc1",
+        "context_sha256": "6bfe5675141196cb45e63884b5538b13c8b6f3a4dd8c7a5da26a05991654f773",
+        "adaptation": "Original reply unchanged. The prompt supplies only the topic required by this explicit reading; the target preserves uncertainty, negation, belief, intention or conditional scope. No full-template semantic approval."
+      }
+    },
+    {
+      "id": "dd_v37_train_4606_5_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "We are discussing whether anyone in the office is an ideal colleague.",
+      "reply": "What about Bob?",
+      "value": "raise Bob as another person to consider; the question alone does not assert that he is perfect",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v37_train_4606_5_2",
+      "source": {
+        "split": "train",
+        "dialogue": 4606,
+        "turn": 5,
+        "segment": 2,
+        "span": [
+          62,
+          77
+        ],
+        "text": "What about Bob?",
+        "context": [
+          "I'm really fed up with Larry! He's the biggest airhead I've ever met. He always makes careless mistakes, and he's a pain to work with.",
+          "You shouldn't be so negative. You'll always have some co-workers that are harder to work with than others. But if you are negative and start name-calling in the office, it will make a bad working environment for everybody.",
+          "You only say that because you don't have to work with him. The people in your department seem so capable and nice to be around. Take Mary for example. She's smart and enthusiastic. I've never met anyone as cheery as she is.",
+          "Everybody has their strengths and weaknesses. Even Larry. He might be a pain to be around, but he's also very good at staying in budget on projects. Mary, on the other hand, spends our project money like there's no tomorrow. Also, she's never willing to stay a little later at the office. She always leaves at 5pm sharp.",
+          "Isn't there anyone in the office that is a perfect co-worker? What about Bob? Everybody loves Bob. Even though he's flesh out of college and still a bit green, he is a great co-worker.",
+          "You're right. He's a hard worker, easy to get along with, honest, and he never steals the credit on projects. The only thing he's lacking in is experience.",
+          "Maybe that's why he's so nice!"
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "source_sha256": "cfb5a4ce5aafa0401d688dc43732d4bc2f5b94cf33950a06cd610de0eeeb2f21",
+        "context_sha256": "e287113d9d464bab03ed62d0a6918ac82301e1e8b613b7bff6123b32016f33a2",
+        "adaptation": "Original reply unchanged. The prompt supplies only the topic required by this explicit reading; the target preserves uncertainty, negation, belief, intention or conditional scope. No full-template semantic approval."
+      }
+    },
+    {
+      "id": "dd_v37_train_7750_5_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Are you coming for the interview?",
+      "reply": "Yes, I am.",
+      "value": "confirm that you are coming for the interview; you do not confirm that the interview is complete",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v37_train_7750_5_1",
+      "source": {
+        "split": "train",
+        "dialogue": 7750,
+        "turn": 5,
+        "segment": 1,
+        "span": [
+          0,
+          10
+        ],
+        "text": "Yes, I am.",
+        "context": [
+          "How do you do?",
+          "How do you do?",
+          "Do you mind if I introduce myself? My name is Wang Li.",
+          "My name is Jim Jones. Are you coming for the interview?",
+          "Yes, I am."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "source_sha256": "128b564c1a296c0541a8186489c0347cb54390c47ed8acfa3a2fc8f65876ec4a",
+        "context_sha256": "d830a84e9fd1577cbcab5079145f3425ec79536a9708c763dca24d3bbaee4060",
+        "adaptation": "Original reply unchanged. The prompt supplies only the topic required by this explicit reading; the target preserves uncertainty, negation, belief, intention or conditional scope. No full-template semantic approval."
+      }
+    },
+    {
+      "id": "dd_v37_train_5986_13_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "I'm leaving now. Goodbye, Dad.",
+      "reply": "Take care, dear!",
+      "value": "wish me safety as I leave and address me affectionately; you do not report a completed action",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v37_train_5986_13_1",
+      "source": {
+        "split": "train",
+        "dialogue": 5986,
+        "turn": 13,
+        "segment": 1,
+        "span": [
+          0,
+          16
+        ],
+        "text": "Take care, dear!",
+        "context": [
+          "Hello, Sara are you finished packing yet? Do you need a hand?",
+          "Thanks. Dad, but I can manage it myself.",
+          "Make sure you have your ID card. You will need it while you travel.",
+          "Yes, I know. The problem is that I can't find it. Where did you put it?",
+          "All your important documents and certificates should be in the desk drawer.",
+          "Oh, yes, here it is.",
+          "Sara?",
+          "What's up?",
+          "Did you buy a map? Traveling can be really inconvenient without one, and you could even wind up lost",
+          "No. Dad. We have a tour guide.",
+          "Also, take these pills in case you have any airsickness, and take some cold medicine, too. How about some band-aids?",
+          "No, I won't get sick. I promise. Ok. I've finished. Bye, Dad. See you!",
+          "Take care, dear! Be careful! Oh Sara, wait a minute! You forget your raincoat and umbrella.",
+          "Dad, that's all right. I don't think it will rain. And it doesn't make any sense to take that many things on a trip. Besides I like to travel light. Bye!"
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "source_sha256": "51a1992a1c4573976718e3010ef83b0c6dd1200e75e10d1fc49308dff454118f",
+        "context_sha256": "891fa78ec5e2d5d6d0bb68733307023d605f93a2a5e84383fb73b7faf265c336",
+        "adaptation": "Original reply unchanged. The prompt supplies only the topic required by this explicit reading; the target preserves uncertainty, negation, belief, intention or conditional scope. No full-template semantic approval."
+      }
+    },
+    {
+      "id": "dd_v37_train_3699_9_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "I think lobster is too expensive to include in the buffet.",
+      "reply": "Yes, it probably is.",
+      "value": "tentatively agree that lobster is too expensive for the buffet; probably leaves this uncertain",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v37_train_3699_9_1",
+      "source": {
+        "split": "train",
+        "dialogue": 3699,
+        "turn": 9,
+        "segment": 1,
+        "span": [
+          0,
+          20
+        ],
+        "text": "Yes, it probably is.",
+        "context": [
+          "How did you enjoy your family party at “ ginger's ”? I hear that they have a lovely menu and buffet.",
+          "Oh, it was great. We had seafood buffet. They do one every Friday. The waiters and waitresses are very good. They are very attentive, but don't hang around the table.",
+          "I like the buffets they have, but if often order a la carte, because I don't feel extremely hungry. I like the wine list there too.",
+          "Yes, so do I. they have wines from all over the world. There is a good range of prices to suit every pocket. We ordered some Australian red wine, which tasted delicious and wasn't expensive.",
+          "Some restaurants allow you to take your own wine and just charge you corkage, but the don't do that at “ ginger's ”. What was included in the seafood buffet?",
+          "They had almost every kind of seafood. There were oyster, shrimp, prawns, crabs, and fish. I ate a lot of smoked salmon.",
+          "Did they have lobster?",
+          "No, they didn't. you could order it from the menu. I think that lobster is too expensive to be included in the buffet.",
+          "Yes, it probably is. I don't like ordering oysters in restaurants. You never know whether they are fresh.",
+          "I know. I didn't eat any, but a few people in our group did and no one got sick.",
+          "When you eat out, do you usually eat from the buffet?",
+          "Not usually. I usually just order a main course and have a dessert if I'm still hungry afterwards.",
+          "Oh, you don't usually have a starter?",
+          "No, I might have a soup if it's a cold winter day."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "source_sha256": "d26218d4a339e5f4c11d9fbb83626e572737e122b4bdd2459010512ed24c477e",
+        "context_sha256": "8f948af45efd36327d5240a8ff665b441e8e781e24b60f333638d26ae612d163",
+        "adaptation": "Original reply unchanged. The prompt supplies only the topic required by this explicit reading; the target preserves uncertainty, negation, belief, intention or conditional scope. No full-template semantic approval."
+      }
+    },
+    {
+      "id": "dd_v37_test_463_8_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Are you keeping the small bag as carry-on luggage?",
+      "reply": "Yes.",
+      "value": "confirm keeping the small bag as carry-on luggage; you do not report checking it in",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v37_test_463_8_1",
+      "source": {
+        "split": "test",
+        "dialogue": 463,
+        "turn": 8,
+        "segment": 1,
+        "span": [
+          0,
+          4
+        ],
+        "text": "Yes.",
+        "context": [
+          "Good morning, Sir. Where are you going?",
+          "I'm going to England by flight BE987.",
+          "When is your flight?",
+          "10:00 AM. When am I supposed to check in?",
+          "We are checking in. May I have your ticket and your health certificate and your luggage please.",
+          "Here you are.",
+          "Are you keeping the small bag as carry-on luggage, sir?",
+          "Yes.",
+          "You must weigh that as well.",
+          "All right.",
+          "Your luggage is two pounds over. I'm afraid They'll be in excess luggage charge, Sir.",
+          "How much must I pay?",
+          "It's ten yuan.",
+          "Here you are.",
+          "This is your luggage check Which You must show when you disembark at your destination and here is your boarding pass and your ticket.",
+          "Thanks.",
+          "Now, please wait until your flight is called. There's about twenty-five minutes to go.",
+          "I'm a little nervous. I've never flown before.",
+          "There's nothing at all to worry about. Once you are in the air, it's just like sitting at your sitting room. It's going to be a very pleasant flight."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "source_sha256": "cf87b23d0f70cff8f9ce62b411ad616fd9be0b93edeba67c70f647e5a4b848e1",
+        "context_sha256": "ed30b3a3b34b2fb5e628fa3f831d1dac9e89da09ef97ef8bf79a074b55560380",
+        "adaptation": "Original reply unchanged. The prompt supplies only the topic required by this explicit reading; the target preserves uncertainty, negation, belief, intention or conditional scope. No full-template semantic approval."
+      }
+    },
+    {
+      "id": "dd_v37_train_3002_3_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "I don't mind if you ask a personal question.",
+      "reply": "All right.",
+      "value": "acknowledge permission to ask the personal question; you do not describe a direction",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v37_train_3002_3_1",
+      "source": {
+        "split": "train",
+        "dialogue": 3002,
+        "turn": 3,
+        "segment": 1,
+        "span": [
+          0,
+          10
+        ],
+        "text": "All right.",
+        "context": [
+          "John, if you don't mind, I'd like to ask you a personal question.",
+          "I don't mind at all.",
+          "All right. Are you married?",
+          "To tell you the truth, I'm not married. I'm still single.",
+          "Then, when do you plan to get married?",
+          "I don't know. It's still up in the air."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3
+        ],
+        "source_sha256": "a9dd4e076a621cbf47900ebc3dc289c3cfd1823a943b640ddd31bd383199f4c0",
+        "context_sha256": "cd676c0a4290c9fe001539559404e46ee5bcc7e1deec02f6bd6a7afb6aaed6b9",
+        "adaptation": "Original reply unchanged. The prompt supplies only the topic required by this explicit reading; the target preserves uncertainty, negation, belief, intention or conditional scope. No full-template semantic approval."
+      }
+    },
+    {
+      "id": "dd_v37_val_376_4_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What kind of food do you like?",
+      "reply": "I mean the food for something spicy.",
+      "value": "indicate a preference for spicy food despite the awkward wording; you do not confirm choosing or eating a meal",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v37_val_376_4_1",
+      "source": {
+        "split": "val",
+        "dialogue": 376,
+        "turn": 4,
+        "segment": 1,
+        "span": [
+          0,
+          36
+        ],
+        "text": "I mean the food for something spicy.",
+        "context": [
+          "I'm starving. Let's get something to eat.",
+          "Can we go somewhere nearby? I don't feel like walking too far.",
+          "Sure. What kind of food do you like?",
+          "I mean the food for something spicy.",
+          "How about some Korean food? There's a place right there on the corner.",
+          "That sounds great. I love Korean food."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "source_sha256": "f1dfa8a303ebb02ae3dfdd5116c678600f101d280e2f0826d82c1d6dc8736d77",
+        "context_sha256": "baa4b7516f75c5a8b897921d7b0f9fe9d2754b6df7c0b3fc03a158c0d54fb0ed",
+        "adaptation": "Original reply unchanged. The prompt supplies only the topic required by this explicit reading; the target preserves uncertainty, negation, belief, intention or conditional scope. No full-template semantic approval."
+      }
+    },
+    {
+      "id": "dd_v37_train_9571_3_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "You may use the bathroom; it is right over there.",
+      "reply": "Thanks.",
+      "value": "thank me for allowing you to use the bathroom; you do not confirm having used it",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v37_train_9571_3_1",
+      "source": {
+        "split": "train",
+        "dialogue": 9571,
+        "turn": 3,
+        "segment": 1,
+        "span": [
+          0,
+          7
+        ],
+        "text": "Thanks.",
+        "context": [
+          "Excuse me, but could I use your bathroom?",
+          "Certainly. It's right over there.",
+          "Thanks."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3
+        ],
+        "source_sha256": "2c8fab6c3ae2e5bf97d6cbd76124a4cdc6a86126644b4184b5126fdcd91b333c",
+        "context_sha256": "3ab6102e4ec092cdf96e33b78dff6f8e4d10cbaea46bc1170eac9a6ba24744d7",
+        "adaptation": "Original reply unchanged. The prompt supplies only the topic required by this explicit reading; the target preserves uncertainty, negation, belief, intention or conditional scope. No full-template semantic approval."
+      }
+    },
+    {
+      "id": "dd_v37_train_1267_8_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "I think you dance a lot, right?",
+      "reply": "Just occasionally.",
+      "value": "say that you dance only occasionally; you do not report a specific dance event",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v37_train_1267_8_2",
+      "source": {
+        "split": "train",
+        "dialogue": 1267,
+        "turn": 8,
+        "segment": 2,
+        "span": [
+          4,
+          22
+        ],
+        "text": "Just occasionally.",
+        "context": [
+          "Are you free tonight?",
+          "Yes, I am. What's wrong?",
+          "Would you please go to a dancing party with me?",
+          "OK. No problem.",
+          "As a matter of fact, I haven't danced for a long time.",
+          "But it's said that you dance wonderfully well.",
+          "Thanks for flattering me. I think you dance a lot, right?",
+          "No. Just occasionally.",
+          "What are your favourite dances?",
+          "I love rumba and waltz.",
+          "How about samba?",
+          "To tell the truth, I don't like it. It's too fast.",
+          "Then I'll see you at six. Is that all right?",
+          "OK. See you then.",
+          "See you then."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "source_sha256": "b04354982232786f045c55f6b546738ef56c028a444f5e9af861990892f91259",
+        "context_sha256": "9cdae6f381119531176aa18136eed571268f6fe5891eab47abe13d83aefe5ea1",
+        "adaptation": "Original reply unchanged. The prompt supplies only the topic required by this explicit reading; the target preserves uncertainty, negation, belief, intention or conditional scope. No full-template semantic approval."
+      }
+    }
+  ]
+}

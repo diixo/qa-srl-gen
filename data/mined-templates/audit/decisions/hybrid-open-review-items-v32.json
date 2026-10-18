@@ -1,0 +1,19 @@
+{
+  "main_warning_queue": 170,
+  "supplemental_ambiguities": 5,
+  "quality_findings": 2,
+  "total_open_review_items": 177,
+  "main_warning_occurrences": 166,
+  "main_occurrences_with_adapter": 143,
+  "main_occurrences_without_adapter": 23,
+  "pending_items_are_not_all_unread": true,
+  "source_warnings": 112,
+  "semantic_warnings": 48,
+  "structural_warnings": 10,
+  "caveat": "These are open review dispositions, not a count of unknown linguistic details: the 50 source-wording acceptances retain their explicit unknowns and permit only limited interpretations. The full candidate remains UNREVIEWED.",
+  "next_actions": [
+    "Review the 112 retained source warnings against original prefixes; preserve missing words, ambiguous predicates, quantities and units as unknown.",
+    "Keep the 58 semantic/structural warnings, five supplemental cases and two QC cases open until evidence supports a stronger decision.",
+    "Keep the 23 insufficient-content occurrences without invented adapters; do not manufacture missing words, predicates or reference identities."
+  ]
+}

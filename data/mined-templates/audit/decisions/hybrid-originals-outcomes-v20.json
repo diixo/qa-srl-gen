@@ -1,0 +1,496 @@
+{
+  "version": "original-text-admission-v20",
+  "source_policy": "Use understandable original wording without changing it; unknown details remain explicitly unknown.",
+  "cases": [
+    {
+      "id": "train:1006:2:3",
+      "decision": "admit_scoped_interpretation",
+      "pattern_id": "dd_v20_train_1006_2_3",
+      "original_text": "I finished doing what I should do and then knock off an hour earlier.",
+      "interpretation": "The speaker reports finishing the required work and then leaving work an hour early. Knock off means stop working here, not hit an object.",
+      "unknown": [],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1009:4:1",
+      "decision": "admit_scoped_interpretation",
+      "pattern_id": "dd_v20_train_1009_4_1",
+      "original_text": "Mike suggests me to return it.",
+      "interpretation": "Mike recommends returning the purchased item. This is an attributed suggestion, not a completed return.",
+      "unknown": [],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1025:4:2",
+      "decision": "admit_scoped_interpretation",
+      "pattern_id": "dd_v20_train_1025_4_2",
+      "original_text": "Maybe there's any other reason.",
+      "interpretation": "The speaker suggests that Harry's anger may have another cause. The alternative is possible, not identified or established.",
+      "unknown": [],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1043:4:1",
+      "decision": "admit_scoped_interpretation",
+      "pattern_id": "dd_v20_train_1043_4_1",
+      "original_text": "Don't worry, I've gotchy covered.",
+      "interpretation": "The speaker reassures a colleague about handling the hot leads. Gotchy covered is a reassurance, not physical covering or proof that every contact is already completed.",
+      "unknown": [],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1056:4:1",
+      "decision": "admit_scoped_interpretation",
+      "pattern_id": "dd_v20_train_1056_4_1",
+      "original_text": "Never thought about it, I sure you are right.",
+      "interpretation": "The speaker acknowledges not having considered the walking suggestion and agrees with it. Agreement does not report a completed walk.",
+      "unknown": [],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1082:1:1",
+      "decision": "admit_scoped_interpretation",
+      "pattern_id": "dd_v20_train_1082_1_1",
+      "original_text": "I saw lily for the first time.",
+      "interpretation": "The speaker reports seeing the person named lily for the first time. The name stays lowercase as supplied, without treating it as a flower.",
+      "unknown": [],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1082:1:2",
+      "decision": "admit_scoped_interpretation",
+      "pattern_id": "dd_v20_train_1082_1_2",
+      "original_text": "And fell like I've been struck by lightening.",
+      "interpretation": "In the discussion of the girl just seen, the lightning-like comparison conveys sudden strong attraction. It does not assert a lightning injury or a physical fall; both fell and lightening remain unchanged.",
+      "unknown": [],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1084:1:2",
+      "decision": "admit_scoped_interpretation",
+      "pattern_id": "dd_v20_train_1084_1_2",
+      "original_text": "Look like you got some sun this weekend.",
+      "interpretation": "The speaker infers weekend sun exposure from the listener's appearance. This is an impression, not an independently verified event.",
+      "unknown": [],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1084:8:1",
+      "decision": "admit_scoped_interpretation",
+      "pattern_id": "dd_v20_train_1084_8_1",
+      "original_text": "I wanted to, but the water is too cold, and I just wetted in up to my knees.",
+      "interpretation": "The speaker wanted to swim but describes cold water and only knee-deep entry. Do not promote the wish into completed swimming. Wetted is retained without reconstructing the intended verb.",
+      "unknown": [],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1089:17:2",
+      "decision": "admit_scoped_interpretation",
+      "pattern_id": "dd_v20_train_1089_17_2",
+      "original_text": "Then we will pack everything into the canoe, We can shove off by 6",
+      "interpretation": "The campers plan to pack everything into the canoe, then say they can shove off by 6. Shove off means depart. Neither action is completed; 6 has no AM or PM specification.",
+      "unknown": [],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1128:2:1",
+      "decision": "admit_supported_partial_interpretation",
+      "pattern_id": "dd_v20_train_1128_2_1",
+      "original_text": "Not really, but I know it is very popular a traditional Chinese gambling game.",
+      "interpretation": "Not really answers whether the speaker has played the game. The following claim describes it as a popular traditional Chinese gambling game; it does not establish the game's correct name.",
+      "unknown": [
+        "The preceding question spells the game Making; its conventional identity is unknown."
+      ],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1139:11:2",
+      "decision": "admit_supported_partial_interpretation",
+      "pattern_id": "dd_v20_train_1139_11_2",
+      "original_text": "Eye knows how to enjoy himself.",
+      "interpretation": "The preceding clause concerns a Roman enjoying life. The present clause continues that characterization, not a claim about an anatomical eye or a particular completed pleasure.",
+      "unknown": [
+        "Eye is a damaged subject form; its intended spelling is not reconstructed."
+      ],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1157:1:1",
+      "decision": "admit_scoped_interpretation",
+      "pattern_id": "dd_v20_train_1157_1_1",
+      "original_text": "It sounds that you have a high opinion of him.",
+      "interpretation": "The speaker infers that the listener has a high opinion of an unnamed man. Sounds introduces an impression, not an acoustic event or an objective evaluation.",
+      "unknown": [],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1157:4:1",
+      "decision": "admit_scoped_interpretation",
+      "pattern_id": "dd_v20_train_1157_4_1",
+      "original_text": "But he is not a fine wether friend who could sell you down the river.",
+      "interpretation": "The speaker denies that the man is an unreliable friend who could betray someone. Sell you down the river is figurative betrayal inside a rejected description, not a completed sale or betrayal.",
+      "unknown": [],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1161:10:1",
+      "decision": "admit_scoped_interpretation",
+      "pattern_id": "dd_v20_train_1161_10_1",
+      "original_text": "Don't forget it's Friday nighty.",
+      "interpretation": "The reminder concerns the planned Friday evening airport journey. It is not a statement of the current date or a reference to a nightgown. The printed nighty is retained.",
+      "unknown": [],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1161:1:2",
+      "decision": "admit_scoped_interpretation",
+      "pattern_id": "dd_v20_train_1161_1_2",
+      "original_text": "7 appointments in Paris at beginning of next week, and 4 in Frankfurt at the end of the week.",
+      "interpretation": "The elliptical list specifies seven appointments in Paris at the beginning of next week and four in Frankfurt at the week's end. Attendance is not reported as complete.",
+      "unknown": [],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1172:5:2",
+      "decision": "admit_scoped_interpretation",
+      "pattern_id": "dd_v20_train_1172_5_2",
+      "original_text": "I'll see how to goes.",
+      "interpretation": "The speaker leaves the camping decision open pending how work goes. See how is a wait-and-see expression, not literal vision or a firm promise to attend.",
+      "unknown": [],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1203:5:1",
+      "decision": "admit_scoped_interpretation",
+      "pattern_id": "dd_v20_train_1203_5_1",
+      "original_text": "But I do not like anyone touch my head.",
+      "interpretation": "The speaker dislikes anyone touching their head. This is a preference, not inability to touch or proof that no touching has occurred.",
+      "unknown": [],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1203:6:1",
+      "decision": "admit_scoped_interpretation",
+      "pattern_id": "dd_v20_train_1203_6_1",
+      "original_text": "They are just been in friendly, when you are in Roman, do as the Romans do, that means you need to adapt to your environment.",
+      "interpretation": "The speaker attributes friendliness to the people touching the listener's head and advises adapting to the environment. The Romans proverb is figurative; neither friendly motives nor successful adaptation are independently verified.",
+      "unknown": [],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1209:5:2",
+      "decision": "admit_supported_partial_interpretation",
+      "pattern_id": "dd_v20_train_1209_5_2",
+      "original_text": "You should really get some seat or you'll end up feeling even worse than you do now.",
+      "interpretation": "The speaker advises an unwell listener to pause or sit and warns conditionally of feeling worse. The damaged wording seat does not justify a definite replacement with sleep or rest, or a completed worsening.",
+      "unknown": [
+        "The exact intended remedy behind get some seat is uncertain."
+      ],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1211:7:1",
+      "decision": "admit_scoped_interpretation",
+      "pattern_id": "dd_v20_train_1211_7_1",
+      "original_text": "Alright, all joking aside, what kinds of moves do you like?",
+      "interpretation": "In the movie discussion, moves is an awkward form in a question about movie genres. The speaker ends the joking and asks about preferences; no genre answer is supplied.",
+      "unknown": [],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1213:4:2",
+      "decision": "admit_supported_partial_interpretation",
+      "pattern_id": "dd_v20_train_1213_4_2",
+      "original_text": "His best friend Tony foamed him in.",
+      "interpretation": "In the discussion of a possibly innocent suspect who trusted a treacherous friend, the speaker attributes betrayal to the best friend Tony. The exact action encoded by foamed him in remains unresolved. Do not assert a verified crime or replace the phrase with framed him.",
+      "unknown": [
+        "The specific act meant by foamed him in is unknown; criminal guilt is not established."
+      ],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1236:4:5",
+      "decision": "admit_scoped_interpretation",
+      "pattern_id": "dd_v20_train_1236_4_5",
+      "original_text": "But anyway, I have trying my best to be a good employee.",
+      "interpretation": "The speaker reports trying their best to be a good employee. An effort is asserted, not the successful achievement of that evaluation.",
+      "unknown": [],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1238:3:1",
+      "decision": "admit_scoped_interpretation",
+      "pattern_id": "dd_v20_train_1238_3_1",
+      "original_text": "Then he become angry with you?",
+      "interpretation": "The speaker asks whether the man became angry after the listener called him a yeoman. A question is not a confirmation of anger.",
+      "unknown": [],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1268:2:2",
+      "decision": "admit_scoped_interpretation",
+      "pattern_id": "dd_v20_train_1268_2_2",
+      "original_text": "It's interesting to see who is considered the best in their field and which film are thought to be particularly good.",
+      "interpretation": "The speaker finds it interesting to learn who is considered best and which films are considered good in the awards discussion. The opinions are attributed, not objective rankings or a named list of winners.",
+      "unknown": [],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1305:12:1",
+      "decision": "admit_scoped_interpretation",
+      "pattern_id": "dd_v20_train_1305_12_1",
+      "original_text": "It will be expensive, but we think it will be worth.",
+      "interpretation": "The speaker expects the planned wedding reception to be expensive and reports a shared belief that it will be worthwhile. No completed reception or payment is reported.",
+      "unknown": [],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1314:2:3",
+      "decision": "admit_scoped_interpretation",
+      "pattern_id": "dd_v20_train_1314_2_3",
+      "original_text": "The picture are of things they want.",
+      "interpretation": "The pictures in the wedding couple's notebook depict things they want as gifts. Want does not establish ownership, purchase or receipt.",
+      "unknown": [],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1317:4:1",
+      "decision": "admit_supported_partial_interpretation",
+      "pattern_id": "dd_v20_train_1317_4_1",
+      "original_text": "I began blogging when I first went to the US for my graduate strides.",
+      "interpretation": "The speaker dates the start of blogging to their first trip to the US. The purpose phrase graduate strides is retained without inferring a completed degree or an exact reconstructed course of study.",
+      "unknown": [
+        "The exact purpose described by graduate strides is unresolved."
+      ],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1322:10:2",
+      "decision": "admit_scoped_interpretation",
+      "pattern_id": "dd_v20_train_1322_10_2",
+      "original_text": "H&K actually is an acronym for'hug and kiss'.",
+      "interpretation": "The speaker defines H&K as hug and kiss. These words are mentioned as an expansion of an abbreviation, not asserted physical actions.",
+      "unknown": [],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1339:1:2",
+      "decision": "admit_scoped_interpretation",
+      "pattern_id": "dd_v20_train_1339_1_2",
+      "original_text": "Wow, I think you liked that movie even more than I liked'Titanic.'",
+      "interpretation": "The speaker thinks the listener liked the Terminator movie more than the speaker liked Titanic. This is a subjective comparison, not a ship event or an objective ranking. The closing title quote belongs to this source span.",
+      "unknown": [],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1344:3:2",
+      "decision": "admit_scoped_interpretation",
+      "pattern_id": "dd_v20_train_1344_3_2",
+      "original_text": "I must thank you to see me off.",
+      "interpretation": "The departing visitor thanks the listener for seeing them off. Must thank is an expression of gratitude, not a completed departure or a command to arrange a new meeting.",
+      "unknown": [],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1371:2:3",
+      "decision": "admit_scoped_interpretation",
+      "pattern_id": "dd_v20_train_1371_2_3",
+      "original_text": "There have been numerous cases of paparazzi interfering with star's private live in recent years.",
+      "interpretation": "The speaker reports numerous recent cases of paparazzi intruding into celebrities' private lives. The report supplies no specific victim, exact count or independently verified allegation; private live is not live broadcasting.",
+      "unknown": [],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1372:2:3",
+      "decision": "admit_scoped_interpretation",
+      "pattern_id": "dd_v20_train_1372_2_3",
+      "original_text": "She is a big apple in his eye.",
+      "interpretation": "With Jenny and Tom as the antecedents, the apple-in-the-eye phrase characterizes Jenny as precious to Tom. It is figurative affection, not an apple or physical eye event.",
+      "unknown": [],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1380:2:1",
+      "decision": "admit_supported_partial_interpretation",
+      "pattern_id": "dd_v20_train_1380_2_1",
+      "original_text": "Well, I just spend 15 minutes as so checking my stock bonds and booking an air ticket for my mother.",
+      "interpretation": "The speaker associates fifteen minutes with checking investments and booking an air ticket for their mother. The malformed spend and as so do not reliably distinguish a recent instance from a routine, or confirm that a booking was finalized.",
+      "unknown": [
+        "The time phase, exact duration qualification and successful completion of booking are unspecified."
+      ],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1388:6:4",
+      "decision": "admit_scoped_interpretation",
+      "pattern_id": "dd_v20_train_1388_6_4",
+      "original_text": "And Perth is on the west coast, but sort of of out there by itself.",
+      "interpretation": "The speaker describes Perth as on the west coast and relatively isolated from the other cities under discussion. This is a geographical description, not personal loneliness or a precise distance.",
+      "unknown": [],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1392:1:1",
+      "decision": "admit_scoped_interpretation",
+      "pattern_id": "dd_v20_train_1392_1_1",
+      "original_text": "You know, Mary, I feel we meet somewhere before.",
+      "interpretation": "The speaker has an impression of having met Mary before somewhere. The meeting is tentative and the location unidentified.",
+      "unknown": [],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1396:2:1",
+      "decision": "admit_scoped_interpretation",
+      "pattern_id": "dd_v20_train_1396_2_1",
+      "original_text": "I know what love it.",
+      "interpretation": "The listener responds to a declaration of strong feelings for Mary by claiming to understand love. The damaged final it does not turn this into a physical action or a newly asserted relationship.",
+      "unknown": [],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1406:8:2",
+      "decision": "admit_scoped_interpretation",
+      "pattern_id": "dd_v20_train_1406_8_2",
+      "original_text": "But one should keep learning daily to maintain our keen mental power expand our intellectual capacity.",
+      "interpretation": "The speaker recommends daily learning to maintain mental sharpness and expand intellectual capacity. These are intended benefits, not demonstrated results of a completed action.",
+      "unknown": [],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1410:4:2",
+      "decision": "admit_scoped_interpretation",
+      "pattern_id": "dd_v20_train_1410_4_2",
+      "original_text": "There are many things that you have to to arrange.",
+      "interpretation": "The speaker describes many arrangements that have to be made in the funeral discussion. Obligation is distinct from completed arrangements.",
+      "unknown": [],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1436:11:1",
+      "decision": "admit_scoped_interpretation",
+      "pattern_id": "dd_v20_train_1436_11_1",
+      "original_text": "I think that these kinds haven't learnt to be afraid yet.",
+      "interpretation": "The discussion is about children doing sports. The speaker thinks they have not yet learned fear; kinds remains unchanged. A belief about learning does not prove that every child is fearless.",
+      "unknown": [],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1436:12:1",
+      "decision": "admit_scoped_interpretation",
+      "pattern_id": "dd_v20_train_1436_12_1",
+      "original_text": "It seems that they really enjoy to go faster, higher and further.",
+      "interpretation": "The speaker infers that the children enjoy going faster, higher and further. This is an impression about enjoyment, not a verified record or a specific completed jump.",
+      "unknown": [],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1440:10:1",
+      "decision": "admit_scoped_interpretation",
+      "pattern_id": "dd_v20_train_1440_10_1",
+      "original_text": "I work in a cubicle too, but I I don't mind it.",
+      "interpretation": "The speaker also works in a cubicle but does not mind it. The negation concerns objection to the setting, not working itself.",
+      "unknown": [],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1442:3:2",
+      "decision": "admit_supported_partial_interpretation",
+      "pattern_id": "dd_v20_train_1442_3_2",
+      "original_text": "But his relation with Sallycome to a sticky end and was found by his wife.",
+      "interpretation": "The speaker reports that Dan's relationship came to an unpleasant end and something was discovered by his wife. Sallycome is kept intact; the exact passive object is not silently repaired.",
+      "unknown": [
+        "The exact thing discovered by his wife and the segmentation of Sallycome are unresolved."
+      ],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1453:6:2",
+      "decision": "admit_scoped_interpretation",
+      "pattern_id": "dd_v20_train_1453_6_2",
+      "original_text": "We don't know what is going to be like tomorrow.",
+      "interpretation": "The speaker says the group does not know what tomorrow's weather will be like. Unknown weather is not a forecast of bad weather.",
+      "unknown": [],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1462:12:1",
+      "decision": "admit_scoped_interpretation",
+      "pattern_id": "dd_v20_train_1462_12_1",
+      "original_text": "Are you feel tired?",
+      "interpretation": "The speaker asks whether the reporter feels tired. The malformed question does not itself establish tiredness.",
+      "unknown": [],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1462:13:2",
+      "decision": "admit_supported_partial_interpretation",
+      "pattern_id": "dd_v20_train_1462_13_2",
+      "original_text": "News happened out of expectation.",
+      "interpretation": "In the reporter's discussion of fatigue, the speaker describes news as unexpected. Happened does not identify a particular event, and the context also permits a general observation.",
+      "unknown": [
+        "Whether a specific past event or a general property of news is intended remains unclear."
+      ],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    },
+    {
+      "id": "train:1473:7:3",
+      "decision": "admit_supported_partial_interpretation",
+      "pattern_id": "dd_v20_train_1473_7_3",
+      "original_text": "But sometimes it slows a lot in winter.",
+      "interpretation": "The utterance concerns something occurring sometimes in winter in Washington. The damaged slows does not identify a reliable weather phenomenon. Preserve the seasonal information without replacing it with snows.",
+      "unknown": [
+        "The phenomenon represented by slows is unknown; snowfall and literal slowing are not confirmed."
+      ],
+      "original_text_in_working_example": true,
+      "warning_disposition_changed": false
+    }
+  ],
+  "full_candidate_semantic_approval": false,
+  "quarantine_count_changed": false
+}

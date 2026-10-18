@@ -1,0 +1,608 @@
+{
+  "version": "offline-contextual-attestation-v15",
+  "date": "2026-10-17",
+  "previous_progress": "data/dailydialog/review-parts/hybrid-luna-offline-progress-source-v14.json",
+  "candidate": "artifacts/dailydialog-hybrid-attestation-v15",
+  "ledger": "data/dailydialog/review-parts/luna-offline-attestation-v15",
+  "review_status": "UNREVIEWED",
+  "full_candidate_published": false,
+  "semantic_review_complete": false,
+  "api_calls": 0,
+  "parser_inference_calls": 0,
+  "reviewed_segments": 54,
+  "reviewed_dialogues": 42,
+  "syntax_repaired_segments": 9,
+  "entity_repaired_segments": 2,
+  "property_reviewed_segments": 4,
+  "previous_warning_closures_reconfirmed": 74,
+  "newly_closed_api_warnings": 0,
+  "saved_warnings": 12978,
+  "quarantined_api_warnings": 741,
+  "quarantined_current_occurrences": 722,
+  "quarantine_groups": {
+    "source": 652,
+    "ambiguity": 73,
+    "other_syntax": 7,
+    "sentence_boundary": 2,
+    "property_attachment": 1,
+    "negation_or_modality": 1,
+    "coordination": 3,
+    "clause_attachment": 2
+  },
+  "new_local_semantic_ambiguities": 2,
+  "reviewed_fragments_awaiting_adapters": 5,
+  "decisions": {
+    "hybrid-attestation-context-v15.jsonl": {
+      "path": "data/dailydialog/review-parts/hybrid-attestation-context-v15.jsonl",
+      "sha256": "bd3dcc2d8383632cab734d19bfc2bb3d280d621c3cb30a10c758756307c52bc9"
+    },
+    "hybrid-attestation-warning-rechecks-v15.jsonl": {
+      "path": "data/dailydialog/review-parts/hybrid-attestation-warning-rechecks-v15.jsonl",
+      "sha256": "aa16a02b0daeafa5e7ff74fca8108581b7ee413836dad628a96f626110f1999c"
+    },
+    "hybrid-attestation-snapshot-v15.jsonl.gz": {
+      "path": "data/dailydialog/review-parts/hybrid-attestation-snapshot-v15.jsonl.gz",
+      "sha256": "3c78a001bcb8e8355b9fb2efd0b0c9cfea681c3550742016e95bc78304fca6c0"
+    },
+    "hybrid-attestation-admission-v15.jsonl": {
+      "path": "data/dailydialog/review-parts/hybrid-attestation-admission-v15.jsonl",
+      "sha256": "40bb8ff6409a86960015060432ea72fb44a1c48eaceea8a53af6d5c2fb83591a"
+    },
+    "hybrid-attestation-held-v15.json": {
+      "path": "data/dailydialog/review-parts/hybrid-attestation-held-v15.json",
+      "sha256": "08b53a440345a67e66a3560251dfd4157ad0f789fbe89dd557fc6250358d15e3"
+    }
+  },
+  "validation": {
+    "status": "passed",
+    "source_sha256": "c556112c1dee80eccef7c4826fae3342b370cce3efad41e5fe9bdb7e71b4f3c1",
+    "templates": 101139,
+    "attested_roundtrips": 110054,
+    "source_records": 161316,
+    "token_spans": 1378072,
+    "verbs_occurrences": 289418,
+    "adjectives_occurrences": 71917
+  },
+  "conservation": {
+    "status": "passed",
+    "counts": {
+      "old_segments": 161316,
+      "old_tokens": 1378072,
+      "new_segments": 161316,
+      "new_tokens": 1378072,
+      "unchanged_analyses": 161262,
+      "revised_outputs": 54
+    },
+    "explicit_token_delta": 0,
+    "reference_expansion_token_delta": 0,
+    "previous_preimages_retained": true
+  },
+  "apostrophes": {
+    "status": "passed",
+    "normalized_segments": 161316,
+    "ascii_apostrophes": 49408,
+    "noncanonical_apostrophes": 0,
+    "target": "'",
+    "original_contexts_preserved": true,
+    "previous_contexts_retained_in_source_candidate": true,
+    "source_corrections_explicit": true
+  },
+  "independent_verification": {
+    "status": "passed",
+    "reviewed_occurrences": 54,
+    "exact_renders": 54,
+    "syntax_repairs": [
+      "test:127:6:1",
+      "test:149:2:1",
+      "test:802:2:2",
+      "train:10540:11:2",
+      "train:1690:2:1",
+      "train:1890:2:2",
+      "train:2022:2:2",
+      "train:2297:8:2",
+      "train:2641:8:3"
+    ],
+    "entity_repairs": [
+      "test:610:4:2",
+      "train:1966:5:1"
+    ],
+    "held": [
+      {
+        "id": "test:141:2:1",
+        "unit": "fragment",
+        "meaning": {
+          "speech_act": "acknowledgment",
+          "event_status": "service_acceptance",
+          "content": {
+            "interpretation": "Certainly acknowledges the customer's request to buy a black suit. It is an affirmative service response, not proof of a sale and not a noun denoting certainty."
+          },
+          "completed_action_asserted": false,
+          "unknown": []
+        },
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "id": "test:169:4:1",
+        "unit": "fragment",
+        "meaning": {
+          "speech_act": "selection_request",
+          "event_status": "chosen_shoe_type",
+          "content": {
+            "interpretation": "High heels is the customer's choice between high heels and flat shoes. Please makes it a polite request. The next sentence describes intended formal use, not an accomplished purchase or wearing event."
+          },
+          "completed_action_asserted": false,
+          "unknown": []
+        },
+        "evidence_turns": [
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "id": "train:10335:6:1",
+        "unit": "fragment",
+        "meaning": {
+          "speech_act": "answer",
+          "event_status": "requested_payment_amount",
+          "content": {
+            "interpretation": "50 dollars answers how much to insert into the ticket machine. It states an amount to pay, not completed payment. Dollar currency jurisdiction and number of tickets are unspecified."
+          },
+          "completed_action_asserted": false,
+          "unknown": []
+        },
+        "evidence_turns": [
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "id": "train:11050:9:2",
+        "unit": "fragment",
+        "meaning": {
+          "speech_act": "thanks",
+          "event_status": "gratitude_for_directions",
+          "content": {
+            "interpretation": "The speaker thanks the interlocutor for directions to the bank. Thanks is a gratitude response. No arrival at the bank is asserted, and the adjacent defective God it is not silently corrected or used to invent an event."
+          },
+          "completed_action_asserted": false,
+          "unknown": []
+        },
+        "evidence_turns": [
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "id": "train:1756:3:3",
+        "unit": "fragment",
+        "meaning": {
+          "speech_act": "thanks",
+          "event_status": "gratitude_for_report",
+          "content": {
+            "interpretation": "Mr. Campbell thanks Michelle for the report he says he received that morning. That refers to the report in the immediately preceding sentence. The gratitude fragment itself asserts no further event."
+          },
+          "completed_action_asserted": false,
+          "unknown": []
+        },
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "id": "train:1770:4:4",
+        "unit": "sentence",
+        "meaning": {
+          "speech_act": "statement",
+          "event_status": "negative_completion_with_deadline",
+          "content": {
+            "interpretation": "The deadlines for the two assigned projects are approaching and the speaker reports unfinished work. The wording still have not finished one of them does not safely fix how many of the two are complete; preserve the negative completion claim without choosing a quantifier reading."
+          },
+          "completed_action_asserted": false,
+          "unknown": [
+            "Whether one project is unfinished or neither is finished remains ambiguous."
+          ]
+        },
+        "evidence_turns": [
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "id": "train:2641:3:1",
+        "unit": "sentence",
+        "meaning": {
+          "speech_act": "statement",
+          "event_status": "approximate_habitual_temperature",
+          "content": {
+            "interpretation": "The speaker reports a summer temperature of about 20 or 25 in their city. Preserve the approximate alternatives and recurring reading. Do not turn or into an exact closed range or supply a unit solely from the other speaker's city."
+          },
+          "completed_action_asserted": false,
+          "unknown": [
+            "The measurement unit for this speaker's figure is not explicitly established; usually often is redundant source wording."
+          ]
+        },
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    ],
+    "proposed_admission": 47,
+    "candidate_segments": 161316,
+    "source_part_and_manual_files_unchanged": 109,
+    "manual_dialogues_preserved": 510,
+    "original_candidate_unchanged": true,
+    "warnings_preserved": 12978,
+    "quarantined_warnings": 741,
+    "warning_rechecks": 74,
+    "paid_evidence_identical": true,
+    "slot_replacement_blocked": true,
+    "dependency_qa_blocked": true,
+    "action_realization_blocked": true
+  },
+  "admission": {
+    "bank_id": "dailydialog-attestation-admission-v15",
+    "published": true,
+    "central_pool": "data/mined-templates",
+    "central_manifest_sha256": "99009d64d298e530ab47984232742b8ee5437431e97c7209b140d7495e658aa4",
+    "admitted_occurrences": [
+      "test:1000:7:1",
+      "test:114:3:2",
+      "test:127:3:1",
+      "test:127:6:1",
+      "test:127:7:1",
+      "test:140:4:2",
+      "test:149:2:1",
+      "test:156:4:1",
+      "test:156:5:2",
+      "test:162:9:2",
+      "test:188:5:1",
+      "test:213:3:1",
+      "test:25:2:1",
+      "test:41:5:3",
+      "test:605:3:1",
+      "test:610:4:2",
+      "test:802:2:2",
+      "test:813:2:1",
+      "test:813:8:1",
+      "test:848:8:2",
+      "train:10383:1:1",
+      "train:10410:3:3",
+      "train:10540:11:2",
+      "train:10699:1:1",
+      "train:10699:3:1",
+      "train:10703:4:1",
+      "train:1314:1:3",
+      "train:1436:6:2",
+      "train:1516:7:1",
+      "train:1690:2:1",
+      "train:1690:7:7",
+      "train:1890:13:1",
+      "train:1890:2:2",
+      "train:1956:5:1",
+      "train:1957:12:1",
+      "train:1957:3:1",
+      "train:1957:9:1",
+      "train:1966:5:1",
+      "train:2022:2:2",
+      "train:2101:5:1",
+      "train:2297:8:2",
+      "train:2297:8:4",
+      "train:2336:1:1",
+      "train:2515:4:1",
+      "train:2592:3:1",
+      "train:2641:8:3",
+      "train:2641:8:4"
+    ],
+    "validation": {
+      "status": "passed",
+      "source_sha256": "967d9baaebceb6c9c6113852d4813380819c4cb24c081b75823e6a1c5788c8ee",
+      "templates": 47,
+      "attested_roundtrips": 47,
+      "source_records": 47,
+      "token_spans": 590,
+      "verbs_occurrences": 121,
+      "adjectives_occurrences": 32
+    },
+    "previous_files_preserved": 344,
+    "candidate_unchanged": true,
+    "generation_smoke": {
+      "status": "passed",
+      "published": true,
+      "exact_renders": 47,
+      "builtin_documents": 23,
+      "records": [
+        {
+          "id": "train:2515:4:1",
+          "text": "That should be fun."
+        },
+        {
+          "id": "test:213:3:1",
+          "text": "Well, thank you very much but I thought I'd try and chair the meeting by the rule — at least for a while."
+        },
+        {
+          "id": "train:2297:8:2",
+          "text": "I just go to dance every day after work."
+        },
+        {
+          "id": "train:10699:1:1",
+          "text": "There is something wrong with my computer."
+        },
+        {
+          "id": "test:156:5:2",
+          "text": "But I have carsickness."
+        },
+        {
+          "id": "train:10703:4:1",
+          "text": "Do you think I should wear a different dress?"
+        },
+        {
+          "id": "test:813:8:1",
+          "text": "Much as I'd like to, I am afraid I won't be free next week, I have a lot of work."
+        },
+        {
+          "id": "train:1966:5:1",
+          "text": "Well, to be fair, since he's coming all the way from Lancaster, he's got to get up much earlier than the rest of us."
+        },
+        {
+          "id": "test:127:6:1",
+          "text": "By the way, what kind of stores do we need to go to?"
+        },
+        {
+          "id": "train:2022:2:2",
+          "text": "Still feeling the effects of jet lag a bit, but last night I got at least six hours of rest."
+        },
+        {
+          "id": "train:1436:6:2",
+          "text": "A few of the boys and one girl can do it in less than five minutes."
+        },
+        {
+          "id": "train:2592:3:1",
+          "text": "I need to get a costume for a fancy dress party, and I really don't know what to get."
+        },
+        {
+          "id": "test:610:4:2",
+          "text": "But the Vikings travelled there long before Columbus."
+        },
+        {
+          "id": "test:813:2:1",
+          "text": "A friend and I are planning to go out, why?"
+        },
+        {
+          "id": "test:41:5:3",
+          "text": "That could be causing water to not drain completely; that might lead to more problems in the future."
+        },
+        {
+          "id": "train:1957:12:1",
+          "text": "Yeah, what's the bet?"
+        },
+        {
+          "id": "train:10699:3:1",
+          "text": "The computer doesn't work when I push the power button."
+        },
+        {
+          "id": "test:848:8:2",
+          "text": "The only reason they didn't disqualify him until after the race is because the results from the test only came back afterwards."
+        },
+        {
+          "id": "test:605:3:1",
+          "text": "This dish tastes terrific."
+        },
+        {
+          "id": "test:149:2:1",
+          "text": "What are the criteria for staff to attend?"
+        },
+        {
+          "id": "train:2297:8:4",
+          "text": "I dance two hours every day."
+        },
+        {
+          "id": "train:1890:13:1",
+          "text": "It says here that it's a war memorial."
+        },
+        {
+          "id": "train:1690:2:1",
+          "text": "My country is well known for being very flat."
+        },
+        {
+          "id": "test:127:3:1",
+          "text": "But Sunday is the same as Saturday."
+        },
+        {
+          "id": "train:1957:9:1",
+          "text": "You're not able to move after this class."
+        },
+        {
+          "id": "train:1314:1:3",
+          "text": "I find it so hard to choose the right gift."
+        },
+        {
+          "id": "train:2101:5:1",
+          "text": "Who composed it for you?"
+        },
+        {
+          "id": "test:25:2:1",
+          "text": "Could you show me where the Chinese-style clothing is located?"
+        },
+        {
+          "id": "train:2336:1:1",
+          "text": "Are you ready to go to the supermarket?"
+        },
+        {
+          "id": "train:2641:8:4",
+          "text": "then the skies are clear again."
+        },
+        {
+          "id": "test:188:5:1",
+          "text": "Hum... You should try the mushroom fettuccine."
+        },
+        {
+          "id": "train:1957:3:1",
+          "text": "You think so?"
+        },
+        {
+          "id": "train:1956:5:1",
+          "text": "What strength do you bring to the job?"
+        },
+        {
+          "id": "train:1690:7:7",
+          "text": "There are also many small islands off the coast, but few people live on them."
+        },
+        {
+          "id": "train:10540:11:2",
+          "text": "Take one at a time and three times a day, and come back in three days."
+        },
+        {
+          "id": "train:1890:2:2",
+          "text": "It's got pictures of interesting buildings from all over the world, with brief descriptions of how they were built, their purpose, and so on."
+        },
+        {
+          "id": "test:802:2:2",
+          "text": "You know what the topics are going to be, so prepare what you would like to say in advance."
+        },
+        {
+          "id": "test:156:4:1",
+          "text": "Do you have airsickness?"
+        },
+        {
+          "id": "test:114:3:2",
+          "text": "Did you want to listen to CDs or cassettes or the radio?"
+        },
+        {
+          "id": "test:127:7:1",
+          "text": "I want to buy some clothes in a clothing store."
+        },
+        {
+          "id": "train:2641:8:3",
+          "text": "but each one usually only lasts a few hours."
+        },
+        {
+          "id": "train:1516:7:1",
+          "text": "But, you work with her every day."
+        },
+        {
+          "id": "test:1000:7:1",
+          "text": "Why not go again to celebrate our one-year anniversary?"
+        },
+        {
+          "id": "test:140:4:2",
+          "text": "If you'll excuse me, I'd like to go over it first."
+        },
+        {
+          "id": "train:10383:1:1",
+          "text": "Are you ready to go to the supermarket?"
+        },
+        {
+          "id": "train:10410:3:3",
+          "text": "It was an open-air fair."
+        },
+        {
+          "id": "test:162:9:2",
+          "text": "I've got breakfast you ordered."
+        }
+      ],
+      "builtin_occurrences": [
+        "test:114:3:2",
+        "test:127:7:1",
+        "test:162:9:2",
+        "test:188:5:1",
+        "test:213:3:1",
+        "test:25:2:1",
+        "test:41:5:3",
+        "test:605:3:1",
+        "test:610:4:2",
+        "train:10540:11:2",
+        "train:10699:3:1",
+        "train:10703:4:1",
+        "train:1314:1:3",
+        "train:1436:6:2",
+        "train:1516:7:1",
+        "train:1890:2:2",
+        "train:1956:5:1",
+        "train:1957:3:1",
+        "train:2022:2:2",
+        "train:2101:5:1",
+        "train:2297:8:4",
+        "train:2592:3:1",
+        "train:2641:8:3"
+      ],
+      "normal_controlled_predicate_exclusions": [
+        "test:1000:7:1",
+        "test:127:3:1",
+        "test:127:6:1",
+        "test:140:4:2",
+        "test:149:2:1",
+        "test:156:4:1",
+        "test:156:5:2",
+        "test:802:2:2",
+        "test:813:2:1",
+        "test:813:8:1",
+        "test:848:8:2",
+        "train:10383:1:1",
+        "train:10410:3:3",
+        "train:10699:1:1",
+        "train:1690:2:1",
+        "train:1690:7:7",
+        "train:1890:13:1",
+        "train:1957:12:1",
+        "train:1957:9:1",
+        "train:1966:5:1",
+        "train:2297:8:2",
+        "train:2336:1:1",
+        "train:2515:4:1",
+        "train:2641:8:4"
+      ],
+      "meanings_contexts_tokens_preserved": true,
+      "slot_replacement_blocked": true,
+      "dependency_qa_blocked": true,
+      "action_realization_blocked": true
+    },
+    "usage": "Exact attested sentences with embedded contexts and scoped meanings only. Recombination, dependency-derived factual QA and generic action realization remain disabled. The existing controlled-predicate policy selects 23 of 47 in the normal generator."
+  },
+  "checks": {
+    "tests": 165,
+    "seconds": 22.99,
+    "command": "python -X utf8 -B -m pytest -q tests/test_dailydialog_source_segmentation.py tests/test_dailydialog_source_rebase.py tests/test_dailydialog_quarantine_finalization.py tests/test_dailydialog_admission.py tests/test_template_usage.py",
+    "diff_check": "passed",
+    "received_evidence_sha256": "68f72401d4ccd5e4a26eaaf23e1558dc268f136195680c658a2f857f8be68391"
+  },
+  "reproduction": {
+    "commands": [
+      "python -X utf8 -B scripts/resegment_dailydialog_hybrid_source.py --source artifacts/dailydialog-hybrid-source-reviewed-v14 --reviews data/dailydialog/review-parts/hybrid-attestation-context-v15.jsonl --out artifacts/dailydialog-hybrid-attestation-v15",
+      "python -X utf8 -B scripts/finalize_dailydialog_quarantine.py --candidate artifacts/dailydialog-hybrid-attestation-v15 --ledger data/dailydialog/review-parts/luna-offline-source-v14 --reviews data/dailydialog/review-parts/hybrid-attestation-warning-rechecks-v15.jsonl --out data/dailydialog/review-parts/luna-offline-attestation-v15",
+      "python -X utf8 -B scripts/admit_dailydialog_hybrid.py --source artifacts/dailydialog-hybrid-attestation-v15 --reviews data/dailydialog/review-parts/hybrid-attestation-admission-v15.jsonl --quarantine data/dailydialog/review-parts/luna-offline-attestation-v15 --out artifacts/dailydialog-attestation-admission-v15",
+      "python -X utf8 -B scripts/admit_dailydialog_hybrid.py --out artifacts/dailydialog-attestation-admission-v15 --publish --bank-id dailydialog-attestation-admission-v15"
+    ],
+    "note": "Already completed. Runners refuse existing output directories; use new output paths for a replay and propagate them through later commands. The explicit JSONL reviews are the authoritative reusable inputs; ignored authoring helpers are not required."
+  },
+  "next_step": {
+    "local_queue": "data/dailydialog/review-parts/hybrid-attestation-held-v15.json",
+    "warning_queue": "data/dailydialog/review-parts/luna-offline-attestation-v15/quarantine-cases.jsonl.gz",
+    "priorities": [
+      "Adapt the five reviewed short responses to dialogue generation with explicit context and extraction targets.",
+      "Continue the 652 source warnings and 89 other saved warnings in substantive groups; keep irreducible unknowns restricted.",
+      "Preserve the two new quantifier/unit ambiguities; do not count their wording fixes as complete semantic admission."
+    ],
+    "full_semantic_review_still_required": true
+  }
+}

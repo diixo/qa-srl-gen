@@ -1,0 +1,103 @@
+{
+  "version": "offline-pass-final-v1",
+  "candidate": "artifacts/dailydialog-hybrid-offline-wording-final-v1",
+  "bank": "artifacts/dailydialog-hybrid-offline-wording-final-v1/bank",
+  "ledger": "data/dailydialog/review-parts/luna-offline-final-v1",
+  "warning_counts": {
+    "fixed_in_candidate": 8388,
+    "quarantined_unresolved": 1369,
+    "closed_representation_only": 458,
+    "closed_not_supported": 595,
+    "quarantined_after_source_revision": 690,
+    "fixed_boundary_only": 215,
+    "fixed_wording_only": 1211,
+    "closed_source_warning_not_supported": 52
+  },
+  "quarantined_warnings": 2059,
+  "quarantined_cases": 1838,
+  "quarantine_groups": {
+    "source": 730,
+    "other_syntax": 562,
+    "property_attachment": 164,
+    "coordination": 188,
+    "clause_attachment": 134,
+    "ambiguity": 98,
+    "particle_or_preposition": 69,
+    "direct_address": 38,
+    "lemma_or_inflection": 29,
+    "sentence_boundary": 45,
+    "negation_or_modality": 2
+  },
+  "offline_pass_complete": true,
+  "semantic_review_complete": false,
+  "api_calls": 0,
+  "api_unanswered_cases": 112802,
+  "next_api_job_if_ever_resumed": 18376,
+  "verification": {
+    "status": "passed",
+    "source_parts_verified_dialogues": 13118,
+    "manual_reference_dialogues_preserved": 510,
+    "saved_api_outputs": 47077,
+    "outputs_sha256": "f792915163ff9f8a309ba840b55ebe1cf461c8f1d74d4de40b02990766f5c0e3",
+    "saved_warning_addresses": 12978,
+    "noncanonical_apostrophes": 0,
+    "source_view_validation": {
+      "status": "passed",
+      "source_sha256": "c3a642ed0f5af4a9eb62555c79588807fb19ec36879c2a603f37c83e8f9cda21",
+      "templates": 100799,
+      "attested_roundtrips": 109738,
+      "source_records": 161260,
+      "token_spans": 1378197,
+      "verbs_occurrences": 289429,
+      "adjectives_occurrences": 71909
+    },
+    "conservation": {
+      "status": "passed",
+      "counts": {
+        "untouched_occurrences": 158500,
+        "reparsed_unreviewed": 1514,
+        "preserved": 1246
+      },
+      "old_occurrences": 161293,
+      "new_occurrences": 161260,
+      "every_original_accounted_for": true,
+      "all_unaddressed_analyses_unchanged": true,
+      "source_preimages_and_previous_local_decisions_preserved": true,
+      "semantic_approval": false
+    },
+    "authoritative_source_unchanged": true,
+    "semantic_review_complete": false,
+    "api_calls": 0
+  },
+  "publication": {
+    "bank": "data/mined-templates",
+    "component": "dailydialog-offline-qc-v1",
+    "admitted_attestations": 29,
+    "mode": "attested_sentence",
+    "recombination": false,
+    "dependency_qa": false,
+    "smoke": "artifacts/dailydialog-offline-published-smoke-v1.json"
+  },
+  "full_candidate_published": false,
+  "quality_control": [
+    "data/dailydialog/review-parts/hybrid-offline-completion-qc-summary-v1.json",
+    "data/dailydialog/review-parts/hybrid-offline-final-wording-qc-judgments-v1.jsonl"
+  ],
+  "quality_note": "Direct assistant review; not an independent corpus-wide accuracy estimate. Local fixes never approve whole-sentence semantics.",
+  "tests": {
+    "passed": 132,
+    "elapsed_seconds": 51.09,
+    "suites": [
+      "candidate wording",
+      "offline finalization",
+      "local syntax",
+      "offline resolution",
+      "source segmentation",
+      "bank audit",
+      "admission",
+      "attribute targets"
+    ]
+  },
+  "dialogue_smoke": "artifacts/dailydialog-offline-qc-dialogue-smoke-v1",
+  "next_step": "Saved-warning offline pass is complete. Retain unresolved cases and changed parses in quarantine; a future semantic admission pass must inspect them explicitly, not treat local closure or API clear as approval."
+}

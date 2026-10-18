@@ -1,0 +1,284 @@
+{
+  "version": "dailydialog-data-release-quality-v38",
+  "date": "2026-10-18",
+  "previous_progress": "data\\dailydialog\\review-parts\\hybrid-luna-offline-progress-quality-v36.json",
+  "candidate": "artifacts\\dailydialog-hybrid-quality-v38",
+  "ledger": "data\\dailydialog\\review-parts\\luna-offline-quality-v38",
+  "review_status": "UNREVIEWED",
+  "semantic_review_complete": false,
+  "full_candidate_published": false,
+  "scope": "Prepare reviewed data, verify preservation and usage restrictions, publish the explicitly reviewed subset to the local pool, generate and validate data. No new model-quality experiment.",
+  "grammar_pass": {
+    "candidate": "artifacts/dailydialog-hybrid-quality-v37",
+    "rule_counts": {
+      "unique_inputs_examined": 111118,
+      "unique_inputs_revised": 332,
+      "affected_occurrences": 504
+    },
+    "rule_occurrences": {
+      "greeting_vocative": 274,
+      "evaluative_infinitive_attachment": 132,
+      "move_in_particle": 22,
+      "oh_dear_interjection": 27,
+      "stop_infinitive_purpose": 4,
+      "try_on_particle": 14,
+      "ground_beef_modifier": 20,
+      "okay_evaluation": 3,
+      "bank_account_nominal": 8
+    },
+    "conservation": {
+      "status": "passed",
+      "counts": {
+        "segments": 161312,
+        "tokens": 1378085,
+        "identical_occurrences": 160808,
+        "revised_occurrences": 504,
+        "updated_unreviewed_temporal_diagnostics": 1
+      },
+      "source_and_tokens_unchanged": true,
+      "previous_preimages_retained": true,
+      "context_reviews_unchanged": true,
+      "published": false
+    },
+    "automatic_changes_are_semantic_approval": false
+  },
+  "fresh_quality_sample": {
+    "version": "independent-quality-review-v37",
+    "size": 50,
+    "dialogues": 50,
+    "outcome_counts": {
+      "no_specific_parse_error_identified": 39,
+      "confirmed_annotation_error": 11
+    },
+    "corrected_occurrences": 11,
+    "context_only_outputs": 50,
+    "sentence_units": 35,
+    "fragment_units": 15,
+    "unknown_source_artifact_cases": [
+      5
+    ],
+    "source_text_changes": 0,
+    "source_character_changes": 0,
+    "retokenized_occurrences": 1,
+    "token_delta": 2,
+    "api_calls": 0,
+    "parser_inference_calls": 0,
+    "full_candidate_status": "UNREVIEWED",
+    "publication": false,
+    "scope": "One directly reviewed occurrence from each of fifty distinct dialogues, selected uniformly from 148053 eligible occurrences; not fifty fully reviewed dialogues. All original prefixes inspected before viewing automatic parses.",
+    "limitations": "One model reviewer, not human gold. Eleven occurrence-level annotation repairs are not a trained Extraction-model error rate. No error identified does not authorize generic QA or unreviewed corpus members.",
+    "frozen_plan_sha256": "201a4f72b165f810a19f84a9995c28e361606297ddc204da1ab14f9856ff771a",
+    "blind_readings_sha256": "04642b3a463325cb0a9e450e23b40ae7b4355a7b3b4bd711935c92038872436a"
+  },
+  "validation": {
+    "status": "passed",
+    "source_sha256": "e05e75d0db7fcd5f5c22a73e26afb22d187cdcbf2b43da80aa425d989c793696",
+    "templates": 101353,
+    "attested_roundtrips": 110207,
+    "source_records": 161312,
+    "token_spans": 1378087,
+    "verbs_occurrences": 289407,
+    "adjectives_occurrences": 71909
+  },
+  "conservation": {
+    "status": "passed",
+    "counts": {
+      "old_segments": 161312,
+      "old_tokens": 1378085,
+      "new_segments": 161312,
+      "new_tokens": 1378087,
+      "unchanged_analyses": 161262,
+      "revised_outputs": 50
+    },
+    "explicit_token_delta": 2,
+    "reference_expansion_token_delta": 0,
+    "previous_preimages_retained": true
+  },
+  "source_files_updated": 0,
+  "quarantine": {
+    "unresolved_warnings": 19,
+    "active_automatic_retries": 0,
+    "blocked_template_occurrences": 21,
+    "allowed_adjacent_adapters": 2,
+    "published_quarantined_templates": 0
+  },
+  "publication": {
+    "new_attested_sentences": 34,
+    "new_dialogue_adapters": 23,
+    "total_dailydialog_templates": 5613,
+    "total_fragment_patterns": 772,
+    "previous_catalog_patterns_preserved": 749,
+    "previous_pool_files_preserved": 345,
+    "attestation_generic_qa_allowed": false,
+    "attestation_recombination_allowed": false,
+    "new_templates_available_under_controlled_verb_policy": 22,
+    "new_templates_excluded_by_controlled_verb_policy": 12
+  },
+  "new_adapter_generation": {
+    "generated_episodes": 138,
+    "extraction_rows": 414,
+    "history_rows": 138,
+    "memory_rows": 138,
+    "cross_split_prompt_overlaps": [],
+    "json_inside_content": false
+  },
+  "dataset": {
+    "path": "artifacts/dialogue-dailydialog-reviewed-v38",
+    "command": "python -X utf8 -B -m semantic_corpus.cli dialogue-build --out artifacts/dialogue-dailydialog-reviewed-v38 --user-assistant-only --train 100 --validation 20 --test 20 --mined-train 96 --seed 20261018 --no-metadata --max-length 768",
+    "verification": {
+      "status": "passed",
+      "files_verified": 16,
+      "rows": {
+        "extraction": {
+          "train": 4595,
+          "validation": 893,
+          "test": 893
+        },
+        "history": {
+          "train": 1696,
+          "validation": 340,
+          "test": 340
+        },
+        "memory": {
+          "train": 1696,
+          "validation": 340,
+          "test": 340
+        }
+      },
+      "max_tokens": {
+        "extraction": {
+          "train": 731,
+          "validation": 713,
+          "test": 706
+        },
+        "history": {
+          "train": 229,
+          "validation": 226,
+          "test": 210
+        },
+        "memory": {
+          "train": 212,
+          "validation": 222,
+          "test": 197
+        }
+      },
+      "extraction_targets_decoded": 6381,
+      "cross_split_prompt_overlaps": [],
+      "nested_target_json": false,
+      "task_families": 17,
+      "fragment_patterns": {
+        "train": 100,
+        "validation": 20,
+        "test": 20
+      },
+      "catalog_total": 772,
+      "fragment_coverage_policy": "General 17-task smoke dataset; not every reviewed adapter appears. New 23 adapters are covered separately in quality-v37/datasets.",
+      "token_rejections": {
+        "max_length": 768,
+        "report_file": "token-lengths.json",
+        "rejections_file": "length-rejections.jsonl",
+        "rejected_episodes": 0
+      },
+      "content_formats": {
+        "history": "history-text-v1",
+        "memory": "memory-text-v11",
+        "extraction": "extraction-text-v11"
+      },
+      "prompt_version": "dialogue-prompts-v13",
+      "training_run": false,
+      "source_manifest_sha256": "3f22fb1268643cdf25bc3711c4cfa1a95a1e58dd0743056c3882b65115c4b8b2"
+    },
+    "limitation": "A general 17-task verification dataset with 100/20/20 fragment patterns; not exhaustive coverage of all 772 patterns. All 23 new adapters are separately covered in both participant modes and all three splits. Shared reviewed patterns across splits follow the existing generator policy.",
+    "transport_fix_note": "Dataset was built and verified before adding the directory-rename retry; content and token contracts are unchanged. The manifest retains the exact original build-resource hashes."
+  },
+  "regression_fixes": [
+    "Keep complete The user descriptions unchanged in response targets and allow them in the interpretation instruction; preserve verb-phrase wording.",
+    "Do not duplicate terminal punctuation when rendering interpretation memory.",
+    "Update stale UI format assertions.",
+    "Replace the pool-dependent passive-voice test fixture with explicit PERSON and GROUP cases.",
+    "Bound dataset-directory publication retries to six Windows access/sharing failures and 1.55 seconds; never overwrite an existing destination or hide permanent errors."
+  ],
+  "preservation": {
+    "bank_against_git_head": {
+      "tracked_archives_checked": 339,
+      "unchanged_original_byte_prefixes": 339,
+      "nonprefix_archives": [],
+      "old_sources_retained": true,
+      "old_sources": 14,
+      "current_sources": 42
+    },
+    "source_parts": {
+      "source_dialogues": 13118,
+      "parts": 100,
+      "all_addresses_unique": true,
+      "mismatched_dialogues": [],
+      "apostrophe_variants": {
+        "‘": 0,
+        "’": 0,
+        "‛": 0,
+        "ʼ": 0,
+        "＇": 0,
+        "`": 0
+      }
+    },
+    "source_dialogues": 13118,
+    "manual_dialogues": 510,
+    "saved_api_warnings": 12978,
+    "paid_evidence_sha256": "68f72401d4ccd5e4a26eaaf23e1558dc268f136195680c658a2f857f8be68391",
+    "source_turns_changed_in_existing_diff": 32
+  },
+  "tests": {
+    "status": "passed_after_targeted_reruns",
+    "current_core_tests": 3368,
+    "django_tests": 105,
+    "report": "artifacts\\dailydialog-quality-v37\\regression-summary.json",
+    "first_full_run": {
+      "passed": 3359,
+      "failed": 2
+    },
+    "focused_before_publication_retry": {
+      "passed": 1730,
+      "failed": 1
+    },
+    "publication_retry_and_real_exports": {
+      "passed": 9,
+      "failed": 0
+    },
+    "all_current_collected_tests_have_latest_pass": true
+  },
+  "commit_plan": "data\\dailydialog\\review-parts\\hybrid-release-commit-plan-v38.json",
+  "git_index_changed": false,
+  "api_calls_this_release": 0,
+  "new_model_quality_experiment": false,
+  "reports": {
+    "admission": "artifacts\\dailydialog-quality-v37\\attested\\report.json",
+    "fragments": "artifacts\\dailydialog-quality-v37\\fragment-admission.json",
+    "pool_audit": "artifacts\\dailydialog-quality-v37\\quarantine-audit.json",
+    "subset_verification": "artifacts\\dailydialog-quality-v37\\independent-verification.json",
+    "dataset_verification": "artifacts\\dailydialog-quality-v37\\dataset-verification.json"
+  },
+  "remaining": [
+    "Keep the 19 unresolved warnings / 21 blocked occurrences deferred until new evidence; do not invent missing content.",
+    "The complete automatic candidate remains UNREVIEWED. Syntax repairs and sample checks do not approve all other occurrences.",
+    "Review and commit the functional changes and evidence using the explicit file groups; optional API tooling, historical ledger copies and model-experiment helper are separate."
+  ],
+  "verified_files": {
+    "data/dailydialog/review-parts/hybrid-independent-quality-admission-v37.jsonl": "bd4670591aff5a942853267f29db77978b1f696f394b574999fd669fc5c773b6",
+    "data/dailydialog/review-parts/hybrid-fragment-adapters-v37.json": "c994b1c66176741991dc745f109184edb6870f47b314b9d41832f540f19bafe6",
+    "data/dailydialog/review-parts/hybrid-fragment-original-contexts-v37.jsonl": "982f2048beb1636d00ffde9cb3e36a93681eeed60a5c9e10c5bc05ba8fab240b",
+    "artifacts/dailydialog-hybrid-quality-v38/report.json": "d35c40c108da762c14089aaef4c7fabd6cdb47af2fe820aa02d14e2ccb785697",
+    "data/dailydialog/review-parts/luna-offline-quality-v38/summary.json": "d07a1aafd9f096fd6601af7e028a73d9fb4749cf3d35423099b15d230da2490e",
+    "data/mined-templates/manifest.json": "10e8fca81ada5d49f51a60336d22b787cd93d0b032c4a5354ed912747bc87088",
+    "data/mined-templates/reviewed/dialogue-fragments.json": "31bfbcf0030e1c50e5a7e4b76aeb968294c760cda967bbdd27f477476f28630d",
+    "data/mined-templates/reviewed/dailydialog-quarantine.json": "6e099ca7cc6871791eec55117f23d2f87db5430a247b2ab508b4b7bc99e70390",
+    "semantic_corpus/dialogue_generator/export.py": "9639aa41beda84a141c6d17d787394b21d019e7f9869b31275cb5d13fd7adb55",
+    "semantic_corpus/dialogue_generator/models.py": "3a610de240743e3e9840cbd0425734a19a0c97a77db615fd406ca661ea62daad",
+    "semantic_corpus/dialogue_generator/memory_text.py": "3af10aee958e4f93a05f3134f2fc3c02fad712548d1964f09acb95270d5741b7",
+    "semantic_corpus/dialogue_generator/extraction_text.py": "00850f9ae74f2cb79811429975c78c9c4495a83a0f276f0f3e09b42cff4100b0",
+    "tests/test_dialogue_generator.py": "3e0dc4bb63e61b38890d211036be826c4dc6268ec84eb77752dbcae4bba3faef",
+    "tests/test_dialogue_fragments.py": "86401b47b486da42ea34ee56092921df94c838f4b7cb6719de316823b198f101",
+    "tests/test_question_generator.py": "2141791abd8cb414125ba3d74afd7b5deab9b181a7e95485276ae3597f41db94",
+    "ui/app_main/test_chat_dataset.py": "1f03115eab0f7eb9bb47e708d288c1b00afe2f2b2b5be0fd6c892987fa168a84"
+  },
+  "completion": "Current reviewed subset admitted; data and functional checks complete. Whole-candidate semantic approval and archival cleanup are not claimed."
+}

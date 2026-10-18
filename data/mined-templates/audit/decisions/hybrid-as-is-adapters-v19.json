@@ -1,0 +1,1825 @@
+{
+  "format": "reviewed-fragment-adapters-v1",
+  "patterns": [
+    {
+      "id": "dd_v19_train_1003_1_3",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "The May Day holiday is coming. I have not told you my plans yet.",
+      "reply": "Are you going to stay here or go out for a traveling?",
+      "value": "asked whether I plan to stay here or travel for the May Day holiday, without asserting either choice",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1003_1_3",
+      "source": {
+        "split": "train",
+        "dialogue": 1003,
+        "turn": 1,
+        "segment": 3,
+        "span": [
+          55,
+          108
+        ],
+        "text": "Are you going to stay here or go out for a traveling?",
+        "context": [
+          "The May Day holiday is coming. Have you made any plan? Are you going to stay here or go out for a traveling?",
+          "I haven't decided yet. But I may go out.",
+          "Where have you planned to go?",
+          "I want to go to Shanghai, but I also want to visit Hainan.",
+          "Then which will be your first choice?",
+          "I don't know. How about you? Are you staying here or somewhere.",
+          "I have decided to go to Tasha.",
+          "By train or by plane?",
+          "By plane."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. The speaker asks whether the addressee plans to stay here or travel during the May Day holiday. Neither alternative is asserted to occur. The awkward nominal traveling remains unchanged.",
+        "source_sha256": "696f492cdd07b1bea647b6a00973dfb9fdb92251253c4e7f474e74053ff223b1",
+        "context_sha256": "0fbfe9491223cf1c5b801cf3f640ff52681067e17802e9810b7496ebd68fd8a2"
+      }
+    },
+    {
+      "id": "dd_v19_train_1019_4_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "You are studying science. Which subjects do you have to take?",
+      "reply": "Well, I have to take biology, chemistry, maps and physics.",
+      "value": "reported a requirement to take biology, chemistry, a subject written as maps, and physics; attendance is not confirmed",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1019_4_1",
+      "source": {
+        "split": "train",
+        "dialogue": 1019,
+        "turn": 4,
+        "segment": 1,
+        "span": [
+          0,
+          58
+        ],
+        "text": "Well, I have to take biology, chemistry, maps and physics.",
+        "context": [
+          "Marquet, do you think I should enroll in the science course?",
+          "Yes, I think so. If you want to graduated this year, you've got to take a science course.",
+          "Right, I figure since you are doing premedical, you know about the very courses.",
+          "Well, I have to take biology, chemistry, maps and physics. What you need is a good introductory course for non-science majors.",
+          "Yes, I'm really weak in maps, I did poorly in high school.",
+          "That's a problem."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. The speaker reports having to take biology, chemistry, maps and physics. Have to expresses a course requirement, not completed attendance. Maps is kept as the supplied course label.",
+        "source_sha256": "d4bfa6542641a0e154be47b0f2498e8d36d4f99fa11315c8a6305d065d3e75e0",
+        "context_sha256": "7508b47135ea1c840e3b25384f78407f385f23c050048737f2f3a59502e2267c"
+      }
+    },
+    {
+      "id": "dd_v19_train_1019_5_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "We were discussing science courses, including one written as maps. How did you do in that subject?",
+      "reply": "Yes, I'm really weak in maps, I did poorly in high school.",
+      "value": "reported weakness in the subject written as maps and poor performance in high school; the intended subject name remains uncertain",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1019_5_1",
+      "source": {
+        "split": "train",
+        "dialogue": 1019,
+        "turn": 5,
+        "segment": 1,
+        "span": [
+          0,
+          58
+        ],
+        "text": "Yes, I'm really weak in maps, I did poorly in high school.",
+        "context": [
+          "Marquet, do you think I should enroll in the science course?",
+          "Yes, I think so. If you want to graduated this year, you've got to take a science course.",
+          "Right, I figure since you are doing premedical, you know about the very courses.",
+          "Well, I have to take biology, chemistry, maps and physics. What you need is a good introductory course for non-science majors.",
+          "Yes, I'm really weak in maps, I did poorly in high school.",
+          "That's a problem."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. The speaker reports current weakness in the subject written maps and poor high-school performance. These are independent clauses; weakness does not scope over every course in the preceding list.",
+        "source_sha256": "536253d59fb806c1ef7c89da34f79adc3dc6cc0c196b53fc0babf795ea3c68fd",
+        "context_sha256": "7508b47135ea1c840e3b25384f78407f385f23c050048737f2f3a59502e2267c"
+      }
+    },
+    {
+      "id": "dd_v19_train_1024_5_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What claim are you attributing to a doctor in this discussion?",
+      "reply": "That's why doctor say AIDS prevention means cleanness.",
+      "value": "attributed an AIDS-prevention claim about cleanness to doctor; the attribution is recorded without endorsing it or identifying a doctor",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1024_5_2",
+      "source": {
+        "split": "train",
+        "dialogue": 1024,
+        "turn": 5,
+        "segment": 2,
+        "span": [
+          7,
+          61
+        ],
+        "text": "That's why doctor say AIDS prevention means cleanness.",
+        "context": [
+          "I hear scientists in the US have discovered a new AIDS vaccine.",
+          "Does it work?",
+          "I don't know. The report says it is better than the old vaccines.",
+          "Don't count on it. I think the best way to prevent AIDS is to keep yourself clean by having clean sex and keeping a regular sex partner.",
+          "Right. That's why doctor say AIDS prevention means cleanness."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. The speaker attributes an AIDS-prevention claim about cleanness to doctor. This records the attribution, not medical truth, an instruction, an identified doctor or an endorsement.",
+        "source_sha256": "f9b21fdec4f004f773edcf55e870d85e5ce0c0c8b7ad42df2f509eceb484f670",
+        "context_sha256": "7189f0d5b8cfc7e6e6a804cf4b27cab5c02b94d6ce0ab82aeeb6397044b3de10"
+      }
+    },
+    {
+      "id": "dd_v19_train_1040_2_4",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "We are at the beach with the children. What should they do while the adults get things ready?",
+      "reply": "Ok kids, put on your sunscreen while your mom and I set up ca",
+      "value": "instructed the children to put on sunscreen while their mother and the speaker set something up; the object after ca and completion are unknown",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1040_2_4",
+      "source": {
+        "split": "train",
+        "dialogue": 1040,
+        "turn": 2,
+        "segment": 4,
+        "span": [
+          138,
+          199
+        ],
+        "text": "Ok kids, put on your sunscreen while your mom and I set up ca",
+        "context": [
+          "Oh, George, what a beautiful day it is today! The sun is hot and there are just a few clouds scattered here and there! What a perfect day to be at the beach! The kids are going to have so much fun! A",
+          "It does seem like the perfect day! I'm glad we chose to get out of the city and enjoy the nice weather! This looks like the perfect spot! Ok kids, put on your sunscreen while your mom and I set up ca",
+          "There we go. Can you help me with the umbrella? Perfect.",
+          "Ok kids, here's a beach ball and a Frisbee, a pail and a shovel. I want to see an impressive sandcastle by the time we leave. Don't stray too far. Wait! Leave your sandals here or put on your wet shoes",
+          "And stay in the shallow area. I don't want to see you go any farther than that sandbar! It's too deep out there and we didn't bring your floatier.",
+          "You're back already? The water was too cold, huh? I'll tell you a secret. Do you see that small pool of water over there? It'll be warmer in there. Go see if you can find some seashells or catch some",
+          "What is that? A jellyfish? Jeremy, put that down right now! It could sting you!",
+          "Ah! Not on me! Ow!"
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. The speaker instructs children to put on sunscreen while their mother and the speaker set up an unspecified object. Applying sunscreen and finishing setup are not asserted. The ca suffix is not a modal can.",
+        "source_sha256": "2debcb9c4a59fd038c766d43b84066ca48d38c757b33ac3919c3c5528937b5a7",
+        "context_sha256": "bea74ab85a81f66b73afee9a5cc0eb5ec4b5865747129205e109b67082f9bbd0"
+      }
+    },
+    {
+      "id": "dd_v19_train_1110_4_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "How can I help you during your visit to the university?",
+      "reply": "I wonder see Dean Mr. Lee first.",
+      "value": "expressed a wish to see Dean Mr. Lee first; no meeting was reported as completed",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1110_4_2",
+      "source": {
+        "split": "train",
+        "dialogue": 1110,
+        "turn": 4,
+        "segment": 2,
+        "span": [
+          11,
+          43
+        ],
+        "text": "I wonder see Dean Mr. Lee first.",
+        "context": [
+          "Welcome to our university's fifties anniversary, Sir. Please have a seat.",
+          "Thank you. Wow, your school has so many honors. Congratulations!",
+          "Thank you.",
+          "Excuse me. I wonder see Dean Mr. Lee first. I was wondering if could you tell me where his office is?",
+          "Certainly. Mr. Lee's office building at the south end of the campus, just beside the library.",
+          "Excuse me?",
+          "Let me show you the way. Please follow me.",
+          "Thank you very much. It's very kind of you.",
+          "My pleasure.",
+          "This is it?",
+          "It's up on the second floor. You have to use the stairs. The elevator isn't working."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. The visitor expresses a wish to see Dean Mr. Lee first. The immediately following office-location question confirms the request function. The malformed wonder see is preserved, not treated as proof of seeing him.",
+        "source_sha256": "0a2b4eb99b164ad5c811258f53b6ae2f0c76f130255256c09c34bf64321905f0",
+        "context_sha256": "16b8c82c30edaa843b5d380b80dc2825f77a968a6d3dd64e0ddf9e3b3fb1dab2"
+      }
+    },
+    {
+      "id": "dd_v19_train_1112_7_5",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "You mentioned someone named Jacky Chan. What would you like to know about him?",
+      "reply": "How old is Jacky Chan?",
+      "value": "asked the age of the person named Jacky Chan, without supplying an age or verifying the name externally",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1112_7_5",
+      "source": {
+        "split": "train",
+        "dialogue": 1112,
+        "turn": 7,
+        "segment": 5,
+        "span": [
+          220,
+          242
+        ],
+        "text": "How old is Jacky Chan?",
+        "context": [
+          "Hi, Mr. Zhang. What's wrong? You don't look so happy. How was your date?",
+          "I was turned down again. It's frustrating. I guess you've got to teach me some skills.",
+          "Me? I'm even less experienced than you are.",
+          "At least you know what American women generally like in a man.",
+          "Believe it or not, I guess American women like a man in good shape, which Chinese women may not care about so much. That's my honest opinion. I know you have been trying very hard.",
+          "American men are naturally taller than Chinese men. So even if I exercise, there aren't many chances.",
+          "No, that's not true. I've met two American women who were married to Chinese. But those Chinese look very strong and healthy. So if you exercise more often, I bet it will surely be easier for you to date American girls. How old is Jacky Chan? He's small and short. But I bet he can have any American woman he wants.",
+          "You know, that's going to be a tremendous change for me. Because I never exercise.",
+          "Why don't you try then? Even if it doesn't help you find an American girl, you could still have a stronger and healthier body. You won't lose anything by doing that."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. The speaker asks the age of the person whose supplied name is Jacky Chan. Preserve that name without claiming an externally verified identity or supplying an age.",
+        "source_sha256": "79a12c9baa1d42cdba5b11a60ad8103841e474baf007a172bb7c45ea5b4b541a",
+        "context_sha256": "deffb57e42b5407e15a958a04e3f07d5e80fe56435e419a9170b2267cd1bb8dd"
+      }
+    },
+    {
+      "id": "dd_v19_train_1121_4_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Who is your favorite hip hop artist?",
+      "reply": "I'm a big fan of Snoop Dog.",
+      "value": "expressed being a big fan of the artist named Snoop Dog; no meeting was claimed",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1121_4_1",
+      "source": {
+        "split": "train",
+        "dialogue": 1121,
+        "turn": 4,
+        "segment": 1,
+        "span": [
+          0,
+          27
+        ],
+        "text": "I'm a big fan of Snoop Dog.",
+        "context": [
+          "How did you get into hip hop?",
+          "Well, all my friends listen to it, so I became a big fan too.",
+          "Who is your favorite hip hop artist?",
+          "I'm a big fan of Snoop Dog."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. The speaker expresses being a fan of the artist named Snoop Dog in the source. Keep the name literally; the utterance does not report meeting the artist.",
+        "source_sha256": "4d998231a3de9f1ef260eece8ccee19bd99fd3c2cb1f15cc9e274042b1dd40da",
+        "context_sha256": "3efc4850c0d305ae0d1b6c1c0d922152164201971c3b441c7e400c03a1db529a"
+      }
+    },
+    {
+      "id": "dd_v19_train_1127_4_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Are you going to bed now, or do you still have something to do?",
+      "reply": "I've got to go over the household budget, We're a little over-spend this month.",
+      "value": "reported a need to review the household budget and concern about excess spending this month; the review is not completed and the spending phase is unclear",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1127_4_2",
+      "source": {
+        "split": "train",
+        "dialogue": 1127,
+        "turn": 4,
+        "segment": 2,
+        "span": [
+          33,
+          112
+        ],
+        "text": "I've got to go over the household budget, We're a little over-spend this month.",
+        "context": [
+          "Did you lock the doors?",
+          "All except the back door. I left that open for Tim. He took the dog for a walk.",
+          "Well, I'm going on to bed. I'm beat.",
+          "Ok, I'm going to stay up awhile. I've got to go over the household budget, We're a little over-spend this month.",
+          "Please told Tim to close the door to the basement. I don't want dog down there tonight.",
+          "Ok, Good night, see you at breakfast."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. The speaker needs to review the household budget and describes excess spending this month. Go over means review. No completed review is asserted.",
+        "source_sha256": "5e80134237b268b03b12950ce182d74a8f7723e4d791d693c6d6b2c7c4ccc431",
+        "context_sha256": "a009450f2d9cfc56571fb547c268898e2350276588f4f63d093b95f6b25283bb"
+      }
+    },
+    {
+      "id": "dd_v19_train_1149_11_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "I am deciding between a job and graduate school. What should guide my preparation?",
+      "reply": "If you want a job that requires a higher degree or diploma, you should focus on your graduate school entrance exam; if you want a job that needs working",
+      "value": "advised focusing on the graduate entrance exam if my desired job needs a higher qualification; the second conditional is unfinished",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1149_11_2",
+      "source": {
+        "split": "train",
+        "dialogue": 1149,
+        "turn": 11,
+        "segment": 2,
+        "span": [
+          48,
+          200
+        ],
+        "text": "If you want a job that requires a higher degree or diploma, you should focus on your graduate school entrance exam; if you want a job that needs working",
+        "context": [
+          "You'll soon graduate from your university. Do you have any plans for the future?",
+          "I'm planning to go to graduate school, but I also want to find a job. Otherwise, I'll have nowhere to go if I fail the entrance exam.",
+          "Do you have a clear career path to follow?",
+          "Career path? I'm not sure.",
+          "What kind of job do you want after graduation?",
+          "I want to become a professor, a lawyer, an editor, a civil servant...",
+          "Wait! You can't do so many things at the same time. What exactly do you want?",
+          "I don't know. Do you have any advice for me?",
+          "Yeah, you should first decide what kind of career you really want, plan your career path, and then try your best to achieve your goal.",
+          "I think perhaps I need to buy a few years while I figure out about my career.",
+          "No, you can't waste your time wandering around. If you want a job that requires a higher degree or diploma, you should focus on your graduate school entrance exam; if you want a job that needs working",
+          "Thank you so much for your advice. I'll think it over."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. If the listener wants a job requiring a higher degree or diploma, the speaker advises focusing on the graduate entrance exam. The second conditional stops after working. Neither a chosen career nor exam completion is asserted.",
+        "source_sha256": "094970762237b141436d9cd5e34d50351c9df0613dff340d5232e978d340f420",
+        "context_sha256": "22f46f26d17457b82776e41182d40bb42b702602481a7fa132e9f5746691f2e0"
+      }
+    },
+    {
+      "id": "dd_v19_train_1150_1_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What clothes are you drawing my attention to?",
+      "reply": "Look at these clothes designed by top fashion designer like Versacci, Calvin Klein, and Vivienne Westwood.",
+      "value": "drew attention to clothes described as designer clothes and named Versacci, Calvin Klein and Vivienne Westwood; no purchase was asserted",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1150_1_1",
+      "source": {
+        "split": "train",
+        "dialogue": 1150,
+        "turn": 1,
+        "segment": 1,
+        "span": [
+          0,
+          106
+        ],
+        "text": "Look at these clothes designed by top fashion designer like Versacci, Calvin Klein, and Vivienne Westwood.",
+        "context": [
+          "Look at these clothes designed by top fashion designer like Versacci, Calvin Klein, and Vivienne Westwood. What do you think of them?",
+          "Well, they look lovely, but they're not very practical. I mean, would you wear that dress to the office or walking down the street?",
+          "I know what you mean. People would stare at you in amazement if you wore something like that in an everyday situation. I suppose only extravagant rich people wear them at cocktail parties.",
+          "Maybe. I'm not sure why they have fashion shows like this. Hardly anyone will buy those clothes. The clothes you see are nothing like the ones that ordinary people wear. It seems like a waste of money.",
+          "I think that the designers hold these fashion shows for a few reasons. First, it's just like a big party. They can meet each other and network. The other thing is that it is great advertising. All the journalists and photographers are there. Thirdly, it give them a chance to show what they would like to see people wearing.",
+          "You meant it's an expression of their fantasies?",
+          "Yes. I think the designers are saying that these clothes are what they would like to see people wear if those people weren't concerned with what other people might think. In a way, the designers are saying ' don't worry about what others think. Wear what you like! '.",
+          "Very philosophical. I think they design these clothes more for publicity. They try to see who can be the most extreme and outrageous, but still stylish.",
+          "Come on. All this fashion has reminded me that I want to buy some clothes."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. Look at directs attention to clothes described as designed by top fashion designers, listing Versacci, Calvin Klein and Vivienne Westwood. Literal names are retained; there is no purchased item or universal designer attribution.",
+        "source_sha256": "6d2c5aed7cfa13897953f8189d087991c3fbcb7d379088eb02eb008cb14b3e22",
+        "context_sha256": "81e3a05c93c1bafd5367e76727287042df9dca7a08be03c8ee8072e058b40f93"
+      }
+    },
+    {
+      "id": "dd_v19_train_1152_4_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "I think we had better go to the museum earlier to avoid waiting. What do you think?",
+      "reply": "I guess that is the thing we can do with we really want to visit the museum.",
+      "value": "tentatively accepted the idea of going earlier and expressed a wish to visit the museum; the exact connective and completion are not established",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1152_4_1",
+      "source": {
+        "split": "train",
+        "dialogue": 1152,
+        "turn": 4,
+        "segment": 1,
+        "span": [
+          0,
+          76
+        ],
+        "text": "I guess that is the thing we can do with we really want to visit the museum.",
+        "context": [
+          "Dora, are you interested in going to the museum with me tomorrow? I read the newspaper this morning. I know there is an art exhibition in Taipei Modern Art Museum.",
+          "Sure. I am free tomorrow. It sounds interesting to me. Can we buy the ticket online?",
+          "I don't think so. I think we had better go there earlier, or we may have to spend a lot of time waiting.",
+          "I guess that is the thing we can do with we really want to visit the museum.",
+          "Look at the ticket booth in the center. There seems to be not as many people as we thought it would be.",
+          "Yeah. We are lucky. Let's go buy the tickets first. We can have breakfast later. I am so hungry.",
+          "Good idea.",
+          "(After the breakfast) Which floor is the art exhibition we are going to?",
+          "I have no idea. Let me take a closer look at my museum map",
+          "Sure, take your time. We have a whole day.",
+          "It's on the 2nd floor. We are going to see some beautiful paintings about the history of ancient Greece.",
+          "Look at the museum guide. It says there are also some sculptures and potteries in this area. Let's rent an audio guide."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. The speaker tentatively endorses the preceding proposal to go earlier and expresses a wish to visit the museum. Can do is possibility; visiting is not complete.",
+        "source_sha256": "a155b381ec7e06656bd3fc0085e5195a7c901dcbc6d888c8368f7183f1e23d4c",
+        "context_sha256": "3e2a12dcc5140e96432d400421ed15a0f0a7ebfe905b55e3ae0fa03607c94d72"
+      }
+    },
+    {
+      "id": "dd_v19_train_1163_5_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "When will we go to play golf?",
+      "reply": "Borrow morning.",
+      "value": "specified morning for the proposed golf outing, with the day unknown because Borrow is unclear",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1163_5_1",
+      "source": {
+        "split": "train",
+        "dialogue": 1163,
+        "turn": 5,
+        "segment": 1,
+        "span": [
+          0,
+          15
+        ],
+        "text": "Borrow morning.",
+        "context": [
+          "Would you like to play golf with me?",
+          "I would like to. But I'm not good at it.",
+          "It doesn't matter. I will teach you.",
+          "That's great! When will we go?",
+          "Borrow morning.",
+          "All right. What should I take?",
+          "Just take your golf club. I will pick you up Borrow.",
+          "Thanks. I will wait you at my home.",
+          "See you Borrow."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. In response to When will we go, morning supplies the time of day for the proposed golf outing. Borrow is not a command to borrow something.",
+        "source_sha256": "b3ceaf31830e077c95ed19b4debd81a3997ddc7bb10dbcd4a7cfa1e6ff4675e1",
+        "context_sha256": "36df72374fd9ff905a5c242b36e06ae175ec85093fd32704307f55dd1954bcae"
+      }
+    },
+    {
+      "id": "dd_v19_train_1163_7_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "We are planning to play golf. How will we get there?",
+      "reply": "I will pick you up Borrow.",
+      "value": "promised to pick me up for golf; the time represented by Borrow is unknown and pickup is not completed",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1163_7_2",
+      "source": {
+        "split": "train",
+        "dialogue": 1163,
+        "turn": 7,
+        "segment": 2,
+        "span": [
+          26,
+          52
+        ],
+        "text": "I will pick you up Borrow.",
+        "context": [
+          "Would you like to play golf with me?",
+          "I would like to. But I'm not good at it.",
+          "It doesn't matter. I will teach you.",
+          "That's great! When will we go?",
+          "Borrow morning.",
+          "All right. What should I take?",
+          "Just take your golf club. I will pick you up Borrow.",
+          "Thanks. I will wait you at my home.",
+          "See you Borrow."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. The speaker promises to pick up the listener for the planned golf outing. Pick you up is a separated phrasal verb; Borrow is not a second pickup object.",
+        "source_sha256": "892f4e52168ded3e51a3dac0c96b5ea8dd0ee3d9fe721d1d507623c444500659",
+        "context_sha256": "36df72374fd9ff905a5c242b36e06ae175ec85093fd32704307f55dd1954bcae"
+      }
+    },
+    {
+      "id": "dd_v19_train_1163_9_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Thanks for arranging the golf outing. I will wait at home.",
+      "reply": "See you Borrow.",
+      "value": "said goodbye with an expectation of meeting, but the time after Borrow is unclear and no meeting is completed",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1163_9_1",
+      "source": {
+        "split": "train",
+        "dialogue": 1163,
+        "turn": 9,
+        "segment": 1,
+        "span": [
+          0,
+          15
+        ],
+        "text": "See you Borrow.",
+        "context": [
+          "Would you like to play golf with me?",
+          "I would like to. But I'm not good at it.",
+          "It doesn't matter. I will teach you.",
+          "That's great! When will we go?",
+          "Borrow morning.",
+          "All right. What should I take?",
+          "Just take your golf club. I will pick you up Borrow.",
+          "Thanks. I will wait you at my home.",
+          "See you Borrow."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. See you is a farewell after agreeing to a golf outing and pickup. It does not report an actual sighting, completed meeting or an instruction that the listener borrow something.",
+        "source_sha256": "650f9d3af33b2dd8694f87ee2e939ede1d5fc54f856e84a5e334fcfc2147ec82",
+        "context_sha256": "36df72374fd9ff905a5c242b36e06ae175ec85093fd32704307f55dd1954bcae"
+      }
+    },
+    {
+      "id": "dd_v19_train_1177_3_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Do you like jazz? Who are you a fan of?",
+      "reply": "I'm a real fan of Wanton Marsalis.",
+      "value": "expressed being a fan of the artist named Wanton Marsalis; the spelling is preserved as supplied",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1177_3_2",
+      "source": {
+        "split": "train",
+        "dialogue": 1177,
+        "turn": 3,
+        "segment": 2,
+        "span": [
+          17,
+          51
+        ],
+        "text": "I'm a real fan of Wanton Marsalis.",
+        "context": [
+          "Do you like jazz, Tom?",
+          "No, I don't like it very much. Do you?",
+          "Well, yes, I do. I'm a real fan of Wanton Marsalis.",
+          "Oh, does he play the piano?",
+          "No, he doesn't!!! He plays the trumpet. So, what kind of music do you like?",
+          "I like rock a lot.",
+          "Who's your favorite group?",
+          "The Cranberries. I love their music. How about you? Do you like them?",
+          "No, I don't. I can't stand them!!"
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. In the jazz discussion the speaker reports being a fan of Wanton Marsalis, keeping the literal supplied name without identifying it with a corrected external name.",
+        "source_sha256": "4e2816ca8338b3494d5216746df1423848f33f1fa8d7fa6d4718acb01fe7f80c",
+        "context_sha256": "6dc25d7dfb372af85c4c9700f417d5d39a07e19b27e9f4947006aa1a1834454a"
+      }
+    },
+    {
+      "id": "dd_v19_train_1185_2_6",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "You said you no longer want to eat at the cafeteria. What have they been serving?",
+      "reply": "They have been serving the Chinese cabbage and white gorse for three days.",
+      "value": "reported that the cafeteria has been serving Chinese cabbage and an item written as white gorse for three days; that item's identity and eating it are not established",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1185_2_6",
+      "source": {
+        "split": "train",
+        "dialogue": 1185,
+        "turn": 2,
+        "segment": 6,
+        "span": [
+          246,
+          320
+        ],
+        "text": "They have been serving the Chinese cabbage and white gorse for three days.",
+        "context": [
+          "Going to the cafeteria?",
+          "No, I am not eating there anymore. I have ordered my favorite food in the restaurant around the corner. The food served in the cafeteria is not my type. I am a total meat lover. But the cafeteria is doing its best to force me to be a vegetarian. They have been serving the Chinese cabbage and white gorse for three days. Haven't you noticed that?",
+          "That's fine with me. I don't hate vegetables and I don't eat much during lunch.",
+          "Well, then the cafeteria suits you best. But anyway, if you like to have a lunch outside the company, feel free to join me anytime."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. They refers to the cafeteria. The speaker reports its repeated service of Chinese cabbage and the item written white gorse for three days. The perfect progressive does not establish an ended service or consumption by the speaker.",
+        "source_sha256": "b733db1fafd3fcc9244d913d9e6a7badcb0af1875c92ea33a5c2f545fe7514b6",
+        "context_sha256": "b382e51a90d5eb435cc467156e7af1c2dbc4e01fbf1ecc729b755026ac19ea43"
+      }
+    },
+    {
+      "id": "dd_v19_train_1193_6_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "I am Karl, and my wife and I are moving in next door. What would you like to ask?",
+      "reply": "So, tell me, Karl, hyoid you come all the way to Minnesota to live?",
+      "value": "asked Karl about coming to Minnesota to live; the word hyoid leaves why versus how unclear",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1193_6_1",
+      "source": {
+        "split": "train",
+        "dialogue": 1193,
+        "turn": 6,
+        "segment": 1,
+        "span": [
+          0,
+          67
+        ],
+        "text": "So, tell me, Karl, hyoid you come all the way to Minnesota to live?",
+        "context": [
+          "Hi, my name's Karl. My wife and I are moving in next door.",
+          "Hello, Karl. I'm Chuck Jones. We're going to be neighbors.",
+          "I'm happy to meet you. It seems everyone in town is so friendly.",
+          "This is a small town, and we like to be neighborly. We know everyone who lives around here.",
+          "Well, I'm from Chicago. There few people take the time to get to know their neighbors.",
+          "So, tell me, Karl, hyoid you come all the way to Minnesota to live?",
+          "We wanted to live in a more peaceful community and have more space. Another reason is, we can afford to buy a home here, but we can't in Chicago!"
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. The speaker asks Karl about coming to Minnesota to live. The damaged hyoid leaves the requested aspect uncertain. The question itself does not assert completed relocation.",
+        "source_sha256": "6bc2557e23ffd779c68e5b4f5208fbcac48e36e1e0915958b4e40d8a99079939",
+        "context_sha256": "479204bec8547d04b837f891b64d4fcb96c6d4e4be747d99c16ee83855d782ef"
+      }
+    },
+    {
+      "id": "dd_v19_train_1203_7_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "We were discussing adapting to other people's manners. What hypothetical situation concerns you?",
+      "reply": "What if everybody in the wheres goes crazy?",
+      "value": "asked about a hypothetical in which everybody goes crazy, with the domain the wheres unclear; no actual event was asserted",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1203_7_1",
+      "source": {
+        "split": "train",
+        "dialogue": 1203,
+        "turn": 7,
+        "segment": 1,
+        "span": [
+          0,
+          43
+        ],
+        "text": "What if everybody in the wheres goes crazy?",
+        "context": [
+          "Mom, why do Chinese people like to touch my head? Sometimes they even touch my cheeks.",
+          "That is a part of Chinese culture, if they think you are a lovely child, they touch your head and say, how cute you are.",
+          "But I donor like it, not a bit, I am not a pet, I am a girl.",
+          "Well, you get used to it, different countries have different manners.",
+          "But I do not like anyone touch my head.",
+          "They are just been in friendly, when you are in Roman, do as the Romans do, that means you need to adapt to your environment.",
+          "What if everybody in the wheres goes crazy?",
+          "Then you might need to pretend to be a little crazy.",
+          "Does this mean that if I might want those new European bitches, I am supposed to wonder run reget?",
+          "Do you think it is a ~ got give your brain, use it if you really cannot accept it people touch your head, keep distance from them, why not just wear your big flyby hat and ~ is anyone get close to you.",
+          "That is my work, I will try it."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. What if introduces a hypothetical in which everybody in an unclear domain goes crazy. This is not an assertion that anyone has become crazy.",
+        "source_sha256": "47f325a347aa25c57a06496cd1d8181b0e3f96b9bf8d2da60edee7a70de1aefd",
+        "context_sha256": "1643004e709ad880460bc6edd4f2f450c19fd48ebf294a4df91522386cd01bd9"
+      }
+    },
+    {
+      "id": "dd_v19_train_1203_9_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "We were discussing whether adapting to other people's manners means copying their behavior. What are you asking?",
+      "reply": "Does this mean that if I might want those new European bitches, I am supposed to wonder run reget?",
+      "value": "questioned an obligation under a hypothetical desire; the desired object and required response are unclear, and no action is asserted as completed",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1203_9_1",
+      "source": {
+        "split": "train",
+        "dialogue": 1203,
+        "turn": 9,
+        "segment": 1,
+        "span": [
+          0,
+          98
+        ],
+        "text": "Does this mean that if I might want those new European bitches, I am supposed to wonder run reget?",
+        "context": [
+          "Mom, why do Chinese people like to touch my head? Sometimes they even touch my cheeks.",
+          "That is a part of Chinese culture, if they think you are a lovely child, they touch your head and say, how cute you are.",
+          "But I donor like it, not a bit, I am not a pet, I am a girl.",
+          "Well, you get used to it, different countries have different manners.",
+          "But I do not like anyone touch my head.",
+          "They are just been in friendly, when you are in Roman, do as the Romans do, that means you need to adapt to your environment.",
+          "What if everybody in the wheres goes crazy?",
+          "Then you might need to pretend to be a little crazy.",
+          "Does this mean that if I might want those new European bitches, I am supposed to wonder run reget?",
+          "Do you think it is a ~ got give your brain, use it if you really cannot accept it people touch your head, keep distance from them, why not just wear your big flyby hat and ~ is anyone get close to you.",
+          "That is my work, I will try it."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. The speaker questions whether a hypothetical possible desire would imply an obligation. Might want and supposed to remain under the question and conditional, not completed actions.",
+        "source_sha256": "710c4347b93406a292dbbdfac0b06ae62cfb008a4ddbcbdfcaa53b0433c7a1ad",
+        "context_sha256": "1643004e709ad880460bc6edd4f2f450c19fd48ebf294a4df91522386cd01bd9"
+      }
+    },
+    {
+      "id": "dd_v19_train_1203_10_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "I do not like people touching my head. What could I do?",
+      "reply": "Do you think it is a ~ got give your brain, use it if you really cannot accept it people touch your head, keep distance from them, why not just wear your big flyby hat and ~ is anyone get close to you.",
+      "value": "suggested keeping distance from people and wearing a hat in response to unwanted head-touching; the damaged parts remain unknown and no action is completed",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1203_10_1",
+      "source": {
+        "split": "train",
+        "dialogue": 1203,
+        "turn": 10,
+        "segment": 1,
+        "span": [
+          0,
+          201
+        ],
+        "text": "Do you think it is a ~ got give your brain, use it if you really cannot accept it people touch your head, keep distance from them, why not just wear your big flyby hat and ~ is anyone get close to you.",
+        "context": [
+          "Mom, why do Chinese people like to touch my head? Sometimes they even touch my cheeks.",
+          "That is a part of Chinese culture, if they think you are a lovely child, they touch your head and say, how cute you are.",
+          "But I donor like it, not a bit, I am not a pet, I am a girl.",
+          "Well, you get used to it, different countries have different manners.",
+          "But I do not like anyone touch my head.",
+          "They are just been in friendly, when you are in Roman, do as the Romans do, that means you need to adapt to your environment.",
+          "What if everybody in the wheres goes crazy?",
+          "Then you might need to pretend to be a little crazy.",
+          "Does this mean that if I might want those new European bitches, I am supposed to wonder run reget?",
+          "Do you think it is a ~ got give your brain, use it if you really cannot accept it people touch your head, keep distance from them, why not just wear your big flyby hat and ~ is anyone get close to you.",
+          "That is my work, I will try it."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. The visible advice includes keeping distance from people if head-touching is unacceptable and a why-not suggestion to wear a hat. The corrupted introduction and ending are not reconstructed. No instruction is treated as performed.",
+        "source_sha256": "85b863a0325daea1a4465e41c6554329bf472c7be0147c5ce49433bc531619c5",
+        "context_sha256": "1643004e709ad880460bc6edd4f2f450c19fd48ebf294a4df91522386cd01bd9"
+      }
+    },
+    {
+      "id": "dd_v19_train_1236_4_3",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "How is working at the company different from studying in college?",
+      "reply": "Bosses watching and testing me all the time, not liking in college, handed in paper months later and tested on schedule.",
+      "value": "described continual monitoring and testing by bosses and contrasted it with college; the damaged college clause leaves its exact subjects and timing unclear",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1236_4_3",
+      "source": {
+        "split": "train",
+        "dialogue": 1236,
+        "turn": 4,
+        "segment": 3,
+        "span": [
+          50,
+          170
+        ],
+        "text": "Bosses watching and testing me all the time, not liking in college, handed in paper months later and tested on schedule.",
+        "context": [
+          "How long have you been in this company?",
+          "I came two years ago after I graduated from college. This is my first job.",
+          "You must have found much difference between working in company and studying in college.",
+          "Of course! Everyday, there is a deadline to meet. Bosses watching and testing me all the time, not liking in college, handed in paper months later and tested on schedule. It is so busy. But anyway, I have trying my best to be a good employee.",
+          "Well, you've adapted yourself very well. Everyone in our office thinks you've made a great progress in the past two years. What is your secret?",
+          "It is so encouraging to hear this remark. The secret is to make plans. Write down your goals, short-term and long-term and make detail plans for a week or a month. Then just work hard."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. The speaker describes bosses continually watching and testing them and contrasts work with college, where handing in paper later and scheduled tests are mentioned.",
+        "source_sha256": "a7bfe2058c1236aa2531d7f46d4674d5582a3659370ab9f9d5904d28fc31c6d7",
+        "context_sha256": "41745945647f1894739389d7fa0018ed36723ec456c07287ad19ed19ee08527a"
+      }
+    },
+    {
+      "id": "dd_v19_train_1292_4_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "You said that line was from The Godfather. Which scene were you referring to?",
+      "reply": "It's when the, when the movie producer realizes Tom Higgins had emissary of Vito Corleone, it's just before the horse's head ends up in the bed with all the bloody sheets, you know, wakes up, and AAAL!",
+      "value": "described a scene from The Godfather, including a producer and a horse's head in a bed; the emissary relation is unclear and these are fictional scene references",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1292_4_2",
+      "source": {
+        "split": "train",
+        "dialogue": 1292,
+        "turn": 4,
+        "segment": 2,
+        "span": [
+          32,
+          233
+        ],
+        "text": "It's when the, when the movie producer realizes Tom Higgins had emissary of Vito Corleone, it's just before the horse's head ends up in the bed with all the bloody sheets, you know, wakes up, and AAAL!",
+        "context": [
+          "God, I didn't realize. I didn't, I didn't know...",
+          "... Who you were with? I didn't know whom you were with.",
+          "Excuse me?",
+          "Sorry, it's from the Godfather. It's when the, when the movie producer realizes Tom Higgins had emissary of Vito Corleone, it's just before the horse's head ends up in the bed with all the bloody sheets, you know, wakes up, and AAAL! Never mind.",
+          "You were spying on me, weren't you? You probably rented those children.",
+          "Why would I spy on you?",
+          "Because I am your competition which you know perfectly well, or you would not put up that sign just around the corner.",
+          "The entrance to our store is around the corner. And there's no other way of saying that. It's not the name of our store. It's where it is. And you do not own the phrase around the corner.",
+          "What is that? What are you doing? You're taking all the caviar! That caviar is a garnish?",
+          "Look, the reason I came into your store is because I was spending the day with Annabell and Matt. And I was buying them presents. I'm the type of guy who likes to buy his way into the hearts of children who are his relative. And there's only one place to find a children's book in the neighborhood. That will not always be the case. And it was yours. And it is a charming little bookstore. You probably sell what 350,000 worth of books in a year."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. The speaker explains a quotation from The Godfather, mentioning a movie producer, Tom Higgins, Vito Corleone and the horse-head scene. These remain film-description contents, not events involving the dialogue participants.",
+        "source_sha256": "3260cbb2dc991fb6ca3480d830096a7561e8ae91d603203296e24652e5a209a7",
+        "context_sha256": "da5f0d6495092992957e1f967522258dc08af5e427a70db181c37e61163e7c8d"
+      }
+    },
+    {
+      "id": "dd_v19_train_1302_4_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "I am worried that joining a basketball team will leave too little time for work. What do you think?",
+      "reply": "As the saying goes, work value work, play value play.",
+      "value": "invoked a work-and-play saying to support making room for recreation; the exact corrupted wording is not reconstructed",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1302_4_1",
+      "source": {
+        "split": "train",
+        "dialogue": 1302,
+        "turn": 4,
+        "segment": 1,
+        "span": [
+          0,
+          53
+        ],
+        "text": "As the saying goes, work value work, play value play.",
+        "context": [
+          "Dou you think I should join a basketball team, Mary?",
+          "Why not. If I were you, I certainly would.",
+          "But I'm afraid it will take too much of my time.",
+          "As the saying goes, work value work, play value play. All work and no play make a jucky-dull boy, you know.",
+          "Em, you're right."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. In the discussion of whether basketball would take too much time, the speaker invokes a saying contrasting work and play. Its general role supports making room for recreation, not a literal action of valuing work.",
+        "source_sha256": "24e2ca2dda0badfb9aad82cabe983b3ef35899b2bbba54427f774fb8fb8299f1",
+        "context_sha256": "2132f1f2d2879eab89115f3f82a57d61f5408e61cd9f8bcf777441305b555537"
+      }
+    },
+    {
+      "id": "dd_v19_train_1302_4_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "I worry that joining a basketball team will take too much time. Why do you think recreation matters?",
+      "reply": "All work and no play make a jucky-dull boy, you know.",
+      "value": "warned generally against all work and no play; jucky is unresolved and no particular person's completed change was asserted",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1302_4_2",
+      "source": {
+        "split": "train",
+        "dialogue": 1302,
+        "turn": 4,
+        "segment": 2,
+        "span": [
+          54,
+          107
+        ],
+        "text": "All work and no play make a jucky-dull boy, you know.",
+        "context": [
+          "Dou you think I should join a basketball team, Mary?",
+          "Why not. If I were you, I certainly would.",
+          "But I'm afraid it will take too much of my time.",
+          "As the saying goes, work value work, play value play. All work and no play make a jucky-dull boy, you know.",
+          "Em, you're right."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. The speaker invokes a general warning that only working without play makes one dull. It supports recreation, not an actual identified boy becoming dull or a person named Jucky.",
+        "source_sha256": "4d1443c221a51524ada2547d553b0b0138679c69aab7729f782a9f08a4224f6c",
+        "context_sha256": "2132f1f2d2879eab89115f3f82a57d61f5408e61cd9f8bcf777441305b555537"
+      }
+    },
+    {
+      "id": "dd_v19_train_1310_7_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "You were telling me how Thanksgiving began and how the settlers learned to harvest food. What happened next?",
+      "reply": "Well, they had enough harvests for the next winter and celebration 。",
+      "value": "reported in a Thanksgiving story that the settlers had enough harvests for the next winter and celebration",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1310_7_1",
+      "source": {
+        "split": "train",
+        "dialogue": 1310,
+        "turn": 7,
+        "segment": 1,
+        "span": [
+          0,
+          68
+        ],
+        "text": "Well, they had enough harvests for the next winter and celebration 。",
+        "context": [
+          "So what are you doing for Thanksgiving?",
+          "Not much really. It's more of an American tradition, so back home we don't really celebrate it. In fact, I am not even sure of what exactly is being celebrated!",
+          "Well you know, it's a time to get together with all your family and be thankful for everything!",
+          "Yeah but, how did this holiday come to be?",
+          "Well, the first settlers of Massachusetts arrived there because of religious persecution from England and King James. Once in the New World, they befriended an native named Squanto, who taught them how to harvest food from the area such as corn.",
+          "And then what did happen?",
+          "Well, they had enough harvests for the next winter and celebration 。 They decided to have a big feast for the natives, giving thanks the land, and everyone for the foods, healthy and new lives.",
+          "Interesting! I am amazed how big and delicious Thanksgiving dinners are!",
+          "Come to my house for Thanksgiving! We are having turkey, pumpkin pie, mashed potatoes with gravy, and lots of stuffing!",
+          "Count me in!"
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. They refers to the settlers in the speaker's Thanksgiving account. The speaker says their harvests were enough for the next winter and celebration. Record the account, not independent verification of history.",
+        "source_sha256": "102d38cf8e496783924674bad1a5f58d5ce69e2ac06a907a086ce2d0bb9d4275",
+        "context_sha256": "820539333c1daf2239a226140ca6f7d0cdc81a43dadb6d530b656ccf63a8d0be"
+      }
+    },
+    {
+      "id": "dd_v19_train_1310_7_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "You were describing the settlers' harvest in the Thanksgiving story. What did they decide to do?",
+      "reply": "They decided to have a big feast for the natives, giving thanks the land, and everyone for the foods, healthy and new lives.",
+      "value": "reported a decision to hold a feast for the natives in the Thanksgiving story; the gratitude links are unclear and completion of the feast is not established",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1310_7_2",
+      "source": {
+        "split": "train",
+        "dialogue": 1310,
+        "turn": 7,
+        "segment": 2,
+        "span": [
+          69,
+          193
+        ],
+        "text": "They decided to have a big feast for the natives, giving thanks the land, and everyone for the foods, healthy and new lives.",
+        "context": [
+          "So what are you doing for Thanksgiving?",
+          "Not much really. It's more of an American tradition, so back home we don't really celebrate it. In fact, I am not even sure of what exactly is being celebrated!",
+          "Well you know, it's a time to get together with all your family and be thankful for everything!",
+          "Yeah but, how did this holiday come to be?",
+          "Well, the first settlers of Massachusetts arrived there because of religious persecution from England and King James. Once in the New World, they befriended an native named Squanto, who taught them how to harvest food from the area such as corn.",
+          "And then what did happen?",
+          "Well, they had enough harvests for the next winter and celebration 。 They decided to have a big feast for the natives, giving thanks the land, and everyone for the foods, healthy and new lives.",
+          "Interesting! I am amazed how big and delicious Thanksgiving dinners are!",
+          "Come to my house for Thanksgiving! We are having turkey, pumpkin pie, mashed potatoes with gravy, and lots of stuffing!",
+          "Count me in!"
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. Within the Thanksgiving story the speaker reports a decision to hold a feast for the natives. The decision is asserted, but holding the feast is not thereby completed. Gratitude involving land, people, foods and lives is mentioned.",
+        "source_sha256": "699655cec577196465a1d1171a742baaa5355667f2d678e6bd8ae97508e295cc",
+        "context_sha256": "820539333c1daf2239a226140ca6f7d0cdc81a43dadb6d530b656ccf63a8d0be"
+      }
+    },
+    {
+      "id": "dd_v19_train_1322_11_3",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "You took H&K to mean Hong Kong, but I explained that it means hug and kiss. How do you react?",
+      "reply": "Oh, it's really bad to Miun - Verstand her meaning.",
+      "value": "expressed regret about interpreting the girl's message incorrectly; Miun - Verstand is not reconstructed and no actual hug or kiss is asserted",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1322_11_3",
+      "source": {
+        "split": "train",
+        "dialogue": 1322,
+        "turn": 11,
+        "segment": 3,
+        "span": [
+          35,
+          86
+        ],
+        "text": "Oh, it's really bad to Miun - Verstand her meaning.",
+        "context": [
+          "I need your help, Bob.",
+          "What's the matter?",
+          "I'm really confused by these annoying abbreviations.",
+          "Just relax. That's because you're new to chat. Let me take a look.",
+          "A/S/L, IGP, H&K, and ZZZ. What the hell do they mean?",
+          "ZZZ means'sleepy or tired or bored', A/S/L is tricky, which is often used at first encounter. It's a three-word question,'age,/sex/location? '",
+          "Interesting. Then what does H&K refer to? The city of Hong Kong?",
+          "Wrong. It's not a place name, but a passionate act.",
+          "Really? What kind? A girl left this word to me, and I thought she was in Hong Kong.",
+          "Ahahah... You miss her point for sure. H&K actually is an acronym for'hug and kiss'.",
+          "Hug and kiss?! How is it possible? Oh, it's really bad to Miun - Verstand her meaning.",
+          "Yeah, seems that you have a lot to learn and memorize."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. After learning that H&K means hug and kiss rather than Hong Kong, the speaker negatively evaluates their interpretation of the girl's message. The source Miun - Verstand stays unchanged.",
+        "source_sha256": "b5825b1e60a963d4a052c7527e129d9e48506fc0b193ef866a264b02f3271455",
+        "context_sha256": "54baf9580da25b957c1d705325d0af9028b9ae3512c21331390cb96cfadf5a94"
+      }
+    },
+    {
+      "id": "dd_v19_train_1328_11_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "You were describing tornadoes in your childhood. What do you remember about them?",
+      "reply": "Actually, some of my fon best memories of my childhood were of spending time with my family in the basement waiting for the tornados to pass.",
+      "value": "recalled family time in the basement waiting for tornadoes and described some of those childhood memories positively; fon remains uninterpreted",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1328_11_1",
+      "source": {
+        "split": "train",
+        "dialogue": 1328,
+        "turn": 11,
+        "segment": 1,
+        "span": [
+          0,
+          141
+        ],
+        "text": "Actually, some of my fon best memories of my childhood were of spending time with my family in the basement waiting for the tornados to pass.",
+        "context": [
+          "Have you ever been in an earthquake?",
+          "Yes, I experienced one when I was in Tokyo once. The tremors only lasted a few seconds though and then it was over.",
+          "Do you know where it measured on the Richter scale?",
+          "I don't remember, but it wasn't very serious. Have you ever been in an earthquake?",
+          "No, but I was in quite a few tornados when I was younger.",
+          "Where are you from?",
+          "I'm from the plains of the Midwest. It's a prime location for tornadoes.",
+          "Did your house ever get damaged from the winds?",
+          "Most of the time we were lucky, but once a tree from our front yard was ripped out by its roots and ended up in our living room.",
+          "Wow, that must have really been scary.",
+          "Actually, some of my fon best memories of my childhood were of spending time with my family in the basement waiting for the tornados to pass.",
+          "Have you ever experiences a flood?",
+          "No, but my father's car was destroyed in a flood once. It actually happened the day after he bought the car!",
+          "That sure didn't last long!"
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. The speaker recalls spending time with family in the basement while waiting for tornadoes and describes some such memories as among their best. Waiting does not itself assert that a particular tornado passed.",
+        "source_sha256": "eecf7dfcd1edfa712e2bbea419263196f2970b94852dfddec88afb379e21d6fc",
+        "context_sha256": "f714e2aeaeb0d52da420aebe98df81b74ada2cbd7f64c07e6885e9242014f783"
+      }
+    },
+    {
+      "id": "dd_v19_train_1341_1_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Have you heard any workplace rumors?",
+      "reply": "I heard through the grapevine that Michael probably become the new sales manager.",
+      "value": "reported hearing an unverified rumor about Michael becoming sales manager; appointment timing and actual appointment are unknown",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1341_1_1",
+      "source": {
+        "split": "train",
+        "dialogue": 1341,
+        "turn": 1,
+        "segment": 1,
+        "span": [
+          0,
+          81
+        ],
+        "text": "I heard through the grapevine that Michael probably become the new sales manager.",
+        "context": [
+          "I heard through the grapevine that Michael probably become the new sales manager.",
+          "How did you get wind of the rumor?",
+          "I am not a rumor monger.",
+          "Let's stop gossiping and get back to work."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. The speaker reports hearing a rumor that Michael probably becomes the new sales manager. Only hearing the rumor is asserted, not an appointment. Through the grapevine means informal hearsay.",
+        "source_sha256": "8fbce54d4f2d67797de4c5f0821e72d638b6a9bd0e66e946575fa68261ac6cc4",
+        "context_sha256": "b7f680cd9bee7d9a30edf542c24e269eca4fbfd6cd599e7085ec3e3795b0dd21"
+      }
+    },
+    {
+      "id": "dd_v19_train_1348_9_3",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "You mentioned your younger brother. What was life like before he was born?",
+      "reply": "Before he was born, I used to be the only child and always dreamed that I would have a younger sister or brother one da",
+      "value": "reported previously being an only child and wishing for a younger sibling; the ending one da is incomplete",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1348_9_3",
+      "source": {
+        "split": "train",
+        "dialogue": 1348,
+        "turn": 9,
+        "segment": 3,
+        "span": [
+          81,
+          200
+        ],
+        "text": "Before he was born, I used to be the only child and always dreamed that I would have a younger sister or brother one da",
+        "context": [
+          "Hi, Natasha, how's life?",
+          "Great. My family came to visit me.",
+          "Oh, you must be very happy. How many people are there in your family?",
+          "My immediate family is very large. It's my mother, my father, my two older brothers, my younger sister and me.",
+          "I have a small family. They are my parents, my younger brother and me.",
+          "I thought you were the only child in the family. Didn't China practice the only-child policy in the early 1980s?",
+          "Yes, it did. But my parents are ethnic minority people. It's a preferential policy for an ethnic minority family to have two children.",
+          "Interesting. What do you think about families with only one child?",
+          "The child must feel very longly. My younger brother is 10 years younger than me. Before he was born, I used to be the only child and always dreamed that I would have a younger sister or brother one da",
+          "Do you get along well with each other?",
+          "Yes, we are very close. He is 12 years old and very smart. He always makes us laugh a lot.",
+          "You are very lucky to have such a nice family.",
+          "Thank you."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. Before the younger brother's birth the speaker was an only child and wished for a younger sibling. The desired sibling is within dreamed, not an action inferred completed from the wish.",
+        "source_sha256": "66cc1efad952729c968ae57e54e52b8aca859a429bbe8662397edd02c1abd800",
+        "context_sha256": "c480fad2000595c19c0cade1287c90155c60101b9963982f328a8251d3853086"
+      }
+    },
+    {
+      "id": "dd_v19_train_1350_1_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What does the text you are reading say about New Year's resolutions?",
+      "reply": "It says that the number one new years resolution make is to spend more time with friends and family.",
+      "value": "reported that a text ranks spending more time with friends and family as the top New Year's resolution; no personal commitment or completed action was asserted",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1350_1_2",
+      "source": {
+        "split": "train",
+        "dialogue": 1350,
+        "turn": 1,
+        "segment": 2,
+        "span": [
+          19,
+          119
+        ],
+        "text": "It says that the number one new years resolution make is to spend more time with friends and family.",
+        "context": [
+          "Did you read this? It says that the number one new years resolution make is to spend more time with friends and family.",
+          "Why would that be funny?",
+          "Well, think about it. We are a society that is always on the go, not because we have to, but because we want to.",
+          "Why?",
+          "We work hard and spend less time at home because we are trying to provide for our family with goods and services that are usually unnecessary.",
+          "I don't agree, but anyways, I think you should start thinking of a new year's resolution yourself.",
+          "What's the point? We always make a new year's resolution and by February we will have forgotten about it. It's pointless.",
+          "Well then maybe you should resolve to sticking to your goals and objectives.",
+          "What about you? Your gym bag is gathering dust and you still have brand new running shoes that are yet to be jogged in.",
+          "Well, I would go if you kept your promise of going to the gym with me everyday!",
+          "Yeah, yeah, whatever."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. The speaker reports that an unspecified text ranks spending more time with friends and family as the number-one New Year's resolution. This is reported content, not the speaker's own commitment or completed time spent.",
+        "source_sha256": "36b9b3fc6fea51de8e5d09135964381625235b632c26debe1c6a69ac679013a2",
+        "context_sha256": "c9dff19b7e14cb2bf18996b424c64cec4c1907e8afb425215548786f0e5c6ecc"
+      }
+    },
+    {
+      "id": "dd_v19_train_1372_2_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Have you thought about Tom's attitude toward Jenny's brother?",
+      "reply": "I've cut it upland come to the conclusion that hi is actually sick of Jenny's brother.",
+      "value": "expressed a conclusion that the person under discussion is fed up with Jenny's brother; cut it upland and hi remain unresolved, with no cutting or physical illness inferred",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1372_2_1",
+      "source": {
+        "split": "train",
+        "dialogue": 1372,
+        "turn": 2,
+        "segment": 1,
+        "span": [
+          0,
+          86
+        ],
+        "text": "I've cut it upland come to the conclusion that hi is actually sick of Jenny's brother.",
+        "context": [
+          "Have you ever thought about Tom's attitude?",
+          "I've cut it upland come to the conclusion that hi is actually sick of Jenny's brother. But he likes Jenny. She is a big apple in his eye.",
+          "Love me, love my dog. He's a sensible kind man.",
+          "That's why many people look up to him."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. The speaker presents a conclusion that the person under discussion is sick of Jenny's brother. Sick of expresses irritation, not physical illness. The damaged introduction does not establish cutting something. The earlier candidate he correction is not needed to use the original hi input.",
+        "source_sha256": "75307c812e7c11a92b11a0d6eed60f819b115e50a134b31af6c7088f052f2672",
+        "context_sha256": "d233825f3fef469f85d32b2675c796b0257c0f68393ee89d9e35ff76913e14dd"
+      }
+    },
+    {
+      "id": "dd_v19_train_1375_8_3",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Do you need anything while you are feeling unwell?",
+      "reply": "But if it's not too much trouble for you.",
+      "value": "made a polite condition that helping should not be too much trouble, without specifying the requested item in this fragment",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1375_8_3",
+      "source": {
+        "split": "train",
+        "dialogue": 1375,
+        "turn": 8,
+        "segment": 3,
+        "span": [
+          57,
+          98
+        ],
+        "text": "But if it's not too much trouble for you.",
+        "context": [
+          "Hi, Mary, I didn't see you at work this morning. Are you all right?",
+          "Oh, I feel miserable. I've got a bad cold, My head is dizzy and my nose is running.",
+          "Oh, I'm so sorry to hear that. Have you seen a doctor or taken any medicines?",
+          "As a matter of fact I have, The doctor said it'll go away after a day or two. He's prescribed me some tablets.",
+          "Are you feeling better?",
+          "Yes, it helps me but I just have to wait and let my system do the work.",
+          "Do you need anything, grocery?",
+          "Oh, no, I'm fine. My refrigerator is piled up with food. But if it's not too much trouble for you. I'd like something to read.",
+          "Sure, I'll get it for you. Books or magazines?",
+          "I'd like both."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. The if-clause supplies a condition that something should not be too much trouble for the listener. It does not assert absence of trouble or completed help. Its request can be retained in the surrounding turn without changing the printed period.",
+        "source_sha256": "d322caaf8d1c21f0ba22b22b6d6750e802ff5147ab4f7985205c6e023771b737",
+        "context_sha256": "4028a7ae116b173ff2897eb432cb42e3c827bc80749a2b2543e61d83d84a7437"
+      }
+    },
+    {
+      "id": "dd_v19_train_1432_12_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "We were comparing Janet with Kate. How would you characterize Kate in that comparison?",
+      "reply": "Now we are talking but ugly.",
+      "value": "expressed a negative appearance judgment in the comparison with Kate; the wording but ugly leaves the intensity uncertain",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1432_12_2",
+      "source": {
+        "split": "train",
+        "dialogue": 1432,
+        "turn": 12,
+        "segment": 2,
+        "span": [
+          28,
+          56
+        ],
+        "text": "Now we are talking but ugly.",
+        "context": [
+          "Hey, Frank, there is that Janet chick.",
+          "Wow, what a great bird!",
+          "She sure knows how to strut her stuff.",
+          "She's a real turn-on, alright?",
+          "And look out she's dressed.",
+          "Yeah, I noticed. She must be really loaded.",
+          "No way. Her old man is rich. He buys her anything she wants.",
+          "Lucky her. Anyway, I think that is just as beautiful.",
+          "I think you've lost it.",
+          "Well, that's my opinion.",
+          "I admit that she is much prettier than Kate.",
+          "Oh, there is no comparison. Now we are talking but ugly.",
+          "At least we agree on that. Let's go and get a drink."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. In the comparison with Kate the speaker expresses a negative appearance judgment. The malformed but ugly is preserved; it does not establish a contrastive connective or a completed action.",
+        "source_sha256": "ef50a52eba4b24b7d9e7ec1c1a8de9a6fe984f3446559169e5c7335c47edcbbb",
+        "context_sha256": "b007de8a9767024ad5bc884dda0171dc9f6a928a6654545b046fc761e6a0f5c0"
+      }
+    },
+    {
+      "id": "dd_v19_train_1436_4_6",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Jimmy can jump over two meters in the high jump. What do you think of that performance?",
+      "reply": "Again, that's fine for someone hi",
+      "value": "evaluated the high-jump performance positively, while the comparison after someone hi remains incomplete",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1436_4_6",
+      "source": {
+        "split": "train",
+        "dialogue": 1436,
+        "turn": 4,
+        "segment": 6,
+        "span": [
+          167,
+          200
+        ],
+        "text": "Again, that's fine for someone hi",
+        "context": [
+          "How are the children doing at sport?",
+          "I'm very pleased with their performances. Timmy can cover the 100 meters in 12 seconds. That's very fast for a kid his age.",
+          "He's not very good at the long jump though, is he?",
+          "He's not bad. He can jump a distance of over four meters. I think he just prefers running to jumping. Jimmy's very good at the high jump. He can jump over two meters. Again, that's fine for someone hi",
+          "Two meters? That means that the high jump bar is above his head! Are any of them good at long-distance running?",
+          "The longest race we run is the 1500 meters. A few of the boys and one girls can do it in less than five minutes.",
+          "How are they at swimming?",
+          "They're ok. I ask them to swim 500 meters each day. That's 20 lengths of the swimming pool. They're not very fast, but that's ok. I just want them to build their strength up and keep in shape.",
+          "Kate is very good at diving from a height of 10 meters.",
+          "I'd be afraid to jump from that height!",
+          "I think that these kinds haven't learnt to be afraid yet. She started diving from a lower height, but she soon wanted to go higher.",
+          "It seems that they really enjoy to go faster, higher and further."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. That evaluates the previously mentioned high jump of over two meters positively. The unfinished someone hi does not license any missing age, height or comparison class.",
+        "source_sha256": "873ae708d6b4613895316d68022f4359c218d6eb4912d5e0cfba3e0287af0f33",
+        "context_sha256": "0e06a9dd6d8ef37e743fd08199730a85274abc22a68091551588bd8eda3d1e2c"
+      }
+    },
+    {
+      "id": "dd_v19_train_1444_12_3",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "We were remembering our trip to Italy. What do you recall about that day?",
+      "reply": "We were going to visit the Trev fountain, and we got caught in the rain...",
+      "value": "recalled planning to visit the Trev fountain and getting caught in rain; the visit itself was not confirmed as completed",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1444_12_3",
+      "source": {
+        "split": "train",
+        "dialogue": 1444,
+        "turn": 12,
+        "segment": 3,
+        "span": [
+          40,
+          114
+        ],
+        "text": "We were going to visit the Trev fountain, and we got caught in the rain...",
+        "context": [
+          "Joanne, let's not make this divorce any more acrimonious than it already is, okay? Let's just get down to business and start dividing this stuff up fairly, so we can go our separate ways, alright?",
+          "Fine with me. I just want to get this over with. It's important we make a clean break. I should have signed a pre-nup.",
+          "What was that?",
+          "Nothing! Anyway, you're right, there's no reason this has to be nasty. My lawyer tells me you've accepted our alimony proposal and the division of property, as well as the custody agreement-I keep the cat and you get the dog. So that's done... finally.",
+          "Let's not go there, Joanne! Ok, so let's start with the record collection, I'll take the albums I contributed and you can have your cheesy disco albums back.",
+          "Fine, but I'm keeping the antique gramophone as my grandfather gave it to me.",
+          "I believe that was a wedding present to both of us, Joanne. And you hardly ever use it!",
+          "He's my grandfather, and he never really liked you anyway!",
+          "Whatever! Alright, I'll concede the silly gramophone, if you'll agree that I get the silver tea set.",
+          "How typical, when are you ever going to use a silver tea set? Fine! I don't want to drag this out any longer than necessary. What's next? What about these old photographs?",
+          "Which ones? Let me have a look. Wow, look at that! That brings back memories... That?",
+          "Our trip to Italy! I remember that day. We were going to visit the Trev fountain, and we got caught in the rain...",
+          "... And you looked so adorable with your hair all wet. I had to take a picture of you standing there in that little alley, smiling and laughing in the rain...",
+          "Oh, we really did have fun back then, didn't we?",
+          "Oh, Joanne, are we making a big mistake? I know our relationship has been on the rocks for sometime but are you sure we can't reconcile and try again? I still love you.",
+          "Oh Jeff! I love you too! I'm so glad we didn't have to decide who keeps the motorcycle.",
+          "The motorcycle? But that's mine!"
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. The speaker recalls a plan to visit the place named Trev fountain and separately reports getting caught in rain. Planned visiting is not completed visiting; retain the place name as printed without external identification.",
+        "source_sha256": "901a7cbbb97fc8fb36ca3d802c9f0dd617820d809fa6e18b0873afa3ae73faf3",
+        "context_sha256": "d96b2459ef57c465e63120b665ae9c326b35462a937c3b24f2b546e0587344cd"
+      }
+    },
+    {
+      "id": "dd_v19_train_1445_4_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "When do you usually wind your watch?",
+      "reply": "In the coming, before going to work.",
+      "value": "specified before going to work as the usual time for winding the watch; in the coming does not establish a time of day",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1445_4_1",
+      "source": {
+        "split": "train",
+        "dialogue": 1445,
+        "turn": 4,
+        "segment": 1,
+        "span": [
+          0,
+          36
+        ],
+        "text": "In the coming, before going to work.",
+        "context": [
+          "What's the time now?",
+          "Sorry, I don't know, there's something wrong with my watch.",
+          "You've simply forgotten to wind it up, have you? When do you usually wind it up?",
+          "In the coming, before going to work.",
+          "You got up so late today. You have, I think. Turn on the TV and set your watch by it.",
+          "OK. I'll turn it on.",
+          "All right. It's just four o'clock.",
+          "Well, I'm setting my watch at four. Thank you.",
+          "You are welcome."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. In answer to when the speaker usually winds the watch, before going to work supplies a relative habitual time. In the coming is not silently changed to in the morning.",
+        "source_sha256": "60757b3b8dc9f8ae9c6ab8a6f5e8ee36f1dffb711438c7370a86137b4e831fdc",
+        "context_sha256": "f11ad06d5f8468421000b6776a60d385cce52cf8c18166571431471d85c4c29e"
+      }
+    },
+    {
+      "id": "dd_v19_train_1460_5_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "I read the sports pages to feel relaxed after work. How would you describe that habit?",
+      "reply": "Reading is your own solution to solve pressure from busy tasks.",
+      "value": "described my reading habit as a way to deal with work-related pressure, without asserting a particular completed result",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v19_train_1460_5_2",
+      "source": {
+        "split": "train",
+        "dialogue": 1460,
+        "turn": 5,
+        "segment": 2,
+        "span": [
+          20,
+          83
+        ],
+        "text": "Reading is your own solution to solve pressure from busy tasks.",
+        "context": [
+          "B, what's in your hand?",
+          "Sunday papers. I usually read them after coming back home from our company.",
+          "Why do you read them?",
+          "As you know, I am a sports fan. And these papers are famous for their sports section. So I will feel relaxed after grasping some information I am interested in.",
+          "I got your meaning. Reading is your own solution to solve pressure from busy tasks.",
+          "Correct! What about you, Fred?",
+          "I often go to the bar near our dorm when I am overtired. I am crazy for drinking wines with special taste.",
+          "Don't overdo it.",
+          "Shall we have a drink someday?",
+          "I get drunk easily."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. The speaker paraphrases the listener's account of reading sports papers to feel relaxed: reading is their way to deal with work-related pressure. Solve pressure remains unchanged; no specific successful stress reduction is asserted.",
+        "source_sha256": "f0391d718d3c6ba40dd1c90e44e9a5bbc3e69c0c7410ad0f9c8382fe3e2df75c",
+        "context_sha256": "ffad8fc9b8c0e65fda39e1868c3e13a068c0e0104ff6bdb0005f15bda8740c79"
+      }
+    }
+  ]
+}

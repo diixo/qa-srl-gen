@@ -1,0 +1,287 @@
+{
+  "format": "reviewed-fragment-target-revisions-v1",
+  "scope": "three_targets_in_complete_source_warning_review_v34",
+  "catalog": "data/mined-templates/reviewed/dialogue-fragments.json",
+  "base_catalog_sha256": "30ce89036b04e2e571ff200530ae9758685df08c06c80d27dde771f389aefbef",
+  "revisions": [
+    {
+      "id": "dd_v26_test_177_3_2",
+      "source_id": "test:177:3:2",
+      "method": "direct_assistant_target_semantics_review",
+      "preimage": {
+        "id": "dd_v26_test_177_3_2",
+        "kind": "interpretation",
+        "context": true,
+        "assistant": "What landmarks are you pointing out in the square?",
+        "reply": "you see that is monument for the people's hero, and the Chairman Mao memorial hall on the south.",
+        "value": "pointed out a monument and the Chairman Mao memorial hall to the south; the clause linkage remains uncertain",
+        "question": "What did I convey in my last reply?",
+        "interpretation_topic": "dd_v26_test_177_3_2",
+        "source": {
+          "split": "test",
+          "dialogue": 177,
+          "turn": 3,
+          "segment": 2,
+          "span": [
+            38,
+            134
+          ],
+          "text": "you see that is monument for the people's hero, and the Chairman Mao memorial hall on the south.",
+          "context": [
+            "Look, how grand magnificent the Tiananmen Gate tour is!",
+            "What's Tiananmen famous for?",
+            "It is largest pop square in the world.you see that is monument for the people's hero, and the Chairman Mao memorial hall on the south.there is great hall of the people on the west.there are two museums on the east.",
+            "What's that?",
+            "That's the Forbidden City on the north of Gate building.",
+            "All the sightseeing in China is very attractive and crescive.travelling to China is very worth one.thank you so much for your guides, and I'll miss you."
+          ]
+        },
+        "review": {
+          "method": "direct_assistant_fragment_adapter",
+          "scope": "adapted_visible_pair_only",
+          "evidence_turns": [
+            1,
+            2,
+            3
+          ],
+          "source_sha256": "3f8712f68f9db3269ee88a281c5e6ffd34e7b24cb9936b2d8f85e51c2ec849ac",
+          "context_sha256": "c884d44a936008c77795f5326eabd4764a94430bb0b120f511d519308845b500",
+          "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker points out a monument and the Chairman Mao memorial hall, placing the hall to the south.The exact coordination of see, monument and hall is not settled."
+        }
+      },
+      "preimage_sha256": "e57b03b1853608f32b3d940f66a362aecdc167a7613d95c369e42fcad6bdf0de",
+      "replacement": {
+        "id": "dd_v26_test_177_3_2",
+        "kind": "interpretation",
+        "context": true,
+        "assistant": "What landmarks are you pointing out in the square?",
+        "reply": "you see that is monument for the people's hero, and the Chairman Mao memorial hall on the south.",
+        "value": "pointed out a monument and placed the Chairman Mao memorial hall to the south; the clause linkage remains uncertain",
+        "question": "What did I convey in my last reply?",
+        "interpretation_topic": "dd_v26_test_177_3_2",
+        "source": {
+          "split": "test",
+          "dialogue": 177,
+          "turn": 3,
+          "segment": 2,
+          "span": [
+            38,
+            134
+          ],
+          "text": "you see that is monument for the people's hero, and the Chairman Mao memorial hall on the south.",
+          "context": [
+            "Look, how grand magnificent the Tiananmen Gate tour is!",
+            "What's Tiananmen famous for?",
+            "It is largest pop square in the world.you see that is monument for the people's hero, and the Chairman Mao memorial hall on the south.there is great hall of the people on the west.there are two museums on the east.",
+            "What's that?",
+            "That's the Forbidden City on the north of Gate building.",
+            "All the sightseeing in China is very attractive and crescive.travelling to China is very worth one.thank you so much for your guides, and I'll miss you."
+          ]
+        },
+        "review": {
+          "method": "direct_assistant_fragment_adapter",
+          "scope": "adapted_visible_pair_only",
+          "evidence_turns": [
+            1,
+            2,
+            3
+          ],
+          "source_sha256": "3f8712f68f9db3269ee88a281c5e6ffd34e7b24cb9936b2d8f85e51c2ec849ac",
+          "context_sha256": "c884d44a936008c77795f5326eabd4764a94430bb0b120f511d519308845b500",
+          "adaptation": "Preserve the exact original reply and visible preceding prompt. Use only the limited interpretation; unknown details and generic-role restrictions remain. The description identifies a monument and places the Chairman Mao memorial hall to the south. Preserve the coordination uncertainty; the south modifier must not silently apply to both landmarks."
+        }
+      },
+      "replacement_sha256": "3713ed185d39f8112ff64a66879f4ccc8ee23663694f7d49ee133d6f5bd224dd",
+      "reason": "The description identifies a monument and places the Chairman Mao memorial hall to the south. Preserve the coordination uncertainty; the south modifier must not silently apply to both landmarks.",
+      "source_text_changed": false
+    },
+    {
+      "id": "dd_v26_train_1345_8_2",
+      "source_id": "train:1345:8:2",
+      "method": "direct_assistant_target_semantics_review",
+      "preimage": {
+        "id": "dd_v26_train_1345_8_2",
+        "kind": "interpretation",
+        "context": true,
+        "assistant": "Does your simple photo studio work?",
+        "reply": "T does work.",
+        "value": "asserted that it works, while the subject label T remains unexplained",
+        "question": "What did I convey in my last reply?",
+        "interpretation_topic": "dd_v26_train_1345_8_2",
+        "source": {
+          "split": "train",
+          "dialogue": 1345,
+          "turn": 8,
+          "segment": 2,
+          "span": [
+            22,
+            34
+          ],
+          "text": "T does work.",
+          "context": [
+            "How do you usually spend your leisure time? I mean, do you have any special interests out of your job?",
+            "Of course. You see, almost everyone has some kind of hobby",
+            "Yeah, you're quite right and what's your hobby?",
+            "I like taking photos out of door.",
+            "Oh, photography, It's really a good hobby.",
+            "Yes, I usually develop and print all my own photos.",
+            "You yourself have a photo studio?",
+            "Yes, simple as it is. T does work."
+          ]
+        },
+        "review": {
+          "method": "direct_assistant_fragment_adapter",
+          "scope": "adapted_visible_pair_only",
+          "evidence_turns": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "source_sha256": "98a7570f81fa194f4ccb5814754c2c4826d032bc58074db65361d2d6ceb34741",
+          "context_sha256": "906251f994560a14952973f4e6f069e2b128d02e4159eaed40455ee57ce28fe1",
+          "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. Does work asserts functionality, following discussion of a simple photo studio.T is not resolved to It or a named entity; its exact reference is unknown."
+        }
+      },
+      "preimage_sha256": "b9124f48e9fc28d578837359d8e69044d2f03107c068d65928a5d967cbd7c885",
+      "replacement": {
+        "id": "dd_v26_train_1345_8_2",
+        "kind": "interpretation",
+        "context": true,
+        "assistant": "Does your simple photo studio work?",
+        "reply": "T does work.",
+        "value": "asserted that the subject labelled T works; its exact referent remains unresolved",
+        "question": "What did I convey in my last reply?",
+        "interpretation_topic": "dd_v26_train_1345_8_2",
+        "source": {
+          "split": "train",
+          "dialogue": 1345,
+          "turn": 8,
+          "segment": 2,
+          "span": [
+            22,
+            34
+          ],
+          "text": "T does work.",
+          "context": [
+            "How do you usually spend your leisure time? I mean, do you have any special interests out of your job?",
+            "Of course. You see, almost everyone has some kind of hobby",
+            "Yeah, you're quite right and what's your hobby?",
+            "I like taking photos out of door.",
+            "Oh, photography, It's really a good hobby.",
+            "Yes, I usually develop and print all my own photos.",
+            "You yourself have a photo studio?",
+            "Yes, simple as it is. T does work."
+          ]
+        },
+        "review": {
+          "method": "direct_assistant_fragment_adapter",
+          "scope": "adapted_visible_pair_only",
+          "evidence_turns": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "source_sha256": "98a7570f81fa194f4ccb5814754c2c4826d032bc58074db65361d2d6ceb34741",
+          "context_sha256": "906251f994560a14952973f4e6f069e2b128d02e4159eaed40455ee57ce28fe1",
+          "adaptation": "Preserve the exact original reply and visible preceding prompt. Use only the limited interpretation; unknown details and generic-role restrictions remain. Does work asserts functionality of the subject labelled T. The adapted studio question does not justify silently resolving T to it or to a particular device; keep the referent explicitly unknown."
+        }
+      },
+      "replacement_sha256": "6f9c951d59fd37e56ef11ad1cfbf7abcdea146d5f352829ee72070dfeec5aa2f",
+      "reason": "Does work asserts functionality of the subject labelled T. The adapted studio question does not justify silently resolving T to it or to a particular device; keep the referent explicitly unknown.",
+      "source_text_changed": false
+    },
+    {
+      "id": "dd_v29_train_8624_2_3",
+      "source_id": "train:8624:2:3",
+      "method": "direct_assistant_target_semantics_review",
+      "preimage": {
+        "id": "dd_v29_train_8624_2_3",
+        "kind": "interpretation",
+        "context": true,
+        "assistant": "May I make up your room now?",
+        "reply": "You can put up make up sign on.",
+        "value": "suggested putting up a sign during the discussion of room service, without saying that the sign had been put up",
+        "question": "What did I convey in my last reply?",
+        "interpretation_topic": "dd_v29_train_8624_2_3",
+        "source": {
+          "split": "train",
+          "dialogue": 8624,
+          "turn": 2,
+          "segment": 3,
+          "span": [
+            34,
+            65
+          ],
+          "text": "You can put up make up sign on.",
+          "context": [
+            "Good morning, sir. Sorry to disturb you. May I make up your room now?",
+            "Yes, please. We're on my way out. You can put up make up sign on. Could you bring us some towels and hangers.",
+            "No problems, sir. Everything will be already when you come back."
+          ]
+        },
+        "review": {
+          "method": "direct_assistant_fragment_adapter",
+          "scope": "adapted_visible_pair_only",
+          "evidence_turns": [
+            1,
+            2
+          ],
+          "source_sha256": "98f12aa651c3874050e5b581ee7b483d15653efecb091b7aa34a04c1db08b958",
+          "context_sha256": "715a6ef41e1a26e6945dd8d0457c4db6f5e25b917461698ce21bfcad1a6ccca4",
+          "adaptation": "Use only the explicit visible prompt and original reply. Can supports a nonactual suggestion or permission to put up a sign. The make up sign phrase and trailing on do not license a uniquely repaired dependency tree or exact sign label. Publish only the visible-pair interpretation; keep the structural question open."
+        }
+      },
+      "preimage_sha256": "d37c5220235a5843249aef4debd412ec8a54b452f033c37d2132acea48f943bd",
+      "replacement": {
+        "id": "dd_v29_train_8624_2_3",
+        "kind": "interpretation",
+        "context": true,
+        "assistant": "May I make up your room now?",
+        "reply": "You can put up make up sign on.",
+        "value": "presented putting up a sign as permitted or suggested during the room-service discussion; the sign label and trailing on remain unclear and no sign placement was confirmed",
+        "question": "What did I convey in my last reply?",
+        "interpretation_topic": "dd_v29_train_8624_2_3",
+        "source": {
+          "split": "train",
+          "dialogue": 8624,
+          "turn": 2,
+          "segment": 3,
+          "span": [
+            34,
+            65
+          ],
+          "text": "You can put up make up sign on.",
+          "context": [
+            "Good morning, sir. Sorry to disturb you. May I make up your room now?",
+            "Yes, please. We're on my way out. You can put up make up sign on. Could you bring us some towels and hangers.",
+            "No problems, sir. Everything will be already when you come back."
+          ]
+        },
+        "review": {
+          "method": "direct_assistant_fragment_adapter",
+          "scope": "adapted_visible_pair_only",
+          "evidence_turns": [
+            1,
+            2
+          ],
+          "source_sha256": "98f12aa651c3874050e5b581ee7b483d15653efecb091b7aa34a04c1db08b958",
+          "context_sha256": "715a6ef41e1a26e6945dd8d0457c4db6f5e25b917461698ce21bfcad1a6ccca4",
+          "adaptation": "Preserve the exact original reply and visible preceding prompt. Use only the limited interpretation; unknown details and generic-role restrictions remain. Can supports permission or a suggestion to put up a sign. Keep the exact sign label and final on unknown; no uniquely intended speech act, changed tree or completed sign placement is asserted."
+        }
+      },
+      "replacement_sha256": "e0eee581cbfd7dbd19dbf4c47d78e2e6b32c2c8650bef183f2d110997ed94210",
+      "reason": "Can supports permission or a suggestion to put up a sign. Keep the exact sign label and final on unknown; no uniquely intended speech act, changed tree or completed sign placement is asserted.",
+      "source_text_changed": false
+    }
+  ]
+}

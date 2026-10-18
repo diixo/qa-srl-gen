@@ -1,0 +1,98 @@
+{
+  "format": "reviewed-fragment-adapters-v1",
+  "patterns": [
+    {
+      "id": "dd_v17_thanks_order",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Just a beer, please.",
+      "reply": "Thank you, sir.",
+      "value": "thanked me for specifying my drink order",
+      "question": "What did I thank you for?",
+      "interpretation_topic": "thanks_order",
+      "source": {
+        "split": "test",
+        "dialogue": 63,
+        "turn": 6,
+        "segment": 2,
+        "span": [
+          6,
+          21
+        ],
+        "text": "Thank you, sir.",
+        "context": [
+          "Could I have some fish?",
+          "Certainly. And what vegetables would you like?",
+          "Oh, spinach, I think.",
+          "Fine, And what about something to drink?",
+          "Just a beer, please.",
+          "Good. Thank you, sir.",
+          "Would you like to have some more beer?",
+          "No, thanks. I've had enough. I'll have my bill, please.",
+          "Of course. Please wait a moment. I'll go and get it.",
+          "Thank you."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          4,
+          5,
+          6
+        ],
+        "adaptation": "The customer has specified a drink and the server thanks them. Preserve gratitude for the order; do not assert delivery, drinking or payment.",
+        "source_sha256": "6dfeff0a13d9b96d6513052287c44cec97a013bdc697e277f4259f0372212a08",
+        "context_sha256": "02e90856bc658e4548c09270dc48174861ce309854821b062b65edfdad21a0c9"
+      }
+    },
+    {
+      "id": "dd_v17_acknowledge_study_advice",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Focusing on the civil war is probably the best way to prepare for the history exam if you cannot study everything.",
+      "reply": "All right.",
+      "value": "acknowledged my advice about focusing on the civil war for the exam",
+      "question": "What advice did I acknowledge?",
+      "interpretation_topic": "acknowledge_study_advice",
+      "source": {
+        "split": "test",
+        "dialogue": 809,
+        "turn": 9,
+        "segment": 1,
+        "span": [
+          0,
+          10
+        ],
+        "text": "All right.",
+        "context": [
+          "Did you already take the history exam?",
+          "Yeah. It was hard. When do you take it?",
+          "I take it tomorrow morning. There is so much material that I don't know what to emphasize on. What types of questions did you get?",
+          "Mostly on the civil war. You should also study the impact Martin Luther King Jr. had on American society.",
+          "What about Abraham Lincoln? Did you get any questions about him?",
+          "I only had 1 question about him. But you might get more. I don't know if he will have the same exam or not.",
+          "Hopefully he will use the same exam, cause I'm going to spend most of my time studying the civil war. It is a huge section and that is what he lectured the most on in class.",
+          "If you can't study everything, then that is probably the best way to go.",
+          "All right. Thanks for the info. I gotta go to the library now.",
+          "Good luck.",
+          "Thanks. See ya."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          3,
+          7,
+          8,
+          9
+        ],
+        "adaptation": "Expose the earlier exam and civil-war topic in the preceding advice. All right acknowledges that advice, without claiming study, library travel or exam completion.",
+        "source_sha256": "a9dd4e076a621cbf47900ebc3dc289c3cfd1823a943b640ddd31bd383199f4c0",
+        "context_sha256": "5219832aee05b3f3de107905d4ef730f0395dcf66d43ae9336ac5007a9005967"
+      }
+    }
+  ]
+}

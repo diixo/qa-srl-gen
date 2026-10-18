@@ -13,8 +13,15 @@ aggregate report; the original `validation.json` remains the eng-base audit.
 New UI source texts are preserved in `sources/<job-id>.jsonl`, and other source
 files (metadata, licenses and documentation) in `sources/<job-id>.zip`.
 The one-time, model-reviewed DailyDialog import omits those duplicate archives.
-Its reviewed turns and exclusions are recorded in `sentence_review.jsonl.gz`;
-editable review annotations and progress are in `../dailydialog/review-parts/`.
+Its reviewed turns and exclusions are recorded in `sentence_review.jsonl.gz`.
+The completed one-time import stores all templates in the shared `templates/`
+shards and all inventories in the shared root files. `pending.json` records the
+unapproved byte ranges; `manifest.json` selects the published generation ranges.
+There are no separate candidate-bank directories. Annotations, decisions and
+quarantine evidence are in `audit/`. Neither generation nor the current quarantine audit
+requires `../dailydialog/review-parts/`. See
+[the import inventory and cleanup guide](audit/README_RU.md).
+Moving data into shared files does not grant semantic approval or enable its generation.
 
 Rendering uses the patterns, bindings and grammatical data stored in the bank;
 it does not require the original input or its archived snapshot. The source
@@ -56,7 +63,8 @@ adjective readings and participles. Complete record coverage does not imply
 perfect linguistic disambiguation or verified semantic-role annotations.
 DailyDialog sentence templates are explicitly authored by the model; their
 downstream semantic annotations likewise remain **UNREVIEWED**. The corpus is
-being reviewed in parts, and only completed turn reviews are published.
+preserved with occurrence-level reviews, and only explicitly admitted records
+are published. The full automatic candidate remains `UNREVIEWED`.
 
 | Path | Contents |
 | --- | --- |
@@ -65,12 +73,19 @@ being reviewed in parts, and only completed turn reviews are published.
 | `verb_alternatives.jsonl.gz` | Other verb readings from Wiktionary and WordNet |
 | `adjective_alternatives.jsonl.gz` | Other adjective readings from the dictionaries and possible participial readings |
 | `constructions.jsonl.gz` | All observed particle/preposition/adverb constructions, with analysis categories |
-| `templates/*.jsonl.gz` | Executable patterns, all distinct attested bindings, slot fillers, dependencies, adjective targets and predicate-marker locations |
+| `templates/*.jsonl.gz` | Published and pending patterns, bindings, slot fillers, dependencies, adjective targets and predicate-marker locations; readers select committed ranges by status |
 | `occurrences/*.jsonl.gz` | Every original record, all tokens with offsets and lexical alternatives, source identifiers, template bindings and original syntax patterns |
 | `sentence_review.jsonl.gz` | Reviewed DailyDialog turns, sentence boundaries, corrections, fragments and pending cases |
-| `entities.jsonl.gz` | Explicitly reviewed typed named readings, loaded into the default entity pool |
+| `entities.jsonl.gz` | Named readings; only reviewed entries from published ranges enter the default entity pool |
 | `entity_candidates.jsonl.gz` | Unresolved named readings; excluded from typed entity slots |
-| `nominals.jsonl.gz` | Reviewed nominal surfaces and source evidence; no automatic entity typing |
+| `nominals.jsonl.gz` | Nominal surfaces and source evidence, including pending parser proposals; no automatic entity typing |
+| `adverbs.jsonl.gz` | Pending adverb proposals and source evidence |
+| `pending.json` | Unapproved source metadata and byte ranges within the same physical files; excluded from normal generation |
+
+Use `TemplateBank(...).pending_components()` for explicit inspection of pending
+sentence templates. Normal `components()`, `templates()` and generation read
+the published ranges only. Never stream a whole shared gzip file directly to
+construct training data: it can include unapproved ranges and interrupted tails.
 
 Manual occurrence ledgers contain explicitly annotated lexical slots, which
 may include noun phrases, rather than a claim to a complete word-token parse.

@@ -1,0 +1,200 @@
+{
+  "status": "passed",
+  "register": "data/mined-templates/reviewed/dailydialog-quarantine.json",
+  "register_sha256": "6e099ca7cc6871791eec55117f23d2f87db5430a247b2ab508b4b7bc99e70390",
+  "unresolved_warnings": 19,
+  "active_automatic_retries": 0,
+  "deferred_occurrences": 19,
+  "blocked_template_occurrences": 21,
+  "allowed_adjacent_adapters": 2,
+  "disposition_categories": {
+    "truncated_content": 12,
+    "unclear_wording": 7,
+    "reviewed_adjacent_fragment": 2
+  },
+  "published_dailydialog_components": [
+    {
+      "source": "dailydialog-reviewed-ed7c43939b7c6d0a",
+      "templates": 290
+    },
+    {
+      "source": "dailydialog-reviewed-9331431b98d28a47",
+      "templates": 131
+    },
+    {
+      "source": "dailydialog-reviewed-8bd56214fc34eef0",
+      "templates": 184
+    },
+    {
+      "source": "dailydialog-reviewed-ffe5398c6f5e29ca",
+      "templates": 258
+    },
+    {
+      "source": "dailydialog-reviewed-1c0b9d856e526c36",
+      "templates": 177
+    },
+    {
+      "source": "dailydialog-reviewed-40d64af208971bb5",
+      "templates": 203
+    },
+    {
+      "source": "dailydialog-reviewed-2edc7a328dc872b3",
+      "templates": 634
+    },
+    {
+      "source": "dailydialog-reviewed-ac3c1b02b06d7294",
+      "templates": 569
+    },
+    {
+      "source": "dailydialog-reviewed-1c2ee5c3d514c71d",
+      "templates": 535
+    },
+    {
+      "source": "dailydialog-reviewed-e43a05ecf494ab7b",
+      "templates": 519
+    },
+    {
+      "source": "dailydialog-reviewed-00037f0fdcf23b5a",
+      "templates": 477
+    },
+    {
+      "source": "dailydialog-reviewed-a8e57cb9b5baf4d0",
+      "templates": 643
+    },
+    {
+      "source": "dailydialog-reviewed-e91dd0348b553d86",
+      "templates": 194
+    },
+    {
+      "source": "dailydialog-hybrid-attested-v1",
+      "templates": 8
+    },
+    {
+      "source": "dailydialog-hybrid-participles-v1",
+      "templates": 21
+    },
+    {
+      "source": "dailydialog-hybrid-properties-boundaries-v1",
+      "templates": 14
+    },
+    {
+      "source": "dailydialog-hybrid-source-boundaries-v1",
+      "templates": 5
+    },
+    {
+      "source": "dailydialog-hybrid-residual-context-v1",
+      "templates": 3
+    },
+    {
+      "source": "dailydialog-hybrid-quotes-contractions-v1",
+      "templates": 18
+    },
+    {
+      "source": "dailydialog-hybrid-remaining-quotes-v1",
+      "templates": 40
+    },
+    {
+      "source": "dailydialog-hybrid-parentheses-v1",
+      "templates": 3
+    },
+    {
+      "source": "dailydialog-hybrid-qc-fixes-v1",
+      "templates": 5
+    },
+    {
+      "source": "dailydialog-hybrid-qc-admission-v1",
+      "templates": 28
+    },
+    {
+      "source": "dailydialog-hybrid-random-quality-v1",
+      "templates": 36
+    },
+    {
+      "source": "dailydialog-offline-qc-v1",
+      "templates": 29
+    },
+    {
+      "source": "dailydialog-semantic-admission-v1",
+      "templates": 27
+    },
+    {
+      "source": "dailydialog-constructions-admission-v2",
+      "templates": 11
+    },
+    {
+      "source": "dailydialog-token-boundaries-admission-v4",
+      "templates": 10
+    },
+    {
+      "source": "dailydialog-quote-boundaries-admission-v5",
+      "templates": 6
+    },
+    {
+      "source": "dailydialog-possessives-admission-v6",
+      "templates": 8
+    },
+    {
+      "source": "dailydialog-attributes-admission-v7",
+      "templates": 58
+    },
+    {
+      "source": "dailydialog-clauses-admission-v8",
+      "templates": 39
+    },
+    {
+      "source": "dailydialog-coordination-admission-v9",
+      "templates": 65
+    },
+    {
+      "source": "dailydialog-syntax-admission-v10",
+      "templates": 58
+    },
+    {
+      "source": "dailydialog-boundaries-admission-v11",
+      "templates": 79
+    },
+    {
+      "source": "dailydialog-residual-admission-v12",
+      "templates": 62
+    },
+    {
+      "source": "dailydialog-ambiguity-admission-v13",
+      "templates": 14
+    },
+    {
+      "source": "dailydialog-attestation-admission-v15",
+      "templates": 47
+    },
+    {
+      "source": "dailydialog-attestation-admission-v17",
+      "templates": 30
+    },
+    {
+      "source": "dailydialog-independent-quality-v36",
+      "templates": 41
+    },
+    {
+      "source": "dailydialog-independent-quality-v37",
+      "templates": 34
+    }
+  ],
+  "published_templates_checked": 5613,
+  "published_quarantined_templates": 0,
+  "fragment_patterns_checked": 772,
+  "rejected_admission_probes": 21,
+  "full_candidate_publication_blocked": true,
+  "generation": {
+    "episodes": 4,
+    "extraction": 12,
+    "history_and_memory": 8
+  },
+  "source_dialogues_preserved": 13118,
+  "manual_dialogues_preserved": 510,
+  "protected_files_unchanged": 462,
+  "original_text_changed": false,
+  "candidate_rebuilt": false,
+  "paid_evidence_sha256": "68f72401d4ccd5e4a26eaaf23e1558dc268f136195680c658a2f857f8be68391",
+  "source_ambiguities_resolved": 0,
+  "full_candidate_published": false,
+  "api_calls": 0
+}

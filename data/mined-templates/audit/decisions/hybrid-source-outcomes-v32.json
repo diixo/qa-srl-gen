@@ -1,0 +1,1169 @@
+{
+  "version": "source-wording-and-boundaries-v32",
+  "source_candidate": "artifacts/dailydialog-hybrid-source-v31",
+  "source_ledger": "data/dailydialog/review-parts/luna-offline-source-v31",
+  "source_warning_triage": 162,
+  "full_context_warning_reviews": 50,
+  "representation_only_closures": 50,
+  "boundary_repairs": 0,
+  "context_revisions": 50,
+  "consumed_segments": 50,
+  "warning_rechecks": 72,
+  "cases": [
+    {
+      "id": "test:116:4:1",
+      "input_ids": [
+        "test:116:4:1"
+      ],
+      "note": "The preceding question requests filing rules. Retain the four explicit instructions, including the literal chips and pins wording, without substituting clips or asserting that filing has been performed.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "gave instructions to arrange documents chronologically, remove what was called chips and pins, punch them evenly, and place them in a folder"
+        },
+        "unknown": [
+          "The item called chips is unresolved; instructions do not establish completed filing."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "test:142:8:2",
+      "input_ids": [
+        "test:142:8:2"
+      ],
+      "note": "The price discussion and each set establish a quoted amount of 611 per set. Retain s as written; do not convert it into a currency symbol, infer payment or revise the quote using discount arithmetic.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "interpreted the quotation as 611 per set, leaving the stray s unexplained and not asserting payment"
+        },
+        "unknown": [
+          "The standalone s is not converted into a currency symbol or unit."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "test:177:6:1",
+      "input_ids": [
+        "test:177:6:1"
+      ],
+      "note": "Very attractive is an explicit evaluation of sightseeing in China. Preserve crescive and its unknown intended additional property; do not replace it or turn the evaluation into a completed visit.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "described sightseeing in China as very attractive and also used the unresolved adjective crescive"
+        },
+        "unknown": [
+          "The additional property meant by crescive is not inferred."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "test:259:2:5",
+      "input_ids": [
+        "test:259:2:5"
+      ],
+      "note": "I am shocked supplies an emotional self-report before the unfinished that-clause. Accept only that expressed shock and preserve the pole; do not infer a police action, its cause or a continuation.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "expressed shock, then began an unfinished clause ending in the pole"
+        },
+        "unknown": [
+          "The proposition after that and the intended pole wording are missing."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "test:34:2:2",
+      "input_ids": [
+        "test:34:2:2"
+      ],
+      "note": "The job-duty prefix supports campaign planning and a stated relationship to artists and typographers. Preserve cooperate the work without upgrading it to management, coordination or completed collaboration.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "described planning advertising campaigns and a connection with the work of artists and typographers"
+        },
+        "unknown": [
+          "The exact activity meant by cooperate the work is unresolved; do not assert management or completed collaboration."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "test:458:2:3",
+      "input_ids": [
+        "test:458:2:3"
+      ],
+      "note": "The bicycle-travel prefix and should support advice to obey traffic rules. Preserve the negative red-light instruction without repairing break in or reporting a violation.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "advised obeying traffic rules and gave a negative instruction involving the red light"
+        },
+        "unknown": [
+          "The exact action in break in the red light is not reconstructed; no traffic violation is asserted."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "test:46:2:1",
+      "input_ids": [
+        "test:46:2:1"
+      ],
+      "note": "The postal-service exchange explicitly offers bubble wrap here and directs the customer to queue. Keep passage as the source object label without replacing it with package or reporting completed purchase or posting.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "said bubble wrap could be bought here and directed the customer to queue for posting, while leaving passage unresolved"
+        },
+        "unknown": [
+          "The object called passage is not silently replaced with package; no purchase or posting is completed."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "test:590:4:3",
+      "input_ids": [
+        "test:590:4:3"
+      ],
+      "note": "Have we decide in the original is an unfinished location-decision question. Retain the original reply in the existing adapter and the earlier candidate form unchanged. Do not supply a location complement or assert that a decision was made.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "asked whether a location had been decided, then stopped after of"
+        },
+        "unknown": [
+          "The missing complement after of is not inferred; no decision is asserted."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "test:615:4:2",
+      "input_ids": [
+        "test:615:4:2"
+      ],
+      "note": "The source reports looking through windows and observing dry land during travel. Mark this observation as reported completion, consistently with the separately reviewed train:2288 counterpart. Keep rain unresolved: neither reading identifies a train or other vehicle.",
+      "meaning": {
+        "speech_act": "recollection",
+        "event_status": "reported_observation_with_unclear_viewpoint",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "The speaker reports looking through windows and seeing very dry land during the trip west. Rain does not identify a vehicle or structure. As dry as a bone is figurative, and the observation concerns visible land rather than all land everywhere."
+        },
+        "unknown": [
+          "Do not infer a train or other vehicle from rain."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": true
+    },
+    {
+      "id": "test:672:8:2",
+      "input_ids": [
+        "test:672:8:2"
+      ],
+      "note": "The complete initial clause criticizes extravagant wedding expenditure. The unfinished we agreed t begins an agreement report but supplies no content or performed agreed action. Retain both parts and do not infer a budget, amount or promise.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "criticized extravagant wedding spending and began to describe an agreement without stating its content"
+        },
+        "unknown": [
+          "The ending agreed t does not establish what was agreed or whether it happened."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "test:68:2:2",
+      "input_ids": [
+        "test:68:2:2"
+      ],
+      "note": "The source explicitly limits the proposed stay to one day and asks for a short-tour suggestion. Keep cry unresolved rather than silently supplying city; no tour has occurred.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "said the stay was limited to one day and requested a short tour suggestion"
+        },
+        "unknown": [
+          "The place described as your cry remains unresolved; no tour has happened."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "test:730:6:4",
+      "input_ids": [
+        "test:730:6:4"
+      ],
+      "note": "The speaker explicitly feels uncertain about appropriate behavior. Retain Ch as an incomplete setting description; the later etiquette explanation is not evidence for filling this earlier ending.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "expressed uncertainty about behaving appropriately, then stopped at an incomplete setting description"
+        },
+        "unknown": [
+          "The ending Ch is not expanded and no specific missing setting is inserted."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "test:730:7:3",
+      "input_ids": [
+        "test:730:7:3"
+      ],
+      "note": "The visible contrast concerns practices appearing awkward or rude to Westerners while being customary. Keep the terminal I and leave the unexpressed location or continuation unknown.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "contrasted practices appearing awkward or rude to Westerners with those practices being customary elsewhere"
+        },
+        "unknown": [
+          "The unfinished final I does not identify a place or supply a continuation."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "test:765:6:3",
+      "input_ids": [
+        "test:765:6:3"
+      ],
+      "note": "The answer to a usual-blog-content question describes posting pictures and begins a family-related purpose clause. Preserve an without completing it or attributing an action to the family; no individual upload is asserted.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "described posting pictures on the blog and began an unfinished purpose involving family"
+        },
+        "unknown": [
+          "The word an and the family's intended action are not completed or inferred."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "test:806:4:3",
+      "input_ids": [
+        "test:806:4:3"
+      ],
+      "note": "The countryside suggestion contains must as an inference and could as a possibility. Accept interesting places and possible enjoyment of fresh air; preserve spec without inventing a food or an actual trip.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "suggested interesting places and possible enjoyment of fresh air, then began a description of something delicious and local"
+        },
+        "unknown": [
+          "The final spec is not completed and no trip or enjoyment is asserted as actual."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "test:873:4:2",
+      "input_ids": [
+        "test:873:4:2"
+      ],
+      "note": "I read reports reading; the dolphin rescue is embedded story content. Retain a A as the unidentified rescue target without inferring a person, species or verified real rescue.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "reported_completion",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "reported reading a story about a dolphin saving an unidentified target from drowning at sea"
+        },
+        "unknown": [
+          "The target written a A is not reconstructed; the rescue remains story content rather than a verified event."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "test:894:7:2",
+      "input_ids": [
+        "test:894:7:2"
+      ],
+      "note": "Will scopes the manicure procedures: cuticle removal, filing and applying polish are prospective. Keep at least nails coats and its unknown quantity; do not supply a number or mark the procedures completed.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "described planned cuticle removal, nail filing, and coats of nail polish"
+        },
+        "unknown": [
+          "The number in at least nails coats is unresolved; none of the procedures is asserted as completed."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "test:954:10:5",
+      "input_ids": [
+        "test:954:10:5"
+      ],
+      "note": "Have purchased explicitly reports buying equipment; to find supplies a purpose. Preserve buried u with no completed word, burial location, found person or rescue result.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "reported_completion",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "reported buying special equipment intended to find buried people"
+        },
+        "unknown": [
+          "The final u is not completed; purchase does not establish finding or rescuing anyone."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "test:9:5:1",
+      "input_ids": [
+        "test:9:5:1"
+      ],
+      "note": "Which condiment is a meaningful question even though the final for lacks its complement. Preserve that omission and avoid assigning the condiment to any particular dish in the preceding menu.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "asked which condiment was used, leaving the purpose after the final for unstated"
+        },
+        "unknown": [
+          "The complement of for is missing; do not choose a dish or purpose."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:10082:5:1",
+      "input_ids": [
+        "train:10082:5:1"
+      ],
+      "note": "The car discussion supports new models and the explicit not very expensive assessment. Preserve By without deriving a quantity, make or completed purchase.",
+      "meaning": {
+        "speech_act": "suggestion",
+        "event_status": "car_models_and_cost_with_unclear_modifier",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker describes new car models as not very expensive. By does not establish a number, make or reason; a suggested search does not prove a purchase."
+        },
+        "unknown": [
+          "The modifier or quantity represented by By is unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:10186:1:1",
+      "input_ids": [
+        "train:10186:1:1"
+      ],
+      "note": "The original tided the knot, alongside last year, supports a recollection of marriage. Preserve the original in training and do not newly normalize candidate text. The damaged with honest every day supplies no exact anniversary date or repeated daily marriages.",
+      "meaning": {
+        "speech_act": "recollection",
+        "event_status": "past_marriage_with_unclear_date",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "The wedding idiom tided the knot in the original conveys a shared marriage in the prior year. The malformed with honest every day does not identify an anniversary date or mean daily marriages. Retain the original tided in training rather than the candidate's earlier tied correction."
+        },
+        "unknown": [
+          "The exact temporal expression and anniversary date are unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:10335:9:3",
+      "input_ids": [
+        "train:10335:9:3"
+      ],
+      "note": "Should give seats is a normative statement that explicitly includes pregnant and disabled people. Preserve eld as an unresolved additional label; do not infer a seat transfer or complete the label.",
+      "meaning": {
+        "speech_act": "normative_statement",
+        "event_status": "priority_seating_with_unclear_group_label",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker says seats should be given to pregnant and disabled people and a group written eld. The exact latter label is not filled in; no seat transfer has occurred."
+        },
+        "unknown": [
+          "The intended group label behind eld is unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1040:2:4",
+      "input_ids": [
+        "train:1040:2:4"
+      ],
+      "note": "The source instructs the children to put on sunscreen and mentions the parents setting up an unstated object. Keep ca as a truncation, not modal can or a guessed campsite, and do not assert completed setup.",
+      "meaning": {
+        "speech_act": "instruction",
+        "event_status": "prospective_instruction_with_truncation",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker instructs children to put on sunscreen while their mother and the speaker set up an unspecified object. Applying sunscreen and finishing setup are not asserted. The ca suffix is not a modal can."
+        },
+        "unknown": [
+          "The object and completion of set up ca are missing."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:10447:10:4",
+      "input_ids": [
+        "train:10447:10:4"
+      ],
+      "note": "The complete part identifies fruit-tree wood as the only fuel. The purpose stops before naming a unique result. Preserve original are in the adapter and the existing candidate form; do not supply flavor or aroma.",
+      "meaning": {
+        "speech_act": "description",
+        "event_status": "cooking_fuel_and_unfinished_purpose",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The original says only fruit-tree wood is used for the fire in the duck preparation, then ends before naming the unique result. Retain are as supplied rather than the earlier candidate's is correction. Do not fill in flavor, aroma or another property."
+        },
+        "unknown": [
+          "The intended unique result after a unique is missing."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:10702:6:2",
+      "input_ids": [
+        "train:10702:6:2"
+      ],
+      "note": "The account-manager discussion describes a prospective link to the development team, with the first party missing after our. Keep that party unknown and do not infer customers, sales, appointment or an actual liaison action.",
+      "meaning": {
+        "speech_act": "description",
+        "event_status": "prospective_liaison_with_missing_party",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker describes the prospective role as a link involving the development team and another party omitted after our. Do not infer customers, sales or a current employment appointment."
+        },
+        "unknown": [
+          "The first party linked to the development team is missing."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:10705:4:1",
+      "input_ids": [
+        "train:10705:4:1"
+      ],
+      "note": "Keep calm is clear advice for difficult interview questions. Accept that part while preserving normal to the face without a guessed facial expression or action.",
+      "meaning": {
+        "speech_act": "advice",
+        "event_status": "calmness_with_unclear_facial_instruction",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker advises remaining calm when facing difficult interview questions. The phrase normal to the face does not establish a precise facial expression or action."
+        },
+        "unknown": [
+          "The instruction represented by normal to the face is unclear."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:10806:13:7",
+      "input_ids": [
+        "train:10806:13:7"
+      ],
+      "note": "Do not think I have the patience is a self-assessment during shoe shopping. Preserve fo and the missing complement; do not infer a departure, purchase, refusal or completed decision.",
+      "meaning": {
+        "speech_act": "self_report",
+        "event_status": "lack_of_patience_with_unfinished_complement",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker expresses doubt about having enough patience during shoe shopping. Fo leaves the precise complement unfinished; do not infer a decision to leave or a completed purchase."
+        },
+        "unknown": [
+          "The missing continuation after fo is unspecified."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:10844:7:6",
+      "input_ids": [
+        "train:10844:7:6"
+      ],
+      "note": "Should stay in bed is attributed advice. Preserve tom without choosing tomorrow or a duration and without asserting compliance; this is a reading of dialogue content rather than endorsement of medical advice.",
+      "meaning": {
+        "speech_act": "advice",
+        "event_status": "bed_rest_with_unfinished_time",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker advises staying in bed. The trailing tom does not establish tomorrow or a duration, and the advice is attributed rather than verified medical guidance."
+        },
+        "unknown": [
+          "The intended time or continuation after tom is missing."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:10850:5:4",
+      "input_ids": [
+        "train:10850:5:4"
+      ],
+      "note": "Will pick you up and provide champagne describes offered future service. Preserve the unfinished finger item without completing it as food or recording delivered service.",
+      "meaning": {
+        "speech_act": "offer",
+        "event_status": "future_pickup_and_incomplete_refreshments",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The tour representative offers limousine pickup and complimentary champagne, followed by an unfinished item beginning finger. Do not complete the item as food or assert delivered service."
+        },
+        "unknown": [
+          "The remaining item and continuation after finger are unknown."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:10850:7:2",
+      "input_ids": [
+        "train:10850:7:2"
+      ],
+      "note": "Has been restored and refurbished reports the villa work as completed. Preserve maximum of that is guests and leave capacity unknown; restoration supplies no guest count or actual booking.",
+      "meaning": {
+        "speech_act": "description",
+        "event_status": "restored_villa_with_unknown_guest_capacity",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "The speaker describes the hotel as an old villa that has been restored and refurbished. The phrase maximum of that is guests does not provide a usable capacity figure."
+        },
+        "unknown": [
+          "The maximum guest count is unknown."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:10850:7:3",
+      "input_ids": [
+        "train:10850:7:3"
+      ],
+      "note": "Will enjoy conveys a predicted intimate private experience. Preserve in this as an unfinished place phrase, with no exact setting or actual enjoyment asserted.",
+      "meaning": {
+        "speech_act": "prediction",
+        "event_status": "promised_privacy_with_unfinished_place",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker predicts an intimate private experience. The unfinished in this does not name a precise setting or establish that the experience occurred."
+        },
+        "unknown": [
+          "The missing location phrase after this is unspecified."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:10892:9:1",
+      "input_ids": [
+        "train:10892:9:1"
+      ],
+      "note": "Could give is a prospective office offer together with possible contracts in Japan. Keep uncite without assigning an office location or property, and do not assert delivery or signed contracts.",
+      "meaning": {
+        "speech_act": "offer",
+        "event_status": "prospective_office_and_business_opportunities",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker offers an office with the unclear modifier uncite and opportunities for developing contracts in Japan. Could is an offer of possibilities, not completed provision or signed contracts."
+        },
+        "unknown": [
+          "The property or location meant by uncite is unclear."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:10895:5:2",
+      "input_ids": [
+        "train:10895:5:2"
+      ],
+      "note": "Worth half of its earlier value is explicit. Preserve points week ago and its unknown comparison time; do not transfer the earlier NASDAQ 200 points to this portfolio or infer an exact loss amount.",
+      "meaning": {
+        "speech_act": "report",
+        "event_status": "portfolio_value_reduction_with_unclear_time",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker says the portfolio is worth half its earlier value. Points week ago leaves the comparison time unclear; no precise week count or loss amount is recoverable."
+        },
+        "unknown": [
+          "The time reference expressed by points week ago is unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:10951:6:4",
+      "input_ids": [
+        "train:10951:6:4"
+      ],
+      "note": "The passenger states sixteen thousand with the raw unit CMS for the intercontinental journey. Retain the number and unknown unit; no conversion to miles or kilometers and no arrival are licensed.",
+      "meaning": {
+        "speech_act": "complaint",
+        "event_status": "flight_distance_with_unclear_unit",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker emphasizes the length of an intercontinental flight as sixteen thousand CMS. Do not expand or convert the unit, or assert that the flight is completed."
+        },
+        "unknown": [
+          "The distance unit CMS is not established."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:11064:8:2",
+      "input_ids": [
+        "train:11064:8:2"
+      ],
+      "note": "How about proposes Seattle as a shipping origin. Preserve network as the alternative label even though other ports occur in the prefix; no silent city replacement or completed shipment is allowed.",
+      "meaning": {
+        "speech_act": "suggestion",
+        "event_status": "seattle_shipping_with_unclear_alternative",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker proposes shipping from Seattle rather than the alternative written network. Context discusses ports, but the exact word is not replaced with a city and shipment is not completed."
+        },
+        "unknown": [
+          "The alternative location represented by network is unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:11084:2:1",
+      "input_ids": [
+        "train:11084:2:1"
+      ],
+      "note": "Would like to buy expresses a purchase desire for the girlfriend. Retain perform as the unidentified requested item, without substituting perfume or recording a purchase.",
+      "meaning": {
+        "speech_act": "request",
+        "event_status": "purchase_desire_with_unknown_item",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker wants to buy an item written perform for their girlfriend. Do not replace it with perfume or infer a completed purchase."
+        },
+        "unknown": [
+          "The intended item represented by perform is unknown."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:11114:3:1",
+      "input_ids": [
+        "train:11114:3:1"
+      ],
+      "note": "Came back reports return to the hotel and broken describes the pen. Preserve the original comma and verb forms in training. The showing attempt remains temporally uncertain and is not a completed demonstration.",
+      "meaning": {
+        "speech_act": "complaint",
+        "event_status": "returned_to_hotel_and_broken_pen",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "The speaker reports returning to the hotel and finding the pen broken in connection with trying to show it to a friend. The mixture came and try does not fix the exact timing or completion of the showing attempt. Preserve the original comma and verb forms."
+        },
+        "unknown": [
+          "The exact timing and completion of the attempt to show the pen are uncertain."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:11117:2:1",
+      "input_ids": [
+        "train:11117:2:1"
+      ],
+      "note": "Want a pair expresses a request with quantity pairing. Preserve locus without assigning footwear or another product class from later dialogue; no purchase is asserted.",
+      "meaning": {
+        "speech_act": "request",
+        "event_status": "desired_pair_with_unknown_item",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker requests a pair of an item written locus. This visible exchange does not identify the item or establish a purchase; no footwear subtype is guessed."
+        },
+        "unknown": [
+          "The requested item represented by locus is unknown."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1149:11:2",
+      "input_ids": [
+        "train:1149:11:2"
+      ],
+      "note": "The first conditional gives exam-preparation advice if a higher qualification is wanted. Keep the unfinished second job condition separately unknown; it does not license a new requirement, chosen career or passed exam.",
+      "meaning": {
+        "speech_act": "advice",
+        "event_status": "conditional_advice_with_truncation",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "If the listener wants a job requiring a higher degree or diploma, the speaker advises focusing on the graduate entrance exam. The second conditional stops after working. Neither a chosen career nor exam completion is asserted."
+        },
+        "unknown": [
+          "The second job requirement and its resulting advice are unfinished."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1163:5:1",
+      "input_ids": [
+        "train:1163:5:1"
+      ],
+      "note": "The preceding When will we go question makes morning a proposed time of day. Keep Borrow as an unknown date label, not tomorrow and not an imperative borrowing action.",
+      "meaning": {
+        "speech_act": "answer",
+        "event_status": "proposed_time_partially_known",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "In response to When will we go, morning supplies the time of day for the proposed golf outing. Borrow is not a command to borrow something."
+        },
+        "unknown": [
+          "The day represented by Borrow is unknown; no tomorrow is inferred."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1163:7:2",
+      "input_ids": [
+        "train:1163:7:2"
+      ],
+      "note": "Will pick you up is a promise of a future pickup with a separated particle. Preserve Borrow as the unknown time expression; do not treat it as an object, second action or completed pickup.",
+      "meaning": {
+        "speech_act": "promise",
+        "event_status": "future_person_pickup",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker promises to pick up the listener for the planned golf outing. Pick you up is a separated phrasal verb; Borrow is not a second pickup object."
+        },
+        "unknown": [
+          "The pickup day or time represented by Borrow is unknown."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1163:9:1",
+      "input_ids": [
+        "train:1163:9:1"
+      ],
+      "note": "See you is a farewell after the golf and pickup discussion. Preserve Borrow without resolving a day or asserting an actual sighting, meeting or borrowing action.",
+      "meaning": {
+        "speech_act": "farewell",
+        "event_status": "prospective_social_formula",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "See you is a farewell after agreeing to a golf outing and pickup. It does not report an actual sighting, completed meeting or an instruction that the listener borrow something."
+        },
+        "unknown": [
+          "Borrow does not identify a reliable date."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1348:9:3",
+      "input_ids": [
+        "train:1348:9:3"
+      ],
+      "note": "The speaker reports a prior only-child state and a wish for a younger sibling. Retain one da without completion; the wish alone is not evidence of the desired event occurring.",
+      "meaning": {
+        "speech_act": "recollection",
+        "event_status": "past_state_and_wish",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "Before the younger brother's birth the speaker was an only child and wished for a younger sibling. The desired sibling is within dreamed, not an action inferred completed from the wish."
+        },
+        "unknown": [
+          "The ending one da is truncated and is not completed."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1674:9:7",
+      "input_ids": [
+        "train:1674:9:7"
+      ],
+      "note": "Have got a family supplies a current family statement before the truncated t. Preserve the ending and do not add a financial responsibility, future act or confirmed dismissal.",
+      "meaning": {
+        "speech_act": "statement",
+        "event_status": "family_with_missing_continuation",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker states having a family while worrying about layoffs. The final t cannot be expanded into a responsibility or a future action."
+        },
+        "unknown": [
+          "The continuation after t is missing."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1780:6:4",
+      "input_ids": [
+        "train:1780:6:4"
+      ],
+      "note": "This second flight dialogue independently supports sixteen thousand with the unknown unit CMS. Keep its original prefix and raw unit, with no conversion, completed travel or borrowed unit from another record.",
+      "meaning": {
+        "speech_act": "statement",
+        "event_status": "flight_distance_with_unknown_unit",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The passenger describes their intercontinental journey with a distance of sixteen thousand followed by CMS. Do not convert the number or silently replace the unit; flying here does not assert arrival."
+        },
+        "unknown": [
+          "The intended distance unit behind CMS is unknown."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1934:3:2",
+      "input_ids": [
+        "train:1934:3:2"
+      ],
+      "note": "About ten rooms connected to computers is explicitly described; can marks enabled tasks. Preserve through and its absent means or interface, with no particular task marked completed.",
+      "meaning": {
+        "speech_act": "description",
+        "event_status": "partly_specified_connected_house",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker describes about ten rooms connected to computers, enabling tasks in each room. The trailing through does not identify the means or interface; no particular task is completed."
+        },
+        "unknown": [
+          "The means after through and the rest of the sentence are missing."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1934:5:2",
+      "input_ids": [
+        "train:1934:5:2"
+      ],
+      "note": "Would have to hire is conditional staffing: one or two cleaners and a few garden workers. Keep pro as an incomplete additional item and do not create another profession or a completed hire.",
+      "meaning": {
+        "speech_act": "hypothetical",
+        "event_status": "conditional_house_staffing",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "Living in the large house would require one or two cleaners plus a few gardeners, according to the speaker. The trailing pro does not add a guessed profession; no hiring is completed."
+        },
+        "unknown": [
+          "The item or clause after pro is missing."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:1954:10:5",
+      "input_ids": [
+        "train:1954:10:5"
+      ],
+      "note": "The complete part describes afternoon tutoring in biology. Preserve Englis and the unfinished subject list without completing a subject name or recording a specific completed lesson.",
+      "meaning": {
+        "speech_act": "description",
+        "event_status": "tutoring_schedule_with_incomplete_subject",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker describes students coming in the afternoon for tutoring in biology and another subject beginning Englis. The list is incomplete; no specific session is asserted as completed."
+        },
+        "unknown": [
+          "The complete second subject label and any further list items are missing."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:2288:4:3",
+      "input_ids": [
+        "train:2288:4:3"
+      ],
+      "note": "This separate original prefix supports a reported observation of visible dry land. Retain windows of the rain and its unknown viewpoint. As dry as a bone is figurative; no bones, vehicle or universal claim about all land is inferred.",
+      "meaning": {
+        "speech_act": "recollection",
+        "event_status": "observed_dry_land_with_unclear_viewpoint",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "The speaker recalls seeing very dry land through windows during the trip west. Rain does not securely identify the vehicle or structure; as dry as a bone is figurative dryness, not bones. The claim covers the land visible to the speaker, not all land everywhere."
+        },
+        "unknown": [
+          "The vehicle or structure behind windows of the rain is unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    },
+    {
+      "id": "train:2635:7:2",
+      "input_ids": [
+        "train:2635:7:2"
+      ],
+      "note": "This separate manicure dialogue also places all procedures under will. Preserve at least nails coats and the unknown number; the matching text does not license a quantity or completed manicure.",
+      "meaning": {
+        "speech_act": "expectation",
+        "event_status": "prospective_manicure_with_unknown_coat_count",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker expects the manicurist to remove cuticles, file nails and apply nail polish. The damaged quantity at least nails does not supply a reliable number of coats. These actions are prospective."
+        },
+        "unknown": [
+          "The minimum number of polish coats is unknown."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false,
+      "meaning_changed": false
+    }
+  ],
+  "source_text_changes": 0,
+  "api_calls": 0,
+  "parser_inference_calls": 0,
+  "new_adapters": 0,
+  "previous_catalog_patterns_preserved": 731
+}

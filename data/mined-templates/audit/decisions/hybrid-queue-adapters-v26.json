@@ -1,0 +1,3221 @@
+{
+  "format": "reviewed-fragment-adapters-v1",
+  "patterns": [
+    {
+      "id": "dd_v26_test_177_3_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What landmarks are you pointing out in the square?",
+      "reply": "you see that is monument for the people's hero, and the Chairman Mao memorial hall on the south.",
+      "value": "pointed out a monument and the Chairman Mao memorial hall to the south; the clause linkage remains uncertain",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_test_177_3_2",
+      "source": {
+        "split": "test",
+        "dialogue": 177,
+        "turn": 3,
+        "segment": 2,
+        "span": [
+          38,
+          134
+        ],
+        "text": "you see that is monument for the people's hero, and the Chairman Mao memorial hall on the south.",
+        "context": [
+          "Look, how grand magnificent the Tiananmen Gate tour is!",
+          "What's Tiananmen famous for?",
+          "It is largest pop square in the world.you see that is monument for the people's hero, and the Chairman Mao memorial hall on the south.there is great hall of the people on the west.there are two museums on the east.",
+          "What's that?",
+          "That's the Forbidden City on the north of Gate building.",
+          "All the sightseeing in China is very attractive and crescive.travelling to China is very worth one.thank you so much for your guides, and I'll miss you."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3
+        ],
+        "source_sha256": "3f8712f68f9db3269ee88a281c5e6ffd34e7b24cb9936b2d8f85e51c2ec849ac",
+        "context_sha256": "c884d44a936008c77795f5326eabd4764a94430bb0b120f511d519308845b500",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker points out a monument and the Chairman Mao memorial hall, placing the hall to the south.The exact coordination of see, monument and hall is not settled."
+      }
+    },
+    {
+      "id": "dd_v26_test_234_4_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "How have you been feeling?",
+      "reply": "No appetite, always unaged and I can't sleep well.",
+      "value": "reported a lack of appetite and difficulty sleeping; the symptom called unaged remains unclear",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_test_234_4_1",
+      "source": {
+        "split": "test",
+        "dialogue": 234,
+        "turn": 4,
+        "segment": 1,
+        "span": [
+          0,
+          50
+        ],
+        "text": "No appetite, always unaged and I can't sleep well.",
+        "context": [
+          "What seems to the trouble Mr Brown?",
+          "I'm in pretty bad shape, Doctor Ford.",
+          "Oh, In what way.",
+          "No appetite, always unaged and I can't sleep well.",
+          "Did you lose any weight?",
+          "YES. I've lost quite a few pounds since last month.",
+          "When was the last time you have track up?",
+          "About two month ago.",
+          "Let me take your blood pressure. You look anilic. Well, Mr. Brown. I'm happy to say it's nothing serious. You just a little run down from overwork.",
+          "What am I suppose to do?",
+          "I think you'll needs just vacation. Try to get out doors more. I'll be sure if you get more rest.",
+          "Thank you, doctor. I'll do what you say."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "source_sha256": "e5709b1ca11651985049cadd633f79d5d7a0bec02178a7aaa2d43f37c917634b",
+        "context_sha256": "3649711461c3a84a5ac4fbb57a19f49721094f6e9478543dac899034c3cfe058",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker reports no appetite and poor sleep; unaged is an uninterpreted symptom label.The intended symptom expressed by unaged is unknown."
+      }
+    },
+    {
+      "id": "dd_v26_test_234_7_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "We are discussing your medical history. What do you want to ask next?",
+      "reply": "When was the last time you have track up?",
+      "value": "asked when an earlier event happened, without clearly identifying that event",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_test_234_7_1",
+      "source": {
+        "split": "test",
+        "dialogue": 234,
+        "turn": 7,
+        "segment": 1,
+        "span": [
+          0,
+          41
+        ],
+        "text": "When was the last time you have track up?",
+        "context": [
+          "What seems to the trouble Mr Brown?",
+          "I'm in pretty bad shape, Doctor Ford.",
+          "Oh, In what way.",
+          "No appetite, always unaged and I can't sleep well.",
+          "Did you lose any weight?",
+          "YES. I've lost quite a few pounds since last month.",
+          "When was the last time you have track up?",
+          "About two month ago.",
+          "Let me take your blood pressure. You look anilic. Well, Mr. Brown. I'm happy to say it's nothing serious. You just a little run down from overwork.",
+          "What am I suppose to do?",
+          "I think you'll needs just vacation. Try to get out doors more. I'll be sure if you get more rest.",
+          "Thank you, doctor. I'll do what you say."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "source_sha256": "a4c6ecf8c71bec08abc301981ea415c7cd43331a3e6d3d2d4d9ef3ac08278636",
+        "context_sha256": "3649711461c3a84a5ac4fbb57a19f49721094f6e9478543dac899034c3cfe058",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The doctor asks when a previous event occurred; track up does not identify that event reliably.The event or examination referred to by track up is unknown."
+      }
+    },
+    {
+      "id": "dd_v26_test_234_11_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What else should I try while recovering from overwork?",
+      "reply": "Try to get out doors more.",
+      "value": "advised spending more time outdoors, without saying that the advice had been followed",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_test_234_11_2",
+      "source": {
+        "split": "test",
+        "dialogue": 234,
+        "turn": 11,
+        "segment": 2,
+        "span": [
+          36,
+          62
+        ],
+        "text": "Try to get out doors more.",
+        "context": [
+          "What seems to the trouble Mr Brown?",
+          "I'm in pretty bad shape, Doctor Ford.",
+          "Oh, In what way.",
+          "No appetite, always unaged and I can't sleep well.",
+          "Did you lose any weight?",
+          "YES. I've lost quite a few pounds since last month.",
+          "When was the last time you have track up?",
+          "About two month ago.",
+          "Let me take your blood pressure. You look anilic. Well, Mr. Brown. I'm happy to say it's nothing serious. You just a little run down from overwork.",
+          "What am I suppose to do?",
+          "I think you'll needs just vacation. Try to get out doors more. I'll be sure if you get more rest.",
+          "Thank you, doctor. I'll do what you say."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source_sha256": "17b062743f69a99151c6da4594c6870d1c0ba57329d1584dbbe3ec54284d1db8",
+        "context_sha256": "3649711461c3a84a5ac4fbb57a19f49721094f6e9478543dac899034c3cfe058",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The doctor advises spending more time outside. The two written words out doors are retained; no completed outing is asserted."
+      }
+    },
+    {
+      "id": "dd_v26_test_256_6_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Why have you come to this meeting?",
+      "reply": "I've come to talk with you about ordering the eight megapixel cameras for our new methone.",
+      "value": "came to discuss ordering eight megapixel cameras for a product called methone; the product identity is unresolved and no purchase is confirmed",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_test_256_6_2",
+      "source": {
+        "split": "test",
+        "dialogue": 256,
+        "turn": 6,
+        "segment": 2,
+        "span": [
+          5,
+          95
+        ],
+        "text": "I've come to talk with you about ordering the eight megapixel cameras for our new methone.",
+        "context": [
+          "Good morning, Angela, how have you been lately?",
+          "Morning, Michael. I've been very busy lately. One of our other vendors is going out of business and I've been searching for a suitable replacement.",
+          "Well, rest assured that you can count on us to be here for the long run, sitdown. Coffee?",
+          "No, thanks. I've been trying to cut down on the caffeine.",
+          "Haha, I could never do that. I'd be a zombie if I didn't have my morning coffee fix. Let's get down to business then.",
+          "Yes. I've come to talk with you about ordering the eight megapixel cameras for our new methone. The demand for phone cameras is growing, and Pear has been falling behind in the market.",
+          "That's great! I'm glad to hear that Pear has finally jumped on the bandwagon. Right now our contract is for the five megapixel cameras. Is Pear still interested in having those?",
+          "No, we're changing all the cameras to eight megapixels. We were hoping that by making your company our sole supplier for cameras we could negotiate a better deal.",
+          "Surely. Let's get started by drafting a new contract."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "source_sha256": "ddba9db0c0212e7f122e1315433a8e858bf36dd156dc91d2d148d6b96a1bc044",
+        "context_sha256": "a6eb4b4527915e7004a273eeba6c2add2fff760a700db9bf0d07951d93e55291",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker has come to discuss ordering eight megapixel cameras; no order is reported as placed.The identity of the product called methone is unknown."
+      }
+    },
+    {
+      "id": "dd_v26_test_330_5_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Are the clothes on our list available this year?",
+      "reply": "B, most of the items listed are available this year.",
+      "value": "said most listed items were available this year; the opening B remains unexplained",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_test_330_5_2",
+      "source": {
+        "split": "test",
+        "dialogue": 330,
+        "turn": 5,
+        "segment": 2,
+        "span": [
+          7,
+          59
+        ],
+        "text": "B, most of the items listed are available this year.",
+        "context": [
+          "Welcome to China, Mr. Smith.",
+          "Thank you. So pleasant to meet you here!",
+          "I heard that you are interested in our silk skirts and new style of coats.",
+          "Yes, I've brought a list of your recent products with me. We'd like to import some of your latest clothes for the second half of this year. We're ready to place an order with you.",
+          "Great! B, most of the items listed are available this year. I hope we can come to an agreement and sign the contracts, so as to enable our timely delivery.",
+          "That sounds good. But I have a proposal now.",
+          "What's the proposal?",
+          "Both of our two parties were involved in the discussion previously. Shall we also allow some of our clients to join us?",
+          "Good idea! In this way, our clients'needs will be met and disagreements between the two parties avoided.",
+          "Sounds like we have the same idea."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "source_sha256": "a5bfc26d0bb03bf3a9fafac833ceffe6479608608614357115a1383e1bca592a",
+        "context_sha256": "f9969c6efb226e6a22c440850f9f82fe6993222a28972645b7cb3b8a0d79f47a",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. Most listed items are said to be available this year.The opening B has no established expansion or addressee."
+      }
+    },
+    {
+      "id": "dd_v26_test_364_10_3",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "How can a computer help with photographs?",
+      "reply": "Using a computer program, you",
+      "value": "began an explanation involving a computer program but did not state what the user could do with it",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_test_364_10_3",
+      "source": {
+        "split": "test",
+        "dialogue": 364,
+        "turn": 10,
+        "segment": 3,
+        "span": [
+          170,
+          199
+        ],
+        "text": "Using a computer program, you",
+        "context": [
+          "Do you use an anti-virus program to protect your computer?",
+          "Yes, I do. I also use an anti-spyware program and a firewall. There are so many nasties on the internet and so many people who are trying to use the internet to hurt other users. You have to be very c",
+          "How often do you run your anti-virus program?",
+          "I usually run it every few days. It finds a virus about half the time.",
+          "Which anti-virus program would you recommend?",
+          "Have you tried this one? It's very good and you can download it for free on the internet. You can also download updates for free.",
+          "That sounds very good. Which website should I visit to download it?",
+          "Just a minute... go to this one. I'll send you an email with the line in it. It only takes a few minutes to download. Then you have to go through the set up procedures. But they are not complicated.",
+          "What do you use your computer for?",
+          "I use it for several things-surfing the net, word processing and creating presentations. I don't play many games on my computer, but I do a lot of work with photographs. Using a computer program, you",
+          "Computers are great, aren't they? I should download some programs and learn how to use them."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source_sha256": "4141447b37ba8e04077e307017d30594e885c9f0c46fe04adb625442615cc9e3",
+        "context_sha256": "29d0fe1a014633a1a1ec3a3fd3d48a60a42e171841dfab37ac776c33e74bc694",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. Using has program as its object; you is already a generic dep, not an object. Preserve an unfinished explanation involving use of a computer program.The main predicate and any result after you are absent."
+      }
+    },
+    {
+      "id": "dd_v26_test_377_13_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What do you want to ask about my view of fast food in your country?",
+      "reply": "I am wondering that you must believe fast food is our lifestyle, don't you?",
+      "value": "asked about my belief that fast food is part of the speaker's group's lifestyle, without establishing that I hold that belief",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_test_377_13_2",
+      "source": {
+        "split": "test",
+        "dialogue": 377,
+        "turn": 13,
+        "segment": 2,
+        "span": [
+          5,
+          80
+        ],
+        "text": "I am wondering that you must believe fast food is our lifestyle, don't you?",
+        "context": [
+          "Hey, Tom, did you enjoy your lunch?",
+          "Oh, don't mention it. It was terrible.",
+          "What's the matter?",
+          "The food station was as crowded as usual. I waited for 20 minutes for my sandwich, and when I finally got it the chicken was underdone.",
+          "I see. You simply can't blame the server for this.",
+          "Yes, I know. Fast food is so popular in this district.",
+          "That's true.",
+          "Anyway, how was your such, Catherine?",
+          "It was good. I brought lunch from home today.",
+          "You did? I thought you must feel right at home here as we get as many fast food restaurants as you do in America.",
+          "Well, I personally don't like them because I don't believe that they are healthy.",
+          "I guess you're right. More often than not, people go there only for convenience. The foods may taste good, but generally speaking, they are high in calories, salt and fat.",
+          "Yes. I am wondering that you must believe fast food is our lifestyle, don't you?",
+          "You bet. Almost all top brands such as McDonald's and KFC are from America.",
+          "Well, actually two-thirds of Americans may avoid these places.",
+          "Seriously?",
+          "Yeah, it's hard to believe but true."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "source_sha256": "eb142084e1769701e3498a8aaa10a9f15d6d561fb6cf08b6ae2a865353ffc008",
+        "context_sha256": "83de9a03da7b44079a36f32de72cb4f808fe00e15fc903122b61fa57b2a85347",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker asks about the addressee's belief that fast food is part of the speaker's group's lifestyle.Wondering that and must leave the exact epistemic force unsettled; no belief is confirmed."
+      }
+    },
+    {
+      "id": "dd_v26_test_409_4_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What hairstyle have you tried before?",
+      "reply": "Last time I tried a pink curl perm and form permanent.",
+      "value": "reported a previous perm experience; the exact types and their coordination remain unclear",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_test_409_4_1",
+      "source": {
+        "split": "test",
+        "dialogue": 409,
+        "turn": 4,
+        "segment": 1,
+        "span": [
+          0,
+          54
+        ],
+        "text": "Last time I tried a pink curl perm and form permanent.",
+        "context": [
+          "What kind of permanent would you like to have?",
+          "What kinds do you have?",
+          "Oh, yeah, It's quite of variety. Regular, cold perm, straight perm, pink curl and form.",
+          "Last time I tried a pink curl perm and form permanent. Set the wave a little loose than as usual, please."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "source_sha256": "59c8194cf8fb5e83d011a5e5760f2246ae86bdcce12eb72f735b7c86f74b3fbc",
+        "context_sha256": "504707c1a33ed5e06d3643a3ce2fea63baeb00dcfd2e3b37164d2b5e48c899eb",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker reports having tried a perm previously.The relation of pink curl perm to form permanent is unresolved."
+      }
+    },
+    {
+      "id": "dd_v26_test_423_6_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What paperwork do you need me to complete?",
+      "reply": "Would you please fill out the application the form?",
+      "value": "asked me to fill out the application form, without claiming I had completed it",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_test_423_6_2",
+      "source": {
+        "split": "test",
+        "dialogue": 423,
+        "turn": 6,
+        "segment": 2,
+        "span": [
+          58,
+          109
+        ],
+        "text": "Would you please fill out the application the form?",
+        "context": [
+          "I'd like to apply for a personal loan.",
+          "How much would you like to borrow?",
+          "A thousand dollars.",
+          "Let me check with a credit manager. A record show your credit reading is quite high. I don't think you have any problems.",
+          "What's the current interest rate?",
+          "Our monthly interest is 1.5 % of the outstanding balance. Would you please fill out the application the form?"
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "source_sha256": "85b4d167954bdbb3dc574a5bdb3973fa9f07390c3873eef5273cad9206891644",
+        "context_sha256": "c55f0683c205e6d9d7026a75ec5139409b7c31c9931f39930bf832079b2f1bde",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The repeated article does not obscure the request to fill out an application form. Preserve both articles; filling it out is not asserted."
+      }
+    },
+    {
+      "id": "dd_v26_test_471_8_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What comes in the free gift package?",
+      "reply": "Some black mascara, moisturizing orion, eye cream crystal lipstick, a two color eye shadow pack, styling hairspray, and a cosmetics bag.",
+      "value": "listed black mascara, a two color eye shadow pack, styling hairspray and a cosmetics bag, with other product names and boundaries unclear",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_test_471_8_1",
+      "source": {
+        "split": "test",
+        "dialogue": 471,
+        "turn": 8,
+        "segment": 1,
+        "span": [
+          0,
+          136
+        ],
+        "text": "Some black mascara, moisturizing orion, eye cream crystal lipstick, a two color eye shadow pack, styling hairspray, and a cosmetics bag.",
+        "context": [
+          "Hi, there. Look at these. I have collected some ads here. There is a special promotion for Mother's Day this weekend.",
+          "Oh, yes. Mother's Day is coming. Do you plan to buy anything?",
+          "Of course. I want to buy some night cream for my mom, and some masques for myself.",
+          "Hmm. In Carrefour, Clinique will be promoting their visible skin renewed cream.",
+          "How much is it?",
+          "180 yuan, and you can get a free 8 piece gift package.",
+          "What's included in the gift package?",
+          "Some black mascara, moisturizing orion, eye cream crystal lipstick, a two color eye shadow pack, styling hairspray, and a cosmetics bag.",
+          "Sounds not bad."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "source_sha256": "5da1504df5015be5e8c69e1652894ad661a0856c717b6770dde4485e2004b77f",
+        "context_sha256": "0b69cd5516d1123eb5d2db0158b02580140eb1d47907bb61effb6dbed55855ec",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The gift list explicitly includes black mascara, a two color eye shadow pack, styling hairspray and a cosmetics bag.Moisturizing orion is unidentified and the boundary between eye cream and crystal lipstick is unresolved."
+      }
+    },
+    {
+      "id": "dd_v26_test_588_10_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What is the bank's announcement saying about the exits?",
+      "reply": "The exits have been sealed and the doors will remain locked in until the local authorities arrive.",
+      "value": "announced that exits had been sealed and doors would remain locked until the local authorities arrived",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_test_588_10_2",
+      "source": {
+        "split": "test",
+        "dialogue": 588,
+        "turn": 10,
+        "segment": 2,
+        "span": [
+          16,
+          114
+        ],
+        "text": "The exits have been sealed and the doors will remain locked in until the local authorities arrive.",
+        "context": [
+          "Stupid girl, making me spend so much money, now I have to get it from the ATM...",
+          "Hello, welcome to Universal Bank. Please insert your card into the slot.",
+          "I know where to put my card! Stupid machine, talking to me like I'm an idiot...",
+          "Please input your 6 digit PIN code followed by the pound key. Thank you. Please select an option. Thank you. You have selected withdrawal.",
+          "Yeah, yeah, I know what I selected. Just gimme my money!",
+          "Please type the amount you would like to withdraw. Thank you, you want to transfer 10000 USD to the World Wildlife Foundation. If this is correct please press 1.",
+          "No, no! Stupid machine, what are you doing! No!",
+          "Confirmed. Thank you for using our bank! Please remove your card from the slot. Goodbye!",
+          "No, no way! What happened? Give me my money!",
+          "Danger, danger! The exits have been sealed and the doors will remain locked in until the local authorities arrive. Thank you for using our bank. Have a nice day."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source_sha256": "8ec7835253f3434bca5c75bfa30905c4138e3368738441731e2bf4d3b77c9f7a",
+        "context_sha256": "6c1c02afab78c548a5edd57608f1c3fe7c831414f8a6486d50e90ee1ec143199",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The machine announces that exits have been sealed and doors will stay locked until authorities arrive. Unusual in is retained without inferring a different event."
+      }
+    },
+    {
+      "id": "dd_v26_test_605_8_5",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Would you come back to this restaurant?",
+      "reply": "I know I'll be back agile soon.",
+      "value": "expected to return soon; agile remains unexplained and no return visit was reported as completed",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_test_605_8_5",
+      "source": {
+        "split": "test",
+        "dialogue": 605,
+        "turn": 8,
+        "segment": 5,
+        "span": [
+          128,
+          159
+        ],
+        "text": "I know I'll be back agile soon.",
+        "context": [
+          "Please help yourself to whatever you like, don't be shy.",
+          "Yes, thank you. I've already been helping myself.",
+          "This dish taste terrific. Would you like to try a little? It is a little hot, but very good.",
+          "I like hot food, especially Sichuan cuisine.",
+          "Would you like another beer?",
+          "I'll have another cup of beer insist. I know I don't like to drink alone, especially there are someone sitting there next to me.",
+          "Come on, it's the weekend. Let's taste and enjoy this meal. Cheers!",
+          "Bottom's up, and you're right. This meal is incredible. I wish I had known this restaurant before. Thanks for bringing me here. I know I'll be back agile soon."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "source_sha256": "31ab37f9b1c9015755852d17863c77c219592c63fe87dda318e64ac280505353",
+        "context_sha256": "0cb2193676982eed893b112d3d18fb7fb7ef9310b80136802b58f9b1303f06b3",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker expects to return soon, after praising the restaurant.The meaning of agile in the return phrase is unresolved."
+      }
+    },
+    {
+      "id": "dd_v26_test_614_3_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What do you remember about Tom's college stories?",
+      "reply": "He always tickled my finny bone with his college stories.",
+      "value": "recalled being amused by his college stories, using an unusual form of an idiom",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_test_614_3_2",
+      "source": {
+        "split": "test",
+        "dialogue": 614,
+        "turn": 3,
+        "segment": 2,
+        "span": [
+          6,
+          63
+        ],
+        "text": "He always tickled my finny bone with his college stories.",
+        "context": [
+          "I often recalled the days when Tom and I were madly in love.",
+          "Very romantic?",
+          "Yeah. He always tickled my finny bone with his college stories.",
+          "You married him for that reason?",
+          "Definitely not. The most important thing was we loved each other."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3
+        ],
+        "source_sha256": "15611559e7df394faf8aa7edfe5297cab52d5cd6dc72f68ed9395421d9c93818",
+        "context_sha256": "a714ce086b73422380eac25133ab76fb12aaee8321f46d3e9496b8b4dedf6d83",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. In the romantic recollection, tickled my finny bone conveys being amused by his college stories; preserve the unusual wording as an idiomatic reading, not physical bone contact."
+      }
+    },
+    {
+      "id": "dd_v26_test_636_4_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Which courses do you have to take?",
+      "reply": "Well, I have to take biology, chemistry, maps and physics.",
+      "value": "listed biology, chemistry, physics and a course called maps as requirements; maps was not resolved to another subject",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_test_636_4_1",
+      "source": {
+        "split": "test",
+        "dialogue": 636,
+        "turn": 4,
+        "segment": 1,
+        "span": [
+          0,
+          58
+        ],
+        "text": "Well, I have to take biology, chemistry, maps and physics.",
+        "context": [
+          "Margaret, do you think I should enroll in the science course?",
+          "Yes, I think so, If you want to graduated this year, you've got to take a science course.",
+          "Right, I figure since you are doing premedical, you know about the very courses.",
+          "Well, I have to take biology, chemistry, maps and physics.what you need is a good introductory course for non-science majors.",
+          "Yes, I really weak in maps, I did poorly in high school.",
+          "That's a problem."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "source_sha256": "d4bfa6542641a0e154be47b0f2498e8d36d4f99fa11315c8a6305d065d3e75e0",
+        "context_sha256": "21ce08c584f6e87c07357d7c4c8127d4d99a31a610b9fad2d3517e2aaa726edd",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. Biology, chemistry and physics are stated as required courses alongside the source label maps.The intended subject named maps is unresolved; do not substitute maths."
+      }
+    },
+    {
+      "id": "dd_v26_test_638_6_3",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What did you catch your cousin doing last night?",
+      "reply": "I caught him reading the fridge again last night",
+      "value": "reported catching the cousin in an activity described as reading the fridge; the activity's intended meaning remains unclear",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_test_638_6_3",
+      "source": {
+        "split": "test",
+        "dialogue": 638,
+        "turn": 6,
+        "segment": 3,
+        "span": [
+          67,
+          115
+        ],
+        "text": "I caught him reading the fridge again last night",
+        "context": [
+          "Hi Paul. How are you, friend.",
+          "Not good. My cousin is driving me up the wall.",
+          "How so?",
+          "He stays up until all hours of the night, and he never lifts a finger to help.",
+          "Have you talk to him about it?",
+          "Not yet, but I have to soon. He's eating me out of house and home. I caught him reading the fridge again last night",
+          "Ahahah, Maybe that will help you lose weight.",
+          "This is no laughing matter, Nick.",
+          "Sorry Paul. I couldn't help it. So why doesn't he give you a hand?",
+          "He watch the tob too much. Now really I don't know. But I can't handle this much longer.",
+          "Well, talk to him, and let me know what happens, OK?"
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "source_sha256": "a71cdc0d9335752cbdd051cff0f69c44be6f78bd4bd4e3a821bf773f7ae27cc4",
+        "context_sha256": "a71cf2d619e7140a10c4ee4e13bbff6e145d401337fea3a811f13d78a9057cba",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker reports encountering the cousin doing something described as reading the fridge last night.Do not replace reading with raiding or infer eating from this clause."
+      }
+    },
+    {
+      "id": "dd_v26_test_653_8_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Why do you think I feel so worn down by work?",
+      "reply": "Perhaps you've just tired and you need a vacation.",
+      "value": "suggested I might be tired and need a vacation",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_test_653_8_1",
+      "source": {
+        "split": "test",
+        "dialogue": 653,
+        "turn": 8,
+        "segment": 1,
+        "span": [
+          0,
+          50
+        ],
+        "text": "Perhaps you've just tired and you need a vacation.",
+        "context": [
+          "Oh, my God. I can't take it any more.",
+          "What's wrong, honey? Take it easy.",
+          "I am tired of doing that boring work. I just repeat doing counting everyday. It's so terrible.",
+          "Me too. But I think we can do something else for a change.",
+          "You know I work with my professional knowledge not passion. Sometimes I don't know what the meaning of working is?",
+          "But you did a good job. You always perform the best in our company.",
+          "Yes, that's in the past. Maybe I need to go to my psychologist for help.",
+          "Perhaps you've just tired and you need a vacation.",
+          "I was full of ambitions before. But now I have no aim for my career.",
+          "Maybe we should keep on studying to enrich our knowledge and make our life exciting.",
+          "That sounds interesting. But I don't know how to do that.",
+          "How about a training course?",
+          "A training course? That must be costly.",
+          "But it's worth it. Maybe it can get us into a good mood and also helps us learn something to use for the future.",
+          "OK, let's have a try.",
+          "OK."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "source_sha256": "b70e9847bad96ec996d64708067232af8ea9ad95fced1946b51132803f2db352",
+        "context_sha256": "90655ec2fe0d3489e9012f69e491a8802f8746affb55c78d5738cb647b5166f5",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. Perhaps marks a tentative explanation involving tiredness, followed by a stated need for a vacation. It is not a diagnosis or a confirmed completed action."
+      }
+    },
+    {
+      "id": "dd_v26_test_723_4_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Where should I wait for you?",
+      "reply": "Wait for me at the cafe down my office building.",
+      "value": "asked me to wait at the cafe associated with the office building; its precise spatial relation to the building is unspecified",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_test_723_4_2",
+      "source": {
+        "split": "test",
+        "dialogue": 723,
+        "turn": 4,
+        "segment": 2,
+        "span": [
+          5,
+          53
+        ],
+        "text": "Wait for me at the cafe down my office building.",
+        "context": [
+          "Hi, Tina, I've got good news. I have successfully passed the first two rounds of interview with ABC Company. They informed me to go to the final round next Monday. It looks very promising.",
+          "That is awesome. Congratulation! I know you can make it.",
+          "Thanks. Let's go for a celebration this evening. Are you free?",
+          "Yes. Wait for me at the cafe down my office building. See 5PM, ok?",
+          "No problem. See you!",
+          "See you!"
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "source_sha256": "3f2b71e192d19e889a4a2afbddab737e1bc7a6732f5a0e0a6e8cf0b782b77270",
+        "context_sha256": "aa7564bf2427ee228a8d9718ed4876aa0c8f0029f43751019ebf3af9b208c2e8",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker asks the addressee to wait at a cafe associated with the speaker's office building.Down does not establish downstairs, below, inside or beside the building."
+      }
+    },
+    {
+      "id": "dd_v26_test_768_2_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "The viewing has ended. What are you asking permission to do?",
+      "reply": "Can't we just go in to see him one last...",
+      "value": "asked permission to go in and see him, leaving the final phrase unfinished and not claiming the visit occurred",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_test_768_2_2",
+      "source": {
+        "split": "test",
+        "dialogue": 768,
+        "turn": 2,
+        "segment": 2,
+        "span": [
+          31,
+          73
+        ],
+        "text": "Can't we just go in to see him one last...",
+        "context": [
+          "I'm sorry, ladies. Mr. Smith's viewing is over. It ended an hour ago.",
+          "But we just drove across town. Can't we just go in to see him one last...",
+          "I'm afraid not. But at tomorrow's funeral, the family requested an open casket service.",
+          "This is all too fast. He's my best friend, and now he's gone.",
+          "I'm sorry. I know it must have come as a great shock.",
+          "The viewing was for saying goodbye, and I didn't even get that."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2
+        ],
+        "source_sha256": "9fbdaad756c9869f87026e62b98efc38c407cbc9ed2319b4118a64e2d101c4cd",
+        "context_sha256": "9888534299217ef91239ab859be95b059bd0003d72ae1483c6131fa7b65da6b7",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The core is a request to go in to see him. One is already dep and last amod; neither supplies an invented finite predicate. Mark the trailing phrase unfinished.The missing noun or continuation after one last is unknown."
+      }
+    },
+    {
+      "id": "dd_v26_test_781_6_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "How does the actor measure his worth?",
+      "reply": "He measures his worth by how many of his bones he has fractured while executing his film, incredible stunts.",
+      "value": "described measuring worth by bones fractured during stunt work; the film phrase and exact number of injuries remain unspecified",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_test_781_6_1",
+      "source": {
+        "split": "test",
+        "dialogue": 781,
+        "turn": 6,
+        "segment": 1,
+        "span": [
+          0,
+          108
+        ],
+        "text": "He measures his worth by how many of his bones he has fractured while executing his film, incredible stunts.",
+        "context": [
+          "Excuse me Miao Li. Could you tell me who Jackie Chan is?",
+          "Certainly. Jackie Chan is a very famous movie star in Hong Kong. His Chinese name is Cheng Long.",
+          "Ha, I know Cheng Long a lot, he has made 40 films since 1976. And at that time he was promoted as the new Bruce Lee. But I'm not familiar with his English name.",
+          "OK. Then tell me what else you know.",
+          "Some movie stars measure their worth by how many millions of dollars they make. Do you know how Jackie Chan measures his worth?",
+          "He measures his worth by how many of his bones he has fractured while executing his film, incredible stunts. By the way, can you count the breaks?",
+          "Sure. His skull, his eyes, his nose, three times, his jaw, his shoulder, is chest, two fingers, a knee. As he said'Everything from the top of my head to the bottom of my feet! '",
+          "Indeed you know much about him.",
+          "This is because he is the action-movie incarnate or action-star extraordinaire around the world."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "source_sha256": "0edf8ee36bf073654ae0964aa1c6a4628bf90741f503fa5861840e69a44623fa",
+        "context_sha256": "fcc9617b918a7649ebfa96de6563cd9887d12236f941e62b81ad1fd7f9dc421b",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker describes measuring worth by bones fractured during stunt work.The relationship between his film and incredible stunts is unclear; no injury count is supplied."
+      }
+    },
+    {
+      "id": "dd_v26_test_860_3_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "It was nice talking to you. What do you say as we leave?",
+      "reply": "I guess we'll see just around.",
+      "value": "expressed a tentative expectation of seeing each other again, without arranging a time or reporting a meeting",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_test_860_3_1",
+      "source": {
+        "split": "test",
+        "dialogue": 860,
+        "turn": 3,
+        "segment": 1,
+        "span": [
+          0,
+          30
+        ],
+        "text": "I guess we'll see just around.",
+        "context": [
+          "Oh, it's getting late. I've got to run. It was nice talking to you, karren.",
+          "Thanks, Tim. Nice meeting you, too.",
+          "I guess we'll see just around.",
+          "Ye, I hope so.well. Take it easy.",
+          "You too."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3
+        ],
+        "source_sha256": "33a0fd0db2ae9a3a24855b8e3fc171cada3fb7a1d1ad4d948c0c9f0ba599f90c",
+        "context_sha256": "1b0c594c5a85f21c98adc5aa22ced0d229399248f8e23f89d704d8e4315c7c5e",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The farewell context supports a tentative expectation of another encounter, not a completed meeting.The missing complement and intended scope of just around remain unknown."
+      }
+    },
+    {
+      "id": "dd_v26_test_975_10_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What is opposite the park on Fifth Avenue?",
+      "reply": "Facing the park on Fifth Avenue is probably some of the most expensive properties in the world.",
+      "value": "described properties facing the park as probably among the world's most expensive",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_test_975_10_2",
+      "source": {
+        "split": "test",
+        "dialogue": 975,
+        "turn": 10,
+        "segment": 2,
+        "span": [
+          35,
+          130
+        ],
+        "text": "Facing the park on Fifth Avenue is probably some of the most expensive properties in the world.",
+        "context": [
+          "Isn't it wonderful walking here?",
+          "What do you mean?",
+          "I mean look at all these magnificent buildings around us.",
+          "Yes, look over there. That's the Empire State Building. My book says it's 102 stories tall.",
+          "It's quite famous but don't you think it looks a bit old-fashioned?",
+          "You're right, but when it was built in 1930 it was a marvel of technology and engineering.",
+          "What other important buildings are we going to see on Fifth Avenue?",
+          "Quite a number. Actually every skyscraper has a history. A few blocks ahead we'll see St. Patrick's Cathedral and just across the street will be the world-renowned Rockefeller Center. It's a landmark in the history of architecture.",
+          "What's there after that?",
+          "Well then, there's a Central Park. Facing the park on Fifth Avenue is probably some of the most expensive properties in the world.",
+          "What are they all for?",
+          "Most of them are office buildings, huge department stores, and hotels but some are just private homes. New York is one of the financial centers of the world. And there are lots of very expensive places."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source_sha256": "bffaf0f00257f948201d508380fb2559048b32836311db416c383f453280564b",
+        "context_sha256": "269420f3c8c31b1feadf0dfdc45598fc63c9a5e796d4466d27cc9e086164807b",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The current parse already has some as subject of is and Facing as its complement. Expensive targets properties. The inverted property description is usable without changing agreement.The speaker qualifies the expensive-property claim with probably; no prices are given."
+      }
+    },
+    {
+      "id": "dd_v26_test_997_3_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "It is time to come back into the classroom. Does class start again?",
+      "reply": "Yes, but to the heath, this break has long enough.",
+      "value": "confirmed resuming class, while the additional wording about the break remains unclear",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_test_997_3_1",
+      "source": {
+        "split": "test",
+        "dialogue": 997,
+        "turn": 3,
+        "segment": 1,
+        "span": [
+          0,
+          50
+        ],
+        "text": "Yes, but to the heath, this break has long enough.",
+        "context": [
+          "OK. Come back into the classroom, class.",
+          "Does the class start again, Mam?",
+          "Yes, but to the heath, this break has long enough.",
+          "Oh, breaktime flies.",
+          "Come on, baby. It's time now.",
+          "Mam, another minute, could I?",
+          "Hurry up, little boy."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3
+        ],
+        "source_sha256": "6321d04b8355387ed70be3a32ebef966cd0483f5f6b8a2e3a96aab6f7d4e0dfc",
+        "context_sha256": "97a4007896f3da41a2825c39e0c66985a5c2b514406dce2b84beb0acd5810fba",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The classroom exchange supports resuming class after a break, while the middle phrase remains unclear.To the heath and the missing predicate after has cannot be reconstructed."
+      }
+    },
+    {
+      "id": "dd_v26_train_1040_5_3",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Why should the children stay in the shallow area?",
+      "reply": "It's too deep out there and we didn't bring your floatier.",
+      "value": "warned that the water farther out was too deep and that an item called floatier had not been brought",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_1040_5_3",
+      "source": {
+        "split": "train",
+        "dialogue": 1040,
+        "turn": 5,
+        "segment": 3,
+        "span": [
+          88,
+          146
+        ],
+        "text": "It's too deep out there and we didn't bring your floatier.",
+        "context": [
+          "Oh, George, what a beautiful day it is today! The sun is hot and there are just a few clouds scattered here and there! What a perfect day to be at the beach! The kids are going to have so much fun! A",
+          "It does seem like the perfect day! I'm glad we chose to get out of the city and enjoy the nice weather! This looks like the perfect spot! Ok kids, put on your sunscreen while your mom and I set up ca",
+          "There we go. Can you help me with the umbrella? Perfect.",
+          "Ok kids, here's a beach ball and a Frisbee, a pail and a shovel. I want to see an impressive sandcastle by the time we leave. Don't stray too far. Wait! Leave your sandals here or put on your wet shoes",
+          "And stay in the shallow area. I don't want to see you go any farther than that sandbar! It's too deep out there and we didn't bring your floatier.",
+          "You're back already? The water was too cold, huh? I'll tell you a secret. Do you see that small pool of water over there? It'll be warmer in there. Go see if you can find some seashells or catch some",
+          "What is that? A jellyfish? Jeremy, put that down right now! It could sting you!",
+          "Ah! Not on me! Ow!"
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "source_sha256": "c9158f05c7d2e25e2f95dc1bc852fd97b78db92bab87cd0b58cdd7ca76c88142",
+        "context_sha256": "bea74ab85a81f66b73afee9a5cc0eb5ec4b5865747129205e109b67082f9bbd0",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker says the water beyond the shallow area is too deep and an item called floatier was not brought.The exact kind of floatier is unknown; no drowning or swimming event is inferred."
+      }
+    },
+    {
+      "id": "dd_v26_train_1069_5_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "How might a financial news organization be used by interested parties?",
+      "reply": "Even though it's used on occasion (as all news organizations are) by Ces or bankers who leak their mergers in advance in order to get a positive spin.",
+      "value": "described bankers using advance merger leaks to seek positive coverage; Ces remains unidentified",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_1069_5_2",
+      "source": {
+        "split": "train",
+        "dialogue": 1069,
+        "turn": 5,
+        "segment": 2,
+        "span": [
+          63,
+          213
+        ],
+        "text": "Even though it's used on occasion (as all news organizations are) by Ces or bankers who leak their mergers in advance in order to get a positive spin.",
+        "context": [
+          "Millions of amateur investors like you, have to rely on a dizzying array of financial newspapers, magazines and commentators to get investment information.",
+          "Yes. It's sometimes scary if you think of the tremendous amount of media we face every day.",
+          "It's like information overload, not to mention the reliability of these papers and magazines.",
+          "Which financial magazines and newspapers do you think do the best job of checking facts?",
+          "Well, for example, The Wall Street Journal is very, very good. Even though it's used on occasion (as all news organizations are) by Ces or bankers who leak their mergers in advance in order to get a positive spin.",
+          "I like to read Fortune.",
+          "Good. Fortune is usually ahead of the curve. And Business Week is very solid, too.",
+          "Where does a broadcast company get most of their information? I hope it's not just from press releases.",
+          "A good broadcast company usually does far more than press releases. Their people go out and do real reporting, talking to people at the stock exchange, fund managers, analysts, etc.",
+          "But sometimes when a flimsy report, or even a rumor gets on television, there's going to be a terrible'echo chamber'effect.",
+          "You are right about that."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "source_sha256": "6600dabb2216b6fe152122359507f9291f9a64169b40269c625cfc58b36cca9a",
+        "context_sha256": "c710a568f27c0ff5c6d7dc48a2029cdb2007931941e07c5e9f53f9037547386d",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker alleges that bankers use a news organization through merger leaks to obtain positive coverage.The identity or expansion of Ces is unknown; the concessive fragment does not prove a particular merger occurred."
+      }
+    },
+    {
+      "id": "dd_v26_train_1128_1_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What would you like to ask about games I have played?",
+      "reply": "Have you ever played Making?",
+      "value": "asked whether I had ever played a game called Making, without identifying it more precisely or asserting that I had played it",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_1128_1_1",
+      "source": {
+        "split": "train",
+        "dialogue": 1128,
+        "turn": 1,
+        "segment": 1,
+        "span": [
+          0,
+          28
+        ],
+        "text": "Have you ever played Making?",
+        "context": [
+          "Have you ever played Making?",
+          "Not really, but I know it is very popular a traditional Chinese gambling game.",
+          "Yes, some friends play it all day, all night, and sometimes a whole weekend. I tried to read about some basic rules online, but it is hard to understand. So I went to watch people play yesterday only to find I was even more confused. I think I have to work hard on those rules and more learning by doing. Practice makes the master.",
+          "Typical Francis, whether you are at work, or engaged in leisure time activities, you always show the same eagerness and curiosity to learn something new and improve yourself.",
+          "It is important to keep your mind up-to-date and active."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1
+        ],
+        "source_sha256": "86ae268275c75d5da6cad8d6c13a5da3ca285b93828a38eccda6b393080d1ccb",
+        "context_sha256": "2a51382b7581b44a4e1fe778bfc93576824112dbb7f9cce54ca69115dd5da8f5",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker asks whether the addressee has ever played something named Making.The game identity cannot be established from this turn or silently replaced by Mahjong."
+      }
+    },
+    {
+      "id": "dd_v26_train_1128_3_4",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "How do you plan to understand the game's rules?",
+      "reply": "I think I have to work hard on those rules and more learning by doing.",
+      "value": "expressed a need to study the rules and learn through practice, without claiming to have mastered the game",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_1128_3_4",
+      "source": {
+        "split": "train",
+        "dialogue": 1128,
+        "turn": 3,
+        "segment": 4,
+        "span": [
+          234,
+          304
+        ],
+        "text": "I think I have to work hard on those rules and more learning by doing.",
+        "context": [
+          "Have you ever played Making?",
+          "Not really, but I know it is very popular a traditional Chinese gambling game.",
+          "Yes, some friends play it all day, all night, and sometimes a whole weekend. I tried to read about some basic rules online, but it is hard to understand. So I went to watch people play yesterday only to find I was even more confused. I think I have to work hard on those rules and more learning by doing. Practice makes the master.",
+          "Typical Francis, whether you are at work, or engaged in leisure time activities, you always show the same eagerness and curiosity to learn something new and improve yourself.",
+          "It is important to keep your mind up-to-date and active."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3
+        ],
+        "source_sha256": "b79ee84a2fc3e0b7cc3a9ce3c131808fb65ee9ba8e86b2b65b3764e4f8c958e3",
+        "context_sha256": "2a51382b7581b44a4e1fe778bfc93576824112dbb7f9cce54ca69115dd5da8f5",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker feels a need to work on game rules and learn by doing.The exact coordination of learning with work or rules remains unsettled; the API's proposed nominal attachment is not compelled."
+      }
+    },
+    {
+      "id": "dd_v26_train_1273_1_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "How would you describe my face?",
+      "reply": "your face is really oily...",
+      "value": "described my face as really oily",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_1273_1_2",
+      "source": {
+        "split": "train",
+        "dialogue": 1273,
+        "turn": 1,
+        "segment": 2,
+        "span": [
+          7,
+          34
+        ],
+        "text": "your face is really oily...",
+        "context": [
+          "Too... your face is really oily... perfect!",
+          "Why? Are you planning to stir-fry my face?",
+          "Nope. I'm going to tell your fortune. So... the oilier, the better.",
+          "You've gone bonkers, Jen.",
+          "It's facial paper, and it fits into the rings of my binder! It's magical.",
+          "OK. Let's see. Give me a sheet."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1
+        ],
+        "source_sha256": "954e29f48e79eb1617ec465d48a77496700fb61d0ec1097cebe081c5a6534a17",
+        "context_sha256": "efbc3a1a3263ab5a83a71fe790da09626efc7ebdddbf6fe362e5f853a6bf4b1b",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The face is explicitly described as really oily. The preceding Too fragment is not silently attached to oily.The scope of the earlier Too fragment is unresolved."
+      }
+    },
+    {
+      "id": "dd_v26_train_1273_1_3",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "My face is really oily. What is your reaction?",
+      "reply": "perfect!",
+      "value": "reacted favorably to the situation, without saying that any treatment had been completed",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_1273_1_3",
+      "source": {
+        "split": "train",
+        "dialogue": 1273,
+        "turn": 1,
+        "segment": 3,
+        "span": [
+          35,
+          43
+        ],
+        "text": "perfect!",
+        "context": [
+          "Too... your face is really oily... perfect!",
+          "Why? Are you planning to stir-fry my face?",
+          "Nope. I'm going to tell your fortune. So... the oilier, the better.",
+          "You've gone bonkers, Jen.",
+          "It's facial paper, and it fits into the rings of my binder! It's magical.",
+          "OK. Let's see. Give me a sheet."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1
+        ],
+        "source_sha256": "f902970068f8dd03b967a8a828174a19602e7dd44adae319c84e584ce66697ce",
+        "context_sha256": "efbc3a1a3263ab5a83a71fe790da09626efc7ebdddbf6fe362e5f853a6bf4b1b",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. Perfect expresses a favorable reaction to the visible oily-face situation, not a completed treatment.The exact evaluative target and relation to Too remain unresolved."
+      }
+    },
+    {
+      "id": "dd_v26_train_1299_1_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Who wrote you a letter?",
+      "reply": "Suit wrote me a letter.",
+      "value": "reported that someone called Suit wrote a letter to the speaker, with the name unresolved beyond the supplied label",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_1299_1_1",
+      "source": {
+        "split": "train",
+        "dialogue": 1299,
+        "turn": 1,
+        "segment": 1,
+        "span": [
+          0,
+          23
+        ],
+        "text": "Suit wrote me a letter.",
+        "context": [
+          "Suit wrote me a letter.",
+          "What did she say?",
+          "She got a master degree, and now she is going for her doctor.",
+          "Really? I can't believe it.",
+          "It's not a surprise, is it? She has always been a hard working student.",
+          "But I think a master degree is good enough for a girl."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1
+        ],
+        "source_sha256": "64c846246bdd0b891728c47dbfedc3933c76fda206a4913960c2392505e83771",
+        "context_sha256": "0a8acfe8987c7a01fe74881e710f0799bc3a02b7c304145202e9a569d5aefa16",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker reports that the source-named Suit wrote a letter addressed to the speaker; delivery and receipt are not established.The writer's identity is retained as Suit; no replacement personal name is guessed."
+      }
+    },
+    {
+      "id": "dd_v26_train_1345_8_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Does your simple photo studio work?",
+      "reply": "T does work.",
+      "value": "asserted that it works, while the subject label T remains unexplained",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_1345_8_2",
+      "source": {
+        "split": "train",
+        "dialogue": 1345,
+        "turn": 8,
+        "segment": 2,
+        "span": [
+          22,
+          34
+        ],
+        "text": "T does work.",
+        "context": [
+          "How do you usually spend your leisure time? I mean, do you have any special interests out of your job?",
+          "Of course. You see, almost everyone has some kind of hobby",
+          "Yeah, you're quite right and what's your hobby?",
+          "I like taking photos out of door.",
+          "Oh, photography, It's really a good hobby.",
+          "Yes, I usually develop and print all my own photos.",
+          "You yourself have a photo studio?",
+          "Yes, simple as it is. T does work."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "source_sha256": "98a7570f81fa194f4ccb5814754c2c4826d032bc58074db65361d2d6ceb34741",
+        "context_sha256": "906251f994560a14952973f4e6f069e2b128d02e4159eaed40455ee57ce28fe1",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. Does work asserts functionality, following discussion of a simple photo studio.T is not resolved to It or a named entity; its exact reference is unknown."
+      }
+    },
+    {
+      "id": "dd_v26_train_1404_4_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Which courses do you have to take?",
+      "reply": "Well, I have to take biology, chemistry, maps and physics.",
+      "value": "listed biology, chemistry, physics and a course called maps as requirements, without changing maps to another subject",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_1404_4_1",
+      "source": {
+        "split": "train",
+        "dialogue": 1404,
+        "turn": 4,
+        "segment": 1,
+        "span": [
+          0,
+          58
+        ],
+        "text": "Well, I have to take biology, chemistry, maps and physics.",
+        "context": [
+          "Marquet, do you think I should enroll in the science course?",
+          "Yes, I think so, If you want to graduated this year, you've got to take a science course.",
+          "Right, I figure since you are doing premedical, you know about the very courses.",
+          "Well, I have to take biology, chemistry, maps and physics. What you need is a good introductory course for non-science majors.",
+          "Yes, I really weak in maps, I did poorly in high school.",
+          "That's a problem."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "source_sha256": "d4bfa6542641a0e154be47b0f2498e8d36d4f99fa11315c8a6305d065d3e75e0",
+        "context_sha256": "9be20baf4982189504e8ecbb0dfd9e35d6c67e1e3538412e96f088346c42b39d",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker lists biology, chemistry and physics plus maps as required courses.The intended subject called maps is unknown; retain the corrected physics lemma."
+      }
+    },
+    {
+      "id": "dd_v26_train_1416_7_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What do you want to know about Dr. Cole and the party?",
+      "reply": "Could Dr. Cole like to attend the party?",
+      "value": "asked whether Dr. Cole might want to attend the party, without confirming a wish or attendance",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_1416_7_1",
+      "source": {
+        "split": "train",
+        "dialogue": 1416,
+        "turn": 7,
+        "segment": 1,
+        "span": [
+          0,
+          40
+        ],
+        "text": "Could Dr. Cole like to attend the party?",
+        "context": [
+          "When will our party be held?",
+          "Next Wednesday.",
+          "Have you sent out invitations by our party?",
+          "Yes, I have.",
+          "When?",
+          "Ten days ago.",
+          "Could Dr. Cole like to attend the party?",
+          "Yes, he will.",
+          "That's fine."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "source_sha256": "21d2c2b10abea43db60494cc1606e5e74e65c92667c400b6e528bb2f30e5943f",
+        "context_sha256": "214b52c0e48656e210ef2e0923d8f5d2f5c737729a94cf8c62cd4608f343c32d",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The question concerns whether Dr. Cole might want to attend; could is retained. It neither invites him directly nor confirms attendance."
+      }
+    },
+    {
+      "id": "dd_v26_train_1432_5_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What are you drawing attention to about Janet?",
+      "reply": "And look out she's dressed.",
+      "value": "drew attention to Janet and her being dressed; the exact force of look out remains unclear",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_1432_5_1",
+      "source": {
+        "split": "train",
+        "dialogue": 1432,
+        "turn": 5,
+        "segment": 1,
+        "span": [
+          0,
+          27
+        ],
+        "text": "And look out she's dressed.",
+        "context": [
+          "Hey, Frank, there is that Janet chick.",
+          "Wow, what a great bird!",
+          "She sure knows how to strut her stuff.",
+          "She's a real turn-on, alright?",
+          "And look out she's dressed.",
+          "Yeah, I noticed. She must be really loaded.",
+          "No way. Her old man is rich. He buys her anything she wants.",
+          "Lucky her. Anyway, I think that is just as beautiful.",
+          "I think you've lost it.",
+          "Well, that's my opinion.",
+          "I admit that she is much prettier than Kate.",
+          "Oh, there is no comparison. Now we are talking but ugly.",
+          "At least we agree on that. Let's go and get a drink."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "source_sha256": "c2b4565dfa8c2055e8dac3cfc5579645b96a0f54cad0dff23c2768bd95508f61",
+        "context_sha256": "b007de8a9767024ad5bc884dda0171dc9f6a928a6654545b046fc761e6a0f5c0",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker directs attention to Janet and mentions her being dressed.Do not decide that out is a warning particle or a typo for how; the linkage is unresolved."
+      }
+    },
+    {
+      "id": "dd_v26_train_1434_6_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "How does your view on animal treatment affect your buying habits?",
+      "reply": "This is the reason that I don't buy leather and I try to buy synthetic products.",
+      "value": "said they avoid buying leather and try to buy synthetic products, without confirming a particular purchase",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_1434_6_2",
+      "source": {
+        "split": "train",
+        "dialogue": 1434,
+        "turn": 6,
+        "segment": 2,
+        "span": [
+          35,
+          115
+        ],
+        "text": "This is the reason that I don't buy leather and I try to buy synthetic products.",
+        "context": [
+          "You should have seen the T. V. show that was on last night, the topic it covered was really interesting, animal rights.",
+          "Do you really believe in that? If they are going to focus on something, they should do it on civil rights.",
+          "Yes, but we can't deny that animals are vulnerable, defenseless, and are completely at the mercy of human beings.",
+          "I understand your point, but we continue to have transgressions against human rights. If so much attention weren't devoted to the topic of animals, we would then concentrate more on saving a human being instead of protecting a koala.",
+          "You can't compare apples and oranges. I believe that both topics are important and that we can't ignore them, the mistreatment of animals can cause a great environmental imbalance. I believe that governments should prohibit activities like poaching.",
+          "Well, you are right on that point. This is the reason that I don't buy leather and I try to buy synthetic products.",
+          "At least you're doing your part. My contribution is to have a pet in the house that I treat like a member of the family.",
+          "As long as you don't treat it better than your wife, it's fine."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "source_sha256": "b8d8e10cea492f5c373cf10aff3af01b2bb58ff4ef8635f7c4fe9d45c3b7003d",
+        "context_sha256": "fe2cb526632198a346f23b27c3dfbb8a0ba6b2a2fce5a7c529a6061f30f942ef",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker says they do not buy leather and try to buy synthetic products. Try does not establish successful purchases.The syntactic scope of the reason clause across the coordination is unresolved."
+      }
+    },
+    {
+      "id": "dd_v26_train_1440_3_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What would you like to ask about my pay?",
+      "reply": "Do you get paid onetime?",
+      "value": "asked about payment using the unclear word onetime; neither overtime nor payment timing was established",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_1440_3_1",
+      "source": {
+        "split": "train",
+        "dialogue": 1440,
+        "turn": 3,
+        "segment": 1,
+        "span": [
+          0,
+          24
+        ],
+        "text": "Do you get paid onetime?",
+        "context": [
+          "What's your working day like?",
+          "I have a typical 9 to 5 job. Actually, I work a little longer than 9 to 5 most days.",
+          "Do you get paid onetime?",
+          "No, I don't. I get a bonus each month, depending on the value of the contracts I sign with clients.",
+          "Do you have any breaks?",
+          "We have an hour-long lunch break from 12 to 1. We can take coffee breaks during the day. My boss doesn't mind, as long as we get out work done on time.",
+          "My boss gets annoyed if we take coffee breaks. I suppose your job involves a lot paperwork, doesn't it?",
+          "There's some paperwork, but most of the time we put any information onto computers. Then we can send information to each other by email or across the network. Do you work in a cubicle?",
+          "Yes, I do. I don't like it very much.",
+          "I work in a cubicle too, but I I don't mind it."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3
+        ],
+        "source_sha256": "e59498fa6a03c4218d67bfcf0400896b85b9b07b60898c8f26a6e40780342464",
+        "context_sha256": "f0fd573166d65266bdfc42a125adafca1871c3552ba324a10628893b25d5493b",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker asks about payment, but onetime does not establish punctuality, overtime or a one-off schedule.The payment dimension meant by onetime is unknown."
+      }
+    },
+    {
+      "id": "dd_v26_train_1535_1_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What do you know about the person referred to as our major?",
+      "reply": "Our major is from a bigger city.",
+      "value": "said that the person referred to as our major comes from a bigger city, without resolving the title",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_1535_1_1",
+      "source": {
+        "split": "train",
+        "dialogue": 1535,
+        "turn": 1,
+        "segment": 1,
+        "span": [
+          0,
+          32
+        ],
+        "text": "Our major is from a bigger city.",
+        "context": [
+          "Our major is from a bigger city.",
+          "He's doing fine. A new broom sweeps clean.",
+          "He brings with him some talented people from his former city.",
+          "I think we'll benefit a lot."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1
+        ],
+        "source_sha256": "8aa512191a71be6137ca58b706669489f51941e590384bf1fc73ddeb9b0ea6b5",
+        "context_sha256": "86d0ccd6ad53993a3f30498b777a4174bb74639f3e5a17fac0db7a62134d4458",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The source-named major is said to come from a bigger city.Do not decide whether major is a military rank or a typo for mayor."
+      }
+    },
+    {
+      "id": "dd_v26_train_1549_5_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What do you want to ask about what I am doing now?",
+      "reply": "And why are you yarning now?",
+      "value": "asked the reason for an activity called yarning, without establishing its intended meaning",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_1549_5_1",
+      "source": {
+        "split": "train",
+        "dialogue": 1549,
+        "turn": 5,
+        "segment": 1,
+        "span": [
+          0,
+          28
+        ],
+        "text": "And why are you yarning now?",
+        "context": [
+          "You didn't ring me last night. You said you would.",
+          "I'm sorry to have made you disappointed.",
+          "That's all right. But why were you so rude to me at lunch.",
+          "Was I? Sorry, I didn'y mean to be. I do apologize.",
+          "And why are you yarning now? Are you bored?",
+          "Forgive me darling. I'm very tired."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "source_sha256": "d7df0321ce7767e3ea69d8ce6eee909fd241d817fc3b862126e6a062cd6c794d",
+        "context_sha256": "cadad48da76e45885333365992a2c78badf74e70d4276f14c70ba2d8e9139f66",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker asks why the addressee is doing something labelled yarning.Yarning is not replaced by yawning; boredom is questioned rather than established."
+      }
+    },
+    {
+      "id": "dd_v26_train_1771_2_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Which team won?",
+      "reply": "The Spur.",
+      "value": "named The Spur as the winner, without expanding or correcting the team name",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_1771_2_1",
+      "source": {
+        "split": "train",
+        "dialogue": 1771,
+        "turn": 2,
+        "segment": 1,
+        "span": [
+          0,
+          9
+        ],
+        "text": "The Spur.",
+        "context": [
+          "Which team won?",
+          "The Spur.",
+          "What was the score?",
+          "They managed a 99:80 victory."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2
+        ],
+        "source_sha256": "85eff04dbeebd099af05e1bfeda9e45c5bba23caff86e810b142de3fd707db40",
+        "context_sha256": "d376dc1d9459f8ad020027fb1b83e49f3ccb150268e833a68d3ed16eb80356fc",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker names The Spur as the winning team, exactly as written.The real-world team identity and intended number of the name remain unknown."
+      }
+    },
+    {
+      "id": "dd_v26_train_1893_12_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What happened to the goalkeepers during the game?",
+      "reply": "Their goalkeepers got injured after the first goal, but he kept on playing anyway.",
+      "value": "reported injury after the first goal and continued play by a male participant, with the exact goalkeeper reference unresolved",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_1893_12_1",
+      "source": {
+        "split": "train",
+        "dialogue": 1893,
+        "turn": 12,
+        "segment": 1,
+        "span": [
+          0,
+          82
+        ],
+        "text": "Their goalkeepers got injured after the first goal, but he kept on playing anyway.",
+        "context": [
+          "What did you do last night?",
+          "I just stayed at home and watched TV.",
+          "Did you watch the Barcelona versus Madrid game?",
+          "Yes, it was a very evenly matched game.",
+          "What were the results of the game?",
+          "It ended in a tie.",
+          "What was the actual score?",
+          "It was three all.",
+          "Really? I thought Barcelona was going to win. They are a much better team than Madrid.",
+          "If Barcelona had played as they normally do, they should have won.",
+          "What happened?",
+          "Their goalkeepers got injured after the first goal, but he kept on playing anyway.",
+          "That explains it.",
+          "How many more games are left this season?",
+          "That was the last game before the playoffs.",
+          "When do the playoffs start?",
+          "In a few weeks. Are you planning on watching them?",
+          "Of course! I really love watching football games on TV.",
+          "Me, too! Do you want to come over and watch the next game at my place? I'm planning on having a few people over to watch it together.",
+          "Sure, that would be great.",
+          "Ok, it's a date then!"
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source_sha256": "a1c225535d7583de85e12abb4a878f5f75064aaebd7e1ffc443cac487ba86986",
+        "context_sha256": "5bfd976e76ff7de93c904a73b88358b57eb6f2bdd1fe2d20e9a9179dfcd30886",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. Injuries after the first goal and continued play by he are reported.The number mismatch leaves which goalkeeper he denotes unresolved; do not infer that every goalkeeper kept playing."
+      }
+    },
+    {
+      "id": "dd_v26_train_1935_1_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What situation are you about to describe?",
+      "reply": "When I quarrel with my husband.",
+      "value": "introduced the situation of quarrelling with the speaker's husband, without completing the account in this fragment",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_1935_1_1",
+      "source": {
+        "split": "train",
+        "dialogue": 1935,
+        "turn": 1,
+        "segment": 1,
+        "span": [
+          0,
+          31
+        ],
+        "text": "When I quarrel with my husband.",
+        "context": [
+          "When I quarrel with my husband. He didn't even try to cool me out.",
+          "It takes two to make a quarrel and it takes two to mend fences.",
+          "I was so angry that I could not keep cool. What I need is just an apology."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1
+        ],
+        "source_sha256": "9ee17ecfc452f9e9e2c562ca075a49b00a015601c0ac9dc88e286c1ca98c8af6",
+        "context_sha256": "aa78d4497cc1be748a0b8b2f22258e1f84075c1f7c89d04d94ebd72690c1cadd",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The period is retained as a spoken fragment boundary. When I quarrel supplies a temporal frame, not a completed quarrel or independent full clause.The main-clause continuation is outside this fragment."
+      }
+    },
+    {
+      "id": "dd_v26_train_1941_2_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Where would you consider going on your trip?",
+      "reply": "I think Hebes is a good place.",
+      "value": "described a place called Hebes as a good option without resolving its geographic identity",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_1941_2_1",
+      "source": {
+        "split": "train",
+        "dialogue": 1941,
+        "turn": 2,
+        "segment": 1,
+        "span": [
+          0,
+          30
+        ],
+        "text": "I think Hebes is a good place.",
+        "context": [
+          "Where are you going for your trip?",
+          "I think Hebes is a good place.",
+          "But I heard the north of China are experiencing severe sandstorms!",
+          "Really?",
+          "Yes, it's said that Hebes was experiencing six degree strong winds.",
+          "How do these storms affect the people who live in these areas?",
+          "The report said the number of people with respiratory tract infections tended to rise after sandstorms. The sand gets into people's noses and throats and creates irritation.",
+          "It sounds that sandstorms are trouble for everybody!",
+          "You are quite right."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2
+        ],
+        "source_sha256": "19577c06605ea78b8c893cf9ce624ed279aaad499368fcdcbc26d4eaf9531abb",
+        "context_sha256": "35392d98c900de7533d2a3766b58d2a136342b6ed16dbf9e168c4dba250a435d",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker calls a place named Hebes good, retaining the source label.The geographic identity of Hebes is unknown; do not substitute Hebei."
+      }
+    },
+    {
+      "id": "dd_v26_train_1941_5_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What have you heard about the weather there?",
+      "reply": "Yes, it's said that Hebes was experiencing six degree strong winds.",
+      "value": "reported hearsay of strong winds in a place called Hebes, leaving the place identity and wind scale unresolved",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_1941_5_1",
+      "source": {
+        "split": "train",
+        "dialogue": 1941,
+        "turn": 5,
+        "segment": 1,
+        "span": [
+          0,
+          67
+        ],
+        "text": "Yes, it's said that Hebes was experiencing six degree strong winds.",
+        "context": [
+          "Where are you going for your trip?",
+          "I think Hebes is a good place.",
+          "But I heard the north of China are experiencing severe sandstorms!",
+          "Really?",
+          "Yes, it's said that Hebes was experiencing six degree strong winds.",
+          "How do these storms affect the people who live in these areas?",
+          "The report said the number of people with respiratory tract infections tended to rise after sandstorms. The sand gets into people's noses and throats and creates irritation.",
+          "It sounds that sandstorms are trouble for everybody!",
+          "You are quite right."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "source_sha256": "9944e414ac6c4f025f273891fb33909e01099d4821e7cbe89202c68ff8d17c54",
+        "context_sha256": "35392d98c900de7533d2a3766b58d2a136342b6ed16dbf9e168c4dba250a435d",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker reports hearsay that the source-named Hebes experienced strong winds.Hebes and the scale of six degree are unresolved; this is hearsay rather than verified weather."
+      }
+    },
+    {
+      "id": "dd_v26_train_2112_1_3",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What do you expect if gambling is legalized here?",
+      "reply": "Soon we are gonna have amazing hotels and casinos here which will be good for our business!",
+      "value": "predicted hotels and casinos and a benefit to business, without claiming that construction or legalization had occurred",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_2112_1_3",
+      "source": {
+        "split": "train",
+        "dialogue": 2112,
+        "turn": 1,
+        "segment": 3,
+        "span": [
+          72,
+          163
+        ],
+        "text": "Soon we are gonna have amazing hotels and casinos here which will be good for our business!",
+        "context": [
+          "Did you hear? The state is thinking of legalizing gambling in our city! Soon we are gonna have amazing hotels and casinos here which will be good for our business!",
+          "Are you serious? Gambling is a vice industry built on deception and fed by the intentional exploitation of human weakness for the sole purpose of monetary gain! It disgusts me.",
+          "What are you talking about? How does it exploit people?",
+          "Well, to begin with, Gambling is addictive, ruins marriages, destroys families and bankrupts communities. Once you are addicted it is very difficult to stop. People have lost their houses, cars and been left out on the street after becoming addicted. Secondly, it exploits because men become addicted to gambling most often because of the action and risk. Women gamble to escape, and senior citizens will start gambling for the social interaction. Underage gamblers often start gambling on sports with friends and then illegal bookies.",
+          "Geez! Now that I think about it, maybe legalizing gambling isn't such a good idea! Although, I have been to Las Vegas, and I didn't become addicted or anything like that.",
+          "You cannot predict who will become addicted to gambling. Now excuse me, I have a protest rally to organize!"
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1
+        ],
+        "source_sha256": "07bb4f83dba7d3d8dadbd2d674655df6798a4ffb4aa588ed3051e5ce72e3bc0a",
+        "context_sha256": "a08ddad7e1c262749f0771de9e78489188d36fe962f66b916c2b4a56add1c591",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. Hotels and casinos are expected soon and predicted to benefit business.Which may evaluate the development as a whole or the buildings; no unique relative-clause antecedent is forced."
+      }
+    },
+    {
+      "id": "dd_v26_train_2154_2_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Why do people's size and weight differ?",
+      "reply": "Well, there are certain factors that effect people's size and weight.",
+      "value": "said that certain factors contribute to people's size and weight",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_2154_2_1",
+      "source": {
+        "split": "train",
+        "dialogue": 2154,
+        "turn": 2,
+        "segment": 1,
+        "span": [
+          0,
+          69
+        ],
+        "text": "Well, there are certain factors that effect people's size and weight.",
+        "context": [
+          "Why are there still so many people overweight despite the current fitness craze?",
+          "Well, there are certain factors that effect people's size and weight.",
+          "What are they?",
+          "One study said that low-income groups have a higher percentage of over-weight people than higher income families.",
+          "Why?",
+          "The survey said that the low, income groups eat more junk food on a daily basis.",
+          "That makes sense. Probably less time to make dinner and the junk food is cheaper.",
+          "And junk food contains lots of fat and oil. There is one final reason why so many people are fat.",
+          "What's that?",
+          "Nobody exercises any more-not even kids! The average American home has the TV on for 6 hours a day!",
+          "Wow! No wonder people are so fat. Say, Carl, looks like you could be doing a bit more exercising.",
+          "Yeah, I guess so.",
+          "You should consider eating healthier food and getting some more exercise.",
+          "Hey, I started a diet and lost 10 pounds.",
+          "So what happened?",
+          "Well, I quit and gained it back plus 5 pounds.",
+          "You should have kept trying."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2
+        ],
+        "source_sha256": "2340c04bff92c63770bdeb20bf743aa2bbff324c311ddad74898ab5cd5ed7c28",
+        "context_sha256": "6e6f0ffc73325332641c92ca62b799705949cb89cc99d836620c8439eabff95e",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. Effect can convey bringing about size and weight. The general causal claim is usable with the original word; no correction to affect is needed for this limited interpretation."
+      }
+    },
+    {
+      "id": "dd_v26_train_2195_4_5",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What interests do you and the person you met share?",
+      "reply": "We like the same teams, music, a",
+      "value": "said they like the same teams and music, leaving the rest of the list unfinished",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_2195_4_5",
+      "source": {
+        "split": "train",
+        "dialogue": 2195,
+        "turn": 4,
+        "segment": 5,
+        "span": [
+          166,
+          198
+        ],
+        "text": "We like the same teams, music, a",
+        "context": [
+          "Hey, Mary, what's up?",
+          "Not much. Last night I met this great guy at the bar and we had such a wonderful time that we decided to meet again tonight.",
+          "Oh, that's exciting. What's this guy like? Is he hot?",
+          "Well, I didn't think so at first. But as we started talking, I found his extremely funny and witty. I couldn't stop laughing at his jokes! We have so much in common. We like the same teams, music, a",
+          "It seems you two are a good match. What qualities do you look for in a friend?",
+          "There's nothing definite I think. I don't have a list or anything, but when I first meet somebody, I can usually tell whether or not that person is going to be a good friend. It seems I have radar h",
+          "Well, that's something I've never heard of. But if you as me what I value most in a friend, I would have to say honesty.",
+          "I agree. You can't expect a close relationship with a dishonest person. Those are the people that will turn their back on you when you are in need.",
+          "Yeah, I know. A friend in need is a friend indeed. I don't need fair-weather friends either."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "source_sha256": "a7c1bdfd4663658a93cc4d154b84590150030098521cd6303978fab4ba23a68f",
+        "context_sha256": "63ae21e3840a9834e89359e6b2f22d087f86c23952a33f98b4d78df446904e85",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The current parse already marks the trailing a as DET with unresolved dep. Teams and music are clear shared preferences; the list stays unfinished.The next list item after a is unknown."
+      }
+    },
+    {
+      "id": "dd_v26_train_2301_4_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What does the man you met look like?",
+      "reply": "He's quite tall, around 61, he's in his early thirties, and he's got the most beautiful dark brown eyes...",
+      "value": "described him as tall, in his early thirties, with dark brown eyes; the height notation 61 remains unresolved",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_2301_4_2",
+      "source": {
+        "split": "train",
+        "dialogue": 2301,
+        "turn": 4,
+        "segment": 2,
+        "span": [
+          26,
+          132
+        ],
+        "text": "He's quite tall, around 61, he's in his early thirties, and he's got the most beautiful dark brown eyes...",
+        "context": [
+          "Irene! I heard you were on a date last night! So, how how did it go? I want all the juicy details!",
+          "Um... well, actually, we had a fantastic time last night. He was... amazing!",
+          "Okay, now you really have to fill me in. What's he like?",
+          "He's really good looking. He's quite tall, around 61, he's in his early thirties, and he's got the most beautiful dark brown eyes...",
+          "He sounds hot! What does he do for a living?",
+          "You know what, this is the best part. David is a junior investment banker at Fortune Bank, so he's got a great career path ahead of him!",
+          "Hold on a sec, his name is David?",
+          "Yeah?",
+          "That's my brother!"
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "source_sha256": "de4b520a47fab81754083606dd8ab997d9a1b563fb1ba91e9983b5a30e2d257c",
+        "context_sha256": "eb780d721ffd3ae5feb4ce7984086c82ff3bd14f686646df000f962afab2ee28",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The man is described as tall, in his early thirties, and having dark brown eyes.The written height 61 has no reliable unit or formatting; do not convert it to feet or centimetres."
+      }
+    },
+    {
+      "id": "dd_v26_train_2383_1_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Which teams do you want my opinion about?",
+      "reply": "What do you think of AC Milan and the team of Argentine?",
+      "value": "asked for an opinion on AC Milan and a team described as the team of Argentine, leaving the second team's identity unresolved",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_2383_1_1",
+      "source": {
+        "split": "train",
+        "dialogue": 2383,
+        "turn": 1,
+        "segment": 1,
+        "span": [
+          0,
+          56
+        ],
+        "text": "What do you think of AC Milan and the team of Argentine?",
+        "context": [
+          "What do you think of AC Milan and the team of Argentine?",
+          "They aren't evenly matched.",
+          "Yes, I think AC Milan's foot work is much better on the whole.",
+          "Yet the Argentine attacker is worth a bet."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1
+        ],
+        "source_sha256": "e6c9a812463bd1742c448c59d9b5e8ccc5681b113582fda71d7475983da48f64",
+        "context_sha256": "7dfe745849869a84b1dabeb9ccf5c8d2044d12823270e73f328b7fca4d4eeac3",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker asks for an opinion on AC Milan and a team described as the team of Argentine.The identity of the second team cannot be resolved from this turn."
+      }
+    },
+    {
+      "id": "dd_v26_train_2562_4_4",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What do you think of Xara's?",
+      "reply": "It's real classy, and they keep the place spin and span.",
+      "value": "described Xara's as classy; the extra description spin and span remains uncertain",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_2562_4_4",
+      "source": {
+        "split": "train",
+        "dialogue": 2562,
+        "turn": 4,
+        "segment": 4,
+        "span": [
+          46,
+          102
+        ],
+        "text": "It's real classy, and they keep the place spin and span.",
+        "context": [
+          "Mike, what are you doing tonight?",
+          "Nothing special. I just want to get plastered.",
+          "I don't feel like drinking tonight. I'm gonna hang out at YY's.",
+          "YY's? That place is boring. How about Xara's? It's real classy, and they keep the place spin and span.",
+          "Yeah, but it's expensive. Nah, I'm going to YY's.",
+          "On second thought, I think I'll join you.",
+          "They've just renovated the place. You may be surprised.",
+          "Wow, they really went to town on this place!",
+          "Quite a difference, huh?",
+          "Sure is. Waiter, bring us two drafts, please.",
+          "Ah hah. Thought you were't drinking.",
+          "When in Rome, do as the Romans do."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "source_sha256": "7ae973512f5c146d4a1364c1624c1460bdf1018b2b2bd2e12808c7c0762b2014",
+        "context_sha256": "beaf8f8d144587ff705063ed1ce58350c119e88a77018fa4c7dc96bb1d3c064b",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker explicitly describes the venue as classy.Spin and span remains an unresolved cleanliness-related idiom candidate; do not treat it as literal spinning or assert a repair."
+      }
+    },
+    {
+      "id": "dd_v26_train_2570_4_4",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Do you really think they will make up?",
+      "reply": "Bet it.",
+      "value": "emphasized confidence that they would reconcile, without reporting an actual bet or completed reconciliation",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_2570_4_4",
+      "source": {
+        "split": "train",
+        "dialogue": 2570,
+        "turn": 4,
+        "segment": 4,
+        "span": [
+          68,
+          75
+        ],
+        "text": "Bet it.",
+        "context": [
+          "Susan is going to get a divorce.",
+          "How do you know that?",
+          "She told me that Peter and she has a quarrel last nigh, and she left this morning, bag and baggage.",
+          "Oh, I see. But I think you are making a fuss. They will make it up. Bet it."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "source_sha256": "48b202eef44b1166c754aa66095e4ba7bc8e20fd6ed3094fb94b914f5efb9916",
+        "context_sha256": "e2d1eee5f9eda36fc90d439d11b04ac10b5eb1ff00cb7acae887000bd3f479e4",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. After They will make it up, Bet it reinforces confidence in reconciliation. It does not establish an actual wager or a reconciliation."
+      }
+    },
+    {
+      "id": "dd_v26_train_2594_9_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Do you think going out tonight will be enjoyable?",
+      "reply": "It be fun!",
+      "value": "expected the planned outing to be fun",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_2594_9_2",
+      "source": {
+        "split": "train",
+        "dialogue": 2594,
+        "turn": 9,
+        "segment": 2,
+        "span": [
+          12,
+          22
+        ],
+        "text": "It be fun!",
+        "context": [
+          "Tom! How are you? We missed you at the party last night. Are you OK?",
+          "I don't know. I didn't really feel like going out. I guess I'm feeling a little homesick.",
+          "Come on. We've been through this already! Look, I know the adjustment was hard when you first got here, but we agreed that you were gonna try and deal with it.",
+          "I was. It's just that the holidays are coming up and I won't be able to home because I can't afford the airfare. I'm just longing for some of the comforts of home, like my mom's cooking and being around my family.",
+          "Yeah, it can get pretty lonely over the holidays. When I first got here, I'd get depressed and nostalgic for anything that reminded me of home. I almost let it get to me, but then I started going out, keeping myself busy and before I knew it, I was used to to it.",
+          "I see what you mean, but I'm still bummed out.",
+          "OK. How does this sound. Let's get you suited up and hit the dance club tonight. I hear that an awesome DJ is playing and there will be a lot of pretty single girls there!",
+          "You know, I could really go for that. You don't mind being my wingman for tonight?",
+          "Not at all! It be fun! It will be like a boys'night out... Well kinda...",
+          "Great! I must warn you though, whatever happens, don't let me go on a drinking binge. Trust me, it's not a pretty picture!"
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "source_sha256": "9ad6fc4a488ea9107df4a125028a0eb120c7b7cf49ee110056e1de58d4d98d0c",
+        "context_sha256": "dbf6da6b54af5d87ae4f7b6e4833d240e44d0576e1f76111a9d87ff7627e84e1",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The planned outing is characterized as fun. Preserve bare be without deciding dialect or rewriting it; enjoyment is anticipated, not reported as experienced."
+      }
+    },
+    {
+      "id": "dd_v26_train_2620_9_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What have you heard about people getting married quickly?",
+      "reply": "Well, it's said that a lot of young people favor getting married quickly which tend to end quickly too.",
+      "value": "reported a general claim linking quick marriages with quick endings, without asserting a particular marriage or divorce",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_2620_9_1",
+      "source": {
+        "split": "train",
+        "dialogue": 2620,
+        "turn": 9,
+        "segment": 1,
+        "span": [
+          0,
+          103
+        ],
+        "text": "Well, it's said that a lot of young people favor getting married quickly which tend to end quickly too.",
+        "context": [
+          "Hi, how are you doing?",
+          "Everything's great. And you?",
+          "Same here. Have you seen any new films recently?",
+          "No, I haven't had a chance to. But I have been watching a Chinese TV scries called \" Chinese-Style Divorce \".",
+          "Oh. really? I saw it two years ago. It's worth seeing and it's thought-provoking.",
+          "Yeah. I found it is so close to our life.",
+          "It reflects some of our difficulties in this ever-changing world.",
+          "You said it. You know, the divorce rate has been on the rise in recent year.",
+          "Well, it's said that a lot of young people favor getting married quickly which tend to end quickly too.",
+          "I know a couple who divorced a week after getting married.",
+          "Oh, that's too short-lived.",
+          "That's true. It's said the short-lived marriage is typical of the post - 80s'generation.",
+          "II can't agree more. The only-child-generation in China tends to know little about marriage.",
+          "Definitely. They don't take relationships and marriages very seriously.",
+          "In their mind, love is nothing but passion and marriage is over once the passion is gone.",
+          "I think, as the saying goes haste makes waste, it is the same with marriage."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "source_sha256": "3855154396fb221a9615e2634cff2f97703830d97e30265b7a281921f1ccd204",
+        "context_sha256": "450f0abdb76850b47f76f09e42915fc1bbdafc22291c3a014ebb514a364559a1",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker reports a claim about quick marriages and their ending quickly.The exact antecedent of which and the syntactic scope of tend remain unresolved; no specific divorce is asserted."
+      }
+    },
+    {
+      "id": "dd_v26_train_10071_1_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What do you want to say to the people you have just greeted?",
+      "reply": "Y'll looking'fine tonight.",
+      "value": "complimented their appearance that evening, without treating Y'll as a person's name",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_10071_1_2",
+      "source": {
+        "split": "train",
+        "dialogue": 10071,
+        "turn": 1,
+        "segment": 2,
+        "span": [
+          16,
+          42
+        ],
+        "text": "Y'll looking'fine tonight.",
+        "context": [
+          "Watsup, ladies! Y'll looking'fine tonight. May I have this dance?",
+          "He's cute! He looks like Tiger Woods! But, I can't dance...",
+          "It's all good. I'll show you all the right moves. My name's Malik.",
+          "Nice to meet you. I'm Wen, and this is Nikki.",
+          "How you feeling ', vista? Mind if I take your friend'round the dance floor?",
+          "She doesn't mind if you don't mind getting your feet stepped on.",
+          "Right. Cool! Let's go!"
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1
+        ],
+        "source_sha256": "f74f3ef06e0ab7997795e8e9a612f2e4c9cd5cc1185ed50755d843d641d57d99",
+        "context_sha256": "88c9c4ad9c85b33af61657c879cda1053c2df2a38da05546707f8dedbfe8cb6f",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. Current tokens already separate looking, the apostrophe and fine, and mark Y'll as X rather than a name. The fine property has an implicit addressee target.The exact expansion of Y'll is unknown; it is not a named entity."
+      }
+    },
+    {
+      "id": "dd_v26_train_10077_3_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What would you like to ask about our restaurant service?",
+      "reply": "Do you have pot service at noon?",
+      "value": "asked whether a service called pot service is available at noon, without establishing what that service is",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_10077_3_1",
+      "source": {
+        "split": "train",
+        "dialogue": 10077,
+        "turn": 3,
+        "segment": 1,
+        "span": [
+          0,
+          32
+        ],
+        "text": "Do you have pot service at noon?",
+        "context": [
+          "I'd like to reserve a table for three this evening.",
+          "Just a moment, sir. Let me check the reservation list. Sorry, I'm afraid we're fully booked tonight. Would you like to make a reservation some other time?",
+          "Do you have pot service at noon?",
+          "Yes, the same service and food as in the evening.",
+          "OK, we'll come at half past eleven tomorrow.",
+          "OK. Your name, please?",
+          "Black.",
+          "Good. Thank you very much."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3
+        ],
+        "source_sha256": "48e127b2efe07914c8fcdce18ec4da19dea4f07704c5859a37ba1b419481d7f4",
+        "context_sha256": "7a9f9d4dd3b8b9f5ee618df9036549101ec6b4fe04fc416a72d3127c76ad7e99",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker asks about a restaurant service at noon.The meaning of pot service is unknown; do not equate it with lunch, hot food or buffet service."
+      }
+    },
+    {
+      "id": "dd_v26_train_10151_1_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Who or where do you want me to connect you to?",
+      "reply": "Can you connect me to Mary. Smith Hotel room?",
+      "value": "requested a connection involving Mary and a hotel room, without resolving whether Smith belongs to the person's or hotel's name",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_10151_1_2",
+      "source": {
+        "split": "train",
+        "dialogue": 10151,
+        "turn": 1,
+        "segment": 2,
+        "span": [
+          0,
+          45
+        ],
+        "text": "Can you connect me to Mary. Smith Hotel room?",
+        "context": [
+          "Can you connect me to Mary. Smith Hotel room?",
+          "Mrs. Smith has not checked in yet.",
+          "Can you leave a message for her to call her office?",
+          "Yes, I'll see that she get the message when she checks in."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1
+        ],
+        "source_sha256": "594949903d26575641c5875a65eff31ff3fdf5d0058c2e95272e7d59f37559f9",
+        "context_sha256": "1b9fa5a4b4268fb64fd0d73b99830c95e62864b64f1cefd61196573a77a5cb73",
+        "adaptation": "Keep this source span exactly. The full original turn includes its own clarifying continuation. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The complete original turn requests a connection involving Mary and a hotel room.Mary Smith as one name versus Smith Hotel as a hotel name is unresolved."
+      }
+    },
+    {
+      "id": "dd_v26_train_10318_2_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "I am calling to offer you a job. What is your reply?",
+      "reply": "With invoking? No, thanks.",
+      "value": "declined the job offer; the preceding clarification With invoking remains unclear",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_10318_2_1",
+      "source": {
+        "split": "train",
+        "dialogue": 10318,
+        "turn": 2,
+        "segment": 1,
+        "span": [
+          0,
+          26
+        ],
+        "text": "With invoking? No, thanks.",
+        "context": [
+          "No, Dave. I haven't wrecked my jeep. I'm calling to offer you a job.",
+          "With invoking? No, thanks.",
+          "I'd like you to manage a new online auction site we're building.",
+          "I'm not interested, Zina.",
+          "Don't play hard to get. The pay is good. You'd be working with Elvin again.",
+          "I don't think so.",
+          "Elvin doesn't hold a grudge, if that's what you're worried about."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2
+        ],
+        "source_sha256": "79297fe1141976535f4867bcabebe38d270cd48a68a13680af1f308dbb7bd6fe",
+        "context_sha256": "7a7adb2993dce455d83e2d109fd9e8cd95b09dc12179093faecff0e0a5712c97",
+        "adaptation": "Keep this source span exactly. The full original turn includes its own clarifying continuation. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The complete original turn ends No, thanks and declines the job offer.With invoking does not identify an employer or job condition reliably."
+      }
+    },
+    {
+      "id": "dd_v26_train_10354_8_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What do those dumpling balls resemble?",
+      "reply": "They are like Tangun.",
+      "value": "compared them with something called Tangun, leaving that referent unidentified",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_10354_8_2",
+      "source": {
+        "split": "train",
+        "dialogue": 10354,
+        "turn": 8,
+        "segment": 2,
+        "span": [
+          70,
+          91
+        ],
+        "text": "They are like Tangun.",
+        "context": [
+          "Aunt Shirley, I heard the Yuan Miao Festival is the name for the festival. Why did it get its name?",
+          "Well, the first lunar month is called Yuan-month, and in ancient times people called night Miao. And you know the festival is just in the middle of the month.",
+          "Oh, I see. I also heard today is the last day for the street fair. Can't wait to sample all the snacks.",
+          "Sure. It's indeed a culinary heaven which offers a wide range of delicious snacks to satisfy all tastes. Then, which one would you like?",
+          "Can you recommend some must-try?",
+          "OK. Let's go over there. For the Lantern Festival, you should never omit the Yuanxiao.",
+          "What's that? It gets the name from the festival itself. That's really funny!",
+          "Actually, they are small dumpling balls made of glutinous rice flour. They are like Tangun.",
+          "Oh, I know Tangyuan. It's a sweet snack, good for dessert.",
+          "Yes. And also, we can find Yuanxiao with both sweet and salty fillings.",
+          "I'd like to try the salty ones. Where does that strange smell come from?",
+          "Oh, the smelly bean curd. My favorite!"
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "source_sha256": "e2a7cfe362d75db37cd656dfb99a4c147e24a42560c2ae5d15a5511f6538ed19",
+        "context_sha256": "1c9d593096b5b01fc54a5dfbfe4c449c1823ede6f96ddd96370d2fe2392285a1",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The dumpling balls are compared with something named Tangun.The identity of Tangun is unresolved; do not replace it with another food name."
+      }
+    },
+    {
+      "id": "dd_v26_train_10388_6_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What earlier stop are you asking me to remember?",
+      "reply": "Didn't you go around to the Smith after school?",
+      "value": "asked whether I had gone to a place called the Smith after school, without confirming the visit or identifying the destination",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_10388_6_2",
+      "source": {
+        "split": "train",
+        "dialogue": 10388,
+        "turn": 6,
+        "segment": 2,
+        "span": [
+          6,
+          53
+        ],
+        "text": "Didn't you go around to the Smith after school?",
+        "context": [
+          "I can't find my purse. Have you seen it?",
+          "No, I haven't.",
+          "I've looked everywhere for it. I must have left it somewhere. I hope I haven't lost it.",
+          "Perhaps you left that at school.",
+          "No, I had it when I left school this afternoon.",
+          "Well. Didn't you go around to the Smith after school? You might have left it there.",
+          "Yes, I'd better give her a call now.",
+          "But she can't be home now. She might have gone to the library.",
+          "Perhaps I should call her later."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "source_sha256": "a25aefa4ba28f559fcc90930ac5b3751d2c07417b6519024928434fdb4271edd",
+        "context_sha256": "9786404691d99f041cbbfa1be57f9c040d30fd46bdf8e6725173e89fe259b776",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker asks whether a visit occurred after school; the negative question does not prove that it did.The destination called the Smith is unresolved; do not infer a family or a business."
+      }
+    },
+    {
+      "id": "dd_v26_train_10499_3_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "How long have you been here trying to find your way?",
+      "reply": "I have been wondering here for almost half an hour.",
+      "value": "reported almost half an hour of an activity described as wondering here, without resolving it as physical wandering",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_10499_3_2",
+      "source": {
+        "split": "train",
+        "dialogue": 10499,
+        "turn": 3,
+        "segment": 2,
+        "span": [
+          21,
+          72
+        ],
+        "text": "I have been wondering here for almost half an hour.",
+        "context": [
+          "Excuse me. I think I have got lost in the Art Gallery. Can you tell me the way to the exit.",
+          "Sure. Go back and take the third turning on the left.",
+          "Thank you very much. I have been wondering here for almost half an hour.",
+          "It is really like a labyrinth."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3
+        ],
+        "source_sha256": "05c3ca1d3139a700280be87fe98752f6d03158207a1112f20fc04fc2cbc27652",
+        "context_sha256": "112cc074939d18020a0508c2adf98f655d2c3aa726d10869fae08ca44d74a9a7",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker reports almost half an hour of an activity described as wondering here.Do not replace wondering with wandering or assert a movement path."
+      }
+    },
+    {
+      "id": "dd_v26_train_10525_4_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Where do you think our waitress is?",
+      "reply": "I think that is our waitress is over by the bar.",
+      "value": "thought the waitress was over by the bar",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_10525_4_1",
+      "source": {
+        "split": "train",
+        "dialogue": 10525,
+        "turn": 4,
+        "segment": 1,
+        "span": [
+          0,
+          48
+        ],
+        "text": "I think that is our waitress is over by the bar.",
+        "context": [
+          "Would you like to order anything else?",
+          "No, I'm good. All we need now is our check.",
+          "Our waitress has been kind of scarce tonight, hasn't she?",
+          "I think that is our waitress is over by the bar. Boy, the service has not been good this evening.",
+          "She doesn't appear to be headed this way, so I will go get the check.",
+          "Good. Just bring it back and we'll total it together.",
+          "Our total for dinner is $ 36.00.",
+          "What do you think would be the right amount to tip?",
+          "I kind of don't want to leave any tip for the lousy service we received.",
+          "I agree that it was bad service, but I heard one of the other waiters mentioning that it was our server's first night on the job.",
+          "I believe that 10 % is just about right amount.",
+          "I think that a tip of $ 3.60 will be the right amount to leave."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "source_sha256": "1e25dc403df13f81d5b9bcc32c5b64beace8e71304e58e9f5e1015a0dca9125f",
+        "context_sha256": "15d6551bf16f4bd41522b708ebddf08701f747b21112584203d3e8c0fdd770f7",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. Despite the restart or repeated is, the speaker tentatively locates the waitress by the bar. The utterance need not be rewritten to retain this limited belief."
+      }
+    },
+    {
+      "id": "dd_v26_train_10586_2_3",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "How do you package blouses for display?",
+      "reply": "As to blouses, we use a polythene wrapper for each article, all ready for window display.",
+      "value": "described using a polythene wrapper for each blouse; the exact target of ready for window display remains unresolved",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_10586_2_3",
+      "source": {
+        "split": "train",
+        "dialogue": 10586,
+        "turn": 2,
+        "segment": 3,
+        "span": [
+          66,
+          155
+        ],
+        "text": "As to blouses, we use a polythene wrapper for each article, all ready for window display.",
+        "context": [
+          "Mr. Jones, shall we now discuss the packaging?",
+          "Very well. You know, we have definite ways of packaging garments. As to blouses, we use a polythene wrapper for each article, all ready for window display.",
+          "Good. A wrapping that catches the eye will certainly help push the sales. With competition from similar garments producers, the merchandise must not only be good value but also look attractive.",
+          "Right you are. We'll see to it that the blouses appeal to the eye as well as to the purse.",
+          "What about the outer packing?",
+          "We'll pack them 10 dozens to one carton, gross weight around 25 kilos a carton.",
+          "Cartons?",
+          "Yes, corrugated cardboard boxes.",
+          "Could you use wooden cases instead?",
+          "Why use wooden cases?",
+          "I'm afraid the cardboard boxes are not strong enough for such a heavy load.",
+          "The cartons are comparatively light, and therefore easy to handle. They won't be stowed away with the heavy cargo. The stevedores will see to that. Besides, we'll reinforce the cartons with straps. Silk blouses are not fragile goods. They can stand a lot of jolting.",
+          "Maybe you are right, but the goods are to be transhipped at Hamburg or London. If the boxes are moved about on an open wharf, the dampness or rain may get into them. This would make the blouses spotted or ruined.",
+          "No need to worry about that. The cartons lined with plastic sheets are waterproof, and as the boxes are made of cardboard, they will be handled with care.",
+          "Well, I don't want to take any chances. Besides, cartons are easy to cut open, and this increases the risk of pilferage.",
+          "Tampering with cartons is easily detected. I should say that this rather discourages pilferage.",
+          "Maybe so, but I'm afraid that in case of damage or pilferage, the insurance company will refuse compensation on the ground of improper packing, or packing unsuitable for sea voyage.",
+          "But cartons are quite seaworthy. They are extensively used in our shipments to continental ports. There are never any complaints from our clients, and our insurance company has also approved such packing for W. P. A. and T. P. N. D.",
+          "If you could guarantee compensation in case the insurance com - any refuses to honor a claim for faulty packing, we would be quite willing to accept cartons.",
+          "I'm sorry, but we can't take on any responsibility that is beyond our functions and powers. We'll make sure that the packing is seaworthy, but we can't commit ourselves to being responsible for every kind of mishap.",
+          "I can understand your position. Perhaps I'm asking too much.",
+          "We'll use wooden cases if you insist, but the charge for packing will be considerably higher, and it also slows delivery.",
+          "Well, I'll call you immediately for instructions on the matter.",
+          "Please do. I'll be waiting for your reply."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2
+        ],
+        "source_sha256": "56fd083e72caac516498869f4473456b0d8f576ba2b321670d5a7f8847265a66",
+        "context_sha256": "d9595fa6ac6e761ac867d81ad3c1092d777ce8e244d023207855f52c89fcbc91",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. Each blouse is said to use a polythene wrapper; ready no longer targets we.Whether ready describes the article, wrapper or whole packaging arrangement remains unresolved."
+      }
+    },
+    {
+      "id": "dd_v26_train_10634_3_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What would you like to clarify about your new job?",
+      "reply": "And I represent?",
+      "value": "asked a question involving representation without specifying whom or what would be represented",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_10634_3_1",
+      "source": {
+        "split": "train",
+        "dialogue": 10634,
+        "turn": 3,
+        "segment": 1,
+        "span": [
+          0,
+          16
+        ],
+        "text": "And I represent?",
+        "context": [
+          "So, where can I start my work?",
+          "Well, your job is to compile and analyze financial information to prepare entries to accounts. You're also responsible for preparing profit and loss statements and monthly closing and cost accounting reports.",
+          "And I represent?",
+          "Our company just concluded a business transaction. You can help with documenting varies financial sheets involved in this transaction.",
+          "Ok, thank you.",
+          "You're welcome. Feel free to ask me any time you need help."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3
+        ],
+        "source_sha256": "0ff8580238f539b6f27194e6f9910853a6f181a8ef224a8feb74f10c2a32fa63",
+        "context_sha256": "68421be9dd97badf012dade71c00cdffe4de253657e97af83896f6b67607150f",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The worker asks a question involving representation.The represented party, reporting relation or omitted wording is unknown."
+      }
+    },
+    {
+      "id": "dd_v26_train_10665_5_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Will Mr. Thomas be back at the office today?",
+      "reply": "He's gone for the rest of the day.",
+      "value": "said he was away for the rest of the day and would not be back that day",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_10665_5_2",
+      "source": {
+        "split": "train",
+        "dialogue": 10665,
+        "turn": 5,
+        "segment": 2,
+        "span": [
+          16,
+          50
+        ],
+        "text": "He's gone for the rest of the day.",
+        "context": [
+          "Good morning. Wilson Association.",
+          "This is Mr Brown speaking. I'd like to speak to Mr. Thomas, please.",
+          "I'm sorry, but Mr. Thomas left the office a few minutes ago.",
+          "That's bad! I've been trying to call him for the last ten minutes, but your line has been busy. Will he be back soon?",
+          "I'm afraid not. He's gone for the rest of the day.",
+          "Is there anywhere I can reach him?",
+          "I don't believe so. He's going out of town on business. May I take a message?",
+          "I have a business appointment with him for tomorrow morning at ten o'clock, but I'm afraid I can't make it.",
+          "Would you care to make another appointment?",
+          "Unfortunately, I'm leaving town rather unexpectedly, and I may be gone for several days.",
+          "I see. I can tell Mr. Thomas that you phoned.",
+          "Thank you.",
+          "Bye-bye."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "source_sha256": "4b070656f0313d5511522c780f2a4a3fb0e272cc0f79e98345891057786bd668",
+        "context_sha256": "925f616352684526560a0453f239ebdfa58a404afacddca5366747553a6b0707",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The current state reading has He as nsubj, be as the copula and gone as an adjective; it is not passive. The office context establishes absence for the remainder of the day.The contraction also permits a perfect paraphrase; no exact departure time or destination is added."
+      }
+    },
+    {
+      "id": "dd_v26_train_10785_3_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Why did you think we wanted the apartment?",
+      "reply": "I thought so, by the looks on your faces when you left.",
+      "value": "said the expressions on their faces around departure suggested interest in the apartment",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_10785_3_1",
+      "source": {
+        "split": "train",
+        "dialogue": 10785,
+        "turn": 3,
+        "segment": 1,
+        "span": [
+          0,
+          55
+        ],
+        "text": "I thought so, by the looks on your faces when you left.",
+        "context": [
+          "Sorry to bother you so early. There's another couple who wants to rent the apartment, but I thought I'd ask you first.",
+          "That's so sweet of you. We definitely want it.",
+          "I thought so, by the looks on your faces when you left. So why don't you come to my apartment, and we'll settle all the details.",
+          "OK. How does seven o'clock this evening sound?",
+          "Great. See you then."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3
+        ],
+        "source_sha256": "5c6c2f00ac53288dc31dc85bb376df327c670766df831d1bd224518c2709270c",
+        "context_sha256": "139c8ff985e9e2d07d7e3774c9b73bab9b5926be581879b4695682db32bf8a12",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker inferred interest in the apartment from the addressees' facial expressions around their departure.The exact syntactic attachment of when you left remains unsettled."
+      }
+    },
+    {
+      "id": "dd_v26_train_10794_9_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "I forgot to get the bread. What will you do?",
+      "reply": "I'll do with the cake.",
+      "value": "accepted cake as an alternative without saying it had already been eaten",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_10794_9_1",
+      "source": {
+        "split": "train",
+        "dialogue": 10794,
+        "turn": 9,
+        "segment": 1,
+        "span": [
+          0,
+          22
+        ],
+        "text": "I'll do with the cake.",
+        "context": [
+          "Did you promise me to get the bread?",
+          "Well, I remember walking pass the baker shop.",
+          "But you forgot to get the bread.",
+          "I'm afraid so. I don't remember you telling me about it.",
+          "Well, I certainly did.",
+          "What would you let me do now?",
+          "You are free. You can go now.",
+          "Really? You are so kind.",
+          "I'll do with the cake.",
+          "No. That's not enough. I've got some cereal."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "source_sha256": "34e7f3d53fc237ff5a4fc1a65b440aabf352df803a1d39701ef265780253fdb0",
+        "context_sha256": "5cd0d0bc383ca8ea46c0a81a8a2113839e3b114204bd168443e281713b4a1852",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. After the forgotten bread, the speaker accepts making do with cake. No eating event is reported as completed."
+      }
+    },
+    {
+      "id": "dd_v26_train_10920_7_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What is your reaction to the singing you hear?",
+      "reply": "How nice are the singers singing!",
+      "value": "expressed a positive reaction to the singing, leaving the precise scope of nice unresolved",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_10920_7_2",
+      "source": {
+        "split": "train",
+        "dialogue": 10920,
+        "turn": 7,
+        "segment": 2,
+        "span": [
+          19,
+          52
+        ],
+        "text": "How nice are the singers singing!",
+        "context": [
+          "Hello, Miss. I want to listen to the music. Could you tell me how to adjust it?",
+          "Certainly. There are several kinds of music. What do you like to listen to?",
+          "I like listening to the classical music.",
+          "OK, here it is. Can you hear it?",
+          "Yes. Which channel is for opera?",
+          "The last one clockwise.",
+          "Oh, I have got it. How nice are the singers singing!"
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "source_sha256": "139c1b251a2f0005804c8ee9a3898a8b15b2e63ded7586cca1ac8c7ddd51dcf5",
+        "context_sha256": "57e1fc4e5dc562ae676db4d324c43ed75c7de899417a24e5cae3fe53e863bcfd",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The current parse recognizes singers as subject of progressive singing; the exclamation expresses a positive reaction.Nice may evaluate the singers, the manner or the performance; do not assign physical attractiveness."
+      }
+    },
+    {
+      "id": "dd_v26_train_11038_4_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What kinds of internet service can I order?",
+      "reply": "You can get DEL or dial-up.",
+      "value": "offered dial-up and a service labelled DEL, without resolving DEL to another acronym",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_11038_4_1",
+      "source": {
+        "split": "train",
+        "dialogue": 11038,
+        "turn": 4,
+        "segment": 1,
+        "span": [
+          0,
+          27
+        ],
+        "text": "You can get DEL or dial-up.",
+        "context": [
+          "I would like to order some internet today.",
+          "What kind would you like?",
+          "What kind of internet is there?",
+          "You can get DEL or dial-up.",
+          "Which of those two is best?",
+          "I would recommend DEL.",
+          "So that one better?",
+          "It's better because it doesn't tie up the phone.",
+          "What do you mean by that?",
+          "DEL isn't connected through your phone line, but dial-up is.",
+          "So then I can't use my phone if I'm on the internet?",
+          "That's correct. With DEL you can do both."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "source_sha256": "8af936ae259b947a203d7e638445f6f8abbba12ad5c4ed70cb6052128e7360b4",
+        "context_sha256": "68da1f76ab2c7e739d8f4ec4bea25cae089b3d6ed3544d9fdd527748f131c4a5",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker offers dial-up and an option labelled DEL; the dial-up coordination repair is retained.The expansion and technical identity of DEL are unknown."
+      }
+    },
+    {
+      "id": "dd_v26_train_11038_6_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Which of those internet services do you recommend?",
+      "reply": "I would recommend DEL.",
+      "value": "recommended the service labelled DEL, without changing or expanding its name",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_11038_6_1",
+      "source": {
+        "split": "train",
+        "dialogue": 11038,
+        "turn": 6,
+        "segment": 1,
+        "span": [
+          0,
+          22
+        ],
+        "text": "I would recommend DEL.",
+        "context": [
+          "I would like to order some internet today.",
+          "What kind would you like?",
+          "What kind of internet is there?",
+          "You can get DEL or dial-up.",
+          "Which of those two is best?",
+          "I would recommend DEL.",
+          "So that one better?",
+          "It's better because it doesn't tie up the phone.",
+          "What do you mean by that?",
+          "DEL isn't connected through your phone line, but dial-up is.",
+          "So then I can't use my phone if I'm on the internet?",
+          "That's correct. With DEL you can do both."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "source_sha256": "7c2e1dd04a320f0b9dbcd5d4783cf5eccf69a4f70c60691dfb8e66878b17212c",
+        "context_sha256": "68da1f76ab2c7e739d8f4ec4bea25cae089b3d6ed3544d9fdd527748f131c4a5",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker recommends the option called DEL.The technical identity or expansion of DEL remains unknown."
+      }
+    },
+    {
+      "id": "dd_v26_train_11054_12_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "I found the medicine, but something has gone wrong. What do you ask?",
+      "reply": "What's the new strike?",
+      "value": "asked what the new problem was, without identifying a medical or other cause",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_11054_12_1",
+      "source": {
+        "split": "train",
+        "dialogue": 11054,
+        "turn": 12,
+        "segment": 1,
+        "span": [
+          0,
+          22
+        ],
+        "text": "What's the new strike?",
+        "context": [
+          "Poor Danny. You are so enfeebled!",
+          "Don't worry. No big deal. Just a common cold.",
+          "Mom called just now saying that she and Dad will be back later. Do you want to speak to them on phone?",
+          "No. You can never count on the grown-ups when there is something.",
+          "Whatever. Have a drink of water.",
+          "Come on, sister. This is the seventh glass already.",
+          "Maybe later. I think we have a medicine-kit.",
+          "Do we? Where is it?",
+          "Probably on the of the cabinet. I'll go and get it.",
+          "Be careful. Now I have no one but you to depend on.",
+          "Oh, here it is. Patulin. Oh, no!",
+          "What's the new strike?",
+          "Keep lying down. The matter is that all the medicine here is past expiration.",
+          "Poor me!"
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source_sha256": "9c8fed92eb9646310b92be233b8b5516e0577dd39cbbc762b720d9ca4ff9f323",
+        "context_sha256": "03f030631fd9d97e34045fbbfa04494a2c01f589c45a94487a639df8af859cca",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. After Oh, no, the speaker asks about a new problem using strike.The nature of the problem is not stated; do not infer an expired medicine or medical effect."
+      }
+    },
+    {
+      "id": "dd_v26_train_11116_2_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Why was the imperial residence called a forbidden palace?",
+      "reply": "Well, in the feudal society, emperors had supreme power, so his residence was certainly a forbidden palace.",
+      "value": "linked imperial power with restricted access to the residence, leaving the particular emperor unspecified",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v26_train_11116_2_1",
+      "source": {
+        "split": "train",
+        "dialogue": 11116,
+        "turn": 2,
+        "segment": 1,
+        "span": [
+          0,
+          107
+        ],
+        "text": "Well, in the feudal society, emperors had supreme power, so his residence was certainly a forbidden palace.",
+        "context": [
+          "Uncle Ben, how did the Forbidden City get this name?",
+          "Well, in the feudal society, emperors had supreme power, so his residence was certainly a forbidden palace.",
+          "His residence? You mean the whole palace?",
+          "Yes. The Forbidden City is divided into two parts. The southern section, or the Outer Court was for the emperor to exercise his power over the nation, and the northern part, or the Inner Court was for his royal family.",
+          "Oh, unbelievable. This was too luxurious.",
+          "Even the whole country belonged to him. That's why he is called the emperor.",
+          "OK, then. I love these unique structured towers with the delicate carvings on them. It's really artistic.",
+          "Yeah, the buildings and designs of the Forbidden City are the peak of Chinese traditional architecture, not only scientific but also suitable for living.",
+          "I agree. It's definitely a product of wisdom. Well, why were those small animal sculptures placed on the tops of the buildings?",
+          "Some of them are mascots and some are symbols of power.",
+          "Why are there so many yellow things? Is yellow the lucky color in China?",
+          "Oh, no. In fact, yellow is the symbol of the royal family.",
+          "Just like the pattern dragon, right?",
+          "Exactly. Here is the Nine-dragon Screen.",
+          "Oh, it's really fabulous. I wanna take a picture here.",
+          "Sure, this will be a really good picture."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2
+        ],
+        "source_sha256": "88b8ce339ef0594fabb194cfcf27eece95e96eeadc60c5112ec6573881409765",
+        "context_sha256": "4bff8548ad5915c7eb4a2932206874ddab957bfaaa5e1e0fb851283984648065",
+        "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker connects imperial power with a restricted imperial residence.His does not identify a particular emperor; do not normalize it to all emperors' residences."
+      }
+    }
+  ]
+}

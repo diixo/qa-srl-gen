@@ -1,0 +1,181 @@
+{
+  "version": "offline-luna-progress-v3",
+  "candidate": "artifacts/dailydialog-hybrid-luna-source-v2",
+  "bank": "artifacts/dailydialog-hybrid-luna-source-v2/bank",
+  "report": {
+    "status": "source_segmentation_complete",
+    "counts": {
+      "compiled_occurrences": 161292,
+      "reviewed_syntax_reuses": 1088,
+      "fragment_or_nonverbal_candidates": 26295,
+      "context_reviewed_occurrences": 449,
+      "context_syntax_corrections": 244,
+      "groups": 70880,
+      "entity_candidates": 10535,
+      "sample_cases": 110
+    },
+    "validation": {
+      "status": "passed",
+      "source_sha256": "35258fa59a2dca8f67eab5bab6a436824b9364b3aab9a4167efae6c934127420",
+      "templates": 98856,
+      "attested_roundtrips": 107688,
+      "source_records": 161292,
+      "token_spans": 1377807,
+      "verbs_occurrences": 289398,
+      "adjectives_occurrences": 71979
+    },
+    "conservation": {
+      "status": "passed",
+      "counts": {
+        "old_segments": 161292,
+        "old_tokens": 1377807,
+        "new_segments": 161292,
+        "new_tokens": 1377807,
+        "unchanged_analyses": 161287,
+        "revised_outputs": 5
+      },
+      "explicit_token_delta": 0,
+      "reference_expansion_token_delta": 0,
+      "previous_preimages_retained": true
+    },
+    "dialogues": 12608,
+    "turns": 99224,
+    "previous_bank_unchanged": true,
+    "protected_files": 520,
+    "source_files_updated": 0,
+    "api_calls": 0,
+    "parser_inference_calls": 0,
+    "published": false,
+    "elapsed_seconds": 710.7
+  },
+  "reviews": "data/dailydialog/review-parts/hybrid-luna-offline-source-reviews-v1.jsonl",
+  "queue": "data/dailydialog/review-parts/luna-offline-v3/pending-warnings.jsonl.gz",
+  "received_evidence": "data/dailydialog/review-parts/luna-offline-v3/received-evidence.jsonl.gz",
+  "warning_counts": {
+    "pending_context_or_source_review": 12440,
+    "closed_representation_only": 419,
+    "fixed_in_candidate": 104,
+    "closed_not_supported": 15
+  },
+  "case_counts": {
+    "api_clear_not_semantically_approved": 35884,
+    "with_pending_warnings": 10729,
+    "all_warnings_addressed_not_semantically_approved": 464
+  },
+  "outputs_sha256": "f792915163ff9f8a309ba840b55ebe1cf461c8f1d74d4de40b02990766f5c0e3",
+  "api_status": "offline_by_user_request",
+  "next_api_job_if_ever_resumed": 18376,
+  "tests": {
+    "passed": 112,
+    "suites": [
+      "test_dailydialog_api_reconciliation.py",
+      "test_dailydialog_source_segmentation.py",
+      "test_dailydialog_context_revision.py"
+    ]
+  },
+  "next_step": "Continue offline from the v3 queue: group remaining source/attachment/property errors, then random contextual checks of clear and API-unanswered cases before restricted admission. No gateway calls.",
+  "published": false,
+  "pending_groups": {
+    "ambiguity": 227,
+    "clause_attachment": 1026,
+    "coordination": 907,
+    "direct_address": 1495,
+    "lemma_or_inflection": 374,
+    "negation_or_modality": 2,
+    "other_syntax": 3364,
+    "particle_or_preposition": 845,
+    "property_attachment": 1770,
+    "sentence_boundary": 437,
+    "source": 1993
+  },
+  "source_parts_verified_dialogues": 13118,
+  "manual_reference_dialogues_preserved": 510,
+  "api_unanswered_cases": 112802,
+  "current_batch": {
+    "selection": "targeted contraction/source defects, all sibling sentences and all exact duplicate dialogues",
+    "source_turns": 15,
+    "reviewed_occurrences": 22,
+    "received_api_cases": 18,
+    "fixed_warnings": 20,
+    "duplicate_groups": 3,
+    "duplicate_dialogues": 7,
+    "applied_reviews": 15,
+    "additional_entity_reviews": 5,
+    "relocated_entity_candidates": 4,
+    "removed_false_organizations": 1,
+    "random_quality_sample": false
+  },
+  "remaining_selected_cases": [
+    {
+      "id": "train:10144:9:1",
+      "reason": "Multiword so long as attachment requires an agreed convention; no unsupported automatic replacement."
+    },
+    {
+      "id": "train:10941:3:3",
+      "reason": "Missing lexical predicate in cannot really it cannot be recovered uniquely. Keep quarantined."
+    }
+  ],
+  "remaining_steps": [
+    "Resolve source defects and remaining warning groups offline; accumulate explicit decisions before another rebuild.",
+    "Random contextual quality checks on API clear cases and the automatically parsed remainder without an API response.",
+    "Admit only confirmed templates to the central Built-in pool and run dataset-generation checks."
+  ],
+  "entity_reviews": "data/dailydialog/review-parts/hybrid-luna-offline-source-entity-reviews-v1.jsonl",
+  "source_edit_report": {
+    "status": "source_segmentation_complete",
+    "counts": {
+      "compiled_occurrences": 161292,
+      "reviewed_syntax_reuses": 1088,
+      "fragment_or_nonverbal_candidates": 26295,
+      "context_reviewed_occurrences": 449,
+      "context_syntax_corrections": 249,
+      "groups": 70880,
+      "entity_candidates": 10535,
+      "sample_cases": 110
+    },
+    "validation": {
+      "status": "passed",
+      "source_sha256": "1b5795ff50bdf4d3f713ee9be1eee367c702b9abc6fc073a75afbbdd8f5a99e3",
+      "templates": 98856,
+      "attested_roundtrips": 107688,
+      "source_records": 161292,
+      "token_spans": 1377807,
+      "verbs_occurrences": 289398,
+      "adjectives_occurrences": 71979
+    },
+    "conservation": {
+      "status": "passed",
+      "counts": {
+        "old_segments": 161292,
+        "old_tokens": 1377797,
+        "new_segments": 161292,
+        "new_tokens": 1377807,
+        "unchanged_analyses": 161270,
+        "revised_outputs": 22,
+        "grouped_input_segments": 7
+      },
+      "explicit_token_delta": 10,
+      "reference_expansion_token_delta": 0,
+      "previous_preimages_retained": true
+    },
+    "dialogues": 12608,
+    "turns": 99224,
+    "previous_bank_unchanged": true,
+    "protected_files": 519,
+    "source_files_updated": 15,
+    "api_calls": 0,
+    "parser_inference_calls": 0,
+    "published": false,
+    "elapsed_seconds": 725.5
+  },
+  "verification": {
+    "all_warning_addresses_preserved": 12978,
+    "new_fixed_warning_addresses": 20,
+    "saved_api_evidence_unchanged": true,
+    "source_parts_verified_dialogues": 13118,
+    "manual_reference_dialogues_preserved": 510,
+    "sentence_ids_preserved": true,
+    "noncanonical_apostrophes": 0,
+    "source_backup_directory": "artifacts/dailydialog-hybrid-luna-source-v1/source-before"
+  }
+}

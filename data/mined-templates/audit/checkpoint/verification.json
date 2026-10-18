@@ -1,0 +1,4471 @@
+{
+  "status": "passed",
+  "archive_manifest_sha256": "e2c0750e9886aa838a1b62a7cadb41260281ff4c9b1e6af5f276b628c890248b",
+  "all_archived_files_verified_against_sources": true,
+  "files_restored": 2029,
+  "restore_overwrites": 0,
+  "overlay": {
+    "segments": 161312,
+    "joined_parses": 161312,
+    "tokens": 1378087,
+    "ordered_rows_sha256": "3a17de34860525a11a682f0151cb9ca1fc8a05a24f0e74fd59a4b4a6b6f0f3e7",
+    "database_checks": {
+      "main": "ok",
+      "original": "ok",
+      "lexical": "ok",
+      "previous": "ok"
+    },
+    "all_databases_under_restored_root": true,
+    "historical_paths_mapped_in_memory_only": true
+  },
+  "paid_outputs": 47077,
+  "paid_outputs_sha256": "f792915163ff9f8a309ba840b55ebe1cf461c8f1d74d4de40b02990766f5c0e3",
+  "tests": {
+    "passed": 32,
+    "command": "python -X utf8 -B -m pytest -q tests/test_dailydialog_checkpoint.py tests/test_dailydialog_quarantine_policy.py"
+  },
+  "nothing_deleted": true,
+  "git_index_changed": false,
+  "consolidation": {
+    "status": "passed",
+    "import_state": "data/mined-templates/audit/dailydialog-v38/import.json",
+    "import_state_sha256": "73ced36193e6d5046b6608431e6334d8bd573fce0f981c71d5a24430b0199489",
+    "copied_files": 788,
+    "generated_resource_manifest": 1,
+    "source_workspace_required": false,
+    "pool_only_verification": "data/mined-templates/audit/dailydialog-v38/verification-pool-only.json",
+    "archive_reverified": true,
+    "tests": {
+      "passed": 63,
+      "command": "python -X utf8 -B -m pytest -q tests/test_dailydialog_checkpoint.py tests/test_dailydialog_quarantine_policy.py tests/test_template_registry.py"
+    },
+    "git_diff_check": "passed",
+    "nothing_deleted": true,
+    "git_index_changed": false,
+    "historical_layout": true
+  },
+  "shared_file_merge": {
+    "status": "passed",
+    "import_state": "data/mined-templates/audit/import.json",
+    "import_state_sha256": "599673a510b0dd3257fd5c2bc6e50c5ee1bf89da6d0532e0d557bb005a37f558",
+    "pending_index": "data/mined-templates/pending.json",
+    "pending_index_sha256": "c65a20e9aed198678450ccf900d2974be7ed0a02a537e2134c39acde6f55f5bc",
+    "previous_file_prefixes_preserved": 339,
+    "active_manifest_unchanged": true,
+    "candidate_directories_removed_from_pool": true,
+    "source_workspace_required": false,
+    "verification": "data/mined-templates/audit/verification-pool-only.json",
+    "tests": {
+      "passed": 70,
+      "command": "python -X utf8 -B -m pytest -q tests/test_template_pending.py tests/test_dailydialog_checkpoint.py tests/test_dailydialog_quarantine_policy.py tests/test_template_registry.py"
+    },
+    "git_diff_check": "passed",
+    "git_index_changed": false,
+    "api_calls": 0
+  },
+  "review_parts_recursive_recheck": {
+    "status": "passed",
+    "directories_including_root": 73,
+    "directories": [
+      ".",
+      "annotations",
+      "luna-offline-ambiguity-v13",
+      "luna-offline-as-is-v19",
+      "luna-offline-attestation-v15",
+      "luna-offline-attestation-v17",
+      "luna-offline-attributes-v7",
+      "luna-offline-boundaries-v11",
+      "luna-offline-clauses-v8",
+      "luna-offline-clauses-v8-final",
+      "luna-offline-coordination-v9",
+      "luna-offline-final-v1",
+      "luna-offline-originals-v21",
+      "luna-offline-originals-v22",
+      "luna-offline-originals-v23",
+      "luna-offline-originals-v23-preserved-bindings",
+      "luna-offline-originals-v24",
+      "luna-offline-originals-v25",
+      "luna-offline-originals-v26",
+      "luna-offline-originals-v28",
+      "luna-offline-particle-constructions-v3",
+      "luna-offline-possessives-v6",
+      "luna-offline-quality-v27",
+      "luna-offline-quality-v36",
+      "luna-offline-quality-v37",
+      "luna-offline-quality-v38",
+      "luna-offline-quarantine-constructions-v2",
+      "luna-offline-quarantine-v1",
+      "luna-offline-quote-boundaries-v5",
+      "luna-offline-reparsed-v1",
+      "luna-offline-residual-v12",
+      "luna-offline-reviewed-v29",
+      "luna-offline-source-v14",
+      "luna-offline-source-v16",
+      "luna-offline-source-v18",
+      "luna-offline-source-v30",
+      "luna-offline-source-v31",
+      "luna-offline-source-v32",
+      "luna-offline-source-v33",
+      "luna-offline-source-v34",
+      "luna-offline-syntax-v10",
+      "luna-offline-token-boundaries-v4",
+      "luna-offline-v1",
+      "luna-offline-v10",
+      "luna-offline-v11",
+      "luna-offline-v12",
+      "luna-offline-v13",
+      "luna-offline-v14",
+      "luna-offline-v15",
+      "luna-offline-v16",
+      "luna-offline-v17",
+      "luna-offline-v18",
+      "luna-offline-v19",
+      "luna-offline-v2",
+      "luna-offline-v20",
+      "luna-offline-v21",
+      "luna-offline-v22",
+      "luna-offline-v23",
+      "luna-offline-v24",
+      "luna-offline-v25",
+      "luna-offline-v26",
+      "luna-offline-v27",
+      "luna-offline-v28",
+      "luna-offline-v3",
+      "luna-offline-v4",
+      "luna-offline-v5",
+      "luna-offline-v6",
+      "luna-offline-v7",
+      "luna-offline-v8",
+      "luna-offline-v9",
+      "offline-warning-catalog-v1",
+      "offline-warning-catalog-v2",
+      "offline-warning-catalog-v3"
+    ],
+    "files": 951,
+    "bytes": 1447215403,
+    "missing_from_archive": [],
+    "archived_not_local": [],
+    "differences": [],
+    "special_paths": [],
+    "verified_archive_volumes": 25,
+    "reconstructed_archived_files": 951,
+    "archive_reconstruction_evidence": "All volumes and all 951 files reconstructed and hash-verified in the immediately preceding check; this continuation completes the annotation checks.",
+    "annotations": [
+      {
+        "file": "part-001.jsonl",
+        "turns": 937,
+        "dialogues": 132,
+        "sha256": "1b1de87037e3c61ebad58287db66b5acfd8941b8ad6fc2db6be0aeadf64bf4f4",
+        "destination": "data/mined-templates/audit/annotations/part-001.jsonl"
+      },
+      {
+        "file": "part-002.jsonl",
+        "turns": 982,
+        "dialogues": 132,
+        "sha256": "dec11b26a0b642223aca302c49e26d2ad330e89516f00dd43b50e991adb4e197",
+        "destination": "data/mined-templates/audit/annotations/part-002.jsonl"
+      },
+      {
+        "file": "part-003.jsonl",
+        "turns": 954,
+        "dialogues": 132,
+        "sha256": "e456dbefd63877bbbd5ac39991f170f513f6e302d1d2a1048a86ea5e266772c2",
+        "destination": "data/mined-templates/audit/annotations/part-003.jsonl"
+      },
+      {
+        "file": "part-004.jsonl",
+        "turns": 792,
+        "dialogues": 104,
+        "sha256": "4cee36ae2020be0d91f6e29d192f515f4a05f9bdf06ce9f8097dc70ddc0d5f6b",
+        "destination": "data/mined-templates/audit/annotations/part-004.jsonl"
+      },
+      {
+        "file": "part-085.jsonl",
+        "turns": 45,
+        "dialogues": 5,
+        "sha256": "8bb33f5f2083ace934f6962ee947ecd5e2b88dff3e1b06c66f8d80f5dd441fab",
+        "destination": "data/mined-templates/audit/annotations/part-085.jsonl"
+      },
+      {
+        "file": "part-093.jsonl",
+        "turns": 45,
+        "dialogues": 5,
+        "sha256": "2282671c53dbffadb88844344f2828b0019b491c59de1274eb816f94f7b477c2",
+        "destination": "data/mined-templates/audit/annotations/part-093.jsonl"
+      }
+    ],
+    "annotated_dialogues": 510,
+    "annotated_turns": 3755,
+    "published_manual_components": 13,
+    "all_annotation_fingerprints_registered": true,
+    "all_sentence_reviews_present_in_shared_files": true,
+    "all_100_parts_checksums_and_annotation_boundaries_valid": true,
+    "scope": "Storage and structural coverage check; not a new semantic approval of the unreviewed bank."
+  },
+  "artifacts_review_parts_references": {
+    "status": "references_found",
+    "scope": "Recursive text search including ignored/hidden files. Compressed data, SQLite databases and model weights are excluded from text search; this is not a complete backup audit of artifacts.",
+    "search": "rg -l --hidden --no-ignore -i review[-_]parts artifacts",
+    "excluded_globs": [
+      "*.sqlite*",
+      "*.db",
+      "*.gz",
+      "*.zip",
+      "*.safetensors",
+      "*.bin",
+      "*.pt",
+      "*.pth",
+      "*.pyc",
+      ".env*"
+    ],
+    "summary": {
+      "text_files_with_mentions_including_verification_copies": 978,
+      "verification_or_layout_copy_files": 483,
+      "original_files_with_mentions": 495,
+      "original_files_by_suffix": {
+        ".py": 219,
+        ".json": 256,
+        ".jsonl": 13,
+        ".xml": 7
+      },
+      "originals_with_exact_saved_copy": 125,
+      "originals_without_exact_saved_copy": 370,
+      "scripts_without_exact_saved_copy": 200
+    },
+    "generation_dependency": "No review-parts lookup in semantic_corpus/ or ui/; centralized audit/generation previously passed with only the shared pool.",
+    "historical_reruns": "Old preparation/review scripts can require review-parts. Restore the archived workspace to rerun them; historical paths have not been rewritten.",
+    "blanket_artifacts_cleanup_safe": false,
+    "files": [
+      {
+        "path": "artifacts/admit_attributes_v7.py",
+        "kind": "historical_script",
+        "bytes": 3300,
+        "sha256": "9208045c6a06e3246dc2868d791707808288da4142a0421346e2ea30a8e17e18",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/admit_boundaries_v11.py",
+        "kind": "historical_script",
+        "bytes": 3895,
+        "sha256": "f2d500f74571335570daf5ea5665d7c5537cf4c39599d63a03829c5c89190d9f",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/admit_clauses_v8.py",
+        "kind": "historical_script",
+        "bytes": 3069,
+        "sha256": "abfbf34bdd0ef32a6802d5eee20d15d7bb3749fa7a7cf0942d14349d60b68c10",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/admit_coordination_v9.py",
+        "kind": "historical_script",
+        "bytes": 3649,
+        "sha256": "03bf4ba519a45b77458198cf49a65f872aade633955704abf67fe4e32d7dd63c",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/admit_residual_v12.py",
+        "kind": "historical_script",
+        "bytes": 3580,
+        "sha256": "1022934bce31d4154835a6321333ea94f4acebdbcc7b9d264d2e6fbea158a8e1",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/admit_syntax_v10.py",
+        "kind": "historical_script",
+        "bytes": 3511,
+        "sha256": "f0fed14f8f2124743d26c7d417d7dcdefef1d7886fc30c3a1ec5c9dec42fd663",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/audit_quarantine_coverage_v27.py",
+        "kind": "historical_script",
+        "bytes": 5586,
+        "sha256": "9098355efa190b89d4e68770198c1b21aec4d3a5ec0cd510dc2f7d1db8bb544b",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/boundaries-v11-inputs.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 4138201,
+        "sha256": "96850c2bf175e121a069e804d8780cecfa4e945acdeb1a07220498baa035638d",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/complete_source_v16.py",
+        "kind": "historical_script",
+        "bytes": 4524,
+        "sha256": "cf501e55e3942df456b48e22a6d4757c1f9aa3603869d128e087448b299c4230",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-ambiguity-admission-v13/bank/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 2303,
+        "sha256": "8ce5166728777c7732c7c2661a377ee962a67b8021f5589a9bb24de0c392887e",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-ambiguity-admission-v13/report.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 2341,
+        "sha256": "b97681077092204a9adf853ec2bc01e1773177bd741c6396b0be737adede7586",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-api-batch10-control/protected-files.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 41885,
+        "sha256": "91deb84c0dc7c255cef25611b237865b357203a75d4067f0a2da3a4a6acb165e",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-attestation-admission-v15/bank/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 3120,
+        "sha256": "9a3eea1df07e88860e8079c1cccdf6f4a39e7662ee9e0c6b9ac550d0ba354121",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-attestation-admission-v15/report.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 3074,
+        "sha256": "53bf0a09fbc89100d8519cf2bd033d361b183bfe8e4af4b4a0d63d99ebe62a12",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-attestation-admission-v17/bank/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 2670,
+        "sha256": "305d703f0484201da16fa7f4ca86826cd12b84f4bf63923398a4ac3b7bbe65d7",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-attestation-admission-v17/report.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 2659,
+        "sha256": "a1b35546330b52594f1e952059fa161345c922003c3c58ffafd0ed8ad1557c63",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-attributes-admission-v7/bank/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 3431,
+        "sha256": "2aa8d706422bcdee510ca48f3f0766dbc667a080205276c2aa216aab1e8dfc0c",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-attributes-admission-v7/report.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 3345,
+        "sha256": "195b6ae33dd2e2db6e4bd1a6f4c38ddd19dbbde7ec6de6c4f1e293ead19aef4c",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-boundaries-admission-v11/bank/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 3965,
+        "sha256": "0322fd3f1b0ef101e59477294f1c12fc7798b7b74d83abca81445b71673f32e0",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-boundaries-admission-v11/report.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 3840,
+        "sha256": "3dadb437e5c3b08ac5a80b57fc9308d631b14f7fa57ce2546d5812f1a29389b9",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-clauses-admission-v8/bank/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 2961,
+        "sha256": "5962d076a776a5f81db91be3ebb0c0326ef524a93eaa673ef83db975a7a4ef28",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-clauses-admission-v8/report.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 2913,
+        "sha256": "1900de2c0f3d14efcff1b2d303b228f86b5e48d9a3d7df8e9d733484796f20a1",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-clauses-v8-pre-boundary-ledger/summary.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 1629,
+        "sha256": "e99951df14de7dada2f8d4ebdb2c84bb778792028331a4c58397bee3c8d5fd51",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-constructions-admission-v2/bank/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 2269,
+        "sha256": "89dfd53bd344947a39cff62228fb05742870b7a88d95928736f79c044827e3cc",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-constructions-admission-v2/report.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 2365,
+        "sha256": "ce0d1a6d4b91132a4eac1893a857812455c2def57f47831780509cad8cf06232",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-coordination-admission-v9/bank/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 3636,
+        "sha256": "e5c604c38df9d829c61317b108f32d4ad142521dc5c8a7f388793229afd6cbba",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-coordination-admission-v9/report.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 3545,
+        "sha256": "f570ce17169c27b1593298b085be00180a49f9900fb8a6ef68873db22f7b999b",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-admitted-v1/bank/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 1915,
+        "sha256": "85ba53b84c06d52d0f62de101d03f92fb0e6c72ae2dc3de48dedd1126966ec3b",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-ambiguity-v13/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 243519,
+        "sha256": "c5f8c0c3aa96436f20f3cd3f64c1ca2b8838a22b2b26c79ceea79573c2192d16",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-ambiguity-v13b/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 244031,
+        "sha256": "959aefb52c9c654b9688a25c72614a6a7fccfee642e4f43db536509b3cebe796",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-ambiguity-v13b/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-as-is-v19/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 217760,
+        "sha256": "bd5c6c73a1f44a4019b719244a728182c98f95bd79bb993ba23e8fb80ba75afb",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-as-is-v19/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-attestation-v15/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 208009,
+        "sha256": "afa6baa17fa82aef901c502cdca99b67101ec25377e54f8dade7e3a971268f78",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-attestation-v15/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-attestation-v17/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 212675,
+        "sha256": "a246d2e4c7df680c16c0df6b3d06f8dd8632f471bc1fefe7d72fe317b7d28c88",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-attestation-v17/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-attributes-v1/bank/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 14724,
+        "sha256": "90475e02084bf7847c0125614baac8dfd54a34d1edddb3d76907ca55f95e458c",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-attributes-v1/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 108980,
+        "sha256": "9e95c7720310d4a1858d9dae4a9c368b82b60ee21f2d63a6e8d8ebc8631e6d79",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-attributes-v1/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-attributes-v7/bank/review/source-files.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 1209,
+        "sha256": "d03f7e973503ba66a63dab6a7736291783e7b3ad6ed9a06a8b60f35bf3e2e689",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-attributes-v7/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 187091,
+        "sha256": "818d1d922b2219bbe7719aea62387f7e3d6b4ff2aaac069aaa9b14403d593f9b",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-attributes-v7/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-attributes-v7/source-after/data/dailydialog/review-parts/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 32850,
+        "sha256": "88e35c3300be1d93b478b9fbe8261a123009f15e5be105e6f84b7269a9a6ea32",
+        "archived_identical": [
+          "data/dailydialog/review-parts/manifest.json"
+        ],
+        "central_identical": [
+          "data/mined-templates/audit/decisions/manifest.json"
+        ]
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-attributes-v7/source-before/data/dailydialog/review-parts/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 32850,
+        "sha256": "c39c1126c23256938198993100c3a359662c506358c82affe5ece89c9f7975ae",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-attributes-v7/source-files.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 1209,
+        "sha256": "d03f7e973503ba66a63dab6a7736291783e7b3ad6ed9a06a8b60f35bf3e2e689",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-bank-audit-v1/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 106805,
+        "sha256": "6b258dedfff709626ae8e7dad9a30b98766f3d376012df1d4bd473b50ee9faf8",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-bank-audit-v1/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-boundaries-v11/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 195847,
+        "sha256": "ded96ecc47d7da100e7ef700fbfe0dbc08ab9fbc23eda2a1a2b0c9e12fd4fe4b",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-boundaries-v11/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-clauses-v8/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 188907,
+        "sha256": "636d38997f1fc2542c0d456ad837370b1a0dd38ec4f554601fa2084c8ea2310e",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-clauses-v8/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-context-v1/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 45193,
+        "sha256": "63cdb023ff3335681c1b361a85aea3306a7c798429ba985f63f03d9f8ae9bf83",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-context-v2/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 45578,
+        "sha256": "07b35cb4a9e69fc0d225d059ae74ef0b9fd73d4c0f8e42368286b2eb49cd6913",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-context-v2/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-contractions-v3-aborted/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 110195,
+        "sha256": "3214278deafcdf36ae677a3af45b1303dc0b151aa5e60edb2bb085f3d6161511",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-contractions-v3/bank/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 15077,
+        "sha256": "70f3e2e0378c8fd16d7d5d3f97a94bd15a76a5e2490116df26edc33bbd4e284a",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-contractions-v3/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 110195,
+        "sha256": "24dfe3bdeac12e3900cb536e7e99a953917571b8e4dface9c5e50c627eda2fd7",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-contractions-v3/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-coordination-v9/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 191560,
+        "sha256": "99d4f37b397f4b9abb42bc699fa198a97e8daac60c4e7c1680467b7e715fbfb2",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-coordination-v9/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-lexical-v1/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 44684,
+        "sha256": "bf9232afb7ae77011b606728bbe4d3e3fa62355b24334c50253522d23fd48779",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-lexical-v1/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-luna-offline-v2/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 129890,
+        "sha256": "ecb20363acbb8b0080a6d3e5ced371642317312809a7174c7a88e37f37e58dd9",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-luna-offline-v3/bank/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 15703,
+        "sha256": "5f01ba1f91d908503c9896e1faf61fa2e0492138e52892b0f702ba760b43b60f",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-luna-offline-v3/bank/review/source-files.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 1693,
+        "sha256": "836b3a16949501006584eff1cae4bd8ed9a28902d509bbf2977d1deb63a9a56f",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-luna-offline-v3/bank/review/source-segmentation-decisions.jsonl",
+        "kind": "historical_data_or_provenance",
+        "bytes": 75352,
+        "sha256": "aefbb3a1b6df8e25af3e7782017c00afe2b4d7677e5304a1014c9fc8ab969547",
+        "archived_identical": [
+          "data/dailydialog/review-parts/hybrid-luna-offline-combined-reviews-v3.jsonl"
+        ],
+        "central_identical": [
+          "data/mined-templates/audit/decisions/hybrid-luna-offline-combined-reviews-v3.jsonl"
+        ]
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-luna-offline-v3/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 130241,
+        "sha256": "53f30633965aac130e439418b2fc9e494c09355a233098870f9ea3575cc12a36",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-luna-offline-v3/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-luna-offline-v3/source-after/data/dailydialog/review-parts/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 32850,
+        "sha256": "1593548e1fbac7ef1be1fbf882935c98315ded703dfe2b7741d58cdc9504af1c",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-luna-offline-v3/source-before/data/dailydialog/review-parts/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 34262,
+        "sha256": "1aaeb8e1ee7a531715fbe233c77415d472c784c1d4233862c4b08505b72db172",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-luna-offline-v3/source-files.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 1693,
+        "sha256": "836b3a16949501006584eff1cae4bd8ed9a28902d509bbf2977d1deb63a9a56f",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-luna-scopes-v1/bank/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 15702,
+        "sha256": "d9793bd56c6f663151dc5fb7913c36bc3e31e179e8bf7819f59247684099d414",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-luna-scopes-v1/bank/review/source-files.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 1453,
+        "sha256": "af173bcf9ba62781ba165d3dbc73f80705b3a17dcdb0f10bdd912eb129755dcd",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-luna-scopes-v1/bank/review/source-segmentation-decisions.jsonl",
+        "kind": "historical_data_or_provenance",
+        "bytes": 59563,
+        "sha256": "67a9efad0d50e66b5c56e33719ef085c3f68aea11c2cbbfeb2a657fe5ad25820",
+        "archived_identical": [
+          "data/dailydialog/review-parts/hybrid-luna-offline-scope-reviews-v1.jsonl"
+        ],
+        "central_identical": [
+          "data/mined-templates/audit/decisions/hybrid-luna-offline-scope-reviews-v1.jsonl"
+        ]
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-luna-scopes-v1/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 130982,
+        "sha256": "7ce97562ae41df6b12d93a35d8120736946deb86814db11fc01d1d64d7c70fec",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-luna-scopes-v1/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-luna-scopes-v1/source-after/data/dailydialog/review-parts/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 32850,
+        "sha256": "e356577b3ca040d7cb3bc79a62f58df8fedf33f7e9396cc356363660abc2411f",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-luna-scopes-v1/source-before/data/dailydialog/review-parts/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 32850,
+        "sha256": "1593548e1fbac7ef1be1fbf882935c98315ded703dfe2b7741d58cdc9504af1c",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-luna-scopes-v1/source-files.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 1453,
+        "sha256": "af173bcf9ba62781ba165d3dbc73f80705b3a17dcdb0f10bdd912eb129755dcd",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-luna-source-v1/bank/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 15702,
+        "sha256": "2d83521852589b8da13256410bd0341d9a9abe06f795e36d24aeffc3fefef4a8",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-luna-source-v1/bank/review/source-files.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 3613,
+        "sha256": "dc7e0e4ef42b36dd111eed2bfc14484ac6b52599c396e1c2322c6108b713a1f9",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-luna-source-v1/bank/review/source-segmentation-decisions.jsonl",
+        "kind": "historical_data_or_provenance",
+        "bytes": 34898,
+        "sha256": "2fbeac9b5e224d17d02c204740b284a08d4548682b74fc7f2018b8e8d125d505",
+        "archived_identical": [
+          "data/dailydialog/review-parts/hybrid-luna-offline-source-reviews-v1.jsonl"
+        ],
+        "central_identical": [
+          "data/mined-templates/audit/decisions/hybrid-luna-offline-source-reviews-v1.jsonl"
+        ]
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-luna-source-v1/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 132218,
+        "sha256": "9b20889975df3754d28f3fc21b4ca0827c769b039d8ac82b726b93a891dcfb82",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-luna-source-v1/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-luna-source-v1/source-after/data/dailydialog/review-parts/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 32850,
+        "sha256": "b615c36b5422e78416e434d940a8fefbabe8216b3151fb0bf69f918ec9c5b59d",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-luna-source-v1/source-before/data/dailydialog/review-parts/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 32850,
+        "sha256": "e356577b3ca040d7cb3bc79a62f58df8fedf33f7e9396cc356363660abc2411f",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-luna-source-v1/source-files.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 3613,
+        "sha256": "dc7e0e4ef42b36dd111eed2bfc14484ac6b52599c396e1c2322c6108b713a1f9",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-luna-source-v2/bank/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 15701,
+        "sha256": "09002c2f5587dc5f06914d738f04158fc4623349088e132490036df3a289182e",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-luna-source-v2/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 132406,
+        "sha256": "9ad8bb559780b8dbad4386d41c453312e22e3f6cb4e28988577bdbdd279de3d6",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-luna-source-v2/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-luna-vocatives-v1/bank/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 15705,
+        "sha256": "9c4d1cb7bbd8a6e5e7effbef621c0b2eb0a0d7f0184fa307ddb95440f933e378",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-luna-vocatives-v1/bank/review/source-segmentation-decisions.jsonl",
+        "kind": "historical_data_or_provenance",
+        "bytes": 94182,
+        "sha256": "120b184ce0bb5e6a01d3de6905ea0d67df2a33e6aa30f08af53529cb5c1debd5",
+        "archived_identical": [
+          "data/dailydialog/review-parts/hybrid-luna-offline-vocative-reviews-v1.jsonl"
+        ],
+        "central_identical": [
+          "data/mined-templates/audit/decisions/hybrid-luna-offline-vocative-reviews-v1.jsonl"
+        ]
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-luna-vocatives-v1/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 133956,
+        "sha256": "e4b0c2f2eb8cad2ddb51cb8542505e9557aecef49a8cd9c87d3e9cf01ce008a8",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-luna-vocatives-v1/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-offline-address-tokens-v1/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 191819,
+        "sha256": "aaf11fcc7c3d68cd6937b6e3a949bfff0bef884e9920e9370d3a42263200d52d",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-offline-address-tokens-v1/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-offline-attributes-v1/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 128545,
+        "sha256": "1ad06555f5a7ddaea67665fe206bcbae47b02ad2c6292a16332cb3274501db96",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-offline-attributes-v1/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-offline-attributes-v2/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 152456,
+        "sha256": "b6f1ff85e60f0b6e0dc7b583cedea9cde78ec9fa2a410a0c68778c1d7addcb85",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-offline-attributes-v2/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-offline-clauses-v1/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 195069,
+        "sha256": "57d5208959c5369c510edd73c12b78727b647c494b580f2dc689e3e42cec631b",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-offline-clauses-v1/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-offline-clauses-v2/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 195119,
+        "sha256": "5d7f6717ff7d3242094e9b757f839e2387cefc0f1d9ecad5b58d6690fd82343b",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-offline-clauses-v2/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-offline-clauses-v3/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 196341,
+        "sha256": "e02453d2101a9bee959beee866d3f1d42e9e6d82a4811385da9b8c20275375db",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-offline-clauses-v3/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-offline-clauses-v4/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 197563,
+        "sha256": "22357605ccf95840fb83d85fdc2f66e7f294fd1e432925c8b2cec3ae01018f2e",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-offline-clauses-v4/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-offline-conventions-v1/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 193129,
+        "sha256": "757b3b4fed5f0971b2c301e11fa6cdaa0c02d2d3da7cd2254f3e074f2a514f78",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-offline-conventions-v1/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-offline-coordination-v1/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 198779,
+        "sha256": "807d80eb8947b7ec3f1472a86e30333d0ad058e95f221739aedee4622be16fb1",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-offline-coordination-v1/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-offline-final-local-v1/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 211371,
+        "sha256": "3fa88b418301ba3158c93b4a57a40c22006ffa56ca2dfdc27dcfd942f84aa7de",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-offline-final-local-v1/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-offline-lexical-context-v1/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 187150,
+        "sha256": "c7de9c201ce25160c8c59ca2ca719a42e295886dd5e7ee649374c21e24a620e3",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-offline-lexical-context-v2/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 187150,
+        "sha256": "f7e938bf986fc029daafb9a1e89860e0dfc725d32f6c7b80625e081d71648332",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-offline-lexical-context-v2/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-offline-lexical-v2/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 180663,
+        "sha256": "c63af61b838b78bf54b78d901f443220ea9138f0a8297f64ca74af3c6791e516",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-offline-lexical-v3/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 180663,
+        "sha256": "e3bd6b69f54bcddbfb80a86e3c4fa828aa6545cf554c2a7dd4d574a927b0d35d",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-offline-lexical-v4/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 180663,
+        "sha256": "ebc726806833b90da9f68dea021110aa64c20877495bc2af784d49b02172ec4c",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-offline-lexical-v5/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 180663,
+        "sha256": "f52a4d9675bc95a3f6a78deb02d1f7b947d89a2bb8795307e86dd1428c2290b1",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-offline-lexical-v5/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-offline-local-v1/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 124560,
+        "sha256": "696748bdf06a40882395d58f42360a5c7f7337e784efcff9188498ec37598198",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-offline-local-v2/bank/review/source-segmentation-decisions.jsonl",
+        "kind": "historical_data_or_provenance",
+        "bytes": 94182,
+        "sha256": "120b184ce0bb5e6a01d3de6905ea0d67df2a33e6aa30f08af53529cb5c1debd5",
+        "archived_identical": [
+          "data/dailydialog/review-parts/hybrid-luna-offline-vocative-reviews-v1.jsonl"
+        ],
+        "central_identical": [
+          "data/mined-templates/audit/decisions/hybrid-luna-offline-vocative-reviews-v1.jsonl"
+        ]
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-offline-local-v2/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 124674,
+        "sha256": "233a425e14a6aeaa58c18a2b1d4105ef8eb033c4ef0d3647af5af020e09b6d46",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-offline-local-v2/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-offline-other-syntax-v1/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 203098,
+        "sha256": "8f5d3341e71b7d9338d266ccd941b80e1293ffc7673895dc47a0bb101d8b5bc8",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-offline-other-syntax-v1/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-offline-other-syntax-v2/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 204320,
+        "sha256": "4a28a3a5e22bfe659570c099ea85eebca74678f82edd698f30424c447bbac51d",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-offline-other-syntax-v2/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-offline-other-syntax-v3/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 205542,
+        "sha256": "d664bf592c12e8c3de8d07bb964b746a90de92226fa4c22dd6dce1e5d9f02a0d",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-offline-other-syntax-v3/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-offline-other-syntax-v4/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 206764,
+        "sha256": "5bed4f67cdc0b69d6ee04b1b8211928d3e8d04544bb5e5815ca4f345490f0e54",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-offline-other-syntax-v4/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-offline-other-syntax-v5/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 207986,
+        "sha256": "c6a0054f83bd960fbc93ad12dbc3136067f1f4a6e3bf3955d2389ae19a6f7c3b",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-offline-other-syntax-v5/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-offline-particles-v1/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 192575,
+        "sha256": "cd21e6473e3fad7a7364b06b681354791ab584cdb1f4e6403ecabfd889bce428",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-offline-particles-v1/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-offline-particles-v2/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 192810,
+        "sha256": "3a7daff1fd6634be6c3bee7a17706c2632019f4c25b27621cf237c117ce3772f",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-offline-particles-v2/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-offline-particles-v3/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 193847,
+        "sha256": "1417b822ad3cd26001d5508373221cedf7e348511e5e1d78e45aacad4448537d",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-offline-particles-v3/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-offline-property-remaining-v1/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 209220,
+        "sha256": "94cfec46be1a5a61fecfe87517da206dece78d69513024ce9b0467a07608bc5d",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-offline-property-remaining-v1/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-offline-property-tokens-v1/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 190604,
+        "sha256": "e5d92127349728b5ba8fe455b230aac8957771c12407c515b30a3e400883ad18",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-offline-property-tokens-v1/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-offline-qc-v1/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 136680,
+        "sha256": "e1877d7384d1e28cfbfe58eb11700c3646c85ea31f870f8daa2e5561b6cf654b",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-offline-qc-v1/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-offline-reparsed-v1/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 219660,
+        "sha256": "fa3caa31c1bbc27a28358de5a3e27434cf20225b71ec490edecdd0104c660748",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-offline-reparsed-v1/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-offline-wording-final-v1/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 215294,
+        "sha256": "faf87ed33fe3149c1193a4e367de39e61b91c594bf4df575336376b07a334724",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-offline-wording-final-v1/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-originals-v21/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 218919,
+        "sha256": "237b6530cd2495092e7d6d4d2e99f186af177968191d0bc332e7a7e49fa68f47",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-originals-v21/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-originals-v22/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 222668,
+        "sha256": "09bf7aa08b48d7e5fd93468e8687efc9ee929d6f0d8ffa782fdf5fc695f0c0ab",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-originals-v22/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-originals-v23-preserved-bindings/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 226408,
+        "sha256": "3ed8879e8efa5247d8e4541d4573c239c6a5dc4eac489175f515a6c9ba782d7f",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-originals-v23-preserved-bindings/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-originals-v23/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 225121,
+        "sha256": "7fdc17501b9253536de980e7dc884d339f114e55db7f82a7de5cdd7e936358ca",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-originals-v24/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 235150,
+        "sha256": "9752dd4d598933481f7afd665fc48ecfcb82ef5876413ceba8ebee43b4b05f5a",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-originals-v24/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-originals-v25/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 231447,
+        "sha256": "92773bc2136092d7def08ad99c9e60c6e8710244b29439952c4e7fed06f42d3c",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-originals-v25/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-originals-v26-reviewed/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 233900,
+        "sha256": "ce2525fe1338896f1166a27efdea298bc0db1e6ed80c64f3bcc779ea2bc80fac",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-originals-v26-reviewed/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-originals-v26/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 233900,
+        "sha256": "4ad3bdbe954d87e1546da1f4262d42a9ac7012dc6a158cc1352b588325ce57fa",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-originals-v28/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 242859,
+        "sha256": "4e5c590a56510e7e55a4fbc3bf24ff276970fe484095f83ba70d27b8e97795c3",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-originals-v28/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-parentheses-v1/bank/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 15702,
+        "sha256": "0c9724dfe2d16dde3e245847d609591ad1e49c2a618f109dfec01f7b9efad14f",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-parentheses-v1/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 126074,
+        "sha256": "625ebad6ae18a96ca8bcbdee6eb4018885c1856d388fefeaa0f5ed502e4e9cce",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-parentheses-v1/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-participles-admitted-v1/bank/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 2236,
+        "sha256": "e5155fa0988b8fb85c8ede13eae0c70f29217f07d89bde79a260133b132466f9",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-participles-v1/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 111164,
+        "sha256": "b83b7a9fa80a4a345ee535654adfb45224892df8ecd603014f4d14ff4097c587",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-participles-v2/bank/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 15554,
+        "sha256": "8e399986393f69ee7f48347ecd04d0d8e89a0aa4f29fc267885144cc1c4e772d",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-participles-v2/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 111164,
+        "sha256": "7515c2e3c48cee730687b844e7741a0de8ef3daf7750f237c8ec3c568cc67c0c",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-participles-v2/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-particle-constructions-v3/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 228673,
+        "sha256": "d09f84c738c51aef79abde7a5faebfd96ba383b2ef1868af35e4d36e6345288e",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-particle-constructions-v3/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-possessives-v6/bank/review/source-files.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 969,
+        "sha256": "5897335bd9793b8c41dafff2fb5720321bb915bedf76f62d2b23c7cf431f6239",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-possessives-v6/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 186550,
+        "sha256": "20f6633d8c284e121a1c397e5683c17a413d499a8814411195a2a979e769d5f9",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-possessives-v6/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-possessives-v6/source-after/data/dailydialog/review-parts/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 32850,
+        "sha256": "c39c1126c23256938198993100c3a359662c506358c82affe5ece89c9f7975ae",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-possessives-v6/source-before/data/dailydialog/review-parts/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 32850,
+        "sha256": "1b8179f8b2f19547ed48cc23d6eb6d818d1f1b46213584eee1f806d20f9e879b",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-possessives-v6/source-files.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 969,
+        "sha256": "5897335bd9793b8c41dafff2fb5720321bb915bedf76f62d2b23c7cf431f6239",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-properties-boundaries-admitted-v1/bank/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 2521,
+        "sha256": "d299cf5e804aa6b47424044202d2cf9f32ce4b62a18586c247752403b0a8a97c",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-properties-boundaries-v1/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 113932,
+        "sha256": "b6dd0997c28a16e4ec4ceb6a9526b34c70932578c6ef4d7a057d6205adc9a169",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-properties-boundaries-v2/bank/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 15565,
+        "sha256": "6798010d9ca7aa4593869dca419504977ba37799c562001cb5e9f2ca1c353b5c",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-properties-boundaries-v2/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 113932,
+        "sha256": "e8d45c9316f0d409a05afc3402deb278d38c41b563043001aad560e51e0a9ee9",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-properties-boundaries-v2/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-qc-admission-v1/bank/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 15703,
+        "sha256": "26412fb6bf46c7e0bbc5a6afa5684273c2d2f72e23190347a1400068db78aa1c",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-qc-admission-v1/bank/review/source-segmentation-decisions.jsonl",
+        "kind": "historical_data_or_provenance",
+        "bytes": 75197,
+        "sha256": "c99753bb88bbbcedc7366befc97868cde9002112dc917bee9c98116cc2d320b1",
+        "archived_identical": [
+          "data/dailydialog/review-parts/hybrid-quality-control-admission-v1.jsonl"
+        ],
+        "central_identical": [
+          "data/mined-templates/audit/decisions/hybrid-quality-control-admission-v1.jsonl"
+        ]
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-qc-admission-v1/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 124230,
+        "sha256": "e54d335258137fa1180e390b2e02d9fd0b1984fbf7b4210ba6496976c66e5295",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-qc-admission-v1/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-qc-fixes-v1/bank/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 15699,
+        "sha256": "8735639ed745029a2c2437f89fce16fbf24e45a28dda27fa5041826be9ee9bbe",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-qc-fixes-v1/bank/review/source-segmentation-decisions.jsonl",
+        "kind": "historical_data_or_provenance",
+        "bytes": 21706,
+        "sha256": "37378b9dede0b9994a1413d339512a727ed81e149e409865af160e41315757f6",
+        "archived_identical": [
+          "data/dailydialog/review-parts/hybrid-quality-control-fixes-v1.jsonl"
+        ],
+        "central_identical": [
+          "data/mined-templates/audit/decisions/hybrid-quality-control-fixes-v1.jsonl"
+        ]
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-qc-fixes-v1/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 124828,
+        "sha256": "9b92f68c56f5d361fb89cff9d2273591e263a476b14c71ddc47b5dd316ca7b1e",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-qc-fixes-v1/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-quality-v27-reviewed/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 240531,
+        "sha256": "c2bb56c261161a88cf09d712509d27a98c2f76ad0513fa724fc4c68d210b9c28",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-quality-v27-reviewed/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-quality-v27/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 240349,
+        "sha256": "4ad1cd7b280806d4e304bf9d36bb22d2d69b7ee67df5c9270e062a62d540b1d4",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-quality-v36/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 263190,
+        "sha256": "1837f78d5d2f41aad773851433e524ba2112e1a4f1e9568f972e2c7646765c94",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-quality-v36/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-quality-v37/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 239196,
+        "sha256": "95095b6d32b59ea8a55062fdc74aa0652a2ca8e7b2e9acf8c11ebb7ad92aaa57",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-quality-v37/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-quality-v38/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 268517,
+        "sha256": "60617c2488a4b56b8c42e992179c9543148ba54923d4f25db3fd2c2a9cd495c6",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-quality-v38/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-quarantine-constructions-v2/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 223419,
+        "sha256": "1b03af46b4929f02c5c425eabdbcdd91733c5dcbb6801c30b4429c69ea67a587",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-quarantine-constructions-v2/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-quarantine-reviewed-v1/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 219452,
+        "sha256": "de5cdc6581fc2f9d2c1512d5b992a1c8aa6ff6bb423e7c89fd35b7fd28e26880",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-quarantine-reviewed-v1/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-quarantine-source-v1/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 218015,
+        "sha256": "3831c4e789935b9972d456447a9e8089535b3a125cbc138c6594455111bc4e7a",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-quarantine-source-v1/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-quote-boundaries-v5/bank/review/source-files.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 1453,
+        "sha256": "00ebb34d6e5a868b1aad51dd297be5bcdcb8699673f878b0b4672341171346fa",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-quote-boundaries-v5/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 184340,
+        "sha256": "5c2a83bbb14803a6acd1345de8f91be7c27af46b68fb49fbbae1e59dcd132ff1",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-quote-boundaries-v5/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-quote-boundaries-v5/source-after/data/dailydialog/review-parts/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 32850,
+        "sha256": "1b8179f8b2f19547ed48cc23d6eb6d818d1f1b46213584eee1f806d20f9e879b",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-quote-boundaries-v5/source-before/data/dailydialog/review-parts/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 32850,
+        "sha256": "b615c36b5422e78416e434d940a8fefbabe8216b3151fb0bf69f918ec9c5b59d",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-quote-boundaries-v5/source-files.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 1453,
+        "sha256": "00ebb34d6e5a868b1aad51dd297be5bcdcb8699673f878b0b4672341171346fa",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-quotes-contractions-v1/bank/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 15708,
+        "sha256": "ae815f11dc72b2ff6e224cdf99ba334fd8193af56c992ef36d840f1d20a99b31",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-quotes-contractions-v1/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 125745,
+        "sha256": "3888e0cf4d3958e1d5fa42b391fa7c72b9941b8e44499369c5e34358680f2612",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-quotes-contractions-v1/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-random-quality-v1/bank/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 15704,
+        "sha256": "373a6e864495842b9d12851af32b62c2fcf375ef7ac2d30cf02794a61beb762c",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-random-quality-v1/bank/review/source-segmentation-decisions.jsonl",
+        "kind": "historical_data_or_provenance",
+        "bytes": 80471,
+        "sha256": "3e854f7200ab1b6b7bbbbcebd9264ca3f5c05258328b22375f4c5ffef8ef5f2b",
+        "archived_identical": [
+          "data/dailydialog/review-parts/hybrid-random-quality-reviews-v1.jsonl"
+        ],
+        "central_identical": [
+          "data/mined-templates/audit/decisions/hybrid-random-quality-reviews-v1.jsonl"
+        ]
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-random-quality-v1/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 126176,
+        "sha256": "53e3ec76905a464d488db634874c52452da32cf4d402375ac37062f86ce90f27",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-random-quality-v1/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-remaining-quotes-v1/bank/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 15707,
+        "sha256": "c214a8a12de75a9b18062373d57ecbcd2e522d05035fd265be1418389befb4f0",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-remaining-quotes-v1/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 126861,
+        "sha256": "693fcfe50bc2778d67a90d0df3bb9a523658bd6a6afbddd78a349b09f2c22bfa",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-remaining-quotes-v1/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-residual-context-v1/bank/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 15704,
+        "sha256": "bb45603cd6612b351d75d53fa552e40e9dc8e85b6d4ed1d5073e3b2ff271bfa9",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-residual-context-v1/bank/review/source-files.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 969,
+        "sha256": "3cd6c2956df2f387ef8690b0c156684b5aaeb4851316dcd5160ea167edf055f4",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-residual-context-v1/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 125884,
+        "sha256": "39a4cc7170cb60dbb152fdb6dd1d1cc90f0920c1a0e80a2faaaeba183c3c9401",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-residual-context-v1/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-residual-context-v1/source-after/data/dailydialog/review-parts/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 32850,
+        "sha256": "894b101173d60b19a84a7043f22a5ef1b3df9f1c355357ff8635eb7f21e3cc34",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-residual-context-v1/source-before/data/dailydialog/review-parts/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 32850,
+        "sha256": "1fbf28006319b6a6534bb0970b38c4c58f73921d90f825dcfbaea8c69da209b7",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-residual-context-v1/source-files.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 969,
+        "sha256": "3cd6c2956df2f387ef8690b0c156684b5aaeb4851316dcd5160ea167edf055f4",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-residual-v12/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 199300,
+        "sha256": "98251858de29235d154d59314ceafba268f46c770cd99558e9eaf370a10b3644",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-residual-v12/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-reviewed-v29/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 243901,
+        "sha256": "1d78def64fb5d0c87626eb4e753e706e25de9fe96787606d1be569b45215ffbe",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-reviewed-v29/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-scopes-v1/bank/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 15549,
+        "sha256": "cf033f82ef505291e8d6720aa92d7043131eb61e3ce57ccc308a4e6a169ab645",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-scopes-v1/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 110868,
+        "sha256": "ec53d1f07f559ccb7c2de12c90c13dee713316077625818953fd9870f78a5147",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-scopes-v1/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-source-boundaries-v1/bank/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 15705,
+        "sha256": "695dc47ba21d7e81ae17c502f713791dc34c2a82aaf424630c9b70ed0ca1b8dd",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-source-boundaries-v1/bank/review/source-files.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 1932,
+        "sha256": "effeb079baea8eedf2861359a7635124f9fd3d17b2a6e2393bf7f971c35f97ea",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-source-boundaries-v1/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 126009,
+        "sha256": "ef4eb7f7502750bbae6d2348439b2f9493c7b9e9928278fbeb0dae871088d4ad",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-source-boundaries-v1/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-source-boundaries-v1/source-after/data/dailydialog/review-parts/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 32850,
+        "sha256": "1fbf28006319b6a6534bb0970b38c4c58f73921d90f825dcfbaea8c69da209b7",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-source-boundaries-v1/source-before/data/dailydialog/review-parts/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 34262,
+        "sha256": "8ced5e98186897d38f654a17fef8d0c8ca8c4552df69d710645f45543fdd2673",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-source-boundaries-v1/source-files.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 1932,
+        "sha256": "effeb079baea8eedf2861359a7635124f9fd3d17b2a6e2393bf7f971c35f97ea",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-source-final-v16/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 250787,
+        "sha256": "13c2a2c148f3187572b233d05064efa7f113560e76ef1bfd9efc4b9b44031da9",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-source-final-v16/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-source-final-v18/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 255899,
+        "sha256": "40852593d30c85af1ae78e75793615193fd2729e68425aff8c147b230cdcfe87",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-source-final-v18/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-source-reviewed-v14/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 245487,
+        "sha256": "5fb9d54a48090a343a0cda3100b4d3d5deadabe43ed00322643a34937c9152b1",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-source-reviewed-v14/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-source-reviewed-v16/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 250258,
+        "sha256": "3187bf27b028a50eef7362bc51f04375c5b4277cdd1edf53e4a66955e9f2fc22",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-source-v1/bank/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 15471,
+        "sha256": "e70deac5188434400cba1d7a9480769a2dc52c51011b5d909dd316999dec42fb",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-source-v1/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 121480,
+        "sha256": "ae70b5e4fb8088fbc460056340bcaec81d85652a91c057fd34f2f13ce82b1ac7",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-source-v1/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-source-v14/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 246900,
+        "sha256": "c8b8848b417ac52bc8a9a2e8dbb52eacc09b754d16f47c0e9404a9abba726c09",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-source-v14/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-source-v16/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 252775,
+        "sha256": "ea8b35bd7086555cfa29cf4266994531cca16f1519abdc48a366f64aaf1afe8c",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-source-v16/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-source-v18/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 258416,
+        "sha256": "79f16407ab46e3cf38ace5094336c70680eaf7bafbb695f84fc108665f1fb739",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-source-v18/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-source-v30/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 246692,
+        "sha256": "7d4f1060f5ab2411eacc8332555dcf26c378fb203cfdad013cbe69b5e119e016",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-source-v30/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-source-v31/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 249478,
+        "sha256": "8ee1da851afbb06e51a301338d63d2d673929a019ce8421e2df53a3bd10405ba",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-source-v31/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-source-v32/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 252415,
+        "sha256": "d4e299c1b5f9810a31758b8146bf7b0c271ff5fc23cdcdb79f3134ddfadd434d",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-source-v32/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-source-v33/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 255524,
+        "sha256": "d798a33436090eea7ffa0b52b036cbdf48d596f39fcb8f5369573ec446565dfd",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-source-v33/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-source-v34/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 259143,
+        "sha256": "d927421110b1db31ea1d9b1dfcab450c4d847612cacc50001e37735c53fdf90e",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-source-v34/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-syntax-v10/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 195338,
+        "sha256": "d9905a32be206f401a144578f09adeb66ca39e148197fcc0fe9dd7867e7b487c",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-syntax-v10/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-hybrid-token-boundaries-v4/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 229753,
+        "sha256": "00551ddb15393fcfd8a4a7835262e7ab1ae575169f67fd91ebb16b6a9f0d7017",
+        "archived_identical": [
+          "artifacts/dailydialog-hybrid-token-boundaries-v4/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-luna-medium-bank-v2/budget-amendment-50-to-100.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 7988,
+        "sha256": "522f109c41c91f96c4884158640482e8496a1bad2a94e91680bc689f12dbe15b",
+        "archived_identical": [
+          "artifacts/dailydialog-luna-medium-bank-v2/budget-amendment-50-to-100.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-luna-medium-bank-v2/plan.before-repack.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 6438,
+        "sha256": "16172f977730ebfbaadc6a8094cbe93f99b86b89b19116d2b48a2a809b27db2e",
+        "archived_identical": [
+          "artifacts/dailydialog-luna-medium-bank-v2/plan.before-repack.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-luna-medium-bank-v2/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 6641,
+        "sha256": "db668867debc51a037ac755bc118ee26e45f646b8eaa1cbc2a9ca0aa58227026",
+        "archived_identical": [
+          "artifacts/dailydialog-luna-medium-bank-v2/plan.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-luna-medium-batch20-v2/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 6565,
+        "sha256": "51a1fcc201f1d5f60fdf331c99b1ec770474f62ae32c90ea59ef3c517307c181",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-luna-medium-batch20-v3/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 6565,
+        "sha256": "ade6bd7f5a25e2b1fdc56fd442804ae9d034655a94853e4b6f3b639a1cc5ad3e",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-luna-offline-edits-v1/compiled.jsonl",
+        "kind": "historical_data_or_provenance",
+        "bytes": 173063,
+        "sha256": "e4372bb1237d1f8bd31dbfaef4ecfde39aa4f810719bfbca0b48dbe4b3310584",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-luna-offline-preparation-v2/additional-compiled.jsonl",
+        "kind": "historical_data_or_provenance",
+        "bytes": 382676,
+        "sha256": "4821a00a53d38269ab62465616936be032acf99b1fc8d7ebfe25153df8a560f0",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-luna-offline-preparation-v2/parts-manifest-before.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 32850,
+        "sha256": "894b101173d60b19a84a7043f22a5ef1b3df9f1c355357ff8635eb7f21e3cc34",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-luna-offline-scope-preparation/prepare.py",
+        "kind": "historical_script",
+        "bytes": 21767,
+        "sha256": "171aabc63a1cc53199b47b2ce56f24753f6736a60ea6fdbba2ca8347774b97b4",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-luna-review-control-v1/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 5809,
+        "sha256": "50b6e7a26dc7096a6d93de6d536f4b9e9732d3777431e5272002cd5da0838228",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-luna-source-preparation-v1/finish.py",
+        "kind": "historical_script",
+        "bytes": 5375,
+        "sha256": "46666b102430c60e662e25b5cea549a48884c69d1196c415ae843d1a56163eec",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-luna-source-preparation-v1/prepare.py",
+        "kind": "historical_script",
+        "bytes": 13927,
+        "sha256": "8947be507e95305f7117f31f33c60713db4e4da6dfd38acf2ede54caa108e252",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-luna-source-preparation-v1/prepare_entities.py",
+        "kind": "historical_script",
+        "bytes": 2848,
+        "sha256": "8e2b5cd884be19d072f21a5739ba60a37f04c76e35063c8ce4daae56d1fa6b70",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-luna-source-preparation-v1/reconcile.py",
+        "kind": "historical_script",
+        "bytes": 2549,
+        "sha256": "be5c3a0ae3e9fa865700ffef36f0179700db1107ee10947512851a06ec32b891",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-luna-vocative-preparation-v1/finish.py",
+        "kind": "historical_script",
+        "bytes": 7687,
+        "sha256": "68639f54ac6a5c41ffbd59830f5191ce6e5131f214fa026e02463413c0c914db",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-luna-vocative-preparation-v1/prepare.py",
+        "kind": "historical_script",
+        "bytes": 20524,
+        "sha256": "9e21dd3c07237d731847cb446729b21e36fd06fdfff5d35741858b5a512975bd",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-luna-vocative-preparation-v1/reconcile.py",
+        "kind": "historical_script",
+        "bytes": 2185,
+        "sha256": "6be70e7f8d90e8e63eb586abace5f61174361c0f7b728d69bf6b34b1491d915a",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-offline-completion-sample-v1/review.py",
+        "kind": "historical_script",
+        "bytes": 13423,
+        "sha256": "f6ace3da8200badcb75e7e74dc76836acce4a1be21a5f18f665ef88d10fd23f2",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-offline-local-reviews-v1/account.py",
+        "kind": "historical_script",
+        "bytes": 2956,
+        "sha256": "cf46c2878a89de84995d68ec022a22d881a551a979f9d0e54b135cf7fb834d20",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-offline-local-reviews-v1/account_addresses.py",
+        "kind": "historical_script",
+        "bytes": 2096,
+        "sha256": "5d9a7bdffd0ae222e1b9a42d69ea71e2018ac09f932326407f63a72577e967d9",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-offline-local-reviews-v1/account_batch.py",
+        "kind": "historical_script",
+        "bytes": 2100,
+        "sha256": "370e7713d93cb975348baf38222610e311132e1138f2f9677044017ef2b8e4cb",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-offline-local-reviews-v1/account_final_attributes.py",
+        "kind": "historical_script",
+        "bytes": 1990,
+        "sha256": "074c49a56c62809cb3f326ab278dcbbc75bf481daa98027d2252ac5839de0383",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-offline-local-reviews-v1/account_groups.py",
+        "kind": "historical_script",
+        "bytes": 5934,
+        "sha256": "5ed48973127db334ca6ef4a6029c10849e82f6dc1392294a62e4ae22c2dc3b8b",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-offline-local-reviews-v1/account_property_tokens.py",
+        "kind": "historical_script",
+        "bytes": 1634,
+        "sha256": "5d63cb299cf3d4b301e69ba4f10f9922b8f052bcdb4be8b918a8af8ec909355c",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-offline-local-reviews-v1/context_lexical.py",
+        "kind": "historical_script",
+        "bytes": 18540,
+        "sha256": "ec77994280f85a81ab847c6d79a61c35808edfa6a463113736dc7e1db9d6df4f",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-offline-local-reviews-v1/convention_decisions.py",
+        "kind": "historical_script",
+        "bytes": 11633,
+        "sha256": "e55ce032c6d924d873ad2011936f997bddfc6495f36d00379697978f5291f5e6",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-offline-local-reviews-v1/finish_offline.py",
+        "kind": "historical_script",
+        "bytes": 4353,
+        "sha256": "4fd72e0f9d526ab99dd6ff188c0112b01250cb75772446c0ed485adc47abff0e",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-offline-local-reviews-v1/prepare.py",
+        "kind": "historical_script",
+        "bytes": 28414,
+        "sha256": "fc59598364fb8ef68808e64ea4434dbf3f6881ad14899e1d170a2e784e5a4874",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-offline-local-reviews-v1/prepare_addresses.py",
+        "kind": "historical_script",
+        "bytes": 5437,
+        "sha256": "21a65a81cf10b04f99f0a1945954a25db3a24639150de55a07ceec4f0013acce",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-offline-local-reviews-v1/prepare_local_group.py",
+        "kind": "historical_script",
+        "bytes": 5150,
+        "sha256": "fb5a2c419e0366696ccf8542a57e3d944cb520e3cf8738e5bc263a5c70b5db51",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-offline-local-reviews-v1/prepare_particles.py",
+        "kind": "historical_script",
+        "bytes": 4576,
+        "sha256": "9c76510f62c0768c86b4766540f779edac293cf338e14bd98adc06227141ccb1",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-offline-local-reviews-v1/property_tokens.py",
+        "kind": "historical_script",
+        "bytes": 7159,
+        "sha256": "b8e81dc62b0a5875b7da696413b4e15e4c151762f9104f7daafa3c329bab1b0e",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-offline-local-reviews-v1/read_compact.py",
+        "kind": "historical_script",
+        "bytes": 969,
+        "sha256": "2eabeca01bfe9239f21a1e88117c2101d19c53c4e4572992a6cd70983750610b",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-offline-local-reviews-v1/read_group.py",
+        "kind": "historical_script",
+        "bytes": 970,
+        "sha256": "589942d8b6d8b6d8e20a9d245f93795d63e9261beb481bf951e8e1c9b62e54ba",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-offline-local-reviews-v1/read_pending.py",
+        "kind": "historical_script",
+        "bytes": 1288,
+        "sha256": "f80e17f8cec15fec08d2b4c0e0885c3c499c3223e1560cbf600dca3b5d16bf12",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-offline-local-reviews-v1/read_properties.py",
+        "kind": "historical_script",
+        "bytes": 1838,
+        "sha256": "6402083f6dfe8d4cb8c01c3455ad6c09cb6f92d726a9ac5d6c7c3ae5c5245c23",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-offline-local-reviews-v1/verify_progress.py",
+        "kind": "historical_script",
+        "bytes": 5130,
+        "sha256": "55fb8007af7d8a0e34505b581ee0b5d9953d6ba502454a2f42bbd901e81bbcf4",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-offline-reparsed-review-v1/seal.py",
+        "kind": "historical_script",
+        "bytes": 3317,
+        "sha256": "e2751045ea95f11a78e52c54c64d3d05a9d1909d6c023c34682c8e65bf42615d",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-originals-v20/conservation.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 14995,
+        "sha256": "585e2984faf50d9ff9fe05b7fd8386701352e53fccfaa158a221377106831557",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-originals-v20/protected-before.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 14294,
+        "sha256": "a9ee209031b8c910e0445214ba6c552a616542e00ab3658e91e17e8f4215c3c5",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-originals-v27/protected-before.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 101855,
+        "sha256": "3f5b243cad4d54f5bc600a6a6864d667c13e283b6c45ee0020ac6f663e954c7d",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-originals-v28/protected-before.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 141598,
+        "sha256": "718683aefcc26c8de1037bb63f6d9f7a17c94d76cfa4584f4cb15028f4d02473",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-parentheses-review-v1/prepare_reviews.py",
+        "kind": "historical_script",
+        "bytes": 10395,
+        "sha256": "19c2b85cdbe54cdc554f7b2cea6433428084dfcc8616af8281df35ed6b173b42",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-parentheses-review-v1/pytest-final/test_full_rebuild_and_next_ove0/repo/artifacts/joined/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 10560,
+        "sha256": "5384b708b44be6f501f6b6d2069b0efa09691f3c8a29cbe2b67b41590225fb64",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-parentheses-review-v1/pytest-final/test_full_rebuild_and_next_ove0/repo/artifacts/revised/bank/review/source-files.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 729,
+        "sha256": "dded7b2c4685858324c3012c443b22c472f59a32ed15280873dfea08b94bc103",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-parentheses-review-v1/pytest-final/test_full_rebuild_and_next_ove0/repo/artifacts/revised/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 7506,
+        "sha256": "5146cf64ed678e1ace1013736f4b88328eebf036f1d4e0f2e81d9e178726c982",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-parentheses-review-v1/pytest-final/test_full_rebuild_and_next_ove0/repo/artifacts/revised/source-files.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 729,
+        "sha256": "dded7b2c4685858324c3012c443b22c472f59a32ed15280873dfea08b94bc103",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-parentheses-review-v1/pytest/test_full_rebuild_and_next_ove0/repo/artifacts/joined/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 10314,
+        "sha256": "e4b960330d26a4a69219bcbc80e2d33a0e712f95bc488c7963c308352c2a8192",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-parentheses-review-v1/pytest/test_full_rebuild_and_next_ove0/repo/artifacts/revised/bank/review/source-files.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 729,
+        "sha256": "dded7b2c4685858324c3012c443b22c472f59a32ed15280873dfea08b94bc103",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-parentheses-review-v1/pytest/test_full_rebuild_and_next_ove0/repo/artifacts/revised/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 7332,
+        "sha256": "b0b4cfe5337f70335e4f74f5bd1c3c95931e5deb44463c784e56e447af9e5a87",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-parentheses-review-v1/pytest/test_full_rebuild_and_next_ove0/repo/artifacts/revised/source-files.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 729,
+        "sha256": "dded7b2c4685858324c3012c443b22c472f59a32ed15280873dfea08b94bc103",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-participle-review-v1/tests-final.xml",
+        "kind": "test_report",
+        "bytes": 24130,
+        "sha256": "e1baff07c9b5431cd1bf386c2e2c52c48b7e2ad6ccc49e95c62ba69ad4c048d8",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-participle-review-v1/tests.xml",
+        "kind": "test_report",
+        "bytes": 28419,
+        "sha256": "d9936a19ee50adcce613944e8a94679d229a8ff9ec63e8b64fe175e0859d8a6b",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-possessives-admission-v6/bank/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 2177,
+        "sha256": "1ddb9853708598134ac7af8a3ccc3e9e6ba237ae0045e2c57256a7c2827f83cd",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-possessives-admission-v6/report.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 2206,
+        "sha256": "f68c4bb70a0201af2a56d22a5d3bd52cd5295d4634332047a4aa461b4980e135",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-properties-boundaries-review-v1/tests.xml",
+        "kind": "test_report",
+        "bytes": 35962,
+        "sha256": "503f854bc12e7e5eec842875db7d0191fd8e773f223505ee411094c00bc8017e",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-qc-admission-v1/compiled.jsonl",
+        "kind": "historical_data_or_provenance",
+        "bytes": 541430,
+        "sha256": "bd1776ad7e353d38695babf5973650d030c021d02ced535bc2dbdf46819d5f4e",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-qc-admission-v1/finalize.py",
+        "kind": "historical_script",
+        "bytes": 11914,
+        "sha256": "c7e8c3f25775f92198bb5ad78478678ba72050d0b1e659f8dba88926f36146d6",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-qc-admission-v1/prepare.py",
+        "kind": "historical_script",
+        "bytes": 9783,
+        "sha256": "7ef1252cfd943c5bcff287fb3b9e18ecd2eabe059671f6b118f307a3036b97c6",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-qc-admission-v1/pytest/test_full_rebuild_and_next_ove0/repo/artifacts/joined/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 10068,
+        "sha256": "617aaca127a24a4d3373b88f65bb8d991f9822dee82411bc9ce328576eae2e9c",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-qc-admission-v1/pytest/test_full_rebuild_and_next_ove0/repo/artifacts/revised/bank/review/source-files.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 729,
+        "sha256": "dded7b2c4685858324c3012c443b22c472f59a32ed15280873dfea08b94bc103",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-qc-admission-v1/pytest/test_full_rebuild_and_next_ove0/repo/artifacts/revised/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 7158,
+        "sha256": "f974d81ab981b685132d87321442bd150ca6c06996add05c126f11dd211bdd4e",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-qc-admission-v1/pytest/test_full_rebuild_and_next_ove0/repo/artifacts/revised/source-files.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 729,
+        "sha256": "dded7b2c4685858324c3012c443b22c472f59a32ed15280873dfea08b94bc103",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-qc-admission-v1/verify_result.py",
+        "kind": "historical_script",
+        "bytes": 6758,
+        "sha256": "32c5e8e4e9bb6c5df6440659868096e705413ecfb5237c1887a3eda4576685d2",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-qc-fixes-v1/compiled.jsonl",
+        "kind": "historical_data_or_provenance",
+        "bytes": 243758,
+        "sha256": "c0e9493c1eb8b0e7bdca2d333e021652fd2029cdda9948e0317449de02cb585c",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-qc-fixes-v1/failed-before-duplicate-reference-check/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 124828,
+        "sha256": "10ef3de80f058549f20f8d0760212311f9b5ebc18daad69aa6993ddff026c0e5",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-qc-fixes-v1/preflight.py",
+        "kind": "historical_script",
+        "bytes": 3690,
+        "sha256": "eeb2d15fe62ad53dce9fdf898035145cf7a3858c0379943084c84ad487879b65",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-qc-fixes-v1/prepare_inputs.py",
+        "kind": "historical_script",
+        "bytes": 3195,
+        "sha256": "33f95b228a8cab9d44e91a7470b22e70770bbd838ffff563949d42d943da356a",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-qc-fixes-v1/prepare_reviews.py",
+        "kind": "historical_script",
+        "bytes": 9666,
+        "sha256": "776ae341e4a354e91cfba5acd999324a97eedb9479c846610558180ebbf92be5",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-qc-fixes-v1/pytest-final/test_full_rebuild_and_next_ove0/repo/artifacts/joined/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 10150,
+        "sha256": "7d977a24d7d38f431f6548ce5b019a8a5ca2f7ab2257ce5d7816af37d05e0213",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-qc-fixes-v1/pytest-final/test_full_rebuild_and_next_ove0/repo/artifacts/revised/bank/review/source-files.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 729,
+        "sha256": "dded7b2c4685858324c3012c443b22c472f59a32ed15280873dfea08b94bc103",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-qc-fixes-v1/pytest-final/test_full_rebuild_and_next_ove0/repo/artifacts/revised/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 7216,
+        "sha256": "b21b839ab2a9ce2c56e8fcc5b84b21d463460b89b396e88d4b4d19740fbd4c32",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-qc-fixes-v1/pytest-final/test_full_rebuild_and_next_ove0/repo/artifacts/revised/source-files.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 729,
+        "sha256": "dded7b2c4685858324c3012c443b22c472f59a32ed15280873dfea08b94bc103",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-qc-fixes-v1/pytest/test_full_rebuild_and_next_ove0/repo/artifacts/joined/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 9904,
+        "sha256": "8bb14c9cf5ff9ce70dc73e00465e3392e6b7d44611307a5fc43cfd5ef515f072",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-qc-fixes-v1/pytest/test_full_rebuild_and_next_ove0/repo/artifacts/revised/bank/review/source-files.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 729,
+        "sha256": "dded7b2c4685858324c3012c443b22c472f59a32ed15280873dfea08b94bc103",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-qc-fixes-v1/pytest/test_full_rebuild_and_next_ove0/repo/artifacts/revised/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 7042,
+        "sha256": "65a4fff7f14c22334078efda9b073c2886a15140bac85728ccdb8efcb342d614",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-qc-fixes-v1/pytest/test_full_rebuild_and_next_ove0/repo/artifacts/revised/source-files.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 729,
+        "sha256": "dded7b2c4685858324c3012c443b22c472f59a32ed15280873dfea08b94bc103",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-qc-fixes-v1/verify_result.py",
+        "kind": "historical_script",
+        "bytes": 5034,
+        "sha256": "22d2acd98b97de883b203f619d9089c6ebecf087e058b36dc7252d7d21448aee",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-quality-control-50-v1/finalize_review.py",
+        "kind": "historical_script",
+        "bytes": 10748,
+        "sha256": "f0f205b66e87204c5c60dba656cace8791af4974034edea2e1d9e5cfddc76a56",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-quality-control-50-v1/report.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 177779,
+        "sha256": "c851a8a23ae51cce27a76dd5143db6c59f1965733528187951ac8daef22cc5b9",
+        "archived_identical": [
+          "data/dailydialog/review-parts/hybrid-quality-control-50-v1.json"
+        ],
+        "central_identical": [
+          "data/mined-templates/audit/decisions/hybrid-quality-control-50-v1.json"
+        ]
+      },
+      {
+        "path": "artifacts/dailydialog-quality-v36/attested/bank/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 2995,
+        "sha256": "ba33c9ebbdca0e982852bb6b39fcbb1baf0557c3355253f797497931ca7c40d8",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-quality-v36/attested/report.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 2927,
+        "sha256": "26c7d5fdd5fc6d19fd086c660678851b9e1d1d44779d796b04334ffcedc03651",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-quality-v37/attested/bank/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 2829,
+        "sha256": "eb5b710e894713d5566f4a6f97115519884932779e6d70ca94c567ab7c85c7af",
+        "archived_identical": [
+          "artifacts/dailydialog-quality-v37/attested/bank/manifest.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-quality-v37/attested/report.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 2775,
+        "sha256": "3730ba01983f8fdbd8bff4d8422696ba43e9336f2c6e31d867e80390daf2dfbe",
+        "archived_identical": [
+          "artifacts/dailydialog-quality-v37/attested/report.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-quality-v37/commit-review/status-before.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 144171,
+        "sha256": "6e47338bfffc042ad305dcb9869fe2ec2fb7f722ce9780f1b176844afa0fe61d",
+        "archived_identical": [
+          "artifacts/dailydialog-quality-v37/commit-review/status-before.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-quality-v37/commit-review/test-collection.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 391199,
+        "sha256": "ffc553e5b2fc992124296fb6adbb5c8a8c108dbceec7d045bb966cd1da571fa6",
+        "archived_identical": [
+          "artifacts/dailydialog-quality-v37/commit-review/test-collection.json"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-quality-v37/pytest-full.xml",
+        "kind": "test_report",
+        "bytes": 503888,
+        "sha256": "59b4cc27a11f8ef2f4ddd59d330c0a737a30b69d829af522071c0fdfd2086e98",
+        "archived_identical": [
+          "artifacts/dailydialog-quality-v37/pytest-full.xml"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-quarantine-completion-v1/catalog.py",
+        "kind": "historical_script",
+        "bytes": 1871,
+        "sha256": "2ce2ad9ec2bfaabce07c8de6e3b5027ab87dc55f0989337c7324de54eaac69a2",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-quarantine-completion-v1/seal_progress.py",
+        "kind": "historical_script",
+        "bytes": 4663,
+        "sha256": "f5178f2284de9b818d6550b6bd7593d823a55fcdc84387a09d68e714bfbcb80f",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-quarantine-completion-v1/verify_sources.py",
+        "kind": "historical_script",
+        "bytes": 2224,
+        "sha256": "229789536c50bb7ba7ccb60b71f7fb1c13997aa73caa8608b7ce3d78cfbfec51",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-quarantine-completion-v1/warning_reviews.py",
+        "kind": "historical_script",
+        "bytes": 11433,
+        "sha256": "70845d082924a28c11ea396ce3d95bca52cb5c08be4151ca9146441371c15725",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-quote-boundaries-admission-v5/bank/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 2138,
+        "sha256": "b4216c5f830deaa07e0e9253b112e33a9d81312676f955789efdb0604306deb8",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-quote-boundaries-admission-v5/report.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 2198,
+        "sha256": "7c72a73c7373d11f3c12c85ae0ac771d67954a78936d5b335ad2218ccbb2cec4",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-quotes-contractions-review-v1/prepare_reviews.py",
+        "kind": "historical_script",
+        "bytes": 18237,
+        "sha256": "61c371065779a6d60fcad57a3f9d369b1cbdc1eefc8d79dcbb760fd3b84a25f6",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-quotes-contractions-review-v1/pytest/test_full_rebuild_and_next_ove0/repo/artifacts/revised/bank/review/source-files.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 729,
+        "sha256": "dded7b2c4685858324c3012c443b22c472f59a32ed15280873dfea08b94bc103",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-quotes-contractions-review-v1/pytest/test_full_rebuild_and_next_ove0/repo/artifacts/revised/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 7564,
+        "sha256": "19516a06b8fb89391c411795bd96d18c5e9d0b6d3990d1e07d94f6616ec49555",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-quotes-contractions-review-v1/pytest/test_full_rebuild_and_next_ove0/repo/artifacts/revised/source-files.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 729,
+        "sha256": "dded7b2c4685858324c3012c443b22c472f59a32ed15280873dfea08b94bc103",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-random-quality-50-v1/check_fragments.py",
+        "kind": "historical_script",
+        "bytes": 4672,
+        "sha256": "6c52f0541c5cf80bb508fb6c4c428e1301a578043fef2315b303766cfc2d3f0f",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-random-quality-50-v1/compare.py",
+        "kind": "historical_script",
+        "bytes": 8708,
+        "sha256": "153a55931de856d9a42797ff7c3358598530ed18a25b48929683af0ac6806e40",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-random-quality-50-v1/compiled.jsonl",
+        "kind": "historical_data_or_provenance",
+        "bytes": 710501,
+        "sha256": "ceb497c1f005517ec3523dc8c1f908b5e57efd8e38cd110e30cbc2c20ad952ff",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-random-quality-50-v1/prepare.py",
+        "kind": "historical_script",
+        "bytes": 3893,
+        "sha256": "9bf4a06e9b9fd8a6c10a222a64ceebeb21ab3fd7f9b166cbc66b17bd343166c7",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-random-quality-50-v1/prepare_fragments.py",
+        "kind": "historical_script",
+        "bytes": 720,
+        "sha256": "532f35f603ec63443db516c3bde007903a54fa386c50f05b828a7a4cc6b4cf0c",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-random-quality-50-v1/prepare_reviews.py",
+        "kind": "historical_script",
+        "bytes": 7694,
+        "sha256": "bd42dc2aabd5dd9530a4319c37b81efcf88dbf715eccada1b713f700b9e2f72b",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-random-quality-50-v1/pytest/test_full_rebuild_and_next_ove0/repo/artifacts/joined/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 10273,
+        "sha256": "e3af04013038c38b859a66411db397f90da597f337e71fee7c30194bb99d8dac",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-random-quality-50-v1/pytest/test_full_rebuild_and_next_ove0/repo/artifacts/revised/bank/review/source-files.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 729,
+        "sha256": "dded7b2c4685858324c3012c443b22c472f59a32ed15280873dfea08b94bc103",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-random-quality-50-v1/pytest/test_full_rebuild_and_next_ove0/repo/artifacts/revised/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 7303,
+        "sha256": "dd42b63992d8b87afe6fdc91377b7b6e72e70c5967b6074a5191e97f66c54784",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-random-quality-50-v1/pytest/test_full_rebuild_and_next_ove0/repo/artifacts/revised/source-files.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 729,
+        "sha256": "dded7b2c4685858324c3012c443b22c472f59a32ed15280873dfea08b94bc103",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-random-quality-50-v1/update_status.py",
+        "kind": "historical_script",
+        "bytes": 10144,
+        "sha256": "42e56ff4ea75ed40d4b410a69d9f4ddf73025dfc4f4c3fadc685bbd442cc3584",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-random-quality-50-v1/verify_result.py",
+        "kind": "historical_script",
+        "bytes": 5718,
+        "sha256": "4c35a63fa55970b24c3a98a6f924e19bac1c84ede41417fea052fd765013c123",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-remaining-quotes-review-v1/prepare_reviews.py",
+        "kind": "historical_script",
+        "bytes": 30643,
+        "sha256": "f403a55c0e8b03b57dfa05e360260e1310fcfb22e11646339a0636db043e7eda",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-remaining-quotes-review-v1/pytest/test_full_rebuild_and_next_ove0/repo/artifacts/revised/bank/review/source-files.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 729,
+        "sha256": "dded7b2c4685858324c3012c443b22c472f59a32ed15280873dfea08b94bc103",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-remaining-quotes-review-v1/pytest/test_full_rebuild_and_next_ove0/repo/artifacts/revised/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 7477,
+        "sha256": "a2443609262e004d1ecf78c16242596fd4687479d6b3b2cd3b86865b91580fe9",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-remaining-quotes-review-v1/pytest/test_full_rebuild_and_next_ove0/repo/artifacts/revised/source-files.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 729,
+        "sha256": "dded7b2c4685858324c3012c443b22c472f59a32ed15280873dfea08b94bc103",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-residual-admission-v12/bank/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 3530,
+        "sha256": "b8e376ec7896423d71e52503b424ae428a9199515daa9a93a21804f0c78cdd5b",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-residual-admission-v12/report.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 3428,
+        "sha256": "74957dc8837d6e98a09ba5376a7a9c2dfd7176b5c0d33b559eb72191a3e21e1b",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-residual-context-review-v1/pytest/test_full_rebuild_and_next_ove0/repo/artifacts/revised/bank/review/source-files.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 729,
+        "sha256": "dded7b2c4685858324c3012c443b22c472f59a32ed15280873dfea08b94bc103",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-residual-context-review-v1/pytest/test_full_rebuild_and_next_ove0/repo/artifacts/revised/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 7477,
+        "sha256": "1a64d05755d1db16c800040277a40be8a6c42a1fdc0eaca2afcc028df1c8cc6c",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-residual-context-review-v1/pytest/test_full_rebuild_and_next_ove0/repo/artifacts/revised/source-files.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 729,
+        "sha256": "dded7b2c4685858324c3012c443b22c472f59a32ed15280873dfea08b94bc103",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-residual-context-review-v1/tests-integration.xml",
+        "kind": "test_report",
+        "bytes": 45827,
+        "sha256": "61eee228b4ffdaf50b5fafd5dd3f706840a4d0ad580ca0ad87e5722482ed0860",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-review-v29/protected-before.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 137602,
+        "sha256": "1c7a857d0f5665898f040fea0c9a2a142270b87969dded0f37a4b117d8bfa2fa",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-semantic-admission-v1/bank/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 2652,
+        "sha256": "460dff62393746c3c8e33c1f9206b351523e3c73dee93cccedea1679b0a18ba2",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-semantic-admission-v1/report.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 2800,
+        "sha256": "93a290cb1b8e58864b09338a0f11225737c8048ec3a1ba0b64ae31b36f4d1b2e",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-sentence-pilot/check_current.py",
+        "kind": "historical_script",
+        "bytes": 9935,
+        "sha256": "45a149bbea2f7b33edcfcf96b2d1240890c76a40328a7f4e5089e968389ae564",
+        "archived_identical": [
+          "artifacts/dailydialog-sentence-pilot/check_current.py"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-sentence-pilot/review_train_101_120.py",
+        "kind": "historical_script",
+        "bytes": 59991,
+        "sha256": "1c1aba5e3967a5cff97fa84f0211b2380beae51c0c675c5ddfd6a5989e10b355",
+        "archived_identical": [
+          "artifacts/dailydialog-sentence-pilot/review_train_101_120.py"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-sentence-pilot/review_train_11_20.py",
+        "kind": "historical_script",
+        "bytes": 22462,
+        "sha256": "88f2cc0ddf4406b758fd68ae9178d382b8c8041448b34d79890245e09e5d3c86",
+        "archived_identical": [
+          "artifacts/dailydialog-sentence-pilot/review_train_11_20.py"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-sentence-pilot/review_train_121_180.py",
+        "kind": "historical_script",
+        "bytes": 161385,
+        "sha256": "9eafba5383c7ec01f43eabd3f4a30653ec38c08887f7ce51b3dc9bf59ec37f4a",
+        "archived_identical": [
+          "artifacts/dailydialog-sentence-pilot/review_train_121_180.py"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-sentence-pilot/review_train_181_240.py",
+        "kind": "historical_script",
+        "bytes": 124814,
+        "sha256": "574f477749d0b9e156d7a9bac928642740784bdb605f4974346f6a88375b7f06",
+        "archived_identical": [
+          "artifacts/dailydialog-sentence-pilot/review_train_181_240.py"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-sentence-pilot/review_train_21_40.py",
+        "kind": "historical_script",
+        "bytes": 38403,
+        "sha256": "f20cb272c420f1e35e959ea185eb85dd77e0e4a9196957eb54c1c89c5066cbd9",
+        "archived_identical": [
+          "artifacts/dailydialog-sentence-pilot/review_train_21_40.py"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-sentence-pilot/review_train_241_300.py",
+        "kind": "historical_script",
+        "bytes": 120543,
+        "sha256": "6a5f1f11a7deb6014b22193efc0b4736035e38fe96ae9c426b4f85c7fd8a8043",
+        "archived_identical": [
+          "artifacts/dailydialog-sentence-pilot/review_train_241_300.py"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-sentence-pilot/review_train_301_360.py",
+        "kind": "historical_script",
+        "bytes": 111463,
+        "sha256": "5ef17ecefbd12a55826183c58069478ecea3672603dea614bbc1fc0b1ca71a84",
+        "archived_identical": [
+          "artifacts/dailydialog-sentence-pilot/review_train_301_360.py"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-sentence-pilot/review_train_361_420.py",
+        "kind": "historical_script",
+        "bytes": 112974,
+        "sha256": "9b9148ac2278fec355e846cf057ad04b0f80d43851faabb49264e082bee469f0",
+        "archived_identical": [
+          "artifacts/dailydialog-sentence-pilot/review_train_361_420.py"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-sentence-pilot/review_train_41_60.py",
+        "kind": "historical_script",
+        "bytes": 59097,
+        "sha256": "ba0d0a4c3fd8c24c6174e4eeef2b8bc97ca394155c89dc886c3f973738fa2f78",
+        "archived_identical": [
+          "artifacts/dailydialog-sentence-pilot/review_train_41_60.py"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-sentence-pilot/review_train_421_480.py",
+        "kind": "historical_script",
+        "bytes": 144317,
+        "sha256": "a095d6a5b160c7d41b41b2da8756c3fa5d1b439621a71fadfaa1fb8726863497",
+        "archived_identical": [
+          "artifacts/dailydialog-sentence-pilot/review_train_421_480.py"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-sentence-pilot/review_train_481_500.py",
+        "kind": "historical_script",
+        "bytes": 49048,
+        "sha256": "d0881312ed0ecf4bd21cfb18f717c1d73c58899bdfb9fc82dbe5844b5289ca69",
+        "archived_identical": [
+          "artifacts/dailydialog-sentence-pilot/review_train_481_500.py"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-sentence-pilot/review_train_61_80.py",
+        "kind": "historical_script",
+        "bytes": 81418,
+        "sha256": "c0cc9fc29922aa640032a88e024948098d2d86d74811dab15206e28037642fb4",
+        "archived_identical": [
+          "artifacts/dailydialog-sentence-pilot/review_train_61_80.py"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-sentence-pilot/review_train_81_100.py",
+        "kind": "historical_script",
+        "bytes": 58811,
+        "sha256": "eb109fcb29dd36439b7a07e987c5fe136ed874043c9e1632ab9fa4cece6bd3ea",
+        "archived_identical": [
+          "artifacts/dailydialog-sentence-pilot/review_train_81_100.py"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-source-boundaries-review-v1/pytest-final/test_full_rebuild_and_next_ove0/repo/artifacts/revised/bank/review/source-files.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 729,
+        "sha256": "dded7b2c4685858324c3012c443b22c472f59a32ed15280873dfea08b94bc103",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-source-boundaries-review-v1/pytest-final/test_full_rebuild_and_next_ove0/repo/artifacts/revised/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 7680,
+        "sha256": "e18c6f9103d5f103c2ef7d8b1f37ca4ba66df64a3695e4554a1a06d20c460f9e",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-source-boundaries-review-v1/pytest-final/test_full_rebuild_and_next_ove0/repo/artifacts/revised/source-files.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 729,
+        "sha256": "dded7b2c4685858324c3012c443b22c472f59a32ed15280873dfea08b94bc103",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-source-boundaries-review-v1/pytest-fix/test_full_rebuild_and_next_ove0/repo/artifacts/revised/plan.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 7622,
+        "sha256": "7482b55158240a6e4d85b8a407bfb55c8fa3abbdeaab2dba6517d2b64bfca308",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-source-boundaries-review-v1/pytest-fix/test_full_rebuild_and_next_ove0/repo/artifacts/revised/source-files.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 729,
+        "sha256": "dded7b2c4685858324c3012c443b22c472f59a32ed15280873dfea08b94bc103",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-source-boundaries-review-v1/tests-integration.xml",
+        "kind": "test_report",
+        "bytes": 31689,
+        "sha256": "7b92250cd217cbf490f00169e2bdca74a57e14ce78f25aa3c1f64aa9c2a70487",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-source-boundaries-review-v1/tests.xml",
+        "kind": "test_report",
+        "bytes": 16400,
+        "sha256": "c51bda05f9f10ace9267b937debb178ecaef8e9ae70936cbf895de36b594131d",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-source-v30/protected-before.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 136990,
+        "sha256": "13ddabdfcacc4a6b7576d702649b49680d1df4c2580f8908b86b4deecb16ddae",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-source-v31/protected-before.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 135790,
+        "sha256": "edcbc9b9c85610cabb3bdbbf2d5f38b7e560ad9855127bd220f42a77cb8bd87f",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-source-v32/protected-before.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 135790,
+        "sha256": "5e77db26f5c692b55b4d11e68ac13cb35676ab1df33e4e36c5b4ac64546916ee",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-source-v32/target-revision-report.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 630,
+        "sha256": "4bf94cbb4461c3e5d4217e96dae8cc4156c2bbe456633e3888e359482f4a9c91",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-source-v33/protected-before.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 135790,
+        "sha256": "1306dc235db0c435fe3c530728270c9559e0021aef9d78ca3d68750c3fddf2dc",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-source-v33/target-revision-report.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 630,
+        "sha256": "9e65509a07d7ce0f46bb1df96fd02163a5ee0edadd862c00bdb2819fe87eb872",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-source-v34/protected-before.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 135790,
+        "sha256": "af4e0be9cf7cfc754f03836df3400383d59f3ccda43f44d836336b8915c016a9",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-source-v34/target-revision-report.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 630,
+        "sha256": "61693711bc951836a53c547dc10adf324e24eec5d7df6a2953d4ae76d74454d0",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-syntax-admission-v10/bank/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 3433,
+        "sha256": "2b4f9b78e2197d5b5f43b76d5cec90c1d861e18f8e4858af1f481bc48bdf9e3c",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-syntax-admission-v10/report.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 3327,
+        "sha256": "f19bc305f4dfc67401932cdd67a205911169eb8eaae863f8e1e9546c69f9284d",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-token-boundaries-admission-v4/bank/manifest.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 2240,
+        "sha256": "fcf9016e320199607afe33fa3966b8eb81fa5d17c3a43fd4b4f50c19ea443b28",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dailydialog-token-boundaries-admission-v4/report.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 2294,
+        "sha256": "2b9ee516a72e969c9cf1abfd0d06d1a896b2796089c2736b799622252492188e",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/dialogue-fragment-adapters-v1/protected-before.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 41885,
+        "sha256": "07f49218566185925d1bc0fa28507cc8928304c1fb63423abe664968563ca507",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/document_quality_v27.py",
+        "kind": "historical_script",
+        "bytes": 10874,
+        "sha256": "a912dc3063e303cc7696d42d41d9858434c30676f570e56ee6f6023991f2a526",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/document_uncovered_v28.py",
+        "kind": "historical_script",
+        "bytes": 8054,
+        "sha256": "a4765ff96ca118376f005b984710f5664d238c31c34696ca65c6f18fa450d867",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/finalize_token_boundaries_v4.py",
+        "kind": "historical_script",
+        "bytes": 3298,
+        "sha256": "0af3b43681c9eafcd44679ee68900963a322d048203675ef2970d3dce307ab8a",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/finish_as_is_v19.py",
+        "kind": "historical_script",
+        "bytes": 7469,
+        "sha256": "501f1f583fd7a71b80266f615f91e49d97e7e757c2958971a7bfde74d9d14a11",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/finish_attestations_v15.py",
+        "kind": "historical_script",
+        "bytes": 11000,
+        "sha256": "4f9d59df1c2c7147b5b212dc3fe0de42443151f8a897019366eca40384774607",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/finish_attestations_v17.py",
+        "kind": "historical_script",
+        "bytes": 10029,
+        "sha256": "912a22ebe5589d8980e16cdb26b5bf26b06245d324fa9ed59a650c19d5459d18",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/finish_originals_v20.py",
+        "kind": "historical_script",
+        "bytes": 7593,
+        "sha256": "fbe53410903cd6b1f5b859be6634fe42813f1edcc9c22b08c456903bc06dc47f",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/finish_quality_v27.py",
+        "kind": "historical_script",
+        "bytes": 10120,
+        "sha256": "7c3bfff5b0d11421f16232c571519713b7856be601fc03bd5d0b793b6b13ddea",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/finish_quality_v36.py",
+        "kind": "historical_script",
+        "bytes": 6952,
+        "sha256": "370152c9ca694d2ff49fd70c4b38159fe147ea7466a44e041f363ce6915aa6ed",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/finish_queue_v21.py",
+        "kind": "historical_script",
+        "bytes": 7820,
+        "sha256": "f2ec46099709ed102979e6c18c84853b5c895ae4ba3855489a1aaec4b1c55108",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/finish_queue_v22.py",
+        "kind": "historical_script",
+        "bytes": 8909,
+        "sha256": "fc81dcd542ff0f0e6ca6dc66d74f4409423b16c7e8c74933a75d3b61aa50663e",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/finish_queue_v23.py",
+        "kind": "historical_script",
+        "bytes": 8065,
+        "sha256": "d94ae8bdd9c7b9cdead9498b7758ee4f2dda14a0aaec94203a38288b91d6ada6",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/finish_queue_v24.py",
+        "kind": "historical_script",
+        "bytes": 8171,
+        "sha256": "3ed73dffa54782b751e59a9282093bdd6cebc22c1109be4a2d3901460ba56806",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/finish_queue_v25.py",
+        "kind": "historical_script",
+        "bytes": 8639,
+        "sha256": "594ab2506243bd32ac921afa60f19e5d57e5bdaf695b10ac207e86b107306826",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/finish_queue_v26.py",
+        "kind": "historical_script",
+        "bytes": 7926,
+        "sha256": "d5bf72d534100f89e962099d63edb72cd2b7adce99041acbd24bb93d21d1a284",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/finish_review_v29.py",
+        "kind": "historical_script",
+        "bytes": 14042,
+        "sha256": "94c72d705e4ccfd16d7b7586ce95a25472802cf34318b016bde2d430510b7fac",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/finish_source_v16.py",
+        "kind": "historical_script",
+        "bytes": 13872,
+        "sha256": "7107ed4cf2e45d286ff7753d8926afa08cf785bd6ac82bfeba309249bf21328e",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/finish_source_v18.py",
+        "kind": "historical_script",
+        "bytes": 6878,
+        "sha256": "ab49197f21f32d9e0ec68ae7226dfdfe831a449c4520d433d7252b9c44a9f8a5",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/finish_source_v30.py",
+        "kind": "historical_script",
+        "bytes": 13858,
+        "sha256": "64d241737cef0feb10ad2a6c4cefe9ee00caccc71b1f753a392b2d44551f90f9",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/finish_source_v31.py",
+        "kind": "historical_script",
+        "bytes": 14406,
+        "sha256": "5dc947083380ef9e87a69fcbdc4fe400397ff9a559bfacadee7a4301cd86fb23",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/finish_source_v32.py",
+        "kind": "historical_script",
+        "bytes": 15214,
+        "sha256": "2435aa185a2b8d9fc4fe7de2918fea10bb5c717b7755502e99a48b43d31bb7a4",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/finish_source_v33.py",
+        "kind": "historical_script",
+        "bytes": 15554,
+        "sha256": "a6e80e4f93e93f400acc8379d5a2c9b3a189ffc8a6bb54c30a6405895f57951e",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/finish_source_v34.py",
+        "kind": "historical_script",
+        "bytes": 16555,
+        "sha256": "2e22fa875b4be9ad122ecfd69afc75ba6fd0c449b476651f8f39fba14fa12eb3",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/finish_uncovered_v28.py",
+        "kind": "historical_script",
+        "bytes": 12409,
+        "sha256": "20e933619b12e18b41f7fed39dce6f3adcdbfc63e1d56b10de09f05cd1d0002c",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/inspect_ambiguity_v13.py",
+        "kind": "historical_script",
+        "bytes": 1518,
+        "sha256": "d109029f3a252bd4c1c5dd8bf140b7dd8962d1b667aba66405ab2f60dec0fc77",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/inspect_prefixes_v32.py",
+        "kind": "historical_script",
+        "bytes": 1479,
+        "sha256": "d193930ec8c9c2e61a22489bf687c22ce50e1ac0ae3bdeae179b1a1d7aa0508b",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/inspect_quality_v27.py",
+        "kind": "historical_script",
+        "bytes": 1003,
+        "sha256": "cee5b07206a6f45c4500205f6ba8a3034a83c33159df148f2c4f0932f2d8627d",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/inspect_quality_v36.py",
+        "kind": "historical_script",
+        "bytes": 880,
+        "sha256": "a4b40954dca9056cfdef3843c12a4667101b30d05741a97720144637d31ac69d",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/inspect_queue_v23.py",
+        "kind": "historical_script",
+        "bytes": 1395,
+        "sha256": "87ed411aef307be659cac9f6bdce2123b74a7f3092c00b4efef37a6acd679958",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/inspect_queue_v24.py",
+        "kind": "historical_script",
+        "bytes": 1433,
+        "sha256": "62a796895bc252269e3a2be9a9c47bed16b14b207682cb3e4c149f8e944d818a",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/inspect_queue_v25.py",
+        "kind": "historical_script",
+        "bytes": 1395,
+        "sha256": "a0f6c6284fd96e1f384561b6cb8e23f8dc9fef0c185a691acb6757d1f065086c",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/inspect_queue_v26.py",
+        "kind": "historical_script",
+        "bytes": 1477,
+        "sha256": "d4387757546021c65fd9266adf5a94bb7c6220684d32e0b36aafe1ac7ccd97a8",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/inspect_related_v28.py",
+        "kind": "historical_script",
+        "bytes": 682,
+        "sha256": "0641e1e9e27f2adcd66a520d6f0e3ecb6a78e7bc607127bd4406a14c33a6a338",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/inspect_remaining_v29.py",
+        "kind": "historical_script",
+        "bytes": 1908,
+        "sha256": "e3f7796b189de505a3abcfe6bc5c2545ee7b5f4901dc2befe0783dd2f2f200c3",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/inspect_roots_v28.py",
+        "kind": "historical_script",
+        "bytes": 656,
+        "sha256": "3763c8d2ee4f109ac7e4f66708e9e1f74dcec2d2dd05e5557c3cacb3dfe2f0bc",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/inspect_semantics_v32.py",
+        "kind": "historical_script",
+        "bytes": 1508,
+        "sha256": "d7ed000196f7aed424e252c96a67e6a0a4c72efee22e0f5554e70625ca61145d",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/inspect_source_v30.py",
+        "kind": "historical_script",
+        "bytes": 1489,
+        "sha256": "f65def5756502e17a1f5313330cdaf1fa173e48a961d079e2c843ce8207becf5",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/inspect_source_v31.py",
+        "kind": "historical_script",
+        "bytes": 1508,
+        "sha256": "fc1f7cc36003f552a1a554a350dca959b84e69514e39fdee08de9b11afe353eb",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/inspect_source_v32.py",
+        "kind": "historical_script",
+        "bytes": 1508,
+        "sha256": "4564eed4972eeafe91fa50043921b209c27f94a0d2d86caa086fce040922e87d",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/inspect_source_v33.py",
+        "kind": "historical_script",
+        "bytes": 1508,
+        "sha256": "4fe7653162f9bf98c80cdeccf2a5b8e98a077d6c836e6aac41540293a1add76e",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/inspect_uncovered_v28.py",
+        "kind": "historical_script",
+        "bytes": 1270,
+        "sha256": "4212baf41ec7428a43d01712fefb6e4c1feb9d519ed04c0b6fad30892951a096",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/package_review_v29.py",
+        "kind": "historical_script",
+        "bytes": 16092,
+        "sha256": "8d4823dd16a1edcfbe6393c86f4c254e2ee4069d5743f7f36406f21876d569f0",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/package_source_v30.py",
+        "kind": "historical_script",
+        "bytes": 17692,
+        "sha256": "4006e5f66eef12ea64e466ea5c22da84b6ee248b93320bcc8c51f930bc341545",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/package_source_v31.py",
+        "kind": "historical_script",
+        "bytes": 19774,
+        "sha256": "52c273cdac619606668789def69411fba7959f4c3607f6644c19c5debff728cf",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/package_source_v32.py",
+        "kind": "historical_script",
+        "bytes": 21332,
+        "sha256": "da75a4e963beade2ae4422dba0257e47f88fbb3062e9e8d220f8878176c49762",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/package_source_v33.py",
+        "kind": "historical_script",
+        "bytes": 10572,
+        "sha256": "efac1863ee222a0a5a13bec1b223db7ad099085a657a9a08e28e27bb686ed256",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/package_source_v34.py",
+        "kind": "historical_script",
+        "bytes": 10792,
+        "sha256": "55dee673eb9109d690a2fd3aa3865f50834b767e7e30fe9efa5afb2c7d1e7356",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/package_uncovered_v28.py",
+        "kind": "historical_script",
+        "bytes": 14893,
+        "sha256": "9c375369679396aca3fc53845b14fece8a9ba610e49e0ab96776e3f720943fbd",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/prepare_adapters_v34.py",
+        "kind": "historical_script",
+        "bytes": 2138,
+        "sha256": "a7fcdaacfe1d7839ae0c63b9e70f377f9813a7f46b088181b5c0af0b239e74dd",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/prepare_admission_v36.py",
+        "kind": "historical_script",
+        "bytes": 7052,
+        "sha256": "82039eeb446831681413cde4602f095a712940a220c7f1c98e68cf0e19bff44c",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/prepare_admission_v37.py",
+        "kind": "historical_script",
+        "bytes": 4777,
+        "sha256": "1ae01f8a498d20304fc23ce124a528e2cdce80ee89200048ddae25a091afd342",
+        "archived_identical": [
+          "artifacts/prepare_admission_v37.py"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/prepare_fragments_v16.py",
+        "kind": "historical_script",
+        "bytes": 3494,
+        "sha256": "e0ab23b011fb55846b8b632ed4f4a3d4837dd3cf7c799fe02f3a93a8635362f0",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/prepare_fragments_v17.py",
+        "kind": "historical_script",
+        "bytes": 2487,
+        "sha256": "91d8f8b86aa618aeb180f0529ebe1048c16ea1e36e910f32880abacaf9e48af6",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/prepare_quality_sample_v27.py",
+        "kind": "historical_script",
+        "bytes": 4733,
+        "sha256": "4527fcb2bb088351517526566732ba679945de9563b73081bfd9b3bc4f03f2ca",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/prepare_quality_v36.py",
+        "kind": "historical_script",
+        "bytes": 4889,
+        "sha256": "171e5f501eb58597f6c919cfa5659cbded64c8ebedda38ba69ce0aceed2c4b2b",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/prepare_quality_v37.py",
+        "kind": "historical_script",
+        "bytes": 4956,
+        "sha256": "1e3000cf43122163ea806672922db1566f7cd5230eb91bc345e1bce49af4ac15",
+        "archived_identical": [
+          "artifacts/prepare_quality_v37.py"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/prepare_quarantine_v35.py",
+        "kind": "historical_script",
+        "bytes": 7605,
+        "sha256": "fe33e70bfbcecd6476158f32e3c9ad9c4c53fe2e7df12fe474eda8fe68bbe06e",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/prepare_source_v16.py",
+        "kind": "historical_script",
+        "bytes": 8515,
+        "sha256": "a1341a3be69db6d895b00290ce431496bb05ca830b2dbd3389d24b851a97b037",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/prepare_source_v18.py",
+        "kind": "historical_script",
+        "bytes": 16668,
+        "sha256": "4cc51573618c3ae9f299c20f988696340e600bce684b6c2c42fc34d914b542b0",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/preserve_queue_v23_bindings.py",
+        "kind": "historical_script",
+        "bytes": 4062,
+        "sha256": "282c04e647c9abf0968fc91af6d195f3fbbdf0d3681c49b14d311c2cef596114",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/quality_readings_v37.py",
+        "kind": "historical_script",
+        "bytes": 10070,
+        "sha256": "35cd9a3ee80b9949ffa0a56248a4fa7cfce50ca9b8437a343652e3b422041d78",
+        "archived_identical": [
+          "artifacts/quality_readings_v37.py"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/quote-boundaries-v5-inputs.json",
+        "kind": "historical_data_or_provenance",
+        "bytes": 615549,
+        "sha256": "a19a8e2d9b49d70cc974231853afa29498e17914c09bb09d619b4b9577cdddc5",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/record_ambiguity_v13.py",
+        "kind": "historical_script",
+        "bytes": 8010,
+        "sha256": "c4f24ae1332f3d7a4a1767c3e085b9b6cb9434223bdff7a300e7be99c78198c2",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/record_attributes_v7.py",
+        "kind": "historical_script",
+        "bytes": 7031,
+        "sha256": "d4e6f35d45dd9af0f6473deb4e8147685e967abce9796c6df3e7c72ab53ebcc1",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/record_boundaries_v11.py",
+        "kind": "historical_script",
+        "bytes": 6770,
+        "sha256": "82b32c0024bb7dec61d9876363a2c38fe83336e414ab6f8c65fb279d51d49ab9",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/record_clauses_v8.py",
+        "kind": "historical_script",
+        "bytes": 6961,
+        "sha256": "7d946f43c45a9e215a9fe2db961f124f5c5cdaec39e2b2cf3a05eb70f9f4eddd",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/record_coordination_v9.py",
+        "kind": "historical_script",
+        "bytes": 7172,
+        "sha256": "3d5f13e9f2f98074b75b0d60bfc85aab0c9bfae79922c0caa3b7c8bd21726781",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/record_possessives_v6.py",
+        "kind": "historical_script",
+        "bytes": 6525,
+        "sha256": "19defa7b9015f95bdcaca3f751b080738efe4044c2770e22de91aacb8030fa0c",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/record_residual_v12.py",
+        "kind": "historical_script",
+        "bytes": 8194,
+        "sha256": "a9566b62867eebbd891076a557acdb1d7a80b672217f3c96a68c0dfc9f479b16",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/record_syntax_v10.py",
+        "kind": "historical_script",
+        "bytes": 7152,
+        "sha256": "43fdf8b887141417671a521712223269465f7a3f76d550da72c365aca9575be2",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/resolve_quality_images_v27.py",
+        "kind": "historical_script",
+        "bytes": 1718,
+        "sha256": "5223228621b45f6735b09c89fbebc54b4581175c85cd0c2071eaa1eb3e72e6e4",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/review_ambiguity_v13.py",
+        "kind": "historical_script",
+        "bytes": 40474,
+        "sha256": "2beed5b9992d070f980fb025db792c40112fcf7ce5ba45f5b5badf939813004b",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/review_as_is_v19.py",
+        "kind": "historical_script",
+        "bytes": 31043,
+        "sha256": "1f7d50503b4411abb09410b22ee0fc2886ed2c215b58f96e520647257998969b",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/review_attestations_v15.py",
+        "kind": "historical_script",
+        "bytes": 24290,
+        "sha256": "01938de13c54cca3bb768e8a00ed0840e0ba851203f350269c216f4086f57713",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/review_attestations_v17.py",
+        "kind": "historical_script",
+        "bytes": 20056,
+        "sha256": "c033f6474a05f4fc3213d144e86a9349bf9b46da3f4c4c7459e3f4f87aa92226",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/review_attributes_v7.py",
+        "kind": "historical_script",
+        "bytes": 50678,
+        "sha256": "c16a5e6f4ab0b246886e7b47c6925eb2a755eb1358e3cab2fcfe662a44b1713e",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/review_boundaries_v11.py",
+        "kind": "historical_script",
+        "bytes": 33429,
+        "sha256": "a319717541bfa09a205b62ffb599fe7de4034229b224bab61d6dde5e97981e4b",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/review_clauses_v8.py",
+        "kind": "historical_script",
+        "bytes": 47644,
+        "sha256": "482d236337c39d3a4cad3da11da2de43ce7d8a1be2dc7ac781c27e79ebd3586e",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/review_coordination_v9.py",
+        "kind": "historical_script",
+        "bytes": 53524,
+        "sha256": "41b492c7ba2d58bf27663dfe4a97d3a1fce1f9233992ba1248f9f2374308685a",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/review_originals_v20.py",
+        "kind": "historical_script",
+        "bytes": 26229,
+        "sha256": "4c1f1068450ac5b3c3b3c6a6492a672a5b80dd40466c99a274179a32912ea2bb",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/review_particle_constructions_v3.py",
+        "kind": "historical_script",
+        "bytes": 5849,
+        "sha256": "3f8295c2e246f96090c46b445cc77a8f12999101bbba73c5444af2e760f1ec35",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/review_possessives_v6.py",
+        "kind": "historical_script",
+        "bytes": 16331,
+        "sha256": "fe751a814892f76e741fc31b6003a4dde97d3e40da1a763b1bb4e850a1e34aef",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/review_quality_v27.py",
+        "kind": "historical_script",
+        "bytes": 17906,
+        "sha256": "5713acd14e23da14e6da63f053f13f05a9004385b111ab1e6f60f3842d1e895d",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/review_quality_v36.py",
+        "kind": "historical_script",
+        "bytes": 12244,
+        "sha256": "fcedb1a31e4862372cd97ec164d83231fc1deee2bc30ba2c7d1688163cbecd20",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/review_quality_v37.py",
+        "kind": "historical_script",
+        "bytes": 7364,
+        "sha256": "5818674a4ad2af68b97e4493c2abe3215be5bee42581b78f20898c81f839b5d2",
+        "archived_identical": [
+          "artifacts/review_quality_v37.py"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/review_quarantine_constructions_v2.py",
+        "kind": "historical_script",
+        "bytes": 20604,
+        "sha256": "4fbcf0abb1c76586fc2d67a56092b42d0d713ee169833b5b255616bfa9680dbd",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/review_queue_v21.py",
+        "kind": "historical_script",
+        "bytes": 48729,
+        "sha256": "098040fecdcf132375142b2a139d893aa4185eeffa268aeea97c65fc387b572d",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/review_queue_v22.py",
+        "kind": "historical_script",
+        "bytes": 10813,
+        "sha256": "5b663ef4abf05f7f8cf2d8bc97979e5a7d2dcc82f2800acd8e773b3489690f22",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/review_queue_v23.py",
+        "kind": "historical_script",
+        "bytes": 11096,
+        "sha256": "7ef928395b9cb852dae40ca8e5f8581f9b47265c64e7231658cf6bedcccdf5cd",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/review_queue_v24.py",
+        "kind": "historical_script",
+        "bytes": 12737,
+        "sha256": "29f737149d218beacb557d9c975050f8fe1efd49ba41be4cf5c5400518e5aa67",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/review_queue_v25.py",
+        "kind": "historical_script",
+        "bytes": 11547,
+        "sha256": "9bbdd588c91a6963773536d2d92d7efac9d7b491e4427b115b5f99073535b592",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/review_queue_v26.py",
+        "kind": "historical_script",
+        "bytes": 13379,
+        "sha256": "f8b935e30a39e2a3200a4675d1789b146e2b247eab3a7b9c1a6cc7f5e60cc60c",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/review_quote_boundaries_v5.py",
+        "kind": "historical_script",
+        "bytes": 19408,
+        "sha256": "3c8c9b9a245fc10a7fc9387faa89bbd74ca1713a4d01fe3c1b5889ef91a3cf9f",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/review_reparsed_v14.py",
+        "kind": "historical_script",
+        "bytes": 15512,
+        "sha256": "227905203e6e8aab2110b4461ea5ba044de97739a5f0ac62a6b3d9a67db42023",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/review_reparsed_v16.py",
+        "kind": "historical_script",
+        "bytes": 17542,
+        "sha256": "2a5d69c4f6ed15b97b085a4effed867a7463c2b0295a0a901fe3265b09295713",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/review_reparsed_v18.py",
+        "kind": "historical_script",
+        "bytes": 15593,
+        "sha256": "0812c99d97a58a0a40699de187b0c067e7d185ccdada2e879240ea6156c8bb41",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/review_residual_v12.py",
+        "kind": "historical_script",
+        "bytes": 39958,
+        "sha256": "298d38f1b3e137e6e282178f2eba8e576127c2ead14647fbb39acbeb3eaa5693",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/review_semantics_v34.py",
+        "kind": "historical_script",
+        "bytes": 1822,
+        "sha256": "42184202ad93a555320998d8e3199f91bc9a00ac3f84ef4e962f06467292ab46",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/review_source_v14.py",
+        "kind": "historical_script",
+        "bytes": 9792,
+        "sha256": "2c770bfc398baa8a176bc40566cc24a229fedd1c6841096a7340e568b06fecf8",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/review_source_v33.py",
+        "kind": "historical_script",
+        "bytes": 1709,
+        "sha256": "d4ad28df3ccf5ad4d7eacba1c0a6664b01783b7d59ae055d001d0f1bf4e96070",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/review_supplemental_v27.py",
+        "kind": "historical_script",
+        "bytes": 8951,
+        "sha256": "b9756f748e83b01970ecb7247a5e6d23bad576d0b836d10b2f4925f97ff0ddf4",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/review_syntax_v10.py",
+        "kind": "historical_script",
+        "bytes": 51687,
+        "sha256": "ee97758058b77185c344724eb0bd3e3c48097cdbecde1f4be1a8c497b7872ccd",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/review_token_boundaries_v4.py",
+        "kind": "historical_script",
+        "bytes": 16609,
+        "sha256": "8f59894798e24b51efd07cf3bb7309fb2bbe5d2af96e7d6f17d54b6cd2f76738",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/revise_targets_v32.py",
+        "kind": "historical_script",
+        "bytes": 5556,
+        "sha256": "df9c806581d3487f00b2d951b221405956f48ad933cf31532f48e1a7c18a4435",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/revise_targets_v33.py",
+        "kind": "historical_script",
+        "bytes": 3556,
+        "sha256": "dceea84ead0d1bd64d268165d99dabe8f7fce659937c310fb14c595c81c78628",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/revise_targets_v34.py",
+        "kind": "historical_script",
+        "bytes": 3562,
+        "sha256": "81142b67f502de944b7b294e9919a73539ca56831578ff075b0e0e644c711c44",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_ambiguity_v13.py",
+        "kind": "historical_script",
+        "bytes": 13173,
+        "sha256": "089dcb2a02aafbd9819652a2d8ed81e1867d553a24a39ed416ba7bb77f63787b",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_as_is_generation_v19.py",
+        "kind": "historical_script",
+        "bytes": 3971,
+        "sha256": "0aaef41483115a94ffcb1867ebbc138e67d8b72990afe3ec3d5a27a864b478c9",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_as_is_v19.py",
+        "kind": "historical_script",
+        "bytes": 8774,
+        "sha256": "06ec18f7b1765baa1802416aaf061e6952c701bee2e491e98087429c16c992a2",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_attestations_v15.py",
+        "kind": "historical_script",
+        "bytes": 11952,
+        "sha256": "d18788962e1c97a611dab5932523786e3f11d1bec53796101092339dca418c1f",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_attestations_v17.py",
+        "kind": "historical_script",
+        "bytes": 12337,
+        "sha256": "80fa0ac15345305e885ab092291b0cd679119eb900aaaebce6362ab9906be121",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_attributes_v7.py",
+        "kind": "historical_script",
+        "bytes": 9864,
+        "sha256": "fc03200aa5c7b0f06e88f760aa7eead126c0ecfd10967fbe947e0bd2284ce06a",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_boundaries_v11.py",
+        "kind": "historical_script",
+        "bytes": 10858,
+        "sha256": "8cd34e5e2dc676022912cf025df595b99ecc5cbf342d6f9d4e07b4ffb219506f",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_clauses_v8.py",
+        "kind": "historical_script",
+        "bytes": 9193,
+        "sha256": "ab3b575b4d09b6ff63ba96d5a1a6cfb39b91d009f6e1e795c6a4727080f289e3",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_coordination_v9.py",
+        "kind": "historical_script",
+        "bytes": 10763,
+        "sha256": "1086ee839add0d76c57c90884b8e61fce50a5fc3f3939eb66a7d6dcf0ad54e3f",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_generation_v29.py",
+        "kind": "historical_script",
+        "bytes": 3617,
+        "sha256": "0b6cb6d0d0117e1f435fac84292fe8f2fe390fb039ec5ac817c8f54e66a80dcc",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_generation_v30.py",
+        "kind": "historical_script",
+        "bytes": 4026,
+        "sha256": "7d48ca0ccef6cf78581c4bb1d11a99bbfeb101cb1a9682787332414d358c35b6",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_generation_v31.py",
+        "kind": "historical_script",
+        "bytes": 4093,
+        "sha256": "198b94507ca56df238e42f0a35a3ec0773d06903ec110b85325dea5a642e5903",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_generation_v32.py",
+        "kind": "historical_script",
+        "bytes": 4079,
+        "sha256": "5991429e3b3cc231dd0f3f08ca66039e84b770dac02d88f49f49f5ab647a3bae",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_generation_v32_corrected.py",
+        "kind": "historical_script",
+        "bytes": 4192,
+        "sha256": "855f32a633c08aa85b3613eb94b754517a1aa4e7e913bcbf507b30da09514b4a",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_generation_v33.py",
+        "kind": "historical_script",
+        "bytes": 4220,
+        "sha256": "7ce1e9f2d297358c93952a7c7411d820ed24354fcca1b67cc18d3498ed62fa17",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_generation_v34.py",
+        "kind": "historical_script",
+        "bytes": 4361,
+        "sha256": "8f804dc4ed2cc89fd456cc17561cf9c0db0f0e8effea3a34231e3a4cd6666623",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_originals_generation_v20.py",
+        "kind": "historical_script",
+        "bytes": 3981,
+        "sha256": "9073556683e83b968fae251210fc4c73c19ab8ff5d4708bde08d684cac93d61e",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_possessives_v6.py",
+        "kind": "historical_script",
+        "bytes": 10084,
+        "sha256": "593797e64c147fb7f66709b6b2b3c83b9aedf1015b2e990e85b121250ae27860",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_quality_v36.py",
+        "kind": "historical_script",
+        "bytes": 8889,
+        "sha256": "8372b004e8521ce9e101a9426d9d54c0998aef9cb5da0350a5ab8a6aab0458b6",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_quality_v37.py",
+        "kind": "historical_script",
+        "bytes": 9777,
+        "sha256": "50323ff63abd42a4d88091db21c534b19f48a85f451f73903383a69b1217ec9b",
+        "archived_identical": [
+          "artifacts/verify_quality_v37.py"
+        ],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_queue_generation_v21.py",
+        "kind": "historical_script",
+        "bytes": 3978,
+        "sha256": "06f3630898776e86413461d3644520b73233bf2c1b1e735c2dfdef78b0d766fb",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_queue_generation_v22.py",
+        "kind": "historical_script",
+        "bytes": 4006,
+        "sha256": "7de5ac236a18e844143e430f6b1577b46e85195ef0a55824e2efaf525af7753d",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_queue_generation_v23.py",
+        "kind": "historical_script",
+        "bytes": 3982,
+        "sha256": "2f975ceda4b3c24a818a53edba0fe1aa95228ff5c2ec0af3c614fede8abf5ad6",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_queue_generation_v24.py",
+        "kind": "historical_script",
+        "bytes": 3982,
+        "sha256": "87d9789a7d34799c2a52e72b7d5ad50cc50b3fc8d4dac98a0e6dd459267c5086",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_queue_generation_v25.py",
+        "kind": "historical_script",
+        "bytes": 3981,
+        "sha256": "d8fe786df9d2c769c62563fc85541b9a6535b881614c6c7d4646d3513cf0dfdd",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_queue_generation_v26.py",
+        "kind": "historical_script",
+        "bytes": 4033,
+        "sha256": "fee8d3b251f076f6c59243d13c13469001e4534760f9af4c997ecb81ec489c1c",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_queue_generation_v27.py",
+        "kind": "historical_script",
+        "bytes": 4032,
+        "sha256": "82a1743a73e305d4288f83b81062f254550595cc1d1964ea0af3fe7d292ee529",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_queue_generation_v28.py",
+        "kind": "historical_script",
+        "bytes": 3939,
+        "sha256": "092a5fe14ba2c5f5b110818db29be2fa02096f1f38ed13e4fb434317f3092a3b",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_queue_v21.py",
+        "kind": "historical_script",
+        "bytes": 7813,
+        "sha256": "ffb62712a1f61f18ae1edd30609a5167da2ec535aeb86c3441be379da37fe0f2",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_queue_v22.py",
+        "kind": "historical_script",
+        "bytes": 8133,
+        "sha256": "e194e4ef28ef464afbe1236aea0fe238897557539d7db8c46f32a4acdd16837f",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_queue_v23.py",
+        "kind": "historical_script",
+        "bytes": 9052,
+        "sha256": "13cd9a48acffce4385d7f00c09554db22217edc63ee2d9aeb4a6e93f5b7eebff",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_queue_v24.py",
+        "kind": "historical_script",
+        "bytes": 9113,
+        "sha256": "b82efd728a2b89757cb6da04a437997da8a3b6ad1a447541312e1f500b2b7830",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_queue_v25.py",
+        "kind": "historical_script",
+        "bytes": 8669,
+        "sha256": "01f39a83f186eeb93e48be5e1061be19e709c6dc48f3321fe692aab280abcfca",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_queue_v26.py",
+        "kind": "historical_script",
+        "bytes": 11275,
+        "sha256": "d8076f269fe9ac92b26ab4ef7c1d7778b8d41c0b06e6e2eccdc16603e92e8383",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_quote_boundaries_v5.py",
+        "kind": "historical_script",
+        "bytes": 8457,
+        "sha256": "69652130676d4d37f86dc7c15f4e5449f727603ff402f765fe0bfe8d29f790d7",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_residual_v12.py",
+        "kind": "historical_script",
+        "bytes": 12371,
+        "sha256": "dffeb41b9262b0d58da1695f0c873f6fdbbeae4ea5c464f31cef0f5198e6f5e6",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_source_v14.py",
+        "kind": "historical_script",
+        "bytes": 7617,
+        "sha256": "ff6d91ba4a6d28c4f48b00f8b2f0e09f6d7c8fc51cf52186d3b4bc9beddec606",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_source_v16.py",
+        "kind": "historical_script",
+        "bytes": 8511,
+        "sha256": "da65fc95aaebb705d716c2b6afac4325cc57634ee862984ccaead1ea7fabf7b8",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_source_v18.py",
+        "kind": "historical_script",
+        "bytes": 8348,
+        "sha256": "e3d9ed02c1e757671d92b66a80d25008ddfd9e2391bf591984a7573c131091d7",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_syntax_v10.py",
+        "kind": "historical_script",
+        "bytes": 10992,
+        "sha256": "dd3287a23b13c415f60a7d79cd73653970d84a7d9d13ffaa29655f5137577207",
+        "archived_identical": [],
+        "central_identical": []
+      },
+      {
+        "path": "artifacts/verify_token_boundaries_v4.py",
+        "kind": "historical_script",
+        "bytes": 6522,
+        "sha256": "15b91c133b1d9bb4a26924a2e9fade082e5b7aa2aa799fb432015b1946b26965",
+        "archived_identical": [],
+        "central_identical": []
+      }
+    ]
+  }
+}

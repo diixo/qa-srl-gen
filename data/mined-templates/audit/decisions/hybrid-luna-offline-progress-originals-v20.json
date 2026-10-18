@@ -1,0 +1,1159 @@
+{
+  "version": "offline-original-text-admission-v20",
+  "date": "2026-10-17",
+  "previous_progress": "data/dailydialog/review-parts/hybrid-luna-offline-progress-as-is-v19.json",
+  "candidate": "artifacts/dailydialog-hybrid-as-is-v19",
+  "ledger": "data/dailydialog/review-parts/luna-offline-as-is-v19",
+  "review_status": "UNREVIEWED",
+  "full_candidate_published": false,
+  "semantic_review_complete": false,
+  "reviewed_original_segments": 47,
+  "fully_scoped_interpretations": 38,
+  "partial_interpretations": 9,
+  "original_source_dialogues": 40,
+  "source_text_corrections": 0,
+  "api_calls": 0,
+  "parser_inference_calls": 0,
+  "warning_disposition_changes": 0,
+  "candidate_rebuilt": false,
+  "quarantined_api_warnings": 644,
+  "quarantined_current_occurrences": 628,
+  "quarantine_groups": {
+    "source": 556,
+    "ambiguity": 72,
+    "other_syntax": 7,
+    "sentence_boundary": 2,
+    "property_attachment": 1,
+    "negation_or_modality": 1,
+    "coordination": 3,
+    "clause_attachment": 2
+  },
+  "saved_warnings": 12978,
+  "supplemental_semantic_ambiguities": 5,
+  "decisions": {
+    "hybrid-originals-review-v20.jsonl": {
+      "path": "data/dailydialog/review-parts/hybrid-originals-review-v20.jsonl",
+      "sha256": "9d6bc38b0b8f67e1294773b00ab6bacbeeda69e89a063ce296eed3f83dc9a8bc"
+    },
+    "hybrid-originals-adapters-v20.json": {
+      "path": "data/dailydialog/review-parts/hybrid-originals-adapters-v20.json",
+      "sha256": "61fee42bd1159f3d47bb54a4db6b3c277e63297a445c698b73c191b8e57202c7"
+    },
+    "hybrid-originals-contexts-v20.jsonl.gz": {
+      "path": "data/dailydialog/review-parts/hybrid-originals-contexts-v20.jsonl.gz",
+      "sha256": "5817070a197c180d99f3315fc950ff0f40f6720e760dc46548044d191f5405d8"
+    },
+    "hybrid-originals-outcomes-v20.json": {
+      "path": "data/dailydialog/review-parts/hybrid-originals-outcomes-v20.json",
+      "sha256": "754e1001c30bba0bd86c65a78c3657300ba716bb5ce3098874c5795958d875f3"
+    }
+  },
+  "fragment_publication": {
+    "status": "passed",
+    "published": true,
+    "new_patterns": 47,
+    "checked_patterns": 47,
+    "catalog_patterns": 147,
+    "source_dialogues": 40,
+    "episodes_checked": 94,
+    "transitions_checked": 282,
+    "previous_patterns_preserved": 100,
+    "previous_catalog_sha256": "5d42cb731c8a77e642dbc6cbc3b1cb192c55e26966634e6d936bf9dfdc635868",
+    "result_catalog_sha256": "9359b6045a41e5b5bbce1ab661beeeff5856b0656e6c8e768805ab7d3dbf0b88",
+    "template_bank_changed": false,
+    "api_calls": 0,
+    "parser_inference_calls": 0
+  },
+  "fragment_generation_smoke": {
+    "status": "passed",
+    "task": "fragment_meaning",
+    "seed": 20,
+    "catalog_patterns": 147,
+    "new_patterns": 47,
+    "previous_patterns_preserved": 100,
+    "catalog_sha256": "26064359086fc9be4eb5ffc52cc236d5163421bf0ebcf3f1f3707ed86fe5247a",
+    "splits": {
+      "user-assistant/train": {
+        "episodes": 47,
+        "history": 47,
+        "memory": 47,
+        "extraction": 141
+      },
+      "user-assistant/validation": {
+        "episodes": 47,
+        "history": 47,
+        "memory": 47,
+        "extraction": 141
+      },
+      "user-assistant/test": {
+        "episodes": 47,
+        "history": 47,
+        "memory": 47,
+        "extraction": 141
+      },
+      "named-people/train": {
+        "episodes": 47,
+        "history": 47,
+        "memory": 47,
+        "extraction": 141
+      },
+      "named-people/validation": {
+        "episodes": 47,
+        "history": 47,
+        "memory": 47,
+        "extraction": 141
+      },
+      "named-people/test": {
+        "episodes": 47,
+        "history": 47,
+        "memory": 47,
+        "extraction": 141
+      }
+    },
+    "generated_episodes": 282,
+    "extraction_rows": 846,
+    "history_rows": 282,
+    "memory_rows": 282,
+    "original_reply_text_unchanged": true,
+    "json_inside_content": false,
+    "invented_completed_events": 0,
+    "extraction_scope": "Explicit textual utterance_interpretation; no generic action-role extraction or completion is inferred.",
+    "api_calls": 0,
+    "parser_inference_calls": 0,
+    "examples": [
+      {
+        "pattern": "dd_v20_train_1462_13_2",
+        "assistant": "Does your reporting work sometimes make you tired?",
+        "original_reply": "News happened out of expectation.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | described news as unexpected in the discussion of reporting work; no particular event or definite time phase was established",
+        "answer": "You described news as unexpected in the discussion of reporting work; no particular event or definite time phase was established."
+      },
+      {
+        "pattern": "dd_v20_train_1453_6_2",
+        "assistant": "We were talking about how unpredictable the weather is.",
+        "original_reply": "We don't know what is going to be like tomorrow.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | said the group does not know what tomorrow's weather will be like, without predicting a particular condition",
+        "answer": "You said the group does not know what tomorrow's weather will be like, without predicting a particular condition."
+      },
+      {
+        "pattern": "dd_v20_train_1128_2_1",
+        "assistant": "Have you ever played Making?",
+        "original_reply": "Not really, but I know it is very popular a traditional Chinese gambling game.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | gave a qualified negative answer about having played Making and described it as a popular traditional Chinese gambling game; the game's conventional identity is unknown",
+        "answer": "You gave a qualified negative answer about having played Making and described it as a popular traditional Chinese gambling game; the game's conventional identity is unknown."
+      },
+      {
+        "pattern": "dd_v20_train_1410_4_2",
+        "assistant": "Organizing a funeral seems complicated.",
+        "original_reply": "There are many things that you have to to arrange.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | described an obligation to make many arrangements for the funeral, without reporting them as completed",
+        "answer": "You described an obligation to make many arrangements for the funeral, without reporting them as completed."
+      },
+      {
+        "pattern": "dd_v20_train_1082_1_1",
+        "assistant": "Tell me about the girl you mentioned.",
+        "original_reply": "I saw lily for the first time.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | reported seeing the person named lily for the first time",
+        "answer": "You reported seeing the person named lily for the first time."
+      },
+      {
+        "pattern": "dd_v20_train_1440_10_1",
+        "assistant": "I work in a cubicle and do not like it.",
+        "original_reply": "I work in a cubicle too, but I I don't mind it.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | reported also working in a cubicle and having no objection to it",
+        "answer": "You reported also working in a cubicle and having no objection to it."
+      },
+      {
+        "pattern": "dd_v20_train_1473_7_3",
+        "assistant": "We are discussing winter weather in Washington.",
+        "original_reply": "But sometimes it slows a lot in winter.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | made a partly unclear observation about something occurring sometimes in winter in Washington; the phenomenon behind slows remains unknown",
+        "answer": "You made a partly unclear observation about something occurring sometimes in winter in Washington; the phenomenon behind slows remains unknown."
+      },
+      {
+        "pattern": "dd_v20_train_1238_3_1",
+        "assistant": "I called him a yeoman.",
+        "original_reply": "Then he become angry with you?",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | asked whether the man then became angry with the listener, without asserting that he did",
+        "answer": "You asked whether the man then became angry with the listener, without asserting that he did."
+      },
+      {
+        "pattern": "dd_v20_train_1084_8_1",
+        "assistant": "Did you go swimming at the beach?",
+        "original_reply": "I wanted to, but the water is too cold, and I just wetted in up to my knees.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | reported wanting to swim but encountering cold water and only entering up to the knees; swimming was not confirmed",
+        "answer": "You reported wanting to swim but encountering cold water and only entering up to the knees; swimming was not confirmed."
+      },
+      {
+        "pattern": "dd_v20_train_1084_1_2",
+        "assistant": "What does my appearance suggest to you?",
+        "original_reply": "Look like you got some sun this weekend.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | inferred from the listener's appearance that they got some sun over the weekend; this remained an impression",
+        "answer": "You inferred from the listener's appearance that they got some sun over the weekend; this remained an impression."
+      },
+      {
+        "pattern": "dd_v20_train_1268_2_2",
+        "assistant": "What interests you about the Oscars?",
+        "original_reply": "It's interesting to see who is considered the best in their field and which film are thought to be particularly good.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | expressed interest in who is considered best in their field and which films are judged particularly good, without identifying winners or asserting objective rankings",
+        "answer": "You expressed interest in who is considered best in their field and which films are judged particularly good, without identifying winners or asserting objective rankings."
+      },
+      {
+        "pattern": "dd_v20_train_1025_4_2",
+        "assistant": "We were discussing why Harry was angry. I suggested nerves about directing his first play. What do you think?",
+        "original_reply": "Maybe there's any other reason.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | suggested that Harry's anger might have another cause, without identifying or confirming it",
+        "answer": "You suggested that Harry's anger might have another cause, without identifying or confirming it."
+      },
+      {
+        "pattern": "dd_v20_train_1089_17_2",
+        "assistant": "After eating and taking down the tent, what will we do on the canoe trip?",
+        "original_reply": "Then we will pack everything into the canoe, We can shove off by 6",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | planned to pack everything into the canoe and said departure by 6 was possible; neither action was completed and AM or PM was unspecified",
+        "answer": "You planned to pack everything into the canoe and said departure by 6 was possible; neither action was completed and AM or PM was unspecified."
+      },
+      {
+        "pattern": "dd_v20_train_1436_11_1",
+        "assistant": "We are watching the children trying demanding sports. What do you think about their attitude to danger?",
+        "original_reply": "I think that these kinds haven't learnt to be afraid yet.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | expressed the belief that the children have not yet learned to be afraid, without establishing that all of them are fearless",
+        "answer": "You expressed the belief that the children have not yet learned to be afraid, without establishing that all of them are fearless."
+      },
+      {
+        "pattern": "dd_v20_train_1392_1_1",
+        "assistant": "I am Mary. Do I seem familiar to you?",
+        "original_reply": "You know, Mary, I feel we meet somewhere before.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | expressed a feeling of having met Mary before, without confirming a meeting or identifying where",
+        "answer": "You expressed a feeling of having met Mary before, without confirming a meeting or identifying where."
+      },
+      {
+        "pattern": "dd_v20_train_1436_12_1",
+        "assistant": "We have been discussing the children doing sports.",
+        "original_reply": "It seems that they really enjoy to go faster, higher and further.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | inferred that the children enjoy going faster, higher and further, without reporting a particular record or completed jump",
+        "answer": "You inferred that the children enjoy going faster, higher and further, without reporting a particular record or completed jump."
+      },
+      {
+        "pattern": "dd_v20_train_1462_12_1",
+        "assistant": "I work as a reporter and interview people from different occupations.",
+        "original_reply": "Are you feel tired?",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | asked whether the reporter feels tired, without asserting tiredness",
+        "answer": "You asked whether the reporter feels tired, without asserting tiredness."
+      },
+      {
+        "pattern": "dd_v20_train_1388_6_4",
+        "assistant": "We were discussing where Australian cities are. What about Perth?",
+        "original_reply": "And Perth is on the west coast, but sort of of out there by itself.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | described Perth as being on the west coast and relatively isolated from the other cities discussed, without giving an exact distance",
+        "answer": "You described Perth as being on the west coast and relatively isolated from the other cities discussed, without giving an exact distance."
+      },
+      {
+        "pattern": "dd_v20_train_1203_5_1",
+        "assistant": "You said people sometimes touch your head. How do you feel about it?",
+        "original_reply": "But I do not like anyone touch my head.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | expressed dislike of anyone touching their head",
+        "answer": "You expressed dislike of anyone touching their head."
+      },
+      {
+        "pattern": "dd_v20_train_1314_2_3",
+        "assistant": "The couple cut pictures from catalogs and put them in a notebook. What do those pictures show?",
+        "original_reply": "The picture are of things they want.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | described the pictures as showing things the couple wants, without asserting purchase, ownership or receipt",
+        "answer": "You described the pictures as showing things the couple wants, without asserting purchase, ownership or receipt."
+      },
+      {
+        "pattern": "dd_v20_train_1161_1_2",
+        "assistant": "What is the appointment schedule for next week?",
+        "original_reply": "7 appointments in Paris at beginning of next week, and 4 in Frankfurt at the end of the week.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | listed seven appointments in Paris early next week and four in Frankfurt at the end of that week; attendance was not confirmed",
+        "answer": "You listed seven appointments in Paris early next week and four in Frankfurt at the end of that week; attendance was not confirmed."
+      },
+      {
+        "pattern": "dd_v20_train_1344_3_2",
+        "assistant": "I am seeing you off after your visit.",
+        "original_reply": "I must thank you to see me off.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | thanked the listener for seeing them off, without asserting that the journey was already completed",
+        "answer": "You thanked the listener for seeing them off, without asserting that the journey was already completed."
+      },
+      {
+        "pattern": "dd_v20_train_1406_8_2",
+        "assistant": "We were discussing learning and professional development. What is your view?",
+        "original_reply": "But one should keep learning daily to maintain our keen mental power expand our intellectual capacity.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | recommended daily learning to maintain mental sharpness and expand intellectual capacity; the benefits were goals, not confirmed results",
+        "answer": "You recommended daily learning to maintain mental sharpness and expand intellectual capacity; the benefits were goals, not confirmed results."
+      },
+      {
+        "pattern": "dd_v20_train_1372_2_3",
+        "assistant": "You were describing how much Tom likes Jenny. How would you characterize her importance to him?",
+        "original_reply": "She is a big apple in his eye.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | described Jenny as precious to Tom through a figurative expression of affection",
+        "answer": "You described Jenny as precious to Tom through a figurative expression of affection."
+      },
+      {
+        "pattern": "dd_v20_train_1139_11_2",
+        "assistant": "You were describing how a Roman enjoys life. What else would you say?",
+        "original_reply": "Eye knows how to enjoy himself.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | characterized the person under discussion as knowing how to enjoy life; the subject form Eye remains unresolved",
+        "answer": "You characterized the person under discussion as knowing how to enjoy life; the subject form Eye remains unresolved."
+      },
+      {
+        "pattern": "dd_v20_train_1236_4_5",
+        "assistant": "How are you approaching your work at the company?",
+        "original_reply": "But anyway, I have trying my best to be a good employee.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | reported trying their best to be a good employee, without claiming that the goal had been achieved",
+        "answer": "You reported trying their best to be a good employee, without claiming that the goal had been achieved."
+      },
+      {
+        "pattern": "dd_v20_train_1442_3_2",
+        "assistant": "We were discussing Dan's divorce and his relationship.",
+        "original_reply": "But his relation with Sallycome to a sticky end and was found by his wife.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | reported an unpleasant end to Dan's relationship and a discovery by his wife; the precise object of discovery and the wording Sallycome remain unresolved",
+        "answer": "You reported an unpleasant end to Dan's relationship and a discovery by his wife; the precise object of discovery and the wording Sallycome remain unresolved."
+      },
+      {
+        "pattern": "dd_v20_train_1380_2_1",
+        "assistant": "The survey asks about personal internet use at work. What about you?",
+        "original_reply": "Well, I just spend 15 minutes as so checking my stock bonds and booking an air ticket for my mother.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | associated fifteen minutes with checking investments and booking an air ticket for their mother; whether this was routine or a recent instance and whether booking finished remain unclear",
+        "answer": "You associated fifteen minutes with checking investments and booking an air ticket for their mother; whether this was routine or a recent instance and whether booking finished remain unclear."
+      },
+      {
+        "pattern": "dd_v20_train_1203_6_1",
+        "assistant": "I do not like anyone touching my head. What do you think?",
+        "original_reply": "They are just been in friendly, when you are in Roman, do as the Romans do, that means you need to adapt to your environment.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | attributed friendly intent to those people and advised adapting to local customs; no literal trip to Rome or completed adaptation was asserted",
+        "answer": "You attributed friendly intent to those people and advised adapting to local customs; no literal trip to Rome or completed adaptation was asserted."
+      },
+      {
+        "pattern": "dd_v20_train_1211_7_1",
+        "assistant": "We have been joking while discussing which movie to see.",
+        "original_reply": "Alright, all joking aside, what kinds of moves do you like?",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | set the joking aside and asked which kinds of movies the listener likes, without supplying the answer",
+        "answer": "You set the joking aside and asked which kinds of movies the listener likes, without supplying the answer."
+      },
+      {
+        "pattern": "dd_v20_train_1339_1_2",
+        "assistant": "You mentioned that I talked like the Terminator for two months. What is your impression of how much I liked it?",
+        "original_reply": "Wow, I think you liked that movie even more than I liked'Titanic.'",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | suggested that the listener liked the Terminator movie even more than the speaker liked Titanic; this was a subjective impression",
+        "answer": "You suggested that the listener liked the Terminator movie even more than the speaker liked Titanic; this was a subjective impression."
+      },
+      {
+        "pattern": "dd_v20_train_1172_5_2",
+        "assistant": "You want to join our camping weekend but have a lot of work. Can you decide yet?",
+        "original_reply": "I'll see how to goes.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | deferred the camping decision to see how work develops, without committing to attend",
+        "answer": "You deferred the camping decision to see how work develops, without committing to attend."
+      },
+      {
+        "pattern": "dd_v20_train_1371_2_3",
+        "assistant": "We are discussing the drawbacks of fame. What has happened to celebrities' privacy?",
+        "original_reply": "There have been numerous cases of paparazzi interfering with star's private live in recent years.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | reported numerous cases of paparazzi intruding into celebrities' private lives in recent years, without identifying particular cases or an exact count",
+        "answer": "You reported numerous cases of paparazzi intruding into celebrities' private lives in recent years, without identifying particular cases or an exact count."
+      },
+      {
+        "pattern": "dd_v20_train_1157_1_1",
+        "assistant": "What impression do you get from the way I talk about him?",
+        "original_reply": "It sounds that you have a high opinion of him.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | inferred that the listener has a high opinion of the man under discussion",
+        "answer": "You inferred that the listener has a high opinion of the man under discussion."
+      },
+      {
+        "pattern": "dd_v20_train_1317_4_1",
+        "assistant": "When did you start blogging?",
+        "original_reply": "I began blogging when I first went to the US for my graduate strides.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | reported starting to blog on the first trip to the US; the exact purpose behind graduate strides and any completed qualification remain unspecified",
+        "answer": "You reported starting to blog on the first trip to the US; the exact purpose behind graduate strides and any completed qualification remain unspecified."
+      },
+      {
+        "pattern": "dd_v20_train_1056_4_1",
+        "assistant": "The Thai restaurant is only a twenty-minute walk away. Why take a taxi?",
+        "original_reply": "Never thought about it, I sure you are right.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | acknowledged not having considered walking and agreed with the suggestion, without reporting a completed walk",
+        "answer": "You acknowledged not having considered walking and agreed with the suggestion, without reporting a completed walk."
+      },
+      {
+        "pattern": "dd_v20_train_1161_10_1",
+        "assistant": "I plan to reach Frankfurt airport around 6 on Friday for the trip home. What should I keep in mind?",
+        "original_reply": "Don't forget it's Friday nighty.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | reminded the listener that the planned journey is on Friday evening, without specifying a calendar date",
+        "answer": "You reminded the listener that the planned journey is on Friday evening, without specifying a calendar date."
+      },
+      {
+        "pattern": "dd_v20_train_1157_4_1",
+        "assistant": "You seem to trust him, but I doubt that he is a dependable friend.",
+        "original_reply": "But he is not a fine wether friend who could sell you down the river.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | denied that the man is an unreliable friend who could betray someone; no actual betrayal or literal sale was asserted",
+        "answer": "You denied that the man is an unreliable friend who could betray someone; no actual betrayal or literal sale was asserted."
+      },
+      {
+        "pattern": "dd_v20_train_1209_5_2",
+        "assistant": "I feel unwell after the trip but have a meeting soon. What do you suggest?",
+        "original_reply": "You should really get some seat or you'll end up feeling even worse than you do now.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | advised pausing or taking a seat and warned of feeling worse otherwise; the exact intended remedy remains uncertain and no worsening was confirmed",
+        "answer": "You advised pausing or taking a seat and warned of feeling worse otherwise; the exact intended remedy remains uncertain and no worsening was confirmed."
+      },
+      {
+        "pattern": "dd_v20_train_1043_4_1",
+        "assistant": "Please make sure you contact all the hot leads as soon as possible.",
+        "original_reply": "Don't worry, I've gotchy covered.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | reassured the colleague that the hot leads would be handled; completed contacts were not established",
+        "answer": "You reassured the colleague that the hot leads would be handled; completed contacts were not established."
+      },
+      {
+        "pattern": "dd_v20_train_1006_2_3",
+        "assistant": "You said you left work early. Did you skip your duties?",
+        "original_reply": "I finished doing what I should do and then knock off an hour earlier.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | reported finishing the required work and then leaving work an hour early",
+        "answer": "You reported finishing the required work and then leaving work an hour early."
+      },
+      {
+        "pattern": "dd_v20_train_1082_1_2",
+        "assistant": "You said you saw lily for the first time. How did it feel?",
+        "original_reply": "And fell like I've been struck by lightening.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | expressed sudden strong attraction to lily through a figurative comparison; no literal lightning strike or fall was asserted",
+        "answer": "You expressed sudden strong attraction to lily through a figurative comparison; no literal lightning strike or fall was asserted."
+      },
+      {
+        "pattern": "dd_v20_train_1322_10_2",
+        "assistant": "We are discussing abbreviations in text messages. What does H&K mean?",
+        "original_reply": "H&K actually is an acronym for'hug and kiss'.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | explained H&K as hug and kiss, without asserting that any hugging or kissing occurred",
+        "answer": "You explained H&K as hug and kiss, without asserting that any hugging or kissing occurred."
+      },
+      {
+        "pattern": "dd_v20_train_1213_4_2",
+        "assistant": "You believe the suspect is innocent and said he trusted a treacherous friend. What happened?",
+        "original_reply": "His best friend Tony foamed him in.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | accused the suspect's best friend Tony of betraying him in this account; the specific act behind foamed him in and criminal guilt remain unestablished",
+        "answer": "You accused the suspect's best friend Tony of betraying him in this account; the specific act behind foamed him in and criminal guilt remain unestablished."
+      },
+      {
+        "pattern": "dd_v20_train_1396_2_1",
+        "assistant": "Mary has really got under my skin.",
+        "original_reply": "I know what love it.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | claimed to understand love, without reporting a new relationship or a completed action",
+        "answer": "You claimed to understand love, without reporting a new relationship or a completed action."
+      },
+      {
+        "pattern": "dd_v20_train_1009_4_1",
+        "assistant": "You bought something yesterday and now say it is broken. What does Mike suggest?",
+        "original_reply": "Mike suggests me to return it.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | reported Mike's suggestion to return the broken purchased item; no return was reported as completed",
+        "answer": "You reported Mike's suggestion to return the broken purchased item; no return was reported as completed."
+      },
+      {
+        "pattern": "dd_v20_train_1305_12_1",
+        "assistant": "You are planning the reception at the Palace Hotel. How do you feel about the cost?",
+        "original_reply": "It will be expensive, but we think it will be worth.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | anticipated an expensive reception and reported a shared belief that it would be worthwhile; no completed payment or reception was asserted",
+        "answer": "You anticipated an expensive reception and reported a shared belief that it would be worthwhile; no completed payment or reception was asserted."
+      }
+    ]
+  },
+  "conservation": {
+    "status": "passed",
+    "protected_files": 118,
+    "protected_sha256": {
+      "data/dailydialog/filtered/dailydialog-test.jsonl": "1047672ed573b7b29c72a7edfa6ae91e3b330da767ee696fec585893d7afcafa",
+      "data/dailydialog/filtered/dailydialog-train.jsonl": "1162daef6a5be3c03f95338f4e32127999e9b93ef56e19df9249056270a70fd4",
+      "data/dailydialog/filtered/dailydialog-val.jsonl": "99305a7a4d05a2287f861e32c878c811325772a1d853d0273949632eb1ca31c9",
+      "data/dailydialog/review-parts/annotations/part-001.jsonl": "1b1de87037e3c61ebad58287db66b5acfd8941b8ad6fc2db6be0aeadf64bf4f4",
+      "data/dailydialog/review-parts/annotations/part-002.jsonl": "dec11b26a0b642223aca302c49e26d2ad330e89516f00dd43b50e991adb4e197",
+      "data/dailydialog/review-parts/annotations/part-003.jsonl": "e456dbefd63877bbbd5ac39991f170f513f6e302d1d2a1048a86ea5e266772c2",
+      "data/dailydialog/review-parts/annotations/part-004.jsonl": "4cee36ae2020be0d91f6e29d192f515f4a05f9bdf06ce9f8097dc70ddc0d5f6b",
+      "data/dailydialog/review-parts/annotations/part-085.jsonl": "8bb33f5f2083ace934f6962ee947ecd5e2b88dff3e1b06c66f8d80f5dd441fab",
+      "data/dailydialog/review-parts/annotations/part-093.jsonl": "2282671c53dbffadb88844344f2828b0019b491c59de1274eb816f94f7b477c2",
+      "data/dailydialog/review-parts/hybrid-luna-offline-progress-as-is-v19.json": "bfc2f06d14ef4724ef51bbf6cece68595df3f5cda062e0b6734f60cc259ac608",
+      "data/dailydialog/review-parts/hybrid-source-wording-v18.jsonl": "91e9e66d708efb91426d896cd1e97ba89402572a643ce0ecc72e2e2a2bcde96c",
+      "data/dailydialog/review-parts/luna-offline-as-is-v19/hybrid-as-is-warning-rechecks-v19.jsonl": "9b2898de0f25d6f90876bce10869803ef03a9e32930aae536a9c4b1343ffbf04",
+      "data/dailydialog/review-parts/luna-offline-as-is-v19/quarantine-cases.jsonl.gz": "c21a5a793a0e092518613cd9c29c45422ad4ada93ed715f4fb303f072549f7d1",
+      "data/dailydialog/review-parts/luna-offline-as-is-v19/quarantined-warnings.jsonl.gz": "fdd585e883d042d3d3034a8bacf7550d2db81618977519fab9143754f577d1ca",
+      "data/dailydialog/review-parts/luna-offline-as-is-v19/received-evidence.jsonl.gz": "68f72401d4ccd5e4a26eaaf23e1558dc268f136195680c658a2f857f8be68391",
+      "data/dailydialog/review-parts/luna-offline-as-is-v19/summary.json": "c7daa396704a2d72a4664284dea64456485edcae5f0933a5b0eb335e8168f08d",
+      "data/dailydialog/review-parts/luna-offline-as-is-v19/verification.json": "bfc98aeb862436cebff47c4876801f5bdeffe554acc7b15b7f48921768ac523b",
+      "data/dailydialog/review-parts/luna-offline-as-is-v19/warning-decisions.jsonl.gz": "50d6c2f41c41435b012301e4c3784c919a4e2333beba3e141779fee4f54369fd",
+      "data/dailydialog/review-parts/part-001.jsonl": "548a8ca35df8d3590616f3344b1c8b22a57ed1374b85bbdfca215fc3dc765f14",
+      "data/dailydialog/review-parts/part-002.jsonl": "85f532b3258c38af29f73b77e5adb186ca0dcdbb776ebbb611dd58b461e8c502",
+      "data/dailydialog/review-parts/part-003.jsonl": "46fb4c00c009299fb357a18e87de159bae67cacb03e31107926945c86248225f",
+      "data/dailydialog/review-parts/part-004.jsonl": "e49918c2d56d088c015baf2b399acca7829bb2162dae29ca36b785b8cfa75883",
+      "data/dailydialog/review-parts/part-005.jsonl": "b04218cad7117fe1b0e72b82781aa0b36d128111b198171b9c6a70c9b2ef2e69",
+      "data/dailydialog/review-parts/part-006.jsonl": "630f7f30edadd91d09f40faa5cb76f873fe03c7dc56acecbbfdf372cbb298b01",
+      "data/dailydialog/review-parts/part-007.jsonl": "549cc5247115f5e58ef9d357bebed345964b5fdf22bb8cd79ffe5ac656b27630",
+      "data/dailydialog/review-parts/part-008.jsonl": "22c903981f68180c535664659730e2f4cde5ae86a66550e95d3683a1908d0bf6",
+      "data/dailydialog/review-parts/part-009.jsonl": "dc657f5bb98e7582fbe16cb8c135c5fdfb0e720bc0f85a6c88519cf9c12c18d4",
+      "data/dailydialog/review-parts/part-010.jsonl": "073cc1a58a9255e3f3bddc9e33cf4bc1a031303e449db5cf912eb11711f69d9a",
+      "data/dailydialog/review-parts/part-011.jsonl": "aa85d53e1c893e66d80e9dac75bde3a6d6db6216dbac35eb14236346f5a76b99",
+      "data/dailydialog/review-parts/part-012.jsonl": "39423621fb20af0f276eb396375be6d7fe0667bf4643dbc6397f23fecf15b940",
+      "data/dailydialog/review-parts/part-013.jsonl": "174849a553450896bef7e92a5fea9eb3911500041e149a6f07e830db19629a19",
+      "data/dailydialog/review-parts/part-014.jsonl": "960f30ea9d542b439f18cf4da8a8762f808b771a60e06c6c64f341beb54a4db8",
+      "data/dailydialog/review-parts/part-015.jsonl": "215b8dbe6510de21546765a669d5c0a5563ef1e68985f08c626943f10e652118",
+      "data/dailydialog/review-parts/part-016.jsonl": "8a05d6cfd8d7e777016eed359a01176be2726f67225abfe582c960cdf8023a3b",
+      "data/dailydialog/review-parts/part-017.jsonl": "a64b8f1bdb889e0260d529ac21dcd3b2aa36b69a18f07449c357b5a70af11501",
+      "data/dailydialog/review-parts/part-018.jsonl": "0e5925540c1efb6631dfbcbb57899f3e9ef3965fe1eada725d71ce3846811eec",
+      "data/dailydialog/review-parts/part-019.jsonl": "92b63a3c330c9dfebc4b4c1024fbf94b5c7fb3bcd9a4b9d435ff090de82fad70",
+      "data/dailydialog/review-parts/part-020.jsonl": "657bf709683ad66970a1a03ec0d5b651714bb6696409f8d49bf73de1640e1e93",
+      "data/dailydialog/review-parts/part-021.jsonl": "6e336f86deaba210b5cbd08139ecda7815f18e085b150ad54c03e907a7eb9879",
+      "data/dailydialog/review-parts/part-022.jsonl": "dc57730bf603041e310116486af8fe42e8ed4210779de58b89cb8f453520f018",
+      "data/dailydialog/review-parts/part-023.jsonl": "55346ad057eb8921e14fc3de7dc17a6008a0add52bd3611430318a7284836b03",
+      "data/dailydialog/review-parts/part-024.jsonl": "c90f555cadee6b9b896b4a06ccccc4ac3ba134558b62f0c8d974e9d8d133b5f5",
+      "data/dailydialog/review-parts/part-025.jsonl": "6f9846a26bb685a83e7c01d2501fcd99fe8900374fa453c1c7c04dc4340bc2ee",
+      "data/dailydialog/review-parts/part-026.jsonl": "540a82a9ffaec9bfe6e34e7996f33340e1b9e621edac84365e29f2daebed46ed",
+      "data/dailydialog/review-parts/part-027.jsonl": "4ea4bb7c8375cee1dda6d3d561ef680b949d27bc719423785ef3625709c447bf",
+      "data/dailydialog/review-parts/part-028.jsonl": "f666c7e934a705f1c34fe39a3ce7d4edcf11f8a5852448857f9c3e0e57fbc2f5",
+      "data/dailydialog/review-parts/part-029.jsonl": "d6e69111864ed3f4156a1e5b48897cf2a79ab41d18f6797cc23599d462eb64ed",
+      "data/dailydialog/review-parts/part-030.jsonl": "6d3518accd33e4a29162006a80620f218bc6414b001a809c072584ba4dc8da9e",
+      "data/dailydialog/review-parts/part-031.jsonl": "f096e72252713d43dea47477f2caa6eb2d58890d87ad3612f9df5a2cc35047e5",
+      "data/dailydialog/review-parts/part-032.jsonl": "b3e76849306e8a8ad4cb5f2e1060b5c73dd7dc2cddc70e72b2a07878502be478",
+      "data/dailydialog/review-parts/part-033.jsonl": "5e335d270a7274675d178a62d9e48d368d147ded19fc94c9ed9015a37ad9c1b8",
+      "data/dailydialog/review-parts/part-034.jsonl": "bc62264696745b11ebb87b3601f62e9cf889e26cbcceb7a42600b6571c107e40",
+      "data/dailydialog/review-parts/part-035.jsonl": "3631bd5511d70983c5a1f53949aa044cc091b9e83c3c216f24d0960671a8cb5a",
+      "data/dailydialog/review-parts/part-036.jsonl": "1a06c1cf5e33c12688ff6ffa946917882838cc4666934f8e417435e2c60bb6dc",
+      "data/dailydialog/review-parts/part-037.jsonl": "5f8eacadf4f51644d8315da5d13fe79cd4d0dec6a8cc04f9c0b2d9a5043fc41f",
+      "data/dailydialog/review-parts/part-038.jsonl": "b060bb9fd2fb1e9b7bee9e4f1933ddd385605931f9d15e968904a347c19c8b16",
+      "data/dailydialog/review-parts/part-039.jsonl": "e48fb564ab4e6ba358905dcabe4788053a810a84ab94bbaee77259d5fccf9334",
+      "data/dailydialog/review-parts/part-040.jsonl": "8edc3d4556c12d686203c9da64f39820168319f00aee11a0c04c397331e39021",
+      "data/dailydialog/review-parts/part-041.jsonl": "9562cc3f2c0b5656f17feef51da7d308e7e96f8c4876bc625e2eb7abe335b4f8",
+      "data/dailydialog/review-parts/part-042.jsonl": "23b55a3375f24687008f20a30cd80b45883c8c547061dc478bff026454ae24c3",
+      "data/dailydialog/review-parts/part-043.jsonl": "e511074a3ec9d7fc5af892cb1429602c6799a33d743ba4643d236f3c5575b681",
+      "data/dailydialog/review-parts/part-044.jsonl": "a1562a87c9e5f5177721ce40a7edde5d40c67fa854142fbd4ed747a5dbe4824d",
+      "data/dailydialog/review-parts/part-045.jsonl": "6993bcee61f0157e1a21b4228a6b5281e2f6a6dc5c40c8e9387812e081eee26b",
+      "data/dailydialog/review-parts/part-046.jsonl": "4f9c7d98640c1a1b9660e5d57a1f418b3d4a58b4c38a2de865d18ec85a9d80a6",
+      "data/dailydialog/review-parts/part-047.jsonl": "97cf932979e038db25ef0e15141d5f89ee46eed7bf6994441bc9d97937d14848",
+      "data/dailydialog/review-parts/part-048.jsonl": "328cfffc99f4564cb6912ce032e6a6e7c11ff32d7d14d01d0590887cd199967e",
+      "data/dailydialog/review-parts/part-049.jsonl": "636566485b3e54e5c3a8337476137ead8f5f2793e168fee28c07b3d23fb02fbc",
+      "data/dailydialog/review-parts/part-050.jsonl": "6a5ded02ac74fd95d80de929de0b864a21d61b3f7b84ee893085ad2faad02ddc",
+      "data/dailydialog/review-parts/part-051.jsonl": "ed81730be5a11d98cb7720cfc869f93735cf370bcee8e14bf3d3026c757842f7",
+      "data/dailydialog/review-parts/part-052.jsonl": "15171ec1dd4d6cb34661c0e307fba6172eedf5ab58091c8b6f8c972545c1124a",
+      "data/dailydialog/review-parts/part-053.jsonl": "fbfb8714bccb2aea1b65aea14b0f42ef0a687791a0f39c56579172350d3e3742",
+      "data/dailydialog/review-parts/part-054.jsonl": "db9babfa628c56e7e95a9c8c1e5a17dc917bf7d6456d5d454beb90b118036ef6",
+      "data/dailydialog/review-parts/part-055.jsonl": "d5313bd77d15f55c541c1b3a24ad73a4c6203289b36cb15836e4c1b5e0528138",
+      "data/dailydialog/review-parts/part-056.jsonl": "dabaa31cecb6a8082c3c6bd24942e7fa1d19f16a615f22a5a8092cc6e8a11577",
+      "data/dailydialog/review-parts/part-057.jsonl": "ff6e0beb25ab75730a78000bc4d1e32a63e7d57ee1fab91f0f8d9d0d4a340f86",
+      "data/dailydialog/review-parts/part-058.jsonl": "7f4d37f33f17477e611101aa5d4726f78cf20187b41d1ef32fc3149bae41c5b3",
+      "data/dailydialog/review-parts/part-059.jsonl": "7d820c781acf2334dd675d1cd4dc61c6ca0eb6cc7ae89cc58ad034734fe5f68f",
+      "data/dailydialog/review-parts/part-060.jsonl": "4cb3be8e33123d9482edd27a8525cdc3da2b4fa574469c30ff47e7633ffbc0a4",
+      "data/dailydialog/review-parts/part-061.jsonl": "6d4c6ddc55518332b4ed42ae8cb5dc9156fe0e95278f95a34ecc03e646e27874",
+      "data/dailydialog/review-parts/part-062.jsonl": "3c715607d2f7bf953512a0fb42360dc7bffd96fe737a1026607d8a6795e60a66",
+      "data/dailydialog/review-parts/part-063.jsonl": "0f48a93599a80926db8ca16b88a88e51741c09da795706e8bf0ca0adc67fef8a",
+      "data/dailydialog/review-parts/part-064.jsonl": "471a4505f9d2c5ee440e8ed3e3f7f7af2026d94587960fe15da504781d28362d",
+      "data/dailydialog/review-parts/part-065.jsonl": "2e8648363c2f98ba4f46a3abfae3863f691205f6e1b3fc8b594044cc0c9e8748",
+      "data/dailydialog/review-parts/part-066.jsonl": "08ee876621b580d65ebe1f888981b732c5838fb84ed7b47a79efca9335040178",
+      "data/dailydialog/review-parts/part-067.jsonl": "c96d40fc05598dc0034cc35e013b1fbeb48397f0ddd4ca6096a650d622b59f88",
+      "data/dailydialog/review-parts/part-068.jsonl": "9416b4e8585dd806d58d681c904ee530d7ca8611fd8c1a8dc9746732636daa42",
+      "data/dailydialog/review-parts/part-069.jsonl": "c6547a5ffab3c76fee4180e37451c3f8e7ac0781e6b045d6909df1c19ea44917",
+      "data/dailydialog/review-parts/part-070.jsonl": "40bc9bdf12e39e6b498026121d1b50da0d80a4d473066bdfc3f73b744504a7c0",
+      "data/dailydialog/review-parts/part-071.jsonl": "de659369915efd35b5d1783c2cb9a778a309598805a4e1e54148fbf7a272f1b7",
+      "data/dailydialog/review-parts/part-072.jsonl": "e7c9e04397488c7720725f6451afc3784bb16148f6f85ee5e727a54e509794d1",
+      "data/dailydialog/review-parts/part-073.jsonl": "9cd31e57de52fdca2208dff2479d245776e0e0f9fe09b826a5c81823abc2357d",
+      "data/dailydialog/review-parts/part-074.jsonl": "9336fd6d8fa5da5ad85dda952125e462f0b6893b1a4fe932d154d60a12eb33d8",
+      "data/dailydialog/review-parts/part-075.jsonl": "80e9cd05c33b5a2b81e69b5d3ddc3cf74a3be4e21b2db1b4d405cc0ab87cea5c",
+      "data/dailydialog/review-parts/part-076.jsonl": "c32e9ecf5bd3e93a103f16a72f7db0d3a62e9784b528f05ccf8718ca21a1577e",
+      "data/dailydialog/review-parts/part-077.jsonl": "44e550dcf0248d0438ee73079debe3f2a14433bff7433ba3522c8036922121f5",
+      "data/dailydialog/review-parts/part-078.jsonl": "16ff10d74cc005d50920fe2196d2dc3b3d916610cf1b77acfbac3c0203ca8879",
+      "data/dailydialog/review-parts/part-079.jsonl": "ce12e890bef7ef2cbfbf99abf5b2cac673f1dc1439cf077e6461bd280d6065d0",
+      "data/dailydialog/review-parts/part-080.jsonl": "4b5b1f882723273ba68b787f3c4ac3dbfe1861ea1978ff7ec0251a783ecc3b05",
+      "data/dailydialog/review-parts/part-081.jsonl": "3a3274740eb943acd3601e4e77dce28ac227a8203af11c60de0e6ae13e93b467",
+      "data/dailydialog/review-parts/part-082.jsonl": "f6a92ff1a839f2724c406b28610fecd3dbc2b4acbf8588fb2a59a452192f1786",
+      "data/dailydialog/review-parts/part-083.jsonl": "fa2aa9014a32fd773065a26b24246b2cfe1fd56bd000557ae28956a9e90d34c7",
+      "data/dailydialog/review-parts/part-084.jsonl": "7e47c76292316565613bb187a1d85e796f562c0f670e6729a1aad08aa36accd9",
+      "data/dailydialog/review-parts/part-085.jsonl": "808865ce1ed667549c0c9a98c549d795a1511942055d96d8b4d449b08ce63e69",
+      "data/dailydialog/review-parts/part-086.jsonl": "80012e6da0d1d5ffb08f6c458ef5292e7b46ca3d7817ce4477b4dbd7f410f39a",
+      "data/dailydialog/review-parts/part-087.jsonl": "909ceedd5adbfa8bac77ca09b876ea67bd2da4a271b148dd94621e292698efa1",
+      "data/dailydialog/review-parts/part-088.jsonl": "70b76c2165bdc8bb5631d04289b807580587f09f37a9926327a6c1a397cc478a",
+      "data/dailydialog/review-parts/part-089.jsonl": "8b4b04b480df3e384592c57f921fcca7671c3f04ee9af7951b8ce8dc37b5d4d3",
+      "data/dailydialog/review-parts/part-090.jsonl": "f2a9cb383adab5d043b4840c2891c0c6d046aaa750d0d0625f212b569e8453ca",
+      "data/dailydialog/review-parts/part-091.jsonl": "ce211ef859cc4b571c2305a56ebe792e5a8a2c5be2cb552f7b6aa2c31a6a57a6",
+      "data/dailydialog/review-parts/part-092.jsonl": "058775c3a03907d9879a7c7137f158da17fd04ac5a1b9cd05623964d8d57efda",
+      "data/dailydialog/review-parts/part-093.jsonl": "a21191f9db42cb5e9e36963ef5ecedd4f590248e7807a67161feed1cfc2dcaf7",
+      "data/dailydialog/review-parts/part-094.jsonl": "add4e7ab1155256c6dd1a49d75d68e11d656638946418ea2777841e93698d257",
+      "data/dailydialog/review-parts/part-095.jsonl": "cae7a339b67df28e833c4ab0317afbbe90a4726e53129da5c0840ac0a97c93dd",
+      "data/dailydialog/review-parts/part-096.jsonl": "7c90b954788de9d4fe1eaa5bbd96f4c4e863a7c8d0cdbafc57a810eab42258d4",
+      "data/dailydialog/review-parts/part-097.jsonl": "f8c0c3c363b10debc2ec29bab4fd51787dac290189e64f869b5274d51233e61a",
+      "data/dailydialog/review-parts/part-098.jsonl": "764560cc041e7f5fe36ca68d83dcb8f58f160c5e51cba5614f865e0273dc4f63",
+      "data/dailydialog/review-parts/part-099.jsonl": "358e84e5b085012445afeef19471e71618be1af1b46c474d9eba29ef3fdabcb2",
+      "data/dailydialog/review-parts/part-100.jsonl": "02da5a0243f266868a2deffbe9f6f944f45e3423723143a0c4379fb768721b59"
+    },
+    "previous_patterns_preserved": 100,
+    "new_original_replies_verified": 47,
+    "filtered_sources_changed": false,
+    "review_parts_changed": false,
+    "manual_annotations_changed": false,
+    "warning_ledger_changed": false,
+    "candidate_rebuilt": false,
+    "note": "Only the reviewed interpretation catalog was appended. The existing v19 candidate and its warning decisions remain in force."
+  },
+  "extraction_scope": "Reviewed textual utterance_interpretation in the adapted visible pair. This adds scoped training examples, not a general action-role parser or automatic sentence recombination.",
+  "candidate_validation": {
+    "reused_unchanged_from": "artifacts/dailydialog-hybrid-as-is-v19",
+    "previous_report": {
+      "status": "passed",
+      "source_sha256": "0918fb648044b18b644debd8746a7136372d5f501a202e1cb4417a701f302854",
+      "templates": 101165,
+      "attested_roundtrips": 110078,
+      "source_records": 161316,
+      "token_spans": 1378085,
+      "verbs_occurrences": 289417,
+      "adjectives_occurrences": 71912
+    },
+    "rerun_this_step": false
+  },
+  "checks": {
+    "total_tests": 358,
+    "seconds": 13.27,
+    "command": "python -X utf8 -B -m pytest -q tests/test_dialogue_fragments.py tests/test_dailydialog_fragment_admission.py tests/test_dialogue_extraction_text.py",
+    "phase": "after_catalog_publication",
+    "received_evidence_sha256": "68f72401d4ccd5e4a26eaaf23e1558dc268f136195680c658a2f857f8be68391"
+  },
+  "reproduction": {
+    "commands": [
+      "python -X utf8 -B scripts/admit_dailydialog_fragments.py --reviews data/dailydialog/review-parts/hybrid-originals-adapters-v20.json --contexts data/dailydialog/review-parts/hybrid-originals-contexts-v20.jsonl.gz --publish --report artifacts/dailydialog-originals-v20-replay/publication.json",
+      "python -X utf8 -B -m pytest -q tests/test_dialogue_fragments.py tests/test_dailydialog_fragment_admission.py tests/test_dialogue_extraction_text.py"
+    ],
+    "generation": {
+      "generator": "semantic_corpus.dialogue_generator.DialogueGenerator",
+      "seed": 20,
+      "task": "fragment_meaning",
+      "count_per_mode_per_split": 147,
+      "user_assistant_only": [
+        true,
+        false
+      ],
+      "splits": [
+        "train",
+        "validation",
+        "test"
+      ],
+      "selected_condition_prefix": "dd_v20_",
+      "outputs": "artifacts/dailydialog-originals-v20/datasets",
+      "catalog_sha256": "26064359086fc9be4eb5ffc52cc236d5163421bf0ebcf3f1f3707ed86fe5247a"
+    },
+    "note": "The review files carry the explicit decisions. Authoring helpers in artifacts are not needed for admission; use a fresh report path when replaying."
+  },
+  "next_step": {
+    "original_text_policy_applies": true,
+    "previous_corrected_segments_pending_original_text_review": [],
+    "previous_corrected_segments_now_usable_as_original": [
+      "train:1372:2:1",
+      "train:1006:2:3",
+      "train:1009:4:1",
+      "train:1025:4:2",
+      "train:1043:4:1",
+      "train:1056:4:1",
+      "train:1082:1:1",
+      "train:1082:1:2",
+      "train:1084:1:2",
+      "train:1084:8:1",
+      "train:1089:17:2",
+      "train:1128:2:1",
+      "train:1139:11:2",
+      "train:1157:1:1",
+      "train:1157:4:1",
+      "train:1161:10:1",
+      "train:1161:1:2",
+      "train:1172:5:2",
+      "train:1203:5:1",
+      "train:1203:6:1",
+      "train:1209:5:2",
+      "train:1211:7:1",
+      "train:1213:4:2",
+      "train:1236:4:5",
+      "train:1238:3:1",
+      "train:1268:2:2",
+      "train:1305:12:1",
+      "train:1314:2:3",
+      "train:1317:4:1",
+      "train:1322:10:2",
+      "train:1339:1:2",
+      "train:1344:3:2",
+      "train:1371:2:3",
+      "train:1372:2:3",
+      "train:1380:2:1",
+      "train:1388:6:4",
+      "train:1392:1:1",
+      "train:1396:2:1",
+      "train:1406:8:2",
+      "train:1410:4:2",
+      "train:1436:11:1",
+      "train:1436:12:1",
+      "train:1440:10:1",
+      "train:1442:3:2",
+      "train:1453:6:2",
+      "train:1462:12:1",
+      "train:1462:13:2",
+      "train:1473:7:3"
+    ],
+    "partial_meanings_with_unresolved_details": [
+      "train:1128:2:1",
+      "train:1139:11:2",
+      "train:1209:5:2",
+      "train:1213:4:2",
+      "train:1317:4:1",
+      "train:1380:2:1",
+      "train:1442:3:2",
+      "train:1462:13:2",
+      "train:1473:7:3"
+    ],
+    "warning_queue": "data/dailydialog/review-parts/luna-offline-as-is-v19/quarantine-cases.jsonl.gz",
+    "supplemental_queue": "data/dailydialog/review-parts/hybrid-attestation-held-v17.json",
+    "next_train_source_warning_keys": [
+      [
+        "train:1483:6:1",
+        0,
+        "a92022ebed506e3edbececbba9992074d5c64a96a60bbea54f5b417231485dc3"
+      ],
+      [
+        "train:1502:3:2",
+        0,
+        "c116c175dce1b324eb62ef21a10cf8d4c07b2b878d67aa7fba8824cdc85ac0b2"
+      ],
+      [
+        "train:1511:5:2",
+        0,
+        "e392e0e11008d7c2f26ebd23f1008ffe42d6ca582d5bc38d7799add3331a62cb"
+      ],
+      [
+        "train:1525:2:3",
+        0,
+        "aaa03bd86517187ed682501ab46d426f3fb7cef7abbc02f1df2d3fa3c2c5ddb3"
+      ],
+      [
+        "train:1530:9:1",
+        0,
+        "5a4955d9506c2a9c079eccec15ec7d2f0ce087cf1591a0018dd71173c1884675"
+      ],
+      [
+        "train:1541:5:1",
+        0,
+        "bb839c4e01dbc22ef7016a38eee493f4424bbef51e89d8a1f5a402ef1e51a891"
+      ],
+      [
+        "train:1541:5:3",
+        0,
+        "d0a2b4c3a00055c2d6ba8f3034c462389474832fce53f2087e4e2a89704e1af2"
+      ],
+      [
+        "train:1541:6:1",
+        0,
+        "dbb565178fc0a34f0b5e5d646640d25cb549aa92ce782c845425857b1ed09954"
+      ],
+      [
+        "train:1543:3:4",
+        0,
+        "eac586b678093f0962a141aaafd4c77a69da485c561293b93788b679b352d391"
+      ],
+      [
+        "train:1563:2:2",
+        0,
+        "f83869a9d9a41e8adaaf151343b74fe935cd1f733acc1011a4743840d765bc51"
+      ],
+      [
+        "train:1574:7:3",
+        0,
+        "a2517953cfb18398634f2e5b432552044953d18a5e4a0574fc8d86e41839dd81"
+      ],
+      [
+        "train:1574:8:2",
+        0,
+        "cfafb35bbd4a6db0fb053e4601121ef5fd6604f5a676803bc14804b9e1042cdf"
+      ],
+      [
+        "train:1588:1:1",
+        0,
+        "47d73843f66a3cd953d7592d98dafb63caaf584885ca789dd2029d06f7d6237c"
+      ],
+      [
+        "train:1588:10:2",
+        0,
+        "38653af84af8ce62450dd66c21564c9cfc90e2d2a0f498562647ce03d121c484"
+      ],
+      [
+        "train:1592:10:2",
+        1,
+        "5d575b52a8b11a7509f1488a2e67dd6bf5c2f0eefbf8ccaa03be35b0f0fae44f"
+      ],
+      [
+        "train:1600:9:2",
+        0,
+        "050ccb2d6dddc548240d946f5a0437e467bdbd8d12546592354b8f6b0ad47c7d"
+      ],
+      [
+        "train:1607:2:1",
+        0,
+        "c508b2f6c6c7b7f66f2ef564c58d137ca01302a83de5ee13e4944525dc002a88"
+      ],
+      [
+        "train:1618:3:1",
+        0,
+        "9a17a3fd1d3bbf3dc297de5ed1069861af8c233c57c9c5b41d1f91c7186e2cd5"
+      ],
+      [
+        "train:1619:6:1",
+        1,
+        "6ebbc7a672912cbd416ef438b4c6362c1771bbc12371da9c8e9b1b06f978fdae"
+      ],
+      [
+        "train:1621:4:1",
+        0,
+        "99e3d4e05306be0b2209db899df54deb8e037ff4fd5e6fd09299a63b0296cc62"
+      ],
+      [
+        "train:1622:6:2",
+        0,
+        "9822874b7529f2584fdbbbfa2f9ae3408fdbb3cbbaeaa08ac387acfc339cb828"
+      ],
+      [
+        "train:1641:3:1",
+        0,
+        "d82bef7aa6e25bf5f8df2017053f8924d65bf79d37e59da8832123167d6750d7"
+      ],
+      [
+        "train:1651:2:1",
+        0,
+        "d166d53da22197714386c9a1330f7bef0ff940215995133dd208b82e6d64ac91"
+      ],
+      [
+        "train:1653:6:2",
+        0,
+        "dfa4bab521573d572ddc507d525cb291cfffa40897fa4d8be84431a4637dfbeb"
+      ],
+      [
+        "train:1661:5:2",
+        0,
+        "b03f3489e482c654ffd184b15221153448d8d0335a97635043111d7c8d539058"
+      ],
+      [
+        "train:1661:6:1",
+        0,
+        "1c6afe00dc7cc6a53a3b25f2abfdb3ee9f157665eecebf8fbc133d0cb8ad2fa1"
+      ],
+      [
+        "train:1667:6:4",
+        1,
+        "8ee3cc7c5feb37fe736d49857fe02759109be32954977fe3a2265389f1c192d3"
+      ],
+      [
+        "train:1672:4:1",
+        0,
+        "9af6d0b1d5fd6095f765148d4619017d45ff3a03538aa063c8973ef819088b99"
+      ],
+      [
+        "train:1674:8:3",
+        0,
+        "587798df133904c1670ffe7a9f998c00321fdd03459b308f02e4dc4cf271718f"
+      ],
+      [
+        "train:1674:9:7",
+        0,
+        "1bf7bd2ca1aa8fabcd6e963ce21f6d63eed6812287ab23eae64e8c04dd0d611b"
+      ],
+      [
+        "train:1674:10:4",
+        0,
+        "1bbf71fa2e80922163b2980f4bdedc1de6ffd13e19a16e5522e3f0c0ddb6a125"
+      ],
+      [
+        "train:1679:5:2",
+        0,
+        "6896bc16895b05779130f009de2e244056442585c6a8c6443b4135ed90f60871"
+      ],
+      [
+        "train:1683:7:3",
+        0,
+        "92148a22d5e5ac05adbab4c408c1baddbe967f03946e91b31f0855d2ad558284"
+      ],
+      [
+        "train:1685:1:1",
+        0,
+        "2968982680a630b38f946f9bcf534f73e17d353c178392f9d08f5ae5e35c3792"
+      ],
+      [
+        "train:1691:6:2",
+        1,
+        "d4e1cf2a2f09befca2aae0fa44c6a0b05ae0e5c2e8b582e7eda1b03a22c6b66e"
+      ],
+      [
+        "train:1696:9:2",
+        0,
+        "87f7dbc8e1f782288e2892cb48f7f52aa8e768c2f2f7c8428bd3bafe37228172"
+      ],
+      [
+        "train:1715:3:3",
+        0,
+        "0e05c8821b0a792718590525cb1e4a69e68b20b7ab237c0433066abd4ca9b32f"
+      ],
+      [
+        "train:1721:2:3",
+        2,
+        "30b35f162353d3959cc916780bb36887e484f28be45c94714433552e5074e41f"
+      ],
+      [
+        "train:1721:3:1",
+        2,
+        "42e8c8401dd65d7ecb29b1c31def273c47d7551910aab2c7db1f457cc3f48998"
+      ],
+      [
+        "train:1731:5:2",
+        0,
+        "467a7cafd6b95922114ce68f5f3a0d0571e27200f670af73f5c36dfee90c7998"
+      ],
+      [
+        "train:1733:4:2",
+        1,
+        "d88f8fa48d7b6fa5ee6870802dc6ada8605638f8d23eb6b1bef618b43b83b301"
+      ],
+      [
+        "train:1742:5:3",
+        0,
+        "79f4af3d7701b8b7207d836a8bbb2108b824c69e4d11172b86104b84ec8553be"
+      ],
+      [
+        "train:1743:11:2",
+        0,
+        "df002ca2dbbfe26edcb75691508e4b2d5f063e50c94a4e0590f33e577f240474"
+      ],
+      [
+        "train:1746:6:2",
+        0,
+        "fd09a40cd3ba8fba39b8db592df0b4ffed29cfc02f3e37cab41ba5521c9ad68d"
+      ],
+      [
+        "train:1746:13:1",
+        0,
+        "b33f70ff73625b7efacf92a9f8235cb53a60f09deb433d1db2fa90df05bac943"
+      ],
+      [
+        "train:1755:8:1",
+        0,
+        "2b86c095f4cbdc4d5acce8a017b0d1eaa99050f27d7d4b2746866a0bd5232b39"
+      ],
+      [
+        "train:1762:4:3",
+        0,
+        "e113880b79d4fecfa680653e68ad5f48c2bd40f0bc83315a289469b2f7cdbeab"
+      ],
+      [
+        "train:1766:2:3",
+        0,
+        "867166b10b6c1b73bf3217d0249a564d05c88a135067e5f2f31d9968d26f2976"
+      ],
+      [
+        "train:1777:8:1",
+        0,
+        "215d0f3a84d5f1134c9eed506fb8f7541b7957e35ba40c171033ed79e3450408"
+      ],
+      [
+        "train:1778:4:1",
+        1,
+        "22f7bdce1178925d6bccd84890ed0ba0c4305430acd2412fe818389a47b278db"
+      ],
+      [
+        "train:1780:6:4",
+        0,
+        "3ce54a2af5b6de261c19ae74024ac8fb2d43a567666cdcca11f6b2e6ee0e3db2"
+      ],
+      [
+        "train:1792:5:2",
+        0,
+        "6063f11dcbd2f24b18695e51125047c024931c24c0db326d4f46fca02bf5213e"
+      ],
+      [
+        "train:1817:7:1",
+        0,
+        "174df6d3042308e74fa5ff790fc620b26749cf6dbf133181b4962c9977ec0bda"
+      ],
+      [
+        "train:1826:7:2",
+        1,
+        "cdf3bd0bf7250266eea9488ed120b5804de1ba57f93bd89c51ff905b087ee7bc"
+      ],
+      [
+        "train:1844:8:1",
+        2,
+        "eca15b869d1944b98fc2ec7a3780434053673284630511b9b155c58f710fb266"
+      ],
+      [
+        "train:1856:1:2",
+        0,
+        "b92ff17af9303ffa93fb4f8c5d1bc034a66ad07c98def83d487a81f066455154"
+      ],
+      [
+        "train:1861:2:2",
+        0,
+        "4eb06a269ee162d4d13f6445946bdaf0d9e0f942943d1f90a519c6539cd9c0ba"
+      ],
+      [
+        "train:1861:4:2",
+        0,
+        "9e6cfba3781d0be4aced2bda9e70994a1a6dbf68a19c08324aa6054dc0473a50"
+      ],
+      [
+        "train:1862:1:1",
+        1,
+        "27e21ac929c9321aeea070ef3be8ee0756801bacd5fc86324303bf57875f6b43"
+      ],
+      [
+        "train:1862:2:2",
+        0,
+        "c91c80577b7f9d2c2a661a051f2bbde02cfb98560785366c932fe6d3de49ec5e"
+      ],
+      [
+        "train:1869:3:2",
+        0,
+        "e8084f1277e250eabf2f601d7f1fb4fe0669a6c337c908160e7fe853f54d92af"
+      ],
+      [
+        "train:1873:2:3",
+        0,
+        "d9e7b10a37ab5f9da971721cf41e5b8c38337c101a306ae7e1cddb7e0c07ee21"
+      ],
+      [
+        "train:1874:8:3",
+        0,
+        "54f368f1f5236827f00524c3c13c61f7b55afd08cadf42ef2ac2f0aeadaf0cd2"
+      ],
+      [
+        "train:1874:8:3",
+        1,
+        "6f22a64788200bc4c1895eba9db2b7e846a8f45004cfaba1522af8afee420d05"
+      ],
+      [
+        "train:1879:2:2",
+        0,
+        "0d5e189b033060a52d8572cd462d479275e6b7d420b85e75423738a2e8f8ddcc"
+      ],
+      [
+        "train:1882:3:2",
+        0,
+        "ed93dc01c578b7f7739504e83d1e0a6d4c549998437c103d27cb4f80ccd27294"
+      ],
+      [
+        "train:1882:5:3",
+        0,
+        "9033d497a759365261093d6cb012da2421c20e233d42f6f6186bb62d1cdd2256"
+      ],
+      [
+        "train:1885:4:4",
+        0,
+        "b07aa70d28edb6b08f533d8f4b8df7e30710d391af33acf4ddd3c3827bc111f9"
+      ],
+      [
+        "train:1885:6:1",
+        0,
+        "50f6f4abe373faae3e9d0bb3c607e25d9a72acec2f0bb953be1bf59c34920f7d"
+      ],
+      [
+        "train:1890:5:2",
+        0,
+        "6a0c4843d203493d6df22a4ad60d51c1ce24fa367cf00ece223646c07bff2fad"
+      ],
+      [
+        "train:1890:10:1",
+        0,
+        "3ed34302432bbc6209a5f56a1521bbfe465bbe49bd6e1eb8bd85741e38d63e4f"
+      ],
+      [
+        "train:1890:13:2",
+        0,
+        "a8e2ba0d9aa8d61fde2b0bf686750acac034a3a2d0a84d5458b7c292f65c390c"
+      ],
+      [
+        "train:1894:2:1",
+        0,
+        "a40f3ae2c75b8a930d52c014434e77a80a181159fd80b9225b4decc78ac67fc4"
+      ],
+      [
+        "train:1905:2:3",
+        0,
+        "c1457891d792fa34f60d732fd3ca0fb33c2a3d509cafa88aaf50866dd2eb634b"
+      ],
+      [
+        "train:1912:3:1",
+        0,
+        "e312c7c230e6f4c7b66987895cf4360c36a324cca29049678f51914e0c2cfc6e"
+      ],
+      [
+        "train:1918:9:1",
+        0,
+        "76af51ffc09a8ae71a60e2e32e45efa515caeca960358b58c3cf5ae38ebb22e1"
+      ],
+      [
+        "train:1925:14:2",
+        0,
+        "3f6c7f0897e81bd343a2804a572a9935603a086975826e5bac155048d60f1c3c"
+      ],
+      [
+        "train:1929:3:1",
+        0,
+        "50dfc3d85d03276ca019387c4f3313490ac26e7bf15f2ff7c673def05552805d"
+      ],
+      [
+        "train:1929:9:2",
+        0,
+        "ae88736e5985b4ac4f8ccd749dceca83f8d0bff49aba27e4aa9631a14d2a6a42"
+      ],
+      [
+        "train:1934:3:2",
+        0,
+        "3e8b1bbec17f9b6579282422e6f3b74e1064a2721a1c5516b005234e62d5ff7b"
+      ],
+      [
+        "train:1934:5:2",
+        2,
+        "cd6c57f6b47422bd607acc2f5444fc34a2eb683b59b593bafffcf320a8e66209"
+      ],
+      [
+        "train:1934:13:2",
+        2,
+        "4998bb5abbb8a5e2cc35b46d81f021dd38a3911ad0b1de5d33062aef5e5f03a1"
+      ],
+      [
+        "train:1940:2:3",
+        1,
+        "d8949e72e30fda4e637021b6a10fc00fa30a7c22f7b12ec10df66791cca57532"
+      ],
+      [
+        "train:1940:6:1",
+        0,
+        "85070d2fc8c0762bc2b74e68ec9983459f77ee6130ced86a327aed2077c9a909"
+      ],
+      [
+        "train:1941:8:1",
+        0,
+        "c3c713d485f582d85dd22ac7c2c1724168c7df9a491bb3e226d600ebc1385f15"
+      ],
+      [
+        "train:1951:4:3",
+        0,
+        "3f06ce9a03ffffaba9d1b530a8206fdfb59956d6de5678203cc9d0518ec60fd3"
+      ],
+      [
+        "train:1951:6:2",
+        1,
+        "6350cc7afbab6ac8a8624245b1365640ca2d9c78644e959ee10b257669e05b0a"
+      ],
+      [
+        "train:1954:10:5",
+        0,
+        "dbf9b5565deac7718c3ad2811f7f168dad438772277f26c106251276045e3e55"
+      ],
+      [
+        "train:1956:2:1",
+        0,
+        "d28930fa619d3e34522f0bd138b1e9d6f4601662503de8d2d713ebcf45f440ac"
+      ],
+      [
+        "train:1956:4:1",
+        0,
+        "1620234f7beb71f788f67dadf50119b716277de768f20baf24ded2a880edafaf"
+      ]
+    ],
+    "priorities": [
+      "Continue the saved warning queue starting at train:1483:6:1.",
+      "Preserve original text; distinguish an admitted limited interpretation from resolution of all syntax and source warnings.",
+      "Revisit genuinely unresolved details only when the available evidence supports a decision."
+    ],
+    "full_semantic_review_still_required": true
+  }
+}

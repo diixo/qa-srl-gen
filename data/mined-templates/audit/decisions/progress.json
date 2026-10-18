@@ -1,0 +1,935 @@
+{
+  "dialogues": 13118,
+  "turns": 102979,
+  "reviewed_dialogues": 510,
+  "reviewed_turns": 3755,
+  "complete": false,
+  "parts": [
+    {
+      "file": "part-001.jsonl",
+      "dialogues": 132,
+      "turns": 937,
+      "reviewed_dialogues": 132,
+      "reviewed_turns": 937,
+      "statuses": {
+        "sentence": 1233,
+        "fragment": 339,
+        "pending": 23
+      },
+      "complete": true
+    },
+    {
+      "file": "part-002.jsonl",
+      "dialogues": 132,
+      "turns": 982,
+      "reviewed_dialogues": 132,
+      "reviewed_turns": 982,
+      "statuses": {
+        "fragment": 345,
+        "sentence": 1335,
+        "pending": 21
+      },
+      "complete": true
+    },
+    {
+      "file": "part-003.jsonl",
+      "dialogues": 132,
+      "turns": 954,
+      "reviewed_dialogues": 132,
+      "reviewed_turns": 954,
+      "statuses": {
+        "sentence": 1212,
+        "fragment": 328,
+        "pending": 22
+      },
+      "complete": true
+    },
+    {
+      "file": "part-004.jsonl",
+      "dialogues": 132,
+      "turns": 1008,
+      "reviewed_dialogues": 104,
+      "reviewed_turns": 792,
+      "statuses": {
+        "sentence": 994,
+        "fragment": 256,
+        "pending": 11
+      },
+      "complete": false
+    },
+    {
+      "file": "part-005.jsonl",
+      "dialogues": 132,
+      "turns": 962,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-006.jsonl",
+      "dialogues": 132,
+      "turns": 908,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-007.jsonl",
+      "dialogues": 132,
+      "turns": 1009,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-008.jsonl",
+      "dialogues": 132,
+      "turns": 993,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-009.jsonl",
+      "dialogues": 132,
+      "turns": 1039,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-010.jsonl",
+      "dialogues": 132,
+      "turns": 1079,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-011.jsonl",
+      "dialogues": 132,
+      "turns": 1015,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-012.jsonl",
+      "dialogues": 132,
+      "turns": 937,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-013.jsonl",
+      "dialogues": 132,
+      "turns": 1050,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-014.jsonl",
+      "dialogues": 132,
+      "turns": 999,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-015.jsonl",
+      "dialogues": 132,
+      "turns": 1009,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-016.jsonl",
+      "dialogues": 132,
+      "turns": 1014,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-017.jsonl",
+      "dialogues": 132,
+      "turns": 965,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-018.jsonl",
+      "dialogues": 132,
+      "turns": 1039,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-019.jsonl",
+      "dialogues": 131,
+      "turns": 938,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-020.jsonl",
+      "dialogues": 131,
+      "turns": 995,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-021.jsonl",
+      "dialogues": 131,
+      "turns": 1019,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-022.jsonl",
+      "dialogues": 131,
+      "turns": 968,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-023.jsonl",
+      "dialogues": 131,
+      "turns": 974,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-024.jsonl",
+      "dialogues": 131,
+      "turns": 988,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-025.jsonl",
+      "dialogues": 131,
+      "turns": 897,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-026.jsonl",
+      "dialogues": 131,
+      "turns": 1007,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-027.jsonl",
+      "dialogues": 131,
+      "turns": 1022,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-028.jsonl",
+      "dialogues": 131,
+      "turns": 913,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-029.jsonl",
+      "dialogues": 131,
+      "turns": 1026,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-030.jsonl",
+      "dialogues": 131,
+      "turns": 953,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-031.jsonl",
+      "dialogues": 131,
+      "turns": 998,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-032.jsonl",
+      "dialogues": 131,
+      "turns": 1019,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-033.jsonl",
+      "dialogues": 131,
+      "turns": 928,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-034.jsonl",
+      "dialogues": 131,
+      "turns": 896,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-035.jsonl",
+      "dialogues": 131,
+      "turns": 985,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-036.jsonl",
+      "dialogues": 131,
+      "turns": 928,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-037.jsonl",
+      "dialogues": 131,
+      "turns": 1041,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-038.jsonl",
+      "dialogues": 131,
+      "turns": 1132,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-039.jsonl",
+      "dialogues": 131,
+      "turns": 1037,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-040.jsonl",
+      "dialogues": 131,
+      "turns": 1155,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-041.jsonl",
+      "dialogues": 131,
+      "turns": 1058,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-042.jsonl",
+      "dialogues": 131,
+      "turns": 984,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-043.jsonl",
+      "dialogues": 131,
+      "turns": 1084,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-044.jsonl",
+      "dialogues": 131,
+      "turns": 1048,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-045.jsonl",
+      "dialogues": 131,
+      "turns": 1095,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-046.jsonl",
+      "dialogues": 131,
+      "turns": 1027,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-047.jsonl",
+      "dialogues": 131,
+      "turns": 1012,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-048.jsonl",
+      "dialogues": 131,
+      "turns": 1095,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-049.jsonl",
+      "dialogues": 131,
+      "turns": 1034,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-050.jsonl",
+      "dialogues": 131,
+      "turns": 1114,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-051.jsonl",
+      "dialogues": 131,
+      "turns": 1122,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-052.jsonl",
+      "dialogues": 131,
+      "turns": 1013,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-053.jsonl",
+      "dialogues": 131,
+      "turns": 1085,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-054.jsonl",
+      "dialogues": 131,
+      "turns": 1096,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-055.jsonl",
+      "dialogues": 131,
+      "turns": 1065,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-056.jsonl",
+      "dialogues": 131,
+      "turns": 1043,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-057.jsonl",
+      "dialogues": 131,
+      "turns": 1091,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-058.jsonl",
+      "dialogues": 131,
+      "turns": 1024,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-059.jsonl",
+      "dialogues": 131,
+      "turns": 1051,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-060.jsonl",
+      "dialogues": 131,
+      "turns": 976,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-061.jsonl",
+      "dialogues": 131,
+      "turns": 1046,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-062.jsonl",
+      "dialogues": 131,
+      "turns": 1033,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-063.jsonl",
+      "dialogues": 131,
+      "turns": 1104,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-064.jsonl",
+      "dialogues": 131,
+      "turns": 1033,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-065.jsonl",
+      "dialogues": 131,
+      "turns": 995,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-066.jsonl",
+      "dialogues": 131,
+      "turns": 1047,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-067.jsonl",
+      "dialogues": 131,
+      "turns": 1113,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-068.jsonl",
+      "dialogues": 131,
+      "turns": 1055,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-069.jsonl",
+      "dialogues": 131,
+      "turns": 1097,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-070.jsonl",
+      "dialogues": 131,
+      "turns": 1008,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-071.jsonl",
+      "dialogues": 131,
+      "turns": 1062,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-072.jsonl",
+      "dialogues": 131,
+      "turns": 1036,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-073.jsonl",
+      "dialogues": 131,
+      "turns": 1097,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-074.jsonl",
+      "dialogues": 131,
+      "turns": 1080,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-075.jsonl",
+      "dialogues": 131,
+      "turns": 999,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-076.jsonl",
+      "dialogues": 131,
+      "turns": 1058,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-077.jsonl",
+      "dialogues": 131,
+      "turns": 1090,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-078.jsonl",
+      "dialogues": 131,
+      "turns": 1102,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-079.jsonl",
+      "dialogues": 131,
+      "turns": 1028,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-080.jsonl",
+      "dialogues": 131,
+      "turns": 1044,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-081.jsonl",
+      "dialogues": 131,
+      "turns": 1141,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-082.jsonl",
+      "dialogues": 131,
+      "turns": 1064,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-083.jsonl",
+      "dialogues": 131,
+      "turns": 1081,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-084.jsonl",
+      "dialogues": 131,
+      "turns": 1091,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-085.jsonl",
+      "dialogues": 131,
+      "turns": 1152,
+      "reviewed_dialogues": 5,
+      "reviewed_turns": 45,
+      "statuses": {
+        "fragment": 17,
+        "sentence": 54,
+        "pending": 2
+      },
+      "complete": false
+    },
+    {
+      "file": "part-086.jsonl",
+      "dialogues": 131,
+      "turns": 1062,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-087.jsonl",
+      "dialogues": 131,
+      "turns": 1023,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-088.jsonl",
+      "dialogues": 131,
+      "turns": 1063,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-089.jsonl",
+      "dialogues": 131,
+      "turns": 1053,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-090.jsonl",
+      "dialogues": 131,
+      "turns": 974,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-091.jsonl",
+      "dialogues": 131,
+      "turns": 1002,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-092.jsonl",
+      "dialogues": 131,
+      "turns": 1177,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-093.jsonl",
+      "dialogues": 131,
+      "turns": 1114,
+      "reviewed_dialogues": 5,
+      "reviewed_turns": 45,
+      "statuses": {
+        "sentence": 49,
+        "fragment": 16,
+        "pending": 2
+      },
+      "complete": false
+    },
+    {
+      "file": "part-094.jsonl",
+      "dialogues": 131,
+      "turns": 942,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-095.jsonl",
+      "dialogues": 131,
+      "turns": 1100,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-096.jsonl",
+      "dialogues": 131,
+      "turns": 1076,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-097.jsonl",
+      "dialogues": 131,
+      "turns": 1018,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-098.jsonl",
+      "dialogues": 131,
+      "turns": 962,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-099.jsonl",
+      "dialogues": 131,
+      "turns": 994,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    },
+    {
+      "file": "part-100.jsonl",
+      "dialogues": 131,
+      "turns": 928,
+      "reviewed_dialogues": 0,
+      "reviewed_turns": 0,
+      "statuses": {},
+      "complete": false
+    }
+  ],
+  "published_turns": 3755,
+  "newly_published_turns": 0
+}

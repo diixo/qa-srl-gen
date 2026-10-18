@@ -1,0 +1,234 @@
+{
+  "status": "APPLIED_AND_RESTRICTED_ADMISSION_VERIFIED",
+  "source_quality_report": "data/dailydialog/review-parts/hybrid-quality-control-50-v1.json",
+  "reviews": "data/dailydialog/review-parts/hybrid-quality-control-fixes-v1.jsonl",
+  "reviews_sha256": "37378b9dede0b9994a1413d339512a727ed81e149e409865af160e41315757f6",
+  "candidate": "artifacts/dailydialog-hybrid-qc-fixes-v1",
+  "candidate_review_status": "UNREVIEWED",
+  "results": [
+    {
+      "quality_control_case": "train:2115:5:1",
+      "input_ids": [
+        "train:2115:5:1",
+        "train:2115:5:2"
+      ],
+      "output_id": "train:2115:5:1",
+      "mode": "attested_sentence",
+      "published": true,
+      "factual_qa_approved": false,
+      "unknown": []
+    },
+    {
+      "quality_control_case": "test:989:6:4",
+      "input_ids": [
+        "test:989:6:2",
+        "test:989:6:3",
+        "test:989:6:4",
+        "test:989:6:5",
+        "test:989:6:6"
+      ],
+      "output_id": "test:989:6:2",
+      "mode": "attested_sentence",
+      "published": true,
+      "factual_qa_approved": false,
+      "unknown": [
+        "whether anyone follows the instructions",
+        "whether the malformed spaced second URL is usable"
+      ]
+    },
+    {
+      "quality_control_case": "val:581:1:1",
+      "input_ids": [
+        "val:581:1:1"
+      ],
+      "output_id": "val:581:1:1",
+      "mode": "attested_sentence",
+      "published": true,
+      "factual_qa_approved": false,
+      "unknown": [
+        "specific shop locations until the reply"
+      ]
+    },
+    {
+      "quality_control_case": "train:4908:1:1",
+      "input_ids": [
+        "train:4908:1:1"
+      ],
+      "output_id": "train:4908:1:1",
+      "mode": "attested_sentence",
+      "published": true,
+      "factual_qa_approved": false,
+      "unknown": [
+        "the problem before the answer"
+      ]
+    },
+    {
+      "quality_control_case": "test:377:4:1",
+      "input_ids": [
+        "test:377:4:1"
+      ],
+      "output_id": "test:377:4:1",
+      "mode": "attested_sentence",
+      "published": true,
+      "factual_qa_approved": false,
+      "unknown": [
+        "who caused the crowd",
+        "number of people"
+      ]
+    },
+    {
+      "quality_control_case": "train:2918:3:1",
+      "input_ids": [
+        "train:2918:3:1"
+      ],
+      "output_id": "train:2918:3:1",
+      "mode": "context_only",
+      "published": false,
+      "factual_qa_approved": false,
+      "unknown": [
+        "actual formality",
+        "whether the speech or participation occurs",
+        "exact scope of the final coordination under guess/because"
+      ]
+    },
+    {
+      "quality_control_case": "train:2641:5:1",
+      "input_ids": [
+        "train:2641:5:1"
+      ],
+      "output_id": "train:2641:5:1",
+      "mode": "context_only",
+      "published": false,
+      "factual_qa_approved": false,
+      "unknown": [
+        "whether at night modifies the first or second clause",
+        "intended punctuation between the clauses"
+      ]
+    },
+    {
+      "quality_control_case": "train:4359:4:3",
+      "input_ids": [
+        "train:4359:4:3"
+      ],
+      "output_id": "train:4359:4:3",
+      "mode": "context_only",
+      "published": false,
+      "factual_qa_approved": false,
+      "unknown": [
+        "whether the intended wording was No way am I watching that",
+        "whether the comma separates surprise from a positive watching statement",
+        "whether a word or punctuation is missing"
+      ]
+    }
+  ],
+  "full_rebuild": {
+    "status": "source_segmentation_complete",
+    "counts": {
+      "compiled_occurrences": 161294,
+      "reviewed_syntax_reuses": 1088,
+      "fragment_or_nonverbal_candidates": 26288,
+      "context_reviewed_occurrences": 251,
+      "context_syntax_corrections": 137,
+      "groups": 70802,
+      "entity_candidates": 10535,
+      "sample_cases": 108
+    },
+    "validation": {
+      "status": "passed",
+      "source_sha256": "c2ede94ec9c5dd0082c581073dc8b2fbb39fefd4f10acc1321e6a16a25b249cc",
+      "templates": 98760,
+      "attested_roundtrips": 107597,
+      "source_records": 161294,
+      "token_spans": 1377804,
+      "verbs_occurrences": 289391,
+      "adjectives_occurrences": 71977
+    },
+    "conservation": {
+      "status": "passed",
+      "counts": {
+        "old_segments": 161299,
+        "old_tokens": 1377810,
+        "new_segments": 161294,
+        "new_tokens": 1377804,
+        "unchanged_analyses": 161286,
+        "revised_outputs": 8,
+        "joined_input_segments": 5
+      },
+      "explicit_token_delta": -6,
+      "reference_expansion_token_delta": 1,
+      "previous_preimages_retained": true
+    },
+    "dialogues": 12608,
+    "turns": 99224,
+    "previous_bank_unchanged": true,
+    "protected_files": 476,
+    "source_files_updated": 0,
+    "api_calls": 0,
+    "parser_inference_calls": 0,
+    "published": false,
+    "elapsed_seconds": 711.01
+  },
+  "publication": {
+    "admitted_occurrences": [
+      "train:2115:5:1",
+      "test:989:6:2",
+      "val:581:1:1",
+      "train:4908:1:1",
+      "test:377:4:1"
+    ],
+    "held_back": [
+      "train:2918:3:1",
+      "train:2641:5:1",
+      "train:4359:4:3"
+    ],
+    "validation": {
+      "status": "passed",
+      "source_sha256": "73bb9927c68efd2c8267633a6232fa19968c4a1fefe90508aa3138f6275a77ed",
+      "templates": 5,
+      "attested_roundtrips": 5,
+      "source_records": 5,
+      "token_spans": 70,
+      "verbs_occurrences": 11,
+      "adjectives_occurrences": 3
+    },
+    "api_calls": 0,
+    "parser_inference_calls": 0,
+    "published": true,
+    "bank_id": "dailydialog-hybrid-qc-fixes-v1",
+    "previous_files_preserved": 344
+  },
+  "preservation_verification": {
+    "status": "passed",
+    "review_groups": 8,
+    "input_occurrences": 13,
+    "output_occurrences": 8,
+    "exact_compiled_outputs_matched": 8,
+    "retired_preimages_retained": 5,
+    "second_reopen_passed": true,
+    "other_qc_sample_occurrences_unchanged": 42,
+    "protected_input_files_verified": 452,
+    "source_contexts_identical": true,
+    "source_files_updated": 0,
+    "published": true,
+    "templates_published": 5,
+    "published_records_exactly_match": true,
+    "bank_id": "dailydialog-hybrid-qc-fixes-v1",
+    "previous_pool_files_preserved": 344
+  },
+  "tests": {
+    "passed": 119,
+    "failed": 0,
+    "report": "artifacts/dailydialog-qc-fixes-v1/tests-final.xml"
+  },
+  "generation": {
+    "profiles": [
+      "user_assistant_only",
+      "named"
+    ],
+    "max_length": 768,
+    "extraction_max_tokens": 726,
+    "rejected_episodes": 0,
+    "report": "artifacts/dailydialog-hybrid-qc-fixes-admitted-v1/generation-smoke.json"
+  },
+  "note": "Only the eight queued QC cases were changed. The other 42 sample occurrences and the 510 earlier manual dialogues remain unchanged. The six definite repairs include take part in, which stays context_only because its complement and coordination scope are incomplete. Two source ambiguities remain explicit; their old syntax is evidence, not approved semantics."
+}

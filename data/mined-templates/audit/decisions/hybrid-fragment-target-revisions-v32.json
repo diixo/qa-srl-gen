@@ -1,0 +1,652 @@
+{
+  "format": "reviewed-fragment-target-revisions-v1",
+  "scope": "six_targets_in_v32_original_prefix_sample",
+  "catalog": "data/mined-templates/reviewed/dialogue-fragments.json",
+  "base_catalog_sha256": "05aba245a0feb5ec9d6d5864723a79ebc20d25c30aa14a4952df25dd3e628b92",
+  "revisions": [
+    {
+      "id": "dd_v19_train_1163_7_2",
+      "source_id": "train:1163:7:2",
+      "method": "direct_assistant_target_semantics_review",
+      "preimage": {
+        "id": "dd_v19_train_1163_7_2",
+        "kind": "interpretation",
+        "context": true,
+        "assistant": "We are planning to play golf. How will we get there?",
+        "reply": "I will pick you up Borrow.",
+        "value": "promised to pick me up for golf; the time represented by Borrow is unknown and pickup is not completed",
+        "question": "What did I convey in my last reply?",
+        "interpretation_topic": "dd_v19_train_1163_7_2",
+        "source": {
+          "split": "train",
+          "dialogue": 1163,
+          "turn": 7,
+          "segment": 2,
+          "span": [
+            26,
+            52
+          ],
+          "text": "I will pick you up Borrow.",
+          "context": [
+            "Would you like to play golf with me?",
+            "I would like to. But I'm not good at it.",
+            "It doesn't matter. I will teach you.",
+            "That's great! When will we go?",
+            "Borrow morning.",
+            "All right. What should I take?",
+            "Just take your golf club. I will pick you up Borrow.",
+            "Thanks. I will wait you at my home.",
+            "See you Borrow."
+          ]
+        },
+        "review": {
+          "method": "direct_assistant_fragment_adapter",
+          "scope": "adapted_visible_pair_only",
+          "evidence_turns": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. The speaker promises to pick up the listener for the planned golf outing. Pick you up is a separated phrasal verb; Borrow is not a second pickup object.",
+          "source_sha256": "892f4e52168ded3e51a3dac0c96b5ea8dd0ee3d9fe721d1d507623c444500659",
+          "context_sha256": "36df72374fd9ff905a5c242b36e06ae175ec85093fd32704307f55dd1954bcae"
+        }
+      },
+      "preimage_sha256": "41c65d10c324ef54958e5b0e75722e1c9470b8eeb62689d3c40e26a27451b260",
+      "replacement": {
+        "id": "dd_v19_train_1163_7_2",
+        "kind": "interpretation",
+        "context": true,
+        "assistant": "We are planning to play golf. How will we get there?",
+        "reply": "I will pick you up Borrow.",
+        "value": "promised to pick me up for golf; the time represented by Borrow is unknown and completion of the pickup was not reported",
+        "question": "What did I convey in my last reply?",
+        "interpretation_topic": "dd_v19_train_1163_7_2",
+        "source": {
+          "split": "train",
+          "dialogue": 1163,
+          "turn": 7,
+          "segment": 2,
+          "span": [
+            26,
+            52
+          ],
+          "text": "I will pick you up Borrow.",
+          "context": [
+            "Would you like to play golf with me?",
+            "I would like to. But I'm not good at it.",
+            "It doesn't matter. I will teach you.",
+            "That's great! When will we go?",
+            "Borrow morning.",
+            "All right. What should I take?",
+            "Just take your golf club. I will pick you up Borrow.",
+            "Thanks. I will wait you at my home.",
+            "See you Borrow."
+          ]
+        },
+        "review": {
+          "method": "direct_assistant_fragment_adapter",
+          "scope": "adapted_visible_pair_only",
+          "evidence_turns": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. The speaker promises to pick up the listener for the planned golf outing. Pick you up is a separated phrasal verb; Borrow is not a second pickup object. The target distinguishes absence of completion evidence from a claim of noncompletion: the original prospective or hypothetical wording licenses neither completed nor negated-completed events.",
+          "source_sha256": "892f4e52168ded3e51a3dac0c96b5ea8dd0ee3d9fe721d1d507623c444500659",
+          "context_sha256": "36df72374fd9ff905a5c242b36e06ae175ec85093fd32704307f55dd1954bcae"
+        }
+      },
+      "replacement_sha256": "6e7f684a9b76a30917f139654736dbfd1316322353c164d826be7cef0f63b379",
+      "reason": "The target distinguishes absence of completion evidence from a claim of noncompletion: the original prospective or hypothetical wording licenses neither completed nor negated-completed events.",
+      "source_text_changed": false
+    },
+    {
+      "id": "dd_v19_train_1163_9_1",
+      "source_id": "train:1163:9:1",
+      "method": "direct_assistant_target_semantics_review",
+      "preimage": {
+        "id": "dd_v19_train_1163_9_1",
+        "kind": "interpretation",
+        "context": true,
+        "assistant": "Thanks for arranging the golf outing. I will wait at home.",
+        "reply": "See you Borrow.",
+        "value": "said goodbye with an expectation of meeting, but the time after Borrow is unclear and no meeting is completed",
+        "question": "What did I convey in my last reply?",
+        "interpretation_topic": "dd_v19_train_1163_9_1",
+        "source": {
+          "split": "train",
+          "dialogue": 1163,
+          "turn": 9,
+          "segment": 1,
+          "span": [
+            0,
+            15
+          ],
+          "text": "See you Borrow.",
+          "context": [
+            "Would you like to play golf with me?",
+            "I would like to. But I'm not good at it.",
+            "It doesn't matter. I will teach you.",
+            "That's great! When will we go?",
+            "Borrow morning.",
+            "All right. What should I take?",
+            "Just take your golf club. I will pick you up Borrow.",
+            "Thanks. I will wait you at my home.",
+            "See you Borrow."
+          ]
+        },
+        "review": {
+          "method": "direct_assistant_fragment_adapter",
+          "scope": "adapted_visible_pair_only",
+          "evidence_turns": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. See you is a farewell after agreeing to a golf outing and pickup. It does not report an actual sighting, completed meeting or an instruction that the listener borrow something.",
+          "source_sha256": "650f9d3af33b2dd8694f87ee2e939ede1d5fc54f856e84a5e334fcfc2147ec82",
+          "context_sha256": "36df72374fd9ff905a5c242b36e06ae175ec85093fd32704307f55dd1954bcae"
+        }
+      },
+      "preimage_sha256": "691613cd5d919363168e6cccb0865a6754b1789fda79960f1bc5f115dcad69dd",
+      "replacement": {
+        "id": "dd_v19_train_1163_9_1",
+        "kind": "interpretation",
+        "context": true,
+        "assistant": "Thanks for arranging the golf outing. I will wait at home.",
+        "reply": "See you Borrow.",
+        "value": "said goodbye with an expectation of meeting, but the time after Borrow is unclear and no completed meeting was reported",
+        "question": "What did I convey in my last reply?",
+        "interpretation_topic": "dd_v19_train_1163_9_1",
+        "source": {
+          "split": "train",
+          "dialogue": 1163,
+          "turn": 9,
+          "segment": 1,
+          "span": [
+            0,
+            15
+          ],
+          "text": "See you Borrow.",
+          "context": [
+            "Would you like to play golf with me?",
+            "I would like to. But I'm not good at it.",
+            "It doesn't matter. I will teach you.",
+            "That's great! When will we go?",
+            "Borrow morning.",
+            "All right. What should I take?",
+            "Just take your golf club. I will pick you up Borrow.",
+            "Thanks. I will wait you at my home.",
+            "See you Borrow."
+          ]
+        },
+        "review": {
+          "method": "direct_assistant_fragment_adapter",
+          "scope": "adapted_visible_pair_only",
+          "evidence_turns": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. See you is a farewell after agreeing to a golf outing and pickup. It does not report an actual sighting, completed meeting or an instruction that the listener borrow something. The target distinguishes absence of completion evidence from a claim of noncompletion: the original prospective or hypothetical wording licenses neither completed nor negated-completed events.",
+          "source_sha256": "650f9d3af33b2dd8694f87ee2e939ede1d5fc54f856e84a5e334fcfc2147ec82",
+          "context_sha256": "36df72374fd9ff905a5c242b36e06ae175ec85093fd32704307f55dd1954bcae"
+        }
+      },
+      "replacement_sha256": "cc38321b8f9f38ec36cabf1ba30db3ae1d3c0489f1081b040ed5ace35e4a0207",
+      "reason": "The target distinguishes absence of completion evidence from a claim of noncompletion: the original prospective or hypothetical wording licenses neither completed nor negated-completed events.",
+      "source_text_changed": false
+    },
+    {
+      "id": "dd_v21_train_1934_5_2",
+      "source_id": "train:1934:5:2",
+      "method": "direct_assistant_target_semantics_review",
+      "preimage": {
+        "id": "dd_v21_train_1934_5_2",
+        "kind": "interpretation",
+        "context": true,
+        "assistant": "Would you want to live in that large house?",
+        "reply": "You would have to hire one or two people to clean all the rooms in the house, plus a few people to take care of the gardens, and pro",
+        "value": "described a hypothetical need for one or two cleaners and a few gardeners; the continuation after pro is missing and no hiring was completed",
+        "question": "What did I convey in my last reply?",
+        "interpretation_topic": "dd_v21_train_1934_5_2",
+        "source": {
+          "split": "train",
+          "dialogue": 1934,
+          "turn": 5,
+          "segment": 2,
+          "span": [
+            67,
+            199
+          ],
+          "text": "You would have to hire one or two people to clean all the rooms in the house, plus a few people to take care of the gardens, and pro",
+          "context": [
+            "Have you ever seen Bill Gate's home on the internet?",
+            "No. What's it like?",
+            "It's got its own library, theatre, swimming pool, and a guest house. The house itself has about ten different rooms that are all hooked up to computers so you can get things done in each room through",
+            "Would you want to live there?",
+            "I think his house is fantastic, but I wouldn't want to live there. You would have to hire one or two people to clean all the rooms in the house, plus a few people to take care of the gardens, and pro",
+            "What's your dreamhole like then?",
+            "My dream home is actually just a small cottage in a quite village in England.",
+            "Would you want to buy an old cottage or build a new one yourself?",
+            "Old homes are great because they've got character. I think that's important.",
+            "It that why you wear second-hand cloths as well? Because they've got character?",
+            "No, that's just because I don't have enough money to buy new cloths all the time!",
+            "I see. If you lived in an old house, would it be decorated in a modern way?",
+            "No, I'd definitely try to restore it to its original state. I love to imagine what it'd be like to live in another time in history and living in a house decorated like it would have been 200 years a"
+          ]
+        },
+        "review": {
+          "method": "direct_assistant_fragment_adapter",
+          "scope": "adapted_visible_pair_only",
+          "evidence_turns": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "source_sha256": "ff8cfdd646f6fafa82a7ba7056f64ab2dcbad5ac7c97fbcced9d8076e238828f",
+          "context_sha256": "a15a273182e9343fd7025f53e44a4ee881668a0574c073808086f094554e934b",
+          "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. Living in the large house would require one or two cleaners plus a few gardeners, according to the speaker. The trailing pro does not add a guessed profession; no hiring is completed.The item or clause after pro is missing."
+        }
+      },
+      "preimage_sha256": "954d7e6cb4cd53f868676ac11b2528be11067c190dad79235449301b479acf32",
+      "replacement": {
+        "id": "dd_v21_train_1934_5_2",
+        "kind": "interpretation",
+        "context": true,
+        "assistant": "Would you want to live in that large house?",
+        "reply": "You would have to hire one or two people to clean all the rooms in the house, plus a few people to take care of the gardens, and pro",
+        "value": "described a hypothetical need for one or two cleaners and a few gardeners; the continuation after pro is missing and no completed hiring was reported",
+        "question": "What did I convey in my last reply?",
+        "interpretation_topic": "dd_v21_train_1934_5_2",
+        "source": {
+          "split": "train",
+          "dialogue": 1934,
+          "turn": 5,
+          "segment": 2,
+          "span": [
+            67,
+            199
+          ],
+          "text": "You would have to hire one or two people to clean all the rooms in the house, plus a few people to take care of the gardens, and pro",
+          "context": [
+            "Have you ever seen Bill Gate's home on the internet?",
+            "No. What's it like?",
+            "It's got its own library, theatre, swimming pool, and a guest house. The house itself has about ten different rooms that are all hooked up to computers so you can get things done in each room through",
+            "Would you want to live there?",
+            "I think his house is fantastic, but I wouldn't want to live there. You would have to hire one or two people to clean all the rooms in the house, plus a few people to take care of the gardens, and pro",
+            "What's your dreamhole like then?",
+            "My dream home is actually just a small cottage in a quite village in England.",
+            "Would you want to buy an old cottage or build a new one yourself?",
+            "Old homes are great because they've got character. I think that's important.",
+            "It that why you wear second-hand cloths as well? Because they've got character?",
+            "No, that's just because I don't have enough money to buy new cloths all the time!",
+            "I see. If you lived in an old house, would it be decorated in a modern way?",
+            "No, I'd definitely try to restore it to its original state. I love to imagine what it'd be like to live in another time in history and living in a house decorated like it would have been 200 years a"
+          ]
+        },
+        "review": {
+          "method": "direct_assistant_fragment_adapter",
+          "scope": "adapted_visible_pair_only",
+          "evidence_turns": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "source_sha256": "ff8cfdd646f6fafa82a7ba7056f64ab2dcbad5ac7c97fbcced9d8076e238828f",
+          "context_sha256": "a15a273182e9343fd7025f53e44a4ee881668a0574c073808086f094554e934b",
+          "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. Living in the large house would require one or two cleaners plus a few gardeners, according to the speaker. The trailing pro does not add a guessed profession; no completed hiring is reported.The item or clause after pro is missing. The target distinguishes absence of completion evidence from a claim of noncompletion: the original prospective or hypothetical wording licenses neither completed nor negated-completed events."
+        }
+      },
+      "replacement_sha256": "ae85c4092b1e1c32b63609a32a7b61b08965f6aea857d45b32ac6efb16dca2d7",
+      "reason": "The target distinguishes absence of completion evidence from a claim of noncompletion: the original prospective or hypothetical wording licenses neither completed nor negated-completed events.",
+      "source_text_changed": false
+    },
+    {
+      "id": "dd_v23_train_2635_7_2",
+      "source_id": "train:2635:7:2",
+      "method": "direct_assistant_target_semantics_review",
+      "preimage": {
+        "id": "dd_v23_train_2635_7_2",
+        "kind": "interpretation",
+        "context": true,
+        "assistant": "What will the manicurist do during your visit?",
+        "reply": "The manicurist will remove my cuticles, file my nails, and apply at least nails coats of nail polish!",
+        "value": "expected cuticle removal, nail filing and polish application; the minimum coat count is unclear and the manicure was not completed",
+        "question": "What did I convey in my last reply?",
+        "interpretation_topic": "dd_v23_train_2635_7_2",
+        "source": {
+          "split": "train",
+          "dialogue": 2635,
+          "turn": 7,
+          "segment": 2,
+          "span": [
+            32,
+            133
+          ],
+          "text": "The manicurist will remove my cuticles, file my nails, and apply at least nails coats of nail polish!",
+          "context": [
+            "Honey, I'll be right back!",
+            "Where are you going?",
+            "I told you already! I'm going to get my nails done.",
+            "Again? You just went last week! You spend more time at the nail salon than you do here at home! Honestly, why do you need a manicure every week?",
+            "Well, first of all, I like to pamper myself, and my nails look great. You should come with me!",
+            "Why? I don't want to have nail polish or anything like that!",
+            "They don't only paint my nails! The manicurist will remove my cuticles, file my nails, and apply at least nails coats of nail polish!",
+            "Yeah, sounds like something I should definitely do."
+          ]
+        },
+        "review": {
+          "method": "direct_assistant_fragment_adapter",
+          "scope": "adapted_visible_pair_only",
+          "evidence_turns": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "source_sha256": "c8eb440052ecdc54715fd6aa758be9fa99aad0341af2b7f100ee305df9f123ba",
+          "context_sha256": "a4bc4d0cbc7983389d5c31d75b7a66834259d9dbff4c4d5bd1f2e1e4177b0827",
+          "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker expects the manicurist to remove cuticles, file nails and apply nail polish. The damaged quantity at least nails does not supply a reliable number of coats. These actions are prospective.The minimum number of polish coats is unknown."
+        }
+      },
+      "preimage_sha256": "92d7e92b5a78a69e00aed4e3670a05e131981e80cf506526f32c86bde01b189d",
+      "replacement": {
+        "id": "dd_v23_train_2635_7_2",
+        "kind": "interpretation",
+        "context": true,
+        "assistant": "What will the manicurist do during your visit?",
+        "reply": "The manicurist will remove my cuticles, file my nails, and apply at least nails coats of nail polish!",
+        "value": "expected cuticle removal, nail filing and polish application; the minimum coat count is unclear and completion of the manicure was not reported",
+        "question": "What did I convey in my last reply?",
+        "interpretation_topic": "dd_v23_train_2635_7_2",
+        "source": {
+          "split": "train",
+          "dialogue": 2635,
+          "turn": 7,
+          "segment": 2,
+          "span": [
+            32,
+            133
+          ],
+          "text": "The manicurist will remove my cuticles, file my nails, and apply at least nails coats of nail polish!",
+          "context": [
+            "Honey, I'll be right back!",
+            "Where are you going?",
+            "I told you already! I'm going to get my nails done.",
+            "Again? You just went last week! You spend more time at the nail salon than you do here at home! Honestly, why do you need a manicure every week?",
+            "Well, first of all, I like to pamper myself, and my nails look great. You should come with me!",
+            "Why? I don't want to have nail polish or anything like that!",
+            "They don't only paint my nails! The manicurist will remove my cuticles, file my nails, and apply at least nails coats of nail polish!",
+            "Yeah, sounds like something I should definitely do."
+          ]
+        },
+        "review": {
+          "method": "direct_assistant_fragment_adapter",
+          "scope": "adapted_visible_pair_only",
+          "evidence_turns": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "source_sha256": "c8eb440052ecdc54715fd6aa758be9fa99aad0341af2b7f100ee305df9f123ba",
+          "context_sha256": "a4bc4d0cbc7983389d5c31d75b7a66834259d9dbff4c4d5bd1f2e1e4177b0827",
+          "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker expects the manicurist to remove cuticles, file nails and apply nail polish. The damaged quantity at least nails does not supply a reliable number of coats. These actions are prospective.The minimum number of polish coats is unknown. The target distinguishes absence of completion evidence from a claim of noncompletion: the original prospective or hypothetical wording licenses neither completed nor negated-completed events."
+        }
+      },
+      "replacement_sha256": "24731ba4d777ac9a050b0aac40c44d405c8dd4c64a088654216b0bf3d40818e6",
+      "reason": "The target distinguishes absence of completion evidence from a claim of noncompletion: the original prospective or hypothetical wording licenses neither completed nor negated-completed events.",
+      "source_text_changed": false
+    },
+    {
+      "id": "dd_v24_train_10892_9_1",
+      "source_id": "train:10892:9:1",
+      "method": "direct_assistant_target_semantics_review",
+      "preimage": {
+        "id": "dd_v24_train_10892_9_1",
+        "kind": "interpretation",
+        "context": true,
+        "assistant": "If I help as a consultant, what could you offer me?",
+        "reply": "We could give you an uncite office, as well as potential to develop your own contracts in Japan.",
+        "value": "offered an office described as uncite and opportunities to develop contracts in Japan; that modifier remains unclear and neither provision nor contracts were completed",
+        "question": "What did I convey in my last reply?",
+        "interpretation_topic": "dd_v24_train_10892_9_1",
+        "source": {
+          "split": "train",
+          "dialogue": 10892,
+          "turn": 9,
+          "segment": 1,
+          "span": [
+            0,
+            96
+          ],
+          "text": "We could give you an uncite office, as well as potential to develop your own contracts in Japan.",
+          "context": [
+            "Mr Hughes? Do you have a minute? I would like to discuss something with you.",
+            "What can I do for you?",
+            "I was wondering, I have heard many of my co-workers that your knowledge and experience in international markets is phenomenal. Also, I've heard the rumor that you speak fluent Japanese. Is that right?",
+            "Yes, that's right. I do speak decent Japanese.",
+            "Right now I'm working on a product launch project to open up our Asian market. We have several upcoming events to take place for the Japanese cities. We'll be heading to Tokyo next month to get things started. What I would like to talk to you about is joining our team to help bring this project to completion.",
+            "Exactly what kind of help did you have in mind?",
+            "We aer looking for someone who is familiar with the market and cultural issues to act as an advisor to our marketing staff. We would like to set up a partnership, where we can help each other.",
+            "So if I can help you as a consultant, what is in for me?",
+            "We could give you an uncite office, as well as potential to develop your own contracts in Japan. At the same time, after helping with our project, we will be willing to split our profit with you."
+          ]
+        },
+        "review": {
+          "method": "direct_assistant_fragment_adapter",
+          "scope": "adapted_visible_pair_only",
+          "evidence_turns": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "source_sha256": "fc7376f694c23e396a4105e268e12fd460b82bb5eac748f22af94552ef726737",
+          "context_sha256": "ea75bee32e86dc8928d43a76b9b0d7d788f6be067746e24fd7d73578a93c1244",
+          "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker offers an office with the unclear modifier uncite and opportunities for developing contracts in Japan. Could is an offer of possibilities, not completed provision or signed contracts.The property or location meant by uncite is unclear."
+        }
+      },
+      "preimage_sha256": "f04dec7447f5eb3ae92ed6240940dc977418380b685b87730d916a12c0e08d82",
+      "replacement": {
+        "id": "dd_v24_train_10892_9_1",
+        "kind": "interpretation",
+        "context": true,
+        "assistant": "If I help as a consultant, what could you offer me?",
+        "reply": "We could give you an uncite office, as well as potential to develop your own contracts in Japan.",
+        "value": "offered an office described as uncite and opportunities to develop contracts in Japan; that modifier remains unclear and neither office provision nor signed contracts were reported as completed",
+        "question": "What did I convey in my last reply?",
+        "interpretation_topic": "dd_v24_train_10892_9_1",
+        "source": {
+          "split": "train",
+          "dialogue": 10892,
+          "turn": 9,
+          "segment": 1,
+          "span": [
+            0,
+            96
+          ],
+          "text": "We could give you an uncite office, as well as potential to develop your own contracts in Japan.",
+          "context": [
+            "Mr Hughes? Do you have a minute? I would like to discuss something with you.",
+            "What can I do for you?",
+            "I was wondering, I have heard many of my co-workers that your knowledge and experience in international markets is phenomenal. Also, I've heard the rumor that you speak fluent Japanese. Is that right?",
+            "Yes, that's right. I do speak decent Japanese.",
+            "Right now I'm working on a product launch project to open up our Asian market. We have several upcoming events to take place for the Japanese cities. We'll be heading to Tokyo next month to get things started. What I would like to talk to you about is joining our team to help bring this project to completion.",
+            "Exactly what kind of help did you have in mind?",
+            "We aer looking for someone who is familiar with the market and cultural issues to act as an advisor to our marketing staff. We would like to set up a partnership, where we can help each other.",
+            "So if I can help you as a consultant, what is in for me?",
+            "We could give you an uncite office, as well as potential to develop your own contracts in Japan. At the same time, after helping with our project, we will be willing to split our profit with you."
+          ]
+        },
+        "review": {
+          "method": "direct_assistant_fragment_adapter",
+          "scope": "adapted_visible_pair_only",
+          "evidence_turns": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "source_sha256": "fc7376f694c23e396a4105e268e12fd460b82bb5eac748f22af94552ef726737",
+          "context_sha256": "ea75bee32e86dc8928d43a76b9b0d7d788f6be067746e24fd7d73578a93c1244",
+          "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker offers an office with the unclear modifier uncite and opportunities for developing contracts in Japan. Could is an offer of possibilities, not completed provision or signed contracts.The property or location meant by uncite is unclear. The target distinguishes absence of completion evidence from a claim of noncompletion: the original prospective or hypothetical wording licenses neither completed nor negated-completed events."
+        }
+      },
+      "replacement_sha256": "4b2a66b3ab4eb894f5d1919018e65206123673c0bbab1ef4c86fbf820d7d2a44",
+      "reason": "The target distinguishes absence of completion evidence from a claim of noncompletion: the original prospective or hypothetical wording licenses neither completed nor negated-completed events.",
+      "source_text_changed": false
+    },
+    {
+      "id": "dd_v25_train_11064_8_2",
+      "source_id": "train:11064:8:2",
+      "method": "direct_assistant_target_semantics_review",
+      "preimage": {
+        "id": "dd_v25_train_11064_8_2",
+        "kind": "interpretation",
+        "context": true,
+        "assistant": "What other shipping arrangement would you suggest?",
+        "reply": "How about shipping them from Seattle instead of network?",
+        "value": "suggested shipping from Seattle instead of the alternative written network; that alternative remains unclear and shipment was not completed",
+        "question": "What did I convey in my last reply?",
+        "interpretation_topic": "dd_v25_train_11064_8_2",
+        "source": {
+          "split": "train",
+          "dialogue": 11064,
+          "turn": 8,
+          "segment": 2,
+          "span": [
+            140,
+            196
+          ],
+          "text": "How about shipping them from Seattle instead of network?",
+          "context": [
+            "It has just occurred to me that there is still another possibility to ensure a prompt delivery of the goods.",
+            "And that is?",
+            "How about making Hong Kong the port of shipment instead of New York?",
+            "I'm afraid we can't agree to that. We concluded the business with you here in Houston, and the goods you ordered are manufactured in New York. We wish to point out that all orders accepted by us are shipped from New York or Seattle. Hong Kong is out of the question.",
+            "It's like this. There are only one or two ships sailing a month from New York to Osaka, while sailings from Hong Kong are quite frequent. If shipment were effected from Hong Kong, we could receive the goods much earlier.",
+            "I see. You want to have your goods shipped from New York to Osaka via Hong Kong, where they can be transshipped. Is that the idea?",
+            "Yes, exactly, because I want these goods on our market at the earliest possible date.",
+            "Your idea may be a good one, but the trouble is that there are risks of pilferage or damage to the goods during transshipment at Hong Kong. How about shipping them from Seattle instead of network? You may choose either one as port of shipment. It makes no difference to us. There are more sailings from Seattle than from New York.",
+            "It sounds all right to me, but I will have to think about it. I'll give you a definite answer tomorrow. If I choose Seattle, will it be possible for you to ship the goods by the end of March?",
+            "We'll try our best. Anyway, we assure you that shipment will be made not later than the first half of April."
+          ]
+        },
+        "review": {
+          "method": "direct_assistant_fragment_adapter",
+          "scope": "adapted_visible_pair_only",
+          "evidence_turns": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "source_sha256": "1d1d39e3cb9dfb9fe5ff7d6b7377a8059744a1459b6a9ec4ebdbacd5adc49dec",
+          "context_sha256": "2e1608c16c6ad385a1c8e82a69871be355b090d22e0f127a0f1438ca93b3bed2",
+          "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker proposes shipping from Seattle rather than the alternative written network. Context discusses ports, but the exact word is not replaced with a city and shipment is not completed.The alternative location represented by network is unresolved."
+        }
+      },
+      "preimage_sha256": "f8a0419ef9a7565d769634001378ac7c55b0410304b3bb40c833a8ea3e2f78e8",
+      "replacement": {
+        "id": "dd_v25_train_11064_8_2",
+        "kind": "interpretation",
+        "context": true,
+        "assistant": "What other shipping arrangement would you suggest?",
+        "reply": "How about shipping them from Seattle instead of network?",
+        "value": "suggested shipping from Seattle instead of the alternative written network; that alternative remains unclear and completion of shipment was not reported",
+        "question": "What did I convey in my last reply?",
+        "interpretation_topic": "dd_v25_train_11064_8_2",
+        "source": {
+          "split": "train",
+          "dialogue": 11064,
+          "turn": 8,
+          "segment": 2,
+          "span": [
+            140,
+            196
+          ],
+          "text": "How about shipping them from Seattle instead of network?",
+          "context": [
+            "It has just occurred to me that there is still another possibility to ensure a prompt delivery of the goods.",
+            "And that is?",
+            "How about making Hong Kong the port of shipment instead of New York?",
+            "I'm afraid we can't agree to that. We concluded the business with you here in Houston, and the goods you ordered are manufactured in New York. We wish to point out that all orders accepted by us are shipped from New York or Seattle. Hong Kong is out of the question.",
+            "It's like this. There are only one or two ships sailing a month from New York to Osaka, while sailings from Hong Kong are quite frequent. If shipment were effected from Hong Kong, we could receive the goods much earlier.",
+            "I see. You want to have your goods shipped from New York to Osaka via Hong Kong, where they can be transshipped. Is that the idea?",
+            "Yes, exactly, because I want these goods on our market at the earliest possible date.",
+            "Your idea may be a good one, but the trouble is that there are risks of pilferage or damage to the goods during transshipment at Hong Kong. How about shipping them from Seattle instead of network? You may choose either one as port of shipment. It makes no difference to us. There are more sailings from Seattle than from New York.",
+            "It sounds all right to me, but I will have to think about it. I'll give you a definite answer tomorrow. If I choose Seattle, will it be possible for you to ship the goods by the end of March?",
+            "We'll try our best. Anyway, we assure you that shipment will be made not later than the first half of April."
+          ]
+        },
+        "review": {
+          "method": "direct_assistant_fragment_adapter",
+          "scope": "adapted_visible_pair_only",
+          "evidence_turns": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "source_sha256": "1d1d39e3cb9dfb9fe5ff7d6b7377a8059744a1459b6a9ec4ebdbacd5adc49dec",
+          "context_sha256": "2e1608c16c6ad385a1c8e82a69871be355b090d22e0f127a0f1438ca93b3bed2",
+          "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The speaker proposes shipping from Seattle rather than the alternative written network. Context discusses ports, but the exact word is not replaced with a city and completed shipment is not reported.The alternative location represented by network is unresolved. The target distinguishes absence of completion evidence from a claim of noncompletion: the original prospective or hypothetical wording licenses neither completed nor negated-completed events."
+        }
+      },
+      "replacement_sha256": "300971cc58c1a64663f45a1277aee22a8b314edb94d15275b3d928b6eed8c100",
+      "reason": "The target distinguishes absence of completion evidence from a claim of noncompletion: the original prospective or hypothetical wording licenses neither completed nor negated-completed events.",
+      "source_text_changed": false
+    }
+  ]
+}

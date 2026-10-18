@@ -1,0 +1,459 @@
+{
+  "method": "direct_original_prefix_review_before_parse_inspection",
+  "cases": [
+    {
+      "case": 1,
+      "id": "train:9624:8:4",
+      "speech_act": "necessity",
+      "event_status": "required_cancellation",
+      "interpretation": "The speaker says the dinner appointment needs to be cancelled to prioritize the doctor visit; cancellation is not reported as completed.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 2,
+      "id": "train:5591:8:1",
+      "speech_act": "commitment",
+      "event_status": "future_guided_visit",
+      "interpretation": "The speaker promises to take the listener to Li River after walking around the present area; neither activity is confirmed as completed.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 3,
+      "id": "train:9970:2:2",
+      "speech_act": "denial",
+      "event_status": "negated_category",
+      "interpretation": "The speaker says the listener is not a runner; this does not deny wanting running shoes.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 4,
+      "id": "val:785:8:1",
+      "speech_act": "acceptance",
+      "event_status": "intended_trial",
+      "interpretation": "The speaker agrees to try the Oolong tea just identified by the listener; drinking or tasting is not confirmed.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 5,
+      "id": "train:660:3:2",
+      "speech_act": "report",
+      "event_status": "past_attendance",
+      "interpretation": "The speaker reports going to a cookout for new professors at Dean Barksdale's home last week. The isolated 5 appears extraneous and has no established semantic role.",
+      "completed_action_asserted": true,
+      "unknown": [
+        "The role of the isolated digit 5 is unknown; it is not a quantity of people or cookouts."
+      ]
+    },
+    {
+      "case": 6,
+      "id": "train:8824:6:1",
+      "speech_act": "insistence",
+      "event_status": "elliptical_obligation",
+      "interpretation": "The doctor insists that the listener must slow down; I am afraid softens the unwelcome advice rather than reporting fear. Slowing down is not confirmed.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 7,
+      "id": "train:2157:12:2",
+      "speech_act": "statement",
+      "event_status": "acquaintance",
+      "interpretation": "The speaker says they know Mary, supporting their assessment of her decisiveness; this does not assert a new meeting.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 8,
+      "id": "train:998:3:3",
+      "speech_act": "self_description",
+      "event_status": "current_occupation",
+      "interpretation": "The speaker contrasts a childhood aspiration with their current job as an ordinary office clerk; you see is a discourse marker.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 9,
+      "id": "train:7730:12:1",
+      "speech_act": "preference",
+      "event_status": "favored_food",
+      "interpretation": "The speaker says fish cooked in sweet and sour sauce is their favorite; the sentence does not report a new cooking action.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 10,
+      "id": "test:459:4:2",
+      "speech_act": "description_and_desire",
+      "event_status": "condition_and_desired_replacement",
+      "interpretation": "The living-room carpet is described as worn out and the speaker wants to install new wall-to-wall carpeting; installation is not confirmed.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 11,
+      "id": "train:5449:3:1",
+      "speech_act": "offer",
+      "event_status": "conditional_offer_of_help",
+      "interpretation": "The speaker offers assistance and asks to be told if help is needed; no particular assistance has been performed.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 12,
+      "id": "train:1211:15:3",
+      "speech_act": "proposal",
+      "event_status": "suggested_departure",
+      "interpretation": "The speaker proposes going to see the film just discussed; departure and viewing are not confirmed.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 13,
+      "id": "train:10530:3:1",
+      "speech_act": "report",
+      "event_status": "anthem_completed_game_started",
+      "interpretation": "The speaker reports that the anthem has just been sung and the umpire has started the game; completion concerns the anthem, not the game.",
+      "completed_action_asserted": true,
+      "unknown": []
+    },
+    {
+      "case": 14,
+      "id": "train:5575:1:2",
+      "speech_act": "request_and_intention",
+      "event_status": "requested_stop_planned_purchase",
+      "interpretation": "The speaker asks the driver to pull over at the indicated store and intends to buy drinks; neither stopping nor buying is confirmed.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 15,
+      "id": "train:2357:5:1",
+      "speech_act": "confirmation_question",
+      "event_status": "surprised_inquiry",
+      "interpretation": "The speaker reacts with surprise and asks for confirmation about George having problems; the reaction is not independent verification.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 16,
+      "id": "train:711:4:2",
+      "speech_act": "description",
+      "event_status": "elliptical_ongoing_viewing",
+      "interpretation": "The speaker says they are watching the sports highlight on ESPN now; the activity is ongoing, not completed.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 17,
+      "id": "train:1683:9:2",
+      "speech_act": "question",
+      "event_status": "contact_query",
+      "interpretation": "The speaker asks whether the step-brother stays in contact with his mother; no ongoing contact is confirmed.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 18,
+      "id": "train:6754:2:1",
+      "speech_act": "acceptance",
+      "event_status": "accepted_request",
+      "interpretation": "The speaker agrees to Mr. Baker's request to type the report; the typing is not confirmed as completed.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 19,
+      "id": "val:380:13:1",
+      "speech_act": "intention",
+      "event_status": "tentative_trial_offer",
+      "interpretation": "The employer tentatively intends to give the applicant a three-month trial; the offer is prospective and no trial period has been completed.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 20,
+      "id": "train:1859:3:3",
+      "speech_act": "complaint",
+      "event_status": "negative_tolerance",
+      "interpretation": "The speaker doubts being able to tolerate the disappointing accommodation for two weeks; stand is endure, not stand upright.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 21,
+      "id": "train:8245:5:2",
+      "speech_act": "report",
+      "event_status": "involuntary_falling_asleep",
+      "interpretation": "The speaker reports being unable to avoid falling asleep during the opera; could not help is an idiom, not refusal to assist.",
+      "completed_action_asserted": true,
+      "unknown": []
+    },
+    {
+      "case": 22,
+      "id": "train:3818:5:1",
+      "speech_act": "lack_of_knowledge",
+      "event_status": "unknown_bookstore_location",
+      "interpretation": "The speaker does not know the location of the bookstore; this does not deny the bookstore's existence.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 23,
+      "id": "train:10423:7:4",
+      "speech_act": "commitment",
+      "event_status": "future_delivery",
+      "interpretation": "The server promises to bring the fries out in two minutes; delivery and readiness are not reported as completed.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 24,
+      "id": "train:6552:8:3",
+      "speech_act": "question",
+      "event_status": "emergency_contact_query",
+      "interpretation": "The speaker asks who serves as the visitor's emergency contact in America; no identity is supplied.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 25,
+      "id": "test:380:3:2",
+      "speech_act": "offer",
+      "event_status": "alternative_order",
+      "interpretation": "The employee offers a large pizza instead of the requested medium pizza; acceptance and purchase are not confirmed.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 26,
+      "id": "train:1591:6:1",
+      "speech_act": "correction",
+      "event_status": "reported_meeting_place",
+      "interpretation": "The speaker corrects the proposed meeting place: they met their husband at university, not at work.",
+      "completed_action_asserted": true,
+      "unknown": []
+    },
+    {
+      "case": 27,
+      "id": "train:4120:5:1",
+      "speech_act": "explanation",
+      "event_status": "elliptical_purpose",
+      "interpretation": "The speaker gives passing time and making new friends as reasons for going to bars; killing time is idiomatic, and no killing or successful friendship formation is reported.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 28,
+      "id": "train:505:4:3",
+      "speech_act": "report",
+      "event_status": "effort_with_limited_progress",
+      "interpretation": "The speaker reports spending months trying to learn more Chinese and making little progress; trying does not establish mastery.",
+      "completed_action_asserted": true,
+      "unknown": []
+    },
+    {
+      "case": 29,
+      "id": "test:394:1:1",
+      "speech_act": "suggestion",
+      "event_status": "proposed_employment",
+      "interpretation": "The speaker suggests coming to work at their company; the negative question form is an invitation, not denial of employment or a completed move.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 30,
+      "id": "train:4606:5:2",
+      "speech_act": "followup_question",
+      "event_status": "elliptical_colleague_evaluation",
+      "interpretation": "The speaker proposes Bob as another example in the discussion of an ideal colleague and asks about him; the fragment alone does not assert that he is perfect.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 31,
+      "id": "train:4915:9:1",
+      "speech_act": "possibility",
+      "event_status": "possible_advice_request",
+      "interpretation": "The speaker says they can ask Mr. Locker for stock-market advice; asking and receiving advice have not been confirmed.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 32,
+      "id": "train:946:3:2",
+      "speech_act": "question",
+      "event_status": "romantic_interest_query",
+      "interpretation": "The speaker asks whether the listener knows the person Joe is in love with; the identity and reciprocity of the love remain unspecified.",
+      "completed_action_asserted": false,
+      "unknown": [
+        "The romantic interest is not identified."
+      ]
+    },
+    {
+      "case": 33,
+      "id": "train:5237:6:1",
+      "speech_act": "description",
+      "event_status": "facility_location",
+      "interpretation": "The speaker reports that a computer lab is available on the first floor; no visit or computer use is reported.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 34,
+      "id": "train:7750:5:1",
+      "speech_act": "confirmation",
+      "event_status": "interview_purpose",
+      "interpretation": "The speaker confirms coming for the interview; completion of the interview is not established.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 35,
+      "id": "train:8028:11:2",
+      "speech_act": "complaint",
+      "event_status": "conditional_deserved_pay_and_negative_assessment",
+      "interpretation": "The speaker says appreciation of their work should be reflected in pay, and feels that it is not; the second it refers to that appreciation being reflected, not to a new completed payment.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 36,
+      "id": "train:5986:13:1",
+      "speech_act": "farewell",
+      "event_status": "wish_for_safety",
+      "interpretation": "The parent tells the departing child to take care; dear is an affectionate address and no possession transfer or completed action is asserted.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 37,
+      "id": "train:5044:2:6",
+      "speech_act": "question",
+      "event_status": "schedule_change_query",
+      "interpretation": "The hotel employee asks whether the group's schedule has changed; no change is confirmed. The original wording is preserved.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 38,
+      "id": "train:9847:10:1",
+      "speech_act": "approval",
+      "event_status": "positive_reaction_to_plan",
+      "interpretation": "The speaker welcomes the proposed train journey and ticket booking; no booking or journey is confirmed.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 39,
+      "id": "train:3699:9:1",
+      "speech_act": "tentative_agreement",
+      "event_status": "probable_cost_explanation",
+      "interpretation": "The speaker tentatively agrees that lobster is too expensive to include in the buffet; probably preserves uncertainty.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 40,
+      "id": "train:10756:4:2",
+      "speech_act": "offer",
+      "event_status": "possible_exchange",
+      "interpretation": "The employee asks whether the customer wants to exchange the faulty sweater for another one; no exchange is completed.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 41,
+      "id": "train:3885:11:2",
+      "speech_act": "positive_response",
+      "event_status": "prospective_event_evaluation",
+      "interpretation": "The speaker welcomes the offer of fashion-show tickets; would be retains the prospective scope and no attendance or ticket receipt is established.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 42,
+      "id": "test:463:8:1",
+      "speech_act": "confirmation",
+      "event_status": "carry_on_choice",
+      "interpretation": "The passenger confirms keeping the small bag as carry-on luggage; this does not mean it has been checked in.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 43,
+      "id": "train:5530:3:1",
+      "speech_act": "evaluation",
+      "event_status": "positive_packaging_assessment",
+      "interpretation": "The speaker positively evaluates the proposed or displayed packaging; the reply does not describe the blouses as good or confirm a sale.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 44,
+      "id": "test:494:1:1",
+      "speech_act": "greeting",
+      "event_status": "addressed_greeting",
+      "interpretation": "The speaker greets Jack; Jack is the addressee, not the speaker's self-identification.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 45,
+      "id": "train:3002:3:1",
+      "speech_act": "acknowledgment",
+      "event_status": "permission_acknowledged",
+      "interpretation": "The speaker acknowledges permission to ask a personal question before proceeding; all right is agreement, not a spatial direction.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 46,
+      "id": "val:376:4:1",
+      "speech_act": "preference",
+      "event_status": "spicy_food_choice",
+      "interpretation": "Despite awkward wording, the speaker answers the food-preference question by indicating spicy food; no meal is chosen or eaten yet.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 47,
+      "id": "train:9571:3:1",
+      "speech_act": "thanks",
+      "event_status": "gratitude_for_permission",
+      "interpretation": "The speaker thanks the listener for allowing use of the bathroom; use of the bathroom is not reported as completed.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 48,
+      "id": "train:1267:8:2",
+      "speech_act": "correction",
+      "event_status": "elliptical_low_frequency",
+      "interpretation": "The speaker says they dance only occasionally, correcting the suggestion that they dance a lot; no specific dance event is reported.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 49,
+      "id": "train:8425:8:1",
+      "speech_act": "question",
+      "event_status": "vehicle_control_knowledge",
+      "interpretation": "The speaker asks whether the listener knows the car's controls; this does not establish knowledge or ability to drive safely.",
+      "completed_action_asserted": false,
+      "unknown": []
+    },
+    {
+      "case": 50,
+      "id": "train:3927:6:1",
+      "speech_act": "invitation",
+      "event_status": "anticipatory_attention",
+      "interpretation": "The speaker tells the listener to wait and watch what happens next at the reception; the upcoming event is not yet described or reported as completed.",
+      "completed_action_asserted": false,
+      "unknown": []
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "jobs": {
+    "invalid": 8,
+    "partial": 9,
+    "pending": 7546,
+    "transport_error": 2,
+    "valid": 434
+  },
+  "cases": {
+    "invalid": 160,
+    "partial": 180,
+    "pending": 150919,
+    "transport_error": 40,
+    "valid": 8580
+  },
+  "api_verdicts": {
+    "clear": 6650,
+    "issues": 2037,
+    "uncertain": 62
+  },
+  "returned_cases": 8749,
+  "missing_attempted_cases": 171,
+  "accounted_exposure_usd": 1.444505,
+  "publication": false,
+  "diagnostic_groups": {
+    "embedded_clause": 961,
+    "modality_or_intention": 645,
+    "nominal_role_or_vocative": 417,
+    "particle_or_prepositional_unit": 927,
+    "api_structure": 1854,
+    "ordinary_sentence": 230,
+    "negation": 310,
+    "api_source": 342,
+    "adjective_target_unresolved": 192,
+    "ambiguous_ellipsis_boundary": 77,
+    "reported_speech": 85,
+    "no_verb_or_fragment": 227,
+    "api_ambiguity": 44,
+    "participle_state_or_perfect": 11
+  },
+  "missing_queue_cases": 211,
+  "grouping_method": "Existing risk flags and API issue category; not semantic adjudication",
+  "snapshot_time": 1791906503.681223,
+  "gateway_account_delta_usd": 1.447575,
+  "stop_reason": "transport error; no automatic retry",
+  "protected_files_unchanged": 10,
+  "bulk_finished": false,
+  "unit_tests_passed": 28,
+  "pilot_repair_decisions": 15,
+  "pilot_token_edits": 27,
+  "pilot_repairs_applied": false
+}

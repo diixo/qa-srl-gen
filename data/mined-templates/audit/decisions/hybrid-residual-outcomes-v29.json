@@ -1,0 +1,322 @@
+{
+  "version": "explicit-residual-and-quality-review-v29",
+  "source_candidate": "artifacts/dailydialog-hybrid-originals-v28",
+  "source_ledger": "data/dailydialog/review-parts/luna-offline-originals-v28",
+  "reviewed_residual_warnings": 69,
+  "accepted_source_label_warnings": 11,
+  "reviewed_held_warnings": 58,
+  "context_revisions": 14,
+  "new_adapters": 3,
+  "warning_rechecks": 13,
+  "repaired_qc": [
+    "train:5884:8:1"
+  ],
+  "held_qc": [
+    "train:8624:2:3",
+    "val:616:1:1"
+  ],
+  "source_text_changes": 0,
+  "token_annotation_changes": 1,
+  "cases": [
+    {
+      "id": "test:256:6:2",
+      "note": "The noun phrase our new methone supplies a source label for the intended product. Ordering cameras is being discussed, not reported as completed. No product identity or corrected spelling is inferred.",
+      "meaning": {
+        "speech_act": "business_purpose",
+        "event_status": "completed_arrival_proposed_order",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "The speaker has come to discuss ordering eight megapixel cameras; no order is reported as placed."
+        },
+        "unknown": [
+          "The identity of the product called methone is unknown."
+        ]
+      },
+      "token_edits": {},
+      "source_changed": false,
+      "decision": "accepted_source_label_only",
+      "generic_semantics_approved": false,
+      "source_label": "methone"
+    },
+    {
+      "id": "test:636:4:1",
+      "note": "Retain maps as the written member of the required-course list. The reference to a course does not require substituting maths or identifying its curriculum.",
+      "meaning": {
+        "speech_act": "course_requirement",
+        "event_status": "required_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "Biology, chemistry and physics are stated as required courses alongside the source label maps."
+        },
+        "unknown": [
+          "The intended subject named maps is unresolved; do not substitute maths."
+        ]
+      },
+      "token_edits": {},
+      "source_changed": false,
+      "decision": "accepted_source_label_only",
+      "generic_semantics_approved": false,
+      "source_label": "maps"
+    },
+    {
+      "id": "train:10354:8:2",
+      "note": "Retain Tangun as the stated comparison label. The preceding sentence identifies the compared items as dumpling balls; no real-world identity or corrected food name is required.",
+      "meaning": {
+        "speech_act": "comparison",
+        "event_status": "claimed_similarity",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The dumpling balls are compared with something named Tangun."
+        },
+        "unknown": [
+          "The identity of Tangun is unresolved; do not replace it with another food name."
+        ]
+      },
+      "token_edits": {},
+      "source_changed": false,
+      "decision": "accepted_source_label_only",
+      "generic_semantics_approved": false,
+      "source_label": "Tangun"
+    },
+    {
+      "id": "train:11038:4:1",
+      "note": "DEL is explicitly offered alongside dial-up as a service option. Preserve that label without expanding it to DSL or identifying its technology.",
+      "meaning": {
+        "speech_act": "service_options",
+        "event_status": "available_options",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker offers dial-up and an option labelled DEL; the dial-up coordination repair is retained."
+        },
+        "unknown": [
+          "The expansion and technical identity of DEL are unknown."
+        ]
+      },
+      "token_edits": {},
+      "source_changed": false,
+      "decision": "accepted_source_label_only",
+      "generic_semantics_approved": false,
+      "source_label": "DEL"
+    },
+    {
+      "id": "train:11038:6:1",
+      "note": "The speaker recommends the previously offered option labelled DEL. Recommendation is not a purchase, installation or technical definition.",
+      "meaning": {
+        "speech_act": "recommendation",
+        "event_status": "proposed_choice",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker recommends the option called DEL."
+        },
+        "unknown": [
+          "The technical identity or expansion of DEL remains unknown."
+        ]
+      },
+      "token_edits": {},
+      "source_changed": false,
+      "decision": "accepted_source_label_only",
+      "generic_semantics_approved": false,
+      "source_label": "DEL"
+    },
+    {
+      "id": "train:1128:1:1",
+      "note": "Making is the written object of played in an experience question. Retain the name without inferring Mahjong, any later explanation, or actual playing.",
+      "meaning": {
+        "speech_act": "experience_question",
+        "event_status": "unconfirmed_experience",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker asks whether the addressee has ever played something named Making."
+        },
+        "unknown": [
+          "The game identity cannot be established from this turn or silently replaced by Mahjong."
+        ]
+      },
+      "token_edits": {},
+      "source_changed": false,
+      "decision": "accepted_source_label_only",
+      "generic_semantics_approved": false,
+      "source_label": "Making"
+    },
+    {
+      "id": "train:1299:1:1",
+      "note": "Suit is the written subject of wrote. Report writing addressed to the speaker without substituting Sue or asserting delivery; real-world identity is unnecessary.",
+      "meaning": {
+        "speech_act": "report",
+        "event_status": "completed_writing",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "The speaker reports that the source-named Suit wrote a letter addressed to the speaker; delivery and receipt are not established."
+        },
+        "unknown": [
+          "The writer's identity is retained as Suit; no replacement personal name is guessed."
+        ]
+      },
+      "token_edits": {},
+      "source_changed": false,
+      "decision": "accepted_source_label_only",
+      "generic_semantics_approved": false,
+      "source_label": "Suit"
+    },
+    {
+      "id": "train:1404:4:1",
+      "note": "The original list names maps alongside biology, chemistry and physics. Keep the label without replacing it with maths or resolving the course subject.",
+      "meaning": {
+        "speech_act": "course_requirement",
+        "event_status": "required_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker lists biology, chemistry and physics plus maps as required courses."
+        },
+        "unknown": [
+          "The intended subject called maps is unknown; retain the corrected physics lemma."
+        ]
+      },
+      "token_edits": {},
+      "source_changed": false,
+      "decision": "accepted_source_label_only",
+      "generic_semantics_approved": false,
+      "source_label": "maps"
+    },
+    {
+      "id": "train:1771:2:1",
+      "note": "The answer to Which team won? names The Spur. Preserve the exact team label and reported result; do not silently pluralize it or identify a real-world club.",
+      "meaning": {
+        "speech_act": "answer",
+        "event_status": "reported_result",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker names The Spur as the winning team, exactly as written."
+        },
+        "unknown": [
+          "The real-world team identity and intended number of the name remain unknown."
+        ]
+      },
+      "token_edits": {},
+      "source_changed": false,
+      "decision": "accepted_source_label_only",
+      "generic_semantics_approved": false,
+      "source_label": "The Spur"
+    },
+    {
+      "id": "train:1941:2:1",
+      "note": "Hebes is explicitly the place evaluated as good within I think. Keep the place label and belief scope without replacing it with Hebei or claiming a trip.",
+      "meaning": {
+        "speech_act": "place_evaluation",
+        "event_status": "opinion",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker calls a place named Hebes good, retaining the source label."
+        },
+        "unknown": [
+          "The geographic identity of Hebes is unknown; do not substitute Hebei."
+        ]
+      },
+      "token_edits": {},
+      "source_changed": false,
+      "decision": "accepted_source_label_only",
+      "generic_semantics_approved": false,
+      "source_label": "Hebes"
+    },
+    {
+      "id": "train:1941:5:1",
+      "note": "Hebes is the written location of the weather hearsay. Preserve it without geographic normalization; the separate six degree scale remains unspecified.",
+      "meaning": {
+        "speech_act": "hearsay",
+        "event_status": "reported_weather",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker reports hearsay that the source-named Hebes experienced strong winds."
+        },
+        "unknown": [
+          "Hebes and the scale of six degree are unresolved; this is hearsay rather than verified weather."
+        ]
+      },
+      "token_edits": {},
+      "source_changed": false,
+      "decision": "accepted_source_label_only",
+      "generic_semantics_approved": false,
+      "source_label": "Hebes"
+    },
+    {
+      "id": "train:5884:8:1",
+      "note": "The paired comparative clauses express a preference in the preceding suit-price question. The first expensive clause is a correlative adverbial clause of better, not an adjective modifying another adjective. Both the tokens are comparative markers, not articles or pronouns. Better is comparative good in this suit evaluation. No elided verb or subject is inserted.",
+      "meaning": {
+        "speech_act": "advice",
+        "event_status": "comparative_preference",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "In choosing an interview suit, the speaker prefers a more expensive option. This is comparative advice rather than a guarantee of quality."
+        },
+        "unknown": []
+      },
+      "token_edits": {
+        "0": {
+          "pos": "ADV",
+          "tag": "RB",
+          "morph": "",
+          "dep": "advmod",
+          "head": 2
+        },
+        "2": {
+          "dep": "advcl"
+        },
+        "4": {
+          "pos": "ADV",
+          "tag": "RB",
+          "morph": ""
+        },
+        "5": {
+          "parser_lemma": "good"
+        }
+      },
+      "source_changed": false,
+      "decision": "fixed_in_candidate",
+      "generic_semantics_approved": false,
+      "adapter_id": "dd_v29_train_5884_8_1"
+    },
+    {
+      "id": "train:8624:2:3",
+      "note": "Can supports a nonactual suggestion or permission to put up a sign. The make up sign phrase and trailing on do not license a uniquely repaired dependency tree or exact sign label. Publish only the visible-pair interpretation; keep the structural question open.",
+      "meaning": {
+        "speech_act": "instruction",
+        "event_status": "possible_room_service_sign",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker describes putting up a sign in the room-service discussion; the malformed wording does not establish a completed action."
+        },
+        "unknown": [
+          "The exact sign label and the attachment of the final on are unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_changed": false,
+      "decision": "quarantined_unresolved",
+      "generic_semantics_approved": false,
+      "adapter_id": "dd_v29_train_8624_2_3"
+    },
+    {
+      "id": "val:616:1:1",
+      "note": "Both vocative Daniel and appositional client Daniel remain possible from the available prefix. Preserve think scope and do not assert a named client, a named addressee, or a confirmed business outcome.",
+      "meaning": {
+        "speech_act": "assessment",
+        "event_status": "speaker_belief",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker believes the presentation impressed the client."
+        },
+        "unknown": [
+          "Daniel may be the addressee or the client's name; the local wording does not settle this identity attachment."
+        ]
+      },
+      "token_edits": {},
+      "source_changed": false,
+      "decision": "quarantined_unresolved",
+      "generic_semantics_approved": false,
+      "adapter_id": "dd_v29_val_616_1_1"
+    }
+  ],
+  "api_calls": 0,
+  "parser_inference_calls": 0,
+  "source_labels_are_not_entity_grounding": true
+}

@@ -1,0 +1,212 @@
+{
+  "version": "offline-semantic-admission-v1",
+  "previous_progress": "data\\dailydialog\\review-parts\\hybrid-luna-offline-progress-quarantine-v1.json",
+  "candidate": "artifacts/dailydialog-hybrid-quarantine-reviewed-v1",
+  "bank": "artifacts/dailydialog-hybrid-quarantine-reviewed-v1/bank",
+  "ledger": "data/dailydialog/review-parts/luna-offline-quarantine-v1",
+  "quarantine_snapshot": "data/dailydialog/review-parts/luna-offline-quarantine-v1/quarantine-cases.jsonl.gz",
+  "quarantined_warnings": 1379,
+  "quarantined_occurrences": 1256,
+  "semantic_review_complete": false,
+  "full_candidate_published": false,
+  "api_calls": 0,
+  "api_unanswered_cases": 112802,
+  "next_api_job_if_ever_resumed": 18376,
+  "cohort": {
+    "source": "closed decisions from hybrid-quarantine-forty-warning-rechecks-v1.jsonl",
+    "occurrences": 42,
+    "eligibility_checked": [
+      "test:111:7:1",
+      "test:164:4:1",
+      "test:28:9:1",
+      "test:34:6:2",
+      "test:364:8:5",
+      "test:542:3:1",
+      "test:542:3:2",
+      "test:570:5:2",
+      "test:590:4:3",
+      "test:600:8:3",
+      "test:638:10:1",
+      "test:933:8:2",
+      "test:933:8:3",
+      "train:10144:1:1",
+      "train:10186:1:1",
+      "train:10205:2:1",
+      "train:10205:4:1",
+      "train:10211:5:2",
+      "train:10447:10:4",
+      "train:10818:2:1",
+      "train:1082:1:2",
+      "train:10874:10:1",
+      "train:10874:10:2",
+      "train:10890:12:1",
+      "train:10927:3:1",
+      "train:10927:3:2",
+      "train:10927:3:3",
+      "train:10927:3:4",
+      "train:10965:4:1",
+      "train:11114:3:1",
+      "train:1216:5:1",
+      "train:1248:2:1",
+      "train:1299:3:1",
+      "train:1312:5:1",
+      "train:1804:1:1",
+      "train:1869:1:1",
+      "train:1892:5:1",
+      "train:1892:5:2",
+      "train:1984:2:2",
+      "train:2009:8:1",
+      "train:2252:4:1",
+      "train:2337:6:2"
+    ],
+    "direct_contextual_reviews": 33,
+    "admitted": [
+      "test:111:7:1",
+      "test:164:4:1",
+      "test:28:9:1",
+      "test:34:6:2",
+      "test:364:8:5",
+      "test:542:3:2",
+      "test:570:5:2",
+      "test:600:8:3",
+      "test:933:8:2",
+      "test:933:8:3",
+      "train:10144:1:1",
+      "train:10205:2:1",
+      "train:10205:4:1",
+      "train:10211:5:2",
+      "train:10818:2:1",
+      "train:10874:10:1",
+      "train:10890:12:1",
+      "train:10927:3:1",
+      "train:10927:3:3",
+      "train:1248:2:1",
+      "train:1299:3:1",
+      "train:1312:5:1",
+      "train:1804:1:1",
+      "train:1892:5:2",
+      "train:1984:2:2",
+      "train:2009:8:1",
+      "train:2252:4:1"
+    ],
+    "context_only": [
+      "test:542:3:1",
+      "train:10874:10:2",
+      "train:10927:3:2",
+      "train:10927:3:4",
+      "train:1216:5:1",
+      "train:1892:5:1"
+    ],
+    "held_due_to_other_open_warnings": [
+      "test:590:4:3",
+      "test:638:10:1",
+      "train:10186:1:1",
+      "train:10447:10:4",
+      "train:1082:1:2",
+      "train:10965:4:1",
+      "train:11114:3:1",
+      "train:2337:6:2"
+    ],
+    "previous_context_review_preserved": [
+      "train:1869:1:1"
+    ],
+    "judgments": "data\\dailydialog\\review-parts\\hybrid-semantic-admission-judgments-v1.jsonl",
+    "reviews": "data\\dailydialog\\review-parts\\hybrid-semantic-admission-reviews-v1.jsonl",
+    "snapshot": "data\\dailydialog\\review-parts\\hybrid-semantic-admission-snapshot-v1.jsonl.gz"
+  },
+  "additional_semantic_followups": [
+    {
+      "id": "train:1216:5:1",
+      "reason": "repair_according_to_nonverbal_function",
+      "interpretation": "The speaker says company pay depends on seniority, so new employees get low salaries regardless of how well they have performed. No matter how is concessive, not a negation of performance. The current parse incorrectly exposes according in according to as an independent accord predicate, so this occurrence remains context-only pending a separate lexical repair.",
+      "usage": "context_only",
+      "part_of_original_api_warning_count": false
+    }
+  ],
+  "publication": {
+    "bank": "data/mined-templates",
+    "component": "dailydialog-semantic-admission-v1",
+    "admitted_attestations": 27,
+    "mode": "attested_sentence",
+    "recombination": false,
+    "dependency_qa": false,
+    "previous_pool_files_preserved": 344,
+    "report": "artifacts\\dailydialog-semantic-admission-v1\\report.json",
+    "smoke": {
+      "status": "passed",
+      "component": "dailydialog-semantic-admission-v1",
+      "template_outputs": 27,
+      "built_in_documents": 7,
+      "recombination_blocked": true,
+      "unreviewed_dependency_qa_blocked": true,
+      "context_embedded": true
+    }
+  },
+  "verification": {
+    "validation": {
+      "status": "passed",
+      "source_sha256": "07cc77164d13d94431abbf464f24b64797270bf0e817b6042761905350dbdc84",
+      "templates": 27,
+      "attested_roundtrips": 27,
+      "source_records": 27,
+      "token_spans": 395,
+      "verbs_occurrences": 73,
+      "adjectives_occurrences": 10
+    },
+    "candidate_unchanged": true,
+    "protected_inputs": {
+      "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-hybrid-quarantine-reviewed-v1\\plan.json": "de5cdc6581fc2f9d2c1512d5b992a1c8aa6ff6bb423e7c89fd35b7fd28e26880",
+      "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-hybrid-quarantine-reviewed-v1\\report.json": "771d3b87013dc4a54a572ecd6acc1a46a3b5a74e4f4b0e470a7281c230b28b01",
+      "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-hybrid-quarantine-reviewed-v1\\revision.sqlite3": "8a379e42ce0636ba107ab6aa081b89a265c65d6ca830cdc2c95bf656c6f6d68e",
+      "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-hybrid-quarantine-reviewed-v1\\contexts.jsonl.gz": "b4c42059237a4fdb07f8d84e631c15fa506053dda63bd7fc9769c3982cc57b09",
+      "C:\\git\\qa-srl-gen\\data\\dailydialog\\review-parts\\hybrid-semantic-admission-reviews-v1.jsonl": "949c7a7ea17e559c178e05d488cfd3a2547f2bbd4b9a8ed6d731cb2ed9526043",
+      "C:\\git\\qa-srl-gen\\data\\dailydialog\\review-parts\\luna-offline-quarantine-v1\\summary.json": "b6dd36cb94919907d9902d6f388f59443dbd63be6b03d188d7ab716a55e27a6f",
+      "C:\\git\\qa-srl-gen\\data\\dailydialog\\review-parts\\luna-offline-quarantine-v1\\quarantine-cases.jsonl.gz": "cc961ac5a4a917cac4d5882d7d79e61f32b5fca2644d7b45738c8ee8de0eba86"
+    },
+    "source_part_and_manual_files_unchanged": 109,
+    "source_dialogues_preserved": 13118,
+    "manual_reference_dialogues_preserved": 510,
+    "api_calls": 0,
+    "dialogue_generation": {
+      "status": "passed",
+      "dataset": "artifacts\\dailydialog-semantic-admission-v1\\dialogue-smoke",
+      "manifest_sha256": "b17e8ff01c7a77d7bd2e682dd1eecf94279cdd0ecefbc471b2f422327d0c0f68",
+      "splits": {
+        "train": {
+          "episodes": 36,
+          "extraction_rows": 121,
+          "task_families": 18
+        },
+        "validation": {
+          "episodes": 18,
+          "extraction_rows": 70,
+          "task_families": 18
+        },
+        "test": {
+          "episodes": 18,
+          "extraction_rows": 69,
+          "task_families": 18
+        }
+      },
+      "total_episodes": 72,
+      "total_extraction_rows": 260,
+      "all_three_views_text_targets": true,
+      "include_metadata": false,
+      "max_length": null,
+      "note": "Regression smoke, not a trained-model quality benchmark or proof of semantic coverage of all predicates."
+    },
+    "review_snapshot_sha256": "a4be9fe10248d09883e8a2539fef43fde0f8d5a517b1a3d89cbd75f95e04d882"
+  },
+  "tests": {
+    "passed": 77,
+    "suites": [
+      "admission",
+      "template usage",
+      "context revision",
+      "quarantine reviews",
+      "quarantine finalization",
+      "fragment admission"
+    ]
+  },
+  "next_step": "Continue separate contextual review of the remaining 1379 API warnings; preserve uncertain wording and tense. Resolve the new according-to lexical followup separately. Reviewed fragments retain their partial meanings for possible explicit dialogue adapters. Whole-candidate semantics and recombination remain unapproved."
+}

@@ -1,0 +1,228 @@
+{
+  "version": "offline-quarantine-current-v1",
+  "candidate": "artifacts/dailydialog-hybrid-quarantine-reviewed-v1",
+  "bank": "artifacts/dailydialog-hybrid-quarantine-reviewed-v1/bank",
+  "ledger": "data/dailydialog/review-parts/luna-offline-quarantine-v1",
+  "previous_progress": "data/dailydialog/review-parts/hybrid-luna-offline-progress-reparsed-v1.json",
+  "focal_warnings": 40,
+  "focal_locally_closed": 30,
+  "focal_open_warnings": 10,
+  "focal_open_occurrences": 9,
+  "previously_closed_rechecked": 63,
+  "total_explicit_rechecks": 103,
+  "original_690_locally_closed": 680,
+  "original_690_open": 10,
+  "warning_counts": {
+    "fixed_in_candidate": 8801,
+    "quarantined_unresolved": 1379,
+    "closed_representation_only": 470,
+    "closed_not_supported": 599,
+    "fixed_wording_only": 1201,
+    "closed_verified_after_source_revision": 221,
+    "fixed_boundary_only": 256,
+    "closed_source_warning_not_supported": 51
+  },
+  "quarantined_warnings": 1379,
+  "quarantined_occurrences": 1256,
+  "quarantine_groups": {
+    "source": 719,
+    "other_syntax": 278,
+    "coordination": 95,
+    "clause_attachment": 41,
+    "ambiguity": 94,
+    "particle_or_preposition": 26,
+    "property_attachment": 80,
+    "sentence_boundary": 25,
+    "direct_address": 12,
+    "lemma_or_inflection": 7,
+    "negation_or_modality": 2
+  },
+  "quarantine_snapshot": "data/dailydialog/review-parts/luna-offline-quarantine-v1/quarantine-cases.jsonl.gz",
+  "partial_cases": [
+    {
+      "warning_id": "test:590:4:3",
+      "issue_index": 1,
+      "occurrences": [
+        "test:590:4:3"
+      ],
+      "unknown": [
+        "what the location is for",
+        "the omitted complement"
+      ],
+      "note": "Preserve the supplied partial meaning without completing it."
+    },
+    {
+      "warning_id": "test:638:10:1",
+      "issue_index": 1,
+      "occurrences": [
+        "test:638:10:1"
+      ],
+      "unknown": [
+        "object intended by tob"
+      ],
+      "note": "The object tob cannot be recovered uniquely. Retain the complaint about excessive watching as source evidence; do not invent TV or another object."
+    },
+    {
+      "warning_id": "train:10186:1:1",
+      "issue_index": 0,
+      "occurrences": [
+        "train:10186:1:1"
+      ],
+      "unknown": [
+        "damaged wording with honest every day; precise anniversary expression"
+      ],
+      "note": "With honest every day is not recoverable as a faithful word-level repair. The explicit tied-the-knot clause survives in evidence; keep the corrupted sentence pending for separate review."
+    },
+    {
+      "warning_id": "train:10447:10:4",
+      "issue_index": 1,
+      "occurrences": [
+        "train:10447:10:4"
+      ],
+      "unknown": [
+        "the missing property or noun after unique"
+      ],
+      "note": "Preserve the supplied partial meaning without completing it."
+    },
+    {
+      "warning_id": "train:1082:1:2",
+      "issue_index": 0,
+      "occurrences": [
+        "train:1082:1:2"
+      ],
+      "unknown": [
+        "feel or felt; tense of emotional reaction"
+      ],
+      "note": "Fell may require feel or felt. The context permits current and past reactions, so a tense-bearing repair would invent information."
+    },
+    {
+      "warning_id": "train:1082:1:2",
+      "issue_index": 1,
+      "occurrences": [
+        "train:1082:1:2"
+      ],
+      "unknown": [
+        "feel or felt; tense of emotional reaction"
+      ],
+      "note": "The same ambiguous fell/feel/felt clause prevents approval of its complement analysis; keep the affected occurrence pending for separate review."
+    },
+    {
+      "warning_id": "train:10965:4:1",
+      "issue_index": 0,
+      "occurrences": [
+        "train:10965:4:1"
+      ],
+      "unknown": [
+        "intended perception predicate and tense in had looked that"
+      ],
+      "note": "Had looked that has no uniquely recoverable perception predicate or tense. Do not replace it with noticed or saw merely to make the sentence grammatical."
+    },
+    {
+      "warning_id": "train:10969:4:5",
+      "issue_index": 0,
+      "occurrences": [
+        "train:10969:4:6"
+      ],
+      "unknown": [
+        "the intended currency unit; do not normalize RIB to RMB"
+      ],
+      "note": "Preserve the supplied partial meaning without completing it."
+    },
+    {
+      "warning_id": "train:11114:3:1",
+      "issue_index": 0,
+      "occurrences": [
+        "train:11114:3:1"
+      ],
+      "unknown": [
+        "whether trying to show it is ongoing or refers to an earlier attempt"
+      ],
+      "note": "Preserve the supplied partial meaning without completing it."
+    },
+    {
+      "warning_id": "train:2337:6:2",
+      "issue_index": 1,
+      "occurrences": [
+        "train:2337:6:2"
+      ],
+      "unknown": [
+        "syntactic scope of and relative to because; residence remains explanatory under either reading"
+      ],
+      "note": "The parents living in Scotland is given as an explanation of Dave's absence. Keep the overt negative come, obligation to go and reported residence separate; do not label the trip completed."
+    }
+  ],
+  "verification": {
+    "status": "passed",
+    "source_parts_verified_dialogues": 13118,
+    "manual_reference_dialogues_preserved": 510,
+    "saved_api_outputs": 47077,
+    "api_calls": 0,
+    "pool_rendered": 29,
+    "built_in_documents": 13,
+    "candidate": {
+      "status": "explicit_quarantine_reviews_complete",
+      "validation": {
+        "status": "passed",
+        "source_sha256": "3e73d8659210d090f1a4eb5f5636cc1ad51daf06abe3e7d7640cad2bb6a09ee2",
+        "templates": 100822,
+        "attested_roundtrips": 109758,
+        "source_records": 161264,
+        "token_spans": 1378181,
+        "verbs_occurrences": 289435,
+        "adjectives_occurrences": 71888
+      },
+      "conservation": {
+        "status": "passed",
+        "counts": {
+          "occurrences": 161264,
+          "unchanged_occurrences": 161237,
+          "revised_occurrences": 27
+        },
+        "source_unchanged": true,
+        "prior_decisions_preserved_in_preimages": true,
+        "all_unaddressed_occurrences_identical": true
+      },
+      "counts": {
+        "compiled_occurrences": 161264,
+        "reviewed_syntax_reuses": 1088,
+        "fragment_or_nonverbal_candidates": 26167,
+        "context_reviewed_occurrences": 567,
+        "context_syntax_corrections": 309,
+        "groups": 72146,
+        "entity_candidates": 10548,
+        "sample_cases": 117
+      },
+      "dialogues": 12608,
+      "turns": 99224,
+      "protected_files_unchanged": 1335,
+      "api_calls": 0,
+      "parser_inference_calls": 0,
+      "published": false,
+      "validation_recovery": "Retokenization retains earlier revision metadata in its complete preimage.",
+      "recovery_code_sha256": "d66cf4f392c28b445964b200d5cf1b84bb6fd5fda53de6df584cd169ec5bba0b"
+    },
+    "quarantine_cases_verified": 1256,
+    "quarantined_warnings_verified": 1379,
+    "noncanonical_apostrophes": 0
+  },
+  "tests": {
+    "passed": 168,
+    "unique_test_cases": true
+  },
+  "exclusions": 0,
+  "api_calls": 0,
+  "api_unanswered_cases": 112802,
+  "next_api_job_if_ever_resumed": 18376,
+  "publication": {
+    "bank": "data/mined-templates",
+    "component": "dailydialog-offline-qc-v1",
+    "admitted_attestations": 29,
+    "mode": "attested_sentence",
+    "recombination": false,
+    "dependency_qa": false,
+    "smoke": "artifacts/dailydialog-offline-published-smoke-v1.json"
+  },
+  "full_candidate_published": false,
+  "semantic_review_complete": false,
+  "next_step": "Separate contextual review of the 1379 remaining warnings. Unknown wording, tense and missing complements remain open; partial meaning is context_only. Local closure does not grant semantic admission."
+}

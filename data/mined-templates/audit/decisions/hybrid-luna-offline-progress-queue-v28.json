@@ -1,0 +1,337 @@
+{
+  "version": "offline-all-uncovered-originals-v28",
+  "date": "2026-10-18",
+  "previous_progress": "data/dailydialog/review-parts/hybrid-luna-offline-progress-queue-v27.json",
+  "candidate": "artifacts/dailydialog-hybrid-originals-v28",
+  "ledger": "data/dailydialog/review-parts/luna-offline-originals-v28",
+  "review_status": "UNREVIEWED",
+  "full_candidate_published": false,
+  "semantic_review_complete": false,
+  "source_text_changes": 0,
+  "token_annotation_changes": 2,
+  "api_calls": 0,
+  "parser_inference_calls": 0,
+  "reviewed_occurrences": 146,
+  "new_adapters": 121,
+  "catalog_patterns": 726,
+  "closed_as_accepted_original_wording": 56,
+  "source_grammar_repaired": false,
+  "remaining": {
+    "main_warning_queue": 297,
+    "supplemental_ambiguities": 5,
+    "fresh_quality_findings": 3,
+    "total_open_review_items": 305,
+    "main_warning_occurrences": 291,
+    "main_occurrences_with_adapter": 266,
+    "main_occurrences_without_adapter": 25,
+    "pending_items_are_not_all_unread": true,
+    "caveat": "The total counts 297 warning records plus five supplemental case questions and three QC case questions; it is not a count of distinct dialogues, sentences, or the entire unreviewed candidate bank.",
+    "next_actions": [
+      "Review the three fresh QC issues separately (source corruption, name attachment, comparative-correlative structure).",
+      "Work on the 59 semantic ambiguity warnings and 10 structural warnings where evidence supports a real refinement; retain irrecoverable words and names as unknown.",
+      "Treat the 25 insufficient-content occurrences as reviewed and held, not a new unread queue or grounds for invented training targets."
+    ]
+  },
+  "quarantined_api_warnings": 297,
+  "quarantined_current_occurrences": 291,
+  "quarantine_groups": {
+    "source": 228,
+    "ambiguity": 59,
+    "sentence_boundary": 1,
+    "negation_or_modality": 1,
+    "coordination": 3,
+    "other_syntax": 3,
+    "clause_attachment": 2
+  },
+  "supplemental_ambiguities": 5,
+  "random_quality_findings": 3,
+  "validation": {
+    "status": "passed",
+    "source_sha256": "bdc62ecaf1640e9170dba6019ef69ddd8b0ba94301bfceab2b0872960134e145",
+    "templates": 101300,
+    "attested_roundtrips": 110189,
+    "source_records": 161316,
+    "token_spans": 1378085,
+    "verbs_occurrences": 289417,
+    "adjectives_occurrences": 71912
+  },
+  "conservation": {
+    "status": "passed",
+    "counts": {
+      "old_segments": 161316,
+      "old_tokens": 1378085,
+      "new_segments": 161316,
+      "new_tokens": 1378085,
+      "unchanged_analyses": 161170,
+      "revised_outputs": 146
+    },
+    "explicit_token_delta": 0,
+    "reference_expansion_token_delta": 0,
+    "previous_preimages_retained": true
+  },
+  "apostrophes": {
+    "status": "passed",
+    "normalized_segments": 161316,
+    "ascii_apostrophes": 49411,
+    "noncanonical_apostrophes": 0,
+    "target": "'",
+    "original_contexts_preserved": true,
+    "previous_contexts_retained_in_source_candidate": true,
+    "source_corrections_explicit": true
+  },
+  "tests": {
+    "passed": 1625,
+    "seconds": 41.97,
+    "command": "python -X utf8 -B -m pytest -q tests/test_dialogue_fragments.py tests/test_dailydialog_fragment_admission.py tests/test_dialogue_extraction_text.py tests/test_dailydialog_source_segmentation.py tests/test_dailydialog_quarantine_finalization.py"
+  },
+  "fragment_generation_smoke": {
+    "status": "passed",
+    "task": "fragment_meaning",
+    "seed": 28,
+    "catalog_patterns": 726,
+    "new_patterns": 121,
+    "previous_patterns_preserved": 605,
+    "catalog_sha256": "aabd358adfa51178683ece70cee8506c90fc1a96fe95070ee83f7bdff225ccaa",
+    "splits": {
+      "user-assistant/train": {
+        "episodes": 121,
+        "history": 121,
+        "memory": 121,
+        "extraction": 363
+      },
+      "user-assistant/validation": {
+        "episodes": 121,
+        "history": 121,
+        "memory": 121,
+        "extraction": 363
+      },
+      "user-assistant/test": {
+        "episodes": 121,
+        "history": 121,
+        "memory": 121,
+        "extraction": 363
+      },
+      "named-people/train": {
+        "episodes": 121,
+        "history": 121,
+        "memory": 121,
+        "extraction": 363
+      },
+      "named-people/validation": {
+        "episodes": 121,
+        "history": 121,
+        "memory": 121,
+        "extraction": 363
+      },
+      "named-people/test": {
+        "episodes": 121,
+        "history": 121,
+        "memory": 121,
+        "extraction": 363
+      }
+    },
+    "generated_episodes": 726,
+    "extraction_rows": 2178,
+    "history_rows": 726,
+    "memory_rows": 726,
+    "original_reply_text_unchanged": true,
+    "json_inside_content": false,
+    "invented_completed_events": 0,
+    "cross_split_prompt_overlaps": [],
+    "extraction_scope": "Explicit textual utterance_interpretation only; no generic action-role inference.",
+    "api_calls": 0,
+    "parser_inference_calls": 0,
+    "examples": [
+      {
+        "pattern": "dd_v28_test_807_4_1",
+        "assistant": "Would a new place to meet people interest you?",
+        "original_reply": "Need a new. Girlfriend, huh?",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | asked whether the addressee needed a new girlfriend, with the internal period retained",
+        "answer": "You asked whether the addressee needed a new girlfriend, with the internal period retained."
+      },
+      {
+        "pattern": "dd_v28_test_378_6_2",
+        "assistant": "What else did the article call a wonder?",
+        "original_reply": "It also says that the Christ Re-deemer statue in Brazil and the Colosseum in Rome are wonders.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | reported that the article listed the Christ Re-deemer statue in Brazil and the Colosseum in Rome as wonders",
+        "answer": "You reported that the article listed the Christ Re-deemer statue in Brazil and the Colosseum in Rome as wonders."
+      },
+      {
+        "pattern": "dd_v28_test_299_4_1",
+        "assistant": "The person you asked for is out.",
+        "original_reply": "What time you suspect back them?",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | asked about a return time, using wording whose exact participants and construction remain unclear",
+        "answer": "You asked about a return time, using wording whose exact participants and construction remain unclear."
+      },
+      {
+        "pattern": "dd_v28_test_749_3_1",
+        "assistant": "What are you asking about that lateness excuse?",
+        "original_reply": "Have I used the one that my sister is sick?",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | asked whether the excuse about a sick sister had been used before",
+        "answer": "You asked whether the excuse about a sick sister had been used before."
+      },
+      {
+        "pattern": "dd_v28_test_873_4_2",
+        "assistant": "What was the dolphin story about?",
+        "original_reply": "I read a story about a dolphin saving a A from drowning in the sea.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | reported reading a story about a dolphin saving an unidentified target from drowning at sea",
+        "answer": "You reported reading a story about a dolphin saving an unidentified target from drowning at sea."
+      },
+      {
+        "pattern": "dd_v28_test_984_3_1",
+        "assistant": "What would you like to know about arriving at the university?",
+        "original_reply": "Where should I go after I arrived at the university?",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | asked where to go following arrival at the university",
+        "answer": "You asked where to go following arrival at the university."
+      },
+      {
+        "pattern": "dd_v28_test_899_11_2",
+        "assistant": "Which program are you choosing to watch?",
+        "original_reply": "I'm watching Ally McNeal.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | insisted on watching the show named Ally McNeal, without correcting the title or asserting a completed viewing",
+        "answer": "You insisted on watching the show named Ally McNeal, without correcting the title or asserting a completed viewing."
+      },
+      {
+        "pattern": "dd_v28_test_852_9_1",
+        "assistant": "Do you think I should consider the new job?",
+        "original_reply": "As I say it the work is well worth try.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | advised that the work was worth trying, without asserting acceptance or a completed trial",
+        "answer": "You advised that the work was worth trying, without asserting acceptance or a completed trial."
+      }
+    ]
+  },
+  "independent_verification": {
+    "status": "passed",
+    "reviewed_occurrences": 146,
+    "original_texts_and_boundaries_unchanged": true,
+    "token_annotation_repairs": [
+      "test:409:3:1",
+      "test:790:1:1"
+    ],
+    "all_previous_property_bindings_preserved": true,
+    "context_only_guard_checks": 146,
+    "previous_catalog_patterns_preserved": 605,
+    "new_original_text_adapters": 121,
+    "new_catalog_patterns": 726,
+    "protected_files_unchanged": 1054,
+    "source_dialogues_preserved": 13118,
+    "manual_dialogues_preserved": 510,
+    "parts_preserved": 100,
+    "paid_evidence_identical": true,
+    "saved_warnings_preserved": 12978,
+    "explicit_warning_rechecks": 193,
+    "closed_as_accepted_original_wording": 56,
+    "source_grammar_repaired": false,
+    "remaining": {
+      "main_warning_queue": 297,
+      "supplemental_ambiguities": 5,
+      "fresh_quality_findings": 3,
+      "total_open_review_items": 305,
+      "main_warning_occurrences": 291,
+      "main_occurrences_with_adapter": 266,
+      "main_occurrences_without_adapter": 25,
+      "pending_items_are_not_all_unread": true,
+      "caveat": "The total counts 297 warning records plus five supplemental case questions and three QC case questions; it is not a count of distinct dialogues, sentences, or the entire unreviewed candidate bank.",
+      "next_actions": [
+        "Review the three fresh QC issues separately (source corruption, name attachment, comparative-correlative structure).",
+        "Work on the 59 semantic ambiguity warnings and 10 structural warnings where evidence supports a real refinement; retain irrecoverable words and names as unknown.",
+        "Treat the 25 insufficient-content occurrences as reviewed and held, not a new unread queue or grounds for invented training targets."
+      ]
+    },
+    "api_calls": 0,
+    "parser_inference_calls": 0
+  },
+  "decisions": {
+    "hybrid-open-review-items-v28.json": {
+      "path": "data/dailydialog/review-parts/hybrid-open-review-items-v28.json",
+      "sha256": "68abc9d3db50a5ddce43f73316efdfc63e3ef73883c3554b3bdf592b2fec1122"
+    },
+    "hybrid-quarantine-coverage-summary-v28.json": {
+      "path": "data/dailydialog/review-parts/hybrid-quarantine-coverage-summary-v28.json",
+      "sha256": "e90e7c98a29a08170364bef925fe5f56d839554d0a7e82bc969ad038f8000c7b"
+    },
+    "hybrid-quarantine-coverage-v28.jsonl.gz": {
+      "path": "data/dailydialog/review-parts/hybrid-quarantine-coverage-v28.jsonl.gz",
+      "sha256": "52fb6fae58f00e01b34395a341adb2fc4b3abaaa89af47c336506e0f1e3f90fd"
+    },
+    "hybrid-uncovered-adapters-v28.json": {
+      "path": "data/dailydialog/review-parts/hybrid-uncovered-adapters-v28.json",
+      "sha256": "ec19b2d797521328214c3361e989f77ff8d17b602e65919dd56ff61128e54b8e"
+    },
+    "hybrid-uncovered-after-v28.jsonl.gz": {
+      "path": "data/dailydialog/review-parts/hybrid-uncovered-after-v28.jsonl.gz",
+      "sha256": "b813795e77126b22e6780ee1fa9d5620f037d8f299d20d47e106d37a435a9a2b"
+    },
+    "hybrid-uncovered-context-v28.jsonl": {
+      "path": "data/dailydialog/review-parts/hybrid-uncovered-context-v28.jsonl",
+      "sha256": "eeb40fe53a9db80f23f9ace1efb359e928077e94f43af07c3a8bbc124ae94097"
+    },
+    "hybrid-uncovered-original-contexts-v28.jsonl.gz": {
+      "path": "data/dailydialog/review-parts/hybrid-uncovered-original-contexts-v28.jsonl.gz",
+      "sha256": "1b1fcb586ee20157dfb9f80a1a64fb4d74a2d36576facd421f37034b125962ea"
+    },
+    "hybrid-uncovered-outcomes-v28.json": {
+      "path": "data/dailydialog/review-parts/hybrid-uncovered-outcomes-v28.json",
+      "sha256": "02e2c1e4bbb050e26232acbc68e044c5da9a0173a3a2ce3a2ce7223b46960c78"
+    },
+    "hybrid-uncovered-related-snapshot-v28.jsonl.gz": {
+      "path": "data/dailydialog/review-parts/hybrid-uncovered-related-snapshot-v28.jsonl.gz",
+      "sha256": "923d81fc0c34b5d9cbe26b92e08a2337dfffd0a690988d822f2d65083ea3ae7e"
+    },
+    "hybrid-uncovered-snapshot-v28.jsonl.gz": {
+      "path": "data/dailydialog/review-parts/hybrid-uncovered-snapshot-v28.jsonl.gz",
+      "sha256": "b8e726d2693cdb1cb42cf54a73ecfed896e8cfc455156c5d18afefd60b550b1e"
+    },
+    "hybrid-uncovered-warning-rechecks-v28.jsonl": {
+      "path": "data/dailydialog/review-parts/hybrid-uncovered-warning-rechecks-v28.jsonl",
+      "sha256": "998fccc85651a9dba3618ff220a59d2c29e552655a11637e509aae3b1b4b032d"
+    }
+  },
+  "next": {
+    "unread_in_previous_146_queue": 0,
+    "reviewed_but_insufficient_for_adapter": [
+      "test:45:3:2",
+      "test:234:9:2",
+      "test:364:2:4",
+      "test:493:3:2",
+      "test:495:5:2",
+      "test:679:5:1",
+      "test:794:7:3",
+      "test:808:13:3",
+      "test:856:3:1",
+      "test:928:2:4",
+      "test:961:1:1",
+      "train:1040:1:5",
+      "train:1061:1:1",
+      "train:1061:2:1",
+      "train:1273:1:1",
+      "train:1466:6:4",
+      "train:1674:10:4",
+      "train:2502:5:4",
+      "train:10044:10:4",
+      "train:10070:11:1",
+      "train:10158:7:2",
+      "train:10530:1:3",
+      "train:10542:8:4",
+      "train:10882:5:4",
+      "train:10986:8:1"
+    ],
+    "qc_findings": [
+      "train:8624:2:3",
+      "val:616:1:1",
+      "train:5884:8:1"
+    ],
+    "supplemental_cases": [
+      "train:1770:4:4",
+      "train:2641:3:1",
+      "test:215:9:4",
+      "test:423:4:2",
+      "test:605:6:2"
+    ],
+    "priorities": [
+      "Review the three fresh QC issues separately (source corruption, name attachment, comparative-correlative structure).",
+      "Work on the 59 semantic ambiguity warnings and 10 structural warnings where evidence supports a real refinement; retain irrecoverable words and names as unknown.",
+      "Treat the 25 insufficient-content occurrences as reviewed and held, not a new unread queue or grounds for invented training targets."
+    ]
+  }
+}

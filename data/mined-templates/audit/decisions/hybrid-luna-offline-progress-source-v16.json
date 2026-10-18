@@ -1,0 +1,362 @@
+{
+  "version": "offline-source-and-fragments-v16",
+  "date": "2026-10-17",
+  "previous_progress": "data/dailydialog/review-parts/hybrid-luna-offline-progress-attestation-v15.json",
+  "candidate": "artifacts/dailydialog-hybrid-source-final-v16",
+  "source_revision": "artifacts/dailydialog-hybrid-source-v16",
+  "ledger": "data/dailydialog/review-parts/luna-offline-source-v16",
+  "review_status": "UNREVIEWED",
+  "full_candidate_published": false,
+  "semantic_review_complete": false,
+  "api_calls": 0,
+  "parser_inference_calls": 35,
+  "wording_decisions": 36,
+  "corrected_segments": 35,
+  "affected_dialogues": 32,
+  "syntax_repaired_segments": 17,
+  "entity_repaired_segments": 1,
+  "unchanged_contextual_meanings_reconfirmed": 29,
+  "warning_rechecks": 87,
+  "previous_warning_closures_reconfirmed": 48,
+  "newly_closed_api_warnings": 36,
+  "saved_warnings": 12978,
+  "quarantined_api_warnings": 705,
+  "quarantined_current_occurrences": 687,
+  "quarantine_groups": {
+    "source": 616,
+    "ambiguity": 73,
+    "other_syntax": 7,
+    "sentence_boundary": 2,
+    "property_attachment": 1,
+    "negation_or_modality": 1,
+    "coordination": 3,
+    "clause_attachment": 2
+  },
+  "invalidated_without_new_review": 0,
+  "supplemental_semantic_ambiguities": 2,
+  "decisions": {
+    "hybrid-fragment-adapters-v16.json": {
+      "path": "data/dailydialog/review-parts/hybrid-fragment-adapters-v16.json",
+      "sha256": "ccbff40bed864a624aeda3f003d7d28903c2a5f46012646d393bb96ee2edd2cf"
+    },
+    "hybrid-source-wording-v16.jsonl": {
+      "path": "data/dailydialog/review-parts/hybrid-source-wording-v16.jsonl",
+      "sha256": "4857cdcdacda7bea36f3ac31f8d1527cbdf121732ff50e1b21792f722668878e"
+    },
+    "hybrid-source-boundaries-v16.jsonl": {
+      "path": "data/dailydialog/review-parts/hybrid-source-boundaries-v16.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "hybrid-source-syntax-final-v16.jsonl": {
+      "path": "data/dailydialog/review-parts/hybrid-source-syntax-final-v16.jsonl",
+      "sha256": "9356e8e5c0201bc6d458d229514df780293e790310b5e230b99bd1610bbb476e"
+    },
+    "hybrid-source-syntax-snapshot-final-v16.jsonl.gz": {
+      "path": "data/dailydialog/review-parts/hybrid-source-syntax-snapshot-final-v16.jsonl.gz",
+      "sha256": "4bdb0a01cda4e68578f5a083512d191e86a2fd665e874aa365549c99d26e89ce"
+    },
+    "hybrid-source-warning-rechecks-final-v16.jsonl": {
+      "path": "data/dailydialog/review-parts/hybrid-source-warning-rechecks-final-v16.jsonl",
+      "sha256": "2122a927f4876b8f277645d0af924afd2360a50a5eaf66423e297b8985865736"
+    },
+    "hybrid-attestation-held-resolution-v16.json": {
+      "path": "data/dailydialog/review-parts/hybrid-attestation-held-resolution-v16.json",
+      "sha256": "c5d55697c972758d281d3ca9443730bb2ed2ff721045575a57eaf16bc62dea3a"
+    }
+  },
+  "completion_verification": {
+    "reason": "The conservation checker now verifies candidate_context_revision in the full retained preimage, as for other historical bindings.",
+    "initial_runner_sha256": "b142645f4a030622af2d033180f8d277aabb6a549411b0d0e5c4066d80497235",
+    "completed_runner_sha256": "8d2346af54b89cee10baf019ef5a7137a262f1357d403edc183e8290c5cd0270",
+    "complete_decision_replay": true,
+    "full_validation_repeated": true,
+    "full_conservation_repeated": true,
+    "protected_files_unchanged": true,
+    "parser_inference_calls": 0,
+    "api_calls": 0,
+    "publication": false
+  },
+  "validation": {
+    "status": "passed",
+    "source_sha256": "130dad921193540f7591a5857d1594aa891fac55d5f738b968e21bfbf6166060",
+    "templates": 101146,
+    "attested_roundtrips": 110061,
+    "source_records": 161316,
+    "token_spans": 1378081,
+    "verbs_occurrences": 289418,
+    "adjectives_occurrences": 71914
+  },
+  "conservation": {
+    "status": "passed",
+    "counts": {
+      "occurrences": 161316,
+      "unchanged_occurrences": 161269,
+      "revised_occurrences": 47
+    },
+    "source_unchanged": true,
+    "prior_decisions_preserved_in_preimages": true,
+    "all_unaddressed_occurrences_identical": true
+  },
+  "source_conservation": {
+    "status": "passed",
+    "counts": {
+      "untouched_occurrences": 161207,
+      "preserved": 74,
+      "reparsed_unreviewed": 35
+    },
+    "old_occurrences": 161316,
+    "new_occurrences": 161316,
+    "every_original_accounted_for": true,
+    "all_unaddressed_analyses_unchanged": true,
+    "source_preimages_and_previous_local_decisions_preserved": true,
+    "semantic_approval": false
+  },
+  "independent_verification": {
+    "status": "passed",
+    "wording_decisions": 36,
+    "corrected_segments": 35,
+    "repaired_parses": 17,
+    "repaired_entity_records": 1,
+    "reconfirmed_contextual_meanings": 29,
+    "warning_rechecks": 87,
+    "newly_closed_warnings": 36,
+    "remaining_warnings": 705,
+    "exact_renders": 64,
+    "full_candidate_segments": 161316,
+    "ascii_apostrophes": 49409,
+    "noncanonical_apostrophes": 0,
+    "source_dialogues_preserved": 13118,
+    "parts_match_sources": 100,
+    "manual_dialogues_preserved": 510,
+    "working_pool_unchanged": true,
+    "paid_evidence_identical": true,
+    "publication": false,
+    "slot_replacement_blocked": true,
+    "dependency_qa_blocked": true,
+    "action_realization_blocked": true,
+    "corrected_segments_pending_semantic_admission": [
+      "test:1000:9:1",
+      "test:142:5:1",
+      "test:168:3:1",
+      "test:18:7:2",
+      "test:215:9:4",
+      "test:225:2:4",
+      "test:262:4:1",
+      "test:279:2:1",
+      "test:423:4:2",
+      "test:430:4:1",
+      "test:434:16:2",
+      "test:568:1:2",
+      "test:568:9:2",
+      "test:587:5:2",
+      "test:605:6:2",
+      "test:605:8:1",
+      "test:610:12:8",
+      "test:610:9:2",
+      "test:63:6:2",
+      "test:656:4:1",
+      "test:660:14:1",
+      "test:664:4:1",
+      "test:680:12:2",
+      "test:699:11:1",
+      "test:716:2:2",
+      "test:765:4:1",
+      "test:776:1:1",
+      "test:784:1:1",
+      "test:809:9:1",
+      "test:813:6:1",
+      "test:832:5:2",
+      "test:854:5:1",
+      "test:867:5:1",
+      "test:951:3:2",
+      "test:976:8:1"
+    ]
+  },
+  "fragment_publication": {
+    "status": "passed",
+    "published": true,
+    "new_patterns": 5,
+    "checked_patterns": 5,
+    "catalog_patterns": 59,
+    "source_dialogues": 5,
+    "episodes_checked": 10,
+    "transitions_checked": 30,
+    "previous_patterns_preserved": 54,
+    "previous_catalog_sha256": "4efae7199ea793f7a0256d9361a8d89a5218eb6ae431c77715fb6f57611140bc",
+    "result_catalog_sha256": "465f7a30796ec729152fb9f262aa27951189e1d120b957106b00edd9833c80b5",
+    "template_bank_changed": false,
+    "api_calls": 0,
+    "parser_inference_calls": 0
+  },
+  "fragment_generation_smoke": {
+    "status": "passed",
+    "seed": 16,
+    "task": "fragment_meaning",
+    "catalog_patterns": 59,
+    "new_patterns": 5,
+    "previous_patterns_preserved": 54,
+    "catalog_sha256": "ab9a252cc87b504770287adf47389dc62fd5c60d042cc506701201ed54435532",
+    "splits": {
+      "user-assistant/train": {
+        "episodes": 5,
+        "history": 5,
+        "memory": 5,
+        "extraction": 15
+      },
+      "user-assistant/validation": {
+        "episodes": 5,
+        "history": 5,
+        "memory": 5,
+        "extraction": 15
+      },
+      "user-assistant/test": {
+        "episodes": 5,
+        "history": 5,
+        "memory": 5,
+        "extraction": 15
+      },
+      "named-people/train": {
+        "episodes": 5,
+        "history": 5,
+        "memory": 5,
+        "extraction": 15
+      },
+      "named-people/validation": {
+        "episodes": 5,
+        "history": 5,
+        "memory": 5,
+        "extraction": 15
+      },
+      "named-people/test": {
+        "episodes": 5,
+        "history": 5,
+        "memory": 5,
+        "extraction": 15
+      }
+    },
+    "generated_episodes": 30,
+    "extraction_rows": 90,
+    "history_rows": 30,
+    "memory_rows": 30,
+    "json_inside_content": false,
+    "api_calls": 0,
+    "parser_inference_calls": 0,
+    "uses_existing_generator": true,
+    "examples": [
+      {
+        "pattern": "dd_v16_ticket_payment_amount",
+        "assistant": "How much money should I insert into the ticket machine?",
+        "user": "50 dollars.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | specified 50 dollars as the amount to insert into the ticket machine",
+        "answer": "You specified 50 dollars as the amount to insert into the ticket machine."
+      },
+      {
+        "pattern": "dd_v16_high_heels_choice",
+        "assistant": "Would you like high heels or flat shoes?",
+        "user": "High heels, please.",
+        "target": "SET_CONTEXT user | selection | asserted | positive | high heels",
+        "answer": "You chose high heels."
+      },
+      {
+        "pattern": "dd_v16_certainly_service",
+        "assistant": "I would like to buy a black suit.",
+        "user": "Certainly.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | acknowledged my request for a black suit and agreed to help",
+        "answer": "You acknowledged my request for a black suit and agreed to help."
+      },
+      {
+        "pattern": "dd_v16_thanks_directions",
+        "assistant": "The national bank is near the war memorial. Look for the sign on the front of the building.",
+        "user": "Thanks very much.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | thanked me for directions to the bank",
+        "answer": "You thanked me for directions to the bank."
+      },
+      {
+        "pattern": "dd_v16_thanks_report",
+        "assistant": "Here is the report.",
+        "user": "Thanks for that.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | thanked me for the report",
+        "answer": "You thanked me for the report."
+      }
+    ]
+  },
+  "checks": {
+    "total_tests": 344,
+    "fragment_tests": {
+      "passed": 182,
+      "seconds": 87.19,
+      "command": "python -X utf8 -B -m pytest -q tests/test_dialogue_fragments.py tests/test_dailydialog_fragment_admission.py tests/test_dialogue_extraction_text.py"
+    },
+    "candidate_tests": {
+      "passed": 162,
+      "seconds": 20.66,
+      "command": "python -X utf8 -B -m pytest -q tests/test_dailydialog_candidate_wording.py tests/test_dailydialog_quarantine_reviews.py tests/test_dailydialog_quarantine_finalization.py tests/test_dailydialog_source_segmentation.py tests/test_dailydialog_source_rebase.py tests/test_dailydialog_local_syntax.py"
+    },
+    "received_evidence_sha256": "68f72401d4ccd5e4a26eaaf23e1558dc268f136195680c658a2f857f8be68391"
+  },
+  "reproduction": {
+    "commands": [
+      "python -X utf8 -B scripts/admit_dailydialog_fragments.py --reviews data/dailydialog/review-parts/hybrid-fragment-adapters-v16.json --contexts artifacts/dailydialog-hybrid-attestation-v15/contexts.jsonl.gz --publish --report artifacts/dailydialog-fragments-v16/publication.json",
+      "python -X utf8 -B scripts/apply_dailydialog_candidate_wording.py --source artifacts/dailydialog-hybrid-attestation-v15 --wording data/dailydialog/review-parts/hybrid-source-wording-v16.jsonl --boundaries data/dailydialog/review-parts/hybrid-source-boundaries-v16.jsonl --model artifacts/models/spacy-en-3.8.0/en_core_web_sm/en_core_web_sm-3.8.0 --out artifacts/dailydialog-hybrid-source-v16 --invalidate-context-reviews",
+      "python -X utf8 -B scripts/apply_dailydialog_quarantine_reviews.py --source artifacts/dailydialog-hybrid-source-v16 --reviews data/dailydialog/review-parts/hybrid-source-syntax-final-v16.jsonl --out artifacts/dailydialog-hybrid-source-final-v16",
+      "python -X utf8 -B scripts/finalize_dailydialog_quarantine.py --candidate artifacts/dailydialog-hybrid-source-final-v16 --source-revision artifacts/dailydialog-hybrid-source-v16 --ledger data/dailydialog/review-parts/luna-offline-attestation-v15 --reviews data/dailydialog/review-parts/hybrid-source-warning-rechecks-final-v16.jsonl --out data/dailydialog/review-parts/luna-offline-source-v16"
+    ],
+    "note": "Completed. Use fresh output directories for replay. The authoritative review JSON/JSONL files contain every decision; ignored authoring scripts are not needed.",
+    "superseded": {
+      "candidate": "artifacts/dailydialog-hybrid-source-reviewed-v16",
+      "decisions": [
+        "hybrid-source-syntax-v16.jsonl",
+        "hybrid-source-syntax-snapshot-v16.jsonl.gz",
+        "hybrid-source-warning-rechecks-v16.jsonl"
+      ],
+      "reason": "An intermediate NER-only review carried an unsupported departure-plan status for The Johnsons are on their way back. Final files narrow it to entity_reference_only and preserve pending semantic admission. This intermediate candidate was not published or used to finalize the ledger."
+    }
+  },
+  "next_step": {
+    "corrected_segments_pending_semantic_admission": [
+      "test:1000:9:1",
+      "test:142:5:1",
+      "test:168:3:1",
+      "test:18:7:2",
+      "test:215:9:4",
+      "test:225:2:4",
+      "test:262:4:1",
+      "test:279:2:1",
+      "test:423:4:2",
+      "test:430:4:1",
+      "test:434:16:2",
+      "test:568:1:2",
+      "test:568:9:2",
+      "test:587:5:2",
+      "test:605:6:2",
+      "test:605:8:1",
+      "test:610:12:8",
+      "test:610:9:2",
+      "test:63:6:2",
+      "test:656:4:1",
+      "test:660:14:1",
+      "test:664:4:1",
+      "test:680:12:2",
+      "test:699:11:1",
+      "test:716:2:2",
+      "test:765:4:1",
+      "test:776:1:1",
+      "test:784:1:1",
+      "test:809:9:1",
+      "test:813:6:1",
+      "test:832:5:2",
+      "test:854:5:1",
+      "test:867:5:1",
+      "test:951:3:2",
+      "test:976:8:1"
+    ],
+    "warning_queue": "data/dailydialog/review-parts/luna-offline-source-v16/quarantine-cases.jsonl.gz",
+    "supplemental_queue": "data/dailydialog/review-parts/hybrid-attestation-held-resolution-v16.json",
+    "priorities": [
+      "Contextual admission of the 35 corrected segments, checking clause and property scope before any publication.",
+      "Continue 616 source warnings and 89 other saved warnings in groups.",
+      "Keep unresolved names, doses, truncations, quantifier scope and measurement units restricted; do not infer missing information."
+    ],
+    "full_semantic_review_still_required": true
+  }
+}

@@ -1,0 +1,709 @@
+{
+  "version": "source-wording-and-boundaries-v31",
+  "source_candidate": "artifacts/dailydialog-hybrid-source-v30",
+  "source_ledger": "data/dailydialog/review-parts/luna-offline-source-v30",
+  "source_warning_triage": 193,
+  "full_context_warning_reviews": 31,
+  "representation_only_closures": 29,
+  "boundary_repairs": 2,
+  "context_revisions": 31,
+  "consumed_segments": 33,
+  "warning_rechecks": 43,
+  "cases": [
+    {
+      "id": "test:166:6:1",
+      "input_ids": [
+        "test:166:6:1"
+      ],
+      "note": "The overweight-luggage prefix supports a question about the excess-baggage fee. Accept that question without removing part, deciding its role, supplying an amount or asserting payment.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "asked the amount of the excess-baggage charge, without accepting or paying it"
+        },
+        "unknown": [
+          "The role of part in the charge description is not resolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false
+    },
+    {
+      "id": "test:299:1:1",
+      "input_ids": [
+        "test:299:1:1"
+      ],
+      "note": "The original office designation Marketing manage office can be retained in a service greeting. Accept the explicit help offer without silently naming a manager or repairing the office title.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "gave a marketing-office greeting and offered help"
+        },
+        "unknown": [
+          "The exact office title in Marketing manage office is not reconstructed."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": true
+    },
+    {
+      "id": "test:495:5:1",
+      "input_ids": [
+        "test:495:5:1",
+        "test:495:5:2"
+      ],
+      "note": "Attach the trailing colon to its original drink-offer question. It is punctuation, not an independent proposition. Preserve both the question mark and colon and do not use the later iced-tea answer.",
+      "meaning": {
+        "speech_act": "offer_question",
+        "event_status": "offered_drink_service",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The waiter asks whether they can get the addressee anything to drink. The trailing colon is preserved as punctuation. No drink choice, service or consumption is asserted."
+        },
+        "unknown": []
+      },
+      "token_edits": {
+        "8": {
+          "dep": "punct",
+          "head": 2
+        }
+      },
+      "source_text_changed": false,
+      "joined": true,
+      "source_label_only": false
+    },
+    {
+      "id": "test:51:6:2",
+      "input_ids": [
+        "test:51:6:2"
+      ],
+      "note": "The explicitly stated we and would like support the group desire for an early return of investments. Preserve exports without assigning an occupational label or claiming an actual repayment.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "wanted the investments returned as early as possible, without reporting their return"
+        },
+        "unknown": [
+          "The malformed description we exports does not establish a precise occupational label."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false
+    },
+    {
+      "id": "test:605:6:1",
+      "input_ids": [
+        "test:605:6:1"
+      ],
+      "note": "The preceding beer offer and I will have another cup support acceptance of the offer. Keep insist uninterpreted; do not invent a conditional, a person insisting, or completed drinking.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "accepted another cup of beer while leaving the final insist unexplained"
+        },
+        "unknown": [
+          "The extra word does not establish a condition or the identity of someone insisting; no drinking is completed."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false
+    },
+    {
+      "id": "test:683:2:2",
+      "input_ids": [
+        "test:683:2:2"
+      ],
+      "note": "Henry and the marriage are supplied by the preceding question. The reply associates him with regret, while feel regretted leaves tense and timing unresolved. Accept only that association, without repairing the verb forms.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "associated Henry with regret about the marriage, without resolving the malformed tense construction"
+        },
+        "unknown": [
+          "The timing and intended form of feel regretted remain unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false
+    },
+    {
+      "id": "test:790:1:1",
+      "input_ids": [
+        "test:790:1:1"
+      ],
+      "note": "The explicit in favour and I think establish a favorable opinion of computers and the stated educational rationale. Keep known and the hesitation; do not turn the opinion into proven educational efficacy.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "favored computers and argued that they encourage thinking through logical thought"
+        },
+        "unknown": [
+          "The stray known is retained; the claim is the speaker's view, not verified educational efficacy."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false
+    },
+    {
+      "id": "test:954:6:1",
+      "input_ids": [
+        "test:954:6:1"
+      ],
+      "note": "The dispatch clause is grammatically usable as an attributed report with the literal item label plants. Unusual relief cargo is not grounds for replacing it with planes. Keep the unresolved intended item and transport method explicit.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "reported_completion",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "reported that the European union sent items called plants with relief supplies"
+        },
+        "unknown": [
+          "Do not replace plants with planes or infer a transport method; the claim remains attributed to the report."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": true
+    },
+    {
+      "id": "test:998:4:1",
+      "input_ids": [
+        "test:998:4:1"
+      ],
+      "note": "The hobby question and list support coins, stamps and stones as examples. Preserve Very without replacing it with rare, valuable or another inferred property; no completed collecting event is added.",
+      "meaning": {
+        "speech_act": "contextual_interpretation",
+        "event_status": "contextual_statement_or_nonactual_action",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "listed coins, stamps and stones among the collected items"
+        },
+        "unknown": [
+          "The modifier Very before coins is unresolved and is not replaced with rare or another property."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false
+    },
+    {
+      "id": "train:10083:10:1",
+      "input_ids": [
+        "train:10083:10:1"
+      ],
+      "note": "The career-goal answer explicitly states desired contributions and the aspiration to become an administrative assistant. Preserve sensor and its unresolved modifier meaning; do not infer sincerity or a completed appointment.",
+      "meaning": {
+        "speech_act": "aspiration",
+        "event_status": "career_contribution_and_role_desire",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The applicant wants to contribute technical skills, ambition, enthusiasm and loyalty to ABC Company and become an administrative assistant. Sensor does not establish sincerity or another quality of the desire; employment is not completed."
+        },
+        "unknown": [
+          "The modifier sensor applied to desire is unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false
+    },
+    {
+      "id": "train:10141:3:2",
+      "input_ids": [
+        "train:10141:3:2"
+      ],
+      "note": "The cold-mountain packing question explicitly concerns clothes written windshelled and bodywarmers. Retain that garment label without asserting waterproofing, windproofing or completed packing.",
+      "meaning": {
+        "speech_act": "question",
+        "event_status": "queried_packing_of_protective_clothes",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker asks whether the listener packed clothes labelled windshelled and bodywarmers for a cold mountain trip. Do not infer the exact garment or protective specification from windshelled."
+        },
+        "unknown": [
+          "The precise garment description windshelled is unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": true
+    },
+    {
+      "id": "train:10198:5:1",
+      "input_ids": [
+        "train:10198:5:1"
+      ],
+      "note": "The reply identifies the questioned charge as laundry service and quotes the original Nov. 20thA. Accept the service/charge link while preserving A, the unspecified year and the absence of a payment assertion.",
+      "meaning": {
+        "speech_act": "explanation",
+        "event_status": "laundry_charge_with_damaged_date_suffix",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker identifies the questioned charge as laundry service and gives a date beginning Nov. 20th. Preserve 20thA; do not assign a meaning to A, infer a year or claim payment was made."
+        },
+        "unknown": [
+          "The trailing A in the date and the year are unspecified."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false
+    },
+    {
+      "id": "train:10530:1:2",
+      "input_ids": [
+        "train:10530:1:2",
+        "train:10530:1:3"
+      ],
+      "note": "Attach the detached terminal apostrophe to the preceding self-introduction. Preserve every character and treat the apostrophe as punctuation, not an independent utterance or evidence of missing speech.",
+      "meaning": {
+        "speech_act": "introduction",
+        "event_status": "self_identification_and_current_company",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker identifies themself as Rick Fields and says they are here again with Bob Copeland, described as the man that seals the deal. The descriptive phrase does not report an actual completed deal. The final apostrophe is retained as punctuation."
+        },
+        "unknown": []
+      },
+      "token_edits": {
+        "27": {
+          "dep": "punct",
+          "head": 2
+        }
+      },
+      "source_text_changed": false,
+      "joined": true,
+      "source_label_only": false
+    },
+    {
+      "id": "train:10782:2:1",
+      "input_ids": [
+        "train:10782:2:1"
+      ],
+      "note": "The answer to the special-of-the-day question identifies sweet-and-sour pro chops. Retain pro as an unresolved modifier, Madam as address, and no inferred pork ingredient or actual meal consumption.",
+      "meaning": {
+        "speech_act": "identification",
+        "event_status": "menu_special_with_unclear_meat_label",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The answer names today's special as sweet-and-sour chops with the modifier pro. Sweet and sour describe the dish, and Madam is direct address. Do not infer pork or another meat."
+        },
+        "unknown": [
+          "The ingredient or modifier meant by pro is unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": true
+    },
+    {
+      "id": "train:10874:5:1",
+      "input_ids": [
+        "train:10874:5:1"
+      ],
+      "note": "The desk conversation supports an offer to arrange luggage collection at nine by a person labelled bail boy. Retain the title without silently correcting it; the offer does not establish an arrangement or collection.",
+      "meaning": {
+        "speech_act": "offer",
+        "event_status": "luggage_pickup_with_unclear_staff_label",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker offers to arrange luggage collection at nine o'clock by a person labelled bail boy. Do not correct the staff title or treat the arrangement, collection or time of day as confirmed."
+        },
+        "unknown": [
+          "The precise staff title represented by bail boy is unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": true
+    },
+    {
+      "id": "train:10991:9:1",
+      "input_ids": [
+        "train:10991:9:1"
+      ],
+      "note": "The interview advice prescribes acknowledgements and the original closing word Goode. Accept the advice without substituting goodbye or asserting that an interview has ended.",
+      "meaning": {
+        "speech_act": "advice",
+        "event_status": "acknowledgements_and_unclear_closing_word",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker advises acknowledgements at the end of an interview and saying the word written Goode. Do not replace the closing word or claim that the interview has ended."
+        },
+        "unknown": [
+          "The intended closing word represented by Goode is unclear."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": true
+    },
+    {
+      "id": "train:11102:10:1",
+      "input_ids": [
+        "train:11102:10:1"
+      ],
+      "note": "The dinner discussion supports weekly meal alternatives using the original label dangers and mash. Keep the or alternatives, habit scope and unresolved ingredient; do not assert sausages or a completed meal.",
+      "meaning": {
+        "speech_act": "habit_report",
+        "event_status": "weekly_meals_with_unclear_dish_component",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker describes usual weekly choices beyond the Sunday roast: dangers and mash, toad-in-the-hole or fish'n chips. Preserve the unclear first component without substituting sausages or asserting a particular meal was eaten."
+        },
+        "unknown": [
+          "The dish component represented by dangers is unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": true
+    },
+    {
+      "id": "train:1127:4:2",
+      "input_ids": [
+        "train:1127:4:2"
+      ],
+      "note": "The budget-review obligation and excess-spending concern are explicit despite over-spend. Accept those meanings without a precise excess amount, a completed review or a forced aspect reading.",
+      "meaning": {
+        "speech_act": "statement",
+        "event_status": "obligation_and_budget_concern",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker needs to review the household budget and describes excess spending this month. Go over means review. No completed review is asserted."
+        },
+        "unknown": [
+          "The wording over-spend does not settle whether spending is ongoing or completed or its exact excess amount."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false
+    },
+    {
+      "id": "train:1185:2:6",
+      "input_ids": [
+        "train:1185:2:6"
+      ],
+      "note": "They refers to the cafeteria, and have been serving describes repeated service over three days. Keep white gorse as the supplied label without inferred ingredients, an ended service, or consumption by the speaker.",
+      "meaning": {
+        "speech_act": "complaint",
+        "event_status": "reported_continuing_food_service",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "They refers to the cafeteria. The speaker reports its repeated service of Chinese cabbage and the item written white gorse for three days. The perfect progressive does not establish an ended service or consumption by the speaker."
+        },
+        "unknown": [
+          "The intended identity of white gorse is unknown."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": true
+    },
+    {
+      "id": "train:1302:4:2",
+      "input_ids": [
+        "train:1302:4:2"
+      ],
+      "note": "The explicit work/no-play/dull relation is usable as a general warning supporting recreation. Preserve jucky without inserting Jack, identifying a boy or asserting a real transformation.",
+      "meaning": {
+        "speech_act": "advice",
+        "event_status": "general_work_play_warning",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker invokes a general warning that only working without play makes one dull. It supports recreation, not an actual identified boy becoming dull or a person named Jucky."
+        },
+        "unknown": [
+          "The word jucky is unresolved and is not silently replaced with a name."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false
+    },
+    {
+      "id": "train:1322:11:3",
+      "input_ids": [
+        "train:1322:11:3"
+      ],
+      "note": "The prefix explicitly contrasts the earlier Hong Kong interpretation with H&K as hug and kiss. The reply negatively evaluates that interpretation. Accept this contextual reaction while preserving Miun - Verstand and never treating the abbreviation as a physical hug or kiss.",
+      "meaning": {
+        "speech_act": "reaction",
+        "event_status": "regret_about_interpretation",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "After learning that H&K means hug and kiss rather than Hong Kong, the speaker negatively evaluates their interpretation of the girl's message. The source Miun - Verstand stays unchanged."
+        },
+        "unknown": [
+          "The exact lexical form of Miun - Verstand is unresolved; no physical hug or kiss is inferred."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false
+    },
+    {
+      "id": "train:1328:11:1",
+      "input_ids": [
+        "train:1328:11:1"
+      ],
+      "note": "The source explicitly calls family time in the basement among the best childhood memories. Preserve fon without guessing an adjective or claiming a particular tornado ended.",
+      "meaning": {
+        "speech_act": "recollection",
+        "event_status": "positive_childhood_memory",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "The speaker recalls spending time with family in the basement while waiting for tornadoes and describes some such memories as among their best. Waiting does not itself assert that a particular tornado passed."
+        },
+        "unknown": [
+          "The malformed fon is preserved without selecting a replacement adjective."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false
+    },
+    {
+      "id": "train:1432:12:2",
+      "input_ids": [
+        "train:1432:12:2"
+      ],
+      "note": "The preceding appearance comparison licenses the negative evaluation conveyed by ugly. Keep but unchanged and its possible intensifier reading unresolved; do not repair it into an idiom or invent a contrastive clause.",
+      "meaning": {
+        "speech_act": "evaluation",
+        "event_status": "negative_appearance_judgment",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "In the comparison with Kate the speaker expresses a negative appearance judgment. The malformed but ugly is preserved; it does not establish a contrastive connective or a completed action."
+        },
+        "unknown": [
+          "The intended intensifier and exact wording before ugly are uncertain."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false
+    },
+    {
+      "id": "train:1541:5:1",
+      "input_ids": [
+        "train:1541:5:1"
+      ],
+      "note": "The leading-role discussion and have done support prior repetition. Accept that report without supplying the missing frequency word behind Ay or an exact count.",
+      "meaning": {
+        "speech_act": "statement",
+        "event_status": "reported_repeated_role",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "The speaker acknowledges having played the leading role before and describes repetition. The damaged quantity so Ay times does not establish a count."
+        },
+        "unknown": [
+          "The precise frequency expression behind Ay is unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false
+    },
+    {
+      "id": "train:1541:5:3",
+      "input_ids": [
+        "train:1541:5:3"
+      ],
+      "note": "The explicit leading guy, always the same and macho support a stereotyped-role complaint. Preserve the final A without expanding it into a noun, initial or insult.",
+      "meaning": {
+        "speech_act": "evaluation",
+        "event_status": "stereotyped_role_description",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker complains that the leading male role is repeatedly the same macho type. A is not expanded into a guessed noun or insult."
+        },
+        "unknown": [
+          "The final label A is unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": true
+    },
+    {
+      "id": "train:1541:6:1",
+      "input_ids": [
+        "train:1541:6:1"
+      ],
+      "note": "Would trade if I could is conditional, and do not think I would be convincing expresses self-doubt. Retain macho A and do not report an actual role exchange or failed performance.",
+      "meaning": {
+        "speech_act": "offer",
+        "event_status": "conditional_role_swap_and_self_doubt",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker would swap roles if possible but doubts being convincing in the macho role. No actual exchange or performance is completed."
+        },
+        "unknown": [
+          "The role label macho A is retained without expanding A."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": true
+    },
+    {
+      "id": "train:1674:8:3",
+      "input_ids": [
+        "train:1674:8:3"
+      ],
+      "note": "The prefix names Michael and the source gives the best sales record for three months. Accept the stated favorable-standing interpretation only; pet does not establish an owner, an exact status, or immunity from dismissal.",
+      "meaning": {
+        "speech_act": "evaluation",
+        "event_status": "favorable_status_after_sales_success",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "Michael is discussed as having the best sales record for three consecutive months. Pet suggests favorable standing but does not identify an owner, exact status or a guaranteed dismissal outcome."
+        },
+        "unknown": [
+          "The exact favorable status represented by pet is unclear."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false
+    },
+    {
+      "id": "train:1817:7:1",
+      "input_ids": [
+        "train:1817:7:1"
+      ],
+      "note": "The quote supplies approximately 200 and per-truck scope. Preserve RIB as an unresolved unit label without converting it to RMB, yuan or another currency, and without asserting a booking.",
+      "meaning": {
+        "speech_act": "answer",
+        "event_status": "approximate_price_with_unknown_currency",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The reply quotes approximately 200 RIB per truck for moving services. The quantity and approximation are clear; the currency is not inferred from the conversation."
+        },
+        "unknown": [
+          "The currency abbreviation RIB is unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": true
+    },
+    {
+      "id": "train:1869:3:2",
+      "input_ids": [
+        "train:1869:3:2"
+      ],
+      "note": "The speaker predicts other people might regard the addressee as a kidnapper. Keep NCP unexplained and preserve prediction scope; no kidnapping or actual public belief is asserted.",
+      "meaning": {
+        "speech_act": "warning",
+        "event_status": "predicted_misinterpretation",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker warns that adults accompanying children at night for trick-or-treating might be seen as kidnappers. A predicted suspicion is not an actual kidnapping or a proven public belief."
+        },
+        "unknown": [
+          "NCP is unexplained and is not expanded into an organization or action."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false
+    },
+    {
+      "id": "train:1940:6:1",
+      "input_ids": [
+        "train:1940:6:1"
+      ],
+      "note": "This duplicate dialogue independently supports a report of dispatch with the written item plants. Retain the literal label and unresolved intended item; do not replace it with planes or infer aircraft.",
+      "meaning": {
+        "speech_act": "reported_speech",
+        "event_status": "relief_dispatch_with_unclear_item",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "The speaker reports that the European union sent several items written plants with relief supplies. Plants could be literal, so do not assert that aircraft were sent."
+        },
+        "unknown": [
+          "The intended dispatched item behind plants is unresolved."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": true
+    },
+    {
+      "id": "train:2496:4:1",
+      "input_ids": [
+        "train:2496:4:1"
+      ],
+      "note": "Last night, the story-telling and the two children being frightened are explicit. Accept them while preserving scared out of sleep and its unresolved waking-versus-falling-asleep distinction.",
+      "meaning": {
+        "speech_act": "recollection",
+        "event_status": "story_and_sleep_disrupting_fear",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "The speaker reports that the husband told both children a suspenseful story last night and they were frightened in connection with sleep. The unusual out of sleep does not distinguish inability to fall asleep from waking."
+        },
+        "unknown": [
+          "The exact effect on sleep and its timing are unclear."
+        ]
+      },
+      "token_edits": {},
+      "source_text_changed": false,
+      "joined": false,
+      "source_label_only": false
+    }
+  ],
+  "source_text_changes": 0,
+  "api_calls": 0,
+  "parser_inference_calls": 0,
+  "new_adapters": 2,
+  "previous_catalog_patterns_preserved": 729
+}

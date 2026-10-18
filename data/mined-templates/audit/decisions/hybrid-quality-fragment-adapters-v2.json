@@ -1,0 +1,1251 @@
+{
+  "format": "reviewed-fragment-adapters-v1",
+  "patterns": [
+    {
+      "id": "dd_diagnostic_val_380_4_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "It is nice to meet you.",
+      "reply": "Glad to meet you.",
+      "value": "expressed pleasure at meeting me",
+      "question": "How did I respond to meeting you?",
+      "source": {
+        "split": "val",
+        "dialogue": 380,
+        "turn": 4,
+        "text": "Glad to meet you, Mr. White.",
+        "span": [
+          0,
+          28
+        ],
+        "context": [
+          "Come in, please.",
+          "Good morning! I am Anna Lu. I've come for an interview which was arranged.",
+          "Oh, I see. I am Jack White, Personnel Manager. Take a seat, please.",
+          "Glad to meet you, Mr. White.",
+          "Miss Lu, have you got any experience in restaurant service?",
+          "Yes. Since I entered college, I have been working at a fast food restaurant as a part-time waitress.",
+          "For how long?",
+          "3 years.",
+          "Our restaurant receives a lot of foreign customers. Can you serve them in English?",
+          "That's why I applied for this job. Now I am studying Hotel English in my college, and I am quite familiar with the western courtesy and restaurant etiquette. I am sure my public relation skills will leave a strong impression on your customers.",
+          "You must know our working hours are very long and overtime work is frequent.",
+          "I don't mind that.",
+          "I think I will give you a 3 months'trial. The salary for this period is 800 yuan a month with no bonus. After that period if we both feel satisfied, a formal contract would be signed.",
+          "When am I supposed to start working?",
+          "Next Monday. Bring your resume and diploma with you.",
+          "Yes, I will. Thank you, Mr. White. Goodbye!",
+          "Goodbye!"
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "adaptation": "Remove the named vocative; glad belongs to the responding user, not the addressee.",
+        "source_sha256": "119e7a0f8e4f6b2f5ecc0db4ad5ed648c4bc68ffebdd5945e287e240ce93549c",
+        "context_sha256": "688270a826d99ecd24e9b0cfdf8f7e61a89c571610c7eedbdf05fec53291ba2a"
+      },
+      "interpretation_topic": "greeting_response"
+    },
+    {
+      "id": "dd_diagnostic_train_3857_5_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "I like rumba and tango.",
+      "reply": "Great.",
+      "value": "reacted positively to my interest in rumba and tango",
+      "question": "What was I reacting positively to?",
+      "source": {
+        "split": "train",
+        "dialogue": 3857,
+        "turn": 5,
+        "text": "Great.",
+        "span": [
+          0,
+          6
+        ],
+        "context": [
+          "What do you like to do in your spare time?",
+          "I am a girl of many interests. I like dance, chess, collecting stamps, travelling and taking photos.",
+          "What kind of dance do you like?",
+          "I like rumba and tango.",
+          "Great. I am not interested in Chinese chess. It is too difficult for me.",
+          "You can learn Chinese checkers or military chess. Both of them are much easier.",
+          "OK, I will try. As for stamp, don't you think it is an expensive hobby?",
+          "Yes, it is. But it is full of fun and knowledge. What about you, what do you like to do as hobby?",
+          "I like gardening. I take care of them everyday. I like those flowers and the swing in my garden. If the weather is nice, I would like to lie on the lawn.",
+          "Sounds pleasant."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "adaptation": "Retain a positive reaction without selecting a unique nominal target or asserting dancing.",
+        "source_sha256": "86fa18bf915254bfcd8a18d24fdf305ae865e1d8d918c62178632ac55276215e",
+        "context_sha256": "967a639ecc853bf60ae7dbad1e9d345208d5cf7923c4a1263832022c1adac842"
+      },
+      "interpretation_topic": "reaction_to_dancing"
+    },
+    {
+      "id": "dd_diagnostic_train_3234_4_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "This lipstick would go well with your dress.",
+      "reply": "Great!",
+      "value": "reacted positively to my lipstick suggestion",
+      "question": "How did I react to the lipstick suggestion?",
+      "source": {
+        "split": "train",
+        "dialogue": 3234,
+        "turn": 4,
+        "text": "Great!",
+        "span": [
+          0,
+          6
+        ],
+        "context": [
+          "(Before Christmas Party) Are you ready for the Christmas party tonight",
+          "Almost. I have to get dressed. It's a formal party and I have special party make up!",
+          "Use this lipstick and it will make your lips shine!",
+          "Great! Uh, remember that there's a gift exchange, too. We all have to bring a gift.",
+          "I've already got mine.",
+          "(At the Party) It's Christmas Eve! Time to open presents!",
+          "Here! Open mine first.",
+          "Wow! It's just what I wanted!",
+          "Hey! Why don't I have any presents!"
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "adaptation": "Approval does not say the lipstick was applied.",
+        "source_sha256": "13e31a29ce39ab70ede89de86619c7aa8b21bc2b4b371a6ec6e8d7d7224dabb0",
+        "context_sha256": "a85ec46c42ff723f5f6fafa519131fc09e8ca3f309e366ea7db197bb77538525"
+      },
+      "interpretation_topic": "reaction_to_lipstick"
+    },
+    {
+      "id": "dd_diagnostic_train_7771_8_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Would you like this film developed with a glossy finish?",
+      "reply": "How much?",
+      "value": "asked about the price of developing the film",
+      "question": "What did I ask about?",
+      "source": {
+        "split": "train",
+        "dialogue": 7771,
+        "turn": 8,
+        "text": "How much?",
+        "span": [
+          17,
+          26
+        ],
+        "context": [
+          "What can I do for you?",
+          "I would like to have a roll developed.",
+          "When do you need them, sir?",
+          "How about tomorrow morning?",
+          "No problem. Do you want 3 x 5 or 4 x 6?",
+          "The 4 x6 will be OK. Thanks.",
+          "And do you want the glossy or matted finish?",
+          "I prefer glossy. How much?",
+          "You pay when you pick them up. I don't need a deposit for just one roll of film.",
+          "Thanks!"
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "adaptation": "Make the film-development referent visible. Do not invent a price or payment.",
+        "source_sha256": "3b9a0b5f9145ee7c3c7c833019c2f078b397b211e323ca754ef6140892ecdf29",
+        "context_sha256": "3614ae5508622c17faabd36c8382bf086bc208b5ffd76743ada16f728f0c04bc"
+      },
+      "interpretation_topic": "requested_information"
+    },
+    {
+      "id": "dd_diagnostic_test_310_17_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Thanks for calling. I'll pass on your message.",
+      "reply": "Good-bye.",
+      "value": "said goodbye",
+      "question": "How did I close the conversation?",
+      "source": {
+        "split": "test",
+        "dialogue": 310,
+        "turn": 17,
+        "text": "Good-bye.",
+        "span": [
+          0,
+          9
+        ],
+        "context": [
+          "Good morning. Craftsman Company. Can I help you?",
+          "Yes, good morning. This is Mr. Suzuki from Video TV. May I speak to Mr. Johnson?",
+          "I'm sorry, but Mr. Johnson is out at the moment. Can I take a message?",
+          "Uh, yes, okay. Tell him John Suzuki called. That's S-U-Z-U-K-I.",
+          "Yes.",
+          "From Video TV.",
+          "Yes, Video TV.",
+          "Tell him I telephoned. I'd like to see him about the videotapes. Can he call me this afternoon?",
+          "Yes, Of course. What's your telephone number?",
+          "It's, area code 413, 447-9626.",
+          "That is 413-447-9662?",
+          "No, that's 447-9626.",
+          "Oh, I'm sorry, 447-9626.",
+          "Yes, that's right. Extension 162.",
+          "Extension 162. Okay, Mr. Suzuki. I'll give him the message.",
+          "Thank you. Good-bye.",
+          "Good-bye."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17
+        ],
+        "adaptation": "A farewell does not imply delivery of the promised message.",
+        "source_sha256": "7db226f167990c650ca3e6c91dec694ded923c67316e667af16d92045f33f0a6",
+        "context_sha256": "025ccf751873b365be41eabe95c141eb63c7f274d85856bf7db91aa13c141403"
+      },
+      "interpretation_topic": "closing_act"
+    },
+    {
+      "id": "dd_diagnostic_train_1533_2_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What do you think about being a tourist?",
+      "reply": "Being a tourist is really tiring!",
+      "value": "described being a tourist as tiring",
+      "question": "What activity did I describe as tiring?",
+      "source": {
+        "split": "train",
+        "dialogue": 1533,
+        "turn": 2,
+        "text": "Being a tourist is really tiring!",
+        "span": [
+          43,
+          76
+        ],
+        "context": [
+          "Welcome back! How was your vacation?",
+          "It was fantastic, but I'm glad to be back! Being a tourist is really tiring!",
+          "Where did you end up going?",
+          "Because it's off-season, we got a really good package deal to Paris, so we went there.",
+          "I've always wanted to go to Paris. The Eiffel Tower is one of the most famous tourist attractions in the world! Did you go to the top?",
+          "That was the first thing we did. I have a few pictures. Do you want to see them?",
+          "Sure. What's this one a picture of?",
+          "Oh, that's a picture of me on our fourth day of travelling. I'm standing next to a famous foundation in the centre of the city.",
+          "You don't look very happy in that picture.",
+          "No, by that time, I was sick of sightseeing. I had had enough of art galleries, cathedrals, fountains, statues, and palaces!",
+          "So what did you do?",
+          "We spent that afternoon walking around a flea market. We had a few coffees, watched a movie, and went for a swim in the pool at the hotel.",
+          "My travel agent always reminds me to plan a day of relaxing for every 3 days of sightseeing. Did you go to the Louvre?",
+          "Of course! You can't go to Paris without going to their famous art gallery! I was surprised by how small the Mona Lisa was though.",
+          "That's what everyone says! I can't wait to see it for myself some day."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2
+        ],
+        "adaptation": "The evaluation targets an activity, not the tourist as a person. No tired state is substituted.",
+        "source_sha256": "e5e0d1d2c459e837aafc5cea1091e18a71335f7e508cf8ae2f7372ffc8aad0df",
+        "context_sha256": "29e07e2ec17502a8a0b5a8ea82489bffc9fcbeac3f82cdc37b1b55f68e1440a6"
+      },
+      "interpretation_topic": "tiring_activity"
+    },
+    {
+      "id": "dd_diagnostic_train_10383_16_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Let's make some tea to warm up.",
+      "reply": "Good idea.",
+      "value": "approved the suggestion to make tea",
+      "question": "How did I respond to the tea suggestion?",
+      "source": {
+        "split": "train",
+        "dialogue": 10383,
+        "turn": 16,
+        "text": "Good idea.",
+        "span": [
+          0,
+          10
+        ],
+        "context": [
+          "Are your ready to go to the supermarket?",
+          "Yes, are you?",
+          "I've got my money and my keys, so I'm ready.",
+          "You do know that it's absolutely freezing out, don't you? I'd put a coat on if I were you.",
+          "It wasn't cold out this morning.",
+          "Well, it's started raining since then. Look out the window! It's pouring rain out there!",
+          "Well, I guess we'd better grab our umbrellas then, as well.",
+          "Have a look outside for me. Does that look like hail to you?",
+          "It does, actually. Maybe we should wait for it to clear up before we go shopping.",
+          "That's a good idea. But maybe we should move the car so that the hail doesn't dent it.",
+          "Ok. I'll go move the car if you turn the heat on. It's a bit chilly in here.",
+          "How long do you think this hailstorm is supposed to last?",
+          "I don't know. The weatherman didn't say anything about this in his weather report last night.",
+          "Maybe we should turn on the news in case it's supposed to get worse.",
+          "I don't think we have anything to worry about. Do you want to put on a cup of tea as well?",
+          "Good idea. That will help us to warm up.",
+          "If I'm not back in ten minutes, come and find me.",
+          "Alright. I'll have a cup of tea waiting for you."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16
+        ],
+        "adaptation": "Save approval only; tea-making is not completed.",
+        "source_sha256": "876027e00600dcc7a5617d4f68cb373de3c3245bdd3be9de8fbdf44299ebdac4",
+        "context_sha256": "6408bd34fd52a622fd9ade19ca50880d71875f143064ad651877ab36ff18526a"
+      },
+      "interpretation_topic": "proposal_response"
+    },
+    {
+      "id": "dd_diagnostic_train_2101_4_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Are you able to compose music?",
+      "reply": "No, not yet.",
+      "value": "said you are not yet able to compose music",
+      "question": "What have I said about my ability to compose music?",
+      "source": {
+        "split": "train",
+        "dialogue": 2101,
+        "turn": 4,
+        "text": "No, not yet.",
+        "span": [
+          0,
+          12
+        ],
+        "context": [
+          "Whose handset sounds so beautiful",
+          "Mine. It's My Heart Will Go On, the theme song of Titanic. Isn't it of strong character?",
+          "Are you able to compose music?",
+          "No, not yet.",
+          "Who composed it for your?",
+          "You needn't ask anyone. You can get on line to search for one.",
+          "Can I get on line to search one, too?",
+          "Yeah. Web sites provide many melodies for handsets like my ERICSSON.",
+          "What about my SIEMENS?",
+          "Numerous. It's time that everybody is particular about personality. Find one and change yours."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "adaptation": "Not yet answers an ability question; it is not noncompletion of a particular composition task.",
+        "source_sha256": "144c1761d337a60c618e0c4f0c3c92f1ef98eec4c9f6eb9edc1e25b9a7d7b828",
+        "context_sha256": "6d62da451016a98586d547058f06102ae110fc19b229409f67cee30f80aa902c"
+      },
+      "interpretation_topic": "music_ability"
+    },
+    {
+      "id": "dd_diagnostic_train_7698_7_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Is this tie really the shop's best seller?",
+      "reply": "Sure!",
+      "value": "confirmed the claim that this tie is the shop's best seller",
+      "question": "What claim did I confirm?",
+      "source": {
+        "split": "train",
+        "dialogue": 7698,
+        "turn": 7,
+        "text": "Sure!",
+        "span": [
+          0,
+          5
+        ],
+        "context": [
+          "Can I help you?",
+          "I'd like to buy a tie to match this suit.",
+          "We have various colors. How about this one?",
+          "Well, the color is all right. But it looks outdated. Can you show me that one?",
+          "You have a very good taste. It's our best seller.",
+          "Really?",
+          "Sure! Look, it suits you well."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "adaptation": "This is confirmation of a sales claim, not permission. Independent sales truth is not established.",
+        "source_sha256": "ba9c8531a637d4c6f896bbb7b721e669298a757db79b7bf3709597e8ad6301bd",
+        "context_sha256": "1dff6d7502194efc136a76019249ec8142f0dd1a383bad3c655219a3da0d5208"
+      },
+      "interpretation_topic": "confirmed_claim"
+    },
+    {
+      "id": "dd_diagnostic_train_6653_4_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Ask the office administrator for stationery and a calendar.",
+      "reply": "Thanks.",
+      "value": "thanked me for directions for getting stationery and a calendar",
+      "question": "What did I thank you for?",
+      "source": {
+        "split": "train",
+        "dialogue": 6653,
+        "turn": 4,
+        "text": "Thanks.",
+        "span": [
+          0,
+          7
+        ],
+        "context": [
+          "We're having a department meeting at 10 o'clock, ok?",
+          "That's fine... I need to pick up some stationary-you know, a stapler, scissors, files, who should I see about that?",
+          "See Julie, the receptionist. She knows where all that stuff is kept. You might like a calendar for you desk. She can give you one of those too.",
+          "Thanks. I need to make a few photocopies.",
+          "The photocopier is near my office. Come on, I'll show you where it is.",
+          "Do you enjoy working in this office?",
+          "Yes, I do. Everyone's really friendly. Sometimes, I wish I worked outdoors more, especially during the summer.",
+          "What's usually discussed at the department meetings?",
+          "We usually tell each other where we are with various clients and potential clients. The boss assigns extra duties to people who she thinks can best deal with them. It's also a chance to put forward suggestions and ideas. Be sure to speak up if you have any."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "adaptation": "Replace Julie with a role; gratitude neither obtains supplies nor makes photocopies.",
+        "source_sha256": "2c8fab6c3ae2e5bf97d6cbd76124a4cdc6a86126644b4184b5126fdcd91b333c",
+        "context_sha256": "94b8dc7c4469c438ba07be85ef07be29ab149dff4982e9808250daa3d4d3b345"
+      },
+      "interpretation_topic": "gratitude_for"
+    },
+    {
+      "id": "dd_diagnostic_train_10300_2_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What amount are you mentioning for moving house?",
+      "reply": "About 3 000 dollars.",
+      "value": "mentioned about 3000 dollars for moving house",
+      "question": "What moving expense amount did I mention?",
+      "source": {
+        "split": "train",
+        "dialogue": 10300,
+        "turn": 2,
+        "text": "About 3 000 dollars.",
+        "span": [
+          0,
+          20
+        ],
+        "context": [
+          "Steven, what's the expense of moving house?",
+          "About 3 000 dollars.",
+          "It costs a lot of money. Hospital bills had already made deep in-roads into our savings. Do you think the rest of your salary will be enough to cover our daily expenses?",
+          "I am afraid not, darling. Our expenses are mounting.",
+          "We have to cut back on our shopping from now on.",
+          "Don't worry. Maybe I can find a part-time job to increase my income.",
+          "I hope so."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2
+        ],
+        "adaptation": "Interpret 3 000 as one approximate amount. Do not choose currency country or assert a paid bill.",
+        "source_sha256": "9b7e56ac34d3724965abb7f33a33f6634679b338a0d74e2fac80c4ab278f0695",
+        "context_sha256": "f3c2cbb292dcc6718237019663fee3623538c1d093e35290a1c29fdd67ba34a6"
+      },
+      "interpretation_topic": "moving_expense_mentioned"
+    },
+    {
+      "id": "dd_diagnostic_train_689_4_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "I can lend you money.",
+      "reply": "Thanks.",
+      "value": "thanked me for the offer to lend you money",
+      "question": "What did I thank you for?",
+      "source": {
+        "split": "train",
+        "dialogue": 689,
+        "turn": 4,
+        "text": "Thanks.",
+        "span": [
+          0,
+          7
+        ],
+        "context": [
+          "Hi, Mr. James, what's the rush?",
+          "The bank closes in 30 minutes and I need to cash a check.",
+          "I can lend you some money.",
+          "Thanks. But it's necessary for me to buy a TV set.",
+          "Can I help you in anyway?",
+          "You can take me to the bank if you want to.",
+          "Sure. Let's go."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "adaptation": "Thanks does not conclusively accept the offer or assert a transfer.",
+        "source_sha256": "2c8fab6c3ae2e5bf97d6cbd76124a4cdc6a86126644b4184b5126fdcd91b333c",
+        "context_sha256": "2160be82d13479ae097bcc9aa7c514e8fd4c46615bc4e832e0d71434191d716a"
+      },
+      "interpretation_topic": "gratitude_for"
+    },
+    {
+      "id": "dd_diagnostic_train_10944_7_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "I think your colleague will be sacked.",
+      "reply": "No way.",
+      "value": "expressed disbelief about your colleague being sacked",
+      "question": "What prediction did I express disbelief about?",
+      "source": {
+        "split": "train",
+        "dialogue": 10944,
+        "turn": 7,
+        "text": "No way.",
+        "span": [
+          6,
+          13
+        ],
+        "context": [
+          "Our company is going to do some cutbacks soon.",
+          "Really? Where did you hear that?",
+          "I met with the supervisor just this morning. I don't know, but I am a little worried. Who do you think will get sacked?",
+          "I'm not sure... Well, first, it couldn't be George. He is such a kiss-ass. He'd wash the boss's dog if he asked.",
+          "No, it's not going to be George. I don't think it's Andy either. He is involved with the boss's sister in-law. And you know how whipped our boss is.",
+          "That's true. What about Lisa? I bet there's nobody who could do a worse job than her.",
+          "Lisa? No way. I've heard a rumor that she and the boss were having an affair. You know rumors can't come out from nowhere.",
+          "Well, okay. Then there is still Michael. But he's the boss'pet after having the best sales record for three months in a row. It definitely won't be Michael.",
+          "No, that would be crazy. But then who will it be? Oh dear, it must be me. I should have known it! Why else would he have talked to me alone about the downsizing. What should I do? I've got a family to support.",
+          "Well, it could be me too. But I am not too worried. This place is suffocating me with this boss being such a hard-ass and colleagues who barely know how to get dressed in the morning. It would almost be a blessing to be fired from this place."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "adaptation": "Anonymize Lisa as the colleague. Disbelief is not a fact that the colleague will keep the job; omit unrelated rumor.",
+        "source_sha256": "40ab13d7073fec21ccf765c9dbb70a3ecf7909f2808f062b243ffa4cb17cb952",
+        "context_sha256": "1ca8134a2332c9af989b6d41a179ab2ab61bba97ffbf58e5e092d94351c80523"
+      },
+      "interpretation_topic": "rejected_prediction"
+    },
+    {
+      "id": "dd_diagnostic_train_3934_2_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Why don't you talk to the person involved and explain the situation?",
+      "reply": "No way.",
+      "value": "refused the suggestion to talk to that person and explain the situation",
+      "question": "What suggestion did I refuse?",
+      "source": {
+        "split": "train",
+        "dialogue": 3934,
+        "turn": 2,
+        "text": "No way.",
+        "span": [
+          0,
+          7
+        ],
+        "context": [
+          "Do you think maybe it would be better to just talk to Vince? Explain the situation?",
+          "No way. I want the satisfaction of squishing this bug myself. Plus, what if it's Vince?",
+          "I don't think so. Your admirer seems kind of sweet. Aren't you even a little curious about him?",
+          "He's just a distraction, like a mosquito buzzing in my ear. I want no distractions.",
+          "A little distraction might do you some good, Zina."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2
+        ],
+        "adaptation": "Anonymize Vince; preserve refusal, not disbelief or a later performed action.",
+        "source_sha256": "40ab13d7073fec21ccf765c9dbb70a3ecf7909f2808f062b243ffa4cb17cb952",
+        "context_sha256": "03af928bb7fe4403fccf4cedba43021e0d6c24ea4fc6741041263c1614088de8"
+      },
+      "interpretation_topic": "refused_suggestion"
+    },
+    {
+      "id": "dd_random_train_7081_12_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Shall we go to a disco after dinner?",
+      "reply": "No, thanks.",
+      "value": "declined the suggestion to go to a disco after dinner",
+      "question": "What suggestion did I decline?",
+      "source": {
+        "split": "train",
+        "dialogue": 7081,
+        "turn": 12,
+        "text": "No, thanks.",
+        "span": [
+          0,
+          11
+        ],
+        "context": [
+          "Shall we have some soup first?",
+          "No, thank you. I don't like soup. I'd rather have some fruit juice to start with.",
+          "Ok, and what about the main course? Which would you rather have, fish or meat?",
+          "Meat, I think.",
+          "Don't you like fish then?",
+          "I do, but I want meat.",
+          "Shall we have some white wine then?",
+          "Yes, but I prefer red wine with meat.",
+          "What would you like for dessert?",
+          "I just want to have a coffee, I think.",
+          "Fine, and after dinner, shall we go to a disco?",
+          "No, thanks. I'd like to go straight home. I'm very tired."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "adaptation": "Refusal of this proposal does not establish a journey home.",
+        "source_sha256": "3fa57f7d96aec75e15bd2636b0a7b44215347a0b3719c5d2de591034b642e1c5",
+        "context_sha256": "62a678c003a04224f829e6456007e722e1d0a4237ec79f30ea68d0a51f41ac0e"
+      },
+      "interpretation_topic": "refused_suggestion"
+    },
+    {
+      "id": "dd_random_train_8252_11_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "The new computer cost 345 pounds.",
+      "reply": "Very nice.",
+      "value": "reacted positively to the computer purchase or price; the exact target is unclear",
+      "question": "What can you tell about my reaction?",
+      "source": {
+        "split": "train",
+        "dialogue": 8252,
+        "turn": 11,
+        "text": "Very nice.",
+        "span": [
+          0,
+          10
+        ],
+        "context": [
+          "Hi Sam.",
+          "Hi Chris. I am glad to see you. Can you help me with my new computer?",
+          "When did you buy your new computer?",
+          "I bought it yesterday afternoon and they delivered it this morning at 10:45.",
+          "So what's the problem?",
+          "I am not sure. I just can't connect to the net.",
+          "Can I have a look?",
+          "Of course, come in.",
+          "Oh this is the new little EEE notebook from Asks. How much did you pay?",
+          "It was only 345 pounds.",
+          "Very nice. I am sure we will sort out your Internet in no time.",
+          "I am on my way to the doctor now, but I should be back in about 45 minutes. Can I come back at around 3:15?",
+          "That will be perfect."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "adaptation": "Retain ambiguity between the computer, its price and the deal; do not claim a repaired connection.",
+        "source_sha256": "8dc203bcfa76518515b43308bcb4e0128de3f531e9860815ea122da061088772",
+        "context_sha256": "c23400bcecc93b26496143ed117f0824ccfc8590b6fae5c7327eefae9fe3a215"
+      },
+      "interpretation_topic": "purchase_reaction"
+    },
+    {
+      "id": "dd_random_train_9827_4_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Would you like a first-class or economy ticket?",
+      "reply": "One economy, please.",
+      "value": "requested one economy-class ticket",
+      "question": "What ticket did I request?",
+      "source": {
+        "split": "train",
+        "dialogue": 9827,
+        "turn": 4,
+        "text": "One economy, please.",
+        "span": [
+          0,
+          20
+        ],
+        "context": [
+          "Good morning. Can I help you?",
+          "Yes. Do you have any seats available on a flight for Beijing leaving at 15",
+          "Sure we do. First-class or economy?",
+          "One economy, please."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "adaptation": "Recover quantity and class; do not invent booking or payment.",
+        "source_sha256": "7946bb68c99882183530c794285791ddd0fcf8a6526fe62c672a2a1ce0cc5de0",
+        "context_sha256": "15fd8fbff86b94b9d243cc19af401815ab5cbe9344353f615159a3c2e7df0dca"
+      },
+      "interpretation_topic": "ticket_request"
+    },
+    {
+      "id": "dd_random_train_7960_7_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "I think I'm in better condition after going to the gym.",
+      "reply": "Really?",
+      "value": "asked me to confirm my claimed improvement after going to the gym",
+      "question": "What did I ask you to confirm?",
+      "source": {
+        "split": "train",
+        "dialogue": 7960,
+        "turn": 7,
+        "text": "Really?",
+        "span": [
+          0,
+          7
+        ],
+        "context": [
+          "Are you free this afternoon?",
+          "I'm afraid I'm going to the gym for a workout.",
+          "How long have you been there?",
+          "I began to went there last month.",
+          "Is there any change?",
+          "Well, I think I'm in better condition now.",
+          "Really? Is it tiring?",
+          "It was at the beginning. You just need to keep it up.",
+          "I want to go there, too. Can I?",
+          "Of course, yes."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "adaptation": "A surprised question is not confirmation that improvement is true.",
+        "source_sha256": "91c77c2640f8ead7921b350ff237585e3367b26286c313df2e458660222e5bfa",
+        "context_sha256": "4605d22e6b1c3b512b95c8b9287c5c3a7b3bef2fceb58f0387bee4689fbe68e6"
+      },
+      "interpretation_topic": "requested_confirmation"
+    },
+    {
+      "id": "dd_random_test_378_3_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Which winners do you remember from the new-seven-wonders list?",
+      "reply": "Well, the Great Wall of China, the Taj Mahal in India.",
+      "value": "mentioned the Great Wall of China and the Taj Mahal in India as winners",
+      "question": "Which two winners did I mention?",
+      "source": {
+        "split": "test",
+        "dialogue": 378,
+        "turn": 3,
+        "text": "Well, the Great Wall of China, the Taj Mahal in India.",
+        "span": [
+          0,
+          54
+        ],
+        "context": [
+          "Have you seen this news article? Apparently an organization has made a list to name the new seven wonders of the world and people could vote for them online.",
+          "Wow, that's really interesting. So who won?",
+          "Well, the Great Wall of China, the Taj Mahal in India.",
+          "I've been there! It really is an amazing work of architecture and art. The entire complex is made of white marble and in the interior of the tomb, the walls are covered with gems and emeralds!",
+          "Cool! Also amongst the winners is Petra, in Jordan, Mach Pitch in Peru and the pyramid in Chichenitza in Mexico.",
+          "Wait a minute! It also says that the Christ Re-deemer statue in Brazil and the Colosseum in Rome are wonders. I would love to go to Italy and see the Colosseum, stand in the middle like a gladiator!",
+          "Well, let's see if we can find some cheap airfare and we can go towards the end of the year.",
+          "Good idea!"
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3
+        ],
+        "adaptation": "Two distinct names from a reported list, not apposition or independently checked world facts.",
+        "source_sha256": "1f0628671b8daa9414dc0d982b5680984cf9aabfd0d06cde42a8204d81282d25",
+        "context_sha256": "f0f4cfa06da4a4cd6e25ec36599bd70995de2492cab4de952a1cf1f0c1b28004"
+      },
+      "interpretation_topic": "mentioned_winners"
+    },
+    {
+      "id": "dd_random_train_3140_12_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What information about the restaurant job would you like?",
+      "reply": "I mean, those dos and don'ts.",
+      "value": "asked about workplace rules on what to do and avoid",
+      "question": "What information did I request?",
+      "source": {
+        "split": "train",
+        "dialogue": 3140,
+        "turn": 12,
+        "text": "I mean, those dos and don'ts.",
+        "span": [
+          51,
+          80
+        ],
+        "context": [
+          "Hi, Tony. Haven't seen you for a long time. How have you been?",
+          "OK, I've been looking for a job for days, and I haven't found one yet. It's so hard finding work these days. Have you had any luck?",
+          "Yes, I've got a job, a waiter's job in a restaurant.",
+          "Are you well paid?",
+          "Well, $ 10 per hour, but I can keep the tips. That comes to roughly $ 80 every evening",
+          "Not bad.",
+          "Actually, there's still another opening. If you are interested, you'll surely get it.",
+          "That's great! I'll go there right now and speak with the boss.",
+          "There's no rush. You can see him tomorrow. I've told him about you. He promised to give you the job.",
+          "That was nice of you, Susan. Thanks a lot.",
+          "Think nothing of it, Tony. I'm sure you'd do the same for me.",
+          "Could you tell me a bit more about the work there? I mean, those dos and don'ts. I am a green hand, you know.",
+          "First of all, you must be punctual. You should be there before 6 p. m. so that you will have half an hour for preparation changing clothes and things like that. Then, remember you should smile. Smile to your customers all the time. Never pull a long face even If you feel awful that day. Anything else? Oh, yes. Never argue with your boss. Learn to say'Yes, sir. '",
+          "Be a yes-man, you mean?",
+          "You may put it that way if you like. Don't worry. You'll have no problem.",
+          "I hope not."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "adaptation": "Keep the fixed nominal expression; do not infer a negated do event.",
+        "source_sha256": "6c058b4ec9010d2456ac2ddf5373f85710e9f6f847e8e2fc5e4f3aca62866785",
+        "context_sha256": "ab8fa5c7e5c98ec4cd758b605bb1487b209d4c3611f0d4082b7742209a2388e2"
+      },
+      "interpretation_topic": "requested_information"
+    },
+    {
+      "id": "dd_random_train_3701_3_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "I'd like you to give my hair a trim.",
+      "reply": "Oh my gosh!",
+      "value": "expressed surprise; a positive or negative evaluation is unspecified",
+      "question": "What reaction did I express?",
+      "source": {
+        "split": "train",
+        "dialogue": 3701,
+        "turn": 3,
+        "text": "Oh my gosh!",
+        "span": [
+          0,
+          11
+        ],
+        "context": [
+          "Hello there! Come on in! Don't just stand there! Come and take a seat!",
+          "Um, okay. Well, I just want a trim. Nothing too fancy.",
+          "Oh my gosh! Your hair is amazing! So silky, so shiny! I am going to work my magic on your hair! You hear me? You are going to look like a million bucks!",
+          "Okay. Um... can you make sure my sideburns are even and you just take a little off the top.",
+          "Don't you worry, I'll take care of everything! Oh my god! I just love your curly hair! It's so fluffy and cute! You should totally let it grow out. An afro would look great on you!",
+          "Um... no.",
+          "Okay, but you are going to be my masterpiece!"
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3
+        ],
+        "adaptation": "Only the preceding trim request and the exclamation are visible. Later praise in the source does not enter this target.",
+        "source_sha256": "63a615395db804f7f7c01641b53289c819b7125173e56956e76fa0b298bec516",
+        "context_sha256": "43a8c57df39212fe5f1d289aa8e6a127c09faef82d84eef2bbbacb45bc59e292"
+      },
+      "interpretation_topic": "reaction"
+    },
+    {
+      "id": "dd_random_train_2920_6_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Direct sources include pollution from factories and waste-treatment plants, don't they?",
+      "reply": "Yeah.",
+      "value": "confirmed the preceding description of direct pollution sources",
+      "question": "What claim did I confirm?",
+      "source": {
+        "split": "train",
+        "dialogue": 2920,
+        "turn": 6,
+        "text": "Yeah.",
+        "span": [
+          0,
+          5
+        ],
+        "context": [
+          "Well, no one could survive without water, but you see pollution has been making more and more water unable for drinking.",
+          "Yeah. Water pollution has for a long time been a major concern among the environmental issues.",
+          "But what are the sources of water pollution?",
+          "They could generally be divided into two categories, direct and indirect contaminant sources.",
+          "Well, direct ones are the pollution directly from factories, refineries waste treatment plants etc., aren't they?",
+          "Yeah. They are emitted directly into urban water supplies.",
+          "But what about the indirect ones?",
+          "Indirect sources include contaminants that enter the water supply from soils or groundwater systems and from the atmosphere via rainwater.",
+          "I see. For the sake of us all, we should be an active participator in the prevention of it.",
+          "Sure. It's an issue asking for everyone's participation."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "adaptation": "A contextual confirmation, not a cleaning action or an independent scientific validation.",
+        "source_sha256": "d824e8d332108664a48417d376a5ba684a323bd4f351eb8b49746da7b9a12780",
+        "context_sha256": "e86a83fa61cb19202cd62e8b1c60ad4c541a2f3221d85ba3a31ab0837679ea99"
+      },
+      "interpretation_topic": "confirmed_claim"
+    },
+    {
+      "id": "dd_random_train_8594_9_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Look, the book you wanted is just near your foot.",
+      "reply": "Oh, very good.",
+      "value": "reacted positively to locating the book",
+      "question": "What was my reaction about?",
+      "source": {
+        "split": "train",
+        "dialogue": 8594,
+        "turn": 9,
+        "text": "Oh, very good.",
+        "span": [
+          0,
+          14
+        ],
+        "context": [
+          "Could you tell me where you put my book?",
+          "Which book? Your cookbook?",
+          "No. A Walk in the Woods.",
+          "Isn't it on the bookshelf?",
+          "No. The bookshelf is full of fashion books.",
+          "Then have you put it in the bedroom?",
+          "No. Now would you like to help me look for the book?",
+          "Ok. Look! It's just near your foot.",
+          "Oh, very good."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "adaptation": "Keep satisfaction with locating the book; no pickup or intrinsic book quality is inferred.",
+        "source_sha256": "30450e27af0a34dd436c2ff0cf57267ab1509b171d42a69b24ca1ee9eca454f0",
+        "context_sha256": "cabfc9a10d8a5a375fe4491fdccb08a43977871417e3a7aaebd76bcbfacf8fb8"
+      },
+      "interpretation_topic": "reaction"
+    },
+    {
+      "id": "dd_random_train_5898_1_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Good afternoon. How can I help you?",
+      "reply": "Good afternoon.",
+      "value": "said good afternoon",
+      "question": "How did I greet you?",
+      "source": {
+        "split": "train",
+        "dialogue": 5898,
+        "turn": 1,
+        "text": "Good afternoon.",
+        "span": [
+          0,
+          15
+        ],
+        "context": [
+          "Good afternoon. What can I do for you today, Madam?",
+          "It's a little sensitive, actually. I need to get hold of some money, and quickly.",
+          "OK, Madam. We are here to help.",
+          "I already have some Time Deposits with you, but unfortunately, they haven't matured yet. I really don't want to cash those just yet.",
+          "I understand completely. There are other options, such as a Personal Pledge Loan.",
+          "I've not heard of that, could you tell me more, please?",
+          "The procedure is really simple and convenient. All you need to do is fill in this Loan Application form.",
+          "Right... anything else?",
+          "Of course, we'll need some documentation from you. Like your resident permit, proof of salary and your USD Deposit Certificate, to use as collateral.",
+          "And then I just sign here? You're right! It certainly is simple and extremely convenient."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1
+        ],
+        "adaptation": "A greeting is not a statement about the quality of the afternoon.",
+        "source_sha256": "48826dcded44754340d85310978494097df507cb68e063fdbab9352c60bd05a8",
+        "context_sha256": "d6fb6b624c0393be28eeef054e2e206a3619a40ffc9825f80f16f08457ac932e"
+      },
+      "interpretation_topic": "greeting_act"
+    },
+    {
+      "id": "dd_random_train_6900_9_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Where could I go for a short holiday instead?",
+      "reply": "How about going to a cosmopolitan city like Shanghai or Hong Kong?",
+      "value": "suggested going to a cosmopolitan city such as Shanghai or Hong Kong",
+      "question": "What alternative did I suggest?",
+      "source": {
+        "split": "train",
+        "dialogue": 6900,
+        "turn": 9,
+        "text": "How about going to a cosmopolitan city like Shanghai or Hong Kong?",
+        "span": [
+          61,
+          127
+        ],
+        "context": [
+          "The May holiday is coming up soon. Are you planning on going on vacation?",
+          "I am. I just went to the travel agent's and picked up these brochures.",
+          "Where are you planning on going?",
+          "I fancy going to Tibet for a few days. Have you ever been there?",
+          "I went a long time ago, before they built the new train that can take you there.",
+          "Would you recommend going there for a few days?",
+          "Personally, I think it'd be better to go when you have more time. A few days isn't really enough to get acclimatize yourself and to go on a few excursions outside of the capital.",
+          "You're probably right. What do you think about Yangshao?",
+          "It's a beautiful city, but I think it's become too touristy. How about going to a cosmopolitan city like Shanghai or Hong Kong?",
+          "I'd like to get away from the big city life.",
+          "Maybe you should consider going to a hot springs resort outside of Beijing. I heard they are very relaxing.",
+          "I guess if I only have a few days, I should probably think about going somewhere that isn't so far away.",
+          "Since the May holiday is the high season, you should probably call ahead to reserve a room. Here's the phone number.",
+          "Thanks, I'll give them a call later."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "adaptation": "Retain both alternatives. This is a suggestion, not a chosen destination or completed travel.",
+        "source_sha256": "190d86645c82398373fa9371d19b56186650bb38611b0a64e39fa80e9a13b714",
+        "context_sha256": "6de7d41c6e6cb98814ab4f54ee58222dd6ecee323f6c6ce2452da0a785630453"
+      },
+      "interpretation_topic": "travel_suggestion"
+    },
+    {
+      "id": "dd_random_train_6182_6_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "My fax number is 212-331-7600.",
+      "reply": "Okay.",
+      "value": "acknowledged my fax number",
+      "question": "What information did I acknowledge?",
+      "source": {
+        "split": "train",
+        "dialogue": 6182,
+        "turn": 6,
+        "text": "Okay.",
+        "span": [
+          0,
+          5
+        ],
+        "context": [
+          "What sights are included on the tour? Is the entire time spent in Paris?",
+          "All of the major sights are included. You'll visit the Louvre, the Eiffel Tower and all of the top museums. You'll also take a day trip out of Paris to Versailles.",
+          "Can you fax a copy of the tour itinerary to me?",
+          "Of course. Just give me your fax number.",
+          "It's 212-331-7600.",
+          "Okay. I'll fax the itinerary to you immediately."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "adaptation": "Do not include the later faxing promise as if it were completed transmission.",
+        "source_sha256": "cdb45299f1ef81484e3f326b5606688b1a9ed1dc552a2076c2df8476e4fb8368",
+        "context_sha256": "78cc3e034546a66e2ec974fc6f4f7e27ae1c5b3c329c8dc9cdc9bfc1bba77a03"
+      },
+      "interpretation_topic": "acknowledged_information"
+    }
+  ],
+  "note": "Explicit observations of replies, requests, opinions and partial information. No completed physical action is inferred. Earlier ambiguous full sentences and two damaged random-sample sources remain quarantined."
+}

@@ -1,0 +1,1412 @@
+{
+  "format": "dailydialog-review-parts-v1",
+  "sources": {
+    "train": "1162daef6a5be3c03f95338f4e32127999e9b93ef56e19df9249056270a70fd4",
+    "val": "99305a7a4d05a2287f861e32c878c811325772a1d853d0273949632eb1ca31c9",
+    "test": "1047672ed573b7b29c72a7edfa6ae91e3b330da767ee696fec585893d7afcafa"
+  },
+  "dialogues": 13118,
+  "turns": 102979,
+  "parts": [
+    {
+      "file": "part-001.jsonl",
+      "dialogues": 132,
+      "turns": 937,
+      "first": {
+        "split": "train",
+        "dialogue": 1
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 132
+      },
+      "sha256": "548a8ca35df8d3590616f3344b1c8b22a57ed1374b85bbdfca215fc3dc765f14"
+    },
+    {
+      "file": "part-002.jsonl",
+      "dialogues": 132,
+      "turns": 982,
+      "first": {
+        "split": "train",
+        "dialogue": 133
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 264
+      },
+      "sha256": "85f532b3258c38af29f73b77e5adb186ca0dcdbb776ebbb611dd58b461e8c502"
+    },
+    {
+      "file": "part-003.jsonl",
+      "dialogues": 132,
+      "turns": 954,
+      "first": {
+        "split": "train",
+        "dialogue": 265
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 396
+      },
+      "sha256": "46fb4c00c009299fb357a18e87de159bae67cacb03e31107926945c86248225f"
+    },
+    {
+      "file": "part-004.jsonl",
+      "dialogues": 132,
+      "turns": 1008,
+      "first": {
+        "split": "train",
+        "dialogue": 397
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 528
+      },
+      "sha256": "e49918c2d56d088c015baf2b399acca7829bb2162dae29ca36b785b8cfa75883"
+    },
+    {
+      "file": "part-005.jsonl",
+      "dialogues": 132,
+      "turns": 962,
+      "first": {
+        "split": "train",
+        "dialogue": 529
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 660
+      },
+      "sha256": "b04218cad7117fe1b0e72b82781aa0b36d128111b198171b9c6a70c9b2ef2e69"
+    },
+    {
+      "file": "part-006.jsonl",
+      "dialogues": 132,
+      "turns": 908,
+      "first": {
+        "split": "train",
+        "dialogue": 661
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 792
+      },
+      "sha256": "630f7f30edadd91d09f40faa5cb76f873fe03c7dc56acecbbfdf372cbb298b01"
+    },
+    {
+      "file": "part-007.jsonl",
+      "dialogues": 132,
+      "turns": 1009,
+      "first": {
+        "split": "train",
+        "dialogue": 793
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 924
+      },
+      "sha256": "549cc5247115f5e58ef9d357bebed345964b5fdf22bb8cd79ffe5ac656b27630"
+    },
+    {
+      "file": "part-008.jsonl",
+      "dialogues": 132,
+      "turns": 993,
+      "first": {
+        "split": "train",
+        "dialogue": 925
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 1056
+      },
+      "sha256": "22c903981f68180c535664659730e2f4cde5ae86a66550e95d3683a1908d0bf6"
+    },
+    {
+      "file": "part-009.jsonl",
+      "dialogues": 132,
+      "turns": 1039,
+      "first": {
+        "split": "train",
+        "dialogue": 1057
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 1188
+      },
+      "sha256": "dc657f5bb98e7582fbe16cb8c135c5fdfb0e720bc0f85a6c88519cf9c12c18d4"
+    },
+    {
+      "file": "part-010.jsonl",
+      "dialogues": 132,
+      "turns": 1079,
+      "first": {
+        "split": "train",
+        "dialogue": 1189
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 1320
+      },
+      "sha256": "073cc1a58a9255e3f3bddc9e33cf4bc1a031303e449db5cf912eb11711f69d9a"
+    },
+    {
+      "file": "part-011.jsonl",
+      "dialogues": 132,
+      "turns": 1015,
+      "first": {
+        "split": "train",
+        "dialogue": 1321
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 1452
+      },
+      "sha256": "aa85d53e1c893e66d80e9dac75bde3a6d6db6216dbac35eb14236346f5a76b99"
+    },
+    {
+      "file": "part-012.jsonl",
+      "dialogues": 132,
+      "turns": 937,
+      "first": {
+        "split": "train",
+        "dialogue": 1453
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 1584
+      },
+      "sha256": "39423621fb20af0f276eb396375be6d7fe0667bf4643dbc6397f23fecf15b940"
+    },
+    {
+      "file": "part-013.jsonl",
+      "dialogues": 132,
+      "turns": 1050,
+      "first": {
+        "split": "train",
+        "dialogue": 1585
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 1716
+      },
+      "sha256": "174849a553450896bef7e92a5fea9eb3911500041e149a6f07e830db19629a19"
+    },
+    {
+      "file": "part-014.jsonl",
+      "dialogues": 132,
+      "turns": 999,
+      "first": {
+        "split": "train",
+        "dialogue": 1717
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 1848
+      },
+      "sha256": "960f30ea9d542b439f18cf4da8a8762f808b771a60e06c6c64f341beb54a4db8"
+    },
+    {
+      "file": "part-015.jsonl",
+      "dialogues": 132,
+      "turns": 1009,
+      "first": {
+        "split": "train",
+        "dialogue": 1849
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 1980
+      },
+      "sha256": "215b8dbe6510de21546765a669d5c0a5563ef1e68985f08c626943f10e652118"
+    },
+    {
+      "file": "part-016.jsonl",
+      "dialogues": 132,
+      "turns": 1014,
+      "first": {
+        "split": "train",
+        "dialogue": 1981
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 2112
+      },
+      "sha256": "8a05d6cfd8d7e777016eed359a01176be2726f67225abfe582c960cdf8023a3b"
+    },
+    {
+      "file": "part-017.jsonl",
+      "dialogues": 132,
+      "turns": 965,
+      "first": {
+        "split": "train",
+        "dialogue": 2113
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 2244
+      },
+      "sha256": "a64b8f1bdb889e0260d529ac21dcd3b2aa36b69a18f07449c357b5a70af11501"
+    },
+    {
+      "file": "part-018.jsonl",
+      "dialogues": 132,
+      "turns": 1039,
+      "first": {
+        "split": "train",
+        "dialogue": 2245
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 2376
+      },
+      "sha256": "0e5925540c1efb6631dfbcbb57899f3e9ef3965fe1eada725d71ce3846811eec"
+    },
+    {
+      "file": "part-019.jsonl",
+      "dialogues": 131,
+      "turns": 938,
+      "first": {
+        "split": "train",
+        "dialogue": 2377
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 2507
+      },
+      "sha256": "92b63a3c330c9dfebc4b4c1024fbf94b5c7fb3bcd9a4b9d435ff090de82fad70"
+    },
+    {
+      "file": "part-020.jsonl",
+      "dialogues": 131,
+      "turns": 995,
+      "first": {
+        "split": "train",
+        "dialogue": 2508
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 2638
+      },
+      "sha256": "657bf709683ad66970a1a03ec0d5b651714bb6696409f8d49bf73de1640e1e93"
+    },
+    {
+      "file": "part-021.jsonl",
+      "dialogues": 131,
+      "turns": 1019,
+      "first": {
+        "split": "train",
+        "dialogue": 2639
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 2769
+      },
+      "sha256": "6e336f86deaba210b5cbd08139ecda7815f18e085b150ad54c03e907a7eb9879"
+    },
+    {
+      "file": "part-022.jsonl",
+      "dialogues": 131,
+      "turns": 968,
+      "first": {
+        "split": "train",
+        "dialogue": 2770
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 2900
+      },
+      "sha256": "dc57730bf603041e310116486af8fe42e8ed4210779de58b89cb8f453520f018"
+    },
+    {
+      "file": "part-023.jsonl",
+      "dialogues": 131,
+      "turns": 974,
+      "first": {
+        "split": "train",
+        "dialogue": 2901
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 3031
+      },
+      "sha256": "55346ad057eb8921e14fc3de7dc17a6008a0add52bd3611430318a7284836b03"
+    },
+    {
+      "file": "part-024.jsonl",
+      "dialogues": 131,
+      "turns": 988,
+      "first": {
+        "split": "train",
+        "dialogue": 3032
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 3162
+      },
+      "sha256": "c90f555cadee6b9b896b4a06ccccc4ac3ba134558b62f0c8d974e9d8d133b5f5"
+    },
+    {
+      "file": "part-025.jsonl",
+      "dialogues": 131,
+      "turns": 897,
+      "first": {
+        "split": "train",
+        "dialogue": 3163
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 3293
+      },
+      "sha256": "6f9846a26bb685a83e7c01d2501fcd99fe8900374fa453c1c7c04dc4340bc2ee"
+    },
+    {
+      "file": "part-026.jsonl",
+      "dialogues": 131,
+      "turns": 1007,
+      "first": {
+        "split": "train",
+        "dialogue": 3294
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 3424
+      },
+      "sha256": "540a82a9ffaec9bfe6e34e7996f33340e1b9e621edac84365e29f2daebed46ed"
+    },
+    {
+      "file": "part-027.jsonl",
+      "dialogues": 131,
+      "turns": 1022,
+      "first": {
+        "split": "train",
+        "dialogue": 3425
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 3555
+      },
+      "sha256": "4ea4bb7c8375cee1dda6d3d561ef680b949d27bc719423785ef3625709c447bf"
+    },
+    {
+      "file": "part-028.jsonl",
+      "dialogues": 131,
+      "turns": 913,
+      "first": {
+        "split": "train",
+        "dialogue": 3556
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 3686
+      },
+      "sha256": "f666c7e934a705f1c34fe39a3ce7d4edcf11f8a5852448857f9c3e0e57fbc2f5"
+    },
+    {
+      "file": "part-029.jsonl",
+      "dialogues": 131,
+      "turns": 1026,
+      "first": {
+        "split": "train",
+        "dialogue": 3687
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 3817
+      },
+      "sha256": "d6e69111864ed3f4156a1e5b48897cf2a79ab41d18f6797cc23599d462eb64ed"
+    },
+    {
+      "file": "part-030.jsonl",
+      "dialogues": 131,
+      "turns": 953,
+      "first": {
+        "split": "train",
+        "dialogue": 3818
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 3948
+      },
+      "sha256": "6d3518accd33e4a29162006a80620f218bc6414b001a809c072584ba4dc8da9e"
+    },
+    {
+      "file": "part-031.jsonl",
+      "dialogues": 131,
+      "turns": 998,
+      "first": {
+        "split": "train",
+        "dialogue": 3949
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 4079
+      },
+      "sha256": "f096e72252713d43dea47477f2caa6eb2d58890d87ad3612f9df5a2cc35047e5"
+    },
+    {
+      "file": "part-032.jsonl",
+      "dialogues": 131,
+      "turns": 1019,
+      "first": {
+        "split": "train",
+        "dialogue": 4080
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 4210
+      },
+      "sha256": "b3e76849306e8a8ad4cb5f2e1060b5c73dd7dc2cddc70e72b2a07878502be478"
+    },
+    {
+      "file": "part-033.jsonl",
+      "dialogues": 131,
+      "turns": 928,
+      "first": {
+        "split": "train",
+        "dialogue": 4211
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 4341
+      },
+      "sha256": "5e335d270a7274675d178a62d9e48d368d147ded19fc94c9ed9015a37ad9c1b8"
+    },
+    {
+      "file": "part-034.jsonl",
+      "dialogues": 131,
+      "turns": 896,
+      "first": {
+        "split": "train",
+        "dialogue": 4342
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 4472
+      },
+      "sha256": "bc62264696745b11ebb87b3601f62e9cf889e26cbcceb7a42600b6571c107e40"
+    },
+    {
+      "file": "part-035.jsonl",
+      "dialogues": 131,
+      "turns": 985,
+      "first": {
+        "split": "train",
+        "dialogue": 4473
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 4603
+      },
+      "sha256": "3631bd5511d70983c5a1f53949aa044cc091b9e83c3c216f24d0960671a8cb5a"
+    },
+    {
+      "file": "part-036.jsonl",
+      "dialogues": 131,
+      "turns": 928,
+      "first": {
+        "split": "train",
+        "dialogue": 4604
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 4734
+      },
+      "sha256": "1a06c1cf5e33c12688ff6ffa946917882838cc4666934f8e417435e2c60bb6dc"
+    },
+    {
+      "file": "part-037.jsonl",
+      "dialogues": 131,
+      "turns": 1041,
+      "first": {
+        "split": "train",
+        "dialogue": 4735
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 4865
+      },
+      "sha256": "5f8eacadf4f51644d8315da5d13fe79cd4d0dec6a8cc04f9c0b2d9a5043fc41f"
+    },
+    {
+      "file": "part-038.jsonl",
+      "dialogues": 131,
+      "turns": 1132,
+      "first": {
+        "split": "train",
+        "dialogue": 4866
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 4996
+      },
+      "sha256": "b060bb9fd2fb1e9b7bee9e4f1933ddd385605931f9d15e968904a347c19c8b16"
+    },
+    {
+      "file": "part-039.jsonl",
+      "dialogues": 131,
+      "turns": 1037,
+      "first": {
+        "split": "train",
+        "dialogue": 4997
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 5127
+      },
+      "sha256": "e48fb564ab4e6ba358905dcabe4788053a810a84ab94bbaee77259d5fccf9334"
+    },
+    {
+      "file": "part-040.jsonl",
+      "dialogues": 131,
+      "turns": 1155,
+      "first": {
+        "split": "train",
+        "dialogue": 5128
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 5258
+      },
+      "sha256": "8edc3d4556c12d686203c9da64f39820168319f00aee11a0c04c397331e39021"
+    },
+    {
+      "file": "part-041.jsonl",
+      "dialogues": 131,
+      "turns": 1058,
+      "first": {
+        "split": "train",
+        "dialogue": 5259
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 5389
+      },
+      "sha256": "9562cc3f2c0b5656f17feef51da7d308e7e96f8c4876bc625e2eb7abe335b4f8"
+    },
+    {
+      "file": "part-042.jsonl",
+      "dialogues": 131,
+      "turns": 984,
+      "first": {
+        "split": "train",
+        "dialogue": 5390
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 5520
+      },
+      "sha256": "23b55a3375f24687008f20a30cd80b45883c8c547061dc478bff026454ae24c3"
+    },
+    {
+      "file": "part-043.jsonl",
+      "dialogues": 131,
+      "turns": 1084,
+      "first": {
+        "split": "train",
+        "dialogue": 5521
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 5651
+      },
+      "sha256": "e511074a3ec9d7fc5af892cb1429602c6799a33d743ba4643d236f3c5575b681"
+    },
+    {
+      "file": "part-044.jsonl",
+      "dialogues": 131,
+      "turns": 1048,
+      "first": {
+        "split": "train",
+        "dialogue": 5652
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 5782
+      },
+      "sha256": "a1562a87c9e5f5177721ce40a7edde5d40c67fa854142fbd4ed747a5dbe4824d"
+    },
+    {
+      "file": "part-045.jsonl",
+      "dialogues": 131,
+      "turns": 1095,
+      "first": {
+        "split": "train",
+        "dialogue": 5783
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 5913
+      },
+      "sha256": "6993bcee61f0157e1a21b4228a6b5281e2f6a6dc5c40c8e9387812e081eee26b"
+    },
+    {
+      "file": "part-046.jsonl",
+      "dialogues": 131,
+      "turns": 1027,
+      "first": {
+        "split": "train",
+        "dialogue": 5914
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 6044
+      },
+      "sha256": "4f9c7d98640c1a1b9660e5d57a1f418b3d4a58b4c38a2de865d18ec85a9d80a6"
+    },
+    {
+      "file": "part-047.jsonl",
+      "dialogues": 131,
+      "turns": 1012,
+      "first": {
+        "split": "train",
+        "dialogue": 6045
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 6175
+      },
+      "sha256": "97cf932979e038db25ef0e15141d5f89ee46eed7bf6994441bc9d97937d14848"
+    },
+    {
+      "file": "part-048.jsonl",
+      "dialogues": 131,
+      "turns": 1095,
+      "first": {
+        "split": "train",
+        "dialogue": 6176
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 6306
+      },
+      "sha256": "328cfffc99f4564cb6912ce032e6a6e7c11ff32d7d14d01d0590887cd199967e"
+    },
+    {
+      "file": "part-049.jsonl",
+      "dialogues": 131,
+      "turns": 1034,
+      "first": {
+        "split": "train",
+        "dialogue": 6307
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 6437
+      },
+      "sha256": "636566485b3e54e5c3a8337476137ead8f5f2793e168fee28c07b3d23fb02fbc"
+    },
+    {
+      "file": "part-050.jsonl",
+      "dialogues": 131,
+      "turns": 1114,
+      "first": {
+        "split": "train",
+        "dialogue": 6438
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 6568
+      },
+      "sha256": "6a5ded02ac74fd95d80de929de0b864a21d61b3f7b84ee893085ad2faad02ddc"
+    },
+    {
+      "file": "part-051.jsonl",
+      "dialogues": 131,
+      "turns": 1122,
+      "first": {
+        "split": "train",
+        "dialogue": 6569
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 6699
+      },
+      "sha256": "ed81730be5a11d98cb7720cfc869f93735cf370bcee8e14bf3d3026c757842f7"
+    },
+    {
+      "file": "part-052.jsonl",
+      "dialogues": 131,
+      "turns": 1013,
+      "first": {
+        "split": "train",
+        "dialogue": 6700
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 6830
+      },
+      "sha256": "15171ec1dd4d6cb34661c0e307fba6172eedf5ab58091c8b6f8c972545c1124a"
+    },
+    {
+      "file": "part-053.jsonl",
+      "dialogues": 131,
+      "turns": 1085,
+      "first": {
+        "split": "train",
+        "dialogue": 6831
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 6961
+      },
+      "sha256": "fbfb8714bccb2aea1b65aea14b0f42ef0a687791a0f39c56579172350d3e3742"
+    },
+    {
+      "file": "part-054.jsonl",
+      "dialogues": 131,
+      "turns": 1096,
+      "first": {
+        "split": "train",
+        "dialogue": 6962
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 7092
+      },
+      "sha256": "db9babfa628c56e7e95a9c8c1e5a17dc917bf7d6456d5d454beb90b118036ef6"
+    },
+    {
+      "file": "part-055.jsonl",
+      "dialogues": 131,
+      "turns": 1065,
+      "first": {
+        "split": "train",
+        "dialogue": 7093
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 7223
+      },
+      "sha256": "d5313bd77d15f55c541c1b3a24ad73a4c6203289b36cb15836e4c1b5e0528138"
+    },
+    {
+      "file": "part-056.jsonl",
+      "dialogues": 131,
+      "turns": 1043,
+      "first": {
+        "split": "train",
+        "dialogue": 7224
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 7354
+      },
+      "sha256": "dabaa31cecb6a8082c3c6bd24942e7fa1d19f16a615f22a5a8092cc6e8a11577"
+    },
+    {
+      "file": "part-057.jsonl",
+      "dialogues": 131,
+      "turns": 1091,
+      "first": {
+        "split": "train",
+        "dialogue": 7355
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 7485
+      },
+      "sha256": "ff6e0beb25ab75730a78000bc4d1e32a63e7d57ee1fab91f0f8d9d0d4a340f86"
+    },
+    {
+      "file": "part-058.jsonl",
+      "dialogues": 131,
+      "turns": 1024,
+      "first": {
+        "split": "train",
+        "dialogue": 7486
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 7616
+      },
+      "sha256": "7f4d37f33f17477e611101aa5d4726f78cf20187b41d1ef32fc3149bae41c5b3"
+    },
+    {
+      "file": "part-059.jsonl",
+      "dialogues": 131,
+      "turns": 1051,
+      "first": {
+        "split": "train",
+        "dialogue": 7617
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 7747
+      },
+      "sha256": "7d820c781acf2334dd675d1cd4dc61c6ca0eb6cc7ae89cc58ad034734fe5f68f"
+    },
+    {
+      "file": "part-060.jsonl",
+      "dialogues": 131,
+      "turns": 976,
+      "first": {
+        "split": "train",
+        "dialogue": 7748
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 7878
+      },
+      "sha256": "4cb3be8e33123d9482edd27a8525cdc3da2b4fa574469c30ff47e7633ffbc0a4"
+    },
+    {
+      "file": "part-061.jsonl",
+      "dialogues": 131,
+      "turns": 1046,
+      "first": {
+        "split": "train",
+        "dialogue": 7879
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 8009
+      },
+      "sha256": "6d4c6ddc55518332b4ed42ae8cb5dc9156fe0e95278f95a34ecc03e646e27874"
+    },
+    {
+      "file": "part-062.jsonl",
+      "dialogues": 131,
+      "turns": 1033,
+      "first": {
+        "split": "train",
+        "dialogue": 8010
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 8140
+      },
+      "sha256": "3c715607d2f7bf953512a0fb42360dc7bffd96fe737a1026607d8a6795e60a66"
+    },
+    {
+      "file": "part-063.jsonl",
+      "dialogues": 131,
+      "turns": 1104,
+      "first": {
+        "split": "train",
+        "dialogue": 8141
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 8271
+      },
+      "sha256": "0f48a93599a80926db8ca16b88a88e51741c09da795706e8bf0ca0adc67fef8a"
+    },
+    {
+      "file": "part-064.jsonl",
+      "dialogues": 131,
+      "turns": 1033,
+      "first": {
+        "split": "train",
+        "dialogue": 8272
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 8402
+      },
+      "sha256": "471a4505f9d2c5ee440e8ed3e3f7f7af2026d94587960fe15da504781d28362d"
+    },
+    {
+      "file": "part-065.jsonl",
+      "dialogues": 131,
+      "turns": 995,
+      "first": {
+        "split": "train",
+        "dialogue": 8403
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 8533
+      },
+      "sha256": "2e8648363c2f98ba4f46a3abfae3863f691205f6e1b3fc8b594044cc0c9e8748"
+    },
+    {
+      "file": "part-066.jsonl",
+      "dialogues": 131,
+      "turns": 1047,
+      "first": {
+        "split": "train",
+        "dialogue": 8534
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 8664
+      },
+      "sha256": "08ee876621b580d65ebe1f888981b732c5838fb84ed7b47a79efca9335040178"
+    },
+    {
+      "file": "part-067.jsonl",
+      "dialogues": 131,
+      "turns": 1113,
+      "first": {
+        "split": "train",
+        "dialogue": 8665
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 8795
+      },
+      "sha256": "c96d40fc05598dc0034cc35e013b1fbeb48397f0ddd4ca6096a650d622b59f88"
+    },
+    {
+      "file": "part-068.jsonl",
+      "dialogues": 131,
+      "turns": 1055,
+      "first": {
+        "split": "train",
+        "dialogue": 8796
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 8926
+      },
+      "sha256": "9416b4e8585dd806d58d681c904ee530d7ca8611fd8c1a8dc9746732636daa42"
+    },
+    {
+      "file": "part-069.jsonl",
+      "dialogues": 131,
+      "turns": 1097,
+      "first": {
+        "split": "train",
+        "dialogue": 8927
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 9057
+      },
+      "sha256": "c6547a5ffab3c76fee4180e37451c3f8e7ac0781e6b045d6909df1c19ea44917"
+    },
+    {
+      "file": "part-070.jsonl",
+      "dialogues": 131,
+      "turns": 1008,
+      "first": {
+        "split": "train",
+        "dialogue": 9058
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 9188
+      },
+      "sha256": "40bc9bdf12e39e6b498026121d1b50da0d80a4d473066bdfc3f73b744504a7c0"
+    },
+    {
+      "file": "part-071.jsonl",
+      "dialogues": 131,
+      "turns": 1062,
+      "first": {
+        "split": "train",
+        "dialogue": 9189
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 9319
+      },
+      "sha256": "de659369915efd35b5d1783c2cb9a778a309598805a4e1e54148fbf7a272f1b7"
+    },
+    {
+      "file": "part-072.jsonl",
+      "dialogues": 131,
+      "turns": 1036,
+      "first": {
+        "split": "train",
+        "dialogue": 9320
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 9450
+      },
+      "sha256": "e7c9e04397488c7720725f6451afc3784bb16148f6f85ee5e727a54e509794d1"
+    },
+    {
+      "file": "part-073.jsonl",
+      "dialogues": 131,
+      "turns": 1097,
+      "first": {
+        "split": "train",
+        "dialogue": 9451
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 9581
+      },
+      "sha256": "9cd31e57de52fdca2208dff2479d245776e0e0f9fe09b826a5c81823abc2357d"
+    },
+    {
+      "file": "part-074.jsonl",
+      "dialogues": 131,
+      "turns": 1080,
+      "first": {
+        "split": "train",
+        "dialogue": 9582
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 9712
+      },
+      "sha256": "9336fd6d8fa5da5ad85dda952125e462f0b6893b1a4fe932d154d60a12eb33d8"
+    },
+    {
+      "file": "part-075.jsonl",
+      "dialogues": 131,
+      "turns": 999,
+      "first": {
+        "split": "train",
+        "dialogue": 9713
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 9843
+      },
+      "sha256": "80e9cd05c33b5a2b81e69b5d3ddc3cf74a3be4e21b2db1b4d405cc0ab87cea5c"
+    },
+    {
+      "file": "part-076.jsonl",
+      "dialogues": 131,
+      "turns": 1058,
+      "first": {
+        "split": "train",
+        "dialogue": 9844
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 9974
+      },
+      "sha256": "c32e9ecf5bd3e93a103f16a72f7db0d3a62e9784b528f05ccf8718ca21a1577e"
+    },
+    {
+      "file": "part-077.jsonl",
+      "dialogues": 131,
+      "turns": 1090,
+      "first": {
+        "split": "train",
+        "dialogue": 9975
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 10105
+      },
+      "sha256": "44e550dcf0248d0438ee73079debe3f2a14433bff7433ba3522c8036922121f5"
+    },
+    {
+      "file": "part-078.jsonl",
+      "dialogues": 131,
+      "turns": 1102,
+      "first": {
+        "split": "train",
+        "dialogue": 10106
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 10236
+      },
+      "sha256": "16ff10d74cc005d50920fe2196d2dc3b3d916610cf1b77acfbac3c0203ca8879"
+    },
+    {
+      "file": "part-079.jsonl",
+      "dialogues": 131,
+      "turns": 1028,
+      "first": {
+        "split": "train",
+        "dialogue": 10237
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 10367
+      },
+      "sha256": "ce12e890bef7ef2cbfbf99abf5b2cac673f1dc1439cf077e6461bd280d6065d0"
+    },
+    {
+      "file": "part-080.jsonl",
+      "dialogues": 131,
+      "turns": 1044,
+      "first": {
+        "split": "train",
+        "dialogue": 10368
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 10498
+      },
+      "sha256": "4b5b1f882723273ba68b787f3c4ac3dbfe1861ea1978ff7ec0251a783ecc3b05"
+    },
+    {
+      "file": "part-081.jsonl",
+      "dialogues": 131,
+      "turns": 1141,
+      "first": {
+        "split": "train",
+        "dialogue": 10499
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 10629
+      },
+      "sha256": "3a3274740eb943acd3601e4e77dce28ac227a8203af11c60de0e6ae13e93b467"
+    },
+    {
+      "file": "part-082.jsonl",
+      "dialogues": 131,
+      "turns": 1064,
+      "first": {
+        "split": "train",
+        "dialogue": 10630
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 10760
+      },
+      "sha256": "f6a92ff1a839f2724c406b28610fecd3dbc2b4acbf8588fb2a59a452192f1786"
+    },
+    {
+      "file": "part-083.jsonl",
+      "dialogues": 131,
+      "turns": 1081,
+      "first": {
+        "split": "train",
+        "dialogue": 10761
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 10891
+      },
+      "sha256": "fa2aa9014a32fd773065a26b24246b2cfe1fd56bd000557ae28956a9e90d34c7"
+    },
+    {
+      "file": "part-084.jsonl",
+      "dialogues": 131,
+      "turns": 1091,
+      "first": {
+        "split": "train",
+        "dialogue": 10892
+      },
+      "last": {
+        "split": "train",
+        "dialogue": 11022
+      },
+      "sha256": "7e47c76292316565613bb187a1d85e796f562c0f670e6729a1aad08aa36accd9"
+    },
+    {
+      "file": "part-085.jsonl",
+      "dialogues": 131,
+      "turns": 1152,
+      "first": {
+        "split": "train",
+        "dialogue": 11023
+      },
+      "last": {
+        "split": "val",
+        "dialogue": 35
+      },
+      "sha256": "808865ce1ed667549c0c9a98c549d795a1511942055d96d8b4d449b08ce63e69"
+    },
+    {
+      "file": "part-086.jsonl",
+      "dialogues": 131,
+      "turns": 1062,
+      "first": {
+        "split": "val",
+        "dialogue": 36
+      },
+      "last": {
+        "split": "val",
+        "dialogue": 166
+      },
+      "sha256": "80012e6da0d1d5ffb08f6c458ef5292e7b46ca3d7817ce4477b4dbd7f410f39a"
+    },
+    {
+      "file": "part-087.jsonl",
+      "dialogues": 131,
+      "turns": 1023,
+      "first": {
+        "split": "val",
+        "dialogue": 167
+      },
+      "last": {
+        "split": "val",
+        "dialogue": 297
+      },
+      "sha256": "909ceedd5adbfa8bac77ca09b876ea67bd2da4a271b148dd94621e292698efa1"
+    },
+    {
+      "file": "part-088.jsonl",
+      "dialogues": 131,
+      "turns": 1063,
+      "first": {
+        "split": "val",
+        "dialogue": 298
+      },
+      "last": {
+        "split": "val",
+        "dialogue": 428
+      },
+      "sha256": "70b76c2165bdc8bb5631d04289b807580587f09f37a9926327a6c1a397cc478a"
+    },
+    {
+      "file": "part-089.jsonl",
+      "dialogues": 131,
+      "turns": 1053,
+      "first": {
+        "split": "val",
+        "dialogue": 429
+      },
+      "last": {
+        "split": "val",
+        "dialogue": 559
+      },
+      "sha256": "8b4b04b480df3e384592c57f921fcca7671c3f04ee9af7951b8ce8dc37b5d4d3"
+    },
+    {
+      "file": "part-090.jsonl",
+      "dialogues": 131,
+      "turns": 974,
+      "first": {
+        "split": "val",
+        "dialogue": 560
+      },
+      "last": {
+        "split": "val",
+        "dialogue": 690
+      },
+      "sha256": "f2a9cb383adab5d043b4840c2891c0c6d046aaa750d0d0625f212b569e8453ca"
+    },
+    {
+      "file": "part-091.jsonl",
+      "dialogues": 131,
+      "turns": 1002,
+      "first": {
+        "split": "val",
+        "dialogue": 691
+      },
+      "last": {
+        "split": "val",
+        "dialogue": 821
+      },
+      "sha256": "ce211ef859cc4b571c2305a56ebe792e5a8a2c5be2cb552f7b6aa2c31a6a57a6"
+    },
+    {
+      "file": "part-092.jsonl",
+      "dialogues": 131,
+      "turns": 1177,
+      "first": {
+        "split": "val",
+        "dialogue": 822
+      },
+      "last": {
+        "split": "val",
+        "dialogue": 952
+      },
+      "sha256": "058775c3a03907d9879a7c7137f158da17fd04ac5a1b9cd05623964d8d57efda"
+    },
+    {
+      "file": "part-093.jsonl",
+      "dialogues": 131,
+      "turns": 1114,
+      "first": {
+        "split": "val",
+        "dialogue": 953
+      },
+      "last": {
+        "split": "test",
+        "dialogue": 83
+      },
+      "sha256": "a21191f9db42cb5e9e36963ef5ecedd4f590248e7807a67161feed1cfc2dcaf7"
+    },
+    {
+      "file": "part-094.jsonl",
+      "dialogues": 131,
+      "turns": 942,
+      "first": {
+        "split": "test",
+        "dialogue": 84
+      },
+      "last": {
+        "split": "test",
+        "dialogue": 214
+      },
+      "sha256": "add4e7ab1155256c6dd1a49d75d68e11d656638946418ea2777841e93698d257"
+    },
+    {
+      "file": "part-095.jsonl",
+      "dialogues": 131,
+      "turns": 1100,
+      "first": {
+        "split": "test",
+        "dialogue": 215
+      },
+      "last": {
+        "split": "test",
+        "dialogue": 345
+      },
+      "sha256": "cae7a339b67df28e833c4ab0317afbbe90a4726e53129da5c0840ac0a97c93dd"
+    },
+    {
+      "file": "part-096.jsonl",
+      "dialogues": 131,
+      "turns": 1076,
+      "first": {
+        "split": "test",
+        "dialogue": 346
+      },
+      "last": {
+        "split": "test",
+        "dialogue": 476
+      },
+      "sha256": "7c90b954788de9d4fe1eaa5bbd96f4c4e863a7c8d0cdbafc57a810eab42258d4"
+    },
+    {
+      "file": "part-097.jsonl",
+      "dialogues": 131,
+      "turns": 1018,
+      "first": {
+        "split": "test",
+        "dialogue": 477
+      },
+      "last": {
+        "split": "test",
+        "dialogue": 607
+      },
+      "sha256": "f8c0c3c363b10debc2ec29bab4fd51787dac290189e64f869b5274d51233e61a"
+    },
+    {
+      "file": "part-098.jsonl",
+      "dialogues": 131,
+      "turns": 962,
+      "first": {
+        "split": "test",
+        "dialogue": 608
+      },
+      "last": {
+        "split": "test",
+        "dialogue": 738
+      },
+      "sha256": "764560cc041e7f5fe36ca68d83dcb8f58f160c5e51cba5614f865e0273dc4f63"
+    },
+    {
+      "file": "part-099.jsonl",
+      "dialogues": 131,
+      "turns": 994,
+      "first": {
+        "split": "test",
+        "dialogue": 739
+      },
+      "last": {
+        "split": "test",
+        "dialogue": 869
+      },
+      "sha256": "358e84e5b085012445afeef19471e71618be1af1b46c474d9eba29ef3fdabcb2"
+    },
+    {
+      "file": "part-100.jsonl",
+      "dialogues": 131,
+      "turns": 928,
+      "first": {
+        "split": "test",
+        "dialogue": 870
+      },
+      "last": {
+        "split": "test",
+        "dialogue": 1000
+      },
+      "sha256": "02da5a0243f266868a2deffbe9f6f944f45e3423723143a0c4379fb768721b59"
+    }
+  ]
+}

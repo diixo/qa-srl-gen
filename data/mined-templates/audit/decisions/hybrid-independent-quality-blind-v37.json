@@ -1,0 +1,852 @@
+[
+  {
+    "case": 1,
+    "id": "train:9624:8:4",
+    "text": "The dinner appointment has to be canceled.",
+    "original_prefix": [
+      "Can I help you, sir?",
+      "Hello, may I make an appointment for sometime early this afternoon?",
+      "I'm sorry. All the appointments are filled.",
+      "Oh, what a pity. I'd like to see the doctor as soon as possible. I have a sharp pain in my chest.",
+      "Let me see... Perhaps I could fit you in at five thirty.",
+      "Five thirty? I have a dinner appointment at six.",
+      "What about tomorrow morning, then?",
+      "No. I can't wait. I feel awful. The dinner appointment has to be canceled."
+    ],
+    "source_span": [
+      32,
+      74
+    ]
+  },
+  {
+    "case": 2,
+    "id": "train:5591:8:1",
+    "text": "I will take you to Li River after walking around here.",
+    "original_prefix": [
+      "It's very kind of you to show me around.",
+      "Not at all. What would you like to see first?",
+      "I really don't know.",
+      "Let's walk around the lake first, shall we?",
+      "Yes, that would be lovely.",
+      "Have you been here before?",
+      "No, it's the first time I've been here.",
+      "I will take you to Li River after walking around here."
+    ],
+    "source_span": [
+      0,
+      54
+    ]
+  },
+  {
+    "case": 3,
+    "id": "train:9970:2:2",
+    "text": "You aren't a runner.",
+    "original_prefix": [
+      "I want to buy some running shoes. Maybe New Balance.",
+      "Why do you need running shoes? You aren't a runner."
+    ],
+    "source_span": [
+      31,
+      51
+    ]
+  },
+  {
+    "case": 4,
+    "id": "val:785:8:1",
+    "text": "Ok, I'll try that.",
+    "original_prefix": [
+      "Would you like something to drink?",
+      "Yes please. Do you have any teas?",
+      "Of course we have lots of teas?",
+      "What do you recommend?",
+      "What about a green tea or perhaps a jasmine tea?",
+      "What's this one?",
+      "That's Oolong tea – it's a Cantonese tea.",
+      "Ok, I'll try that."
+    ],
+    "source_span": [
+      0,
+      18
+    ]
+  },
+  {
+    "case": 5,
+    "id": "train:660:3:2",
+    "text": "Last week I went to a cookout 5 for new professors at Dean Barksdale's home.",
+    "original_prefix": [
+      "Thanks for offering to give me a lift. I'm looking forward to this party, but I didn't want to go alone.",
+      "Don't mention it. It's my pleasure. Have you been to one of these large, sit-down dinner parties since you got to New Haven?",
+      "No, this is my first. Last week I went to a cookout 5 for new professors at Dean Barksdale's home. I took a taxi because I didn't want to be late. But I was the first one there."
+    ],
+    "source_span": [
+      22,
+      98
+    ]
+  },
+  {
+    "case": 6,
+    "id": "train:8824:6:1",
+    "text": "You've got to, I'm afraid.",
+    "original_prefix": [
+      "What's the matter with me, Doctor? I feel so tired these days.",
+      "It's your blood pressure, I'm afraid. It's far too high.",
+      "And what's the cause of that?",
+      "Overwork-amongst other things. You can't work 24 hours a day. You've got to slow down.",
+      "But I can't just slow down.",
+      "You've got to, I'm afraid. And look at this. You weigh 200 stones. That's too much for a man of your size."
+    ],
+    "source_span": [
+      0,
+      26
+    ]
+  },
+  {
+    "case": 7,
+    "id": "train:2157:12:2",
+    "text": "I know Mary.",
+    "original_prefix": [
+      "Jack and Mary broke up.",
+      "It's so sad. They had been together for only two months. Do you know what the matter was?",
+      "Mary said Jack was cheating on her. Jack was seeing a girl from his hometown. One day, Mary saw them holding hands and ended the relationship immediately.",
+      "Really? I'm very surprised. He doesn't look like a guy who'd ever do that sort of thing, right?",
+      "No, he doesn't. Anyway, she found out that he had been two-timing her for a long time.",
+      "Maybe it is for the best. They are not suitable for each other because they have nothing in common and are completely different people.",
+      "How so?",
+      "He is an extrovert while she is an introvert. He likes parties while she hates them.",
+      "Poor Mary! She really liked him.",
+      "Anyway, she was right to end things and she deserves better.",
+      "Do you think they'll get back together?",
+      "No, I don't think so. I know Mary. Once she makes a decision, she won't change her mind."
+    ],
+    "source_span": [
+      22,
+      34
+    ]
+  },
+  {
+    "case": 8,
+    "id": "train:998:3:3",
+    "text": "But now you see, I'm just a common office clerk.",
+    "original_prefix": [
+      "John, did you have a dream when you was a little boy?",
+      "Of course I did. I dreamed to be a pilot when I grow up. But unfortunately, I didn't realize it.",
+      "I had the same experience with you. When I was a little boy I dreamed to be a great scientist. But now you see, I'm just a common office clerk."
+    ],
+    "source_span": [
+      95,
+      143
+    ]
+  },
+  {
+    "case": 9,
+    "id": "train:7730:12:1",
+    "text": "Yes, I like the fish cooked in sweet and sour sauce best.",
+    "original_prefix": [
+      "All the food smells tasty today and makes my mouth water.",
+      "Let's line up here. This line seems a little shorter.",
+      "What's on the menu today?",
+      "Fish, beef, pork, chicken, vegetables and beancurd. For staple food we have rice, steamed bread, stuffed buns and noodles.",
+      "Oh, we're lucky today, aren't we?",
+      "I'd rather take stewed cabbage with beef.",
+      "I think I'll take fried fish, because fish is one of my favorites.",
+      "That's good, we can share what we have. Here we are. You go ahead.",
+      "(They get everything ready) Here is a free table. Let's sit down. Help yourself to some fish please. Isn't it delicious and appetizing?",
+      "I'm sorry I don't like it's a little too salty.",
+      "I see. You people from south prefer sweet, don't you?",
+      "Yes, I like the fish cooked in sweet and sour sauce best. Try some beef, please."
+    ],
+    "source_span": [
+      0,
+      57
+    ]
+  },
+  {
+    "case": 10,
+    "id": "test:459:4:2",
+    "text": "The carpet in the living room is worn out, and I'd like to put in new wall-to-wall carpeting.",
+    "original_prefix": [
+      "You have a lovely house, Jack.",
+      "Thank you. But a number of things have been going wrong lately.",
+      "That's too bad. What problems are you having.",
+      "Oh, the whole house needs re-painting for starters. The carpet in the living room is worn out, and I'd like to put in new wall-to-wall carpeting. Last week, I had to call the plumber to fix the toilet. Anyway, all par for the course when you own a house, I guess. I think I am going to hire an interior decorator to look the place over."
+    ],
+    "source_span": [
+      52,
+      145
+    ]
+  },
+  {
+    "case": 11,
+    "id": "train:5449:3:1",
+    "text": "Well, if there's anything I can do for you, let me know.",
+    "original_prefix": [
+      "Hi there! My name's Terry Graham. You're new around here, huh?",
+      "Yes. My name's Mark Benson. I just started a couple of weeks ago.",
+      "Well, if there's anything I can do for you, let me know."
+    ],
+    "source_span": [
+      0,
+      56
+    ]
+  },
+  {
+    "case": 12,
+    "id": "train:1211:15:3",
+    "text": "Let's go!",
+    "original_prefix": [
+      "Hello, Jason, there is going to be a screening of Final Destination 3 at our campus cinema tomorrow. I plan to go to see it.",
+      "Is it a horror movie?",
+      "Yeah, I love horror movies. Would you like to go with me tomorrow?",
+      "No way. I will be scared out of my wits.",
+      "That's funny, I didn't know a big fellow like you could be so soft and timid on the inside.",
+      "Hey, how would you like to taste my fist?",
+      "Alright, all joking aside, what kinds of moves do you like?",
+      "Um, let me see, romance, comedy. Documentary, action, science fiction, animated and so on.",
+      "That is to say, you like all genres except for horror movies.",
+      "Yeah. It seems like we don't speak the same language as far as movies are concerned.",
+      "Not quite. I also greatly enjoy romance and comedy.",
+      "The Notebook is this type of movie.",
+      "Really? I haven't heard of it.",
+      "Well then, this could be a nice opportunity to enjoy it together. I bet you'd love it.",
+      "Ok. I can't wait to see it. Let's go!"
+    ],
+    "source_span": [
+      28,
+      37
+    ]
+  },
+  {
+    "case": 13,
+    "id": "train:10530:3:1",
+    "text": "Well, the national anthem has just been sung, and the umpire has started the game.",
+    "original_prefix": [
+      "Hello baseball fans, and welcome back to today's game! My name is Rick Fields and of course, I am here, once again, with the man that seals the deal, Bob Copeland. '",
+      "It's a beautiful day to see two world class teams face each other and fight for their right to be called champions.",
+      "Well, the national anthem has just been sung, and the umpire has started the game. It's time to play ball!"
+    ],
+    "source_span": [
+      0,
+      82
+    ]
+  },
+  {
+    "case": 14,
+    "id": "train:5575:1:2",
+    "text": "Pull over to that store, I'll buy some drinks.",
+    "original_prefix": [
+      "I'm thirsty. Pull over to that store, I'll buy some drinks."
+    ],
+    "source_span": [
+      13,
+      59
+    ]
+  },
+  {
+    "case": 15,
+    "id": "train:2357:5:1",
+    "text": "Really?",
+    "original_prefix": [
+      "Who's that tall guy over there?",
+      "Oh, that's George. He looks very drunk.",
+      "What's he like normally?",
+      "Oh, he's really reserved, normally. But, from what I hear, he's got lots of problems.",
+      "Really? What kind of problems?"
+    ],
+    "source_span": [
+      0,
+      7
+    ]
+  },
+  {
+    "case": 16,
+    "id": "train:711:4:2",
+    "text": "Just watching the sports highlight on ESPN.",
+    "original_prefix": [
+      "Hey Mark. What are you doing?",
+      "Just watching some TV.",
+      "Anything interesting on?",
+      "Not really. Just watching the sports highlight on ESPN."
+    ],
+    "source_span": [
+      12,
+      55
+    ]
+  },
+  {
+    "case": 17,
+    "id": "train:1683:9:2",
+    "text": "Does he keep in touch with her?",
+    "original_prefix": [
+      "How many people are there in your family?",
+      "My immediate family is quite small. It's just my older step-brother, my mom, my step-dad and me. How about you?",
+      "I have a large family. I have three older sisters, my twin sister, a younger brother, and parents.",
+      "I didn't know you were a twin! Are you identical or fraternal?",
+      "We're identical. I mean, we look exactly the same, but we are complete opposites when it comes to everything else.",
+      "Interesting. It must be great having a twin sister. Are you best friends, too?",
+      "We used to be really close, but that all changed once she moved to Shanghai. How about your family? You didn't mention to your biological father.",
+      "I don't know much about him. He died when I was just a baby. Even though I don't have a blood relationship with my step-father and step-brother, I consider them to be my real family.",
+      "What about your step-brother's mother? Does he keep in touch with her?"
+    ],
+    "source_span": [
+      39,
+      70
+    ]
+  },
+  {
+    "case": 18,
+    "id": "train:6754:2:1",
+    "text": "Certainly, Mr. Baker.",
+    "original_prefix": [
+      "Miss Sun, could you please type this report for me?",
+      "Certainly, Mr. Baker."
+    ],
+    "source_span": [
+      0,
+      21
+    ]
+  },
+  {
+    "case": 19,
+    "id": "val:380:13:1",
+    "text": "I think I will give you a 3 months'trial.",
+    "original_prefix": [
+      "Come in, please.",
+      "Good morning! I am Anna Lu. I've come for an interview which was arranged.",
+      "Oh, I see. I am Jack White, Personnel Manager. Take a seat, please.",
+      "Glad to meet you, Mr. White.",
+      "Miss Lu, have you got any experience in restaurant service?",
+      "Yes. Since I entered college, I have been working at a fast food restaurant as a part-time waitress.",
+      "For how long?",
+      "3 years.",
+      "Our restaurant receives a lot of foreign customers. Can you serve them in English?",
+      "That's why I applied for this job. Now I am studying Hotel English in my college, and I am quite familiar with the western courtesy and restaurant etiquette. I am sure my public relation skills will leave a strong impression on your customers.",
+      "You must know our working hours are very long and overtime work is frequent.",
+      "I don't mind that.",
+      "I think I will give you a 3 months'trial. The salary for this period is 800 yuan a month with no bonus. After that period if we both feel satisfied, a formal contract would be signed."
+    ],
+    "source_span": [
+      0,
+      41
+    ]
+  },
+  {
+    "case": 20,
+    "id": "train:1859:3:3",
+    "text": "I don't think I can stand this place for two weeks.",
+    "original_prefix": [
+      "They promised us a sea view.",
+      "Well, you can just see the sea. Between the factory chimneys.",
+      "Isn't it awful? I can't bear to look at it. I don't think I can stand this place for two weeks."
+    ],
+    "source_span": [
+      44,
+      95
+    ]
+  },
+  {
+    "case": 21,
+    "id": "train:8245:5:2",
+    "text": "You know, I couldn't help falling asleep.",
+    "original_prefix": [
+      "Are you OK?",
+      "I'm fine. I'm just so touched by the sad story.",
+      "So I can say now that you must have enjoyed the opera. Which scene is your favorite?",
+      "I love them all. But if I had to name one as the best, I would say it's the ending.",
+      "What's it about? You know, I couldn't help falling asleep."
+    ],
+    "source_span": [
+      17,
+      58
+    ]
+  },
+  {
+    "case": 22,
+    "id": "train:3818:5:1",
+    "text": "No, I don't know where the bookstore is.",
+    "original_prefix": [
+      "Where can I buy textbooks?",
+      "First, you need to have the list of books for your class. Do you have that?",
+      "Yes, I have that.",
+      "Well, when you have that, you can take it over to the bookstore. Can you find it?",
+      "No, I don't know where the bookstore is."
+    ],
+    "source_span": [
+      0,
+      40
+    ]
+  },
+  {
+    "case": 23,
+    "id": "train:10423:7:4",
+    "text": "And we'll bring out your fries in two minutes.",
+    "original_prefix": [
+      "May I help you?",
+      "Give me a six-piece chicken nuggets, a large fry and a large Coke.",
+      "You need to wait a few minutes for the fries. They are still in the flyer.",
+      "That's fine.",
+      "Your total comes to $ 7.",
+      "Here's a twenty note.",
+      "Thank you. Your cash back is $ 13. Pull into a parking space. And we'll bring out your fries in two minutes."
+    ],
+    "source_span": [
+      62,
+      108
+    ]
+  },
+  {
+    "case": 24,
+    "id": "train:6552:8:3",
+    "text": "Who is your emergency contact person in America?",
+    "original_prefix": [
+      "Hi. I just lost my purse when I was shopping on the street. I guess somebody stole it from me.",
+      "Sorry to hear that. Could you tell me what were in your purse?",
+      "My mobile phone, passport and some cash.",
+      "When did you come to America?",
+      "Just a couple of days ago.",
+      "Could you recall when and where you lost it?",
+      "I have no idea.",
+      "OK. I have written it down. Who is your emergency contact person in America?"
+    ],
+    "source_span": [
+      28,
+      76
+    ]
+  },
+  {
+    "case": 25,
+    "id": "test:380:3:2",
+    "text": "Would you like a large pizza instead?",
+    "original_prefix": [
+      "Good evening, Pizza House. This is Marty speaking. May I take your order?",
+      "Um yes. I'd like a medium pizza with pepperoni, olives, and extra cheese.",
+      "We have a two-for-one special on large pizzas. Would you like a large pizza instead?"
+    ],
+    "source_span": [
+      47,
+      84
+    ]
+  },
+  {
+    "case": 26,
+    "id": "train:1591:6:1",
+    "text": "No, we met at university.",
+    "original_prefix": [
+      "Oh that's a lovely necklace.",
+      "Thank you. My husband gave it to me.",
+      "Oh I didn't know you were married.",
+      "Yes I am. I got married five years ago.",
+      "Oh I see. That's nice. Did you meet your husband at work?",
+      "No, we met at university."
+    ],
+    "source_span": [
+      0,
+      25
+    ]
+  },
+  {
+    "case": 27,
+    "id": "train:4120:5:1",
+    "text": "For killing time and making new friends.",
+    "original_prefix": [
+      "Hey, David. Would you like some drinks?",
+      "OK. Shall we go to a bar?",
+      "Good idea. I like hanging out in bars at night.",
+      "Why?",
+      "For killing time and making new friends."
+    ],
+    "source_span": [
+      0,
+      40
+    ]
+  },
+  {
+    "case": 28,
+    "id": "train:505:4:3",
+    "text": "I've spent all these months trying to learn something new about it, but I've made little progress!",
+    "original_prefix": [
+      "Are you ok, Chuck? You look pale.",
+      "I'm fine, Katherine. I just stayed up late last night working on my Chinese.",
+      "Oh, poor you. You know what? I found a new way to learn Chinese and it works very well.",
+      "You did? Do tell me. I've spent all these months trying to learn something new about it, but I've made little progress!"
+    ],
+    "source_span": [
+      21,
+      119
+    ]
+  },
+  {
+    "case": 29,
+    "id": "test:394:1:1",
+    "text": "Why not come over to work in my company?",
+    "original_prefix": [
+      "Why not come over to work in my company?"
+    ],
+    "source_span": [
+      0,
+      40
+    ]
+  },
+  {
+    "case": 30,
+    "id": "train:4606:5:2",
+    "text": "What about Bob?",
+    "original_prefix": [
+      "I'm really fed up with Larry! He's the biggest airhead I've ever met. He always makes careless mistakes, and he's a pain to work with.",
+      "You shouldn't be so negative. You'll always have some co-workers that are harder to work with than others. But if you are negative and start name-calling in the office, it will make a bad working environment for everybody.",
+      "You only say that because you don't have to work with him. The people in your department seem so capable and nice to be around. Take Mary for example. She's smart and enthusiastic. I've never met anyone as cheery as she is.",
+      "Everybody has their strengths and weaknesses. Even Larry. He might be a pain to be around, but he's also very good at staying in budget on projects. Mary, on the other hand, spends our project money like there's no tomorrow. Also, she's never willing to stay a little later at the office. She always leaves at 5pm sharp.",
+      "Isn't there anyone in the office that is a perfect co-worker? What about Bob? Everybody loves Bob. Even though he's flesh out of college and still a bit green, he is a great co-worker."
+    ],
+    "source_span": [
+      62,
+      77
+    ]
+  },
+  {
+    "case": 31,
+    "id": "train:4915:9:1",
+    "text": "I can ask for some advice from him.",
+    "original_prefix": [
+      "Hi, buddy! How do you deal with your salary?",
+      "I usually put them into my bank account. I think that is a little secure, though the interest rate is low now.",
+      "Look! This stock is rising now. I am researching it, and planning to buy some shares.",
+      "Have you invested in the stock market before?",
+      "No. This is my first time to buy some. You can see that its historical price data is rising now.",
+      "But that is a little risky, you know.",
+      "Hey! Do you still remember our teacher of economics, Mr. Locker?",
+      "Of course! I remember he has a part-time job as a stock analyst.",
+      "I can ask for some advice from him."
+    ],
+    "source_span": [
+      0,
+      35
+    ]
+  },
+  {
+    "case": 32,
+    "id": "train:946:3:2",
+    "text": "You know who she's in love with?",
+    "original_prefix": [
+      "Did you hear about Joe? She hasn't eaten for days.",
+      "Why? What's eating her?",
+      "Love sick. You know who she's in love with?"
+    ],
+    "source_span": [
+      11,
+      43
+    ]
+  },
+  {
+    "case": 33,
+    "id": "train:5237:6:1",
+    "text": "We have a computer lab on the first floor.",
+    "original_prefix": [
+      "Hi, I need broadband for my computer.",
+      "No problem. Just plug the Ethernet cable into your computer, and you're good to go.",
+      "That's a problem. My laptop has no Ethernet port, it's wireless only.",
+      "Hmm. Well, we have some alternatives, if you're interested.",
+      "Go ahead. I'm all ears.",
+      "We have a computer lab on the first floor."
+    ],
+    "source_span": [
+      0,
+      42
+    ]
+  },
+  {
+    "case": 34,
+    "id": "train:7750:5:1",
+    "text": "Yes, I am.",
+    "original_prefix": [
+      "How do you do?",
+      "How do you do?",
+      "Do you mind if I introduce myself? My name is Wang Li.",
+      "My name is Jim Jones. Are you coming for the interview?",
+      "Yes, I am."
+    ],
+    "source_span": [
+      0,
+      10
+    ]
+  },
+  {
+    "case": 35,
+    "id": "train:8028:11:2",
+    "text": "If you like my work, it should be reflected in my pay, and I feel it isn't.",
+    "original_prefix": [
+      "May I come in?",
+      "Come in, please.",
+      "I'm sorry to trouble you, but I'd like to ask when I will get a raise.",
+      "In 3 months or so.",
+      "You said the same thing three months ago.",
+      "Did I? Well, anyway, you will get your raise when the economy starts picking up.",
+      "You mean that I won't get a raise until the recession ends?",
+      "Yes.",
+      "I got the message. I'm quiting.",
+      "Nah, don't be so fast. We like your work here, but this company is on hard times and I can't be handing out raises for anyone.",
+      "I've been here for 3 years, and I haven't had a raise in all that time. If you like my work, it should be reflected in my pay, and I feel it isn't."
+    ],
+    "source_span": [
+      72,
+      147
+    ]
+  },
+  {
+    "case": 36,
+    "id": "train:5986:13:1",
+    "text": "Take care, dear!",
+    "original_prefix": [
+      "Hello, Sara are you finished packing yet? Do you need a hand?",
+      "Thanks. Dad, but I can manage it myself.",
+      "Make sure you have your ID card. You will need it while you travel.",
+      "Yes, I know. The problem is that I can't find it. Where did you put it?",
+      "All your important documents and certificates should be in the desk drawer.",
+      "Oh, yes, here it is.",
+      "Sara?",
+      "What's up?",
+      "Did you buy a map? Traveling can be really inconvenient without one, and you could even wind up lost",
+      "No. Dad. We have a tour guide.",
+      "Also, take these pills in case you have any airsickness, and take some cold medicine, too. How about some band-aids?",
+      "No, I won't get sick. I promise. Ok. I've finished. Bye, Dad. See you!",
+      "Take care, dear! Be careful! Oh Sara, wait a minute! You forget your raincoat and umbrella."
+    ],
+    "source_span": [
+      0,
+      16
+    ]
+  },
+  {
+    "case": 37,
+    "id": "train:5044:2:6",
+    "text": "Is there any change of your schedule?",
+    "original_prefix": [
+      "Hi, I'm testify Chen, the tour guide for the Ged Agency. We have a reservation of twenty room for tonight.",
+      "Please to meet you Mrs Chen. My name is Joy. Welcome to the hotel. Here is the keys, registration slips and breakfast description. Breakfast will be served from seven tomorrow morning. Is there any change of your schedule?"
+    ],
+    "source_span": [
+      185,
+      222
+    ]
+  },
+  {
+    "case": 38,
+    "id": "train:9847:10:1",
+    "text": "Great!",
+    "original_prefix": [
+      "Hi, darling! I have a one-month vacation saved up. How about a trip to Europe?",
+      "I could go for that. But I'm afraid our budget is a little tight this year.",
+      "Oh, but I really need to leave this town for a change. Working day after day has worn me out. Do you have any other suggestions?",
+      "We should probably think about going somewhere that isn't too far away. How about the countryside? There must be many interesting places, and we could enjoy the fresh air.",
+      "Wonderful! I think that's a great idea How soon until we can make this happen? I can't wait!",
+      "Tomorrow I have an appointment with my dentist. What about next Monday?",
+      "Perfect. I'll start preparing tomorrow. If we re going to drive, l'II need to fill up the tank.",
+      "No need. I think it's still plenty full. Even so, I'd rather travel by bus or train. It would cost much less than driving. Oil prices are soaring nowadays, you know.",
+      "We can take the train, that will be faster. I'll book the tickets tomorrow morning.",
+      "Great! Oh, one more thing, don't forget to check the weather before we go. I'd hate to get caught in the rain."
+    ],
+    "source_span": [
+      0,
+      6
+    ]
+  },
+  {
+    "case": 39,
+    "id": "train:3699:9:1",
+    "text": "Yes, it probably is.",
+    "original_prefix": [
+      "How did you enjoy your family party at “ ginger's ”? I hear that they have a lovely menu and buffet.",
+      "Oh, it was great. We had seafood buffet. They do one every Friday. The waiters and waitresses are very good. They are very attentive, but don't hang around the table.",
+      "I like the buffets they have, but if often order a la carte, because I don't feel extremely hungry. I like the wine list there too.",
+      "Yes, so do I. they have wines from all over the world. There is a good range of prices to suit every pocket. We ordered some Australian red wine, which tasted delicious and wasn't expensive.",
+      "Some restaurants allow you to take your own wine and just charge you corkage, but the don't do that at “ ginger's ”. What was included in the seafood buffet?",
+      "They had almost every kind of seafood. There were oyster, shrimp, prawns, crabs, and fish. I ate a lot of smoked salmon.",
+      "Did they have lobster?",
+      "No, they didn't. you could order it from the menu. I think that lobster is too expensive to be included in the buffet.",
+      "Yes, it probably is. I don't like ordering oysters in restaurants. You never know whether they are fresh."
+    ],
+    "source_span": [
+      0,
+      20
+    ]
+  },
+  {
+    "case": 40,
+    "id": "train:10756:4:2",
+    "text": "But do you want to change it for another one?",
+    "original_prefix": [
+      "I'm afraid I have to return this sweater.",
+      "May I ask if there's anything wrong with it?",
+      "You see, there is a run at the neck.",
+      "Oh, sorry. But do you want to change it for another one?"
+    ],
+    "source_span": [
+      11,
+      56
+    ]
+  },
+  {
+    "case": 41,
+    "id": "train:3885:11:2",
+    "text": "That would be great.",
+    "original_prefix": [
+      "How do you do. I'm Mark Rancor.",
+      "Nice to meet you.",
+      "May I know your name, please?",
+      "I'm Rose Teller. I think I've seen you somewhere before?",
+      "Ah, yes. I remember now. Were you Mr. John's dinner partner last month?",
+      "Yes, I was. You work for 3M, right?",
+      "I did but now I'm for Microsoft. How are things with you?",
+      "Good.",
+      "May I know what you do?",
+      "I'm a fashion designer. Next month, I have a fashion show. I'd love it if come. I can get you a couple of tickets. So you can bring a friend if you like.",
+      "Sure. That would be great. Good luck."
+    ],
+    "source_span": [
+      6,
+      26
+    ]
+  },
+  {
+    "case": 42,
+    "id": "test:463:8:1",
+    "text": "Yes.",
+    "original_prefix": [
+      "Good morning, Sir. Where are you going?",
+      "I'm going to England by flight BE987.",
+      "When is your flight?",
+      "10:00 AM. When am I supposed to check in?",
+      "We are checking in. May I have your ticket and your health certificate and your luggage please.",
+      "Here you are.",
+      "Are you keeping the small bag as carry-on luggage, sir?",
+      "Yes."
+    ],
+    "source_span": [
+      0,
+      4
+    ]
+  },
+  {
+    "case": 43,
+    "id": "train:5530:3:1",
+    "text": "Quite good.",
+    "original_prefix": [
+      "Shall we discuss the packing? You know, a well-designed package helps sell the goods, so the products must not only be superior in quality, but also attractive in appearance. I'd like to see the sample of packing.",
+      "We have made a lot of improvement in packing. You are welcome to see the sample in the showroom. I think you will find the new packing beautiful and quite well-done.",
+      "Quite good. The beautiful design and bright color are just the European taste. How are you gonna pack these blouses?"
+    ],
+    "source_span": [
+      0,
+      11
+    ]
+  },
+  {
+    "case": 44,
+    "id": "test:494:1:1",
+    "text": "Hello, Jack.",
+    "original_prefix": [
+      "Hello, Jack. I'm John."
+    ],
+    "source_span": [
+      0,
+      12
+    ]
+  },
+  {
+    "case": 45,
+    "id": "train:3002:3:1",
+    "text": "All right.",
+    "original_prefix": [
+      "John, if you don't mind, I'd like to ask you a personal question.",
+      "I don't mind at all.",
+      "All right. Are you married?"
+    ],
+    "source_span": [
+      0,
+      10
+    ]
+  },
+  {
+    "case": 46,
+    "id": "val:376:4:1",
+    "text": "I mean the food for something spicy.",
+    "original_prefix": [
+      "I'm starving. Let's get something to eat.",
+      "Can we go somewhere nearby? I don't feel like walking too far.",
+      "Sure. What kind of food do you like?",
+      "I mean the food for something spicy."
+    ],
+    "source_span": [
+      0,
+      36
+    ]
+  },
+  {
+    "case": 47,
+    "id": "train:9571:3:1",
+    "text": "Thanks.",
+    "original_prefix": [
+      "Excuse me, but could I use your bathroom?",
+      "Certainly. It's right over there.",
+      "Thanks."
+    ],
+    "source_span": [
+      0,
+      7
+    ]
+  },
+  {
+    "case": 48,
+    "id": "train:1267:8:2",
+    "text": "Just occasionally.",
+    "original_prefix": [
+      "Are you free tonight?",
+      "Yes, I am. What's wrong?",
+      "Would you please go to a dancing party with me?",
+      "OK. No problem.",
+      "As a matter of fact, I haven't danced for a long time.",
+      "But it's said that you dance wonderfully well.",
+      "Thanks for flattering me. I think you dance a lot, right?",
+      "No. Just occasionally."
+    ],
+    "source_span": [
+      4,
+      22
+    ]
+  },
+  {
+    "case": 49,
+    "id": "train:8425:8:1",
+    "text": "Do you know all the controls in the car?",
+    "original_prefix": [
+      "So, you know how to drive, right?",
+      "I'm pretty good.",
+      "Do you think you can teach me?",
+      "Did you get your learner's permit yet?",
+      "I have it already.",
+      "Do you have any experience driving a car?",
+      "I've only done it once.",
+      "Do you know all the controls in the car?"
+    ],
+    "source_span": [
+      0,
+      40
+    ]
+  },
+  {
+    "case": 50,
+    "id": "train:3927:6:1",
+    "text": "Wait until you see what happens next!",
+    "original_prefix": [
+      "Thanks for inviting me to your friend's wedding. I was surprised to hear the bride and groom talking to each other that way during the marriage ceremony. Is that common?",
+      "Well, some people use a standard set of words, but many couples today write their own wedding vows.",
+      "Your tradition of throwing rice as they got into their car was interesting, but it didn't look like real rice to me.",
+      "It wasn't. It was birdseed. We don't throw rice anymore because someone discovered that birds come along and eat the rice and have trouble digesting it.",
+      "Oh, I didn't think of that. Well, this reception reminds me of weddingparties back in China. Plenty of food and drink, music and dancing, and interesting traditions.",
+      "Wait until you see what happens next! The bride is getting ready to throw her bouquet. Let's go over and watch."
+    ],
+    "source_span": [
+      0,
+      37
+    ]
+  }
+]

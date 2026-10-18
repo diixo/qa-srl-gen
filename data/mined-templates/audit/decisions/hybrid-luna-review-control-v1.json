@@ -1,0 +1,1657 @@
+{
+  "version": "dailydialog-luna-review-control-v1",
+  "date": "2026-10-13",
+  "objective": "Test inexpensive blind error detection over pre-existing hybrid analyses; not full annotation or automatic correction.",
+  "artifact_directory": "artifacts/dailydialog-luna-review-control-v1",
+  "reference_path": "data/dailydialog/review-parts/hybrid-random-quality-50-result-v1.json",
+  "reference_sha256": "07e8044c4964686fded9a8b5929021885ddb140f10eee6e90f63365009327bab",
+  "plan_sha256": "a581dddfde6c295a76f197f31ccb8dc7018e45d3940f21ab48f9fa8e9c3c4463",
+  "settings": {
+    "model": "gpt-6-luna",
+    "efforts": [
+      "low",
+      "medium"
+    ],
+    "cases": 50,
+    "batches_per_effort": 5,
+    "cases_per_request": 10,
+    "full_dialogue_context": true,
+    "reference_answers_sent": false,
+    "max_output_tokens": 8192,
+    "timeout_seconds": 180,
+    "retries": 0,
+    "max_spend_usd": 10,
+    "publication": false
+  },
+  "measurements": {
+    "model": "gpt-6-luna",
+    "efforts": {
+      "low": {
+        "requests": 5,
+        "valid_responses": 5,
+        "input_tokens": 26070,
+        "cached_input_tokens": 0,
+        "cache_write_tokens": 26055,
+        "output_tokens": 4608,
+        "reasoning_tokens": 2662,
+        "seconds": 41.869,
+        "measured_requests": 5,
+        "measured_model_charge_usd": "0.005565",
+        "priced_requests": 5,
+        "calculated_charge_usd": "0.005562375",
+        "cases": 50,
+        "known_structural_cases": 10,
+        "known_structural_detected": 5,
+        "detected_case_numbers": [
+          1,
+          7,
+          15,
+          39,
+          41
+        ],
+        "missed_case_numbers": [
+          12,
+          19,
+          21,
+          31,
+          44
+        ],
+        "known_source_cases": 2,
+        "known_source_detected": 2,
+        "flagged_cases": 16,
+        "reported_issues": 17,
+        "estimated_usd_for_159929_cases": "17.80"
+      },
+      "medium": {
+        "requests": 5,
+        "valid_responses": 5,
+        "input_tokens": 26070,
+        "cached_input_tokens": 0,
+        "cache_write_tokens": 26055,
+        "output_tokens": 10805,
+        "reasoning_tokens": 8948,
+        "seconds": 96.227,
+        "measured_requests": 5,
+        "measured_model_charge_usd": "0.008663",
+        "priced_requests": 5,
+        "calculated_charge_usd": "0.008660875",
+        "cases": 50,
+        "known_structural_cases": 10,
+        "known_structural_detected": 7,
+        "detected_case_numbers": [
+          1,
+          7,
+          15,
+          21,
+          39,
+          41,
+          44
+        ],
+        "missed_case_numbers": [
+          12,
+          19,
+          31
+        ],
+        "known_source_cases": 2,
+        "known_source_detected": 2,
+        "flagged_cases": 15,
+        "reported_issues": 16,
+        "estimated_usd_for_159929_cases": "27.71"
+      }
+    },
+    "publication": false,
+    "note": "Quality is not inferred from response validity. Charges are pilot deltas; public-rate calculation assumes Standard Luna pricing."
+  },
+  "total_measured_usd": "0.014228",
+  "public_standard_usd_per_million_tokens": [
+    {
+      "model": "gpt-6-luna",
+      "input": 0.1,
+      "cached": 0.01,
+      "cache_write": 0.125,
+      "output": 0.5,
+      "url": "https://developers.openai.com/api/docs/models/gpt-6-luna"
+    },
+    {
+      "model": "gpt-6.1-sol",
+      "input": 2,
+      "cached": 0.1,
+      "cache_write": 2.5,
+      "output": 10,
+      "url": "https://developers.openai.com/api/docs/models/gpt-6.1-sol"
+    },
+    {
+      "model": "gpt-4o-mini",
+      "input": 0.15,
+      "cached": 0.075,
+      "output": 0.6,
+      "url": "https://developers.openai.com/api/docs/models/gpt-4o-mini"
+    },
+    {
+      "model": "gpt-4o",
+      "input": 2.5,
+      "cached": 1.25,
+      "output": 10,
+      "url": "https://developers.openai.com/api/docs/models/gpt-4o"
+    }
+  ],
+  "accounting": {
+    "before_charged_usd": 60.345899,
+    "after_charged_usd": 60.360127,
+    "prior_unresolved_requests": 1,
+    "after_unresolved_requests": 1,
+    "note": "Gateway model and account deltas agree; public token-rate calculation differs by less than one millionth of a dollar per request. Existing unresolved request was not retried."
+  },
+  "limitations": [
+    "One run per effort on the same 50 frozen cases. Known structural detection counts a case if at least one pre-recorded defect is found, not every defect within it.",
+    "The frozen reference was produced by direct model review, not independent human gold. It is imperfect and was not silently revised after API feedback.",
+    "Both efforts additionally flagged demonstrative that, interrogative Where and the topic attachment of information on. These do not inflate recall against the original ten known cases.",
+    "Some supported detections include unnecessary or incomplete proposed edits. No suggestion was applied.",
+    "Clear does not mean semantically approved. No full-corpus semantic accuracy or precision estimate is claimed.",
+    "Costs cover API review only. Extrapolation assumes the same text lengths, output volume and tariffs; it excludes rework, repeated reviews and independent adjudication.",
+    "Only Luna was run in this pilot. Other models have public unit-price comparisons, not matched task-cost or quality measurements. Claude tariff was not verified.",
+    "Prompt compacted slots to token indexes and omitted descriptors. Future pilot should explain AUX slots, EX/expl nominal slots and candidate-construction policy explicitly, then use fresh cases."
+  ],
+  "recommendation": "Use medium as a candidate-error detector with contextual verification; do not use low or medium as an automatic publication gate.",
+  "quality_review": {
+    "low": [
+      {
+        "case": 1,
+        "id": "train:9306:6:1",
+        "text": "If you walk down Fair Oaks to Altadena Drive, you can catch the 267.",
+        "status": "issues",
+        "known_structural_error": true,
+        "known_source_defect": false,
+        "known_structural_error_detected": true,
+        "issues": [
+          {
+            "proposal": {
+              "category": "structure",
+              "tokens": [
+                6,
+                8
+              ],
+              "explanation": "The endpoint phrase “to Altadena Drive” is attached to “Oaks,” rather than to the walking route/clause.",
+              "correction": "Attach “to Altadena Drive” to “walk” (or “down”), not “Oaks.”"
+            },
+            "adjudication": "partial_known_error",
+            "reason": "Correct route-endpoint attachment concern; the separate Oaks POS/name problem was missed. Low gives two alternative heads; only walk is accepted here."
+          }
+        ]
+      },
+      {
+        "case": 2,
+        "id": "train:3133:19:2",
+        "text": "I actually tried harder in the 101 class.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 3,
+        "id": "train:7081:12:1",
+        "text": "No, thanks.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 4,
+        "id": "train:2297:7:4",
+        "text": "Also you know, old habits are hard to break.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 5,
+        "id": "train:9629:6:1",
+        "text": "Yes, I see, this is a permanent position.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 6,
+        "id": "train:8252:11:1",
+        "text": "Very nice.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 7,
+        "id": "train:7172:7:5",
+        "text": "Move, move!",
+        "status": "issues",
+        "known_structural_error": true,
+        "known_source_defect": false,
+        "known_structural_error_detected": true,
+        "issues": [
+          {
+            "proposal": {
+              "category": "structure",
+              "tokens": [
+                2
+              ],
+              "explanation": "The repeated imperative “move” is parsed as a noun, although it repeats the preceding verb.",
+              "correction": "Tag token 2 as VERB/VB and attach it as a conjunct of token 0."
+            },
+            "adjudication": "known_error",
+            "reason": "The second move repeats an imperative and needs verb rather than noun analysis."
+          }
+        ]
+      },
+      {
+        "case": 8,
+        "id": "train:3194:2:1",
+        "text": "Oh, that scared me.",
+        "status": "issues",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": [
+          {
+            "proposal": {
+              "category": "structure",
+              "tokens": [
+                2
+              ],
+              "explanation": "“That” is demonstrative subject, not a relative pronoun; its relative-pronoun morphology is also incorrect.",
+              "correction": "Use demonstrative PRON/DT features, including PronType=Dem."
+            },
+            "adjudication": "additional_supported_finding",
+            "reason": "That is demonstrative here, not relative. The earlier reference did not flag this morphology detail; leave that frozen reference unchanged."
+          }
+        ]
+      },
+      {
+        "case": 9,
+        "id": "train:9827:4:1",
+        "text": "One economy, please.",
+        "status": "issues",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": [
+          {
+            "proposal": {
+              "category": "structure",
+              "tokens": [
+                4
+              ],
+              "explanation": "The sentence-final period is attached to the comma rather than the utterance head.",
+              "correction": "Attach token 4 to “economy” (token 1)."
+            },
+            "adjudication": "incorrect_claim",
+            "reason": "Token 4 actually attaches to please (token 3), not to the comma (token 2). No supported substantive correction."
+          }
+        ]
+      },
+      {
+        "case": 10,
+        "id": "train:10222:8:2",
+        "text": "But your berth will be invalid.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 11,
+        "id": "train:7562:14:1",
+        "text": "It is a bit expensive.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 12,
+        "id": "train:10912:1:1",
+        "text": "Where did you get these peanuts, Mike?",
+        "status": "issues",
+        "known_structural_error": true,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": [
+          {
+            "proposal": {
+              "category": "structure",
+              "tokens": [
+                0
+              ],
+              "explanation": "“Where” is tagged SCONJ, but it is an interrogative adverb modifying “get.”",
+              "correction": "Tag token 0 as ADV (WRB)."
+            },
+            "adjudication": "additional_supported_finding",
+            "reason": "Where is interrogative ADV here. This does not detect the known Mike vocative error."
+          },
+          {
+            "proposal": {
+              "category": "structure",
+              "tokens": [
+                1,
+                3
+              ],
+              "explanation": "The predicate slot v0 is assigned to auxiliary “did”; the main predicate “get” is v1.",
+              "correction": "Assign the predicate slot to token 3 (“get”), not token 1 (“did”)."
+            },
+            "adjudication": "schema_misunderstanding",
+            "reason": "v0 may be an auxiliary token slot. The construction head already points to get at v1; there is no requirement that the main predicate be v0."
+          }
+        ]
+      },
+      {
+        "case": 13,
+        "id": "train:4194:2:1",
+        "text": "Rocky six is suppose to come out this Friday.",
+        "status": "issues",
+        "known_structural_error": false,
+        "known_source_defect": true,
+        "known_structural_error_detected": false,
+        "issues": [
+          {
+            "proposal": {
+              "category": "source",
+              "tokens": [
+                3
+              ],
+              "explanation": "The source has a malformed expression: “is suppose to” should be “is supposed to.”",
+              "correction": "Change “suppose” to “supposed.”"
+            },
+            "adjudication": "known_source_defect",
+            "reason": "is suppose to is malformed. This is a source correction proposal, not permission to edit the corpus."
+          }
+        ]
+      },
+      {
+        "case": 14,
+        "id": "train:7960:7:1",
+        "text": "Really?",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 15,
+        "id": "val:806:5:1",
+        "text": "Consider yourself lucky.",
+        "status": "issues",
+        "known_structural_error": true,
+        "known_source_defect": false,
+        "known_structural_error_detected": true,
+        "issues": [
+          {
+            "proposal": {
+              "category": "structure",
+              "tokens": [
+                1,
+                2
+              ],
+              "explanation": "“Yourself” is the object of “Consider,” and “lucky” is its object-oriented complement, not a clause subject.",
+              "correction": "Attach “yourself” as the object of “Consider” and “lucky” as its complement; target the adjective at “yourself.”"
+            },
+            "adjudication": "mixed_known_error_and_unneeded_rewrite",
+            "reason": "Accept only the lucky -> yourself property target. Small-clause dependencies need not be rewritten."
+          }
+        ]
+      },
+      {
+        "case": 16,
+        "id": "train:7609:1:1",
+        "text": "Could you give some information on your European tours?",
+        "status": "issues",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": [
+          {
+            "proposal": {
+              "category": "structure",
+              "tokens": [
+                2,
+                5
+              ],
+              "explanation": "“On your European tours” modifies “information”; “on” is not a preposition selected by “give.”",
+              "correction": "Remove the “give on” candidate construction."
+            },
+            "adjudication": "additional_supported_finding",
+            "reason": "On your European tours gives the topic of information. Medium identifies the attachment repair; low identifies the issue but only deletes a construction candidate, an incomplete repair."
+          }
+        ]
+      },
+      {
+        "case": 17,
+        "id": "train:3681:2:1",
+        "text": "Yes, I'm studying in the Foreign Languages Department.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 18,
+        "id": "train:8457:4:1",
+        "text": "Don'mention it.",
+        "status": "issues",
+        "known_structural_error": false,
+        "known_source_defect": true,
+        "known_structural_error_detected": false,
+        "issues": [
+          {
+            "proposal": {
+              "category": "source",
+              "tokens": [],
+              "explanation": "The source typo “Don'mention” merges a malformed contraction and the next word, so token boundaries cannot match the intended text.",
+              "correction": "Correct the source to “Don't mention it.”"
+            },
+            "adjudication": "known_source_defect",
+            "reason": "Don'mention it is a malformed contraction. Source edits require separate review."
+          }
+        ]
+      },
+      {
+        "case": 19,
+        "id": "test:378:3:1",
+        "text": "Well, the Great Wall of China, the Taj Mahal in India.",
+        "status": "clear",
+        "known_structural_error": true,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 20,
+        "id": "train:3140:12:2",
+        "text": "I mean, those dos and don'ts.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 21,
+        "id": "train:4814:3:1",
+        "text": "I have an interview tomorrow, so I hope I can learn everything quickly.",
+        "status": "clear",
+        "known_structural_error": true,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 22,
+        "id": "train:1570:11:2",
+        "text": "I'm going to do the same.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 23,
+        "id": "train:10743:7:3",
+        "text": "Are there any special benefits for me?",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 24,
+        "id": "train:3607:2:1",
+        "text": "That means it's developing very fast.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 25,
+        "id": "train:3701:3:1",
+        "text": "Oh my gosh!",
+        "status": "issues",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": [
+          {
+            "proposal": {
+              "category": "structure",
+              "tokens": [
+                1,
+                2
+              ],
+              "explanation": "“My” is a possessive determiner modifying “gosh,” not an interjection in a possessive relation.",
+              "correction": "Tag “my” as a possessive determiner and “gosh” as the interjection head."
+            },
+            "adjudication": "requires_tagging_policy_review",
+            "reason": "Oh my gosh is a fixed interjection. Tagging its internal my as possessive is arguable, but no referential possession or broken semantic role follows from the current literal record."
+          }
+        ]
+      },
+      {
+        "case": 26,
+        "id": "train:10351:4:1",
+        "text": "Not that long ago, I think it was four months ago.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 27,
+        "id": "train:5652:7:1",
+        "text": "What was on television last night?",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 28,
+        "id": "val:670:2:6",
+        "text": "I'll have to send them by courier.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 29,
+        "id": "train:2920:6:1",
+        "text": "Yeah.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 30,
+        "id": "train:3939:9:1",
+        "text": "Is that your phone?",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 31,
+        "id": "train:9011:1:1",
+        "text": "Honey, could you help me here a minute?",
+        "status": "clear",
+        "known_structural_error": true,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 32,
+        "id": "val:791:9:2",
+        "text": "But we do accept all major credit cards.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 33,
+        "id": "train:4795:2:1",
+        "text": "I want to be in a higher managerial position in the field of international marketing.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 34,
+        "id": "train:2854:11:1",
+        "text": "They're also known as bell-bottoms.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 35,
+        "id": "train:8594:9:1",
+        "text": "Oh, very good.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 36,
+        "id": "train:3784:5:3",
+        "text": "It is very easy to find.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 37,
+        "id": "test:982:2:1",
+        "text": "Just tell him off.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 38,
+        "id": "test:670:12:1",
+        "text": "That shouldn't be a problem.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 39,
+        "id": "train:10798:5:4",
+        "text": "Let's turn some music on!",
+        "status": "issues",
+        "known_structural_error": true,
+        "known_source_defect": false,
+        "known_structural_error_detected": true,
+        "issues": [
+          {
+            "proposal": {
+              "category": "structure",
+              "tokens": [
+                5
+              ],
+              "explanation": "“On” functions as the particle in “turn on,” but is tagged as a preposition with a preposition-candidate construction.",
+              "correction": "Tag “on” as a particle (dep=prt) and classify “turn on” as a particle construction."
+            },
+            "adjudication": "known_error",
+            "reason": "On in turn some music on is a separated particle."
+          }
+        ]
+      },
+      {
+        "case": 40,
+        "id": "train:5898:1:1",
+        "text": "Good afternoon.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 41,
+        "id": "train:8949:9:7",
+        "text": "I find slingbacks very uncomfortable.",
+        "status": "issues",
+        "known_structural_error": true,
+        "known_source_defect": false,
+        "known_structural_error_detected": true,
+        "issues": [
+          {
+            "proposal": {
+              "category": "structure",
+              "tokens": [
+                2,
+                4
+              ],
+              "explanation": "In “find slingbacks very uncomfortable,” slingbacks is the object of find and uncomfortable is its object complement, not a subject with a clausal complement.",
+              "correction": "Attach token 2 as find’s object and token 4 as its object complement; target the adjective property to slingbacks."
+            },
+            "adjudication": "mixed_known_error_and_unneeded_rewrite",
+            "reason": "Correct property target is slingbacks (n1), not I. Rewriting the entire small-clause dependency convention is unnecessary."
+          }
+        ]
+      },
+      {
+        "case": 42,
+        "id": "train:2515:2:1",
+        "text": "I don't think so.",
+        "status": "issues",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": [
+          {
+            "proposal": {
+              "category": "structure",
+              "tokens": [
+                1,
+                3
+              ],
+              "explanation": "The predicate slot v0 is assigned to auxiliary do, while v1 duplicates the actual predicate think.",
+              "correction": "Assign the predicate slot to token 3 (think); do is only an auxiliary."
+            },
+            "adjudication": "schema_misunderstanding",
+            "reason": "AUX do is permitted as v0; the actual construction head is already think at v1. Do not remove auxiliary slots."
+          }
+        ]
+      },
+      {
+        "case": 43,
+        "id": "train:1690:9:2",
+        "text": "They make the landscapes look very scenic.",
+        "status": "issues",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": [
+          {
+            "proposal": {
+              "category": "structure",
+              "tokens": [
+                3,
+                4
+              ],
+              "explanation": "In the make construction, landscapes is the object of make and look is its complement, not a subject with a clausal complement.",
+              "correction": "Attach landscapes as make’s object and look as its complement."
+            },
+            "adjudication": "unnecessary_convention_change",
+            "reason": "The small-clause subject landscapes belongs to look, and scenic already targets landscapes. Rewriting this as object control is not required."
+          }
+        ]
+      },
+      {
+        "case": 44,
+        "id": "test:67:6:1",
+        "text": "OK, thanks for checking.",
+        "status": "clear",
+        "known_structural_error": true,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 45,
+        "id": "train:6599:2:2",
+        "text": "I've almost knocked him down.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 46,
+        "id": "train:7917:8:2",
+        "text": "Those are ugly.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 47,
+        "id": "train:6900:9:2",
+        "text": "How about going to a cosmopolitan city like Shanghai or Hong Kong?",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 48,
+        "id": "train:7791:4:8",
+        "text": "Would you be interested in taking part in an interview?",
+        "status": "issues",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": [
+          {
+            "proposal": {
+              "category": "structure",
+              "tokens": [
+                5,
+                6,
+                7
+              ],
+              "explanation": "The phrase is “take part in an interview”; the construction candidate incorrectly identifies take in across the intervening object part.",
+              "correction": "Use take part as the construction candidate, with in introducing interview."
+            },
+            "adjudication": "semantic_review_not_proven_structural_error",
+            "reason": "Take part in means participate. The saved take in is explicitly only a preposition_candidate. Useful lexical-unit review lead; does not prove that the dependency record asserted the wrong meaning."
+          }
+        ]
+      },
+      {
+        "case": 49,
+        "id": "train:6182:6:1",
+        "text": "Okay.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 50,
+        "id": "train:4088:12:1",
+        "text": "Do we need an appointment beforehand?",
+        "status": "issues",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": [
+          {
+            "proposal": {
+              "category": "structure",
+              "tokens": [
+                2,
+                5
+              ],
+              "explanation": "“Need beforehand” is not a construction here; beforehand is a temporal modifier of needing an appointment.",
+              "correction": "Remove the need-beforehand construction candidate; retain beforehand as an adverbial modifier."
+            },
+            "adjudication": "schema_misunderstanding",
+            "reason": "The record explicitly says adverb_candidate, not an approved phrasal verb. Temporal beforehand can remain as observed syntax."
+          }
+        ]
+      }
+    ],
+    "medium": [
+      {
+        "case": 1,
+        "id": "train:9306:6:1",
+        "text": "If you walk down Fair Oaks to Altadena Drive, you can catch the 267.",
+        "status": "issues",
+        "known_structural_error": true,
+        "known_source_defect": false,
+        "known_structural_error_detected": true,
+        "issues": [
+          {
+            "proposal": {
+              "category": "structure",
+              "tokens": [
+                6,
+                8
+              ],
+              "explanation": "The endpoint phrase “to Altadena Drive” is attached to “Fair Oaks,” though it marks the destination of the walk.",
+              "correction": "Attach “to” to “walk” (token 2), retaining “Altadena Drive” as its object."
+            },
+            "adjudication": "partial_known_error",
+            "reason": "Correct route-endpoint attachment concern; the separate Oaks POS/name problem was missed. Low gives two alternative heads; only walk is accepted here."
+          }
+        ]
+      },
+      {
+        "case": 2,
+        "id": "train:3133:19:2",
+        "text": "I actually tried harder in the 101 class.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 3,
+        "id": "train:7081:12:1",
+        "text": "No, thanks.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 4,
+        "id": "train:2297:7:4",
+        "text": "Also you know, old habits are hard to break.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 5,
+        "id": "train:9629:6:1",
+        "text": "Yes, I see, this is a permanent position.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 6,
+        "id": "train:8252:11:1",
+        "text": "Very nice.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 7,
+        "id": "train:7172:7:5",
+        "text": "Move, move!",
+        "status": "issues",
+        "known_structural_error": true,
+        "known_source_defect": false,
+        "known_structural_error_detected": true,
+        "issues": [
+          {
+            "proposal": {
+              "category": "structure",
+              "tokens": [
+                2
+              ],
+              "explanation": "The repeated imperative “move” is analyzed as a noun and assigned a noun slot.",
+              "correction": "Tag token 2 as VERB/VB and assign it a verb slot."
+            },
+            "adjudication": "known_error",
+            "reason": "The second move repeats an imperative and needs verb rather than noun analysis."
+          }
+        ]
+      },
+      {
+        "case": 8,
+        "id": "train:3194:2:1",
+        "text": "Oh, that scared me.",
+        "status": "issues",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": [
+          {
+            "proposal": {
+              "category": "structure",
+              "tokens": [
+                2
+              ],
+              "explanation": "“That” is a demonstrative subject, not a relative pronoun.",
+              "correction": "Use PRON with demonstrative tagging, such as spaCy tag DT and PronType=Dem."
+            },
+            "adjudication": "additional_supported_finding",
+            "reason": "That is demonstrative here, not relative. The earlier reference did not flag this morphology detail; leave that frozen reference unchanged."
+          }
+        ]
+      },
+      {
+        "case": 9,
+        "id": "train:9827:4:1",
+        "text": "One economy, please.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 10,
+        "id": "train:10222:8:2",
+        "text": "But your berth will be invalid.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 11,
+        "id": "train:7562:14:1",
+        "text": "It is a bit expensive.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 12,
+        "id": "train:10912:1:1",
+        "text": "Where did you get these peanuts, Mike?",
+        "status": "issues",
+        "known_structural_error": true,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": [
+          {
+            "proposal": {
+              "category": "structure",
+              "tokens": [
+                0
+              ],
+              "explanation": "“Where” is tagged SCONJ, but it functions as an interrogative adverb here.",
+              "correction": "Tag token 0 as ADV."
+            },
+            "adjudication": "additional_supported_finding",
+            "reason": "Where is interrogative ADV here. The known Mike vocative error was missed."
+          }
+        ]
+      },
+      {
+        "case": 13,
+        "id": "train:4194:2:1",
+        "text": "Rocky six is suppose to come out this Friday.",
+        "status": "issues",
+        "known_structural_error": false,
+        "known_source_defect": true,
+        "known_structural_error_detected": false,
+        "issues": [
+          {
+            "proposal": {
+              "category": "source",
+              "tokens": [
+                3
+              ],
+              "explanation": "The dialogue has the malformed phrase “is suppose to”; the intended form is “is supposed to.”",
+              "correction": "Change “suppose” to “supposed.”"
+            },
+            "adjudication": "known_source_defect",
+            "reason": "is suppose to is malformed. This is a source correction proposal, not permission to edit the corpus."
+          }
+        ]
+      },
+      {
+        "case": 14,
+        "id": "train:7960:7:1",
+        "text": "Really?",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 15,
+        "id": "val:806:5:1",
+        "text": "Consider yourself lucky.",
+        "status": "issues",
+        "known_structural_error": true,
+        "known_source_defect": false,
+        "known_structural_error_detected": true,
+        "issues": [
+          {
+            "proposal": {
+              "category": "structure",
+              "tokens": [
+                1,
+                2
+              ],
+              "explanation": "In “Consider yourself lucky,” “yourself” is the object of “Consider,” and “lucky” is its object complement.",
+              "correction": "Attach “yourself” as the object of “Consider” and “lucky” as its object complement."
+            },
+            "adjudication": "unnecessary_convention_change",
+            "reason": "Small-clause subject/complement representation can be retained."
+          },
+          {
+            "proposal": {
+              "category": "structure",
+              "tokens": [
+                2
+              ],
+              "explanation": "The property “lucky” describes “yourself,” but its attribute target is null.",
+              "correction": "Set the attribute target to n0."
+            },
+            "adjudication": "known_error",
+            "reason": "Set lucky property target to yourself at n0."
+          }
+        ]
+      },
+      {
+        "case": 16,
+        "id": "train:7609:1:1",
+        "text": "Could you give some information on your European tours?",
+        "status": "issues",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": [
+          {
+            "proposal": {
+              "category": "structure",
+              "tokens": [
+                4,
+                5
+              ],
+              "explanation": "The “on your European tours” phrase modifies “information,” not “give.”",
+              "correction": "Attach “on” to “information” rather than “give.”"
+            },
+            "adjudication": "additional_supported_finding",
+            "reason": "On your European tours gives the topic of information. Medium identifies the attachment repair; low identifies the issue but only deletes a construction candidate, an incomplete repair."
+          }
+        ]
+      },
+      {
+        "case": 17,
+        "id": "train:3681:2:1",
+        "text": "Yes, I'm studying in the Foreign Languages Department.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 18,
+        "id": "train:8457:4:1",
+        "text": "Don'mention it.",
+        "status": "issues",
+        "known_structural_error": false,
+        "known_source_defect": true,
+        "known_structural_error_detected": false,
+        "issues": [
+          {
+            "proposal": {
+              "category": "source",
+              "tokens": [
+                0
+              ],
+              "explanation": "“Don'mention” is a malformed, merged rendering of “Don't mention.”",
+              "correction": "Separate it as “Don't mention it.”"
+            },
+            "adjudication": "known_source_defect",
+            "reason": "Don'mention it is a malformed contraction. Source edits require separate review."
+          }
+        ]
+      },
+      {
+        "case": 19,
+        "id": "test:378:3:1",
+        "text": "Well, the Great Wall of China, the Taj Mahal in India.",
+        "status": "clear",
+        "known_structural_error": true,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 20,
+        "id": "train:3140:12:2",
+        "text": "I mean, those dos and don'ts.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 21,
+        "id": "train:4814:3:1",
+        "text": "I have an interview tomorrow, so I hope I can learn everything quickly.",
+        "status": "issues",
+        "known_structural_error": true,
+        "known_source_defect": false,
+        "known_structural_error_detected": true,
+        "issues": [
+          {
+            "proposal": {
+              "category": "structure",
+              "tokens": [
+                1,
+                6,
+                8
+              ],
+              "explanation": "“Have an interview” is an independent clause, not a complement of “hope”; “so” connects it to the following clause.",
+              "correction": "Reattach “have” as a coordinated clause and connect it to “hope” with “so”."
+            },
+            "adjudication": "known_error",
+            "reason": "Have an interview is not the content of hope. The suggestion detects the known clause-scope error; an exact reattachment still requires review."
+          }
+        ]
+      },
+      {
+        "case": 22,
+        "id": "train:1570:11:2",
+        "text": "I'm going to do the same.",
+        "status": "issues",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": [
+          {
+            "proposal": {
+              "category": "structure",
+              "tokens": [
+                6
+              ],
+              "explanation": "“Same” is the nominal head of “the same,” functioning as the object of “do,” not a property of another slot.",
+              "correction": "Remove the attribute entry for “same”."
+            },
+            "adjudication": "requires_attribute_policy_review",
+            "reason": "The same is a nominalized object; it is not a property of I. Current attribute target is already null, not a false entity binding. Review nominalized adjectives before deleting inventory entries."
+          }
+        ]
+      },
+      {
+        "case": 23,
+        "id": "train:10743:7:3",
+        "text": "Are there any special benefits for me?",
+        "status": "issues",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": [
+          {
+            "proposal": {
+              "category": "structure",
+              "tokens": [
+                1
+              ],
+              "explanation": "“There” is an existential expletive, not a referential nominal argument.",
+              "correction": "Remove the n0 mapping to “there”."
+            },
+            "adjudication": "schema_misunderstanding",
+            "reason": "EX/expl there is already marked expletive. A nominal token slot is not a semantic referential argument; deleting the mapping would lose surface structure."
+          }
+        ]
+      },
+      {
+        "case": 24,
+        "id": "train:3607:2:1",
+        "text": "That means it's developing very fast.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 25,
+        "id": "train:3701:3:1",
+        "text": "Oh my gosh!",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 26,
+        "id": "train:10351:4:1",
+        "text": "Not that long ago, I think it was four months ago.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 27,
+        "id": "train:5652:7:1",
+        "text": "What was on television last night?",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 28,
+        "id": "val:670:2:6",
+        "text": "I'll have to send them by courier.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 29,
+        "id": "train:2920:6:1",
+        "text": "Yeah.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 30,
+        "id": "train:3939:9:1",
+        "text": "Is that your phone?",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 31,
+        "id": "train:9011:1:1",
+        "text": "Honey, could you help me here a minute?",
+        "status": "clear",
+        "known_structural_error": true,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 32,
+        "id": "val:791:9:2",
+        "text": "But we do accept all major credit cards.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 33,
+        "id": "train:4795:2:1",
+        "text": "I want to be in a higher managerial position in the field of international marketing.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 34,
+        "id": "train:2854:11:1",
+        "text": "They're also known as bell-bottoms.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 35,
+        "id": "train:8594:9:1",
+        "text": "Oh, very good.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 36,
+        "id": "train:3784:5:3",
+        "text": "It is very easy to find.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 37,
+        "id": "test:982:2:1",
+        "text": "Just tell him off.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 38,
+        "id": "test:670:12:1",
+        "text": "That shouldn't be a problem.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 39,
+        "id": "train:10798:5:4",
+        "text": "Let's turn some music on!",
+        "status": "issues",
+        "known_structural_error": true,
+        "known_source_defect": false,
+        "known_structural_error_detected": true,
+        "issues": [
+          {
+            "proposal": {
+              "category": "structure",
+              "tokens": [
+                5
+              ],
+              "explanation": "In “turn some music on,” “on” is a separated particle, not a preposition.",
+              "correction": "Attach “on” as prt and mark “turn on” as a separated particle construction."
+            },
+            "adjudication": "known_error",
+            "reason": "On in turn some music on is a separated particle."
+          }
+        ]
+      },
+      {
+        "case": 40,
+        "id": "train:5898:1:1",
+        "text": "Good afternoon.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 41,
+        "id": "train:8949:9:7",
+        "text": "I find slingbacks very uncomfortable.",
+        "status": "issues",
+        "known_structural_error": true,
+        "known_source_defect": false,
+        "known_structural_error_detected": true,
+        "issues": [
+          {
+            "proposal": {
+              "category": "structure",
+              "tokens": [
+                2,
+                4
+              ],
+              "explanation": "“Slingbacks” is the object of “find,” and “uncomfortable” describes it; the adjective is incorrectly parsed as a clause complement and targeted at “I.”",
+              "correction": "Attach token 2 as the object of “find”; treat token 4 as its object complement and target the adjective property at slot n1."
+            },
+            "adjudication": "mixed_known_error_and_unneeded_rewrite",
+            "reason": "Correct property target is slingbacks (n1), not I. Rewriting the entire small-clause dependency convention is unnecessary."
+          }
+        ]
+      },
+      {
+        "case": 42,
+        "id": "train:2515:2:1",
+        "text": "I don't think so.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 43,
+        "id": "train:1690:9:2",
+        "text": "They make the landscapes look very scenic.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 44,
+        "id": "test:67:6:1",
+        "text": "OK, thanks for checking.",
+        "status": "issues",
+        "known_structural_error": true,
+        "known_source_defect": false,
+        "known_structural_error_detected": true,
+        "issues": [
+          {
+            "proposal": {
+              "category": "structure",
+              "tokens": [
+                0
+              ],
+              "explanation": "“OK” is an acknowledgment, not an adjective property; it should not be represented as an adjective attribute with a null target.",
+              "correction": "Treat token 0 as an interjection/discourse marker and remove its adjective attribute."
+            },
+            "adjudication": "known_error",
+            "reason": "OK is acknowledgment in context; remove the spurious adjective property."
+          }
+        ]
+      },
+      {
+        "case": 45,
+        "id": "train:6599:2:2",
+        "text": "I've almost knocked him down.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 46,
+        "id": "train:7917:8:2",
+        "text": "Those are ugly.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 47,
+        "id": "train:6900:9:2",
+        "text": "How about going to a cosmopolitan city like Shanghai or Hong Kong?",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 48,
+        "id": "train:7791:4:8",
+        "text": "Would you be interested in taking part in an interview?",
+        "status": "issues",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": [
+          {
+            "proposal": {
+              "category": "structure",
+              "tokens": [
+                5,
+                7
+              ],
+              "explanation": "The construction candidate incorrectly pairs “taking” with the later “in”; that preposition belongs to “part in an interview,” not a “take in” construction.",
+              "correction": "Remove the “take in” candidate; retain “in” as the preposition introducing “an interview.”"
+            },
+            "adjudication": "semantic_review_not_proven_structural_error",
+            "reason": "Take part in means participate. The saved take in is explicitly only a preposition_candidate. Useful lexical-unit review lead; does not prove that the dependency record asserted the wrong meaning."
+          }
+        ]
+      },
+      {
+        "case": 49,
+        "id": "train:6182:6:1",
+        "text": "Okay.",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      },
+      {
+        "case": 50,
+        "id": "train:4088:12:1",
+        "text": "Do we need an appointment beforehand?",
+        "status": "clear",
+        "known_structural_error": false,
+        "known_source_defect": false,
+        "known_structural_error_detected": false,
+        "issues": []
+      }
+    ]
+  },
+  "requests": [
+    {
+      "id": "low-01",
+      "request_sha256": "811fd5381856ca8ee899b798e9d1d1b00f668ba38163f1263031ce832861e286",
+      "response_sha256": "25c4774d552fa3953264d57366391108be548fc2fd6b722b8b846cfbdfe0c235"
+    },
+    {
+      "id": "medium-01",
+      "request_sha256": "afc92721f62e04fdc33d3d59784342b842c074bc474fe6d09af53240c433d092",
+      "response_sha256": "957206bcc34b33e23afcbe57be555c9ee6e1b34bf22e5cd8558878dab2c542c3"
+    },
+    {
+      "id": "low-02",
+      "request_sha256": "8abe623a3c02efc3973c3bc431a41e99cebc626b17dab78f6120ce7033d89565",
+      "response_sha256": "a3f1b1fb8bb9b3908d0c5805314168d65199e9d61b06966338bd9cb30a5b6ba1"
+    },
+    {
+      "id": "medium-02",
+      "request_sha256": "84dcc22588292786145f43cdb6e4ea78644b499a2bc44574acea41da659c343d",
+      "response_sha256": "dc641324db56d5cc4faa736ecc3f1641b1d8768b969c8a62ca1b7e1037c031e3"
+    },
+    {
+      "id": "low-03",
+      "request_sha256": "6033920a1bf010488e45af7f6c16fe6f354ad295eafbf84b68414204ca1f673a",
+      "response_sha256": "d7f966ed6c9d158e78e666d37970489e3a3fab803abab55bad41c1b42a5d5c02"
+    },
+    {
+      "id": "medium-03",
+      "request_sha256": "3a3d85ae3235551baff79c9f119cf2b7cc1e3d61b5602c11921c6a8433c37c3e",
+      "response_sha256": "0a03d33cefd7c62557750abad0e79108e494eb61c3ecf8572f680e1b8faf7654"
+    },
+    {
+      "id": "low-04",
+      "request_sha256": "a50809ccb19b2398a01c19de995c89c14d40bbb17bb051aec1ed2323c6b8ee4b",
+      "response_sha256": "28a3c209ec02ac7eb46899692f94fff5312f4d343deb69e6b44e188cc8056557"
+    },
+    {
+      "id": "medium-04",
+      "request_sha256": "2ade1169e1105c8f1d2c030c76d2bb2f137a87e4e4197929ec536480ac769df9",
+      "response_sha256": "da1ce4d3cbfcd6c74e9cef155dc277eba32c50319acc5083d38ef6399ca7cfc4"
+    },
+    {
+      "id": "low-05",
+      "request_sha256": "1c3bca7f9164a0cb97e1d121f440d7d752674fd16b189ad380b971bf14195dca",
+      "response_sha256": "440afdc23234d9302bcf9de2cbe61d20c846c237e36ee9113666e344143382ca"
+    },
+    {
+      "id": "medium-05",
+      "request_sha256": "a068cbd243877503de53d84ffa37a6e5c2c313a0b0dc209d4fbde96024bb03a2",
+      "response_sha256": "9e658c6d0a2fac88c2b02d14c7cf77a3cf06f3f2e4153efe8b700cc53eff1d02"
+    }
+  ]
+}

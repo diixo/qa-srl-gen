@@ -1,0 +1,889 @@
+{
+  "status": "APPLIED_AND_RESTRICTED_ADMISSION_VERIFIED",
+  "source_quality_report": "data/dailydialog/review-parts/hybrid-quality-control-50-v1.json",
+  "reviews": "data/dailydialog/review-parts/hybrid-quality-control-admission-v1.jsonl",
+  "reviews_sha256": "c99753bb88bbbcedc7366befc97868cde9002112dc917bee9c98116cc2d320b1",
+  "candidate": "artifacts/dailydialog-hybrid-qc-admission-v1",
+  "candidate_review_status": "UNREVIEWED",
+  "results": [
+    {
+      "case": 1,
+      "id": "train:10411:3:1",
+      "unit": "sentence",
+      "mode": "attested_sentence",
+      "published": true,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "time and details of use"
+      ]
+    },
+    {
+      "case": 2,
+      "id": "train:3612:2:1",
+      "unit": "sentence",
+      "mode": "attested_sentence",
+      "published": true,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": []
+    },
+    {
+      "case": 3,
+      "id": "train:1011:1:1",
+      "unit": "sentence",
+      "mode": "attested_sentence",
+      "published": true,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "whether the speaker owns any skirt"
+      ]
+    },
+    {
+      "case": 4,
+      "id": "train:925:3:1",
+      "unit": "sentence",
+      "mode": "attested_sentence",
+      "published": true,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "exact subtask just finished",
+        "whether towels or umbrella are already fully positioned"
+      ]
+    },
+    {
+      "case": 6,
+      "id": "train:1770:4:3",
+      "unit": "sentence",
+      "mode": "attested_sentence",
+      "published": true,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "project subjects",
+        "exact deadline dates"
+      ]
+    },
+    {
+      "case": 7,
+      "id": "train:11016:8:2",
+      "unit": "sentence",
+      "mode": "attested_sentence",
+      "published": true,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "whether the medicine is subsequently packed"
+      ]
+    },
+    {
+      "case": 8,
+      "id": "train:801:5:2",
+      "unit": "sentence",
+      "mode": "attested_sentence",
+      "published": true,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "whether the books were actually handed over"
+      ]
+    },
+    {
+      "case": 9,
+      "id": "train:9228:6:1",
+      "unit": "sentence",
+      "mode": "attested_sentence",
+      "published": true,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "wait duration",
+        "whether the speaker actually waits at this point"
+      ]
+    },
+    {
+      "case": 10,
+      "id": "train:546:4:1",
+      "unit": "sentence",
+      "mode": "attested_sentence",
+      "published": true,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "truth of the explanation",
+        "number of buses"
+      ]
+    },
+    {
+      "case": 11,
+      "id": "val:683:3:1",
+      "unit": "sentence",
+      "mode": "attested_sentence",
+      "published": true,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "whether the rollout succeeds"
+      ]
+    },
+    {
+      "case": 12,
+      "id": "train:5811:5:1",
+      "unit": "sentence",
+      "mode": "attested_sentence",
+      "published": true,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "whether Monica later changes her mind"
+      ]
+    },
+    {
+      "case": 13,
+      "id": "train:507:2:2",
+      "unit": "sentence",
+      "mode": "attested_sentence",
+      "published": true,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "whether departure actually occurs",
+        "reason for leaving"
+      ]
+    },
+    {
+      "case": 14,
+      "id": "train:2935:2:1",
+      "unit": "sentence",
+      "mode": "attested_sentence",
+      "published": true,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "whether the speaker owns or has handled a dog"
+      ]
+    },
+    {
+      "case": 15,
+      "id": "train:6372:7:2",
+      "unit": "sentence",
+      "mode": "attested_sentence",
+      "published": true,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "exact object being handed over",
+        "whether a signature was actually completed"
+      ]
+    },
+    {
+      "case": 16,
+      "id": "train:2920:9:1",
+      "unit": "sentence",
+      "mode": "attested_sentence",
+      "published": true,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "any preventive action actually taken"
+      ]
+    },
+    {
+      "case": 17,
+      "id": "train:6376:9:1",
+      "unit": "sentence",
+      "mode": "attested_sentence",
+      "published": true,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "whether the guest has paid or checked out yet"
+      ]
+    },
+    {
+      "case": 18,
+      "id": "val:106:12:1",
+      "unit": "sentence",
+      "mode": "attested_sentence",
+      "published": true,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "independent scientific truth of the speaker's claim",
+        "any particular animal carrying bacteria"
+      ]
+    },
+    {
+      "case": 19,
+      "id": "train:10866:11:1",
+      "unit": "sentence",
+      "mode": "attested_sentence",
+      "published": true,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "whether the book is ultimately bought or read"
+      ]
+    },
+    {
+      "case": 20,
+      "id": "val:727:5:3",
+      "unit": "sentence",
+      "mode": "attested_sentence",
+      "published": true,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "single intended referent of it"
+      ]
+    },
+    {
+      "case": 21,
+      "id": "train:8875:6:2",
+      "unit": "sentence",
+      "mode": "attested_sentence",
+      "published": true,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "whether the reservation has been made",
+        "AM or PM without further context"
+      ]
+    },
+    {
+      "case": 22,
+      "id": "train:5794:1:1",
+      "unit": "sentence",
+      "mode": "attested_sentence",
+      "published": true,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "specific dates",
+        "whether Since is exclusively temporal rather than partly causal"
+      ]
+    },
+    {
+      "case": 23,
+      "id": "train:7812:14:1",
+      "unit": "sentence",
+      "mode": "attested_sentence",
+      "published": true,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "whether a return call occurs"
+      ]
+    },
+    {
+      "case": 26,
+      "id": "test:423:6:1",
+      "unit": "sentence",
+      "mode": "attested_sentence",
+      "published": true,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "loan approval",
+        "actual interest charged"
+      ]
+    },
+    {
+      "case": 27,
+      "id": "val:164:1:1",
+      "unit": "sentence",
+      "mode": "attested_sentence",
+      "published": true,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "speaker's job title",
+        "physical origin or travel"
+      ]
+    },
+    {
+      "case": 29,
+      "id": "train:1608:11:3",
+      "unit": "sentence",
+      "mode": "attested_sentence",
+      "published": true,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "whether Mr. Drummond is actually angry"
+      ]
+    },
+    {
+      "case": 30,
+      "id": "val:380:4:1",
+      "unit": "fragment",
+      "mode": "context_only",
+      "published": false,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "an independently completed meeting beyond the current greeting"
+      ]
+    },
+    {
+      "case": 33,
+      "id": "train:3857:5:1",
+      "unit": "fragment",
+      "mode": "context_only",
+      "published": false,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "whether great evaluates the dances, the preference, or the exchange in general"
+      ]
+    },
+    {
+      "case": 34,
+      "id": "train:8342:6:3",
+      "unit": "sentence",
+      "mode": "attested_sentence",
+      "published": true,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "whether peacekeepers are sent",
+        "who would compel the parties",
+        "whether negotiation occurs"
+      ]
+    },
+    {
+      "case": 35,
+      "id": "train:3234:4:1",
+      "unit": "fragment",
+      "mode": "context_only",
+      "published": false,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "whether the speaker already used the lipstick",
+        "precise nominal target of Great"
+      ]
+    },
+    {
+      "case": 37,
+      "id": "train:7771:8:2",
+      "unit": "fragment",
+      "mode": "context_only",
+      "published": false,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "actual price",
+        "whether payment or developing has occurred"
+      ]
+    },
+    {
+      "case": 38,
+      "id": "train:9801:8:1",
+      "unit": "sentence",
+      "mode": "attested_sentence",
+      "published": true,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "turbulence occurrence from this sentence alone",
+        "precise scope of the warning's truth"
+      ]
+    },
+    {
+      "case": 39,
+      "id": "test:310:17:1",
+      "unit": "fragment",
+      "mode": "context_only",
+      "published": false,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "whether the promised message is delivered later"
+      ]
+    },
+    {
+      "case": 40,
+      "id": "train:1533:2:2",
+      "unit": "sentence",
+      "mode": "context_only",
+      "published": false,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "a single explicit nominal target for tiring"
+      ]
+    },
+    {
+      "case": 41,
+      "id": "train:10383:16:1",
+      "unit": "fragment",
+      "mode": "context_only",
+      "published": false,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "whether tea is made or served"
+      ]
+    },
+    {
+      "case": 42,
+      "id": "train:2101:4:1",
+      "unit": "fragment",
+      "mode": "context_only",
+      "published": false,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "whether the speaker ever learns",
+        "whether any music was composed by the speaker"
+      ]
+    },
+    {
+      "case": 43,
+      "id": "train:7698:7:1",
+      "unit": "fragment",
+      "mode": "context_only",
+      "published": false,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "independent sales statistics",
+        "whether the customer buys it"
+      ]
+    },
+    {
+      "case": 44,
+      "id": "train:6653:4:1",
+      "unit": "fragment",
+      "mode": "context_only",
+      "published": false,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "whether supplies are obtained",
+        "whether photocopies are made"
+      ]
+    },
+    {
+      "case": 45,
+      "id": "train:10300:2:1",
+      "unit": "fragment",
+      "mode": "context_only",
+      "published": false,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "currency country",
+        "whether the amount is a paid bill or an estimate"
+      ]
+    },
+    {
+      "case": 46,
+      "id": "train:689:4:1",
+      "unit": "fragment",
+      "mode": "context_only",
+      "published": false,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "whether the loan offer is accepted",
+        "whether money is transferred"
+      ]
+    },
+    {
+      "case": 48,
+      "id": "val:347:14:1",
+      "unit": "sentence",
+      "mode": "attested_sentence",
+      "published": true,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "future compliance with advice"
+      ]
+    },
+    {
+      "case": 49,
+      "id": "train:10944:7:2",
+      "unit": "fragment",
+      "mode": "context_only",
+      "published": false,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "who will actually lose a job",
+        "truth of the affair rumor"
+      ]
+    },
+    {
+      "case": 50,
+      "id": "train:3934:2:1",
+      "unit": "fragment",
+      "mode": "context_only",
+      "published": false,
+      "factual_qa_approved": false,
+      "recombination_approved": false,
+      "unknown": [
+        "identity of the admirer",
+        "whether any later conversation occurs"
+      ]
+    }
+  ],
+  "full_rebuild": {
+    "status": "source_segmentation_complete",
+    "counts": {
+      "compiled_occurrences": 161294,
+      "reviewed_syntax_reuses": 1088,
+      "fragment_or_nonverbal_candidates": 26289,
+      "context_reviewed_occurrences": 293,
+      "context_syntax_corrections": 137,
+      "groups": 70823,
+      "entity_candidates": 10535,
+      "sample_cases": 108
+    },
+    "validation": {
+      "status": "passed",
+      "source_sha256": "030d9b92cc22a72f26f4658c0674a02e7ecdf3eee86f0b00455c5045205abd53",
+      "templates": 98793,
+      "attested_roundtrips": 107628,
+      "source_records": 161294,
+      "token_spans": 1377804,
+      "verbs_occurrences": 289391,
+      "adjectives_occurrences": 71977
+    },
+    "conservation": {
+      "status": "passed",
+      "counts": {
+        "old_segments": 161294,
+        "old_tokens": 1377804,
+        "new_segments": 161294,
+        "new_tokens": 1377804,
+        "unchanged_analyses": 161252,
+        "revised_outputs": 42
+      },
+      "explicit_token_delta": 0,
+      "reference_expansion_token_delta": 0,
+      "previous_preimages_retained": true
+    },
+    "dialogues": 12608,
+    "turns": 99224,
+    "previous_bank_unchanged": true,
+    "protected_files": 478,
+    "source_files_updated": 0,
+    "api_calls": 0,
+    "parser_inference_calls": 0,
+    "published": false,
+    "elapsed_seconds": 701.26
+  },
+  "publication": {
+    "admitted_occurrences": [
+      "train:10411:3:1",
+      "train:3612:2:1",
+      "train:1011:1:1",
+      "train:925:3:1",
+      "train:1770:4:3",
+      "train:11016:8:2",
+      "train:801:5:2",
+      "train:9228:6:1",
+      "train:546:4:1",
+      "val:683:3:1",
+      "train:5811:5:1",
+      "train:507:2:2",
+      "train:2935:2:1",
+      "train:6372:7:2",
+      "train:2920:9:1",
+      "train:6376:9:1",
+      "val:106:12:1",
+      "train:10866:11:1",
+      "val:727:5:3",
+      "train:8875:6:2",
+      "train:5794:1:1",
+      "train:7812:14:1",
+      "test:423:6:1",
+      "val:164:1:1",
+      "train:1608:11:3",
+      "train:8342:6:3",
+      "train:9801:8:1",
+      "val:347:14:1"
+    ],
+    "held_back": [
+      "val:380:4:1",
+      "train:3857:5:1",
+      "train:3234:4:1",
+      "train:7771:8:2",
+      "test:310:17:1",
+      "train:1533:2:2",
+      "train:10383:16:1",
+      "train:2101:4:1",
+      "train:7698:7:1",
+      "train:6653:4:1",
+      "train:10300:2:1",
+      "train:689:4:1",
+      "train:10944:7:2",
+      "train:3934:2:1"
+    ],
+    "validation": {
+      "status": "passed",
+      "source_sha256": "d354bad11b2995927a7ea05d3bebdbfd806a8257017cefff993d78076f31e54f",
+      "templates": 28,
+      "attested_roundtrips": 28,
+      "source_records": 28,
+      "token_spans": 203,
+      "verbs_occurrences": 42,
+      "adjectives_occurrences": 14
+    },
+    "api_calls": 0,
+    "parser_inference_calls": 0,
+    "published": true,
+    "bank_id": "dailydialog-hybrid-qc-admission-v1",
+    "previous_files_preserved": 344
+  },
+  "verification": {
+    "status": "passed",
+    "applied_qc_cases": 42,
+    "earlier_qc_cases_preserved": 8,
+    "original_quality_report_preserved": true,
+    "previous_retired_preimages_present": 5,
+    "exact_compiled_outputs_matched": 50,
+    "current_preimages_retained": 42,
+    "previous_manual_dialogues_unchanged": 510,
+    "protected_input_files_verified": 454,
+    "source_contexts_identical": true,
+    "source_files_updated": 0,
+    "identical_text_contexts_kept_distinct": true,
+    "admitted_sentences": 28,
+    "context_only": 14,
+    "published": true,
+    "templates_published": 28,
+    "published_records_exactly_match": true,
+    "previous_published_qc_templates_preserved": 5,
+    "bank_id": "dailydialog-hybrid-qc-admission-v1",
+    "previous_pool_files_preserved": 344
+  },
+  "preflight": {
+    "status": "passed",
+    "reviews": 42,
+    "input_occurrences": 42,
+    "output_occurrences": 42,
+    "attested_sentences": 28,
+    "context_only": 14,
+    "source_contexts_unchanged": true,
+    "syntax_tokens_unchanged": true,
+    "renderings": 126,
+    "slot_replacements_rejected": 40,
+    "literal_only_records_reject_invented_slots": 2,
+    "derived_factual_qa": 0,
+    "explicit_property_bindings": 2,
+    "duplicate_contexts": [
+      {
+        "id": "train:6372:7:2",
+        "duplicate_of": "train:5858"
+      },
+      {
+        "id": "val:727:5:3",
+        "duplicate_of": "train:3664"
+      },
+      {
+        "id": "train:7812:14:1",
+        "duplicate_of": "train:6211"
+      },
+      {
+        "id": "train:10383:16:1",
+        "duplicate_of": "train:3070"
+      }
+    ],
+    "baseline_report_sha256": "c851a8a23ae51cce27a76dd5143db6c59f1965733528187951ac8daef22cc5b9",
+    "parser_inference_calls": 0,
+    "api_calls": 0
+  },
+  "apostrophe_audit": {
+    "status": "passed",
+    "normalized_segments": 161294,
+    "ascii_apostrophes": 49400,
+    "noncanonical_apostrophes": 0,
+    "target": "'",
+    "original_contexts_preserved": true,
+    "previous_contexts_retained_in_source_candidate": true,
+    "source_corrections_explicit": true
+  },
+  "tests": {
+    "passed": 119,
+    "report": "artifacts/dailydialog-qc-admission-v1/tests.xml"
+  },
+  "generation": {
+    "profiles": {
+      "dialogue-smoke-user-assistant": {
+        "parameters": {
+          "train": 1,
+          "validation": 1,
+          "test": 1,
+          "seed": 20261013,
+          "user_assistant_only": true,
+          "include_metadata": false,
+          "mined_train": 0,
+          "max_length": 768
+        },
+        "episodes": 131,
+        "extraction_rows": 373,
+        "quoted_episodes": 83,
+        "observed_source_ids": [
+          "train:1011:1:1",
+          "train:10411:3:1",
+          "train:10866:11:1",
+          "train:1608:11:3",
+          "train:1770:4:3",
+          "train:2920:9:1",
+          "train:2935:2:1",
+          "train:507:2:2",
+          "train:546:4:1",
+          "train:5794:1:1",
+          "train:7812:14:1",
+          "train:8342:6:3",
+          "train:8875:6:2",
+          "train:9228:6:1",
+          "train:9801:8:1",
+          "val:106:12:1",
+          "val:347:14:1",
+          "val:683:3:1",
+          "val:727:5:3"
+        ],
+        "max_tokens": {
+          "history": 282,
+          "memory": 278,
+          "extraction": 687
+        },
+        "rejected_episodes": 0,
+        "dataset": "artifacts/dailydialog-hybrid-qc-admission-admitted-v1/dialogue-smoke-user-assistant",
+        "independent_audit": "artifacts/dailydialog-hybrid-qc-admission-admitted-v1/dialogue-smoke-user-assistant-audit.json"
+      },
+      "dialogue-smoke-named": {
+        "parameters": {
+          "train": 1,
+          "validation": 1,
+          "test": 1,
+          "seed": 20261013,
+          "user_assistant_only": false,
+          "include_metadata": false,
+          "mined_train": 0,
+          "max_length": 768
+        },
+        "episodes": 134,
+        "extraction_rows": 387,
+        "quoted_episodes": 83,
+        "observed_source_ids": [
+          "train:1011:1:1",
+          "train:10411:3:1",
+          "train:10866:11:1",
+          "train:1608:11:3",
+          "train:1770:4:3",
+          "train:2920:9:1",
+          "train:2935:2:1",
+          "train:507:2:2",
+          "train:546:4:1",
+          "train:5794:1:1",
+          "train:7812:14:1",
+          "train:8342:6:3",
+          "train:8875:6:2",
+          "train:9228:6:1",
+          "train:9801:8:1",
+          "val:106:12:1",
+          "val:347:14:1",
+          "val:683:3:1",
+          "val:727:5:3"
+        ],
+        "max_tokens": {
+          "history": 282,
+          "memory": 278,
+          "extraction": 687
+        },
+        "rejected_episodes": 0,
+        "dataset": "artifacts/dailydialog-hybrid-qc-admission-admitted-v1/dialogue-smoke-named",
+        "independent_audit": "artifacts/dailydialog-hybrid-qc-admission-admitted-v1/dialogue-smoke-named-audit.json"
+      }
+    },
+    "available_heads": [
+      "appreciate",
+      "arrange",
+      "assign",
+      "become",
+      "bet",
+      "carry",
+      "come",
+      "do",
+      "force",
+      "know",
+      "like",
+      "love",
+      "mean",
+      "miss",
+      "negotiate",
+      "realise",
+      "see",
+      "sound",
+      "take",
+      "thank",
+      "understand",
+      "use",
+      "want",
+      "war",
+      "warn",
+      "will",
+      "would"
+    ],
+    "all_surface_templates_checked": 28,
+    "synthetic": {
+      "status": "passed",
+      "operation": "TemplateBank.generate with Synthetic corpus predicate policy",
+      "count_per_template": 1,
+      "seed": 20261013,
+      "outputs": 21,
+      "source_ids": [
+        "train:7812:14:1",
+        "train:507:2:2",
+        "train:1011:1:1",
+        "train:1770:4:3",
+        "val:347:14:1",
+        "train:9228:6:1",
+        "val:683:3:1",
+        "train:3612:2:1",
+        "train:10411:3:1",
+        "train:11016:8:2",
+        "train:8875:6:2",
+        "train:5811:5:1",
+        "train:2920:9:1",
+        "train:8342:6:3",
+        "train:546:4:1",
+        "train:801:5:2",
+        "train:10866:11:1",
+        "train:6376:9:1",
+        "train:2935:2:1",
+        "val:727:5:3",
+        "val:106:12:1"
+      ],
+      "derived_factual_qa": 0
+    },
+    "recombination_approved": false,
+    "dependency_factual_qa_approved": false,
+    "note": "Dialogue smoke runs exercise 19 distinct source attestations per profile. All 28 templates are checked separately for exact rendering; this is not a claim that all 28 were sampled in dialogues."
+  },
+  "whole_qc_sample": {
+    "total": 50,
+    "applied_in_previous_batch": 8,
+    "applied_in_this_batch": 42,
+    "admitted_exact_sentences": 33,
+    "held_context_only": 17,
+    "earlier_result": "data/dailydialog/review-parts/hybrid-quality-control-fixes-result-v1.json"
+  },
+  "limitations": [
+    "Diagnostic stratified sample, not a corpus-wide accuracy estimate.",
+    "Contextual interpretations apply to the selected occurrences only.",
+    "Context-only fragments are preserved in the candidate; they are not automatically admitted to a fragment training task.",
+    "The remaining candidate is UNREVIEWED. No blanket approval of similar sentences or of factual QA."
+  ],
+  "api_calls": 0,
+  "parser_inference_calls": 0,
+  "training_runs": 0
+}

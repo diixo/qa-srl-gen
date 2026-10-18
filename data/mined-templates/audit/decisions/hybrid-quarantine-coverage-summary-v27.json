@@ -1,0 +1,1657 @@
+{
+  "version": "quarantine-adapter-coverage-v27",
+  "status": "passed",
+  "ledger": "data/dailydialog/review-parts/luna-offline-originals-v26",
+  "catalog": "data/mined-templates/reviewed/dialogue-fragments.json",
+  "catalog_sha256": "5fa7548523a1c995075179337caa0c28e35f2fce530ab689edcd80483d558037",
+  "catalog_patterns": 605,
+  "warning_count": 353,
+  "occurrences": 345,
+  "occurrences_with_original_adapter": 199,
+  "occurrences_without_original_adapter": 146,
+  "warnings_with_at_least_one_usable_occurrence": 204,
+  "warnings_with_at_least_one_uncovered_occurrence": 150,
+  "partially_covered_warning_count": 1,
+  "uncovered_by_split": {
+    "test": 132,
+    "train": 14
+  },
+  "coverage_path": "data/dailydialog/review-parts/hybrid-quarantine-coverage-v27.jsonl.gz",
+  "coverage_sha256": "674163ebeecfcb32bd9e4ba17c164379ac9e8032894c5e106682ff0950e3e19d",
+  "uncovered": [
+    {
+      "id": "test:9:5:1",
+      "candidate_text": "Which condiment do you use for?",
+      "warning_keys": [
+        [
+          "test:9:5:1",
+          1,
+          "ea59eaca8b08fc0d3d17fb42dd00bc70f13869e1bfe024ee6060c13ab7889b5c"
+        ]
+      ]
+    },
+    {
+      "id": "test:28:6:2",
+      "candidate_text": "This is the notes.",
+      "warning_keys": [
+        [
+          "test:28:6:2",
+          0,
+          "734d4d3083bc8c0c10ee42954650b514b5d6d7fddb3bffeb9b1a8533b5ea29f0"
+        ]
+      ]
+    },
+    {
+      "id": "test:34:2:2",
+      "candidate_text": "I plan the advertising campaign and cooperate the work of artists and typographers.",
+      "warning_keys": [
+        [
+          "test:34:2:2",
+          0,
+          "abd74919e2911d2ab077d2fdfc5757da5354f27fb412f255e7c97d815f443829"
+        ]
+      ]
+    },
+    {
+      "id": "test:34:7:1",
+      "candidate_text": "Have you had any experience with computer?",
+      "warning_keys": [
+        [
+          "test:34:7:1",
+          0,
+          "548371793091e89b1ab2865891e6ef1bfa76f0d415f9651eb51c36e3096c093e"
+        ]
+      ]
+    },
+    {
+      "id": "test:44:6:2",
+      "candidate_text": "The fur market is not very brisk lately, but the selling season is advancing near.",
+      "warning_keys": [
+        [
+          "test:44:6:2",
+          0,
+          "6753e60d950724e6a31ae4ebaa0bd4960856d96e46881ec83f7f3b8a1c8bad6a"
+        ]
+      ]
+    },
+    {
+      "id": "test:45:3:2",
+      "candidate_text": "Oh, what we live!",
+      "warning_keys": [
+        [
+          "test:45:3:2",
+          0,
+          "e61840a79e599ef24e74bef99486e63b432363356d79a81cdb6e8832d45154b4"
+        ]
+      ]
+    },
+    {
+      "id": "test:46:2:1",
+      "candidate_text": "You can buy the bubble wrap here, but you'll have to stand in line over here to post your passage.",
+      "warning_keys": [
+        [
+          "test:46:2:1",
+          0,
+          "e2077446672c601c67c18232d4b4e696ebeb104fe1c169d968dc74334fe1afa0"
+        ]
+      ]
+    },
+    {
+      "id": "test:51:6:2",
+      "candidate_text": "You know we exports would like to have our investments returned as early as possible.",
+      "warning_keys": [
+        [
+          "test:51:6:2",
+          0,
+          "442328188dcdb6e217a71551a3e199cbd509108dedc3ba07ae418de3372ce5f1"
+        ]
+      ]
+    },
+    {
+      "id": "test:55:7:3",
+      "candidate_text": "It is really taste like heaven.",
+      "warning_keys": [
+        [
+          "test:55:7:3",
+          0,
+          "d5a057f751bbbb724356093e93b2470da45ee5b08759a6c810fb286e6fa0d080"
+        ]
+      ]
+    },
+    {
+      "id": "test:68:2:2",
+      "candidate_text": "I have to stay in your cry for just one day, can you suggest a short tour?",
+      "warning_keys": [
+        [
+          "test:68:2:2",
+          0,
+          "cd6b3290b61fb0131f542be52bce083038fd1c409d209337a83660fef0205b88"
+        ]
+      ]
+    },
+    {
+      "id": "test:74:10:1",
+      "candidate_text": "Have you ever designed any programs concerning network?",
+      "warning_keys": [
+        [
+          "test:74:10:1",
+          0,
+          "8005e86a68b093224ed7ebf9362aeb86f05b4ab5accf01a4f12b0feaf77bed39"
+        ]
+      ]
+    },
+    {
+      "id": "test:95:9:1",
+      "candidate_text": "I found them at JC Pennies.",
+      "warning_keys": [
+        [
+          "test:95:9:1",
+          0,
+          "bd04043fddba30c2f2ac93ff68053f9e0594f59289063624ff02a5e11f4dc32c"
+        ]
+      ]
+    },
+    {
+      "id": "test:116:4:1",
+      "candidate_text": "They are keep the documents in chronological order, remove all the chips and pins, punch the documents evenly and place them in the folder.",
+      "warning_keys": [
+        [
+          "test:116:4:1",
+          0,
+          "64d6f6c5e4c3b80014814054ff9dcac1e80ea61b5b4bd3f7c24be3175e7f8490"
+        ],
+        [
+          "test:116:4:1",
+          1,
+          "d00cdd2c4adf5a41e08ed4879272a41519fb7b4a3ea07ed4b9c86d283240f474"
+        ]
+      ]
+    },
+    {
+      "id": "test:124:3:1",
+      "candidate_text": "I'm in such a need of the job that I can't afford any mistakes.",
+      "warning_keys": [
+        [
+          "test:124:3:1",
+          1,
+          "6f8d345c4c21be95bc1e8f53eb031c1579d4efc89c26da9b35e63e7255cd0d3c"
+        ]
+      ]
+    },
+    {
+      "id": "test:142:8:2",
+      "candidate_text": "That's to say s 611 each set.",
+      "warning_keys": [
+        [
+          "test:142:8:2",
+          0,
+          "c25135fe7dd77afdf48d03a6e94bba9e42d92706a51a668c210cdbb304b6e861"
+        ]
+      ]
+    },
+    {
+      "id": "test:153:2:1",
+      "candidate_text": "Is your blood pressure, I'm afraid.",
+      "warning_keys": [
+        [
+          "test:153:2:1",
+          1,
+          "7115b5afb51998923b7ae6170e858f8a6420d3d841bb30b53ba3761771f9df92"
+        ]
+      ]
+    },
+    {
+      "id": "test:162:2:1",
+      "candidate_text": "I want to American breakfast with fried eggs sunny side up.",
+      "warning_keys": [
+        [
+          "test:162:2:1",
+          0,
+          "3e111c0817ba18873ca9f64017b5ea6ac7df6992359fa665a76145cd2f657c91"
+        ]
+      ]
+    },
+    {
+      "id": "test:162:5:4",
+      "candidate_text": "And my correct, sir?",
+      "warning_keys": [
+        [
+          "test:162:5:4",
+          0,
+          "9eb0c9c47e1098602fa911674bc9d92aa521028b1ce74a72c0213cee8bb0944d"
+        ]
+      ]
+    },
+    {
+      "id": "test:165:8:3",
+      "candidate_text": "A nice collection jades of are on display and sold.",
+      "warning_keys": [
+        [
+          "test:165:8:3",
+          0,
+          "e245998b238ab52ed2377ae1c417c7dce43b5fb6753df0d5834b236383bea4c0"
+        ]
+      ]
+    },
+    {
+      "id": "test:166:6:1",
+      "candidate_text": "How much is the excess baggage part charge?",
+      "warning_keys": [
+        [
+          "test:166:6:1",
+          1,
+          "5796d89cd8b17e68cb8ac11f1bb35f300cd0b7bc8b76de8e8a0329fecf2e1e0c"
+        ]
+      ]
+    },
+    {
+      "id": "test:171:5:1",
+      "candidate_text": "I remember that I never saw an X moves even displayed.",
+      "warning_keys": [
+        [
+          "test:171:5:1",
+          0,
+          "808d2b0d6494f4ed89cd803083ee0978a56e7adc559166e780dde71963b0aef3"
+        ]
+      ]
+    },
+    {
+      "id": "test:177:6:1",
+      "candidate_text": "All the sightseeing in China is very attractive and crescive.",
+      "warning_keys": [
+        [
+          "test:177:6:1",
+          0,
+          "d9338b4a56cd3a607abe89b865dc3f154b52e83e4e920ebfa8e8a4de5c390dd5"
+        ]
+      ]
+    },
+    {
+      "id": "test:186:4:2",
+      "candidate_text": "It was painted by a famous Chinese painter in King Dynasty.",
+      "warning_keys": [
+        [
+          "test:186:4:2",
+          0,
+          "253900be07f6ed45cced11283dc5852740644c3f82673696390022aeebbac21e"
+        ]
+      ]
+    },
+    {
+      "id": "test:190:6:2",
+      "candidate_text": "Can I take a look at the Sirs you carry?",
+      "warning_keys": [
+        [
+          "test:190:6:2",
+          1,
+          "8366f70f6fd812c61ee323926eb0bf8149892ae2f362a2ceffd9115c926f17bc"
+        ]
+      ]
+    },
+    {
+      "id": "test:203:1:2",
+      "candidate_text": "I bought a China dress in your shop this morning.",
+      "warning_keys": [
+        [
+          "test:203:1:2",
+          0,
+          "169fa3b4de0f3e74e0971812e6de99d7ad8a98f42cf2ceb67bc4bc00580bffeb"
+        ]
+      ]
+    },
+    {
+      "id": "test:234:9:2",
+      "candidate_text": "You look anilic.",
+      "warning_keys": [
+        [
+          "test:234:9:2",
+          0,
+          "379d596e0a3667f715171b5c0f842c2a5ba96fa269a67798d0476a2c703dc747"
+        ]
+      ]
+    },
+    {
+      "id": "test:259:2:5",
+      "candidate_text": "I'm shocked that the pole",
+      "warning_keys": [
+        [
+          "test:259:2:5",
+          0,
+          "2df5b3bf8bd319d5dcd3e5d238d1e74ad308c19e1443eb52f5de56305ebdb1b0"
+        ]
+      ]
+    },
+    {
+      "id": "test:275:4:4",
+      "candidate_text": "I had that job ever since, which is just over a year now.",
+      "warning_keys": [
+        [
+          "test:275:4:4",
+          0,
+          "fa51c26503cb9375244a0d7a333ed8b0f78ee51da7aaab570d0716cdc6e89f90"
+        ]
+      ]
+    },
+    {
+      "id": "test:278:11:1",
+      "candidate_text": "I got a replace my party outfit, I trashed it last week.",
+      "warning_keys": [
+        [
+          "test:278:11:1",
+          0,
+          "ccb57b7d1d16c96371e6b57ff0e38416f42fc43f3d82db7be53ac0f066278ba4"
+        ]
+      ]
+    },
+    {
+      "id": "test:283:2:1",
+      "candidate_text": "I'm ask for a pizza, please.",
+      "warning_keys": [
+        [
+          "test:283:2:1",
+          0,
+          "785d80e34b21ec9074fafc0ccf1bc8a42dbf207f468345f0a454a6c66c643979"
+        ]
+      ]
+    },
+    {
+      "id": "test:284:7:1",
+      "candidate_text": "Take on after each meal.",
+      "warning_keys": [
+        [
+          "test:284:7:1",
+          0,
+          "7a0bca196a9912e4b1c768aa0fb4281cc01e43d501ded102b0e171e2f1c2f968"
+        ]
+      ]
+    },
+    {
+      "id": "test:286:7:1",
+      "candidate_text": "I'm be right behind ya!",
+      "warning_keys": [
+        [
+          "test:286:7:1",
+          0,
+          "e1b3c7ddf17eaf7ccffaf41a018b28f4ed2612fb9f83a10bb1c6859402765fe1"
+        ]
+      ]
+    },
+    {
+      "id": "test:299:1:1",
+      "candidate_text": "Marketing manage office, can I help you?",
+      "warning_keys": [
+        [
+          "test:299:1:1",
+          0,
+          "040dc97d0c5372ae2b329498b309a423abaecafe1b6fc3b1cc492663d3b15e0e"
+        ]
+      ]
+    },
+    {
+      "id": "test:299:4:1",
+      "candidate_text": "What time you suspect back them?",
+      "warning_keys": [
+        [
+          "test:299:4:1",
+          1,
+          "4a5dba8837f3b7379222f267dc8981e3fe8dabc2346cf88dbe85418dd3723ba8"
+        ]
+      ]
+    },
+    {
+      "id": "test:318:6:2",
+      "candidate_text": "You know tired as a dog, so I took a quick shower and went to bed.",
+      "warning_keys": [
+        [
+          "test:318:6:2",
+          0,
+          "19b50651462bd636f693c5d214b6079871d1cca0b6ecf1e4853c7bf560af793f"
+        ]
+      ]
+    },
+    {
+      "id": "test:349:1:1",
+      "candidate_text": "Is the right counter to check in for this flight?",
+      "warning_keys": [
+        [
+          "test:349:1:1",
+          0,
+          "c78c000070244a11c69031aee563e394227eef9f422838bd401388a8d08612f3"
+        ]
+      ]
+    },
+    {
+      "id": "test:353:5:1",
+      "candidate_text": "Oh, come on, they give them treat too.",
+      "warning_keys": [
+        [
+          "test:353:5:1",
+          1,
+          "3530abb4c8687c23766d34638bf4994cdc489ce7b52089aec12b56592f462cac"
+        ]
+      ]
+    },
+    {
+      "id": "test:354:2:2",
+      "candidate_text": "When I was sales manager at the Beijing Friendship Store.",
+      "warning_keys": [
+        [
+          "test:354:2:2",
+          0,
+          "d5d9a59549738a33c5b5b33cc2e2c3925854dee7fccf6d5349008e1fe2031139"
+        ]
+      ]
+    },
+    {
+      "id": "test:354:4:2",
+      "candidate_text": "I'll create further achievement in the future.",
+      "warning_keys": [
+        [
+          "test:354:4:2",
+          0,
+          "70edaad083b6c1d850f1efe7c9a739092e304e3371ba18bcc14669e15c3e71d3"
+        ]
+      ]
+    },
+    {
+      "id": "test:360:2:2",
+      "candidate_text": "One of your duties is to know the number of the customer and accept reservation.",
+      "warning_keys": [
+        [
+          "test:360:2:2",
+          0,
+          "60c87476f200b471b677465644b331c61c952c9e1a39d31ab197b49c2a164f5b"
+        ]
+      ]
+    },
+    {
+      "id": "test:364:2:4",
+      "candidate_text": "You have to be very c",
+      "warning_keys": [
+        [
+          "test:364:2:4",
+          0,
+          "236d803bbf2f076e168de9534287150ef6f2d6eac1195204f4d72a3fbed75441"
+        ]
+      ]
+    },
+    {
+      "id": "test:366:6:1",
+      "candidate_text": "It is RIB 10 yuan initially and 2 yuan for each kilometer.",
+      "warning_keys": [
+        [
+          "test:366:6:1",
+          1,
+          "5e2a99a3127a06209e7bb2b2c42072124fc8fd243adc1df00f533404edbf4909"
+        ]
+      ]
+    },
+    {
+      "id": "test:369:7:1",
+      "candidate_text": "That's coincident 。",
+      "warning_keys": [
+        [
+          "test:369:7:1",
+          0,
+          "034ef1e54baf6ccea4114eb3cb01d19e9b61ed5b4b624b9f8cfa385e4e6e2a53"
+        ]
+      ]
+    },
+    {
+      "id": "test:377:8:1",
+      "candidate_text": "Anyway, how was your such, Catherine?",
+      "warning_keys": [
+        [
+          "test:377:8:1",
+          0,
+          "6329adc8d0f0f681560850b84487137d8bbd907ee98d1b046b76a1893e49b90e"
+        ]
+      ]
+    },
+    {
+      "id": "test:378:5:2",
+      "candidate_text": "Also amongst the winners is Petra, in Jordan, Mach Pitch in Peru and the pyramid in Chichenitza in Mexico.",
+      "warning_keys": [
+        [
+          "test:378:5:2",
+          0,
+          "d4d3669fa9eb1590ed32a858b353918f61436d62cda4d58b7b0aa2754cb1ad34"
+        ],
+        [
+          "test:378:5:2",
+          1,
+          "99df3be171066d125c7583dc1e8c7039dce111944e6736e1f0fca7ccf931cf0e"
+        ]
+      ]
+    },
+    {
+      "id": "test:378:6:2",
+      "candidate_text": "It also says that the Christ Re-deemer statue in Brazil and the Colosseum in Rome are wonders.",
+      "warning_keys": [
+        [
+          "test:378:6:2",
+          0,
+          "b67feb39b4f89f890cc898a1e874e8b5a1a481e3a60fff5f6049544736dd85cd"
+        ]
+      ]
+    },
+    {
+      "id": "test:396:12:1",
+      "candidate_text": "Their goalkeepers got injured after the first goal, but he kept on playing anyway.",
+      "warning_keys": [
+        [
+          "test:396:12:1",
+          0,
+          "a8af6c28ea9dc3583afb79f3d6968665cfe7253a36c54aedbdb29a154abbd3e6"
+        ]
+      ]
+    },
+    {
+      "id": "test:402:6:1",
+      "candidate_text": "I heard Chinese medicine has a better lasting effect in cure.",
+      "warning_keys": [
+        [
+          "test:402:6:1",
+          1,
+          "0173d7c158dd5ba0662c10f242a29487fcec080183d5ceecfb27df1b330ee375"
+        ]
+      ]
+    },
+    {
+      "id": "test:408:5:1",
+      "candidate_text": "Model of computers aren't compatible?",
+      "warning_keys": [
+        [
+          "test:408:5:1",
+          1,
+          "a047525a780b16df0940202018e9180b36268c7d2a7a300ab5a91027261c4288"
+        ]
+      ]
+    },
+    {
+      "id": "test:409:3:1",
+      "candidate_text": "Oh, yeah, It's quite of variety.",
+      "warning_keys": [
+        [
+          "test:409:3:1",
+          0,
+          "b29d33dc5a0666664cda8f95a81d58bbbca94b604ed9ced1399bd30354598092"
+        ]
+      ]
+    },
+    {
+      "id": "test:415:2:2",
+      "candidate_text": "The reporting desk for the British Airway's flight to London is over there.",
+      "warning_keys": [
+        [
+          "test:415:2:2",
+          0,
+          "b071ac77448d355ac47548d7214ec572d886f7412e21c577ad6ad770ce0ee34f"
+        ]
+      ]
+    },
+    {
+      "id": "test:418:7:1",
+      "candidate_text": "I agree that yours are of the top.",
+      "warning_keys": [
+        [
+          "test:418:7:1",
+          0,
+          "55fa276a95283597b47750ceb4682551c76b27e4549fd21183e831357a0a0575"
+        ]
+      ]
+    },
+    {
+      "id": "test:420:10:1",
+      "candidate_text": "Bank of American card.",
+      "warning_keys": [
+        [
+          "test:420:10:1",
+          0,
+          "f32ea1df9905eb3ad6a74161076e5e8278555b92e46144c69b5e29c09b0bd5d8"
+        ]
+      ]
+    },
+    {
+      "id": "test:444:4:1",
+      "candidate_text": "No, but we've got a hurry.",
+      "warning_keys": [
+        [
+          "test:444:4:1",
+          0,
+          "5663a78fbf4969a117358ce475362e466f46c0b8bbfc27d24a5d3ce4a8f99571"
+        ]
+      ]
+    },
+    {
+      "id": "test:458:2:3",
+      "candidate_text": "First, you should obey the traffic rules, don't break in the red light.",
+      "warning_keys": [
+        [
+          "test:458:2:3",
+          0,
+          "202e2fdfb8c56ae7987fd77e68a8ff649525029c7f2af176ebe9a84a5d592576"
+        ]
+      ]
+    },
+    {
+      "id": "test:458:2:5",
+      "candidate_text": "Third, do not hurry up when riding, or would make an accident.",
+      "warning_keys": [
+        [
+          "test:458:2:5",
+          0,
+          "e23bcfc38deec729585587d95299887c52ec2d014845bbef7b2ae784140f9b30"
+        ],
+        [
+          "test:458:2:5",
+          1,
+          "f9d6a4639105ebe886a01c2c9e8df83b7fd963102991e68f1cf44e8874ae18b6"
+        ]
+      ]
+    },
+    {
+      "id": "test:463:11:2",
+      "candidate_text": "I'm afraid They'll be in excess luggage charge, Sir.",
+      "warning_keys": [
+        [
+          "test:463:11:2",
+          1,
+          "4a056f45d4164961abbb589e6d184f745b351a3843a4d3384ccd07a46ce4ac99"
+        ]
+      ]
+    },
+    {
+      "id": "test:476:3:1",
+      "candidate_text": "We have many kinds of different purpose.",
+      "warning_keys": [
+        [
+          "test:476:3:1",
+          0,
+          "f38c7cf60d4292ff211acd515688bb9fe8a41548a37ac83ef49ea8ba92ebe232"
+        ]
+      ]
+    },
+    {
+      "id": "test:493:3:2",
+      "candidate_text": "B",
+      "warning_keys": [
+        [
+          "test:493:3:2",
+          0,
+          "a8fee753044af9d93ea285885b94ba5d7b33ceb95533eda56ce51424beb07d2d"
+        ]
+      ]
+    },
+    {
+      "id": "test:495:5:2",
+      "candidate_text": ":",
+      "warning_keys": [
+        [
+          "test:495:5:2",
+          0,
+          "1dd891e346b10a60cc289a53e7afb6c0ad6cb6ef58d4eb4883d489aa109be499"
+        ]
+      ]
+    },
+    {
+      "id": "test:504:5:1",
+      "candidate_text": "Small rooms, small window, a small desk shared by three people.",
+      "warning_keys": [
+        [
+          "test:504:5:1",
+          0,
+          "ffa05660634817ae05ea46ba75d14e765a2c3dfd1075dacbbf305659e459f876"
+        ]
+      ]
+    },
+    {
+      "id": "test:506:5:2",
+      "candidate_text": "Could you tell many balance?",
+      "warning_keys": [
+        [
+          "test:506:5:2",
+          0,
+          "2de36c8a5edd46a23fd3d8c1696aa82da7803f17c638fa3c3c2ff7755ce244ba"
+        ]
+      ]
+    },
+    {
+      "id": "test:512:8:3",
+      "candidate_text": "What I usually find is that some combination of my schedule easily as these things unfold because I've already visualized what could happen and how I'd react.",
+      "warning_keys": [
+        [
+          "test:512:8:3",
+          1,
+          "2accb0701b5650c789a5995530fae71ca89ea55c81632dbf66db4aff81495337"
+        ]
+      ]
+    },
+    {
+      "id": "test:542:2:1",
+      "candidate_text": "Marry Lin please.",
+      "warning_keys": [
+        [
+          "test:542:2:1",
+          1,
+          "499e31318d6781f91e6c7786f2df84ccbf3d343b2cccd4d3239403c5a700ed66"
+        ]
+      ]
+    },
+    {
+      "id": "test:559:1:1",
+      "candidate_text": "Who's it knocking at the door?",
+      "warning_keys": [
+        [
+          "test:559:1:1",
+          0,
+          "52c213b85a857635235e4f9710d4e60c2fd36e211bab95539c5325523040db72"
+        ]
+      ]
+    },
+    {
+      "id": "test:570:2:1",
+      "candidate_text": "No, but I heard about that Angelina Jolie and Brad Pitt didn't attend.",
+      "warning_keys": [
+        [
+          "test:570:2:1",
+          0,
+          "e36df333e400cf19352fc16832bd6dbb8503a9bb60a91b03727352967ac96a97"
+        ]
+      ]
+    },
+    {
+      "id": "test:584:1:2",
+      "candidate_text": "Mr. Macmillan, would like to know if you have the completed schedule for next week?",
+      "warning_keys": [
+        [
+          "test:584:1:2",
+          0,
+          "6a01259fd4bd733d7ce36a2cdea9015aa68467be99aaa23024d06bd86ad70226"
+        ]
+      ]
+    },
+    {
+      "id": "test:587:2:2",
+      "candidate_text": "I heard you are a staff of Nokia company.",
+      "warning_keys": [
+        [
+          "test:587:2:2",
+          0,
+          "866d0afb6d9eeecade08c1b5eb170ef972b8c05900039cf1d04ea19eeb296bc0"
+        ]
+      ]
+    },
+    {
+      "id": "test:590:4:3",
+      "candidate_text": "Have we decided on the location of",
+      "warning_keys": [
+        [
+          "test:590:4:3",
+          1,
+          "84ed31f2c343c364d4161dfa37fbf2b0a9d746c8a0e33d5b8e60c086d29ffd34"
+        ]
+      ]
+    },
+    {
+      "id": "test:603:2:1",
+      "candidate_text": "I'd love to, the movies are smash hit.",
+      "warning_keys": [
+        [
+          "test:603:2:1",
+          1,
+          "b71d198de1ceebb729cd9ed076fbb7a5b281d6a01a558a0f23821e04a3d30236"
+        ]
+      ]
+    },
+    {
+      "id": "test:605:6:1",
+      "candidate_text": "I'll have another cup of beer insist.",
+      "warning_keys": [
+        [
+          "test:605:6:1",
+          0,
+          "dccfe8e783e1df308d4db1bf2aa5833837ca892d9c7835d585cf410bcd520a35"
+        ]
+      ]
+    },
+    {
+      "id": "test:609:3:2",
+      "candidate_text": "Do you know how to practise Bungfu?",
+      "warning_keys": [
+        [
+          "test:609:3:2",
+          0,
+          "53244768bac3aea269ea74931afe69384796b1681b726a29000eed56c649fb6a"
+        ]
+      ]
+    },
+    {
+      "id": "test:615:4:2",
+      "candidate_text": "When I looked out of the windows of the rain, all the lands that I could see are as dry as a bone.",
+      "warning_keys": [
+        [
+          "test:615:4:2",
+          0,
+          "3bf6e4218dd0a4d1bf083ac921c9bf13fb4989dc936e45a764befa4cf81aefdd"
+        ]
+      ]
+    },
+    {
+      "id": "test:638:10:1",
+      "candidate_text": "He watches the tob too much.",
+      "warning_keys": [
+        [
+          "test:638:10:1",
+          1,
+          "08f34ff28d12d89b8f695619f24461bcd536b979288277cbb385895125c62e24"
+        ]
+      ]
+    },
+    {
+      "id": "test:640:5:2",
+      "candidate_text": "I like the Thom Birds best.",
+      "warning_keys": [
+        [
+          "test:640:5:2",
+          0,
+          "ba2d6b68c6442420d3b95f5b5ab5de5a11a9f83bffc49709659e80b10e8eee8b"
+        ]
+      ]
+    },
+    {
+      "id": "test:646:3:1",
+      "candidate_text": "Yes, I am applying on it.",
+      "warning_keys": [
+        [
+          "test:646:3:1",
+          0,
+          "b9c22c93514cc3d10d9cf9562356fdd8a9e287b71b16422cf4f5461041430c8f"
+        ]
+      ]
+    },
+    {
+      "id": "test:646:6:1",
+      "candidate_text": "I know, but geology of the American west is my major interest and I have done a large reading in the field.",
+      "warning_keys": [
+        [
+          "test:646:6:1",
+          0,
+          "b285ed76696e17a8724918e9e00fcada19deab4c787dd17ad48ca7a5008e93c4"
+        ]
+      ]
+    },
+    {
+      "id": "test:656:9:2",
+      "candidate_text": "Realplayer is a good.",
+      "warning_keys": [
+        [
+          "test:656:9:2",
+          0,
+          "c74c2d3a1ee88d1576d71f6ceafccf912bea535231c6086693de8722c347d311"
+        ]
+      ]
+    },
+    {
+      "id": "test:667:3:2",
+      "candidate_text": "It probably be Charles...",
+      "warning_keys": [
+        [
+          "test:667:3:2",
+          0,
+          "14f4a441cb3a06d2ae430da4f0e866605b2e2c99954037da6e0991a84371de2f"
+        ]
+      ]
+    },
+    {
+      "id": "test:672:8:2",
+      "candidate_text": "Some people spend ridiculous amounts of money on extravagant wedding receptions, but we agreed t",
+      "warning_keys": [
+        [
+          "test:672:8:2",
+          0,
+          "cd87e160522f619fc1e08f9ecf6d793b29ecc2ba9d5f1c99f21d9539f7d20e1a"
+        ]
+      ]
+    },
+    {
+      "id": "test:673:2:1",
+      "candidate_text": "I'd love to, the movies are smash hit.",
+      "warning_keys": [
+        [
+          "test:673:2:1",
+          1,
+          "8f59512c312409ebd0f1361350b23c2b3524e10402f86ec36a8f56e81478b03c"
+        ]
+      ]
+    },
+    {
+      "id": "test:679:5:1",
+      "candidate_text": "Hug!",
+      "warning_keys": [
+        [
+          "test:679:5:1",
+          0,
+          "ff5dbcea8441253ea546ff1bd29045d06564c788d60a297a1b7d66c09ab255bb"
+        ]
+      ]
+    },
+    {
+      "id": "test:683:2:2",
+      "candidate_text": "But he soon feel regretted for it.",
+      "warning_keys": [
+        [
+          "test:683:2:2",
+          0,
+          "e96e0898eeadf76e4e3b535608663d450e63a41c8c5559ed5ae3801c61732bb1"
+        ]
+      ]
+    },
+    {
+      "id": "test:697:1:1",
+      "candidate_text": "If only our company prescribe flex time.",
+      "warning_keys": [
+        [
+          "test:697:1:1",
+          0,
+          "d49b07b28b37e32a2db4dd47d9706f6db6202af615f36f9e1bf50b09221fd207"
+        ]
+      ]
+    },
+    {
+      "id": "test:697:3:2",
+      "candidate_text": "Ah, what if be even better if alternative work place is provided.",
+      "warning_keys": [
+        [
+          "test:697:3:2",
+          0,
+          "1645b8ad54796879e0b23383f5a25ffe2fac7f6fed3cdcec9d3be81e21a1c496"
+        ]
+      ]
+    },
+    {
+      "id": "test:720:2:2",
+      "candidate_text": "It's a kind of boring.",
+      "warning_keys": [
+        [
+          "test:720:2:2",
+          0,
+          "e508e6c8be484a649cfba67ce2f984be5c0d93c68ea840cd9443cf6496036584"
+        ]
+      ]
+    },
+    {
+      "id": "test:729:2:2",
+      "candidate_text": "They are only married for one month.",
+      "warning_keys": [
+        [
+          "test:729:2:2",
+          0,
+          "9cbb18fb76edf322194bb7969103d146060508ec7a02ab45894caac5cb9f0cac"
+        ]
+      ]
+    },
+    {
+      "id": "test:730:6:4",
+      "candidate_text": "Though, I do feel hazy about how to behave appropriately at a Ch",
+      "warning_keys": [
+        [
+          "test:730:6:4",
+          0,
+          "249fee0ec646ba200d68f810106e78d5b567836343e010c835d060af4bc5bd00"
+        ]
+      ]
+    },
+    {
+      "id": "test:730:7:3",
+      "candidate_text": "Some practices even appear somewhat awkward or rude to Westerners, while they are the norm I",
+      "warning_keys": [
+        [
+          "test:730:7:3",
+          2,
+          "97e9d123de6e648843233fbd916a33d48b059eae7e6d07c0aaa7853cf4073c26"
+        ]
+      ]
+    },
+    {
+      "id": "test:738:1:1",
+      "candidate_text": "I would wondering if you like to stay here for a few days.",
+      "warning_keys": [
+        [
+          "test:738:1:1",
+          0,
+          "ec7988cb6a817c21e20184db881f70e7a9baf349b83b536598992f4dd201c683"
+        ]
+      ]
+    },
+    {
+      "id": "test:749:3:1",
+      "candidate_text": "Have I used the one that my sister is sick?",
+      "warning_keys": [
+        [
+          "test:749:3:1",
+          0,
+          "293101196158d83f790cfbe86e24b669e6b57a9b1cb4ab919fa2ebf099bfaf49"
+        ]
+      ]
+    },
+    {
+      "id": "test:752:3:1",
+      "candidate_text": "If you are free, maybe you would like to go to a small party and having for my birthday party.",
+      "warning_keys": [
+        [
+          "test:752:3:1",
+          0,
+          "b61baa77c755d9683e9a5856f539f9916a8c80e9801ad5b1bcffbec13d0389d9"
+        ]
+      ]
+    },
+    {
+      "id": "test:758:4:1",
+      "candidate_text": "It is the basement of that red building in front of the tower with big bells.",
+      "warning_keys": [
+        [
+          "test:758:4:1",
+          0,
+          "e41d737aa5d6a01b3596062ee146866b036984d1b02ec8d1727b587858b18a5a"
+        ]
+      ]
+    },
+    {
+      "id": "test:765:6:3",
+      "candidate_text": "Sometimes, I'll post my pictures on my blog so my family an",
+      "warning_keys": [
+        [
+          "test:765:6:3",
+          0,
+          "effec4b262e69b364cd79484e501674796e67f7e9353cc5d489b812a86ce9d11"
+        ]
+      ]
+    },
+    {
+      "id": "test:774:3:1",
+      "candidate_text": "Don't worry him, he has been grown up and I think he can take himself very well.",
+      "warning_keys": [
+        [
+          "test:774:3:1",
+          1,
+          "7034b4c748455ebe26132050f82c6a51e538ce4a5954366d60fc886d3efe65f3"
+        ],
+        [
+          "test:774:3:1",
+          2,
+          "8143e5dc04c07cfc9c159e8fd6c09a7487a142da0f6f2e71622238a088ae635c"
+        ]
+      ]
+    },
+    {
+      "id": "test:790:1:1",
+      "candidate_text": "Well, known, Jim, I'm... I'm pretty much in favour of your computers, I think computers teach kids to think, because they require logical thoughts.",
+      "warning_keys": [
+        [
+          "test:790:1:1",
+          1,
+          "f3c0b3e2d4c11675320643c59d9f1e04b405b5cd35444f89593a7c7e717e8d55"
+        ]
+      ]
+    },
+    {
+      "id": "test:790:5:1",
+      "candidate_text": "That's not the gadgets.",
+      "warning_keys": [
+        [
+          "test:790:5:1",
+          0,
+          "fc96b773ebaab2c8739ebfa1078cde94fcb572e0a623aea5bdd918f9d7d9b71a"
+        ]
+      ]
+    },
+    {
+      "id": "test:790:5:2",
+      "candidate_text": "Creating programmes is stimulate thoughts.",
+      "warning_keys": [
+        [
+          "test:790:5:2",
+          1,
+          "b9f3c7b63bfdd57e8ee0155f1cd3450ed9565c97871841cf41883b8688467211"
+        ]
+      ]
+    },
+    {
+      "id": "test:794:7:3",
+      "candidate_text": "It's really.",
+      "warning_keys": [
+        [
+          "test:794:7:3",
+          0,
+          "8ecbe8543c3902e57b2ad1caf8b58bfcdd69c3f5d4412a02cecd161d116e3905"
+        ]
+      ]
+    },
+    {
+      "id": "test:806:4:3",
+      "candidate_text": "There must be many interesting places, and we could enjoy the fresh air and the delicious local spec",
+      "warning_keys": [
+        [
+          "test:806:4:3",
+          0,
+          "13ba82307d086648a2b01f44ff2b3217ed91da76682730bcde6103d40f0b77bf"
+        ]
+      ]
+    },
+    {
+      "id": "test:807:4:1",
+      "candidate_text": "Need a new.",
+      "warning_keys": [
+        [
+          "test:807:4:1",
+          0,
+          "46c90a86d5625b78e3f97392111b6a6d9d12e29a579a44b017f7a8b38226dd77"
+        ]
+      ]
+    },
+    {
+      "id": "test:808:13:3",
+      "candidate_text": "Egg...",
+      "warning_keys": [
+        [
+          "test:808:13:3",
+          1,
+          "3eaaf4f09423ae5a5005eacb54bac7dc8e2e0386a0f2fdce5b7b2b45d5348935"
+        ]
+      ]
+    },
+    {
+      "id": "test:826:9:2",
+      "candidate_text": "I could take some fresh air, anyway.",
+      "warning_keys": [
+        [
+          "test:826:9:2",
+          0,
+          "6074df6d1edb726c52f1d6ba851c3395b758c559d217670c02c295ffd1b0557a"
+        ]
+      ]
+    },
+    {
+      "id": "test:827:3:1",
+      "candidate_text": "What a confidence!",
+      "warning_keys": [
+        [
+          "test:827:3:1",
+          0,
+          "7dfc0b42363019c34e52adff72d4746f3d83086db0fe4b38c90e131eb6e62be9"
+        ]
+      ]
+    },
+    {
+      "id": "test:834:8:3",
+      "candidate_text": "He will be learning from that if he would like to an efficient and healthy team.",
+      "warning_keys": [
+        [
+          "test:834:8:3",
+          0,
+          "4bed3a1fdd080747fca1c83e1ef8b914ec161e7b6ba9acbe123fed251af5fd88"
+        ]
+      ]
+    },
+    {
+      "id": "test:847:3:2",
+      "candidate_text": "Even the reasonable male leaf is returning the rule, isn't that strict?",
+      "warning_keys": [
+        [
+          "test:847:3:2",
+          0,
+          "2b4377df14d8e08a82d27b6a826b384faaa1e4f10a58252bd81fef01bd2b676c"
+        ]
+      ]
+    },
+    {
+      "id": "test:852:9:1",
+      "candidate_text": "As I say it the work is well worth try.",
+      "warning_keys": [
+        [
+          "test:852:9:1",
+          0,
+          "9bd166d60f1c08fcf2b55c51faf8ea35490a4180dc8abf7f8c3ecdc2fe98c126"
+        ]
+      ]
+    },
+    {
+      "id": "test:856:3:1",
+      "candidate_text": "I hear that John's leading a double wife.",
+      "warning_keys": [
+        [
+          "test:856:3:1",
+          0,
+          "f60687a06c46b5d23e00f191b58e86024a084bfafb4a090b6cebf93ba442c7a5"
+        ]
+      ]
+    },
+    {
+      "id": "test:867:7:2",
+      "candidate_text": "The board man last thirdly and they choice Paul.",
+      "warning_keys": [
+        [
+          "test:867:7:2",
+          0,
+          "6db55b6e0db2a3bf91ffd37c3e9f3dc2e355bf0126cd40dd667ca73cdb77203e"
+        ]
+      ]
+    },
+    {
+      "id": "test:873:4:2",
+      "candidate_text": "I read a story about a dolphin saving a A from drowning in the sea.",
+      "warning_keys": [
+        [
+          "test:873:4:2",
+          0,
+          "78cc787a40ba1cbf3057baf58015a9efe3a296534d151a3d9d6c6069711850ce"
+        ]
+      ]
+    },
+    {
+      "id": "test:875:5:2",
+      "candidate_text": "We Should better go in right now.",
+      "warning_keys": [
+        [
+          "test:875:5:2",
+          0,
+          "d92227cc113ed2229b1e8367f14af7e22cc5473bb1727b84cc22dd0180b8f809"
+        ]
+      ]
+    },
+    {
+      "id": "test:878:6:2",
+      "candidate_text": "He is only being with the company for two years.",
+      "warning_keys": [
+        [
+          "test:878:6:2",
+          0,
+          "5b0621bc11de86698e8b15619139af54876b156fa0231ab2b829e292dac8ae9d"
+        ]
+      ]
+    },
+    {
+      "id": "test:878:7:2",
+      "candidate_text": "The board man last thirdly and they choice Paul.",
+      "warning_keys": [
+        [
+          "test:878:7:2",
+          0,
+          "ac9113abe1ef68138345b64555e733db5ddd6a52141fcc997432ca16329adfa2"
+        ]
+      ]
+    },
+    {
+      "id": "test:884:5:2",
+      "candidate_text": "Although we still haven't found anyone to be our singer.",
+      "warning_keys": [
+        [
+          "test:884:5:2",
+          0,
+          "bbff121fefbb0e4e285b18355d9c7caf8ba953752d70bcc5afa97906d19a8fd5"
+        ]
+      ]
+    },
+    {
+      "id": "test:888:2:1",
+      "candidate_text": "I'm sorry for hero.",
+      "warning_keys": [
+        [
+          "test:888:2:1",
+          0,
+          "21a18589f9019f2fb04b0c09e0399c2f3cf5ffd365924217ffb4831301727f43"
+        ]
+      ]
+    },
+    {
+      "id": "test:894:7:2",
+      "candidate_text": "The manicurist will remove my cuticles, file my nails, and apply at least nails coats of nail polish!",
+      "warning_keys": [
+        [
+          "test:894:7:2",
+          0,
+          "f3da152cc6f3ec6755ff490d53b39a80f048941c721a700f9df2db2a949467c5"
+        ]
+      ]
+    },
+    {
+      "id": "test:899:11:2",
+      "candidate_text": "I'm watching Ally McNeal.",
+      "warning_keys": [
+        [
+          "test:899:11:2",
+          0,
+          "e1ea0b02f11e86dbdb2579398ed6bd3c9706be483438dc02729951afec934141"
+        ]
+      ]
+    },
+    {
+      "id": "test:925:12:1",
+      "candidate_text": "It's a Tag Heer.",
+      "warning_keys": [
+        [
+          "test:925:12:1",
+          0,
+          "4a8442ddb93fa216b7c1f553c6b84d223b31f9baed27f3f331184e573bc67efb"
+        ]
+      ]
+    },
+    {
+      "id": "test:928:2:4",
+      "candidate_text": "Many of the company's advertisements are her child trains.",
+      "warning_keys": [
+        [
+          "test:928:2:4",
+          0,
+          "53841d9a8e36981a6bde9feb62bc0327ba63eb5e8206495f2047fc828abf39aa"
+        ]
+      ]
+    },
+    {
+      "id": "test:939:2:2",
+      "candidate_text": "A minute on the stage takes ten-year practice.",
+      "warning_keys": [
+        [
+          "test:939:2:2",
+          0,
+          "88a6d9facaa3e51eaa5515100875081875a782a6760b53b4170e01c28e87c941"
+        ]
+      ]
+    },
+    {
+      "id": "test:942:5:1",
+      "candidate_text": "You mean that you can them.",
+      "warning_keys": [
+        [
+          "test:942:5:1",
+          0,
+          "fa51371ff65147f7f33548aae8ac4c8acb998efa5f7a1dafd605e2ca0f352864"
+        ]
+      ]
+    },
+    {
+      "id": "test:946:3:1",
+      "candidate_text": "Where is your domicile place?",
+      "warning_keys": [
+        [
+          "test:946:3:1",
+          1,
+          "57452ccc4014745979df38ae0828b24739a50604541dabaf47305f75651f1e92"
+        ]
+      ]
+    },
+    {
+      "id": "test:946:4:1",
+      "candidate_text": "My domicile place is Hebes Province.",
+      "warning_keys": [
+        [
+          "test:946:4:1",
+          1,
+          "cccd9110709c1e1d1b3c85bc898d5e20e4293121ada6c6e33c0bd1495e81a976"
+        ]
+      ]
+    },
+    {
+      "id": "test:954:2:3",
+      "candidate_text": "It covers several square kilometers of land has destroyed many more square kilometers.",
+      "warning_keys": [
+        [
+          "test:954:2:3",
+          0,
+          "fe5588434e46f49b1c78d4c52c30d0ae03023f575ba946c5b35c960eb783e84d"
+        ]
+      ]
+    },
+    {
+      "id": "test:954:6:1",
+      "candidate_text": "The European union has sent several plants with relief supplies.",
+      "warning_keys": [
+        [
+          "test:954:6:1",
+          0,
+          "6de0e7103a647e656e8325c0a7df2bc0f5e9236f62fa09f519b43354c01d2a46"
+        ]
+      ]
+    },
+    {
+      "id": "test:954:10:5",
+      "candidate_text": "They have purchased some special equipment to find people buried u",
+      "warning_keys": [
+        [
+          "test:954:10:5",
+          0,
+          "e466d600b3e934c262650c1182878823bbe04f058ac45609755850c7b86cab6e"
+        ]
+      ]
+    },
+    {
+      "id": "test:961:1:1",
+      "candidate_text": "I'm afraid I spoke in all of the table clock.",
+      "warning_keys": [
+        [
+          "test:961:1:1",
+          0,
+          "fa8db00c91b2bd333b8207dc11b3d35c050a727c8db36f27ea96a1bf2b42b070"
+        ]
+      ]
+    },
+    {
+      "id": "test:963:3:1",
+      "candidate_text": "Well, since you agree with me, we should put the issue above board instead of talking about through other channels.",
+      "warning_keys": [
+        [
+          "test:963:3:1",
+          0,
+          "1afd984cb77244c9a24484f7d7aeb7abcc1215b377c59145666cb00e07a9b319"
+        ]
+      ]
+    },
+    {
+      "id": "test:971:2:1",
+      "candidate_text": "Hey, Isabelle...",
+      "warning_keys": [
+        [
+          "test:971:2:1",
+          0,
+          "67008b47ec9628936ffb54b9690d4b4cbf361a288025fef8a6cf902253100b6b"
+        ]
+      ]
+    },
+    {
+      "id": "test:980:2:2",
+      "candidate_text": "Miss.",
+      "warning_keys": [
+        [
+          "test:980:2:2",
+          0,
+          "4d1a889673674f08af0caff480ae3281a2545db5e72be8536315f3a6ffba01fe"
+        ]
+      ]
+    },
+    {
+      "id": "test:984:3:1",
+      "candidate_text": "Where should I go after I arrived at the university?",
+      "warning_keys": [
+        [
+          "test:984:3:1",
+          0,
+          "0215e2a56ddfcf1b39cfb860feed13d77e22fe191c07ed8f84ebf8e317bc8a43"
+        ]
+      ]
+    },
+    {
+      "id": "test:998:4:1",
+      "candidate_text": "Several things, for example, Very coins, stamps, stones and so on.",
+      "warning_keys": [
+        [
+          "test:998:4:1",
+          0,
+          "38cdf4070d224772ce456d0d8beb383ea4f63fdcf674331549ede55b549da7ca"
+        ]
+      ]
+    },
+    {
+      "id": "train:1040:1:5",
+      "candidate_text": "A",
+      "warning_keys": [
+        [
+          "train:1040:1:5",
+          0,
+          "ccd6e10ce5069b03f0dff1fecad407f01da40c16d84f5ad65df59af433585a43"
+        ]
+      ]
+    },
+    {
+      "id": "train:1061:1:1",
+      "candidate_text": "Cheer!",
+      "warning_keys": [
+        [
+          "train:1061:1:1",
+          0,
+          "ae2730ae19096af2a16bb0fe1c51c49ad317dbf75467baf999066bdf7cbc115b"
+        ]
+      ]
+    },
+    {
+      "id": "train:1061:2:1",
+      "candidate_text": "Cheer!",
+      "warning_keys": [
+        [
+          "train:1061:2:1",
+          0,
+          "ae2730ae19096af2a16bb0fe1c51c49ad317dbf75467baf999066bdf7cbc115b"
+        ]
+      ]
+    },
+    {
+      "id": "train:1273:1:1",
+      "candidate_text": "Too...",
+      "warning_keys": [
+        [
+          "train:1273:1:1",
+          0,
+          "b26a95ed612398b3ff8b006cdcc80caf173ec43b05106b084e10eb0245699169"
+        ]
+      ]
+    },
+    {
+      "id": "train:1466:6:4",
+      "candidate_text": "There are many s",
+      "warning_keys": [
+        [
+          "train:1466:6:4",
+          0,
+          "8aec10f9bc99bc38b417f3e8c3de62fabaed4266ebe6dbc0a0ebb1362f9cd9ee"
+        ]
+      ]
+    },
+    {
+      "id": "train:1674:10:4",
+      "candidate_text": "It would almost b",
+      "warning_keys": [
+        [
+          "train:1674:10:4",
+          0,
+          "1bbf71fa2e80922163b2980f4bdedc1de6ffd13e19a16e5522e3f0c0ddb6a125"
+        ]
+      ]
+    },
+    {
+      "id": "train:2502:5:4",
+      "candidate_text": "Someone wit",
+      "warning_keys": [
+        [
+          "train:2502:5:4",
+          0,
+          "5b9df5a3ba1ce742070945845114d964f0cad75e2ea6b6d26bad4ed8c5683688"
+        ]
+      ]
+    },
+    {
+      "id": "train:10044:10:4",
+      "candidate_text": "I '",
+      "warning_keys": [
+        [
+          "train:10044:10:4",
+          0,
+          "1a2e1d097a886b4e7a5902a4bb4a8aa48aa5b9c662a60bca822765c27df9c924"
+        ]
+      ]
+    },
+    {
+      "id": "train:10070:11:1",
+      "candidate_text": "Yes, it is the credit demand.",
+      "warning_keys": [
+        [
+          "train:10070:11:1",
+          0,
+          "a7d5c0a3a2cb2519725f5375d6e97a1778e33e3aa3675047368305cf05a7f223"
+        ]
+      ]
+    },
+    {
+      "id": "train:10158:7:2",
+      "candidate_text": "S",
+      "warning_keys": [
+        [
+          "train:10158:7:2",
+          0,
+          "3346dd26109669a5f55a2dece9d7ffd249997e52a78b4eafef0806817a4b173f"
+        ]
+      ]
+    },
+    {
+      "id": "train:10530:1:3",
+      "candidate_text": "'",
+      "warning_keys": [
+        [
+          "train:10530:1:3",
+          0,
+          "0bdde2eebbc42b9d98baeb7e40745d8d44ead10f519b779e25902ff45d25fe2e"
+        ]
+      ]
+    },
+    {
+      "id": "train:10542:8:4",
+      "candidate_text": "Th",
+      "warning_keys": [
+        [
+          "train:10542:8:4",
+          0,
+          "c0cf0791108c2a23669ff9cbf163880c1ac8af271abf44d72b15a72f7309b88d"
+        ]
+      ]
+    },
+    {
+      "id": "train:10882:5:4",
+      "candidate_text": "A",
+      "warning_keys": [
+        [
+          "train:10882:5:4",
+          0,
+          "3c559a37f45ae0f7cca12e1be113c3f1df254aed8c326c4e54d90092cc5cce24"
+        ]
+      ]
+    },
+    {
+      "id": "train:10986:8:1",
+      "candidate_text": "Are you riding?",
+      "warning_keys": [
+        [
+          "train:10986:8:1",
+          0,
+          "8927003ec44bda31bd9b2ecbe62fa79cad3f5231c15ba698a21bd77762f3f3bc"
+        ]
+      ]
+    }
+  ],
+  "same_address_matches_failing_original_text_check": [],
+  "warning_decisions_changed": false,
+  "candidate_changed": false,
+  "source_changed": false,
+  "full_candidate_published": false,
+  "scope": "Does not measure semantic accuracy or close any warning. Original text and address match are necessary but not sufficient for general semantic approval.",
+  "supplemental_cases_tracked_separately": 5,
+  "api_calls": 0
+}

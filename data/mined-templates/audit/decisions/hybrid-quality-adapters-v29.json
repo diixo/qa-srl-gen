@@ -1,0 +1,141 @@
+{
+  "format": "reviewed-fragment-adapters-v1",
+  "patterns": [
+    {
+      "id": "dd_v29_train_5884_8_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "How expensive should my interview suit be?",
+      "reply": "The more expensive, the better.",
+      "value": "recommended a higher-priced interview suit, without claiming a purchase or guaranteed quality",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v29_train_5884_8_1",
+      "source": {
+        "split": "train",
+        "dialogue": 5884,
+        "turn": 8,
+        "segment": 1,
+        "span": [
+          0,
+          31
+        ],
+        "text": "The more expensive, the better.",
+        "context": [
+          "Brian, a company called me for an interview.",
+          "That's great! You need to prepare for it.",
+          "How?",
+          "Get your hair done at a good hair saloon. Tell them you are going for a job interview.",
+          "Okay.",
+          "Buy an expensive suit.",
+          "How expensive?",
+          "The more expensive, the better.",
+          "I can't afford too expensive, maybe $ 50 to $ 70?",
+          "That'll do it. The best way is to find the dressing color code of the company.",
+          "How?",
+          "If you know somebody at the company, ask them. If not, dark color will be fine.",
+          "Is a white blouse okay?",
+          "Yeah, fine. And dressing shoes.",
+          "Black?",
+          "Black is good.",
+          "White pantyhose?",
+          "No. Dark or skin colored.",
+          "Jewelry?",
+          "Necklace, ring, and earrings are all fine. But don't wear too many pieces of jewelry.",
+          "How about make up?",
+          "Not much make up.",
+          "Perfume?",
+          "Yes, some. But be aware that different people may like different scents."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "source_sha256": "41c368e5ecb050410b984e0145d477e5ca3ba13b81e4849edc2c2f267069cc44",
+        "context_sha256": "95d155cb2175a7d44d4ea1b75d85b7ba6186fddbfc4513088fd4e8590826b432",
+        "adaptation": "Use only the explicit visible prompt and original reply. The paired comparative clauses express a preference in the preceding suit-price question. The first expensive clause is a correlative adverbial clause of better, not an adjective modifying another adjective. Both the tokens are comparative markers, not articles or pronouns. Better is comparative good in this suit evaluation. No elided verb or subject is inserted."
+      }
+    },
+    {
+      "id": "dd_v29_train_8624_2_3",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "May I make up your room now?",
+      "reply": "You can put up make up sign on.",
+      "value": "suggested putting up a sign during the discussion of room service, without saying that the sign had been put up",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v29_train_8624_2_3",
+      "source": {
+        "split": "train",
+        "dialogue": 8624,
+        "turn": 2,
+        "segment": 3,
+        "span": [
+          34,
+          65
+        ],
+        "text": "You can put up make up sign on.",
+        "context": [
+          "Good morning, sir. Sorry to disturb you. May I make up your room now?",
+          "Yes, please. We're on my way out. You can put up make up sign on. Could you bring us some towels and hangers.",
+          "No problems, sir. Everything will be already when you come back."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2
+        ],
+        "source_sha256": "98f12aa651c3874050e5b581ee7b483d15653efecb091b7aa34a04c1db08b958",
+        "context_sha256": "715a6ef41e1a26e6945dd8d0457c4db6f5e25b917461698ce21bfcad1a6ccca4",
+        "adaptation": "Use only the explicit visible prompt and original reply. Can supports a nonactual suggestion or permission to put up a sign. The make up sign phrase and trailing on do not license a uniquely repaired dependency tree or exact sign label. Publish only the visible-pair interpretation; keep the structural question open."
+      }
+    },
+    {
+      "id": "dd_v29_val_616_1_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What did you think of my presentation to the client?",
+      "reply": "I think your presentation impressed the client, Daniel.",
+      "value": "expressed the belief that the addressee's presentation impressed the client, without resolving whether Daniel names the addressee or the client",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v29_val_616_1_1",
+      "source": {
+        "split": "val",
+        "dialogue": 616,
+        "turn": 1,
+        "segment": 1,
+        "span": [
+          0,
+          55
+        ],
+        "text": "I think your presentation impressed the client, Daniel.",
+        "context": [
+          "I think your presentation impressed the client, Daniel. You did a good job.",
+          "Thank you, Mr. Cooper. I hope we get the contract."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1
+        ],
+        "source_sha256": "26ad35d34a5934e6a5eeda73d132bb433f79b1a54300ce32894e98e7ea17e3ef",
+        "context_sha256": "71be0d85af6439a1db1219778f18d714cd83263025bae9715763c8b634dd52d7",
+        "adaptation": "Use only the explicit visible prompt and original reply. Both vocative Daniel and appositional client Daniel remain possible from the available prefix. Preserve think scope and do not assert a named client, a named addressee, or a confirmed business outcome."
+      }
+    }
+  ]
+}

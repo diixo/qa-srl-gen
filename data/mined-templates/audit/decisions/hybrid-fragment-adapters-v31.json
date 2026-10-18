@@ -1,0 +1,92 @@
+{
+  "format": "reviewed-fragment-adapters-v1",
+  "patterns": [
+    {
+      "id": "dd_v31_test_495_5_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What would you ask a restaurant guest after taking their food order?",
+      "reply": "Can I get you anything to drink? :",
+      "value": "offered to get the guest something to drink, without specifying a drink or saying it had been served",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v31_test_495_5_1",
+      "source": {
+        "split": "test",
+        "dialogue": 495,
+        "turn": 5,
+        "segment": 1,
+        "span": [
+          0,
+          34
+        ],
+        "text": "Can I get you anything to drink? :",
+        "context": [
+          "Hi, I'm George. I'll be your waiter this evening. Are you ready to order or do you need a few more minutes?",
+          "I'm ready now. I'd like the roast chicken and a side order of corn.",
+          "And would you like an appetizer before your meal? The soup of the day is our delicious tomato soup.",
+          "I'll pass on the soup, but I'd like a garden salad.",
+          "Can I get you anything to drink? :",
+          "Yes, I'd like a glass of iced tea.",
+          "Okay. I'll be back in a minute with your drink and salad.",
+          "Thank you."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "source_sha256": "3963ed79878f5f117e9047185d656d3f50f37aa1f7bd0e8cf3854be88b622aef",
+        "context_sha256": "3f3f7f5d3221e2fed20efc6e1d0a592e9086aabb188fd95bb7eb437f3143d4d5",
+        "adaptation": "Use only this visible prompt and exact original reply. Attach the trailing colon to its original drink-offer question. It is punctuation, not an independent proposition. Preserve both the question mark and colon and do not use the later iced-tea answer."
+      }
+    },
+    {
+      "id": "dd_v31_train_10530_1_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Please introduce yourself and the person joining you for this baseball broadcast.",
+      "reply": "My name is Rick Fields and of course, I am here, once again, with the man that seals the deal, Bob Copeland. '",
+      "value": "identified the speaker as Rick Fields and said they were here again with Bob Copeland, without reporting any completed deal",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v31_train_10530_1_2",
+      "source": {
+        "split": "train",
+        "dialogue": 10530,
+        "turn": 1,
+        "segment": 2,
+        "span": [
+          55,
+          165
+        ],
+        "text": "My name is Rick Fields and of course, I am here, once again, with the man that seals the deal, Bob Copeland. '",
+        "context": [
+          "Hello baseball fans, and welcome back to today's game! My name is Rick Fields and of course, I am here, once again, with the man that seals the deal, Bob Copeland. '",
+          "It's a beautiful day to see two world class teams face each other and fight for their right to be called champions.",
+          "Well, the national anthem has just been sung, and the umpire has started the game. It's time to play ball!",
+          "Roger Vargas is up at bat. The pitcher winds up and strike one!",
+          "A very nice curve ball by the pitcher. The catcher gives him the sign, he winds up and Vargas gets a line drive!",
+          "The players are scrambling to get the ball. Vargas gets to first base and he's still going! The outfielder throws it to second! Vargas slides! He's safe!",
+          "Great play!",
+          "We have a runner on third and up at bat is Brian Okapi! There's the pitch, he hits it! It's going, going, that ball is gone!",
+          "Home run by Okapi! That puts this team ahead by two as we are at the bottom of the fifth inning here at Richie Stadium!"
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1
+        ],
+        "source_sha256": "3ed42069f6a5c233c7ec550b2d026dbfa66bd39982527437fe5a035b1fcbea47",
+        "context_sha256": "b89b9047008b054bfa95ebcd197b079147f4ada96f1fe0e16a574a4531d682dd",
+        "adaptation": "Use only this visible prompt and exact original reply. Attach the detached terminal apostrophe to the preceding self-introduction. Preserve every character and treat the apostrophe as punctuation, not an independent utterance or evidence of missing speech."
+      }
+    }
+  ]
+}

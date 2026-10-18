@@ -1,0 +1,991 @@
+{
+  "format": "reviewed-fragment-target-revisions-v1",
+  "scope": "nine_targets_in_complete_source_warning_review_v33",
+  "catalog": "data/mined-templates/reviewed/dialogue-fragments.json",
+  "base_catalog_sha256": "9d8f710d0cece41e42438aece38bae9f3c62a2dcc692c60cc61debdae9915957",
+  "revisions": [
+    {
+      "id": "dd_v19_train_1152_4_1",
+      "source_id": "train:1152:4:1",
+      "method": "direct_assistant_target_semantics_review",
+      "preimage": {
+        "id": "dd_v19_train_1152_4_1",
+        "kind": "interpretation",
+        "context": true,
+        "assistant": "I think we had better go to the museum earlier to avoid waiting. What do you think?",
+        "reply": "I guess that is the thing we can do with we really want to visit the museum.",
+        "value": "tentatively accepted the idea of going earlier and expressed a wish to visit the museum; the exact connective and completion are not established",
+        "question": "What did I convey in my last reply?",
+        "interpretation_topic": "dd_v19_train_1152_4_1",
+        "source": {
+          "split": "train",
+          "dialogue": 1152,
+          "turn": 4,
+          "segment": 1,
+          "span": [
+            0,
+            76
+          ],
+          "text": "I guess that is the thing we can do with we really want to visit the museum.",
+          "context": [
+            "Dora, are you interested in going to the museum with me tomorrow? I read the newspaper this morning. I know there is an art exhibition in Taipei Modern Art Museum.",
+            "Sure. I am free tomorrow. It sounds interesting to me. Can we buy the ticket online?",
+            "I don't think so. I think we had better go there earlier, or we may have to spend a lot of time waiting.",
+            "I guess that is the thing we can do with we really want to visit the museum.",
+            "Look at the ticket booth in the center. There seems to be not as many people as we thought it would be.",
+            "Yeah. We are lucky. Let's go buy the tickets first. We can have breakfast later. I am so hungry.",
+            "Good idea.",
+            "(After the breakfast) Which floor is the art exhibition we are going to?",
+            "I have no idea. Let me take a closer look at my museum map",
+            "Sure, take your time. We have a whole day.",
+            "It's on the 2nd floor. We are going to see some beautiful paintings about the history of ancient Greece.",
+            "Look at the museum guide. It says there are also some sculptures and potteries in this area. Let's rent an audio guide."
+          ]
+        },
+        "review": {
+          "method": "direct_assistant_fragment_adapter",
+          "scope": "adapted_visible_pair_only",
+          "evidence_turns": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. The speaker tentatively endorses the preceding proposal to go earlier and expresses a wish to visit the museum. Can do is possibility; visiting is not complete.",
+          "source_sha256": "a155b381ec7e06656bd3fc0085e5195a7c901dcbc6d888c8368f7183f1e23d4c",
+          "context_sha256": "3e2a12dcc5140e96432d400421ed15a0f0a7ebfe905b55e3ae0fa03607c94d72"
+        }
+      },
+      "preimage_sha256": "bbe4f3713c04817a7d8844075bd2b23a1749e705493274fb4795407b1a352ad8",
+      "replacement": {
+        "id": "dd_v19_train_1152_4_1",
+        "kind": "interpretation",
+        "context": true,
+        "assistant": "I think we had better go to the museum earlier to avoid waiting. What do you think?",
+        "reply": "I guess that is the thing we can do with we really want to visit the museum.",
+        "value": "tentatively responded to the idea of going earlier and mentioned wanting to visit the museum; the unclear connective leaves conditional versus causal scope unresolved, and no completed visit was reported",
+        "question": "What did I convey in my last reply?",
+        "interpretation_topic": "dd_v19_train_1152_4_1",
+        "source": {
+          "split": "train",
+          "dialogue": 1152,
+          "turn": 4,
+          "segment": 1,
+          "span": [
+            0,
+            76
+          ],
+          "text": "I guess that is the thing we can do with we really want to visit the museum.",
+          "context": [
+            "Dora, are you interested in going to the museum with me tomorrow? I read the newspaper this morning. I know there is an art exhibition in Taipei Modern Art Museum.",
+            "Sure. I am free tomorrow. It sounds interesting to me. Can we buy the ticket online?",
+            "I don't think so. I think we had better go there earlier, or we may have to spend a lot of time waiting.",
+            "I guess that is the thing we can do with we really want to visit the museum.",
+            "Look at the ticket booth in the center. There seems to be not as many people as we thought it would be.",
+            "Yeah. We are lucky. Let's go buy the tickets first. We can have breakfast later. I am so hungry.",
+            "Good idea.",
+            "(After the breakfast) Which floor is the art exhibition we are going to?",
+            "I have no idea. Let me take a closer look at my museum map",
+            "Sure, take your time. We have a whole day.",
+            "It's on the 2nd floor. We are going to see some beautiful paintings about the history of ancient Greece.",
+            "Look at the museum guide. It says there are also some sculptures and potteries in this area. Let's rent an audio guide."
+          ]
+        },
+        "review": {
+          "method": "direct_assistant_fragment_adapter",
+          "scope": "adapted_visible_pair_only",
+          "evidence_turns": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "adaptation": "Preserve the exact original reply and visible preceding prompt. Use only the limited interpretation; unknown details and generic-role restrictions remain. The reply tentatively responds to the earlier-going proposal. Since with leaves causal versus conditional scope open, merely mention the visit desire instead of asserting it as an independent fact. No completed visit is reported.",
+          "source_sha256": "a155b381ec7e06656bd3fc0085e5195a7c901dcbc6d888c8368f7183f1e23d4c",
+          "context_sha256": "3e2a12dcc5140e96432d400421ed15a0f0a7ebfe905b55e3ae0fa03607c94d72"
+        }
+      },
+      "replacement_sha256": "77529709fe42fb59ce0f83fb7db241e1636c9ced42f40c71cbc38fbf97b3ffbe",
+      "reason": "The reply tentatively responds to the earlier-going proposal. Since with leaves causal versus conditional scope open, merely mention the visit desire instead of asserting it as an independent fact. No completed visit is reported.",
+      "source_text_changed": false
+    },
+    {
+      "id": "dd_v19_train_1203_10_1",
+      "source_id": "train:1203:10:1",
+      "method": "direct_assistant_target_semantics_review",
+      "preimage": {
+        "id": "dd_v19_train_1203_10_1",
+        "kind": "interpretation",
+        "context": true,
+        "assistant": "I do not like people touching my head. What could I do?",
+        "reply": "Do you think it is a ~ got give your brain, use it if you really cannot accept it people touch your head, keep distance from them, why not just wear your big flyby hat and ~ is anyone get close to you.",
+        "value": "suggested keeping distance from people and wearing a hat in response to unwanted head-touching; the damaged parts remain unknown and no action is completed",
+        "question": "What did I convey in my last reply?",
+        "interpretation_topic": "dd_v19_train_1203_10_1",
+        "source": {
+          "split": "train",
+          "dialogue": 1203,
+          "turn": 10,
+          "segment": 1,
+          "span": [
+            0,
+            201
+          ],
+          "text": "Do you think it is a ~ got give your brain, use it if you really cannot accept it people touch your head, keep distance from them, why not just wear your big flyby hat and ~ is anyone get close to you.",
+          "context": [
+            "Mom, why do Chinese people like to touch my head? Sometimes they even touch my cheeks.",
+            "That is a part of Chinese culture, if they think you are a lovely child, they touch your head and say, how cute you are.",
+            "But I donor like it, not a bit, I am not a pet, I am a girl.",
+            "Well, you get used to it, different countries have different manners.",
+            "But I do not like anyone touch my head.",
+            "They are just been in friendly, when you are in Roman, do as the Romans do, that means you need to adapt to your environment.",
+            "What if everybody in the wheres goes crazy?",
+            "Then you might need to pretend to be a little crazy.",
+            "Does this mean that if I might want those new European bitches, I am supposed to wonder run reget?",
+            "Do you think it is a ~ got give your brain, use it if you really cannot accept it people touch your head, keep distance from them, why not just wear your big flyby hat and ~ is anyone get close to you.",
+            "That is my work, I will try it."
+          ]
+        },
+        "review": {
+          "method": "direct_assistant_fragment_adapter",
+          "scope": "adapted_visible_pair_only",
+          "evidence_turns": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "adaptation": "Keep the original reply byte-for-byte. The explicit preceding prompt supplies only relevant context already available up to this source turn. Extract only this scoped interpretation; preserve unresolved details and do not turn plans, questions, quotes or advice into completed events. The visible advice includes keeping distance from people if head-touching is unacceptable and a why-not suggestion to wear a hat. The corrupted introduction and ending are not reconstructed. No instruction is treated as performed.",
+          "source_sha256": "85b863a0325daea1a4465e41c6554329bf472c7be0147c5ce49433bc531619c5",
+          "context_sha256": "1643004e709ad880460bc6edd4f2f450c19fd48ebf294a4df91522386cd01bd9"
+        }
+      },
+      "preimage_sha256": "e767c4987e23540e566bf8dc4840c150be40449e277954a00cd0fdabf83fc976",
+      "replacement": {
+        "id": "dd_v19_train_1203_10_1",
+        "kind": "interpretation",
+        "context": true,
+        "assistant": "I do not like people touching my head. What could I do?",
+        "reply": "Do you think it is a ~ got give your brain, use it if you really cannot accept it people touch your head, keep distance from them, why not just wear your big flyby hat and ~ is anyone get close to you.",
+        "value": "suggested keeping distance from people and wearing a hat in response to unwanted head-touching; the damaged parts remain unknown and completion of these actions was not reported",
+        "question": "What did I convey in my last reply?",
+        "interpretation_topic": "dd_v19_train_1203_10_1",
+        "source": {
+          "split": "train",
+          "dialogue": 1203,
+          "turn": 10,
+          "segment": 1,
+          "span": [
+            0,
+            201
+          ],
+          "text": "Do you think it is a ~ got give your brain, use it if you really cannot accept it people touch your head, keep distance from them, why not just wear your big flyby hat and ~ is anyone get close to you.",
+          "context": [
+            "Mom, why do Chinese people like to touch my head? Sometimes they even touch my cheeks.",
+            "That is a part of Chinese culture, if they think you are a lovely child, they touch your head and say, how cute you are.",
+            "But I donor like it, not a bit, I am not a pet, I am a girl.",
+            "Well, you get used to it, different countries have different manners.",
+            "But I do not like anyone touch my head.",
+            "They are just been in friendly, when you are in Roman, do as the Romans do, that means you need to adapt to your environment.",
+            "What if everybody in the wheres goes crazy?",
+            "Then you might need to pretend to be a little crazy.",
+            "Does this mean that if I might want those new European bitches, I am supposed to wonder run reget?",
+            "Do you think it is a ~ got give your brain, use it if you really cannot accept it people touch your head, keep distance from them, why not just wear your big flyby hat and ~ is anyone get close to you.",
+            "That is my work, I will try it."
+          ]
+        },
+        "review": {
+          "method": "direct_assistant_fragment_adapter",
+          "scope": "adapted_visible_pair_only",
+          "evidence_turns": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "adaptation": "Preserve the exact original reply and visible preceding prompt. Use only the limited interpretation; unknown details and generic-role restrictions remain. The clear advice is keeping distance if head-touching is unacceptable and possibly wearing a hat. Keep the damaged introduction, flyby and ending unknown; the target must say completion was not reported, not that no action occurred.",
+          "source_sha256": "85b863a0325daea1a4465e41c6554329bf472c7be0147c5ce49433bc531619c5",
+          "context_sha256": "1643004e709ad880460bc6edd4f2f450c19fd48ebf294a4df91522386cd01bd9"
+        }
+      },
+      "replacement_sha256": "427ac6c4ce5471913d5e25d2f00b82847a4342067a86698ba2c21d3eda1774d0",
+      "reason": "The clear advice is keeping distance if head-touching is unacceptable and possibly wearing a hat. Keep the damaged introduction, flyby and ending unknown; the target must say completion was not reported, not that no action occurred.",
+      "source_text_changed": false
+    },
+    {
+      "id": "dd_v21_train_1483_6_1",
+      "source_id": "train:1483:6:1",
+      "method": "direct_assistant_target_semantics_review",
+      "preimage": {
+        "id": "dd_v21_train_1483_6_1",
+        "kind": "interpretation",
+        "context": true,
+        "assistant": "You are standing on the rail with your arms stretched out. How does it feel?",
+        "reply": "I'm fling, Jack.",
+        "value": "expressed a flight-like sensation while addressing Jack; the wording fling remains uncertain and no actual flight or throwing was confirmed",
+        "question": "What did I convey in my last reply?",
+        "interpretation_topic": "dd_v21_train_1483_6_1",
+        "source": {
+          "split": "train",
+          "dialogue": 1483,
+          "turn": 6,
+          "segment": 1,
+          "span": [
+            0,
+            16
+          ],
+          "text": "I'm fling, Jack.",
+          "context": [
+            "Give me your hand. (takes Rose's hand) Close your eyes. Go on. (Rose closes her eyes) Step up. Now hold on to the rail. Keep your eyes closed; don't peek.",
+            "I'm not.",
+            "Step up onto the rail. Hold on. Keep your eyes closed. Trust me?",
+            "I trust you.",
+            "All right, open your eyes. (Rose opens her eyes. She stretches her arms, and Jack stands behind her, arms around her.)",
+            "I'm fling, Jack. (singing) Come, Josephine, in my flying machine. Up she goes, and up she goes..."
+          ]
+        },
+        "review": {
+          "method": "direct_assistant_fragment_adapter",
+          "scope": "adapted_visible_pair_only",
+          "evidence_turns": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "source_sha256": "69cf34182813383db5e6905ba207513f5a5195f72a68c04e7569319a986a0401",
+          "context_sha256": "f91f9d578a523a28715ada9f590ec434d34819bb411f3ec30d7c0841a458cf1d",
+          "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. While standing on the rail with arms out, the speaker addresses Jack and conveys a flight-like sensation. Fling is not interpreted as a completed throw, and the singing does not establish actual flight.The intended verb form behind fling is uncertain."
+        }
+      },
+      "preimage_sha256": "28c201f49b20dd5143f50511d091f5795ea8f7c6e61eade711ca5b87a6fcc748",
+      "replacement": {
+        "id": "dd_v21_train_1483_6_1",
+        "kind": "interpretation",
+        "context": true,
+        "assistant": "You are standing on the rail with your arms stretched out. How does it feel?",
+        "reply": "I'm fling, Jack.",
+        "value": "addressed Jack with an unclear self-description using fling; neither flying nor throwing was established",
+        "question": "What did I convey in my last reply?",
+        "interpretation_topic": "dd_v21_train_1483_6_1",
+        "source": {
+          "split": "train",
+          "dialogue": 1483,
+          "turn": 6,
+          "segment": 1,
+          "span": [
+            0,
+            16
+          ],
+          "text": "I'm fling, Jack.",
+          "context": [
+            "Give me your hand. (takes Rose's hand) Close your eyes. Go on. (Rose closes her eyes) Step up. Now hold on to the rail. Keep your eyes closed; don't peek.",
+            "I'm not.",
+            "Step up onto the rail. Hold on. Keep your eyes closed. Trust me?",
+            "I trust you.",
+            "All right, open your eyes. (Rose opens her eyes. She stretches her arms, and Jack stands behind her, arms around her.)",
+            "I'm fling, Jack. (singing) Come, Josephine, in my flying machine. Up she goes, and up she goes..."
+          ]
+        },
+        "review": {
+          "method": "direct_assistant_fragment_adapter",
+          "scope": "adapted_visible_pair_only",
+          "evidence_turns": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "source_sha256": "69cf34182813383db5e6905ba207513f5a5195f72a68c04e7569319a986a0401",
+          "context_sha256": "f91f9d578a523a28715ada9f590ec434d34819bb411f3ec30d7c0841a458cf1d",
+          "adaptation": "Preserve the exact original reply and visible preceding prompt. Use only the limited interpretation; unknown details and generic-role restrictions remain. The adapted visible pair has the rail setting but omits the later song. Narrow the target to an unclear self-description addressed to Jack; fling alone establishes neither flight-like sensation, actual flight nor throwing."
+        }
+      },
+      "replacement_sha256": "69ebee874a23dafc68b74a98234f418c39dd60e0170df6f7f9357a584edb1fc6",
+      "reason": "The adapted visible pair has the rail setting but omits the later song. Narrow the target to an unclear self-description addressed to Jack; fling alone establishes neither flight-like sensation, actual flight nor throwing.",
+      "source_text_changed": false
+    },
+    {
+      "id": "dd_v21_train_1929_9_2",
+      "source_id": "train:1929:9:2",
+      "method": "direct_assistant_target_semantics_review",
+      "preimage": {
+        "id": "dd_v21_train_1929_9_2",
+        "kind": "interpretation",
+        "context": true,
+        "assistant": "We have been talking about being single and calling each other E-bf and E-gf.",
+        "reply": "Do you agree to be my of?",
+        "value": "asked for a romantic relationship after expressing liking; the role label of and whether the proposal is online or offline remain unclear",
+        "question": "What did I convey in my last reply?",
+        "interpretation_topic": "dd_v21_train_1929_9_2",
+        "source": {
+          "split": "train",
+          "dialogue": 1929,
+          "turn": 9,
+          "segment": 2,
+          "span": [
+            12,
+            37
+          ],
+          "text": "Do you agree to be my of?",
+          "context": [
+            "Do you have a bf?",
+            "Yes, I had a bf before.",
+            "Why you say bf before?",
+            "We parted from each other last month.",
+            "Have you got a new one?",
+            "Mmmm, no. How about you?",
+            "I am single, I have no real of, only an E-gf, that is you.",
+            "Haha, so you are my E-bf.",
+            "I like you. Do you agree to be my of?",
+            "Mmmm... OK, let's try to be.",
+            "Wow! Blablablabla...",
+            "Hey! What is it?",
+            "I am flying like a bird.",
+            "LL",
+            "I am so happy. I want to drink a cup of champagne.",
+            "I have no champagne right now. How about this?",
+            "It's OK, so I send you this.",
+            "Is it made of chocolate?",
+            "It's my heart; it's made of what you like.",
+            "Oh, I will have a sweet dream.",
+            "Are you sleepy?",
+            "A little bit. I have to go to sleep though I don't want to.",
+            "Yes, I do not want to see ur sleeping in the office.",
+            "Thx. Bye for now. Kisssssssssss.",
+            "C U here, honey."
+          ]
+        },
+        "review": {
+          "method": "direct_assistant_fragment_adapter",
+          "scope": "adapted_visible_pair_only",
+          "evidence_turns": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "source_sha256": "9f53e18a10a81ebc384c240682fd828906efcbd458774fe5d0d6fa8c2eeed8bd",
+          "context_sha256": "bd908c026f40e3b8184c1854a8ffda4d56a481c411ec2643e0a2505e74e9b45e",
+          "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. After expressing liking and discussing online bf/gf identities, the speaker requests a romantic relationship. The malformed of does not specify a reliable role label or whether the proposed relationship is online or offline.The requested role label and online versus offline scope are uncertain."
+        }
+      },
+      "preimage_sha256": "bb537608f4bd57a993dbc63a46255ce85ea3ea4c6a3eb2fd32f582404d3ab199",
+      "replacement": {
+        "id": "dd_v21_train_1929_9_2",
+        "kind": "interpretation",
+        "context": true,
+        "assistant": "We have been talking about being single and calling each other E-bf and E-gf.",
+        "reply": "Do you agree to be my of?",
+        "value": "asked for a romantic relationship; the role label of and whether the proposal is online or offline remain unclear",
+        "question": "What did I convey in my last reply?",
+        "interpretation_topic": "dd_v21_train_1929_9_2",
+        "source": {
+          "split": "train",
+          "dialogue": 1929,
+          "turn": 9,
+          "segment": 2,
+          "span": [
+            12,
+            37
+          ],
+          "text": "Do you agree to be my of?",
+          "context": [
+            "Do you have a bf?",
+            "Yes, I had a bf before.",
+            "Why you say bf before?",
+            "We parted from each other last month.",
+            "Have you got a new one?",
+            "Mmmm, no. How about you?",
+            "I am single, I have no real of, only an E-gf, that is you.",
+            "Haha, so you are my E-bf.",
+            "I like you. Do you agree to be my of?",
+            "Mmmm... OK, let's try to be.",
+            "Wow! Blablablabla...",
+            "Hey! What is it?",
+            "I am flying like a bird.",
+            "LL",
+            "I am so happy. I want to drink a cup of champagne.",
+            "I have no champagne right now. How about this?",
+            "It's OK, so I send you this.",
+            "Is it made of chocolate?",
+            "It's my heart; it's made of what you like.",
+            "Oh, I will have a sweet dream.",
+            "Are you sleepy?",
+            "A little bit. I have to go to sleep though I don't want to.",
+            "Yes, I do not want to see ur sleeping in the office.",
+            "Thx. Bye for now. Kisssssssssss.",
+            "C U here, honey."
+          ]
+        },
+        "review": {
+          "method": "direct_assistant_fragment_adapter",
+          "scope": "adapted_visible_pair_only",
+          "evidence_turns": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "source_sha256": "9f53e18a10a81ebc384c240682fd828906efcbd458774fe5d0d6fa8c2eeed8bd",
+          "context_sha256": "bd908c026f40e3b8184c1854a8ffda4d56a481c411ec2643e0a2505e74e9b45e",
+          "adaptation": "Preserve the exact original reply and visible preceding prompt. Use only the limited interpretation; unknown details and generic-role restrictions remain. The visible preceding prompt supplies E-bf/E-gf relationship context. The target may describe a relationship request, but must not claim an explicit liking statement omitted from the visible pair. Keep of and online/offline scope unresolved."
+        }
+      },
+      "replacement_sha256": "e5d0f63476f720f9457ebdb2e75f0d84968fb1e04f9086455bb419e6980a1a01",
+      "reason": "The visible preceding prompt supplies E-bf/E-gf relationship context. The target may describe a relationship request, but must not claim an explicit liking statement omitted from the visible pair. Keep of and online/offline scope unresolved.",
+      "source_text_changed": false
+    },
+    {
+      "id": "dd_v22_train_1980_6_2",
+      "source_id": "train:1980:6:2",
+      "method": "direct_assistant_target_semantics_review",
+      "preimage": {
+        "id": "dd_v22_train_1980_6_2",
+        "kind": "interpretation",
+        "context": true,
+        "assistant": "After leaving the Underground and crossing the road, I can see Horntown Street. What next?",
+        "reply": "Was up that street to the crossroads.",
+        "value": "directed the listener up that street to the crossroads; the intended verb behind Was remains unclear and no journey was completed",
+        "question": "What did I convey in my last reply?",
+        "interpretation_topic": "dd_v22_train_1980_6_2",
+        "source": {
+          "split": "train",
+          "dialogue": 1980,
+          "turn": 6,
+          "segment": 2,
+          "span": [
+            88,
+            125
+          ],
+          "text": "Was up that street to the crossroads.",
+          "context": [
+            "Hi Jane, can you let me know the best way to get to your house this evening?",
+            "Certainly, where will you be coming from?",
+            "I need to be in the city centre this afternoon so I will be coming straight from there.",
+            "Ok. Take the Underground (the Circle line) to High Street Kensington. Make sure you take the High Street Kensington exit.",
+            "Got that.",
+            "Ok - when you leave the Underground, cross the road and you should see Horntown Street. Was up that street to the crossroads. As you was you should see a fast food place on your right.",
+            "Hold on, I am looking at the map now. Ok, I can see Horntown Road. Do I go straight at the intersection?",
+            "No, you need to turn left into Philimore Was and take the next right.",
+            "Ok, I can see that road.",
+            "That's fine. You will not miss it because it's just next to the Kensington centra Library.",
+            "Good, I can see the library on the map.",
+            "Ok, we live in the third building on your left. Will we see you around 7 pm?",
+            "That's great, see you at seven."
+          ]
+        },
+        "review": {
+          "method": "direct_assistant_fragment_adapter",
+          "scope": "adapted_visible_pair_only",
+          "evidence_turns": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "source_sha256": "11fcf28a6cdb9c3cc11840809a6f127904a9d03e76488ca6c4d04b6ace6b63c2",
+          "context_sha256": "ffcdd092aed6381d0b48fd73ae13543744711a96a3cf7249c198fcffd172a14e",
+          "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. In the directions, the speaker indicates proceeding up the street to the crossroads. Was is not silently repaired to walk and does not establish a past journey.The intended motion verb or manner behind Was is unresolved."
+        }
+      },
+      "preimage_sha256": "41281dc7fafabde41feb38b420544244c8818d24ccc4d7bf63fef71f4cf20024",
+      "replacement": {
+        "id": "dd_v22_train_1980_6_2",
+        "kind": "interpretation",
+        "context": true,
+        "assistant": "After leaving the Underground and crossing the road, I can see Horntown Street. What next?",
+        "reply": "Was up that street to the crossroads.",
+        "value": "directed the listener up that street to the crossroads; the intended verb behind Was remains unclear and no completed journey was reported",
+        "question": "What did I convey in my last reply?",
+        "interpretation_topic": "dd_v22_train_1980_6_2",
+        "source": {
+          "split": "train",
+          "dialogue": 1980,
+          "turn": 6,
+          "segment": 2,
+          "span": [
+            88,
+            125
+          ],
+          "text": "Was up that street to the crossroads.",
+          "context": [
+            "Hi Jane, can you let me know the best way to get to your house this evening?",
+            "Certainly, where will you be coming from?",
+            "I need to be in the city centre this afternoon so I will be coming straight from there.",
+            "Ok. Take the Underground (the Circle line) to High Street Kensington. Make sure you take the High Street Kensington exit.",
+            "Got that.",
+            "Ok - when you leave the Underground, cross the road and you should see Horntown Street. Was up that street to the crossroads. As you was you should see a fast food place on your right.",
+            "Hold on, I am looking at the map now. Ok, I can see Horntown Road. Do I go straight at the intersection?",
+            "No, you need to turn left into Philimore Was and take the next right.",
+            "Ok, I can see that road.",
+            "That's fine. You will not miss it because it's just next to the Kensington centra Library.",
+            "Good, I can see the library on the map.",
+            "Ok, we live in the third building on your left. Will we see you around 7 pm?",
+            "That's great, see you at seven."
+          ]
+        },
+        "review": {
+          "method": "direct_assistant_fragment_adapter",
+          "scope": "adapted_visible_pair_only",
+          "evidence_turns": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "source_sha256": "11fcf28a6cdb9c3cc11840809a6f127904a9d03e76488ca6c4d04b6ace6b63c2",
+          "context_sha256": "ffcdd092aed6381d0b48fd73ae13543744711a96a3cf7249c198fcffd172a14e",
+          "adaptation": "Preserve the exact original reply and visible preceding prompt. Use only the limited interpretation; unknown details and generic-role restrictions remain. The directions identify a route up the street to the crossroads. Was remains an unresolved motion expression, with no walk repair and no asserted completed or denied-completed journey."
+        }
+      },
+      "replacement_sha256": "8ead3791f44e04ac59b032d4fea846c1d91d1b15017074996ed3df36d1cecc41",
+      "reason": "The directions identify a route up the street to the crossroads. Was remains an unresolved motion expression, with no walk repair and no asserted completed or denied-completed journey.",
+      "source_text_changed": false
+    },
+    {
+      "id": "dd_v22_train_2110_5_2",
+      "source_id": "train:2110:5:2",
+      "method": "direct_assistant_target_semantics_review",
+      "preimage": {
+        "id": "dd_v22_train_2110_5_2",
+        "kind": "interpretation",
+        "context": true,
+        "assistant": "You were praising your ancestor Peter Madsen.",
+        "reply": "What is it you active about him most?",
+        "value": "asked what the listener most appreciates about the ancestor; the verb active remains unresolved and no answer was supplied",
+        "question": "What did I convey in my last reply?",
+        "interpretation_topic": "dd_v22_train_2110_5_2",
+        "source": {
+          "split": "train",
+          "dialogue": 2110,
+          "turn": 5,
+          "segment": 2,
+          "span": [
+            10,
+            47
+          ],
+          "text": "What is it you active about him most?",
+          "context": [
+            "Hey Annie, who is this picture of?",
+            "Oh, that's my great, great, great, great, great, great, great grandfather.",
+            "I think you can say your seventh great grandfather! Cutie! What's his name?",
+            "Peter Madsen. A great A if I do say so myself.",
+            "Nice pun. What is it you active about him most?",
+            "He loved his family and his countrymen and his freedom.",
+            "He looks like a very personable man.",
+            "He was. He was friendly toward and showed concern for everyone he met."
+          ]
+        },
+        "review": {
+          "method": "direct_assistant_fragment_adapter",
+          "scope": "adapted_visible_pair_only",
+          "evidence_turns": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "source_sha256": "21a403b1258a65224455e478584f8d4c848db0f275673854deb521a6e2b4ad92",
+          "context_sha256": "d566b33c7bd0500f200fcd7c8d9bda1a8f24dd9b9f9f06e7646afcb3b44637bf",
+          "adaptation": "Keep this source span exactly. The adapted visible context and original reply support only this interpretation; no invented missing words or completed actions. The question seeks what the listener most appreciates about the ancestor in the preceding positive appraisal. Active does not establish a specific mental verb or physical activity.The intended verb behind active is unresolved."
+        }
+      },
+      "preimage_sha256": "219c27f5a8441ee0b4d00ed7ef925688a556638d04da3b6e0d4ac64221dbd8c3",
+      "replacement": {
+        "id": "dd_v22_train_2110_5_2",
+        "kind": "interpretation",
+        "context": true,
+        "assistant": "You were praising your ancestor Peter Madsen.",
+        "reply": "What is it you active about him most?",
+        "value": "asked about an aspect of the ancestor; active leaves the requested relation unclear and no answer was supplied",
+        "question": "What did I convey in my last reply?",
+        "interpretation_topic": "dd_v22_train_2110_5_2",
+        "source": {
+          "split": "train",
+          "dialogue": 2110,
+          "turn": 5,
+          "segment": 2,
+          "span": [
+            10,
+            47
+          ],
+          "text": "What is it you active about him most?",
+          "context": [
+            "Hey Annie, who is this picture of?",
+            "Oh, that's my great, great, great, great, great, great, great grandfather.",
+            "I think you can say your seventh great grandfather! Cutie! What's his name?",
+            "Peter Madsen. A great A if I do say so myself.",
+            "Nice pun. What is it you active about him most?",
+            "He loved his family and his countrymen and his freedom.",
+            "He looks like a very personable man.",
+            "He was. He was friendly toward and showed concern for everyone he met."
+          ]
+        },
+        "review": {
+          "method": "direct_assistant_fragment_adapter",
+          "scope": "adapted_visible_pair_only",
+          "evidence_turns": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "source_sha256": "21a403b1258a65224455e478584f8d4c848db0f275673854deb521a6e2b4ad92",
+          "context_sha256": "d566b33c7bd0500f200fcd7c8d9bda1a8f24dd9b9f9f06e7646afcb3b44637bf",
+          "adaptation": "Preserve the exact original reply and visible preceding prompt. Use only the limited interpretation; unknown details and generic-role restrictions remain. The question concerns an aspect of the ancestor, but active does not identify appreciation or another mental verb. Narrow the target to the question topic and leave the requested relation unknown."
+        }
+      },
+      "replacement_sha256": "36ef43da9fbba8658678bc45f1764bfb755d9016b35930afd90b06889b211616",
+      "reason": "The question concerns an aspect of the ancestor, but active does not identify appreciation or another mental verb. Narrow the target to the question topic and leave the requested relation unknown.",
+      "source_text_changed": false
+    },
+    {
+      "id": "dd_v28_test_171_5_1",
+      "source_id": "test:171:5:1",
+      "method": "direct_assistant_target_semantics_review",
+      "preimage": {
+        "id": "dd_v28_test_171_5_1",
+        "kind": "interpretation",
+        "context": true,
+        "assistant": "What do you remember about X-rated films being displayed?",
+        "reply": "I remember that I never saw an X moves even displayed.",
+        "value": "said they did not remember ever seeing an X-rated movie displayed, while retaining the source word moves",
+        "question": "What did I convey in my last reply?",
+        "interpretation_topic": "dd_v28_test_171_5_1",
+        "source": {
+          "split": "test",
+          "dialogue": 171,
+          "turn": 5,
+          "segment": 1,
+          "span": [
+            0,
+            54
+          ],
+          "text": "I remember that I never saw an X moves even displayed.",
+          "context": [
+            "Do you remember what the ratings of movies stand for?",
+            "Yes, G stands for General Audiences, PG means Parental Guidance suggested, R is restricted to audiences under 18 and X means explicit content.",
+            "Does anyone pay any attention to those ratings anymore?",
+            "Remember when we were kids? Theaters wouldn't let kids in to PG moves without a parent.",
+            "I remember that I never saw an X moves even displayed.",
+            "Now with video rentals it's all a personal matter.",
+            "Yea, I never see theaters turn people away for their age anymore either.",
+            "Now we have to make a choice about what we will see and what we won't."
+          ]
+        },
+        "review": {
+          "method": "direct_assistant_fragment_adapter",
+          "scope": "adapted_visible_pair_only",
+          "evidence_turns": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "source_sha256": "1b956debee82dca2b2dfd0469b01c90c242c4e85677e0fcb2654fd765df1d5f7",
+          "context_sha256": "9edaadb824b7fbea3ce7ec961a635546084c202ff153354592055672247ac1e9",
+          "adaptation": "The visible prompt explicitly supplies the necessary context. Preserve the exact original reply, including errors and truncation. The anomalous moves is not rewritten and displayed does not specify a particular kind of advertisement or screening. No general action-role annotation or completed event is inferred."
+        }
+      },
+      "preimage_sha256": "ec5ff00aa1cc934f108a0244522ddc0a48a5efe70e93014c05a5a9cf7cea8b0c",
+      "replacement": {
+        "id": "dd_v28_test_171_5_1",
+        "kind": "interpretation",
+        "context": true,
+        "assistant": "What do you remember about X-rated films being displayed?",
+        "reply": "I remember that I never saw an X moves even displayed.",
+        "value": "recalled never having seen an X-rated movie displayed, while retaining the source word moves",
+        "question": "What did I convey in my last reply?",
+        "interpretation_topic": "dd_v28_test_171_5_1",
+        "source": {
+          "split": "test",
+          "dialogue": 171,
+          "turn": 5,
+          "segment": 1,
+          "span": [
+            0,
+            54
+          ],
+          "text": "I remember that I never saw an X moves even displayed.",
+          "context": [
+            "Do you remember what the ratings of movies stand for?",
+            "Yes, G stands for General Audiences, PG means Parental Guidance suggested, R is restricted to audiences under 18 and X means explicit content.",
+            "Does anyone pay any attention to those ratings anymore?",
+            "Remember when we were kids? Theaters wouldn't let kids in to PG moves without a parent.",
+            "I remember that I never saw an X moves even displayed.",
+            "Now with video rentals it's all a personal matter.",
+            "Yea, I never see theaters turn people away for their age anymore either.",
+            "Now we have to make a choice about what we will see and what we won't."
+          ]
+        },
+        "review": {
+          "method": "direct_assistant_fragment_adapter",
+          "scope": "adapted_visible_pair_only",
+          "evidence_turns": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "source_sha256": "1b956debee82dca2b2dfd0469b01c90c242c4e85677e0fcb2654fd765df1d5f7",
+          "context_sha256": "9edaadb824b7fbea3ce7ec961a635546084c202ff153354592055672247ac1e9",
+          "adaptation": "Preserve the exact original reply and visible preceding prompt. Use only the limited interpretation; unknown details and generic-role restrictions remain. Preserve the scope of remember over never saw: the speaker recalls not having seen an X-rated display, rather than failing to remember a sighting. Retain moves and leave the type of display unspecified."
+        }
+      },
+      "replacement_sha256": "0d97bb3de4d8b10aa2cf7e3c9e3a242db1cfa4839f7bfe786a908e6b7931dd82",
+      "reason": "Preserve the scope of remember over never saw: the speaker recalls not having seen an X-rated display, rather than failing to remember a sighting. Retain moves and leave the type of display unspecified.",
+      "source_text_changed": false
+    },
+    {
+      "id": "dd_v28_test_827_3_1",
+      "source_id": "test:827:3:1",
+      "method": "direct_assistant_target_semantics_review",
+      "preimage": {
+        "id": "dd_v28_test_827_3_1",
+        "kind": "interpretation",
+        "context": true,
+        "assistant": "I spend a lot of time watching movies.",
+        "reply": "What a confidence!",
+        "value": "reacted to a shared interest in movies with an exclamation using the unresolved word confidence",
+        "question": "What did I convey in my last reply?",
+        "interpretation_topic": "dd_v28_test_827_3_1",
+        "source": {
+          "split": "test",
+          "dialogue": 827,
+          "turn": 3,
+          "segment": 1,
+          "span": [
+            0,
+            18
+          ],
+          "text": "What a confidence!",
+          "context": [
+            "Hi, Mary! What do you like to do in your spare time?",
+            "Well, I spend a lot of time watching movies.",
+            "What a confidence! I always watch a lot of movies, too.",
+            "Oh really, Frank? What kind of movies do you like?",
+            "Actually, I watch whichever movie there is, be it a comedy, a sci-fi or a suspense movie. How about you?",
+            "Art films are my favorite, but thrillers are cool, too.",
+            "Really impressive. These two genres are totally different.",
+            "Sure. I enjoy both of them very much.",
+            "How often do you go to the cinema?",
+            "Once in a while, I suppose, I usually rent movies at Movie Salon.",
+            "Movie salon? Where is that?",
+            "It's a movie rental store in my neighborhood. I've got a membership there.",
+            "Is it good?",
+            "Yes, you can find almost all new releases there.",
+            "Really? Maybe I shall also sign up for its membership.",
+            "Why not?"
+          ]
+        },
+        "review": {
+          "method": "direct_assistant_fragment_adapter",
+          "scope": "adapted_visible_pair_only",
+          "evidence_turns": [
+            1,
+            2,
+            3
+          ],
+          "source_sha256": "c72b30f0bd1e72ce1eabd957b453045b2a754c96bc84095226cfe0efde3e7048",
+          "context_sha256": "584b0c5ea2cc8d3bd5902c2eb99a7ce347f772c3453bccd124533b7941c163f3",
+          "adaptation": "The visible prompt explicitly supplies the necessary context. Preserve the exact original reply, including errors and truncation. Do not silently replace confidence with coincidence or assert a confidence state. No general action-role annotation or completed event is inferred."
+        }
+      },
+      "preimage_sha256": "34f4b9c29b22828a86444d2833e6fcc04940700cf616a15038cfe5698d80de17",
+      "replacement": {
+        "id": "dd_v28_test_827_3_1",
+        "kind": "interpretation",
+        "context": true,
+        "assistant": "I spend a lot of time watching movies.",
+        "reply": "What a confidence!",
+        "value": "reacted with an exclamation during a movie discussion; the word confidence remains unresolved",
+        "question": "What did I convey in my last reply?",
+        "interpretation_topic": "dd_v28_test_827_3_1",
+        "source": {
+          "split": "test",
+          "dialogue": 827,
+          "turn": 3,
+          "segment": 1,
+          "span": [
+            0,
+            18
+          ],
+          "text": "What a confidence!",
+          "context": [
+            "Hi, Mary! What do you like to do in your spare time?",
+            "Well, I spend a lot of time watching movies.",
+            "What a confidence! I always watch a lot of movies, too.",
+            "Oh really, Frank? What kind of movies do you like?",
+            "Actually, I watch whichever movie there is, be it a comedy, a sci-fi or a suspense movie. How about you?",
+            "Art films are my favorite, but thrillers are cool, too.",
+            "Really impressive. These two genres are totally different.",
+            "Sure. I enjoy both of them very much.",
+            "How often do you go to the cinema?",
+            "Once in a while, I suppose, I usually rent movies at Movie Salon.",
+            "Movie salon? Where is that?",
+            "It's a movie rental store in my neighborhood. I've got a membership there.",
+            "Is it good?",
+            "Yes, you can find almost all new releases there.",
+            "Really? Maybe I shall also sign up for its membership.",
+            "Why not?"
+          ]
+        },
+        "review": {
+          "method": "direct_assistant_fragment_adapter",
+          "scope": "adapted_visible_pair_only",
+          "evidence_turns": [
+            1,
+            2,
+            3
+          ],
+          "source_sha256": "c72b30f0bd1e72ce1eabd957b453045b2a754c96bc84095226cfe0efde3e7048",
+          "context_sha256": "584b0c5ea2cc8d3bd5902c2eb99a7ce347f772c3453bccd124533b7941c163f3",
+          "adaptation": "Preserve the exact original reply and visible preceding prompt. Use only the limited interpretation; unknown details and generic-role restrictions remain. The visible pair supports a reaction during a movie discussion. The shared-interest claim requires the later sentence omitted from the adapter; remove it from the target. Keep confidence unresolved, without a coincidence repair."
+        }
+      },
+      "replacement_sha256": "68bd7536ee40d1d6015b9453c2b395472b4f6bbe60b6ff39517b67a3a6ff0bd5",
+      "reason": "The visible pair supports a reaction during a movie discussion. The shared-interest claim requires the later sentence omitted from the adapter; remove it from the target. Keep confidence unresolved, without a coincidence repair.",
+      "source_text_changed": false
+    },
+    {
+      "id": "dd_v28_test_834_8_3",
+      "source_id": "test:834:8:3",
+      "method": "direct_assistant_target_semantics_review",
+      "preimage": {
+        "id": "dd_v28_test_834_8_3",
+        "kind": "interpretation",
+        "context": true,
+        "assistant": "What might the boss learn from other companies?",
+        "reply": "He will be learning from that if he would like to an efficient and healthy team.",
+        "value": "predicted that the boss might learn from those practices in connection with wanting an efficient and healthy team",
+        "question": "What did I convey in my last reply?",
+        "interpretation_topic": "dd_v28_test_834_8_3",
+        "source": {
+          "split": "test",
+          "dialogue": 834,
+          "turn": 8,
+          "segment": 3,
+          "span": [
+            198,
+            278
+          ],
+          "text": "He will be learning from that if he would like to an efficient and healthy team.",
+          "context": [
+            "Do you sometimes feel overwhelmed by your work?",
+            "Of course! It is the No. 1 stressor in my life. You know job stress has become a very common problem these days. So we must learn to cope with it.",
+            "Totally agree. What is your solution?",
+            "Well, there are two causes of job stress. One is employee characteristic and the other is company condition. So if we want to manage job stress, both we and the companies should do something. For me, I am trying to balance work and leisure time. You know, all work and no play make Jack a dull boy.",
+            "You seem to have a very relaxed outlook.",
+            "It is necessary. Positive attitude helps to prevent stress.",
+            "But I don't think we can change our working condition. Anyway, we are not the bosses.",
+            "I heard some companies are providing stress management training and making changes inside them, like avoiding unrealistic deadlines and organizing relaxation activities. Our boss is a smart person. He will be learning from that if he would like to an efficient and healthy team."
+          ]
+        },
+        "review": {
+          "method": "direct_assistant_fragment_adapter",
+          "scope": "adapted_visible_pair_only",
+          "evidence_turns": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "source_sha256": "20fff57f2fee345da524179c96e127808607343d862ed9ee378252ca55a71cd0",
+          "context_sha256": "14077e9322f92cc09e9d4ae53e3a277857621a007b9604ee5382eb145e7c8beb",
+          "adaptation": "The visible prompt explicitly supplies the necessary context. Preserve the exact original reply, including errors and truncation. The predicate missing after would like to is not inserted; no organizational change is asserted. No general action-role annotation or completed event is inferred."
+        }
+      },
+      "preimage_sha256": "919f3e8dd842c3cdad266c1b86fc69bc6075ea83944e8f47f093c4a58979d995",
+      "replacement": {
+        "id": "dd_v28_test_834_8_3",
+        "kind": "interpretation",
+        "context": true,
+        "assistant": "What might the boss learn from other companies?",
+        "reply": "He will be learning from that if he would like to an efficient and healthy team.",
+        "value": "conditionally predicted that the boss would learn from those practices; the if-clause mentions an efficient and healthy team but leaves the intended predicate unresolved",
+        "question": "What did I convey in my last reply?",
+        "interpretation_topic": "dd_v28_test_834_8_3",
+        "source": {
+          "split": "test",
+          "dialogue": 834,
+          "turn": 8,
+          "segment": 3,
+          "span": [
+            198,
+            278
+          ],
+          "text": "He will be learning from that if he would like to an efficient and healthy team.",
+          "context": [
+            "Do you sometimes feel overwhelmed by your work?",
+            "Of course! It is the No. 1 stressor in my life. You know job stress has become a very common problem these days. So we must learn to cope with it.",
+            "Totally agree. What is your solution?",
+            "Well, there are two causes of job stress. One is employee characteristic and the other is company condition. So if we want to manage job stress, both we and the companies should do something. For me, I am trying to balance work and leisure time. You know, all work and no play make Jack a dull boy.",
+            "You seem to have a very relaxed outlook.",
+            "It is necessary. Positive attitude helps to prevent stress.",
+            "But I don't think we can change our working condition. Anyway, we are not the bosses.",
+            "I heard some companies are providing stress management training and making changes inside them, like avoiding unrealistic deadlines and organizing relaxation activities. Our boss is a smart person. He will be learning from that if he would like to an efficient and healthy team."
+          ]
+        },
+        "review": {
+          "method": "direct_assistant_fragment_adapter",
+          "scope": "adapted_visible_pair_only",
+          "evidence_turns": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "source_sha256": "20fff57f2fee345da524179c96e127808607343d862ed9ee378252ca55a71cd0",
+          "context_sha256": "14077e9322f92cc09e9d4ae53e3a277857621a007b9604ee5382eb145e7c8beb",
+          "adaptation": "Preserve the exact original reply and visible preceding prompt. Use only the limited interpretation; unknown details and generic-role restrictions remain. Preserve the if scope: learning is predicted conditionally in connection with the malformed would-like clause. Do not assert that the boss actually wants, forms or improves a team."
+        }
+      },
+      "replacement_sha256": "637c85d6fc244a030c35bee93dbe72fc5815874336cff16f2919867d2e1a54aa",
+      "reason": "Preserve the if scope: learning is predicted conditionally in connection with the malformed would-like clause. Do not assert that the boss actually wants, forms or improves a team.",
+      "source_text_changed": false
+    }
+  ]
+}

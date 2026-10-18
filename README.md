@@ -628,6 +628,11 @@ d1: 8 annotations from 8 candidates, 3 rejected
 
 ### Annotating without a model
 
+The one-time DailyDialog resource import is stored in `data/mined-templates/`.
+Published templates, unpublished candidates, annotations and review evidence are
+listed in the [import guide](data/mined-templates/audit/README_RU.md).
+Generation and the current quarantine audit no longer need `data/dailydialog/review-parts/`.
+
 To run the local DailyDialog train corpus through annotation, storage, SFT,
 BIO and validation, choose a new output directory:
 

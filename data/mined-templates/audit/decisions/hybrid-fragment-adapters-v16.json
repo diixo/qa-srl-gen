@@ -1,0 +1,216 @@
+{
+  "format": "reviewed-fragment-adapters-v1",
+  "patterns": [
+    {
+      "id": "dd_v16_certainly_service",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "I would like to buy a black suit.",
+      "reply": "Certainly.",
+      "value": "acknowledged my request for a black suit and agreed to help",
+      "question": "What did I agree to help with?",
+      "source": {
+        "split": "test",
+        "dialogue": 141,
+        "turn": 2,
+        "segment": 1,
+        "span": [
+          0,
+          10
+        ],
+        "text": "Certainly.",
+        "context": [
+          "I want to buy a black suit.",
+          "Certainly. Do you want a double-breasted suit or a single-breasted suit?",
+          "I prefer a single-breasted suit.",
+          "What about this one? It's a very nice 3 - piece suit.",
+          "That looks great. Do you have ties here?"
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2
+        ],
+        "adaptation": "Keep the service acceptance; do not assert a completed purchase or a general certainty fact.",
+        "source_sha256": "44e10ec5da69d1f83c4617d5b8d7fd9d97a6bf7eca5705602a74d0647815db55",
+        "context_sha256": "cf28bd45c1c751db6ec4d99a73700fe0eb7717d27303d8783c507821c885f6d3"
+      },
+      "interpretation_topic": "certainly_service"
+    },
+    {
+      "id": "dd_v16_high_heels_choice",
+      "kind": "fact",
+      "context": true,
+      "assistant": "Would you like high heels or flat shoes?",
+      "reply": "High heels, please.",
+      "value": "high heels",
+      "question": "Which shoes did I choose?",
+      "source": {
+        "split": "test",
+        "dialogue": 169,
+        "turn": 4,
+        "segment": 1,
+        "span": [
+          0,
+          19
+        ],
+        "text": "High heels, please.",
+        "context": [
+          "What can I do for you, miss?",
+          "I am looking for a pair of shoes.",
+          "Do you like high heels or flat shoes?",
+          "High heels, please. I want to wear them in formal situations."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          2,
+          3,
+          4
+        ],
+        "adaptation": "Use the preceding shoe alternatives only. This is a current selection, not a lasting preference, wearing event or purchase.",
+        "source_sha256": "cb87b890589a0a258eeaf23ffe98967bf09508d50fb6ea11d25dcf9390e54bfc",
+        "context_sha256": "8050ee7912088c88ccf0aa66a516b119d133f3090560a8497649b527b1742866"
+      },
+      "relation": "selection"
+    },
+    {
+      "id": "dd_v16_ticket_payment_amount",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "How much money should I insert into the ticket machine?",
+      "reply": "50 dollars.",
+      "value": "specified 50 dollars as the amount to insert into the ticket machine",
+      "question": "What amount did I specify for the ticket machine?",
+      "source": {
+        "split": "train",
+        "dialogue": 10335,
+        "turn": 6,
+        "segment": 1,
+        "span": [
+          0,
+          11
+        ],
+        "text": "50 dollars.",
+        "context": [
+          "(At the MET station) Hurry up! We are running late for school.",
+          "Let's take the MET. It's faster and cheap.",
+          "Which line should we take if we go to Danshui?",
+          "We should take the red line. Let's get the tickets at the automatic vending Machine.",
+          "How much money should I insert in the slot?",
+          "50 dollars. Later you have to place your ticket near the sensor.",
+          "I see.",
+          "It's so crowded. All the seats are taken. Let's go there. There is a seat over there.",
+          "It's a priority seat. We can not sit there. We should give the seats to those eld, pregnant and disabled people.",
+          "Yeah, you are right. Let's stand. It takes only about 20 minutes.",
+          "If we go to Danshui in the morning on A weekday, we are sure to have seats since it's not during rush hour.",
+          "Anyway, we are arriving at Danshui soon. I can't wait to watch the beautiful sunset."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          4,
+          5,
+          6
+        ],
+        "adaptation": "Preserve the amount and payment instruction. Do not infer payment, a currency jurisdiction, number of tickets or the later sensor instruction.",
+        "source_sha256": "2ba4f5943724d36a2e81d9f9e8659c105f17b294ecebc3cab1b30d1013f17401",
+        "context_sha256": "252566397e543cea1f57c1f02fd44f749cb51462ce781ab4df0d621d3e426c4d"
+      },
+      "interpretation_topic": "ticket_payment_amount"
+    },
+    {
+      "id": "dd_v16_thanks_directions",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "The national bank is near the war memorial. Look for the sign on the front of the building.",
+      "reply": "Thanks very much.",
+      "value": "thanked me for directions to the bank",
+      "question": "What did I thank you for?",
+      "source": {
+        "split": "train",
+        "dialogue": 11050,
+        "turn": 9,
+        "segment": 2,
+        "span": [
+          8,
+          25
+        ],
+        "text": "Thanks very much.",
+        "context": [
+          "Excuse me? How can I get to the nearest branch of the national bank?",
+          "There's branch on new street. Walk up this street until you get to the first set of traffic lights. Then turn right at the traffic lights.",
+          "How far up the street are the traffic lights?",
+          "Now far. About 150 meters perhaps.",
+          "Ok. So I turn right at the traffic lights. Then?",
+          "Then keep walking until you reach the war memorial. It's a big statue of a soldier. You can't miss it.",
+          "Ok. Where do I go then?",
+          "You'll see the national bank near the war memorial. It's a big building and you'll see a big sign on the front of the building.",
+          "God it. Thanks very much."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          7,
+          8,
+          9
+        ],
+        "adaptation": "Use the directions already provided. Exclude the adjacent defective God it and do not assert arrival at the bank.",
+        "source_sha256": "1f018f1b960a88418b424394d1c9c614631e0c7f551e08f1bd54e1c285c34fb8",
+        "context_sha256": "c8d012d5d0609e1230e906293c0775ff90e756fc6c61308496e4a92c0cbddc68"
+      },
+      "interpretation_topic": "thanks_directions"
+    },
+    {
+      "id": "dd_v16_thanks_report",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Here is the report.",
+      "reply": "Thanks for that.",
+      "value": "thanked me for the report",
+      "question": "What did I thank you for?",
+      "source": {
+        "split": "train",
+        "dialogue": 1756,
+        "turn": 3,
+        "segment": 3,
+        "span": [
+          49,
+          65
+        ],
+        "text": "Thanks for that.",
+        "context": [
+          "Ah, Michelle, hi. I was hoping to see you. How have you been? How's the family?",
+          "Oh, hello, Mr. Campbell. I'm fine and Jack's doing well. How are you?",
+          "I'm fine thanks. I got your report this morning. Thanks for that. Are you joining the conference today?",
+          "Yes, I'm leaving at four pm.",
+          "Good, well we can discuss this more then, but I think the figures are looking very good for this quarter.",
+          "Yes, me too.",
+          "I'm planning to discuss the advertising budget at the conference. I don't think we should continue with the TV advertising."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3
+        ],
+        "adaptation": "Expose the report as an assistant prompt instead of the same-turn report reference in the source. The reply is gratitude, not proof of reading or finishing the report.",
+        "source_sha256": "3ccbd4fec0f7f951636ff9230fbd04fb02904ac86fa769d7fb07c30d0de72e79",
+        "context_sha256": "b42c75ddc1e04501801d2b8e9662f290300a212b8139aa18537b9295ab6ba391"
+      },
+      "interpretation_topic": "thanks_report"
+    }
+  ]
+}

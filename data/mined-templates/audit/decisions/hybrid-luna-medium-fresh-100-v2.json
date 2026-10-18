@@ -1,0 +1,2205 @@
+{
+  "version": 1,
+  "method": "direct_assistant_review",
+  "scope": "100 fresh cases: 50 seeded random and 50 diagnostic; all inputs and all proposals read. Mixed sample is not an unbiased corpus error-rate estimate. Assistant review is not independent human gold.",
+  "plan_sha256": "6b097924c044617e842dff24b885dcf7f503efd5e0d1bb62c17cb9794e4e20e5",
+  "counts": {
+    "cases": 100,
+    "requests": 10,
+    "valid_requests": 10,
+    "clear": 69,
+    "issues": 30,
+    "uncertain": 1,
+    "proposals": 33,
+    "adjudication": {
+      "reject_style": 3,
+      "supported_partial": 5,
+      "supported": 11,
+      "supported_source_uncertainty": 1,
+      "supported_source": 2,
+      "supported_with_review": 1,
+      "hold_alternative": 1,
+      "reject_convention": 3,
+      "supported_unsafe_correction": 1,
+      "supported_minor": 2,
+      "reject_unsupported": 1,
+      "reject_semantic_shortcut": 1,
+      "reject_missing_enrichment": 1
+    }
+  },
+  "baseline_comparison": {
+    "structural_error_cases": 20,
+    "detected_cases": 16,
+    "missed_case_numbers": [
+      2,
+      4,
+      81,
+      84
+    ],
+    "warning": "Case-level overlap, not exact-patch accuracy. Baseline includes segmentation policy errors; some detections only partial. Additional issues found after seeing API output are excluded from this denominator."
+  },
+  "usage": {
+    "input_tokens": 61477,
+    "output_tokens": 25340,
+    "reasoning_tokens": 21408,
+    "charged_usd": 0.020361,
+    "gateway_delta_usd": 0.020361
+  },
+  "recommendation": "Useful triage detector; reject automatic repairs/publication. Clarify remaining small-clause/dative/null-target conventions and audit boundaries separately. Batch-size pilot pending.",
+  "publication": false,
+  "cases": [
+    {
+      "number": 1,
+      "id": "train:2869:9:1",
+      "stratum": "random",
+      "api_status": "issues",
+      "baseline": {
+        "number": 1,
+        "id": "train:2869:9:1",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [
+        {
+          "proposal": {
+            "category": "source",
+            "tokens": [],
+            "explanation": "A comma is missing after the introductory conditional clause, making the boundary between the clauses unclear.",
+            "correction": "Add a comma after “this”: “If I do all this, do you think…”"
+          },
+          "decision": "reject_style",
+          "note": "Comma suggestion is not a demonstrated parse defect; clauses already separated structurally."
+        }
+      ],
+      "publication": false
+    },
+    {
+      "number": 2,
+      "id": "train:8430:6:2",
+      "stratum": "random",
+      "api_status": "clear",
+      "baseline": {
+        "number": 2,
+        "id": "train:8430:6:2",
+        "stratum": "random",
+        "structural_issue": "John is a vocative, not a nominal adverbial.",
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 3,
+      "id": "train:5267:1:2",
+      "stratum": "random",
+      "api_status": "clear",
+      "baseline": {
+        "number": 3,
+        "id": "train:5267:1:2",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 4,
+      "id": "val:99:12:1",
+      "stratum": "random",
+      "api_status": "clear",
+      "baseline": {
+        "number": 4,
+        "id": "val:99:12:1",
+        "stratum": "random",
+        "structural_issue": "sir is a vocative, not a nominal adverbial.",
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 5,
+      "id": "val:86:5:4",
+      "stratum": "random",
+      "api_status": "clear",
+      "baseline": {
+        "number": 5,
+        "id": "val:86:5:4",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 6,
+      "id": "train:10050:6:2",
+      "stratum": "random",
+      "api_status": "clear",
+      "baseline": {
+        "number": 6,
+        "id": "train:10050:6:2",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 7,
+      "id": "train:9350:4:1",
+      "stratum": "random",
+      "api_status": "clear",
+      "baseline": {
+        "number": 7,
+        "id": "train:9350:4:1",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": "Acknowledgment may confirm earlier talking; not a generic completed event."
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 8,
+      "id": "train:10351:5:1",
+      "stratum": "random",
+      "api_status": "issues",
+      "baseline": {
+        "number": 8,
+        "id": "train:10351:5:1",
+        "stratum": "random",
+        "structural_issue": "bring the car in: in is a particle; kilometers expresses service frequency, not the object of in.",
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [
+        {
+          "proposal": {
+            "category": "structure",
+            "tokens": [
+              5,
+              7,
+              8
+            ],
+            "explanation": "“Bring your car in” uses the separated particle construction “bring in”; “in” is incorrectly attached as a preposition, and the construction is marked unseparated.",
+            "correction": "Attach “in” as the particle of “bring” (dep=prt) and mark the construction as separated=true."
+          },
+          "decision": "supported_partial",
+          "note": "Fix in to prt AND detach kilometers from in to a frequency adjunct of bring; proposal alone leaves an invalid particle object."
+        }
+      ],
+      "publication": false
+    },
+    {
+      "number": 9,
+      "id": "train:10998:5:1",
+      "stratum": "random",
+      "api_status": "clear",
+      "baseline": {
+        "number": 9,
+        "id": "train:10998:5:1",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 10,
+      "id": "train:618:1:2",
+      "stratum": "random",
+      "api_status": "clear",
+      "baseline": {
+        "number": 10,
+        "id": "train:618:1:2",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 11,
+      "id": "val:116:10:1",
+      "stratum": "random",
+      "api_status": "clear",
+      "baseline": {
+        "number": 11,
+        "id": "val:116:10:1",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": "Propositional agreement."
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 12,
+      "id": "train:3593:1:2",
+      "stratum": "random",
+      "api_status": "issues",
+      "baseline": {
+        "number": 12,
+        "id": "train:3593:1:2",
+        "stratum": "random",
+        "structural_issue": "had better: contracted d is have, not would. Departure is intended, not established.",
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [
+        {
+          "proposal": {
+            "category": "structure",
+            "tokens": [
+              1
+            ],
+            "explanation": "In “I’d better,” ’d means “had,” not “would”; the supplied lemma and modal tag misanalyze the contraction.",
+            "correction": "Analyze ’d as had and revise its tag accordingly."
+          },
+          "decision": "supported",
+          "note": "Use lemma have for contracted had in had better, not literal lemma had; preserve surface."
+        }
+      ],
+      "publication": false
+    },
+    {
+      "number": 13,
+      "id": "val:86:8:2",
+      "stratum": "random",
+      "api_status": "clear",
+      "baseline": {
+        "number": 13,
+        "id": "val:86:8:2",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 14,
+      "id": "test:177:6:1",
+      "stratum": "random",
+      "api_status": "uncertain",
+      "baseline": {
+        "number": 14,
+        "id": "test:177:6:1",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": "crescive is a rare real word but inappropriate/uncertain here; do not invent replacement.",
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [
+        {
+          "proposal": {
+            "category": "source",
+            "tokens": [
+              9
+            ],
+            "explanation": "“Crescive” is an unusual adjective meaning increasing and seems ill-suited here, but the intended wording cannot be established from context.",
+            "correction": "Check whether “crescive” was intended; no specific replacement is supported."
+          },
+          "decision": "supported_source_uncertainty",
+          "note": "Rare word is contextually questionable; no justified replacement."
+        }
+      ],
+      "publication": false
+    },
+    {
+      "number": 15,
+      "id": "train:2882:6:1",
+      "stratum": "random",
+      "api_status": "clear",
+      "baseline": {
+        "number": 15,
+        "id": "train:2882:6:1",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": "Elliptical question about tipping cab drivers/porters."
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 16,
+      "id": "train:4365:2:1",
+      "stratum": "random",
+      "api_status": "clear",
+      "baseline": {
+        "number": 16,
+        "id": "train:4365:2:1",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 17,
+      "id": "train:8821:12:1",
+      "stratum": "random",
+      "api_status": "issues",
+      "baseline": {
+        "number": 17,
+        "id": "train:8821:12:1",
+        "stratum": "random",
+        "structural_issue": "Wish me luck is ditransitive: me is recipient and luck direct object; the proposed small clause is unsupported.",
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [
+        {
+          "proposal": {
+            "category": "structure",
+            "tokens": [
+              1,
+              2
+            ],
+            "explanation": "In “Wish me luck,” “me” and “luck” are objects of “wish,” not a subject and complement forming a clause.",
+            "correction": "Attach “me” as an object of “Wish” and “luck” as its direct object."
+          },
+          "decision": "supported",
+          "note": "Recipient me and object luck attach to wish; this is not the permitted resultative small-clause case."
+        }
+      ],
+      "publication": false
+    },
+    {
+      "number": 18,
+      "id": "train:2785:2:2",
+      "stratum": "random",
+      "api_status": "clear",
+      "baseline": {
+        "number": 18,
+        "id": "train:2785:2:2",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 19,
+      "id": "train:2177:3:1",
+      "stratum": "random",
+      "api_status": "issues",
+      "baseline": {
+        "number": 19,
+        "id": "train:2177:3:1",
+        "stratum": "random",
+        "structural_issue": "like in What is it like is not a lexical verb meaning enjoy.",
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [
+        {
+          "proposal": {
+            "category": "structure",
+            "tokens": [
+              3
+            ],
+            "explanation": "In “What’s it like,” “like” is an adjective serving as the predicate complement, not a verb.",
+            "correction": "Change “like” to ADJ; retain its complement attachment."
+          },
+          "decision": "supported_partial",
+          "note": "Non-verbal like is required; the remaining subject and infinitive attachments also need adjudication. Do not use this as a ready patch."
+        }
+      ],
+      "publication": false
+    },
+    {
+      "number": 20,
+      "id": "train:7057:6:2",
+      "stratum": "random",
+      "api_status": "clear",
+      "baseline": {
+        "number": 20,
+        "id": "train:7057:6:2",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 21,
+      "id": "train:6691:8:1",
+      "stratum": "random",
+      "api_status": "issues",
+      "baseline": {
+        "number": 21,
+        "id": "train:6691:8:1",
+        "stratum": "random",
+        "structural_issue": "Sir is a vocative, not an adverbial of the currency amount.",
+        "source_issue": "RIB likely currency OCR error for RMB; source review separate from syntax.",
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [
+        {
+          "proposal": {
+            "category": "structure",
+            "tokens": [
+              7
+            ],
+            "explanation": "“Sir” is a vocative, not a modifier of “RIB.”",
+            "correction": "Attach “Sir” as a vocative to the clause."
+          },
+          "decision": "supported",
+          "note": "Vocative Sir; separate source currency ambiguity remains."
+        }
+      ],
+      "publication": false
+    },
+    {
+      "number": 22,
+      "id": "test:776:1:1",
+      "stratum": "random",
+      "api_status": "issues",
+      "baseline": {
+        "number": 22,
+        "id": "test:776:1:1",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": "The Johnson are likely requires Johnsons; retain source until verified.",
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [
+        {
+          "proposal": {
+            "category": "source",
+            "tokens": [
+              1
+            ],
+            "explanation": "The reply identifies them as a couple, so the surname appears to refer to the family; the standard plural form is missing its final “s.”",
+            "correction": "Change “Johnson” to “Johnsons” if the family is intended."
+          },
+          "decision": "supported_source",
+          "note": "Context says couple; likely missing surname plural. Source correction needs separate rebasing."
+        }
+      ],
+      "publication": false
+    },
+    {
+      "number": 23,
+      "id": "train:9039:5:3",
+      "stratum": "random",
+      "api_status": "clear",
+      "baseline": {
+        "number": 23,
+        "id": "train:9039:5:3",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 24,
+      "id": "train:4877:8:2",
+      "stratum": "random",
+      "api_status": "clear",
+      "baseline": {
+        "number": 24,
+        "id": "train:4877:8:2",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 25,
+      "id": "train:10274:8:1",
+      "stratum": "random",
+      "api_status": "issues",
+      "baseline": {
+        "number": 25,
+        "id": "train:10274:8:1",
+        "stratum": "random",
+        "structural_issue": "Existential paid holidays misparsed as a passive event with paid as root.",
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [
+        {
+          "proposal": {
+            "category": "structure",
+            "tokens": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "explanation": "“Paid holidays” is the noun phrase in an existential question, not a passive clause with “paid” as its main verb. “There” is also missing from nominal slots.",
+            "correction": "Treat “are” as the existential predicate, “there” as its expletive, and “paid” as a modifier of “holidays”; include “there” in nominal slots."
+          },
+          "decision": "supported",
+          "note": "Existential are with paid modifying holidays. There has ADV POS in the actual parse, hence absent nominal slot; rebuild slots after correction."
+        }
+      ],
+      "publication": false
+    },
+    {
+      "number": 26,
+      "id": "train:2935:8:1",
+      "stratum": "random",
+      "api_status": "clear",
+      "baseline": {
+        "number": 26,
+        "id": "train:2935:8:1",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": "Ability, not riding completion."
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 27,
+      "id": "test:351:3:2",
+      "stratum": "random",
+      "api_status": "clear",
+      "baseline": {
+        "number": 27,
+        "id": "test:351:3:2",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 28,
+      "id": "train:1779:4:1",
+      "stratum": "random",
+      "api_status": "clear",
+      "baseline": {
+        "number": 28,
+        "id": "train:1779:4:1",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": "Agreement with a proposition."
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 29,
+      "id": "train:5261:10:1",
+      "stratum": "random",
+      "api_status": "clear",
+      "baseline": {
+        "number": 29,
+        "id": "train:5261:10:1",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": "Counterfactual wish plus actual negative existential answer."
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 30,
+      "id": "train:10860:1:2",
+      "stratum": "random",
+      "api_status": "clear",
+      "baseline": {
+        "number": 30,
+        "id": "train:10860:1:2",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 31,
+      "id": "train:4226:3:1",
+      "stratum": "random",
+      "api_status": "clear",
+      "baseline": {
+        "number": 31,
+        "id": "train:4226:3:1",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 32,
+      "id": "train:7890:4:1",
+      "stratum": "random",
+      "api_status": "issues",
+      "baseline": {
+        "number": 32,
+        "id": "train:7890:4:1",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": "Evaluation and desire, not obtaining warm clothing."
+      },
+      "findings": [
+        {
+          "proposal": {
+            "category": "source",
+            "tokens": [
+              2
+            ],
+            "explanation": "“It” is capitalized mid-sentence after a comma; this is a capitalization typo.",
+            "correction": "Change “It” to “it”."
+          },
+          "decision": "reject_style",
+          "note": "Mid-turn capitalization cleanup is not a structural mining error."
+        }
+      ],
+      "publication": false
+    },
+    {
+      "number": 33,
+      "id": "train:2034:2:1",
+      "stratum": "random",
+      "api_status": "clear",
+      "baseline": {
+        "number": 33,
+        "id": "train:2034:2:1",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 34,
+      "id": "train:8302:3:1",
+      "stratum": "random",
+      "api_status": "clear",
+      "baseline": {
+        "number": 34,
+        "id": "train:8302:3:1",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": "Great thanks: discourse evaluation vs adjective modifying thanks; avoid extracting an unsupported property.",
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 35,
+      "id": "train:1724:2:1",
+      "stratum": "random",
+      "api_status": "clear",
+      "baseline": {
+        "number": 35,
+        "id": "train:1724:2:1",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": "Elliptical affirmation depends on previous question."
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 36,
+      "id": "train:590:11:1",
+      "stratum": "random",
+      "api_status": "issues",
+      "baseline": {
+        "number": 36,
+        "id": "train:590:11:1",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": "good thing you can speak: possible content-clause versus relcl policy mismatch; do not force a change without schema decision.",
+        "semantic_caution": null
+      },
+      "findings": [
+        {
+          "proposal": {
+            "category": "structure",
+            "tokens": [
+              7
+            ],
+            "explanation": "“You can speak English” supplies the content of “a good thing”; it is not a relative clause modifying “thing.”",
+            "correction": "Attach “speak” as a ccomp of “thing,” not a relcl."
+          },
+          "decision": "supported_with_review",
+          "note": "Content clause is not a relative clause; precise dependency convention must be retained when patching."
+        }
+      ],
+      "publication": false
+    },
+    {
+      "number": 37,
+      "id": "train:8612:6:1",
+      "stratum": "random",
+      "api_status": "issues",
+      "baseline": {
+        "number": 37,
+        "id": "train:8612:6:1",
+        "stratum": "random",
+        "structural_issue": "ham in ham sandwich is a common noun, not a proper name.",
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [
+        {
+          "proposal": {
+            "category": "structure",
+            "tokens": [
+              3
+            ],
+            "explanation": "“Ham” is a common-noun modifier in “ham sandwich,” not a proper noun.",
+            "correction": "Change token 3 to NOUN/NN."
+          },
+          "decision": "supported",
+          "note": "ham is NOUN/NN in the food compound."
+        }
+      ],
+      "publication": false
+    },
+    {
+      "number": 38,
+      "id": "train:10619:4:1",
+      "stratum": "random",
+      "api_status": "clear",
+      "baseline": {
+        "number": 38,
+        "id": "train:10619:4:1",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": "Price answer."
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 39,
+      "id": "train:4193:11:1",
+      "stratum": "random",
+      "api_status": "clear",
+      "baseline": {
+        "number": 39,
+        "id": "train:4193:11:1",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": "Confirmation of previous question."
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 40,
+      "id": "train:8734:7:1",
+      "stratum": "random",
+      "api_status": "clear",
+      "baseline": {
+        "number": 40,
+        "id": "train:8734:7:1",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": "Barber offering to brush hair off, not dismissing the interlocutor."
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 41,
+      "id": "train:9308:3:1",
+      "stratum": "random",
+      "api_status": "clear",
+      "baseline": {
+        "number": 41,
+        "id": "train:9308:3:1",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": "Commitment to take a message, not completion."
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 42,
+      "id": "train:6377:7:2",
+      "stratum": "random",
+      "api_status": "clear",
+      "baseline": {
+        "number": 42,
+        "id": "train:6377:7:2",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": "How much is a price question; inventory property must not be treated as affirmative fact. How POS minor.",
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 43,
+      "id": "val:932:3:1",
+      "stratum": "random",
+      "api_status": "clear",
+      "baseline": {
+        "number": 43,
+        "id": "val:932:3:1",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 44,
+      "id": "train:8659:1:1",
+      "stratum": "random",
+      "api_status": "clear",
+      "baseline": {
+        "number": 44,
+        "id": "train:8659:1:1",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 45,
+      "id": "train:2567:7:2",
+      "stratum": "random",
+      "api_status": "clear",
+      "baseline": {
+        "number": 45,
+        "id": "train:2567:7:2",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": "Epistemic disbelief, not inability."
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 46,
+      "id": "train:9844:1:1",
+      "stratum": "random",
+      "api_status": "issues",
+      "baseline": {
+        "number": 46,
+        "id": "train:9844:1:1",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [
+        {
+          "proposal": {
+            "category": "structure",
+            "tokens": [
+              0,
+              5
+            ],
+            "explanation": "In this copular question, “duties” is the subject and “What” is its complement; the two dependency labels are reversed.",
+            "correction": "Label token 0 “What” as attr and token 5 “duties” as nsubj."
+          },
+          "decision": "hold_alternative",
+          "note": "Copular questions admit analysis alternatives. No demonstrated downstream semantic error; do not force label swap."
+        }
+      ],
+      "publication": false
+    },
+    {
+      "number": 47,
+      "id": "train:10012:15:1",
+      "stratum": "random",
+      "api_status": "issues",
+      "baseline": {
+        "number": 47,
+        "id": "train:10012:15:1",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [
+        {
+          "proposal": {
+            "category": "structure",
+            "tokens": [
+              5
+            ],
+            "explanation": "“For” introduces a prepositional phrase modifying “spell”; it is not a dative dependent.",
+            "correction": "Change token 5 “for” from dative to prep, headed by “spell”; retain “me” as pobj."
+          },
+          "decision": "reject_convention",
+          "note": "spaCy dative can label benefactive ADP for; conversion to prep is not required."
+        }
+      ],
+      "publication": false
+    },
+    {
+      "number": 48,
+      "id": "train:2352:4:1",
+      "stratum": "random",
+      "api_status": "clear",
+      "baseline": {
+        "number": 48,
+        "id": "train:2352:4:1",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 49,
+      "id": "train:3120:1:1",
+      "stratum": "random",
+      "api_status": "clear",
+      "baseline": {
+        "number": 49,
+        "id": "train:3120:1:1",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": "Proposal, not going to cinema."
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 50,
+      "id": "train:3984:9:1",
+      "stratum": "random",
+      "api_status": "clear",
+      "baseline": {
+        "number": 50,
+        "id": "train:3984:9:1",
+        "stratum": "random",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": "Acknowledgment, not visual perception."
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 51,
+      "id": "train:8135:3:1",
+      "stratum": "negation",
+      "api_status": "clear",
+      "baseline": {
+        "number": 51,
+        "id": "train:8135:3:1",
+        "stratum": "negation",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 52,
+      "id": "train:2629:1:1",
+      "stratum": "negation",
+      "api_status": "clear",
+      "baseline": {
+        "number": 52,
+        "id": "train:2629:1:1",
+        "stratum": "negation",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 53,
+      "id": "test:793:10:2",
+      "stratum": "negation",
+      "api_status": "issues",
+      "baseline": {
+        "number": 53,
+        "id": "test:793:10:2",
+        "stratum": "negation",
+        "structural_issue": null,
+        "source_issue": "Repeated because-of-medals clause in source; not only is additive, not negation of love.",
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [
+        {
+          "proposal": {
+            "category": "source",
+            "tokens": [
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25
+            ],
+            "explanation": "The phrase about medals is repeated before the final spirits reason, disrupting the not-only/but-also construction.",
+            "correction": "Remove the duplicate phrase “but also because of many medals they've won,” (tokens 16–25)."
+          },
+          "decision": "supported_source",
+          "note": "Duplicate medal reason is visible; preserve original until explicit source edit and rebase."
+        }
+      ],
+      "publication": false
+    },
+    {
+      "number": 54,
+      "id": "train:6827:2:3",
+      "stratum": "negation",
+      "api_status": "clear",
+      "baseline": {
+        "number": 54,
+        "id": "train:6827:2:3",
+        "stratum": "negation",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 55,
+      "id": "train:3738:2:1",
+      "stratum": "negation",
+      "api_status": "clear",
+      "baseline": {
+        "number": 55,
+        "id": "train:3738:2:1",
+        "stratum": "negation",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": "Elliptical negative answer needs preceding proposition."
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 56,
+      "id": "train:8174:2:1",
+      "stratum": "modality_or_intention",
+      "api_status": "clear",
+      "baseline": {
+        "number": 56,
+        "id": "train:8174:2:1",
+        "stratum": "modality_or_intention",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 57,
+      "id": "val:746:9:1",
+      "stratum": "modality_or_intention",
+      "api_status": "clear",
+      "baseline": {
+        "number": 57,
+        "id": "val:746:9:1",
+        "stratum": "modality_or_intention",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 58,
+      "id": "train:1778:5:2",
+      "stratum": "modality_or_intention",
+      "api_status": "clear",
+      "baseline": {
+        "number": 58,
+        "id": "train:1778:5:2",
+        "stratum": "modality_or_intention",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": "Hope for continued weather, not asserted future."
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 59,
+      "id": "train:1878:6:2",
+      "stratum": "modality_or_intention",
+      "api_status": "clear",
+      "baseline": {
+        "number": 59,
+        "id": "train:1878:6:2",
+        "stratum": "modality_or_intention",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 60,
+      "id": "train:8563:3:1",
+      "stratum": "modality_or_intention",
+      "api_status": "issues",
+      "baseline": {
+        "number": 60,
+        "id": "train:8563:3:1",
+        "stratum": "modality_or_intention",
+        "structural_issue": "some is the requested object of get; advertised belongs to the embedded perception clause, not a get-resultative.",
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [
+        {
+          "proposal": {
+            "category": "structure",
+            "tokens": [
+              10
+            ],
+            "explanation": "“Advertised” belongs to the relative-clause small clause selected by “saw,” not to “get.”",
+            "correction": "Attach token 10 “advertised” to token 9 “saw” as its complement; retain “some” as the small-clause subject."
+          },
+          "decision": "supported_unsafe_correction",
+          "note": "Correctly identifies advertised scope, but retaining some as its subject is wrong. some is dobj of get; advertised belongs under saw."
+        }
+      ],
+      "publication": false
+    },
+    {
+      "number": 61,
+      "id": "train:5906:14:2",
+      "stratum": "particle_or_prepositional_unit",
+      "api_status": "clear",
+      "baseline": {
+        "number": 61,
+        "id": "train:5906:14:2",
+        "stratum": "particle_or_prepositional_unit",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": "Performative thanking, not a request to thank."
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 62,
+      "id": "train:3552:4:1",
+      "stratum": "particle_or_prepositional_unit",
+      "api_status": "clear",
+      "baseline": {
+        "number": 62,
+        "id": "train:3552:4:1",
+        "stratum": "particle_or_prepositional_unit",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 63,
+      "id": "val:471:3:3",
+      "stratum": "particle_or_prepositional_unit",
+      "api_status": "clear",
+      "baseline": {
+        "number": 63,
+        "id": "val:471:3:3",
+        "stratum": "particle_or_prepositional_unit",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": "Material description; passive form does not establish observed manufacturing."
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 64,
+      "id": "train:5880:9:1",
+      "stratum": "particle_or_prepositional_unit",
+      "api_status": "issues",
+      "baseline": {
+        "number": 64,
+        "id": "train:5880:9:1",
+        "stratum": "particle_or_prepositional_unit",
+        "structural_issue": "on is a particle of try on; extra modifies small as degree, not a separate adjective property.",
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [
+        {
+          "proposal": {
+            "category": "structure",
+            "tokens": [
+              3,
+              5
+            ],
+            "explanation": "In “try it on,” on is the separated particle of try on, not a preposition; the particle construction is also missing.",
+            "correction": "Set token 5 to prt and add a try on particle construction marked separated=true."
+          },
+          "decision": "supported_partial",
+          "note": "try on particle correction is valid, but extra small degree morphology also needs review."
+        }
+      ],
+      "publication": false
+    },
+    {
+      "number": 65,
+      "id": "train:5799:1:1",
+      "stratum": "particle_or_prepositional_unit",
+      "api_status": "clear",
+      "baseline": {
+        "number": 65,
+        "id": "train:5799:1:1",
+        "stratum": "particle_or_prepositional_unit",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 66,
+      "id": "train:712:2:1",
+      "stratum": "reported_speech",
+      "api_status": "clear",
+      "baseline": {
+        "number": 66,
+        "id": "train:712:2:1",
+        "stratum": "reported_speech",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": "Why POS interrogative adverb versus SCONJ convention; minor.",
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 67,
+      "id": "train:6317:8:1",
+      "stratum": "reported_speech",
+      "api_status": "issues",
+      "baseline": {
+        "number": 67,
+        "id": "train:6317:8:1",
+        "stratum": "reported_speech",
+        "structural_issue": "tell coordinates with ask under may, not with have inside the embedded salary question.",
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [
+        {
+          "proposal": {
+            "category": "structure",
+            "tokens": [
+              11,
+              15,
+              17
+            ],
+            "explanation": "Ask and tell are coordinated, but tell is attached to have and or to have, incorrectly placing the coordination inside the embedded question.",
+            "correction": "Attach tell as a conjunct of ask (token 4) and attach or to ask."
+          },
+          "decision": "supported",
+          "note": "tell and or belong to ask rather than embedded have."
+        }
+      ],
+      "publication": false
+    },
+    {
+      "number": 68,
+      "id": "train:10036:8:2",
+      "stratum": "reported_speech",
+      "api_status": "issues",
+      "baseline": {
+        "number": 68,
+        "id": "train:10036:8:2",
+        "stratum": "reported_speech",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": "little degree adverb labelled amod; minor.",
+        "semantic_caution": null
+      },
+      "findings": [
+        {
+          "proposal": {
+            "category": "structure",
+            "tokens": [
+              4
+            ],
+            "explanation": "Little is an adverb modifying strange in “a little strange,” so amod does not match its POS or function.",
+            "correction": "Change token 4’s dependency to advmod."
+          },
+          "decision": "supported_minor",
+          "note": "little functions as degree adverb of strange; advmod is appropriate."
+        }
+      ],
+      "publication": false
+    },
+    {
+      "number": 69,
+      "id": "train:5391:3:1",
+      "stratum": "reported_speech",
+      "api_status": "clear",
+      "baseline": {
+        "number": 69,
+        "id": "train:5391:3:1",
+        "stratum": "reported_speech",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 70,
+      "id": "val:946:2:1",
+      "stratum": "reported_speech",
+      "api_status": "clear",
+      "baseline": {
+        "number": 70,
+        "id": "val:946:2:1",
+        "stratum": "reported_speech",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": "Polite distancing request; needed is not proof the question was asked."
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 71,
+      "id": "test:503:5:1",
+      "stratum": "no_verb_or_fragment",
+      "api_status": "clear",
+      "baseline": {
+        "number": 71,
+        "id": "test:503:5:1",
+        "stratum": "no_verb_or_fragment",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 72,
+      "id": "train:9687:10:1",
+      "stratum": "no_verb_or_fragment",
+      "api_status": "clear",
+      "baseline": {
+        "number": 72,
+        "id": "train:9687:10:1",
+        "stratum": "no_verb_or_fragment",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": "Agreement to a request, not performance."
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 73,
+      "id": "val:963:5:1",
+      "stratum": "no_verb_or_fragment",
+      "api_status": "clear",
+      "baseline": {
+        "number": 73,
+        "id": "val:963:5:1",
+        "stratum": "no_verb_or_fragment",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": "Yeah follows a compound question; do not force which conjunct was affirmed."
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 74,
+      "id": "train:6183:7:1",
+      "stratum": "no_verb_or_fragment",
+      "api_status": "issues",
+      "baseline": {
+        "number": 74,
+        "id": "train:6183:7:1",
+        "stratum": "no_verb_or_fragment",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": "Context-dependent question about chores."
+      },
+      "findings": [
+        {
+          "proposal": {
+            "category": "structure",
+            "tokens": [
+              0,
+              1
+            ],
+            "explanation": "What is the wh-complement of about, but it is attached with the generic dep relation.",
+            "correction": "Attach What to about as its wh-complement rather than using dep."
+          },
+          "decision": "reject_unsupported",
+          "note": "Generic dep in elliptical What about you is not sufficient evidence; the suggested wh-complement would compete with you."
+        }
+      ],
+      "publication": false
+    },
+    {
+      "number": 75,
+      "id": "train:8335:3:2",
+      "stratum": "no_verb_or_fragment",
+      "api_status": "issues",
+      "baseline": {
+        "number": 75,
+        "id": "train:8335:3:2",
+        "stratum": "no_verb_or_fragment",
+        "structural_issue": "lotus in lotus root is a common noun, not a proper name.",
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [
+        {
+          "proposal": {
+            "category": "structure",
+            "tokens": [
+              3
+            ],
+            "explanation": "In the common-noun phrase lotus root, lowercase lotus is not a proper name.",
+            "correction": "Tag lotus as NOUN/NN rather than PROPN/NNP."
+          },
+          "decision": "supported",
+          "note": "lotus is common NOUN/NN."
+        }
+      ],
+      "publication": false
+    },
+    {
+      "number": 76,
+      "id": "train:10080:8:4",
+      "stratum": "adjective_target_unresolved",
+      "api_status": "issues",
+      "baseline": {
+        "number": 76,
+        "id": "train:10080:8:4",
+        "stratum": "adjective_target_unresolved",
+        "structural_issue": "downwards and sideways are adverbs, not nouns. Coordinated minded has unresolved attribute target despite you shared subject.",
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [
+        {
+          "proposal": {
+            "category": "structure",
+            "tokens": [
+              1,
+              3
+            ],
+            "explanation": "Downwards and sideways describe the direction of looking; both are adverbs here, not nouns.",
+            "correction": "Tag downwards and sideways as adverbs."
+          },
+          "decision": "supported",
+          "note": "downwards and sideways are adverbs. Do not turn the generalized cultural claim into approved factual semantics."
+        }
+      ],
+      "publication": false
+    },
+    {
+      "number": 77,
+      "id": "train:1258:9:1",
+      "stratum": "adjective_target_unresolved",
+      "api_status": "clear",
+      "baseline": {
+        "number": 77,
+        "id": "train:1258:9:1",
+        "stratum": "adjective_target_unresolved",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": "Evaluation of a drink proposal; implicit subject remains unresolved."
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 78,
+      "id": "train:948:15:2",
+      "stratum": "adjective_target_unresolved",
+      "api_status": "issues",
+      "baseline": {
+        "number": 78,
+        "id": "train:948:15:2",
+        "stratum": "adjective_target_unresolved",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": "for sure is an idiom, sure amod of ADP suspicious; one is nominal proform currently NUM, not literal quantity. Requires contract decision.",
+        "semantic_caution": null
+      },
+      "findings": [
+        {
+          "proposal": {
+            "category": "structure",
+            "tokens": [
+              4,
+              5
+            ],
+            "explanation": "Sure is analyzed as an adjective modifying the preposition for, which does not fit the idiomatic phrase for sure.",
+            "correction": "Analyze for sure as a phrase; do not make sure an amod of for."
+          },
+          "decision": "supported_partial",
+          "note": "sure cannot be an ordinary adjectival modifier of ADP for; exact idiom representation needs a reviewed patch."
+        },
+        {
+          "proposal": {
+            "category": "structure",
+            "tokens": [
+              9,
+              13,
+              14
+            ],
+            "explanation": "Big describes one, which refers back to the market; its property target is not null.",
+            "correction": "Set big’s target to market (token 9), the referent of one."
+          },
+          "decision": "reject_semantic_shortcut",
+          "note": "big syntactically modifies the proform one, not directly market. Null target is conservative; coreference is a separate layer."
+        }
+      ],
+      "publication": false
+    },
+    {
+      "number": 79,
+      "id": "train:4352:8:3",
+      "stratum": "adjective_target_unresolved",
+      "api_status": "issues",
+      "baseline": {
+        "number": 79,
+        "id": "train:4352:8:3",
+        "stratum": "adjective_target_unresolved",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": "late has controlled subject I but target null; conservative absence allowed, no asserted wrong property.",
+        "semantic_caution": null
+      },
+      "findings": [
+        {
+          "proposal": {
+            "category": "structure",
+            "tokens": [
+              0,
+              6
+            ],
+            "explanation": "Late describes the understood subject of to be late, controlled by I; its property target is missing.",
+            "correction": "Set late’s target to I (token 0)."
+          },
+          "decision": "reject_missing_enrichment",
+          "note": "Controlled subject could enrich properties but conservative null target is allowed; not a wrong existing assertion."
+        }
+      ],
+      "publication": false
+    },
+    {
+      "number": 80,
+      "id": "train:8481:3:1",
+      "stratum": "adjective_target_unresolved",
+      "api_status": "clear",
+      "baseline": {
+        "number": 80,
+        "id": "train:8481:3:1",
+        "stratum": "adjective_target_unresolved",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": "due to is a compound preposition in spaCy-style parse; null adjective inventory alone is not an error.",
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 81,
+      "id": "test:843:3:1",
+      "stratum": "ambiguous_ellipsis_boundary",
+      "api_status": "clear",
+      "baseline": {
+        "number": 81,
+        "id": "test:843:3:1",
+        "stratum": "ambiguous_ellipsis_boundary",
+        "structural_issue": "Two independent roots around ellipsis: unfinished It is and restart Oh it is. Needs explicit boundary/repair treatment.",
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 82,
+      "id": "train:9663:12:1",
+      "stratum": "ambiguous_ellipsis_boundary",
+      "api_status": "clear",
+      "baseline": {
+        "number": 82,
+        "id": "train:9663:12:1",
+        "stratum": "ambiguous_ellipsis_boundary",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": "Time answer; does not prove explanation credible."
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 83,
+      "id": "train:6769:2:2",
+      "stratum": "ambiguous_ellipsis_boundary",
+      "api_status": "issues",
+      "baseline": {
+        "number": 83,
+        "id": "train:6769:2:2",
+        "stratum": "ambiguous_ellipsis_boundary",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": "Claim of ongoing friendly conversation is disputed by another speaker."
+      },
+      "findings": [
+        {
+          "proposal": {
+            "category": "structure",
+            "tokens": [
+              1
+            ],
+            "explanation": "The first-person subject “I” does not agree with the annotated Person=3 feature on “was.”",
+            "correction": "Set “was” to Person=1, or omit the person feature."
+          },
+          "decision": "supported_minor",
+          "note": "Person=3 on was conflicts with explicit I. This was missed during the initial blind reading; added after inspection of API finding."
+        }
+      ],
+      "publication": false
+    },
+    {
+      "number": 84,
+      "id": "train:6482:7:1",
+      "stratum": "ambiguous_ellipsis_boundary",
+      "api_status": "issues",
+      "baseline": {
+        "number": 84,
+        "id": "train:6482:7:1",
+        "stratum": "ambiguous_ellipsis_boundary",
+        "structural_issue": "Two independently rooted utterances around ellipsis, let me write and I am ready; must not publish as one ordinary sentence.",
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [
+        {
+          "proposal": {
+            "category": "structure",
+            "tokens": [
+              3,
+              4
+            ],
+            "explanation": "In the permissive construction “let me write,” “me” is the object of “let,” and “write” is its open complement, not a ccomp.",
+            "correction": "Attach “me” as dobj of “let” and “write” as xcomp of “let.”"
+          },
+          "decision": "reject_convention",
+          "note": "let me write uses the allowed nsubj/ccomp small-clause convention. The actual multi-root ellipsis boundary was missed."
+        }
+      ],
+      "publication": false
+    },
+    {
+      "number": 85,
+      "id": "train:6162:4:1",
+      "stratum": "ambiguous_ellipsis_boundary",
+      "api_status": "issues",
+      "baseline": {
+        "number": 85,
+        "id": "train:6162:4:1",
+        "stratum": "ambiguous_ellipsis_boundary",
+        "structural_issue": "Let me see and Sorry sir are independently rooted units; sir is also vocative.",
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [
+        {
+          "proposal": {
+            "category": "structure",
+            "tokens": [
+              1,
+              2
+            ],
+            "explanation": "In “let me see,” “me” is the object of “let,” and “see” is its open complement, not a ccomp.",
+            "correction": "Attach “me” as dobj of “let” and “see” as xcomp of “let”."
+          },
+          "decision": "reject_convention",
+          "note": "let me see uses the allowed nsubj/ccomp convention."
+        },
+        {
+          "proposal": {
+            "category": "structure",
+            "tokens": [
+              6
+            ],
+            "explanation": "“Sir” directly addresses the listener, so it is a vocative rather than an npadvmod of “Sorry.”",
+            "correction": "Mark “sir” as a vocative of “Sorry.”"
+          },
+          "decision": "supported",
+          "note": "sir is vocative; independent-root sentence boundary remains missed."
+        }
+      ],
+      "publication": false
+    },
+    {
+      "number": 86,
+      "id": "train:10044:6:1",
+      "stratum": "participle_state_or_perfect",
+      "api_status": "clear",
+      "baseline": {
+        "number": 86,
+        "id": "train:10044:6:1",
+        "stratum": "participle_state_or_perfect",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": "Name of market; passive called is not necessarily a completed naming event."
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 87,
+      "id": "train:2139:9:1",
+      "stratum": "participle_state_or_perfect",
+      "api_status": "issues",
+      "baseline": {
+        "number": 87,
+        "id": "train:2139:9:1",
+        "stratum": "participle_state_or_perfect",
+        "structural_issue": "Second contracted s is has (active perfect become), not is/passive. it must be active subject.",
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [
+        {
+          "proposal": {
+            "category": "structure",
+            "tokens": [
+              9,
+              10
+            ],
+            "explanation": "Here “it’s become” means “it has become,” not passive “it is become”; the auxiliary and subject dependencies are therefore misanalyzed.",
+            "correction": "Use lemma have and aux on token 10; attach token 9 as nsubj of “become.”"
+          },
+          "decision": "supported",
+          "note": "Contracted has with active become and active subject."
+        }
+      ],
+      "publication": false
+    },
+    {
+      "number": 88,
+      "id": "train:8839:7:3",
+      "stratum": "participle_state_or_perfect",
+      "api_status": "clear",
+      "baseline": {
+        "number": 88,
+        "id": "train:8839:7:3",
+        "stratum": "participle_state_or_perfect",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 89,
+      "id": "train:1267:6:1",
+      "stratum": "participle_state_or_perfect",
+      "api_status": "clear",
+      "baseline": {
+        "number": 89,
+        "id": "train:1267:6:1",
+        "stratum": "participle_state_or_perfect",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": "Reported evaluation, not independently verified ability."
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 90,
+      "id": "train:2021:3:1",
+      "stratum": "participle_state_or_perfect",
+      "api_status": "issues",
+      "baseline": {
+        "number": 90,
+        "id": "train:2021:3:1",
+        "stratum": "participle_state_or_perfect",
+        "structural_issue": "has got expresses possession; contracted s and subject are incorrectly passive be/nsubjpass.",
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [
+        {
+          "proposal": {
+            "category": "structure",
+            "tokens": [
+              2,
+              3
+            ],
+            "explanation": "“She’s got” expresses possession with active “has got,” not a passive construction; the subject and auxiliary dependencies are misanalyzed.",
+            "correction": "Attach token 2 as nsubj of “got”; use lemma have and aux for token 3."
+          },
+          "decision": "supported",
+          "note": "has got possession, not passive be."
+        }
+      ],
+      "publication": false
+    },
+    {
+      "number": 91,
+      "id": "train:5422:3:3",
+      "stratum": "nominal_role_or_vocative",
+      "api_status": "clear",
+      "baseline": {
+        "number": 91,
+        "id": "train:5422:3:3",
+        "stratum": "nominal_role_or_vocative",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 92,
+      "id": "train:4199:2:1",
+      "stratum": "nominal_role_or_vocative",
+      "api_status": "clear",
+      "baseline": {
+        "number": 92,
+        "id": "train:4199:2:1",
+        "stratum": "nominal_role_or_vocative",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": "Plans reported, not executed."
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 93,
+      "id": "train:7511:15:1",
+      "stratum": "nominal_role_or_vocative",
+      "api_status": "clear",
+      "baseline": {
+        "number": 93,
+        "id": "train:7511:15:1",
+        "stratum": "nominal_role_or_vocative",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": "Discourse request to pause, not evidence of waiting."
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 94,
+      "id": "train:10215:7:1",
+      "stratum": "nominal_role_or_vocative",
+      "api_status": "clear",
+      "baseline": {
+        "number": 94,
+        "id": "train:10215:7:1",
+        "stratum": "nominal_role_or_vocative",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": "Discrepancy Fee capitalization does not establish a proper entity; get back to is conversational contact, not motion. Agreement is not payment.",
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 95,
+      "id": "train:3911:7:1",
+      "stratum": "nominal_role_or_vocative",
+      "api_status": "clear",
+      "baseline": {
+        "number": 95,
+        "id": "train:3911:7:1",
+        "stratum": "nominal_role_or_vocative",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": "Offer received; admission remains conditional."
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 96,
+      "id": "train:10363:15:1",
+      "stratum": "embedded_clause",
+      "api_status": "issues",
+      "baseline": {
+        "number": 96,
+        "id": "train:10363:15:1",
+        "stratum": "embedded_clause",
+        "structural_issue": "returns is a finite verb coordinated outside remember, not a noun/object coordinated with something.",
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [
+        {
+          "proposal": {
+            "category": "structure",
+            "tokens": [
+              12,
+              13
+            ],
+            "explanation": "“Returns” is a finite predicate coordinated with “seems,” not a noun coordinated with “something”; “and” should mark that predicate coordination.",
+            "correction": "Tag “returns” as VERB/VBZ, attach it as a conjunct of “seems,” and attach “and” to “returns.”"
+          },
+          "decision": "supported_partial",
+          "note": "returns must be finite VERB/VBZ outside remember; spaCy cc should attach and to the preceding conjunct seems, not returns as proposed."
+        }
+      ],
+      "publication": false
+    },
+    {
+      "number": 97,
+      "id": "train:5498:3:1",
+      "stratum": "embedded_clause",
+      "api_status": "clear",
+      "baseline": {
+        "number": 97,
+        "id": "train:5498:3:1",
+        "stratum": "embedded_clause",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": "Ongoing call with purpose, not completed query."
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 98,
+      "id": "train:969:1:1",
+      "stratum": "embedded_clause",
+      "api_status": "clear",
+      "baseline": {
+        "number": 98,
+        "id": "train:969:1:1",
+        "stratum": "embedded_clause",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": "Desire to own a farm, not ownership."
+      },
+      "findings": [],
+      "publication": false
+    },
+    {
+      "number": 99,
+      "id": "train:8324:4:1",
+      "stratum": "embedded_clause",
+      "api_status": "issues",
+      "baseline": {
+        "number": 99,
+        "id": "train:8324:4:1",
+        "stratum": "embedded_clause",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": "Very carefully answers previous check question; should not be semantically attached to copular statement. when clause may admit alternative dependency labels.",
+        "semantic_caution": null
+      },
+      "findings": [
+        {
+          "proposal": {
+            "category": "source",
+            "tokens": [],
+            "explanation": "The elliptical answer “Very carefully” is followed by an independent clause; the comma creates a likely boundary error in this dialogue context.",
+            "correction": "Replace the comma after “carefully” with a period."
+          },
+          "decision": "reject_style",
+          "note": "Punctuation replacement is unnecessary. Preserve source and handle context-dependent elliptical answer, not a blanket comma-to-period edit."
+        }
+      ],
+      "publication": false
+    },
+    {
+      "number": 100,
+      "id": "train:6531:8:1",
+      "stratum": "embedded_clause",
+      "api_status": "clear",
+      "baseline": {
+        "number": 100,
+        "id": "train:6531:8:1",
+        "stratum": "embedded_clause",
+        "structural_issue": null,
+        "source_issue": null,
+        "review_uncertainty": null,
+        "semantic_caution": null
+      },
+      "findings": [],
+      "publication": false
+    }
+  ]
+}

@@ -1,0 +1,239 @@
+{
+  "format": "reviewed-fragment-adapters-v1",
+  "patterns": [
+    {
+      "id": "dd_v27_train_1770_4_4",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "How are the two projects going as their deadlines approach?",
+      "reply": "Now the deadlines are near and I still haven't finish one of them.",
+      "value": "said some project work was unfinished as deadlines approached, without establishing how many projects were complete",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v27_train_1770_4_4",
+      "source": {
+        "split": "train",
+        "dialogue": 1770,
+        "turn": 4,
+        "segment": 4,
+        "span": [
+          87,
+          153
+        ],
+        "text": "Now the deadlines are near and I still haven't finish one of them.",
+        "context": [
+          "Bob, you look pale. What happened?",
+          "I didn't sleep a wink last night.",
+          "Did you have something on your mind? You look so concerned! Maybe I can help you.",
+          "Well, I'm under a lot of pressure. My boss is very pushy. He assigned me two projects. Now the deadlines are near and I still haven't finish one of them.",
+          "Is there anything I can do for you?",
+          "Well, I guess no one can help me but myself. For the moment, I just need someone to talk to so that I can relieve my stress.",
+          "I know your feeling. Take it easy."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "source_sha256": "d40b2e1f4a3de709ded26118b5e5c6d2b38e6bb749a4953fd645aee69812e2e2",
+        "context_sha256": "8ed71f3b80cff9d54240a32108f2e810d5bbb0603de1ec0d7f14f066795f1dcd",
+        "adaptation": "Use the exact original wording instead of the historically normalized candidate. The scope of one under negation does not reliably distinguish one incomplete project from no completed projects. Only the visible adapted pair licenses this partial utterance interpretation, not generic action roles or factual completion."
+      }
+    },
+    {
+      "id": "dd_v27_train_2641_3_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What summer temperatures do you usually get in your city?",
+      "reply": "The summer temperature usually often reaches about 20 or25 in my city.",
+      "value": "reported summer temperatures of about 20 or 25, without specifying the temperature scale",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v27_train_2641_3_1",
+      "source": {
+        "split": "train",
+        "dialogue": 2641,
+        "turn": 3,
+        "segment": 1,
+        "span": [
+          0,
+          70
+        ],
+        "text": "The summer temperature usually often reaches about 20 or25 in my city.",
+        "context": [
+          "What's the weather like in your city?",
+          "In the summer it gets very hot.the temperature is often between 37 and 40 centigrade.when it is hot we often get rains.the winters are drier.",
+          "The summer temperature usually often reaches about 20 or25 in my city.the rain falls mostly in the winter.and we often get snow.",
+          "What are the temperatures in winter? In my city it is about 15 or 20 degrees.",
+          "In winter temperature often falls to zero at night temperature can be below that.the streets are often icing in the morning.with high such temperatures you must get some thunderstorms.",
+          "Yeah, we do. In the middle of summer there can be thunderstorms every day usually in the afternoon. I heard your city has a lot of fog, is that true?",
+          "We do have a few foggy days in winter.but I would not say we have a lot of fogs.the sky are usually clearly over your city, are they?",
+          "Yes, they are. Like I said we have thunderstorms.but each one usually only last a few hours.then the skys are clear again.",
+          "Have you ever had snow in your city?",
+          "My grandmother said there was snow once when she was a child.but my parents and I only see it outside of our city.",
+          "The river in my city sometime freeze over.people go ice-skating on it.on summer people go boating on the river.but few people go swimming because it is not very clean.",
+          "As you know, my city is on the coast.the water is also not clean.but people still go swimming all year around. I prefer to sand bath on the beach when the weather is hot in sunny."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3
+        ],
+        "source_sha256": "26d52142ee1ec14c84b0d2b203252afd27d3c20db83b0abe0dc888a1b16c3f86",
+        "context_sha256": "4b436e28d70e075cff570c590835b28549c5de786cdac059da4650d9c5c9bc29",
+        "adaptation": "Use the exact original wording instead of the historically normalized candidate. The scale is not stated for this speaker's city. Keep about and or; do not impose Celsius or an exact 20-to-25 interval. Only the visible adapted pair licenses this partial utterance interpretation, not generic action roles or factual completion."
+      }
+    },
+    {
+      "id": "dd_v27_test_215_9_4",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What passes inspection when checking the chocolates?",
+      "reply": "Only the creme make it through inspection.",
+      "value": "said that only what was called creme passes inspection, leaving the precise meaning of creme unresolved",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v27_test_215_9_4",
+      "source": {
+        "split": "test",
+        "dialogue": 215,
+        "turn": 9,
+        "segment": 4,
+        "span": [
+          178,
+          220
+        ],
+        "text": "Only the creme make it through inspection.",
+        "context": [
+          "I'm glad you could find time to meet with me, Mr. Johnson. I can't think of a nicer environment for our meeting today, the ambiance here is lovely!",
+          "No problem, if possible I always combine business with pleasure. Now, let's hear more about these chocolates you're offering.",
+          "Well, as you know, I have recently become the sole distributor for Grangers Gourmet Bon-bons here in the United States. They're a new manufacturer and are looking to break into the luxury market. Naturally, your restaurant sprang into my mind immediately. I think your brand exemplifies many of the same traits as Grangers and serving these chocolates would really add to your reputation for providing elegant, luxurious, first class dining.",
+          "Mmmm, sounds interesting... gourmet chocolates, where are they produced? Belgium?",
+          "Actually, the factory is located in Scotland.",
+          "Really? I didn't think they were known for their luxury chocolate production",
+          "That's what makes this such a fantastic opportunity! The government is one hundred percent supportive of creating new export markets and has guaranteed a low tariff for all wholesale orders of over one thousand units. They've also reduced the red tape involved at customs as well. Here, I brought these especially for you, try one!",
+          "Oh, thanks. Mmm, hmm, creamy texture, very smooth...",
+          "Unique, aren't they? I bet you've never tasted anything like it! Quality is assured as I personally visit the factory to make sure no one's cutting corners with the ingredients. Only the creme make it through inspection.",
+          "Yes, very interesting flavors... Slightly spicy, very unique, that's for sure. Exactly what ARE the ingredients?",
+          "I have it on highest authority that this traditional secret recipe has been handed down in the Granger family for generations. I'm sure you can keep a secret. Buttermilk, cacao beans, sugar and Haggis.",
+          "Haggis? What's Haggis?",
+          "It's a traditional Scottish delicacy, you take sheep's liver, heart and lung and stuff it inside of the sheep's stomach.",
+          "Ah, get back to you.",
+          "Mr. Johnson? Mr. Johnson?"
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "source_sha256": "545e04ff6fbd7187359414ec6b80e33e5a94a1588701e12fbfd8897fde9a7851",
+        "context_sha256": "40d66e1d01d99d41a493e9f8886f150ccc4c76edcf8c36e9dcce72c22547a8e7",
+        "adaptation": "Use the exact original wording instead of the historically normalized candidate. Creme may refer to an ingredient or figuratively to selected quality; no particular product, ingredient or completed inspection is inferred. Only the visible adapted pair licenses this partial utterance interpretation, not generic action roles or factual completion."
+      }
+    },
+    {
+      "id": "dd_v27_test_423_4_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What does the record say about my credit?",
+      "reply": "A record show your credit reading is quite high.",
+      "value": "reported a record describing the credit reading as quite high, without giving a score or confirming loan approval",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v27_test_423_4_2",
+      "source": {
+        "split": "test",
+        "dialogue": 423,
+        "turn": 4,
+        "segment": 2,
+        "span": [
+          36,
+          84
+        ],
+        "text": "A record show your credit reading is quite high.",
+        "context": [
+          "I'd like to apply for a personal loan.",
+          "How much would you like to borrow?",
+          "A thousand dollars.",
+          "Let me check with a credit manager. A record show your credit reading is quite high. I don't think you have any problems.",
+          "What's the current interest rate?",
+          "Our monthly interest is 1.5 % of the outstanding balance. Would you please fill out the application the form?"
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "source_sha256": "aaff828e08bd408dae63e5694ceccc246ae7287849f287dfce1676b73b282c04",
+        "context_sha256": "c55f0683c205e6d9d7026a75ec5139409b7c31c9931f39930bf832079b2f1bde",
+        "adaptation": "Use the exact original wording instead of the historically normalized candidate. The intended technical term remains credit reading as supplied. No numeric score, approval or disbursement is established. Only the visible adapted pair licenses this partial utterance interpretation, not generic action roles or factual completion."
+      }
+    },
+    {
+      "id": "dd_v27_test_605_6_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "How do you feel about drinking alone?",
+      "reply": "I know I don't like to drink alone, especially there are someone sitting there next to me.",
+      "value": "said they dislike drinking alone and mentioned someone sitting beside them; the exact linkage is unclear and no completed drinking was asserted",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v27_test_605_6_2",
+      "source": {
+        "split": "test",
+        "dialogue": 605,
+        "turn": 6,
+        "segment": 2,
+        "span": [
+          38,
+          128
+        ],
+        "text": "I know I don't like to drink alone, especially there are someone sitting there next to me.",
+        "context": [
+          "Please help yourself to whatever you like, don't be shy.",
+          "Yes, thank you. I've already been helping myself.",
+          "This dish taste terrific. Would you like to try a little? It is a little hot, but very good.",
+          "I like hot food, especially Sichuan cuisine.",
+          "Would you like another beer?",
+          "I'll have another cup of beer insist. I know I don't like to drink alone, especially there are someone sitting there next to me.",
+          "Come on, it's the weekend. Let's taste and enjoy this meal. Cheers!",
+          "Bottom's up, and you're right. This meal is incredible. I wish I had known this restaurant before. Thanks for bringing me here. I know I'll be back agile soon."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "source_sha256": "f80d42c65036aa7b171eab69a500dcd3cd4d2a3708b139b6afcd1334c0dc690e",
+        "context_sha256": "0cb2193676982eed893b112d3d18fb7fb7ef9310b80136802b58f9b1303f06b3",
+        "adaptation": "Use the exact original wording instead of the historically normalized candidate. The linkage after especially is unclear. Negation applies to liking solitary drinking, not all drinking or the existence of another person. Only the visible adapted pair licenses this partial utterance interpretation, not generic action roles or factual completion."
+      }
+    }
+  ]
+}

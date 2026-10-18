@@ -1,0 +1,111 @@
+{
+  "method": "live_paced_transport_trial",
+  "runs": [
+    {
+      "started": 1791910536.0331988,
+      "phase": "bulk",
+      "workers": 1,
+      "interval_seconds": 3.0,
+      "limit": 10,
+      "skipped_unresolved": [
+        16429,
+        16431
+      ],
+      "submitted_jobs": [
+        16432,
+        16433,
+        16434,
+        16435,
+        16436,
+        16437,
+        16438,
+        16439,
+        16440,
+        16441
+      ],
+      "finished": 1791910884.7152283,
+      "completed": 10,
+      "stop_reason": "selected queue complete or requested limit reached",
+      "job_statuses": {
+        "valid": 10
+      },
+      "returned_cases": 200,
+      "elapsed_seconds": 348.682,
+      "mean_response_seconds": 31.196,
+      "peak_concurrency": 1,
+      "min_post_response_pause_seconds": 3.666,
+      "charge_usd": 0.029022
+    },
+    {
+      "started": 1791910956.3367748,
+      "phase": "bulk",
+      "workers": 2,
+      "interval_seconds": 3.0,
+      "limit": 10,
+      "skipped_unresolved": [
+        16429,
+        16431
+      ],
+      "submitted_jobs": [
+        16442,
+        16443,
+        16444,
+        16445,
+        16446,
+        16447,
+        16448,
+        16449,
+        16450,
+        16451
+      ],
+      "finished": 1791911144.8481176,
+      "completed": 10,
+      "stop_reason": "selected queue complete or requested limit reached",
+      "job_statuses": {
+        "valid": 10
+      },
+      "returned_cases": 200,
+      "elapsed_seconds": 188.511,
+      "mean_response_seconds": 32.865,
+      "peak_concurrency": 2,
+      "min_post_response_pause_seconds": null,
+      "charge_usd": 0.028943
+    }
+  ],
+  "batch_size": 20,
+  "model": "gpt-6-luna",
+  "effort": "medium",
+  "new_charge_usd": 0.057965,
+  "stage_gateway_charge_usd": 1.50554,
+  "gateway_unresolved_requests": 3,
+  "summary": {
+    "jobs": {
+      "invalid": 8,
+      "partial": 9,
+      "pending": 7526,
+      "transport_error": 2,
+      "valid": 454
+    },
+    "cases": {
+      "invalid": 160,
+      "partial": 180,
+      "pending": 150519,
+      "transport_error": 40,
+      "valid": 8980
+    },
+    "api_verdicts": {
+      "clear": 6966,
+      "issues": 2118,
+      "uncertain": 65
+    },
+    "returned_cases": 9149,
+    "missing_attempted_cases": 171,
+    "accounted_exposure_usd": 1.50247,
+    "publication": false
+  },
+  "protected_files_unchanged": 10,
+  "tests_passed": 38,
+  "publication": false,
+  "recommendation": "Continue at two workers with three-second global spacing; this small trial does not establish long-run reliability.",
+  "retry_policy": "No automatic replay. Keep failed attempts and their reserves; back off before new pending jobs on recognized rate limits, stop on quota or unknown failures."
+}

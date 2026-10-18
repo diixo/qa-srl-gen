@@ -1,0 +1,118 @@
+{
+  "version": "random-quality-plan-v27",
+  "seed": 2026101827,
+  "sampled_dialogues": 50,
+  "sampled_sentences": 50,
+  "sampling": "Uniform random sample of 50 eligible dialogues, then one random eligible segment per dialogue. Not a review of every sentence in those dialogues.",
+  "candidate": "artifacts/dailydialog-hybrid-originals-v26-reviewed",
+  "candidate_sentences_sha256": "1dacbc83487ee1960b9c9978159649eac4d37448b24daccafa768fc6abe9c709",
+  "eligible_dialogues": 12499,
+  "eligible_segments": 148156,
+  "excluded_warning_or_prior_qc_addresses": 11535,
+  "prior_qc_inputs": [
+    {
+      "path": "data/dailydialog/review-parts/hybrid-luna-independent-sample-v1.jsonl",
+      "sha256": "fded33ed8627a0501083898050006193b738d336311bd225754f317522663525"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-offline-final-wording-qc-sample-v1.jsonl",
+      "sha256": "e94d32c6df1bad1ca0b238bc9e3edba7973485a1bdf394e0a9519861e7f56212"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-quality-control-50-v1.json",
+      "sha256": "c851a8a23ae51cce27a76dd5143db6c59f1965733528187951ac8daef22cc5b9"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-quality-control-admission-result-v1.json",
+      "sha256": "f67ecaba1a40260e2fdee0bd766c3bbe92931899006fae4e3369831a1b9cbf55"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-quality-control-admission-v1.jsonl",
+      "sha256": "c99753bb88bbbcedc7366befc97868cde9002112dc917bee9c98116cc2d320b1"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-quality-control-fixes-result-v1.json",
+      "sha256": "7e683e164d104d3775d6d1afc0eddf2e19463f726e55e3a3de3790b56e18ba9d"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-quality-control-fixes-v1.jsonl",
+      "sha256": "37378b9dede0b9994a1413d339512a727ed81e149e409865af160e41315757f6"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-quality-fragment-adapters-v2.json",
+      "sha256": "86dee419698250320621176bf39af126a7e10ab1b24a816ac8d78533f4bbbfcc"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-random-quality-50-plan-v1.json",
+      "sha256": "203adab9f6f739045caecbe296b487c602e53683a4821f5e5ff7e397f4b341d4"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-random-quality-50-result-v1.json",
+      "sha256": "224db23c77987be81d257e7cf2d3cc7f77f9ee245ea75d7d7ec7b21827b899d2"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-random-quality-application-v1.json",
+      "sha256": "f722eabaf04ff8035a88e88e74151cc46363a278e1feecb3c48afefd6852e00d"
+    },
+    {
+      "path": "data/dailydialog/review-parts/hybrid-random-quality-reviews-v1.jsonl",
+      "sha256": "3e854f7200ab1b6b7bbbbcebd9264ca3f5c05258328b22375f4c5ffef8ef5f2b"
+    }
+  ],
+  "selected_ids": [
+    "train:7964:2:1",
+    "train:1429:7:1",
+    "train:7469:2:1",
+    "train:9528:2:1",
+    "train:10052:6:1",
+    "train:8624:2:3",
+    "train:9219:3:1",
+    "train:3444:10:1",
+    "train:6400:2:3",
+    "train:959:4:1",
+    "train:9017:7:1",
+    "train:3378:3:1",
+    "test:816:2:1",
+    "train:6012:8:1",
+    "train:8303:3:2",
+    "train:5977:3:2",
+    "train:2918:6:1",
+    "train:9880:5:1",
+    "train:5653:5:2",
+    "train:3267:1:1",
+    "train:2623:8:1",
+    "val:616:1:1",
+    "train:6256:8:1",
+    "test:778:1:1",
+    "test:138:8:2",
+    "val:187:1:1",
+    "train:5485:8:1",
+    "train:10997:4:2",
+    "train:3763:6:1",
+    "train:5507:2:1",
+    "train:1211:11:2",
+    "train:2347:3:2",
+    "train:10843:12:1",
+    "train:9328:5:2",
+    "train:3338:3:1",
+    "train:6495:2:1",
+    "train:7534:2:1",
+    "train:8619:7:1",
+    "train:9803:7:1",
+    "train:5139:8:2",
+    "test:775:1:1",
+    "train:1152:10:2",
+    "train:2193:8:2",
+    "val:973:2:1",
+    "train:10315:7:1",
+    "train:3910:3:1",
+    "train:1821:10:2",
+    "train:10590:1:1",
+    "train:2803:3:1",
+    "train:5884:8:1"
+  ],
+  "snapshot": "data/dailydialog/review-parts/hybrid-random-quality-snapshot-v27.jsonl.gz",
+  "snapshot_sha256": "e0530f02acdc12e81c190c9ea7e3a5ffc8dd3f33101a3fab0f887eef16e72a03",
+  "automatic_publication": false,
+  "api_calls": 0
+}

@@ -1,0 +1,1373 @@
+{
+  "version": "offline-source-v18",
+  "date": "2026-10-17",
+  "previous_progress": "data/dailydialog/review-parts/hybrid-luna-offline-progress-attestation-v17.json",
+  "candidate": "artifacts/dailydialog-hybrid-source-final-v18",
+  "source_revision": "artifacts/dailydialog-hybrid-source-v18",
+  "ledger": "data/dailydialog/review-parts/luna-offline-source-v18",
+  "review_status": "UNREVIEWED",
+  "full_candidate_published": false,
+  "semantic_review_complete": false,
+  "working_pool_unchanged": true,
+  "api_calls": 0,
+  "parser_inference_calls": 48,
+  "source_block": {
+    "reviewed_warnings": 90,
+    "wording_corrections": 48,
+    "source_warnings_not_supported": 2,
+    "retained_in_quarantine": 40,
+    "reviewed_warning_keys": [
+      [
+        "train:1003:1:3",
+        0,
+        "9ae06409c8940ad2bc5671ac7d18704db0927de9921969b2d91c01d9870d016f"
+      ],
+      [
+        "train:1006:2:3",
+        0,
+        "e69a4f4a6ab5e3eadd61411195fd52b59e29c2654c5f64a8715e6108436e0a64"
+      ],
+      [
+        "train:1009:4:1",
+        0,
+        "e035207cd575f44ed67a0a8ceb77f30094255361f357850c20bdc67b6ccde43e"
+      ],
+      [
+        "train:1019:4:1",
+        0,
+        "d711d76c086e5bb52950b16d2f568530d0a1ea4df7b8955ef88d2a648c538a44"
+      ],
+      [
+        "train:1019:5:1",
+        1,
+        "ccfe3590ba78b8ab5641f278d89f3622642af340e30d8abf3a29fd1f596023c3"
+      ],
+      [
+        "train:1024:5:2",
+        1,
+        "c1f9f6e9d5da6a7dd44fc97ff85a14542fda9b12ceef573bc5fdce8d0f0ba747"
+      ],
+      [
+        "train:1025:4:2",
+        0,
+        "3b2837f44ba992912be58322ce493dd83ff1486e5cb92c68055ef825ce21b4b2"
+      ],
+      [
+        "train:1040:1:5",
+        0,
+        "ccd6e10ce5069b03f0dff1fecad407f01da40c16d84f5ad65df59af433585a43"
+      ],
+      [
+        "train:1040:2:4",
+        2,
+        "0f7268bf624a8544ef027a458e4cbbdd9883f019ba90b045f8beb07e3acd024f"
+      ],
+      [
+        "train:1043:4:1",
+        0,
+        "6d0dbfaf37a974e998997f684803ed4e8eeb94cc98f5d9ac84f0e2f010b94d9a"
+      ],
+      [
+        "train:1056:4:1",
+        0,
+        "23bfc899f0754365de767d8687c38c269884f2d7b5a4125b7d032af7d85c7481"
+      ],
+      [
+        "train:1082:1:1",
+        1,
+        "b16189cc0fb0c36d7dfb7e21419485af778ce764c7118d2a92cb372a10f201e9"
+      ],
+      [
+        "train:1082:1:2",
+        0,
+        "7aaee0ab0152483b894e77aa5b90def2c9784ee9a19ee4ca59175b16a08f4a00"
+      ],
+      [
+        "train:1084:1:2",
+        0,
+        "f7309a6d5a38a1f540c857451840e86bd4df930fbe218e7fcc1f267f538bf64c"
+      ],
+      [
+        "train:1084:8:1",
+        0,
+        "c38689d0609975407c0101f99d03762b656d2ef2a9911989c8c518cf3554622c"
+      ],
+      [
+        "train:1089:17:2",
+        0,
+        "764e50b2e257af0610ca4f9ef3e66de56c9ffd922bfd16ec62f59858b10d17a7"
+      ],
+      [
+        "train:1110:4:2",
+        0,
+        "063dd31014bbb65fd2ba975184ba88ace2cf3b319bbcb052475a4e3b06b118ef"
+      ],
+      [
+        "train:1112:7:5",
+        1,
+        "0968a2187a40139c61dd8b425bf353e29859b24eba889cbbe25427bd85277f4b"
+      ],
+      [
+        "train:1121:4:1",
+        0,
+        "803a0b1c53f605f57102e4cc88d2f6252a3d01ecc1ae798aa21a2f54f2768c6d"
+      ],
+      [
+        "train:1127:4:2",
+        1,
+        "183592165ea49e4d1ef260ae4f45055ad20837fd01103d2914c203b30d3dfa78"
+      ],
+      [
+        "train:1128:2:1",
+        0,
+        "5cf16a274c6b864621d3382fa61b14708ac072252753403ec4193438ab822153"
+      ],
+      [
+        "train:1139:11:2",
+        0,
+        "4f89497305fda4d39132f3c94a0afdc0f72ecf7df7d2f734beee3d3752137b02"
+      ],
+      [
+        "train:1149:11:2",
+        1,
+        "01483fd90839d0259d6f8af6fdb4ae9d7832cb00526ad2d125665a536fb6576b"
+      ],
+      [
+        "train:1150:1:1",
+        0,
+        "98b1c3abdaf0b21bff55a1b73c7d87c39fdb60b5e73883d648d49d88c211bd76"
+      ],
+      [
+        "train:1152:4:1",
+        0,
+        "a72459c85c376552439b4c407b8c26b487c852bdd4d8ac0e5b93971ff41c2845"
+      ],
+      [
+        "train:1157:1:1",
+        0,
+        "ea9b88dd3e8d7e43924c4414624cdbd12ee58f20600d4fd4d2c012476eff53f0"
+      ],
+      [
+        "train:1157:4:1",
+        0,
+        "a70fac2a48192598ab4247a72579ad2cbbf009dba9c3090943e6d74265d4e7d7"
+      ],
+      [
+        "train:1161:1:2",
+        0,
+        "ed24379b11fc25902cdaf0d3eca4f8a8ee8d8183d817dc0358ff36b9a310106c"
+      ],
+      [
+        "train:1161:10:1",
+        0,
+        "46596abab54869c2d79fe44d3d877b45fb7c72cc3fe2e7e4cba23b0f5e4f3a21"
+      ],
+      [
+        "train:1161:10:3",
+        0,
+        "fde7919c49fc3e3a09242cd11a55afef7dcd26950d175fb9e742d025224d8b15"
+      ],
+      [
+        "train:1163:5:1",
+        0,
+        "a7e7930da3d02032618326b4c2555e35e79383c578d28dfb043c50cc9a83caf7"
+      ],
+      [
+        "train:1163:7:2",
+        0,
+        "4e3b007c11bbf6a0ab47c99ee02353071d2f8c08960fdb89b3dec112f3e3c892"
+      ],
+      [
+        "train:1163:9:1",
+        0,
+        "5e73a7f5952e7170dc35a02c8f3f97abce20dff2a7c6a8a005a140ef5b94859f"
+      ],
+      [
+        "train:1172:5:2",
+        0,
+        "f479c2d4db00b1c357be5c8700bbf8d6328850b9a68dc5c8f462994c565243d7"
+      ],
+      [
+        "train:1177:3:2",
+        0,
+        "62e5fbdbef74d3242be8457f2aaf854ebd44715d8985fe6b9fa36e419f852044"
+      ],
+      [
+        "train:1185:2:6",
+        0,
+        "f4d9bf163fc73299587c06479fdb11ef4494ef7a89db335895ab603ab3d59907"
+      ],
+      [
+        "train:1193:6:1",
+        0,
+        "1441b84528a3e9175187ab773d86ac3c6aa71a5516b066e4fcf77bd18bc2cd04"
+      ],
+      [
+        "train:1203:5:1",
+        0,
+        "59d0dc554ee663829d184575f4030314e44004ba972f800208fbb318bd52144e"
+      ],
+      [
+        "train:1203:6:1",
+        1,
+        "6876395b45b01b052e3ccc4465bc8e552a71375e7fbcfebefcade435e32de73d"
+      ],
+      [
+        "train:1203:7:1",
+        0,
+        "76c099ee13b3e5aca67a4491769f01ce6a33ae7db6300bc514f2f15e9ee4d068"
+      ],
+      [
+        "train:1203:9:1",
+        0,
+        "f1d50ead43d7fd127afa4080e25ad88f2c4188497ad35a2ba2241fee1583ff74"
+      ],
+      [
+        "train:1203:10:1",
+        0,
+        "b9fe0fc21d3838f949d15abd7a5f8cb7e4ca4f9ab3f5cb65f8bd20e96d1673cb"
+      ],
+      [
+        "train:1209:5:2",
+        0,
+        "c56af5fb073db4d7105d120cff64d0905d57311313b6d47a3c4869c077b17b0f"
+      ],
+      [
+        "train:1211:7:1",
+        1,
+        "2be3bb1585c5304a8379c17628c96c418195372d0b6b514bc8835de3462d6d91"
+      ],
+      [
+        "train:1213:4:2",
+        0,
+        "9ce3a2c9b3b509efeabe90460f7f82f8c632414eb70cf57d269e8522e4112a37"
+      ],
+      [
+        "train:1236:4:3",
+        1,
+        "760a6b27f464e0bf6d4cee426817e74c2b8a8a91b0f40263ea7b292e22a1fe86"
+      ],
+      [
+        "train:1236:4:5",
+        0,
+        "85ddd72965e81de1071cc4b0b020fa5a620a89a64797ef2d54946dd4421632a6"
+      ],
+      [
+        "train:1238:3:1",
+        0,
+        "393fd5a4cb9a81b8cca3ded1419321f30bb91b9563b237901726a42e76e6e5b1"
+      ],
+      [
+        "train:1268:2:2",
+        0,
+        "6e9e72bfde3ffbbe812ee9435943d788e920264c43260d7eb90d371db390c48a"
+      ],
+      [
+        "train:1292:4:2",
+        1,
+        "382614ed6e461fd497690d24d72ba0673986add3049a9c7d30fada33b60c50b9"
+      ],
+      [
+        "train:1302:4:1",
+        0,
+        "2254107303f37761f15a4c88d8a3fddce94dbbbb6425e1850a5628e56ea547d2"
+      ],
+      [
+        "train:1302:4:2",
+        0,
+        "7a86d1c77ee2dd222e5c9e5834947ddbb9dc971264fc735712be99ad7a627cd3"
+      ],
+      [
+        "train:1305:12:1",
+        0,
+        "421231208f42814a1f268144a541f2c2227bd6a26541a2c34f33f70a9cf2e40c"
+      ],
+      [
+        "train:1310:7:1",
+        1,
+        "2a360458f55394fcd9b53869d3565462e09a9c9c3fff64068d66a379f9cd292e"
+      ],
+      [
+        "train:1314:2:3",
+        0,
+        "19bf662030930cfdc81922e9bd83513fede1fc8614a705b988c4d65dd5fb203e"
+      ],
+      [
+        "train:1317:4:1",
+        1,
+        "1580522aca9ae395bf95a65b05a1ca94c43e3c7569306b1023911d41de49058a"
+      ],
+      [
+        "train:1322:10:2",
+        0,
+        "2bd43d7dcf555002b8f8445b26a10a3a62951142af9101114d0865ce322a126f"
+      ],
+      [
+        "train:1322:11:3",
+        0,
+        "546627e848d68bcceb17c364a629dc21dbfbb6dbc33b197561bd504da5ac6474"
+      ],
+      [
+        "train:1328:11:1",
+        0,
+        "1d369cb60e2ce29395dd161ba1ffa82370a2ffeeaf72f49c416d77ae52dfd2b2"
+      ],
+      [
+        "train:1332:4:1",
+        0,
+        "61dcb3db30ffa5c6902ce867ad582af7e962100a23ccffd79743d2dd5cfc7f16"
+      ],
+      [
+        "train:1339:1:2",
+        0,
+        "a2dceec52f57f1aa03f0c3118c0d2c08ae905414a1b354f58d8b6395f05aa266"
+      ],
+      [
+        "train:1341:1:1",
+        1,
+        "0358c8a86311c00337e67768a40f673518d18a225162af177983811b4bcc3a34"
+      ],
+      [
+        "train:1344:3:2",
+        0,
+        "89c6fbd15d7fb9f7686902373fd8a9edf0c148bbb0f468c2615eebc3deef0da0"
+      ],
+      [
+        "train:1348:9:3",
+        0,
+        "67942685cce4d356fa3ae06719c96cdd95f181e4dade5b83a3407658c13c39fd"
+      ],
+      [
+        "train:1350:1:2",
+        0,
+        "2f300f5916599161f70902deb61c3645bfcc69b11e659b062623483aca6b330d"
+      ],
+      [
+        "train:1371:2:3",
+        0,
+        "59bd998909e8b312779fc453ee3a6b629ab9ff981fa14132d0ba13b2a6ef852e"
+      ],
+      [
+        "train:1372:2:1",
+        0,
+        "7319bfa02794f9ed2d6dc499a52debf9679faa917ce512ab6022b4d95ef0c7a2"
+      ],
+      [
+        "train:1372:2:1",
+        1,
+        "a549ad745cc0e1d0d44ecfa5bdc14a007ca423524af00bdaa6c9bca146b15dd3"
+      ],
+      [
+        "train:1372:2:3",
+        0,
+        "58587071fc01cd2b0367727f0c2377cb5942e7338a631fb347cbc34a376cddcc"
+      ],
+      [
+        "train:1375:8:3",
+        0,
+        "05c1448bda7ed1d739cb1d3e629da4b56f812bf0773b0563767cc4f97fd60b91"
+      ],
+      [
+        "train:1380:2:1",
+        0,
+        "25a6caac9ddf6b0d460a404a25a537552b9384626a7ab1c60040fddb6f76f920"
+      ],
+      [
+        "train:1388:6:4",
+        0,
+        "9faaac199ebedf8d9818b487f336244e61f1cdb0a90b44d19fbe8fc3e9841160"
+      ],
+      [
+        "train:1392:1:1",
+        1,
+        "1a45370bddfceaccc3a395c3a9ab8200f096194d098bca21008406dea0a2c655"
+      ],
+      [
+        "train:1396:2:1",
+        0,
+        "c446745eeeb9dbd2247006ce57d6ff022509fb4772a128c2069299191caf3507"
+      ],
+      [
+        "train:1406:8:2",
+        0,
+        "5f3ac775ca5301f48a2a87b0296863905a01cfcf6ee8079df9519ee393d82021"
+      ],
+      [
+        "train:1410:4:2",
+        0,
+        "7f5d8f63db1ae86abd02b350401ece5399078f9f77a56399a8a59a31bc80fcc0"
+      ],
+      [
+        "train:1432:12:2",
+        0,
+        "89d6fc781f9609971b9d46053ece85ac1fbca727def6c103f48c794135d4c945"
+      ],
+      [
+        "train:1436:4:6",
+        0,
+        "bde83b894db78e9f6dc171772e509734004f04df041331eb6351b7c81135bf4e"
+      ],
+      [
+        "train:1436:11:1",
+        0,
+        "13cca5b4425f4e3b8395805c5bea9a49e280a3b6b8ad7f02401af87856c026a7"
+      ],
+      [
+        "train:1436:12:1",
+        0,
+        "1e8d709c5d843142c4e551a2b0aaa3e871f324d80e64be13e0f17ad4b44ef59a"
+      ],
+      [
+        "train:1440:10:1",
+        0,
+        "b2448dddc41fe3188f1923f0dd4e35ea3f2ce9604735a41526476f4f43ca1f49"
+      ],
+      [
+        "train:1442:3:2",
+        0,
+        "5bde2eb6de7daa4982f420a73a13c7ea4320cd26c0801e7396c8963ca52d4016"
+      ],
+      [
+        "train:1444:12:3",
+        0,
+        "9941bf1c5ee694d6874c48d3258599a7356d853a251445137e8a646281955920"
+      ],
+      [
+        "train:1445:4:1",
+        0,
+        "22b9fa7dff3a6f8858047e36a480e9243002e78d66c8438b802bae9bd529062b"
+      ],
+      [
+        "train:1453:6:2",
+        0,
+        "6e02e52ff2a5505a41ad141708ba349e031215de3e11fefbfdc0ef6f7694aac8"
+      ],
+      [
+        "train:1460:5:2",
+        0,
+        "fdc1a9da8d85063d5f54c8f0329d90c8ce498b656fd0a908227543afa90ec41b"
+      ],
+      [
+        "train:1462:12:1",
+        0,
+        "a6e8ffafe2438385280854241225e8093d358d664f3099966ca38909cc896016"
+      ],
+      [
+        "train:1462:13:2",
+        0,
+        "ba4115ce9b97ba053aedb57992de16c4ebdfaf9f3368be420d7583016b4593c1"
+      ],
+      [
+        "train:1466:6:4",
+        0,
+        "8aec10f9bc99bc38b417f3e8c3de62fabaed4266ebe6dbc0a0ebb1362f9cd9ee"
+      ],
+      [
+        "train:1473:7:3",
+        0,
+        "117a2c55977fd455fd42a140ae32c214785a0b99f88096f1f8ed622f895aaa64"
+      ]
+    ]
+  },
+  "corrected_segments": 48,
+  "affected_dialogues": 40,
+  "affected_turns": 46,
+  "syntax_repaired_segments": 21,
+  "unchanged_contextual_meanings_reconfirmed": 28,
+  "warning_rechecks": 86,
+  "previous_warning_closures_reconfirmed": 31,
+  "newly_closed_api_warnings": 50,
+  "saved_warnings": 12978,
+  "quarantined_api_warnings": 655,
+  "quarantined_current_occurrences": 638,
+  "quarantine_groups": {
+    "source": 566,
+    "ambiguity": 73,
+    "other_syntax": 7,
+    "sentence_boundary": 2,
+    "property_attachment": 1,
+    "negation_or_modality": 1,
+    "coordination": 3,
+    "clause_attachment": 2
+  },
+  "invalidated_without_new_review": 0,
+  "supplemental_semantic_ambiguities": 5,
+  "decisions": {
+    "hybrid-source-block-review-v18.jsonl": {
+      "path": "data/dailydialog/review-parts/hybrid-source-block-review-v18.jsonl",
+      "sha256": "21ee8d4d747df97113fb99e309a8289cf333486d5674c9c09befc2df38d216ac"
+    },
+    "hybrid-source-wording-v18.jsonl": {
+      "path": "data/dailydialog/review-parts/hybrid-source-wording-v18.jsonl",
+      "sha256": "91e9e66d708efb91426d896cd1e97ba89402572a643ce0ecc72e2e2a2bcde96c"
+    },
+    "hybrid-source-boundaries-v18.jsonl": {
+      "path": "data/dailydialog/review-parts/hybrid-source-boundaries-v18.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "hybrid-source-syntax-v18.jsonl": {
+      "path": "data/dailydialog/review-parts/hybrid-source-syntax-v18.jsonl",
+      "sha256": "364317bac0709cd35a82705a1f70553ceb483876e7fdecb016980f2fed8eb1ae"
+    },
+    "hybrid-source-syntax-snapshot-v18.jsonl.gz": {
+      "path": "data/dailydialog/review-parts/hybrid-source-syntax-snapshot-v18.jsonl.gz",
+      "sha256": "e81beef2a32916d1def720c95d3eb945365624f36e607a3b543724983d225ce6"
+    },
+    "hybrid-source-warning-rechecks-v18.jsonl": {
+      "path": "data/dailydialog/review-parts/hybrid-source-warning-rechecks-v18.jsonl",
+      "sha256": "8083ad0793782465e008a7229531b29bc292a95031279bdf07eefc897fef98cd"
+    }
+  },
+  "validation": {
+    "status": "passed",
+    "source_sha256": "c91d4e45e273022bde6333db03e1a4f75dca1681a336938a43300062e2490e58",
+    "templates": 101159,
+    "attested_roundtrips": 110073,
+    "source_records": 161316,
+    "token_spans": 1378085,
+    "verbs_occurrences": 289419,
+    "adjectives_occurrences": 71913
+  },
+  "conservation": {
+    "status": "passed",
+    "counts": {
+      "occurrences": 161316,
+      "unchanged_occurrences": 161240,
+      "revised_occurrences": 76
+    },
+    "source_unchanged": true,
+    "prior_decisions_preserved_in_preimages": true,
+    "all_unaddressed_occurrences_identical": true
+  },
+  "source_conservation": {
+    "status": "passed",
+    "counts": {
+      "untouched_occurrences": 161192,
+      "preserved": 76,
+      "reparsed_unreviewed": 48
+    },
+    "old_occurrences": 161316,
+    "new_occurrences": 161316,
+    "every_original_accounted_for": true,
+    "all_unaddressed_analyses_unchanged": true,
+    "source_preimages_and_previous_local_decisions_preserved": true,
+    "semantic_approval": false
+  },
+  "independent_verification": {
+    "status": "passed",
+    "source_warnings_reviewed": 90,
+    "wording_decisions": 48,
+    "corrected_segments": 48,
+    "affected_dialogues": 40,
+    "syntax_repaired_segments": 21,
+    "reconfirmed_contextual_meanings": 28,
+    "warning_rechecks": 86,
+    "previous_closures_reconfirmed": 31,
+    "source_warnings_not_supported": 2,
+    "newly_closed_warnings": 50,
+    "remaining_warnings": 655,
+    "exact_renders": 76,
+    "full_candidate_segments": 161316,
+    "ascii_apostrophes": 49411,
+    "noncanonical_apostrophes": 0,
+    "source_dialogues_preserved": 13118,
+    "parts_match_sources": 100,
+    "manual_dialogues_preserved": 510,
+    "working_pool_unchanged": true,
+    "paid_evidence_identical": true,
+    "publication": false,
+    "slot_replacement_blocked": true,
+    "dependency_qa_blocked": true,
+    "action_realization_blocked": true,
+    "corrected_segments_pending_semantic_admission": [
+      "train:1006:2:3",
+      "train:1009:4:1",
+      "train:1025:4:2",
+      "train:1043:4:1",
+      "train:1056:4:1",
+      "train:1082:1:1",
+      "train:1082:1:2",
+      "train:1084:1:2",
+      "train:1084:8:1",
+      "train:1089:17:2",
+      "train:1128:2:1",
+      "train:1139:11:2",
+      "train:1157:1:1",
+      "train:1157:4:1",
+      "train:1161:10:1",
+      "train:1161:1:2",
+      "train:1172:5:2",
+      "train:1203:5:1",
+      "train:1203:6:1",
+      "train:1209:5:2",
+      "train:1211:7:1",
+      "train:1213:4:2",
+      "train:1236:4:5",
+      "train:1238:3:1",
+      "train:1268:2:2",
+      "train:1305:12:1",
+      "train:1314:2:3",
+      "train:1317:4:1",
+      "train:1322:10:2",
+      "train:1339:1:2",
+      "train:1344:3:2",
+      "train:1371:2:3",
+      "train:1372:2:1",
+      "train:1372:2:3",
+      "train:1380:2:1",
+      "train:1388:6:4",
+      "train:1392:1:1",
+      "train:1396:2:1",
+      "train:1406:8:2",
+      "train:1410:4:2",
+      "train:1436:11:1",
+      "train:1436:12:1",
+      "train:1440:10:1",
+      "train:1442:3:2",
+      "train:1453:6:2",
+      "train:1462:12:1",
+      "train:1462:13:2",
+      "train:1473:7:3"
+    ]
+  },
+  "checks": {
+    "total_tests": 162,
+    "seconds": 22.8,
+    "command": "python -X utf8 -B -m pytest -q tests/test_dailydialog_candidate_wording.py tests/test_dailydialog_quarantine_reviews.py tests/test_dailydialog_quarantine_finalization.py tests/test_dailydialog_source_segmentation.py tests/test_dailydialog_source_rebase.py tests/test_dailydialog_local_syntax.py",
+    "received_evidence_sha256": "68f72401d4ccd5e4a26eaaf23e1558dc268f136195680c658a2f857f8be68391"
+  },
+  "reproduction": {
+    "commands": [
+      "python -X utf8 -B scripts/apply_dailydialog_candidate_wording.py --source artifacts/dailydialog-hybrid-attestation-v17 --wording data/dailydialog/review-parts/hybrid-source-wording-v18.jsonl --boundaries data/dailydialog/review-parts/hybrid-source-boundaries-v18.jsonl --model artifacts/models/spacy-en-3.8.0/en_core_web_sm/en_core_web_sm-3.8.0 --out artifacts/dailydialog-hybrid-source-v18 --invalidate-context-reviews",
+      "python -X utf8 -B scripts/apply_dailydialog_quarantine_reviews.py --source artifacts/dailydialog-hybrid-source-v18 --reviews data/dailydialog/review-parts/hybrid-source-syntax-v18.jsonl --out artifacts/dailydialog-hybrid-source-final-v18",
+      "python -X utf8 -B scripts/finalize_dailydialog_quarantine.py --candidate artifacts/dailydialog-hybrid-source-final-v18 --source-revision artifacts/dailydialog-hybrid-source-v18 --ledger data/dailydialog/review-parts/luna-offline-attestation-v17 --reviews data/dailydialog/review-parts/hybrid-source-warning-rechecks-v18.jsonl --out data/dailydialog/review-parts/luna-offline-source-v18"
+    ],
+    "note": "Completed. Use fresh output directories for replay. Authoritative review JSONL files contain the decisions; ignored authoring scripts are not required."
+  },
+  "next_step": {
+    "corrected_segments_pending_semantic_admission": [
+      "train:1006:2:3",
+      "train:1009:4:1",
+      "train:1025:4:2",
+      "train:1043:4:1",
+      "train:1056:4:1",
+      "train:1082:1:1",
+      "train:1082:1:2",
+      "train:1084:1:2",
+      "train:1084:8:1",
+      "train:1089:17:2",
+      "train:1128:2:1",
+      "train:1139:11:2",
+      "train:1157:1:1",
+      "train:1157:4:1",
+      "train:1161:10:1",
+      "train:1161:1:2",
+      "train:1172:5:2",
+      "train:1203:5:1",
+      "train:1203:6:1",
+      "train:1209:5:2",
+      "train:1211:7:1",
+      "train:1213:4:2",
+      "train:1236:4:5",
+      "train:1238:3:1",
+      "train:1268:2:2",
+      "train:1305:12:1",
+      "train:1314:2:3",
+      "train:1317:4:1",
+      "train:1322:10:2",
+      "train:1339:1:2",
+      "train:1344:3:2",
+      "train:1371:2:3",
+      "train:1372:2:1",
+      "train:1372:2:3",
+      "train:1380:2:1",
+      "train:1388:6:4",
+      "train:1392:1:1",
+      "train:1396:2:1",
+      "train:1406:8:2",
+      "train:1410:4:2",
+      "train:1436:11:1",
+      "train:1436:12:1",
+      "train:1440:10:1",
+      "train:1442:3:2",
+      "train:1453:6:2",
+      "train:1462:12:1",
+      "train:1462:13:2",
+      "train:1473:7:3"
+    ],
+    "warning_queue": "data/dailydialog/review-parts/luna-offline-source-v18/quarantine-cases.jsonl.gz",
+    "supplemental_queue": "data/dailydialog/review-parts/hybrid-attestation-held-v17.json",
+    "already_reviewed_in_this_block_but_still_unresolved": [
+      [
+        "train:1003:1:3",
+        0,
+        "9ae06409c8940ad2bc5671ac7d18704db0927de9921969b2d91c01d9870d016f"
+      ],
+      [
+        "train:1019:4:1",
+        0,
+        "d711d76c086e5bb52950b16d2f568530d0a1ea4df7b8955ef88d2a648c538a44"
+      ],
+      [
+        "train:1019:5:1",
+        1,
+        "ccfe3590ba78b8ab5641f278d89f3622642af340e30d8abf3a29fd1f596023c3"
+      ],
+      [
+        "train:1024:5:2",
+        1,
+        "c1f9f6e9d5da6a7dd44fc97ff85a14542fda9b12ceef573bc5fdce8d0f0ba747"
+      ],
+      [
+        "train:1040:1:5",
+        0,
+        "ccd6e10ce5069b03f0dff1fecad407f01da40c16d84f5ad65df59af433585a43"
+      ],
+      [
+        "train:1040:2:4",
+        2,
+        "0f7268bf624a8544ef027a458e4cbbdd9883f019ba90b045f8beb07e3acd024f"
+      ],
+      [
+        "train:1110:4:2",
+        0,
+        "063dd31014bbb65fd2ba975184ba88ace2cf3b319bbcb052475a4e3b06b118ef"
+      ],
+      [
+        "train:1112:7:5",
+        1,
+        "0968a2187a40139c61dd8b425bf353e29859b24eba889cbbe25427bd85277f4b"
+      ],
+      [
+        "train:1121:4:1",
+        0,
+        "803a0b1c53f605f57102e4cc88d2f6252a3d01ecc1ae798aa21a2f54f2768c6d"
+      ],
+      [
+        "train:1127:4:2",
+        1,
+        "183592165ea49e4d1ef260ae4f45055ad20837fd01103d2914c203b30d3dfa78"
+      ],
+      [
+        "train:1149:11:2",
+        1,
+        "01483fd90839d0259d6f8af6fdb4ae9d7832cb00526ad2d125665a536fb6576b"
+      ],
+      [
+        "train:1150:1:1",
+        0,
+        "98b1c3abdaf0b21bff55a1b73c7d87c39fdb60b5e73883d648d49d88c211bd76"
+      ],
+      [
+        "train:1152:4:1",
+        0,
+        "a72459c85c376552439b4c407b8c26b487c852bdd4d8ac0e5b93971ff41c2845"
+      ],
+      [
+        "train:1163:5:1",
+        0,
+        "a7e7930da3d02032618326b4c2555e35e79383c578d28dfb043c50cc9a83caf7"
+      ],
+      [
+        "train:1163:7:2",
+        0,
+        "4e3b007c11bbf6a0ab47c99ee02353071d2f8c08960fdb89b3dec112f3e3c892"
+      ],
+      [
+        "train:1163:9:1",
+        0,
+        "5e73a7f5952e7170dc35a02c8f3f97abce20dff2a7c6a8a005a140ef5b94859f"
+      ],
+      [
+        "train:1177:3:2",
+        0,
+        "62e5fbdbef74d3242be8457f2aaf854ebd44715d8985fe6b9fa36e419f852044"
+      ],
+      [
+        "train:1185:2:6",
+        0,
+        "f4d9bf163fc73299587c06479fdb11ef4494ef7a89db335895ab603ab3d59907"
+      ],
+      [
+        "train:1193:6:1",
+        0,
+        "1441b84528a3e9175187ab773d86ac3c6aa71a5516b066e4fcf77bd18bc2cd04"
+      ],
+      [
+        "train:1203:10:1",
+        0,
+        "b9fe0fc21d3838f949d15abd7a5f8cb7e4ca4f9ab3f5cb65f8bd20e96d1673cb"
+      ],
+      [
+        "train:1203:7:1",
+        0,
+        "76c099ee13b3e5aca67a4491769f01ce6a33ae7db6300bc514f2f15e9ee4d068"
+      ],
+      [
+        "train:1203:9:1",
+        0,
+        "f1d50ead43d7fd127afa4080e25ad88f2c4188497ad35a2ba2241fee1583ff74"
+      ],
+      [
+        "train:1236:4:3",
+        1,
+        "760a6b27f464e0bf6d4cee426817e74c2b8a8a91b0f40263ea7b292e22a1fe86"
+      ],
+      [
+        "train:1292:4:2",
+        1,
+        "382614ed6e461fd497690d24d72ba0673986add3049a9c7d30fada33b60c50b9"
+      ],
+      [
+        "train:1302:4:1",
+        0,
+        "2254107303f37761f15a4c88d8a3fddce94dbbbb6425e1850a5628e56ea547d2"
+      ],
+      [
+        "train:1302:4:2",
+        0,
+        "7a86d1c77ee2dd222e5c9e5834947ddbb9dc971264fc735712be99ad7a627cd3"
+      ],
+      [
+        "train:1310:7:1",
+        1,
+        "2a360458f55394fcd9b53869d3565462e09a9c9c3fff64068d66a379f9cd292e"
+      ],
+      [
+        "train:1322:11:3",
+        0,
+        "546627e848d68bcceb17c364a629dc21dbfbb6dbc33b197561bd504da5ac6474"
+      ],
+      [
+        "train:1328:11:1",
+        0,
+        "1d369cb60e2ce29395dd161ba1ffa82370a2ffeeaf72f49c416d77ae52dfd2b2"
+      ],
+      [
+        "train:1341:1:1",
+        1,
+        "0358c8a86311c00337e67768a40f673518d18a225162af177983811b4bcc3a34"
+      ],
+      [
+        "train:1348:9:3",
+        0,
+        "67942685cce4d356fa3ae06719c96cdd95f181e4dade5b83a3407658c13c39fd"
+      ],
+      [
+        "train:1350:1:2",
+        0,
+        "2f300f5916599161f70902deb61c3645bfcc69b11e659b062623483aca6b330d"
+      ],
+      [
+        "train:1372:2:1",
+        0,
+        "7319bfa02794f9ed2d6dc499a52debf9679faa917ce512ab6022b4d95ef0c7a2"
+      ],
+      [
+        "train:1375:8:3",
+        0,
+        "05c1448bda7ed1d739cb1d3e629da4b56f812bf0773b0563767cc4f97fd60b91"
+      ],
+      [
+        "train:1432:12:2",
+        0,
+        "89d6fc781f9609971b9d46053ece85ac1fbca727def6c103f48c794135d4c945"
+      ],
+      [
+        "train:1436:4:6",
+        0,
+        "bde83b894db78e9f6dc171772e509734004f04df041331eb6351b7c81135bf4e"
+      ],
+      [
+        "train:1444:12:3",
+        0,
+        "9941bf1c5ee694d6874c48d3258599a7356d853a251445137e8a646281955920"
+      ],
+      [
+        "train:1445:4:1",
+        0,
+        "22b9fa7dff3a6f8858047e36a480e9243002e78d66c8438b802bae9bd529062b"
+      ],
+      [
+        "train:1460:5:2",
+        0,
+        "fdc1a9da8d85063d5f54c8f0329d90c8ce498b656fd0a908227543afa90ec41b"
+      ],
+      [
+        "train:1466:6:4",
+        0,
+        "8aec10f9bc99bc38b417f3e8c3de62fabaed4266ebe6dbc0a0ebb1362f9cd9ee"
+      ]
+    ],
+    "source_warnings_outside_this_block": 526,
+    "next_train_source_warning_keys": [
+      [
+        "train:1483:6:1",
+        0,
+        "a92022ebed506e3edbececbba9992074d5c64a96a60bbea54f5b417231485dc3"
+      ],
+      [
+        "train:1502:3:2",
+        0,
+        "c116c175dce1b324eb62ef21a10cf8d4c07b2b878d67aa7fba8824cdc85ac0b2"
+      ],
+      [
+        "train:1511:5:2",
+        0,
+        "e392e0e11008d7c2f26ebd23f1008ffe42d6ca582d5bc38d7799add3331a62cb"
+      ],
+      [
+        "train:1525:2:3",
+        0,
+        "aaa03bd86517187ed682501ab46d426f3fb7cef7abbc02f1df2d3fa3c2c5ddb3"
+      ],
+      [
+        "train:1530:9:1",
+        0,
+        "5a4955d9506c2a9c079eccec15ec7d2f0ce087cf1591a0018dd71173c1884675"
+      ],
+      [
+        "train:1541:5:1",
+        0,
+        "bb839c4e01dbc22ef7016a38eee493f4424bbef51e89d8a1f5a402ef1e51a891"
+      ],
+      [
+        "train:1541:5:3",
+        0,
+        "d0a2b4c3a00055c2d6ba8f3034c462389474832fce53f2087e4e2a89704e1af2"
+      ],
+      [
+        "train:1541:6:1",
+        0,
+        "dbb565178fc0a34f0b5e5d646640d25cb549aa92ce782c845425857b1ed09954"
+      ],
+      [
+        "train:1543:3:4",
+        0,
+        "eac586b678093f0962a141aaafd4c77a69da485c561293b93788b679b352d391"
+      ],
+      [
+        "train:1563:2:2",
+        0,
+        "f83869a9d9a41e8adaaf151343b74fe935cd1f733acc1011a4743840d765bc51"
+      ],
+      [
+        "train:1574:7:3",
+        0,
+        "a2517953cfb18398634f2e5b432552044953d18a5e4a0574fc8d86e41839dd81"
+      ],
+      [
+        "train:1574:8:2",
+        0,
+        "cfafb35bbd4a6db0fb053e4601121ef5fd6604f5a676803bc14804b9e1042cdf"
+      ],
+      [
+        "train:1588:1:1",
+        0,
+        "47d73843f66a3cd953d7592d98dafb63caaf584885ca789dd2029d06f7d6237c"
+      ],
+      [
+        "train:1588:10:2",
+        0,
+        "38653af84af8ce62450dd66c21564c9cfc90e2d2a0f498562647ce03d121c484"
+      ],
+      [
+        "train:1592:10:2",
+        1,
+        "5d575b52a8b11a7509f1488a2e67dd6bf5c2f0eefbf8ccaa03be35b0f0fae44f"
+      ],
+      [
+        "train:1600:9:2",
+        0,
+        "050ccb2d6dddc548240d946f5a0437e467bdbd8d12546592354b8f6b0ad47c7d"
+      ],
+      [
+        "train:1607:2:1",
+        0,
+        "c508b2f6c6c7b7f66f2ef564c58d137ca01302a83de5ee13e4944525dc002a88"
+      ],
+      [
+        "train:1618:3:1",
+        0,
+        "9a17a3fd1d3bbf3dc297de5ed1069861af8c233c57c9c5b41d1f91c7186e2cd5"
+      ],
+      [
+        "train:1619:6:1",
+        1,
+        "6ebbc7a672912cbd416ef438b4c6362c1771bbc12371da9c8e9b1b06f978fdae"
+      ],
+      [
+        "train:1621:4:1",
+        0,
+        "99e3d4e05306be0b2209db899df54deb8e037ff4fd5e6fd09299a63b0296cc62"
+      ],
+      [
+        "train:1622:6:2",
+        0,
+        "9822874b7529f2584fdbbbfa2f9ae3408fdbb3cbbaeaa08ac387acfc339cb828"
+      ],
+      [
+        "train:1641:3:1",
+        0,
+        "d82bef7aa6e25bf5f8df2017053f8924d65bf79d37e59da8832123167d6750d7"
+      ],
+      [
+        "train:1651:2:1",
+        0,
+        "d166d53da22197714386c9a1330f7bef0ff940215995133dd208b82e6d64ac91"
+      ],
+      [
+        "train:1653:6:2",
+        0,
+        "dfa4bab521573d572ddc507d525cb291cfffa40897fa4d8be84431a4637dfbeb"
+      ],
+      [
+        "train:1661:5:2",
+        0,
+        "b03f3489e482c654ffd184b15221153448d8d0335a97635043111d7c8d539058"
+      ],
+      [
+        "train:1661:6:1",
+        0,
+        "1c6afe00dc7cc6a53a3b25f2abfdb3ee9f157665eecebf8fbc133d0cb8ad2fa1"
+      ],
+      [
+        "train:1667:6:4",
+        1,
+        "8ee3cc7c5feb37fe736d49857fe02759109be32954977fe3a2265389f1c192d3"
+      ],
+      [
+        "train:1672:4:1",
+        0,
+        "9af6d0b1d5fd6095f765148d4619017d45ff3a03538aa063c8973ef819088b99"
+      ],
+      [
+        "train:1674:8:3",
+        0,
+        "587798df133904c1670ffe7a9f998c00321fdd03459b308f02e4dc4cf271718f"
+      ],
+      [
+        "train:1674:9:7",
+        0,
+        "1bf7bd2ca1aa8fabcd6e963ce21f6d63eed6812287ab23eae64e8c04dd0d611b"
+      ],
+      [
+        "train:1674:10:4",
+        0,
+        "1bbf71fa2e80922163b2980f4bdedc1de6ffd13e19a16e5522e3f0c0ddb6a125"
+      ],
+      [
+        "train:1679:5:2",
+        0,
+        "6896bc16895b05779130f009de2e244056442585c6a8c6443b4135ed90f60871"
+      ],
+      [
+        "train:1683:7:3",
+        0,
+        "92148a22d5e5ac05adbab4c408c1baddbe967f03946e91b31f0855d2ad558284"
+      ],
+      [
+        "train:1685:1:1",
+        0,
+        "2968982680a630b38f946f9bcf534f73e17d353c178392f9d08f5ae5e35c3792"
+      ],
+      [
+        "train:1691:6:2",
+        1,
+        "d4e1cf2a2f09befca2aae0fa44c6a0b05ae0e5c2e8b582e7eda1b03a22c6b66e"
+      ],
+      [
+        "train:1696:9:2",
+        0,
+        "87f7dbc8e1f782288e2892cb48f7f52aa8e768c2f2f7c8428bd3bafe37228172"
+      ],
+      [
+        "train:1715:3:3",
+        0,
+        "0e05c8821b0a792718590525cb1e4a69e68b20b7ab237c0433066abd4ca9b32f"
+      ],
+      [
+        "train:1721:2:3",
+        2,
+        "30b35f162353d3959cc916780bb36887e484f28be45c94714433552e5074e41f"
+      ],
+      [
+        "train:1721:3:1",
+        2,
+        "42e8c8401dd65d7ecb29b1c31def273c47d7551910aab2c7db1f457cc3f48998"
+      ],
+      [
+        "train:1731:5:2",
+        0,
+        "467a7cafd6b95922114ce68f5f3a0d0571e27200f670af73f5c36dfee90c7998"
+      ],
+      [
+        "train:1733:4:2",
+        1,
+        "d88f8fa48d7b6fa5ee6870802dc6ada8605638f8d23eb6b1bef618b43b83b301"
+      ],
+      [
+        "train:1742:5:3",
+        0,
+        "79f4af3d7701b8b7207d836a8bbb2108b824c69e4d11172b86104b84ec8553be"
+      ],
+      [
+        "train:1743:11:2",
+        0,
+        "df002ca2dbbfe26edcb75691508e4b2d5f063e50c94a4e0590f33e577f240474"
+      ],
+      [
+        "train:1746:6:2",
+        0,
+        "fd09a40cd3ba8fba39b8db592df0b4ffed29cfc02f3e37cab41ba5521c9ad68d"
+      ],
+      [
+        "train:1746:13:1",
+        0,
+        "b33f70ff73625b7efacf92a9f8235cb53a60f09deb433d1db2fa90df05bac943"
+      ],
+      [
+        "train:1755:8:1",
+        0,
+        "2b86c095f4cbdc4d5acce8a017b0d1eaa99050f27d7d4b2746866a0bd5232b39"
+      ],
+      [
+        "train:1762:4:3",
+        0,
+        "e113880b79d4fecfa680653e68ad5f48c2bd40f0bc83315a289469b2f7cdbeab"
+      ],
+      [
+        "train:1766:2:3",
+        0,
+        "867166b10b6c1b73bf3217d0249a564d05c88a135067e5f2f31d9968d26f2976"
+      ],
+      [
+        "train:1777:8:1",
+        0,
+        "215d0f3a84d5f1134c9eed506fb8f7541b7957e35ba40c171033ed79e3450408"
+      ],
+      [
+        "train:1778:4:1",
+        1,
+        "22f7bdce1178925d6bccd84890ed0ba0c4305430acd2412fe818389a47b278db"
+      ],
+      [
+        "train:1780:6:4",
+        0,
+        "3ce54a2af5b6de261c19ae74024ac8fb2d43a567666cdcca11f6b2e6ee0e3db2"
+      ],
+      [
+        "train:1792:5:2",
+        0,
+        "6063f11dcbd2f24b18695e51125047c024931c24c0db326d4f46fca02bf5213e"
+      ],
+      [
+        "train:1817:7:1",
+        0,
+        "174df6d3042308e74fa5ff790fc620b26749cf6dbf133181b4962c9977ec0bda"
+      ],
+      [
+        "train:1826:7:2",
+        1,
+        "cdf3bd0bf7250266eea9488ed120b5804de1ba57f93bd89c51ff905b087ee7bc"
+      ],
+      [
+        "train:1844:8:1",
+        2,
+        "eca15b869d1944b98fc2ec7a3780434053673284630511b9b155c58f710fb266"
+      ],
+      [
+        "train:1856:1:2",
+        0,
+        "b92ff17af9303ffa93fb4f8c5d1bc034a66ad07c98def83d487a81f066455154"
+      ],
+      [
+        "train:1861:2:2",
+        0,
+        "4eb06a269ee162d4d13f6445946bdaf0d9e0f942943d1f90a519c6539cd9c0ba"
+      ],
+      [
+        "train:1861:4:2",
+        0,
+        "9e6cfba3781d0be4aced2bda9e70994a1a6dbf68a19c08324aa6054dc0473a50"
+      ],
+      [
+        "train:1862:1:1",
+        1,
+        "27e21ac929c9321aeea070ef3be8ee0756801bacd5fc86324303bf57875f6b43"
+      ],
+      [
+        "train:1862:2:2",
+        0,
+        "c91c80577b7f9d2c2a661a051f2bbde02cfb98560785366c932fe6d3de49ec5e"
+      ],
+      [
+        "train:1869:3:2",
+        0,
+        "e8084f1277e250eabf2f601d7f1fb4fe0669a6c337c908160e7fe853f54d92af"
+      ],
+      [
+        "train:1873:2:3",
+        0,
+        "d9e7b10a37ab5f9da971721cf41e5b8c38337c101a306ae7e1cddb7e0c07ee21"
+      ],
+      [
+        "train:1874:8:3",
+        0,
+        "54f368f1f5236827f00524c3c13c61f7b55afd08cadf42ef2ac2f0aeadaf0cd2"
+      ],
+      [
+        "train:1874:8:3",
+        1,
+        "6f22a64788200bc4c1895eba9db2b7e846a8f45004cfaba1522af8afee420d05"
+      ],
+      [
+        "train:1879:2:2",
+        0,
+        "0d5e189b033060a52d8572cd462d479275e6b7d420b85e75423738a2e8f8ddcc"
+      ],
+      [
+        "train:1882:3:2",
+        0,
+        "ed93dc01c578b7f7739504e83d1e0a6d4c549998437c103d27cb4f80ccd27294"
+      ],
+      [
+        "train:1882:5:3",
+        0,
+        "9033d497a759365261093d6cb012da2421c20e233d42f6f6186bb62d1cdd2256"
+      ],
+      [
+        "train:1885:4:4",
+        0,
+        "b07aa70d28edb6b08f533d8f4b8df7e30710d391af33acf4ddd3c3827bc111f9"
+      ],
+      [
+        "train:1885:6:1",
+        0,
+        "50f6f4abe373faae3e9d0bb3c607e25d9a72acec2f0bb953be1bf59c34920f7d"
+      ],
+      [
+        "train:1890:5:2",
+        0,
+        "6a0c4843d203493d6df22a4ad60d51c1ce24fa367cf00ece223646c07bff2fad"
+      ],
+      [
+        "train:1890:10:1",
+        0,
+        "3ed34302432bbc6209a5f56a1521bbfe465bbe49bd6e1eb8bd85741e38d63e4f"
+      ],
+      [
+        "train:1890:13:2",
+        0,
+        "a8e2ba0d9aa8d61fde2b0bf686750acac034a3a2d0a84d5458b7c292f65c390c"
+      ],
+      [
+        "train:1894:2:1",
+        0,
+        "a40f3ae2c75b8a930d52c014434e77a80a181159fd80b9225b4decc78ac67fc4"
+      ],
+      [
+        "train:1905:2:3",
+        0,
+        "c1457891d792fa34f60d732fd3ca0fb33c2a3d509cafa88aaf50866dd2eb634b"
+      ],
+      [
+        "train:1912:3:1",
+        0,
+        "e312c7c230e6f4c7b66987895cf4360c36a324cca29049678f51914e0c2cfc6e"
+      ],
+      [
+        "train:1918:9:1",
+        0,
+        "76af51ffc09a8ae71a60e2e32e45efa515caeca960358b58c3cf5ae38ebb22e1"
+      ],
+      [
+        "train:1925:14:2",
+        0,
+        "3f6c7f0897e81bd343a2804a572a9935603a086975826e5bac155048d60f1c3c"
+      ],
+      [
+        "train:1929:3:1",
+        0,
+        "50dfc3d85d03276ca019387c4f3313490ac26e7bf15f2ff7c673def05552805d"
+      ],
+      [
+        "train:1929:9:2",
+        0,
+        "ae88736e5985b4ac4f8ccd749dceca83f8d0bff49aba27e4aa9631a14d2a6a42"
+      ],
+      [
+        "train:1934:3:2",
+        0,
+        "3e8b1bbec17f9b6579282422e6f3b74e1064a2721a1c5516b005234e62d5ff7b"
+      ],
+      [
+        "train:1934:5:2",
+        2,
+        "cd6c57f6b47422bd607acc2f5444fc34a2eb683b59b593bafffcf320a8e66209"
+      ],
+      [
+        "train:1934:13:2",
+        2,
+        "4998bb5abbb8a5e2cc35b46d81f021dd38a3911ad0b1de5d33062aef5e5f03a1"
+      ],
+      [
+        "train:1940:2:3",
+        1,
+        "d8949e72e30fda4e637021b6a10fc00fa30a7c22f7b12ec10df66791cca57532"
+      ],
+      [
+        "train:1940:6:1",
+        0,
+        "85070d2fc8c0762bc2b74e68ec9983459f77ee6130ced86a327aed2077c9a909"
+      ],
+      [
+        "train:1941:8:1",
+        0,
+        "c3c713d485f582d85dd22ac7c2c1724168c7df9a491bb3e226d600ebc1385f15"
+      ],
+      [
+        "train:1951:4:3",
+        0,
+        "3f06ce9a03ffffaba9d1b530a8206fdfb59956d6de5678203cc9d0518ec60fd3"
+      ],
+      [
+        "train:1951:6:2",
+        1,
+        "6350cc7afbab6ac8a8624245b1365640ca2d9c78644e959ee10b257669e05b0a"
+      ],
+      [
+        "train:1954:10:5",
+        0,
+        "dbf9b5565deac7718c3ad2811f7f168dad438772277f26c106251276045e3e55"
+      ],
+      [
+        "train:1956:2:1",
+        0,
+        "d28930fa619d3e34522f0bd138b1e9d6f4601662503de8d2d713ebcf45f440ac"
+      ],
+      [
+        "train:1956:4:1",
+        0,
+        "1620234f7beb71f788f67dadf50119b716277de768f20baf24ded2a880edafaf"
+      ]
+    ],
+    "note": "Outside this block does not mean never reviewed. The 40 explicitly held cases must not be counted as new reviews on the next pass.",
+    "source_wording_policy": {
+      "origin": "User instruction after v18: use understandable awkward utterances in their original wording; do not correct the original.",
+      "preserve_original_text_in_working_example": true,
+      "rewrite_for_grammatical_fluency": false,
+      "awkward_wording_alone_requires_quarantine": false,
+      "admission": "Review and use the meaning supported by the original utterance and available context. Keep semantic and syntactic annotations separate from the unchanged surface text.",
+      "partial_meaning": "Retain supported information and explicit unknowns; do not invent missing words, roles, times or completed actions.",
+      "next_review": "Apply this policy to the 40 held cases. For the 48 previously corrected pending segments, inspect their preserved original preimages before admission; a corrected candidate does not substitute for the original input.",
+      "historical_v18_results": "This continuation policy does not modify the completed v18 candidate, its counts or its prior review evidence."
+    },
+    "priorities": [
+      "Review the meanings of the 48 corrected segments before any contextual attestation or publication.",
+      "Continue the remaining 566 source warnings and 89 other warnings in groups.",
+      "Preserve unknown words, names, tense and missing clauses; do not infer unresolved information."
+    ],
+    "full_semantic_review_still_required": true
+  }
+}

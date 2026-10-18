@@ -1,0 +1,3326 @@
+{
+  "version": "random-quality-pending-details-v27",
+  "candidate": "artifacts/dailydialog-hybrid-quality-v27-reviewed",
+  "scope": "Additional QC findings, separate from the 353 retained paid warnings and the five supplemental ambiguities.",
+  "cases": [
+    {
+      "id": "train:8624:2:3",
+      "group": "source_and_attachment",
+      "meaning": {
+        "speech_act": "instruction",
+        "event_status": "possible_room_service_sign",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker describes putting up a sign in the room-service discussion; the malformed wording does not establish a completed action."
+        },
+        "unknown": [
+          "The exact sign label and the attachment of the final on are unresolved."
+        ]
+      },
+      "image": {
+        "body": {
+          "idx": "train:8624:2:3",
+          "example": "You can put up make up sign on.",
+          "provenance": {
+            "origin": {
+              "split": "train",
+              "dialogue": 8624,
+              "turn": 2,
+              "segment": 3,
+              "span": [
+                34,
+                65
+              ]
+            },
+            "original": "You can put up make up sign on.",
+            "correction": "reviewed_source_segmentation_v6",
+            "context_id": "train:8624",
+            "boundary_flags": [],
+            "cache_key": "a92c24f943901e6274742bcfa5f4237b52a3bb330038d7d5f22c4c4d98ba1693",
+            "semantic_review": "UNREVIEWED",
+            "reused_from": null,
+            "reviewed_fragment": null,
+            "exact_dialogue_duplicate_of": null,
+            "reference_conflict": false,
+            "previous_original": "You can put up make up sign on.",
+            "previous_cache_key": "5b5ede4aa3f65560c8c3ba43785dd5a50f520de03fc3ae09adb8d5b35e20f38b",
+            "context_review": {
+              "rule": "reviewed_source_segmentation_v6",
+              "status": "REVIEWED_OCCURRENCE",
+              "method": "direct_assistant_source_review",
+              "unit": "sentence",
+              "meaning": {
+                "speech_act": "instruction",
+                "event_status": "possible_room_service_sign",
+                "completed_action_asserted": false,
+                "content": {
+                  "interpretation": "The speaker describes putting up a sign in the room-service discussion; the malformed wording does not establish a completed action."
+                },
+                "unknown": [
+                  "The exact sign label and the attachment of the final on are unresolved."
+                ]
+              },
+              "note": "The speaker describes putting up a sign in the room-service discussion; the malformed wording does not establish a completed action. The exact sign label and the attachment of the final on are unresolved.",
+              "evidence_turns": [
+                1,
+                2
+              ],
+              "syntax_corrected": false,
+              "source_sha256": "98f12aa651c3874050e5b581ee7b483d15653efecb091b7aa34a04c1db08b958",
+              "context_sha256": "715a6ef41e1a26e6945dd8d0457c4db6f5e25b917461698ce21bfcad1a6ccca4",
+              "template_semantics_approved": false,
+              "unseen_group_members_approved": false
+            }
+          }
+        },
+        "payload": {
+          "record": {
+            "template_id": "7d7f4f51bc6306d002c32206b0c0cc3e0e456ee8bc6878d4aaeb889ecf2b4817",
+            "parts": [
+              {
+                "slot": "n0"
+              },
+              {
+                "literal": " "
+              },
+              {
+                "slot": "v0"
+              },
+              {
+                "literal": " "
+              },
+              {
+                "slot": "v1"
+              },
+              {
+                "literal": " up "
+              },
+              {
+                "slot": "v2"
+              },
+              {
+                "literal": " up "
+              },
+              {
+                "slot": "n1"
+              },
+              {
+                "literal": " on."
+              }
+            ],
+            "slots": {
+              "n0": {
+                "kind": "nominal",
+                "pos": "PRON",
+                "tag": "PRP",
+                "morph": "Case=Nom|Person=2|PronType=Prs",
+                "dependency": "nsubj",
+                "analysis": "parser",
+                "head_slot": "v1"
+              },
+              "v0": {
+                "kind": "verb",
+                "pos": "AUX",
+                "tag": "MD",
+                "morph": "VerbForm=Fin",
+                "dependency": "aux",
+                "analysis": "parser",
+                "lemma": "can",
+                "head_slot": "v1"
+              },
+              "v1": {
+                "kind": "verb",
+                "pos": "VERB",
+                "tag": "VB",
+                "morph": "VerbForm=Inf",
+                "dependency": "ROOT",
+                "analysis": "parser",
+                "lemma": "put",
+                "head_slot": "v1"
+              },
+              "v2": {
+                "kind": "verb",
+                "pos": "VERB",
+                "tag": "VB",
+                "morph": "VerbForm=Inf",
+                "dependency": "advcl",
+                "analysis": "parser",
+                "lemma": "make",
+                "head_slot": "v1"
+              },
+              "n1": {
+                "kind": "nominal",
+                "pos": "NOUN",
+                "tag": "NN",
+                "morph": "Number=Sing",
+                "dependency": "dobj",
+                "analysis": "parser",
+                "head_slot": "v2"
+              }
+            },
+            "verbs": [
+              "can",
+              "make",
+              "put"
+            ],
+            "constructions": [
+              "make up",
+              "make up on",
+              "put up"
+            ],
+            "predicate_groups": [
+              {
+                "head_slot": "v1",
+                "lemma": "put up",
+                "constructions": [
+                  {
+                    "lemma": "put up",
+                    "kind": "particle",
+                    "separated": false,
+                    "markers": [
+                      {
+                        "part": 5,
+                        "start": 1,
+                        "end": 3
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "head_slot": "v2",
+                "lemma": "make up",
+                "constructions": [
+                  {
+                    "lemma": "make up",
+                    "kind": "particle",
+                    "separated": false,
+                    "markers": [
+                      {
+                        "part": 7,
+                        "start": 1,
+                        "end": 3
+                      }
+                    ]
+                  },
+                  {
+                    "lemma": "make up on",
+                    "kind": "particle_preposition",
+                    "separated": false,
+                    "markers": [
+                      {
+                        "part": 7,
+                        "start": 1,
+                        "end": 3
+                      },
+                      {
+                        "part": 9,
+                        "start": 1,
+                        "end": 3
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "attributes": [],
+            "defaults": {
+              "n0": "You",
+              "v0": "can",
+              "v1": "put",
+              "v2": "make",
+              "n1": "sign"
+            },
+            "adjective_lemmas": [],
+            "usage_constraints": {
+              "mode": "context_only",
+              "reasons": [
+                "Only this explicitly reviewed contextual meaning is supported; generic action-role QA and recombination are blocked.",
+                "The speaker describes putting up a sign in the room-service discussion; the malformed wording does not establish a completed action."
+              ],
+              "version": "contextual-attestation-v1",
+              "source_id": "train:8624:2:3",
+              "text": "You can put up make up sign on.",
+              "context": [
+                "Good morning, sir. Sorry to disturb you. May I make up your room now?",
+                "Yes, please. We're on my way out. You can put up make up sign on. Could you bring us some towels and hangers.",
+                "No problems, sir. Everything will be already when you come back."
+              ],
+              "turn": 2,
+              "span": [
+                34,
+                65
+              ],
+              "meaning": {
+                "speech_act": "instruction",
+                "event_status": "possible_room_service_sign",
+                "completed_action_asserted": false,
+                "content": {
+                  "interpretation": "The speaker describes putting up a sign in the room-service discussion; the malformed wording does not establish a completed action."
+                },
+                "unknown": [
+                  "The exact sign label and the attachment of the final on are unresolved."
+                ]
+              }
+            }
+          },
+          "ledger": {
+            "text": "You can put up make up sign on.",
+            "template_id": "7d7f4f51bc6306d002c32206b0c0cc3e0e456ee8bc6878d4aaeb889ecf2b4817",
+            "bindings": {
+              "n0": "You",
+              "v0": "can",
+              "v1": "put",
+              "v2": "make",
+              "n1": "sign"
+            },
+            "tokens": [
+              {
+                "i": 0,
+                "text": "You",
+                "span": [
+                  0,
+                  3
+                ],
+                "lemma": "you",
+                "parser_lemma": "you",
+                "pos": "PRON",
+                "tag": "PRP",
+                "dep": "nsubj",
+                "head": 2,
+                "morph": "Case=Nom|Person=2|PronType=Prs",
+                "kind": "nominal",
+                "analysis": "parser",
+                "verb_lemmas": [
+                  "you"
+                ],
+                "adjective_lemmas": []
+              },
+              {
+                "i": 1,
+                "text": "can",
+                "span": [
+                  4,
+                  7
+                ],
+                "lemma": "can",
+                "parser_lemma": "can",
+                "pos": "AUX",
+                "tag": "MD",
+                "dep": "aux",
+                "head": 2,
+                "morph": "VerbForm=Fin",
+                "kind": "verb",
+                "analysis": "parser",
+                "verb_lemmas": [
+                  "can"
+                ],
+                "adjective_lemmas": []
+              },
+              {
+                "i": 2,
+                "text": "put",
+                "span": [
+                  8,
+                  11
+                ],
+                "lemma": "put",
+                "parser_lemma": "put",
+                "pos": "VERB",
+                "tag": "VB",
+                "dep": "ROOT",
+                "head": 2,
+                "morph": "VerbForm=Inf",
+                "kind": "verb",
+                "analysis": "parser",
+                "verb_lemmas": [
+                  "put"
+                ],
+                "adjective_lemmas": []
+              },
+              {
+                "i": 3,
+                "text": "up",
+                "span": [
+                  12,
+                  14
+                ],
+                "lemma": "up",
+                "parser_lemma": "up",
+                "pos": "ADP",
+                "tag": "RP",
+                "dep": "prt",
+                "head": 2,
+                "morph": "",
+                "kind": null,
+                "analysis": "parser",
+                "verb_lemmas": [
+                  "up"
+                ],
+                "adjective_lemmas": [
+                  "up"
+                ]
+              },
+              {
+                "i": 4,
+                "text": "make",
+                "span": [
+                  15,
+                  19
+                ],
+                "lemma": "make",
+                "parser_lemma": "make",
+                "pos": "VERB",
+                "tag": "VB",
+                "dep": "advcl",
+                "head": 2,
+                "morph": "VerbForm=Inf",
+                "kind": "verb",
+                "analysis": "parser",
+                "verb_lemmas": [
+                  "make"
+                ],
+                "adjective_lemmas": []
+              },
+              {
+                "i": 5,
+                "text": "up",
+                "span": [
+                  20,
+                  22
+                ],
+                "lemma": "up",
+                "parser_lemma": "up",
+                "pos": "ADP",
+                "tag": "RP",
+                "dep": "prt",
+                "head": 4,
+                "morph": "",
+                "kind": null,
+                "analysis": "parser",
+                "verb_lemmas": [
+                  "up"
+                ],
+                "adjective_lemmas": [
+                  "up"
+                ]
+              },
+              {
+                "i": 6,
+                "text": "sign",
+                "span": [
+                  23,
+                  27
+                ],
+                "lemma": "sign",
+                "parser_lemma": "sign",
+                "pos": "NOUN",
+                "tag": "NN",
+                "dep": "dobj",
+                "head": 4,
+                "morph": "Number=Sing",
+                "kind": "nominal",
+                "analysis": "parser",
+                "verb_lemmas": [
+                  "sign"
+                ],
+                "adjective_lemmas": []
+              },
+              {
+                "i": 7,
+                "text": "on",
+                "span": [
+                  28,
+                  30
+                ],
+                "lemma": "on",
+                "parser_lemma": "on",
+                "pos": "ADP",
+                "tag": "IN",
+                "dep": "prep",
+                "head": 4,
+                "morph": "",
+                "kind": null,
+                "analysis": "parser",
+                "verb_lemmas": [
+                  "on"
+                ],
+                "adjective_lemmas": [
+                  "on"
+                ]
+              },
+              {
+                "i": 8,
+                "text": ".",
+                "span": [
+                  30,
+                  31
+                ],
+                "lemma": ".",
+                "parser_lemma": ".",
+                "pos": "PUNCT",
+                "tag": ".",
+                "dep": "punct",
+                "head": 2,
+                "morph": "PunctType=Peri",
+                "kind": null,
+                "analysis": "parser",
+                "verb_lemmas": [],
+                "adjective_lemmas": []
+              }
+            ],
+            "attributes": [],
+            "predicate_groups": [
+              {
+                "head_slot": "v1",
+                "lemma": "put up",
+                "constructions": [
+                  {
+                    "lemma": "put up",
+                    "kind": "particle",
+                    "separated": false,
+                    "markers": [
+                      [
+                        12,
+                        14
+                      ]
+                    ]
+                  }
+                ]
+              },
+              {
+                "head_slot": "v2",
+                "lemma": "make up",
+                "constructions": [
+                  {
+                    "lemma": "make up",
+                    "kind": "particle",
+                    "separated": false,
+                    "markers": [
+                      [
+                        20,
+                        22
+                      ]
+                    ]
+                  },
+                  {
+                    "lemma": "make up on",
+                    "kind": "particle_preposition",
+                    "separated": false,
+                    "markers": [
+                      [
+                        20,
+                        22
+                      ],
+                      [
+                        28,
+                        30
+                      ]
+                    ]
+                  }
+                ]
+              }
+            ],
+            "analysis_status": "parsed_verbal",
+            "imperative_candidates": [],
+            "sentence_template": "{NP:NSUBJ} can {VERB} up {VERB} up {NP:DOBJ} on .",
+            "predicate_templates": [
+              {
+                "lemma": "put up",
+                "template": "{NSUBJ} can {VERB} up {ADVCL}"
+              },
+              {
+                "lemma": "make up",
+                "template": "{VERB} up {DOBJ} on"
+              }
+            ],
+            "source_revision": {
+              "version": "reviewed_source_segmentation_v6",
+              "parent_id": "train:8624:2:3",
+              "preimage": {
+                "body": {
+                  "idx": "train:8624:2:3",
+                  "example": "You can put up make up sign on.",
+                  "provenance": {
+                    "origin": {
+                      "split": "train",
+                      "dialogue": 8624,
+                      "turn": 2,
+                      "segment": 3,
+                      "span": [
+                        34,
+                        65
+                      ]
+                    },
+                    "original": "You can put up make up sign on.",
+                    "correction": null,
+                    "context_id": "train:8624",
+                    "boundary_flags": [],
+                    "cache_key": "5b5ede4aa3f65560c8c3ba43785dd5a50f520de03fc3ae09adb8d5b35e20f38b",
+                    "semantic_review": "UNREVIEWED",
+                    "reused_from": null,
+                    "reviewed_fragment": null,
+                    "exact_dialogue_duplicate_of": null,
+                    "reference_conflict": false
+                  }
+                },
+                "payload": {
+                  "record": {
+                    "template_id": "1bd08d1115d0aa169c4abedd9a9d39bb8742e2f7bb051eab246c524e316c92af",
+                    "parts": [
+                      {
+                        "slot": "n0"
+                      },
+                      {
+                        "literal": " "
+                      },
+                      {
+                        "slot": "v0"
+                      },
+                      {
+                        "literal": " "
+                      },
+                      {
+                        "slot": "v1"
+                      },
+                      {
+                        "literal": " up "
+                      },
+                      {
+                        "slot": "v2"
+                      },
+                      {
+                        "literal": " up "
+                      },
+                      {
+                        "slot": "n1"
+                      },
+                      {
+                        "literal": " on."
+                      }
+                    ],
+                    "slots": {
+                      "n0": {
+                        "kind": "nominal",
+                        "pos": "PRON",
+                        "tag": "PRP",
+                        "morph": "Case=Nom|Person=2|PronType=Prs",
+                        "dependency": "nsubj",
+                        "analysis": "parser",
+                        "head_slot": "v1"
+                      },
+                      "v0": {
+                        "kind": "verb",
+                        "pos": "AUX",
+                        "tag": "MD",
+                        "morph": "VerbForm=Fin",
+                        "dependency": "aux",
+                        "analysis": "parser",
+                        "lemma": "can",
+                        "head_slot": "v1"
+                      },
+                      "v1": {
+                        "kind": "verb",
+                        "pos": "VERB",
+                        "tag": "VB",
+                        "morph": "VerbForm=Inf",
+                        "dependency": "ROOT",
+                        "analysis": "parser",
+                        "lemma": "put",
+                        "head_slot": "v1"
+                      },
+                      "v2": {
+                        "kind": "verb",
+                        "pos": "VERB",
+                        "tag": "VB",
+                        "morph": "VerbForm=Inf",
+                        "dependency": "advcl",
+                        "analysis": "parser",
+                        "lemma": "make",
+                        "head_slot": "v1"
+                      },
+                      "n1": {
+                        "kind": "nominal",
+                        "pos": "NOUN",
+                        "tag": "NN",
+                        "morph": "Number=Sing",
+                        "dependency": "dobj",
+                        "analysis": "parser",
+                        "head_slot": "v2"
+                      }
+                    },
+                    "verbs": [
+                      "can",
+                      "make",
+                      "put"
+                    ],
+                    "constructions": [
+                      "make up",
+                      "make up on",
+                      "put up"
+                    ],
+                    "predicate_groups": [
+                      {
+                        "head_slot": "v1",
+                        "lemma": "put up",
+                        "constructions": [
+                          {
+                            "lemma": "put up",
+                            "kind": "particle",
+                            "separated": false,
+                            "markers": [
+                              {
+                                "part": 5,
+                                "start": 1,
+                                "end": 3
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "head_slot": "v2",
+                        "lemma": "make up",
+                        "constructions": [
+                          {
+                            "lemma": "make up",
+                            "kind": "particle",
+                            "separated": false,
+                            "markers": [
+                              {
+                                "part": 7,
+                                "start": 1,
+                                "end": 3
+                              }
+                            ]
+                          },
+                          {
+                            "lemma": "make up on",
+                            "kind": "particle_preposition",
+                            "separated": false,
+                            "markers": [
+                              {
+                                "part": 7,
+                                "start": 1,
+                                "end": 3
+                              },
+                              {
+                                "part": 9,
+                                "start": 1,
+                                "end": 3
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ],
+                    "attributes": [],
+                    "defaults": {
+                      "n0": "You",
+                      "v0": "can",
+                      "v1": "put",
+                      "v2": "make",
+                      "n1": "sign"
+                    },
+                    "adjective_lemmas": []
+                  },
+                  "ledger": {
+                    "text": "You can put up make up sign on.",
+                    "template_id": "1bd08d1115d0aa169c4abedd9a9d39bb8742e2f7bb051eab246c524e316c92af",
+                    "bindings": {
+                      "n0": "You",
+                      "v0": "can",
+                      "v1": "put",
+                      "v2": "make",
+                      "n1": "sign"
+                    },
+                    "tokens": [
+                      {
+                        "i": 0,
+                        "text": "You",
+                        "span": [
+                          0,
+                          3
+                        ],
+                        "lemma": "you",
+                        "parser_lemma": "you",
+                        "pos": "PRON",
+                        "tag": "PRP",
+                        "dep": "nsubj",
+                        "head": 2,
+                        "morph": "Case=Nom|Person=2|PronType=Prs",
+                        "kind": "nominal",
+                        "analysis": "parser",
+                        "verb_lemmas": [
+                          "you"
+                        ],
+                        "adjective_lemmas": []
+                      },
+                      {
+                        "i": 1,
+                        "text": "can",
+                        "span": [
+                          4,
+                          7
+                        ],
+                        "lemma": "can",
+                        "parser_lemma": "can",
+                        "pos": "AUX",
+                        "tag": "MD",
+                        "dep": "aux",
+                        "head": 2,
+                        "morph": "VerbForm=Fin",
+                        "kind": "verb",
+                        "analysis": "parser",
+                        "verb_lemmas": [
+                          "can"
+                        ],
+                        "adjective_lemmas": []
+                      },
+                      {
+                        "i": 2,
+                        "text": "put",
+                        "span": [
+                          8,
+                          11
+                        ],
+                        "lemma": "put",
+                        "parser_lemma": "put",
+                        "pos": "VERB",
+                        "tag": "VB",
+                        "dep": "ROOT",
+                        "head": 2,
+                        "morph": "VerbForm=Inf",
+                        "kind": "verb",
+                        "analysis": "parser",
+                        "verb_lemmas": [
+                          "put"
+                        ],
+                        "adjective_lemmas": []
+                      },
+                      {
+                        "i": 3,
+                        "text": "up",
+                        "span": [
+                          12,
+                          14
+                        ],
+                        "lemma": "up",
+                        "parser_lemma": "up",
+                        "pos": "ADP",
+                        "tag": "RP",
+                        "dep": "prt",
+                        "head": 2,
+                        "morph": "",
+                        "kind": null,
+                        "analysis": "parser",
+                        "verb_lemmas": [
+                          "up"
+                        ],
+                        "adjective_lemmas": [
+                          "up"
+                        ]
+                      },
+                      {
+                        "i": 4,
+                        "text": "make",
+                        "span": [
+                          15,
+                          19
+                        ],
+                        "lemma": "make",
+                        "parser_lemma": "make",
+                        "pos": "VERB",
+                        "tag": "VB",
+                        "dep": "advcl",
+                        "head": 2,
+                        "morph": "VerbForm=Inf",
+                        "kind": "verb",
+                        "analysis": "parser",
+                        "verb_lemmas": [
+                          "make"
+                        ],
+                        "adjective_lemmas": []
+                      },
+                      {
+                        "i": 5,
+                        "text": "up",
+                        "span": [
+                          20,
+                          22
+                        ],
+                        "lemma": "up",
+                        "parser_lemma": "up",
+                        "pos": "ADP",
+                        "tag": "RP",
+                        "dep": "prt",
+                        "head": 4,
+                        "morph": "",
+                        "kind": null,
+                        "analysis": "parser",
+                        "verb_lemmas": [
+                          "up"
+                        ],
+                        "adjective_lemmas": [
+                          "up"
+                        ]
+                      },
+                      {
+                        "i": 6,
+                        "text": "sign",
+                        "span": [
+                          23,
+                          27
+                        ],
+                        "lemma": "sign",
+                        "parser_lemma": "sign",
+                        "pos": "NOUN",
+                        "tag": "NN",
+                        "dep": "dobj",
+                        "head": 4,
+                        "morph": "Number=Sing",
+                        "kind": "nominal",
+                        "analysis": "parser",
+                        "verb_lemmas": [
+                          "sign"
+                        ],
+                        "adjective_lemmas": []
+                      },
+                      {
+                        "i": 7,
+                        "text": "on",
+                        "span": [
+                          28,
+                          30
+                        ],
+                        "lemma": "on",
+                        "parser_lemma": "on",
+                        "pos": "ADP",
+                        "tag": "IN",
+                        "dep": "prep",
+                        "head": 4,
+                        "morph": "",
+                        "kind": null,
+                        "analysis": "parser",
+                        "verb_lemmas": [
+                          "on"
+                        ],
+                        "adjective_lemmas": [
+                          "on"
+                        ]
+                      },
+                      {
+                        "i": 8,
+                        "text": ".",
+                        "span": [
+                          30,
+                          31
+                        ],
+                        "lemma": ".",
+                        "parser_lemma": ".",
+                        "pos": "PUNCT",
+                        "tag": ".",
+                        "dep": "punct",
+                        "head": 2,
+                        "morph": "PunctType=Peri",
+                        "kind": null,
+                        "analysis": "parser",
+                        "verb_lemmas": [],
+                        "adjective_lemmas": []
+                      }
+                    ],
+                    "attributes": [],
+                    "predicate_groups": [
+                      {
+                        "head_slot": "v1",
+                        "lemma": "put up",
+                        "constructions": [
+                          {
+                            "lemma": "put up",
+                            "kind": "particle",
+                            "separated": false,
+                            "markers": [
+                              [
+                                12,
+                                14
+                              ]
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "head_slot": "v2",
+                        "lemma": "make up",
+                        "constructions": [
+                          {
+                            "lemma": "make up",
+                            "kind": "particle",
+                            "separated": false,
+                            "markers": [
+                              [
+                                20,
+                                22
+                              ]
+                            ]
+                          },
+                          {
+                            "lemma": "make up on",
+                            "kind": "particle_preposition",
+                            "separated": false,
+                            "markers": [
+                              [
+                                20,
+                                22
+                              ],
+                              [
+                                28,
+                                30
+                              ]
+                            ]
+                          }
+                        ]
+                      }
+                    ],
+                    "analysis_status": "parsed_verbal",
+                    "sentence_template": "{NP:NSUBJ} can {VERB} up {VERB} up {NP:DOBJ} on .",
+                    "predicate_templates": [
+                      {
+                        "lemma": "put up",
+                        "template": "{NSUBJ} can {VERB} up {ADVCL}"
+                      },
+                      {
+                        "lemma": "make up",
+                        "template": "{VERB} up {DOBJ} on"
+                      }
+                    ]
+                  },
+                  "flags": [
+                    "embedded_clause",
+                    "modality_or_intention",
+                    "particle_or_prepositional_unit"
+                  ],
+                  "variant": {
+                    "predicates": [
+                      {
+                        "lemma": "can",
+                        "tag": "MD",
+                        "dep": "aux",
+                        "head": 2,
+                        "morph": "VerbForm=Fin"
+                      },
+                      {
+                        "lemma": "put",
+                        "tag": "VB",
+                        "dep": "ROOT",
+                        "head": 2,
+                        "morph": "VerbForm=Inf"
+                      },
+                      {
+                        "lemma": "make",
+                        "tag": "VB",
+                        "dep": "advcl",
+                        "head": 2,
+                        "morph": "VerbForm=Inf"
+                      }
+                    ],
+                    "operators": [
+                      {
+                        "text": "can",
+                        "lemma": "can",
+                        "dep": "aux",
+                        "head": 2
+                      },
+                      {
+                        "text": "up",
+                        "lemma": "up",
+                        "dep": "prt",
+                        "head": 2
+                      },
+                      {
+                        "text": "up",
+                        "lemma": "up",
+                        "dep": "prt",
+                        "head": 4
+                      }
+                    ],
+                    "constructions": [
+                      {
+                        "head_slot": "v1",
+                        "lemma": "put up",
+                        "constructions": [
+                          {
+                            "lemma": "put up",
+                            "kind": "particle",
+                            "separated": false,
+                            "markers": [
+                              {
+                                "part": 5,
+                                "start": 1,
+                                "end": 3
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "head_slot": "v2",
+                        "lemma": "make up",
+                        "constructions": [
+                          {
+                            "lemma": "make up",
+                            "kind": "particle",
+                            "separated": false,
+                            "markers": [
+                              {
+                                "part": 7,
+                                "start": 1,
+                                "end": 3
+                              }
+                            ]
+                          },
+                          {
+                            "lemma": "make up on",
+                            "kind": "particle_preposition",
+                            "separated": false,
+                            "markers": [
+                              {
+                                "part": 7,
+                                "start": 1,
+                                "end": 3
+                              },
+                              {
+                                "part": 9,
+                                "start": 1,
+                                "end": 3
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ],
+                    "question": false
+                  },
+                  "method": "local_spacy_syntax",
+                  "review_status": "UNREVIEWED",
+                  "entities": []
+                }
+              },
+              "review": {
+                "id": "train:8624:2:3",
+                "method": "direct_assistant_source_review",
+                "preimage": "8470e093f77bb1982cd8d648bad209bf758d22973a5e9aee891bc31fdc43df08",
+                "context_sha256": "715a6ef41e1a26e6945dd8d0457c4db6f5e25b917461698ce21bfcad1a6ccca4",
+                "before_turn": "Yes, please. We're on my way out. You can put up make up sign on. Could you bring us some towels and hangers.",
+                "after_turn": "Yes, please. We're on my way out. You can put up make up sign on. Could you bring us some towels and hangers.",
+                "dropped_tokens": [],
+                "outputs": [
+                  {
+                    "id": "train:8624:2:3",
+                    "span": [
+                      34,
+                      65
+                    ],
+                    "unit": "sentence",
+                    "meaning": {
+                      "speech_act": "instruction",
+                      "event_status": "possible_room_service_sign",
+                      "completed_action_asserted": false,
+                      "content": {
+                        "interpretation": "The speaker describes putting up a sign in the room-service discussion; the malformed wording does not establish a completed action."
+                      },
+                      "unknown": [
+                        "The exact sign label and the attachment of the final on are unresolved."
+                      ]
+                    },
+                    "evidence_turns": [
+                      1,
+                      2
+                    ],
+                    "tokens": [
+                      {
+                        "from": [
+                          0
+                        ],
+                        "set": {}
+                      },
+                      {
+                        "from": [
+                          1
+                        ],
+                        "set": {}
+                      },
+                      {
+                        "from": [
+                          2
+                        ],
+                        "set": {}
+                      },
+                      {
+                        "from": [
+                          3
+                        ],
+                        "set": {}
+                      },
+                      {
+                        "from": [
+                          4
+                        ],
+                        "set": {}
+                      },
+                      {
+                        "from": [
+                          5
+                        ],
+                        "set": {}
+                      },
+                      {
+                        "from": [
+                          6
+                        ],
+                        "set": {}
+                      },
+                      {
+                        "from": [
+                          7
+                        ],
+                        "set": {}
+                      },
+                      {
+                        "from": [
+                          8
+                        ],
+                        "set": {}
+                      }
+                    ],
+                    "boundary_flags": [],
+                    "usage": {
+                      "mode": "context_only",
+                      "reasons": [
+                        "Only this explicitly reviewed contextual meaning is supported; generic action-role QA and recombination are blocked.",
+                        "The speaker describes putting up a sign in the room-service discussion; the malformed wording does not establish a completed action."
+                      ]
+                    },
+                    "note": "The speaker describes putting up a sign in the room-service discussion; the malformed wording does not establish a completed action. The exact sign label and the attachment of the final on are unresolved."
+                  }
+                ],
+                "note": "Fresh random QC outside paid warnings. Explicit model reading of the visible prefix; original wording and all sentence boundaries retained. Candidate construction labels are hypotheses, not approved phrasal verbs.",
+                "semantic_approval": false,
+                "publication": false
+              },
+              "semantic_approval": false
+            }
+          },
+          "entities": [],
+          "flags": [
+            "context_reviewed_occurrence",
+            "embedded_clause",
+            "modality_or_intention",
+            "particle_or_prepositional_unit"
+          ],
+          "variant": {
+            "predicates": [
+              {
+                "lemma": "can",
+                "tag": "MD",
+                "dep": "aux",
+                "head": 2,
+                "morph": "VerbForm=Fin"
+              },
+              {
+                "lemma": "put",
+                "tag": "VB",
+                "dep": "ROOT",
+                "head": 2,
+                "morph": "VerbForm=Inf"
+              },
+              {
+                "lemma": "make",
+                "tag": "VB",
+                "dep": "advcl",
+                "head": 2,
+                "morph": "VerbForm=Inf"
+              }
+            ],
+            "operators": [
+              {
+                "text": "can",
+                "lemma": "can",
+                "dep": "aux",
+                "head": 2
+              },
+              {
+                "text": "up",
+                "lemma": "up",
+                "dep": "prt",
+                "head": 2
+              },
+              {
+                "text": "up",
+                "lemma": "up",
+                "dep": "prt",
+                "head": 4
+              }
+            ],
+            "constructions": [
+              {
+                "head_slot": "v1",
+                "lemma": "put up",
+                "constructions": [
+                  {
+                    "lemma": "put up",
+                    "kind": "particle",
+                    "separated": false,
+                    "markers": [
+                      {
+                        "part": 5,
+                        "start": 1,
+                        "end": 3
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "head_slot": "v2",
+                "lemma": "make up",
+                "constructions": [
+                  {
+                    "lemma": "make up",
+                    "kind": "particle",
+                    "separated": false,
+                    "markers": [
+                      {
+                        "part": 7,
+                        "start": 1,
+                        "end": 3
+                      }
+                    ]
+                  },
+                  {
+                    "lemma": "make up on",
+                    "kind": "particle_preposition",
+                    "separated": false,
+                    "markers": [
+                      {
+                        "part": 7,
+                        "start": 1,
+                        "end": 3
+                      },
+                      {
+                        "part": 9,
+                        "start": 1,
+                        "end": 3
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "question": false
+          },
+          "method": "local_spacy_syntax",
+          "review_status": "UNREVIEWED",
+          "syntax_revision": "reviewed_source_segmentation_v6"
+        }
+      },
+      "image_sha256": "78e68384157ee1c4a657441332bd7e04c115e4f66e679528d176e54fd754a87c",
+      "status": "OPEN",
+      "publication": false,
+      "source_text_changed": false,
+      "next_action": "Review the unresolved specific detail without inventing a lexical repair or identity."
+    },
+    {
+      "id": "val:616:1:1",
+      "group": "name_attachment",
+      "meaning": {
+        "speech_act": "assessment",
+        "event_status": "speaker_belief",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker believes the presentation impressed the client."
+        },
+        "unknown": [
+          "Daniel may be the addressee or the client's name; the local wording does not settle this identity attachment."
+        ]
+      },
+      "image": {
+        "body": {
+          "idx": "val:616:1:1",
+          "example": "I think your presentation impressed the client, Daniel.",
+          "provenance": {
+            "origin": {
+              "split": "val",
+              "dialogue": 616,
+              "turn": 1,
+              "segment": 1,
+              "span": [
+                0,
+                55
+              ]
+            },
+            "original": "I think your presentation impressed the client, Daniel.",
+            "correction": "reviewed_source_segmentation_v6",
+            "context_id": "val:616",
+            "boundary_flags": [],
+            "cache_key": "7ea66f3e71e3c871806d614647a85caf3c7196786c4f4b91ee89707701143ec3",
+            "semantic_review": "UNREVIEWED",
+            "reused_from": null,
+            "reviewed_fragment": null,
+            "exact_dialogue_duplicate_of": null,
+            "reference_conflict": false,
+            "previous_original": "I think your presentation impressed the client, Daniel.",
+            "previous_cache_key": "31480347250cd42f3059594ff0967d6501f30c2ffdd1f46d1d6279176c091eaa",
+            "context_review": {
+              "rule": "reviewed_source_segmentation_v6",
+              "status": "REVIEWED_OCCURRENCE",
+              "method": "direct_assistant_source_review",
+              "unit": "sentence",
+              "meaning": {
+                "speech_act": "assessment",
+                "event_status": "speaker_belief",
+                "completed_action_asserted": false,
+                "content": {
+                  "interpretation": "The speaker believes the presentation impressed the client."
+                },
+                "unknown": [
+                  "Daniel may be the addressee or the client's name; the local wording does not settle this identity attachment."
+                ]
+              },
+              "note": "The speaker believes the presentation impressed the client. Daniel may be the addressee or the client's name; the local wording does not settle this identity attachment.",
+              "evidence_turns": [
+                1
+              ],
+              "syntax_corrected": false,
+              "source_sha256": "26ad35d34a5934e6a5eeda73d132bb433f79b1a54300ce32894e98e7ea17e3ef",
+              "context_sha256": "71be0d85af6439a1db1219778f18d714cd83263025bae9715763c8b634dd52d7",
+              "template_semantics_approved": false,
+              "unseen_group_members_approved": false
+            }
+          }
+        },
+        "payload": {
+          "record": {
+            "template_id": "00268d6d0de0ee2772115fd98338421a38ea464e50384bd3c5e301e694a27374",
+            "parts": [
+              {
+                "slot": "n0"
+              },
+              {
+                "literal": " "
+              },
+              {
+                "slot": "v0"
+              },
+              {
+                "literal": " "
+              },
+              {
+                "slot": "n1"
+              },
+              {
+                "literal": " "
+              },
+              {
+                "slot": "n2"
+              },
+              {
+                "literal": " "
+              },
+              {
+                "slot": "v1"
+              },
+              {
+                "literal": " the "
+              },
+              {
+                "slot": "n3"
+              },
+              {
+                "literal": ", "
+              },
+              {
+                "slot": "n4"
+              },
+              {
+                "literal": "."
+              }
+            ],
+            "slots": {
+              "n0": {
+                "kind": "nominal",
+                "pos": "PRON",
+                "tag": "PRP",
+                "morph": "Case=Nom|Number=Sing|Person=1|PronType=Prs",
+                "dependency": "nsubj",
+                "analysis": "parser",
+                "head_slot": "v0"
+              },
+              "v0": {
+                "kind": "verb",
+                "pos": "VERB",
+                "tag": "VBP",
+                "morph": "Tense=Pres|VerbForm=Fin",
+                "dependency": "ROOT",
+                "analysis": "parser",
+                "lemma": "think",
+                "head_slot": "v0"
+              },
+              "n1": {
+                "kind": "nominal",
+                "pos": "PRON",
+                "tag": "PRP$",
+                "morph": "Person=2|Poss=Yes|PronType=Prs",
+                "dependency": "poss",
+                "analysis": "parser",
+                "head_slot": "n2"
+              },
+              "n2": {
+                "kind": "nominal",
+                "pos": "NOUN",
+                "tag": "NN",
+                "morph": "Number=Sing",
+                "dependency": "nsubj",
+                "analysis": "parser",
+                "head_slot": "v1"
+              },
+              "v1": {
+                "kind": "verb",
+                "pos": "VERB",
+                "tag": "VBD",
+                "morph": "Tense=Past|VerbForm=Fin",
+                "dependency": "ccomp",
+                "analysis": "parser",
+                "lemma": "impress",
+                "head_slot": "v0"
+              },
+              "n3": {
+                "kind": "nominal",
+                "pos": "NOUN",
+                "tag": "NN",
+                "morph": "Number=Sing",
+                "dependency": "dobj",
+                "analysis": "parser",
+                "head_slot": "v1"
+              },
+              "n4": {
+                "kind": "nominal",
+                "pos": "PROPN",
+                "tag": "NNP",
+                "morph": "Number=Sing",
+                "dependency": "appos",
+                "analysis": "parser",
+                "head_slot": "n3"
+              }
+            },
+            "verbs": [
+              "impress",
+              "think"
+            ],
+            "constructions": [],
+            "predicate_groups": [
+              {
+                "head_slot": "v0",
+                "lemma": "think",
+                "constructions": []
+              },
+              {
+                "head_slot": "v1",
+                "lemma": "impress",
+                "constructions": []
+              }
+            ],
+            "attributes": [],
+            "defaults": {
+              "n0": "I",
+              "v0": "think",
+              "n1": "your",
+              "n2": "presentation",
+              "v1": "impressed",
+              "n3": "client",
+              "n4": "Daniel"
+            },
+            "adjective_lemmas": [],
+            "usage_constraints": {
+              "mode": "context_only",
+              "reasons": [
+                "Only this explicitly reviewed contextual meaning is supported; generic action-role QA and recombination are blocked.",
+                "The speaker believes the presentation impressed the client."
+              ],
+              "version": "contextual-attestation-v1",
+              "source_id": "val:616:1:1",
+              "text": "I think your presentation impressed the client, Daniel.",
+              "context": [
+                "I think your presentation impressed the client, Daniel. You did a good job.",
+                "Thank you, Mr. Cooper. I hope we get the contract."
+              ],
+              "turn": 1,
+              "span": [
+                0,
+                55
+              ],
+              "meaning": {
+                "speech_act": "assessment",
+                "event_status": "speaker_belief",
+                "completed_action_asserted": false,
+                "content": {
+                  "interpretation": "The speaker believes the presentation impressed the client."
+                },
+                "unknown": [
+                  "Daniel may be the addressee or the client's name; the local wording does not settle this identity attachment."
+                ]
+              }
+            }
+          },
+          "ledger": {
+            "text": "I think your presentation impressed the client, Daniel.",
+            "template_id": "00268d6d0de0ee2772115fd98338421a38ea464e50384bd3c5e301e694a27374",
+            "bindings": {
+              "n0": "I",
+              "v0": "think",
+              "n1": "your",
+              "n2": "presentation",
+              "v1": "impressed",
+              "n3": "client",
+              "n4": "Daniel"
+            },
+            "tokens": [
+              {
+                "i": 0,
+                "text": "I",
+                "span": [
+                  0,
+                  1
+                ],
+                "lemma": "i",
+                "parser_lemma": "i",
+                "pos": "PRON",
+                "tag": "PRP",
+                "dep": "nsubj",
+                "head": 1,
+                "morph": "Case=Nom|Number=Sing|Person=1|PronType=Prs",
+                "kind": "nominal",
+                "analysis": "parser",
+                "verb_lemmas": [],
+                "adjective_lemmas": []
+              },
+              {
+                "i": 1,
+                "text": "think",
+                "span": [
+                  2,
+                  7
+                ],
+                "lemma": "think",
+                "parser_lemma": "think",
+                "pos": "VERB",
+                "tag": "VBP",
+                "dep": "ROOT",
+                "head": 1,
+                "morph": "Tense=Pres|VerbForm=Fin",
+                "kind": "verb",
+                "analysis": "parser",
+                "verb_lemmas": [
+                  "think"
+                ],
+                "adjective_lemmas": []
+              },
+              {
+                "i": 2,
+                "text": "your",
+                "span": [
+                  8,
+                  12
+                ],
+                "lemma": "your",
+                "parser_lemma": "your",
+                "pos": "PRON",
+                "tag": "PRP$",
+                "dep": "poss",
+                "head": 3,
+                "morph": "Person=2|Poss=Yes|PronType=Prs",
+                "kind": "nominal",
+                "analysis": "parser",
+                "verb_lemmas": [],
+                "adjective_lemmas": []
+              },
+              {
+                "i": 3,
+                "text": "presentation",
+                "span": [
+                  13,
+                  25
+                ],
+                "lemma": "presentation",
+                "parser_lemma": "presentation",
+                "pos": "NOUN",
+                "tag": "NN",
+                "dep": "nsubj",
+                "head": 4,
+                "morph": "Number=Sing",
+                "kind": "nominal",
+                "analysis": "parser",
+                "verb_lemmas": [],
+                "adjective_lemmas": []
+              },
+              {
+                "i": 4,
+                "text": "impressed",
+                "span": [
+                  26,
+                  35
+                ],
+                "lemma": "impress",
+                "parser_lemma": "impress",
+                "pos": "VERB",
+                "tag": "VBD",
+                "dep": "ccomp",
+                "head": 1,
+                "morph": "Tense=Past|VerbForm=Fin",
+                "kind": "verb",
+                "analysis": "parser",
+                "verb_lemmas": [
+                  "impress"
+                ],
+                "adjective_lemmas": []
+              },
+              {
+                "i": 5,
+                "text": "the",
+                "span": [
+                  36,
+                  39
+                ],
+                "lemma": "the",
+                "parser_lemma": "the",
+                "pos": "DET",
+                "tag": "DT",
+                "dep": "det",
+                "head": 6,
+                "morph": "Definite=Def|PronType=Art",
+                "kind": null,
+                "analysis": "parser",
+                "verb_lemmas": [],
+                "adjective_lemmas": []
+              },
+              {
+                "i": 6,
+                "text": "client",
+                "span": [
+                  40,
+                  46
+                ],
+                "lemma": "client",
+                "parser_lemma": "client",
+                "pos": "NOUN",
+                "tag": "NN",
+                "dep": "dobj",
+                "head": 4,
+                "morph": "Number=Sing",
+                "kind": "nominal",
+                "analysis": "parser",
+                "verb_lemmas": [],
+                "adjective_lemmas": []
+              },
+              {
+                "i": 7,
+                "text": ",",
+                "span": [
+                  46,
+                  47
+                ],
+                "lemma": ",",
+                "parser_lemma": ",",
+                "pos": "PUNCT",
+                "tag": ",",
+                "dep": "punct",
+                "head": 6,
+                "morph": "PunctType=Comm",
+                "kind": null,
+                "analysis": "parser",
+                "verb_lemmas": [],
+                "adjective_lemmas": []
+              },
+              {
+                "i": 8,
+                "text": "Daniel",
+                "span": [
+                  48,
+                  54
+                ],
+                "lemma": "daniel",
+                "parser_lemma": "daniel",
+                "pos": "PROPN",
+                "tag": "NNP",
+                "dep": "appos",
+                "head": 6,
+                "morph": "Number=Sing",
+                "kind": "nominal",
+                "analysis": "parser",
+                "verb_lemmas": [],
+                "adjective_lemmas": []
+              },
+              {
+                "i": 9,
+                "text": ".",
+                "span": [
+                  54,
+                  55
+                ],
+                "lemma": ".",
+                "parser_lemma": ".",
+                "pos": "PUNCT",
+                "tag": ".",
+                "dep": "punct",
+                "head": 1,
+                "morph": "PunctType=Peri",
+                "kind": null,
+                "analysis": "parser",
+                "verb_lemmas": [],
+                "adjective_lemmas": []
+              }
+            ],
+            "attributes": [],
+            "predicate_groups": [
+              {
+                "head_slot": "v0",
+                "lemma": "think",
+                "constructions": []
+              },
+              {
+                "head_slot": "v1",
+                "lemma": "impress",
+                "constructions": []
+              }
+            ],
+            "analysis_status": "parsed_verbal",
+            "imperative_candidates": [],
+            "sentence_template": "{NP:NSUBJ} {VERB} {NP:NSUBJ} {VERB} {NP:DOBJ} , {NP:APPOS} .",
+            "predicate_templates": [
+              {
+                "lemma": "think",
+                "template": "{NSUBJ} {VERB} {CCOMP}"
+              },
+              {
+                "lemma": "impress",
+                "template": "{NSUBJ} {VERB} {DOBJ}"
+              }
+            ],
+            "source_revision": {
+              "version": "reviewed_source_segmentation_v6",
+              "parent_id": "val:616:1:1",
+              "preimage": {
+                "body": {
+                  "idx": "val:616:1:1",
+                  "example": "I think your presentation impressed the client, Daniel.",
+                  "provenance": {
+                    "origin": {
+                      "split": "val",
+                      "dialogue": 616,
+                      "turn": 1,
+                      "segment": 1,
+                      "span": [
+                        0,
+                        55
+                      ]
+                    },
+                    "original": "I think your presentation impressed the client, Daniel.",
+                    "correction": null,
+                    "context_id": "val:616",
+                    "boundary_flags": [],
+                    "cache_key": "31480347250cd42f3059594ff0967d6501f30c2ffdd1f46d1d6279176c091eaa",
+                    "semantic_review": "UNREVIEWED",
+                    "reused_from": null,
+                    "reviewed_fragment": null,
+                    "exact_dialogue_duplicate_of": null,
+                    "reference_conflict": false
+                  }
+                },
+                "payload": {
+                  "record": {
+                    "template_id": "6a3b60eadb7a8310e5a1d0cbd698297cd2884c1c1adaf5ad174c98e17ddad7dc",
+                    "parts": [
+                      {
+                        "slot": "n0"
+                      },
+                      {
+                        "literal": " "
+                      },
+                      {
+                        "slot": "v0"
+                      },
+                      {
+                        "literal": " "
+                      },
+                      {
+                        "slot": "n1"
+                      },
+                      {
+                        "literal": " "
+                      },
+                      {
+                        "slot": "n2"
+                      },
+                      {
+                        "literal": " "
+                      },
+                      {
+                        "slot": "v1"
+                      },
+                      {
+                        "literal": " the "
+                      },
+                      {
+                        "slot": "n3"
+                      },
+                      {
+                        "literal": ", "
+                      },
+                      {
+                        "slot": "n4"
+                      },
+                      {
+                        "literal": "."
+                      }
+                    ],
+                    "slots": {
+                      "n0": {
+                        "kind": "nominal",
+                        "pos": "PRON",
+                        "tag": "PRP",
+                        "morph": "Case=Nom|Number=Sing|Person=1|PronType=Prs",
+                        "dependency": "nsubj",
+                        "analysis": "parser",
+                        "head_slot": "v0"
+                      },
+                      "v0": {
+                        "kind": "verb",
+                        "pos": "VERB",
+                        "tag": "VBP",
+                        "morph": "Tense=Pres|VerbForm=Fin",
+                        "dependency": "ROOT",
+                        "analysis": "parser",
+                        "lemma": "think",
+                        "head_slot": "v0"
+                      },
+                      "n1": {
+                        "kind": "nominal",
+                        "pos": "PRON",
+                        "tag": "PRP$",
+                        "morph": "Person=2|Poss=Yes|PronType=Prs",
+                        "dependency": "poss",
+                        "analysis": "parser",
+                        "head_slot": "n2"
+                      },
+                      "n2": {
+                        "kind": "nominal",
+                        "pos": "NOUN",
+                        "tag": "NN",
+                        "morph": "Number=Sing",
+                        "dependency": "nsubj",
+                        "analysis": "parser",
+                        "head_slot": "v1"
+                      },
+                      "v1": {
+                        "kind": "verb",
+                        "pos": "VERB",
+                        "tag": "VBD",
+                        "morph": "Tense=Past|VerbForm=Fin",
+                        "dependency": "ccomp",
+                        "analysis": "parser",
+                        "lemma": "impress",
+                        "head_slot": "v0"
+                      },
+                      "n3": {
+                        "kind": "nominal",
+                        "pos": "NOUN",
+                        "tag": "NN",
+                        "morph": "Number=Sing",
+                        "dependency": "dobj",
+                        "analysis": "parser",
+                        "head_slot": "v1"
+                      },
+                      "n4": {
+                        "kind": "nominal",
+                        "pos": "PROPN",
+                        "tag": "NNP",
+                        "morph": "Number=Sing",
+                        "dependency": "appos",
+                        "analysis": "parser",
+                        "head_slot": "n3"
+                      }
+                    },
+                    "verbs": [
+                      "impress",
+                      "think"
+                    ],
+                    "constructions": [],
+                    "predicate_groups": [
+                      {
+                        "head_slot": "v0",
+                        "lemma": "think",
+                        "constructions": []
+                      },
+                      {
+                        "head_slot": "v1",
+                        "lemma": "impress",
+                        "constructions": []
+                      }
+                    ],
+                    "attributes": [],
+                    "defaults": {
+                      "n0": "I",
+                      "v0": "think",
+                      "n1": "your",
+                      "n2": "presentation",
+                      "v1": "impressed",
+                      "n3": "client",
+                      "n4": "Daniel"
+                    },
+                    "adjective_lemmas": []
+                  },
+                  "ledger": {
+                    "text": "I think your presentation impressed the client, Daniel.",
+                    "template_id": "6a3b60eadb7a8310e5a1d0cbd698297cd2884c1c1adaf5ad174c98e17ddad7dc",
+                    "bindings": {
+                      "n0": "I",
+                      "v0": "think",
+                      "n1": "your",
+                      "n2": "presentation",
+                      "v1": "impressed",
+                      "n3": "client",
+                      "n4": "Daniel"
+                    },
+                    "tokens": [
+                      {
+                        "i": 0,
+                        "text": "I",
+                        "span": [
+                          0,
+                          1
+                        ],
+                        "lemma": "i",
+                        "parser_lemma": "i",
+                        "pos": "PRON",
+                        "tag": "PRP",
+                        "dep": "nsubj",
+                        "head": 1,
+                        "morph": "Case=Nom|Number=Sing|Person=1|PronType=Prs",
+                        "kind": "nominal",
+                        "analysis": "parser",
+                        "verb_lemmas": [],
+                        "adjective_lemmas": []
+                      },
+                      {
+                        "i": 1,
+                        "text": "think",
+                        "span": [
+                          2,
+                          7
+                        ],
+                        "lemma": "think",
+                        "parser_lemma": "think",
+                        "pos": "VERB",
+                        "tag": "VBP",
+                        "dep": "ROOT",
+                        "head": 1,
+                        "morph": "Tense=Pres|VerbForm=Fin",
+                        "kind": "verb",
+                        "analysis": "parser",
+                        "verb_lemmas": [
+                          "think"
+                        ],
+                        "adjective_lemmas": []
+                      },
+                      {
+                        "i": 2,
+                        "text": "your",
+                        "span": [
+                          8,
+                          12
+                        ],
+                        "lemma": "your",
+                        "parser_lemma": "your",
+                        "pos": "PRON",
+                        "tag": "PRP$",
+                        "dep": "poss",
+                        "head": 3,
+                        "morph": "Person=2|Poss=Yes|PronType=Prs",
+                        "kind": "nominal",
+                        "analysis": "parser",
+                        "verb_lemmas": [],
+                        "adjective_lemmas": []
+                      },
+                      {
+                        "i": 3,
+                        "text": "presentation",
+                        "span": [
+                          13,
+                          25
+                        ],
+                        "lemma": "presentation",
+                        "parser_lemma": "presentation",
+                        "pos": "NOUN",
+                        "tag": "NN",
+                        "dep": "nsubj",
+                        "head": 4,
+                        "morph": "Number=Sing",
+                        "kind": "nominal",
+                        "analysis": "parser",
+                        "verb_lemmas": [],
+                        "adjective_lemmas": []
+                      },
+                      {
+                        "i": 4,
+                        "text": "impressed",
+                        "span": [
+                          26,
+                          35
+                        ],
+                        "lemma": "impress",
+                        "parser_lemma": "impress",
+                        "pos": "VERB",
+                        "tag": "VBD",
+                        "dep": "ccomp",
+                        "head": 1,
+                        "morph": "Tense=Past|VerbForm=Fin",
+                        "kind": "verb",
+                        "analysis": "parser",
+                        "verb_lemmas": [
+                          "impress"
+                        ],
+                        "adjective_lemmas": []
+                      },
+                      {
+                        "i": 5,
+                        "text": "the",
+                        "span": [
+                          36,
+                          39
+                        ],
+                        "lemma": "the",
+                        "parser_lemma": "the",
+                        "pos": "DET",
+                        "tag": "DT",
+                        "dep": "det",
+                        "head": 6,
+                        "morph": "Definite=Def|PronType=Art",
+                        "kind": null,
+                        "analysis": "parser",
+                        "verb_lemmas": [],
+                        "adjective_lemmas": []
+                      },
+                      {
+                        "i": 6,
+                        "text": "client",
+                        "span": [
+                          40,
+                          46
+                        ],
+                        "lemma": "client",
+                        "parser_lemma": "client",
+                        "pos": "NOUN",
+                        "tag": "NN",
+                        "dep": "dobj",
+                        "head": 4,
+                        "morph": "Number=Sing",
+                        "kind": "nominal",
+                        "analysis": "parser",
+                        "verb_lemmas": [],
+                        "adjective_lemmas": []
+                      },
+                      {
+                        "i": 7,
+                        "text": ",",
+                        "span": [
+                          46,
+                          47
+                        ],
+                        "lemma": ",",
+                        "parser_lemma": ",",
+                        "pos": "PUNCT",
+                        "tag": ",",
+                        "dep": "punct",
+                        "head": 6,
+                        "morph": "PunctType=Comm",
+                        "kind": null,
+                        "analysis": "parser",
+                        "verb_lemmas": [],
+                        "adjective_lemmas": []
+                      },
+                      {
+                        "i": 8,
+                        "text": "Daniel",
+                        "span": [
+                          48,
+                          54
+                        ],
+                        "lemma": "daniel",
+                        "parser_lemma": "daniel",
+                        "pos": "PROPN",
+                        "tag": "NNP",
+                        "dep": "appos",
+                        "head": 6,
+                        "morph": "Number=Sing",
+                        "kind": "nominal",
+                        "analysis": "parser",
+                        "verb_lemmas": [],
+                        "adjective_lemmas": []
+                      },
+                      {
+                        "i": 9,
+                        "text": ".",
+                        "span": [
+                          54,
+                          55
+                        ],
+                        "lemma": ".",
+                        "parser_lemma": ".",
+                        "pos": "PUNCT",
+                        "tag": ".",
+                        "dep": "punct",
+                        "head": 1,
+                        "morph": "PunctType=Peri",
+                        "kind": null,
+                        "analysis": "parser",
+                        "verb_lemmas": [],
+                        "adjective_lemmas": []
+                      }
+                    ],
+                    "attributes": [],
+                    "predicate_groups": [
+                      {
+                        "head_slot": "v0",
+                        "lemma": "think",
+                        "constructions": []
+                      },
+                      {
+                        "head_slot": "v1",
+                        "lemma": "impress",
+                        "constructions": []
+                      }
+                    ],
+                    "analysis_status": "parsed_verbal",
+                    "sentence_template": "{NP:NSUBJ} {VERB} {NP:NSUBJ} {VERB} {NP:DOBJ} , {NP:APPOS} .",
+                    "predicate_templates": [
+                      {
+                        "lemma": "think",
+                        "template": "{NSUBJ} {VERB} {CCOMP}"
+                      },
+                      {
+                        "lemma": "impress",
+                        "template": "{NSUBJ} {VERB} {DOBJ}"
+                      }
+                    ]
+                  },
+                  "flags": [
+                    "embedded_clause",
+                    "proper_name"
+                  ],
+                  "variant": {
+                    "predicates": [
+                      {
+                        "lemma": "think",
+                        "tag": "VBP",
+                        "dep": "ROOT",
+                        "head": 1,
+                        "morph": "Tense=Pres|VerbForm=Fin"
+                      },
+                      {
+                        "lemma": "impress",
+                        "tag": "VBD",
+                        "dep": "ccomp",
+                        "head": 1,
+                        "morph": "Tense=Past|VerbForm=Fin"
+                      }
+                    ],
+                    "operators": [],
+                    "constructions": [
+                      {
+                        "head_slot": "v0",
+                        "lemma": "think",
+                        "constructions": []
+                      },
+                      {
+                        "head_slot": "v1",
+                        "lemma": "impress",
+                        "constructions": []
+                      }
+                    ],
+                    "question": false
+                  },
+                  "method": "local_spacy_syntax",
+                  "review_status": "UNREVIEWED",
+                  "entities": [
+                    {
+                      "text": "Daniel",
+                      "label": "PERSON",
+                      "span": [
+                        48,
+                        54
+                      ],
+                      "review_status": "UNREVIEWED"
+                    }
+                  ]
+                }
+              },
+              "review": {
+                "id": "val:616:1:1",
+                "method": "direct_assistant_source_review",
+                "preimage": "12afa6b1a61ed352ea20f93a7a95e71f7db855260bd722fc398af36c0d2a0300",
+                "context_sha256": "71be0d85af6439a1db1219778f18d714cd83263025bae9715763c8b634dd52d7",
+                "before_turn": "I think your presentation impressed the client, Daniel. You did a good job.",
+                "after_turn": "I think your presentation impressed the client, Daniel. You did a good job.",
+                "dropped_tokens": [],
+                "outputs": [
+                  {
+                    "id": "val:616:1:1",
+                    "span": [
+                      0,
+                      55
+                    ],
+                    "unit": "sentence",
+                    "meaning": {
+                      "speech_act": "assessment",
+                      "event_status": "speaker_belief",
+                      "completed_action_asserted": false,
+                      "content": {
+                        "interpretation": "The speaker believes the presentation impressed the client."
+                      },
+                      "unknown": [
+                        "Daniel may be the addressee or the client's name; the local wording does not settle this identity attachment."
+                      ]
+                    },
+                    "evidence_turns": [
+                      1
+                    ],
+                    "tokens": [
+                      {
+                        "from": [
+                          0
+                        ],
+                        "set": {}
+                      },
+                      {
+                        "from": [
+                          1
+                        ],
+                        "set": {}
+                      },
+                      {
+                        "from": [
+                          2
+                        ],
+                        "set": {}
+                      },
+                      {
+                        "from": [
+                          3
+                        ],
+                        "set": {}
+                      },
+                      {
+                        "from": [
+                          4
+                        ],
+                        "set": {}
+                      },
+                      {
+                        "from": [
+                          5
+                        ],
+                        "set": {}
+                      },
+                      {
+                        "from": [
+                          6
+                        ],
+                        "set": {}
+                      },
+                      {
+                        "from": [
+                          7
+                        ],
+                        "set": {}
+                      },
+                      {
+                        "from": [
+                          8
+                        ],
+                        "set": {}
+                      },
+                      {
+                        "from": [
+                          9
+                        ],
+                        "set": {}
+                      }
+                    ],
+                    "boundary_flags": [],
+                    "usage": {
+                      "mode": "context_only",
+                      "reasons": [
+                        "Only this explicitly reviewed contextual meaning is supported; generic action-role QA and recombination are blocked.",
+                        "The speaker believes the presentation impressed the client."
+                      ]
+                    },
+                    "note": "The speaker believes the presentation impressed the client. Daniel may be the addressee or the client's name; the local wording does not settle this identity attachment."
+                  }
+                ],
+                "note": "Fresh random QC outside paid warnings. Explicit model reading of the visible prefix; original wording and all sentence boundaries retained. Candidate construction labels are hypotheses, not approved phrasal verbs.",
+                "semantic_approval": false,
+                "publication": false
+              },
+              "semantic_approval": false
+            }
+          },
+          "entities": [
+            {
+              "text": "Daniel",
+              "label": "PERSON",
+              "span": [
+                48,
+                54
+              ],
+              "review_status": "UNREVIEWED"
+            }
+          ],
+          "flags": [
+            "context_reviewed_occurrence",
+            "embedded_clause",
+            "proper_name"
+          ],
+          "variant": {
+            "predicates": [
+              {
+                "lemma": "think",
+                "tag": "VBP",
+                "dep": "ROOT",
+                "head": 1,
+                "morph": "Tense=Pres|VerbForm=Fin"
+              },
+              {
+                "lemma": "impress",
+                "tag": "VBD",
+                "dep": "ccomp",
+                "head": 1,
+                "morph": "Tense=Past|VerbForm=Fin"
+              }
+            ],
+            "operators": [],
+            "constructions": [
+              {
+                "head_slot": "v0",
+                "lemma": "think",
+                "constructions": []
+              },
+              {
+                "head_slot": "v1",
+                "lemma": "impress",
+                "constructions": []
+              }
+            ],
+            "question": false
+          },
+          "method": "local_spacy_syntax",
+          "review_status": "UNREVIEWED",
+          "syntax_revision": "reviewed_source_segmentation_v6"
+        }
+      },
+      "image_sha256": "a32e3689704f1b140f188acc3f18ebaebe40655c42664f4be2553e918b7933ea",
+      "status": "OPEN",
+      "publication": false,
+      "source_text_changed": false,
+      "next_action": "Review the unresolved specific detail without inventing a lexical repair or identity."
+    },
+    {
+      "id": "train:5884:8:1",
+      "group": "comparative_construction",
+      "meaning": {
+        "speech_act": "advice",
+        "event_status": "comparative_preference",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "In choosing an interview suit, the speaker prefers a more expensive option. This is comparative advice rather than a guarantee of quality."
+        },
+        "unknown": [
+          "The existing adjective-to-adjective analysis does not fully encode the comparative-correlative relation; generic property substitution remains blocked."
+        ]
+      },
+      "image": {
+        "body": {
+          "idx": "train:5884:8:1",
+          "example": "The more expensive, the better.",
+          "provenance": {
+            "origin": {
+              "split": "train",
+              "dialogue": 5884,
+              "turn": 8,
+              "segment": 1,
+              "span": [
+                0,
+                31
+              ]
+            },
+            "original": "The more expensive, the better.",
+            "correction": "reviewed_source_segmentation_v6",
+            "context_id": "train:5884",
+            "boundary_flags": [],
+            "cache_key": "6412268bcb64b8fc11263a5daa7d3a441dc411fe35f85aad3ae894c944a5554d",
+            "semantic_review": "UNREVIEWED",
+            "reused_from": null,
+            "reviewed_fragment": null,
+            "exact_dialogue_duplicate_of": null,
+            "reference_conflict": false,
+            "previous_original": "The more expensive, the better.",
+            "previous_cache_key": "98c04d5713fa9dec8061d4bc72f004ea9b51a57310bc701a1055c257404a208c",
+            "context_review": {
+              "rule": "reviewed_source_segmentation_v6",
+              "status": "REVIEWED_OCCURRENCE",
+              "method": "direct_assistant_source_review",
+              "unit": "fragment",
+              "meaning": {
+                "speech_act": "advice",
+                "event_status": "comparative_preference",
+                "completed_action_asserted": false,
+                "content": {
+                  "interpretation": "In choosing an interview suit, the speaker prefers a more expensive option. This is comparative advice rather than a guarantee of quality."
+                },
+                "unknown": [
+                  "The existing adjective-to-adjective analysis does not fully encode the comparative-correlative relation; generic property substitution remains blocked."
+                ]
+              },
+              "note": "In choosing an interview suit, the speaker prefers a more expensive option. This is comparative advice rather than a guarantee of quality. The existing adjective-to-adjective analysis does not fully encode the comparative-correlative relation; generic property substitution remains blocked.",
+              "evidence_turns": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8
+              ],
+              "syntax_corrected": false,
+              "source_sha256": "41c368e5ecb050410b984e0145d477e5ca3ba13b81e4849edc2c2f267069cc44",
+              "context_sha256": "95d155cb2175a7d44d4ea1b75d85b7ba6186fddbfc4513088fd4e8590826b432",
+              "template_semantics_approved": false,
+              "unseen_group_members_approved": false
+            }
+          }
+        },
+        "payload": {
+          "record": {
+            "template_id": "dd8e5f7536495dbeb0860e85efc9746c2c9a105432f6b2fc2ec912fa5a325b98",
+            "parts": [
+              {
+                "literal": "The more "
+              },
+              {
+                "slot": "a0"
+              },
+              {
+                "literal": ", "
+              },
+              {
+                "slot": "n0"
+              },
+              {
+                "literal": " "
+              },
+              {
+                "slot": "a1"
+              },
+              {
+                "literal": "."
+              }
+            ],
+            "slots": {
+              "a0": {
+                "kind": "adjective",
+                "pos": "ADJ",
+                "tag": "JJ",
+                "morph": "Degree=Pos",
+                "dependency": "amod",
+                "analysis": "parser",
+                "head_slot": "a1"
+              },
+              "n0": {
+                "kind": "nominal",
+                "pos": "PRON",
+                "tag": "DT",
+                "morph": "Definite=Def|PronType=Art",
+                "dependency": "advmod",
+                "analysis": "parser",
+                "head_slot": "a1"
+              },
+              "a1": {
+                "kind": "adjective",
+                "pos": "ADJ",
+                "tag": "JJR",
+                "morph": "Degree=Cmp",
+                "dependency": "ROOT",
+                "analysis": "parser",
+                "head_slot": "a1"
+              }
+            },
+            "verbs": [],
+            "constructions": [],
+            "predicate_groups": [],
+            "attributes": [
+              {
+                "slot": "a0",
+                "target_slot": null,
+                "degree": [
+                  "Pos"
+                ],
+                "target_kind": "implicit_participant",
+                "scope": "In choosing an interview suit, the speaker prefers a more expensive option. This is comparative advice rather than a guarantee of quality."
+              },
+              {
+                "slot": "a1",
+                "target_slot": null,
+                "degree": [
+                  "Cmp"
+                ],
+                "target_kind": "implicit_participant",
+                "scope": "In choosing an interview suit, the speaker prefers a more expensive option. This is comparative advice rather than a guarantee of quality."
+              }
+            ],
+            "defaults": {
+              "a0": "expensive",
+              "n0": "the",
+              "a1": "better"
+            },
+            "adjective_lemmas": [
+              "expensive",
+              "well"
+            ],
+            "usage_constraints": {
+              "mode": "context_only",
+              "reasons": [
+                "Only this explicitly reviewed contextual meaning is supported; generic action-role QA and recombination are blocked.",
+                "In choosing an interview suit, the speaker prefers a more expensive option. This is comparative advice rather than a guarantee of quality."
+              ],
+              "fixed_expressions": [
+                {
+                  "text": "The more expensive, the better.",
+                  "span": [
+                    0,
+                    31
+                  ],
+                  "meaning": "Comparative preference for a higher-priced suit in this context, not a guarantee of quality."
+                }
+              ],
+              "property_bindings": [
+                {
+                  "slot": "a0",
+                  "target_slot": null,
+                  "target_kind": "implicit_participant",
+                  "scope": "In choosing an interview suit, the speaker prefers a more expensive option. This is comparative advice rather than a guarantee of quality."
+                },
+                {
+                  "slot": "a1",
+                  "target_slot": null,
+                  "target_kind": "implicit_participant",
+                  "scope": "In choosing an interview suit, the speaker prefers a more expensive option. This is comparative advice rather than a guarantee of quality."
+                }
+              ],
+              "version": "contextual-attestation-v1",
+              "source_id": "train:5884:8:1",
+              "text": "The more expensive, the better.",
+              "context": [
+                "Brian, a company called me for an interview.",
+                "That's great! You need to prepare for it.",
+                "How?",
+                "Get your hair done at a good hair saloon. Tell them you are going for a job interview.",
+                "Okay.",
+                "Buy an expensive suit.",
+                "How expensive?",
+                "The more expensive, the better.",
+                "I can't afford too expensive, maybe $ 50 to $ 70?",
+                "That'll do it. The best way is to find the dressing color code of the company.",
+                "How?",
+                "If you know somebody at the company, ask them. If not, dark color will be fine.",
+                "Is a white blouse okay?",
+                "Yeah, fine. And dressing shoes.",
+                "Black?",
+                "Black is good.",
+                "White pantyhose?",
+                "No. Dark or skin colored.",
+                "Jewelry?",
+                "Necklace, ring, and earrings are all fine. But don't wear too many pieces of jewelry.",
+                "How about make up?",
+                "Not much make up.",
+                "Perfume?",
+                "Yes, some. But be aware that different people may like different scents."
+              ],
+              "turn": 8,
+              "span": [
+                0,
+                31
+              ],
+              "meaning": {
+                "speech_act": "advice",
+                "event_status": "comparative_preference",
+                "completed_action_asserted": false,
+                "content": {
+                  "interpretation": "In choosing an interview suit, the speaker prefers a more expensive option. This is comparative advice rather than a guarantee of quality."
+                },
+                "unknown": [
+                  "The existing adjective-to-adjective analysis does not fully encode the comparative-correlative relation; generic property substitution remains blocked."
+                ]
+              }
+            }
+          },
+          "ledger": {
+            "text": "The more expensive, the better.",
+            "template_id": "dd8e5f7536495dbeb0860e85efc9746c2c9a105432f6b2fc2ec912fa5a325b98",
+            "bindings": {
+              "a0": "expensive",
+              "n0": "the",
+              "a1": "better"
+            },
+            "tokens": [
+              {
+                "i": 0,
+                "text": "The",
+                "span": [
+                  0,
+                  3
+                ],
+                "lemma": "the",
+                "parser_lemma": "the",
+                "pos": "DET",
+                "tag": "DT",
+                "dep": "det",
+                "head": 5,
+                "morph": "Definite=Def|PronType=Art",
+                "kind": null,
+                "analysis": "parser",
+                "verb_lemmas": [],
+                "adjective_lemmas": []
+              },
+              {
+                "i": 1,
+                "text": "more",
+                "span": [
+                  4,
+                  8
+                ],
+                "lemma": "more",
+                "parser_lemma": "more",
+                "pos": "ADV",
+                "tag": "RBR",
+                "dep": "advmod",
+                "head": 2,
+                "morph": "Degree=Cmp",
+                "kind": null,
+                "analysis": "parser",
+                "verb_lemmas": [
+                  "more"
+                ],
+                "adjective_lemmas": []
+              },
+              {
+                "i": 2,
+                "text": "expensive",
+                "span": [
+                  9,
+                  18
+                ],
+                "lemma": "expensive",
+                "parser_lemma": "expensive",
+                "pos": "ADJ",
+                "tag": "JJ",
+                "dep": "amod",
+                "head": 5,
+                "morph": "Degree=Pos",
+                "kind": "adjective",
+                "analysis": "parser",
+                "verb_lemmas": [],
+                "adjective_lemmas": []
+              },
+              {
+                "i": 3,
+                "text": ",",
+                "span": [
+                  18,
+                  19
+                ],
+                "lemma": ",",
+                "parser_lemma": ",",
+                "pos": "PUNCT",
+                "tag": ",",
+                "dep": "punct",
+                "head": 5,
+                "morph": "PunctType=Comm",
+                "kind": null,
+                "analysis": "parser",
+                "verb_lemmas": [],
+                "adjective_lemmas": []
+              },
+              {
+                "i": 4,
+                "text": "the",
+                "span": [
+                  20,
+                  23
+                ],
+                "lemma": "the",
+                "parser_lemma": "the",
+                "pos": "PRON",
+                "tag": "DT",
+                "dep": "advmod",
+                "head": 5,
+                "morph": "Definite=Def|PronType=Art",
+                "kind": "nominal",
+                "analysis": "parser",
+                "verb_lemmas": [],
+                "adjective_lemmas": []
+              },
+              {
+                "i": 5,
+                "text": "better",
+                "span": [
+                  24,
+                  30
+                ],
+                "lemma": "well",
+                "parser_lemma": "well",
+                "pos": "ADJ",
+                "tag": "JJR",
+                "dep": "ROOT",
+                "head": 5,
+                "morph": "Degree=Cmp",
+                "kind": "adjective",
+                "analysis": "parser",
+                "verb_lemmas": [
+                  "better"
+                ],
+                "adjective_lemmas": []
+              },
+              {
+                "i": 6,
+                "text": ".",
+                "span": [
+                  30,
+                  31
+                ],
+                "lemma": ".",
+                "parser_lemma": ".",
+                "pos": "PUNCT",
+                "tag": ".",
+                "dep": "punct",
+                "head": 5,
+                "morph": "PunctType=Peri",
+                "kind": null,
+                "analysis": "parser",
+                "verb_lemmas": [],
+                "adjective_lemmas": []
+              }
+            ],
+            "attributes": [
+              {
+                "slot": "a0",
+                "target_slot": null,
+                "degree": [
+                  "Pos"
+                ],
+                "target_kind": "implicit_participant",
+                "scope": "In choosing an interview suit, the speaker prefers a more expensive option. This is comparative advice rather than a guarantee of quality."
+              },
+              {
+                "slot": "a1",
+                "target_slot": null,
+                "degree": [
+                  "Cmp"
+                ],
+                "target_kind": "implicit_participant",
+                "scope": "In choosing an interview suit, the speaker prefers a more expensive option. This is comparative advice rather than a guarantee of quality."
+              }
+            ],
+            "predicate_groups": [],
+            "analysis_status": "lexical_alternatives_recorded",
+            "imperative_candidates": [],
+            "sentence_template": "the more expensive , the better .",
+            "predicate_templates": [],
+            "source_revision": {
+              "version": "reviewed_source_segmentation_v6",
+              "parent_id": "train:5884:8:1",
+              "preimage": {
+                "body": {
+                  "idx": "train:5884:8:1",
+                  "example": "The more expensive, the better.",
+                  "provenance": {
+                    "origin": {
+                      "split": "train",
+                      "dialogue": 5884,
+                      "turn": 8,
+                      "segment": 1,
+                      "span": [
+                        0,
+                        31
+                      ]
+                    },
+                    "original": "The more expensive, the better.",
+                    "correction": null,
+                    "context_id": "train:5884",
+                    "boundary_flags": [],
+                    "cache_key": "98c04d5713fa9dec8061d4bc72f004ea9b51a57310bc701a1055c257404a208c",
+                    "semantic_review": "UNREVIEWED",
+                    "reused_from": null,
+                    "reviewed_fragment": null,
+                    "exact_dialogue_duplicate_of": null,
+                    "reference_conflict": false
+                  }
+                },
+                "payload": {
+                  "record": {
+                    "template_id": "50151a5a4689d6a7357bcb96ef44ce5f8a28ab78ff051ec0aa551536fe842afb",
+                    "parts": [
+                      {
+                        "literal": "The more "
+                      },
+                      {
+                        "slot": "a0"
+                      },
+                      {
+                        "literal": ", "
+                      },
+                      {
+                        "slot": "n0"
+                      },
+                      {
+                        "literal": " "
+                      },
+                      {
+                        "slot": "a1"
+                      },
+                      {
+                        "literal": "."
+                      }
+                    ],
+                    "slots": {
+                      "a0": {
+                        "kind": "adjective",
+                        "pos": "ADJ",
+                        "tag": "JJ",
+                        "morph": "Degree=Pos",
+                        "dependency": "amod",
+                        "analysis": "parser",
+                        "head_slot": "a1"
+                      },
+                      "n0": {
+                        "kind": "nominal",
+                        "pos": "PRON",
+                        "tag": "DT",
+                        "morph": "Definite=Def|PronType=Art",
+                        "dependency": "advmod",
+                        "analysis": "parser",
+                        "head_slot": "a1"
+                      },
+                      "a1": {
+                        "kind": "adjective",
+                        "pos": "ADJ",
+                        "tag": "JJR",
+                        "morph": "Degree=Cmp",
+                        "dependency": "ROOT",
+                        "analysis": "parser",
+                        "head_slot": "a1"
+                      }
+                    },
+                    "verbs": [],
+                    "constructions": [],
+                    "predicate_groups": [],
+                    "attributes": [
+                      {
+                        "slot": "a0",
+                        "target_slot": null,
+                        "degree": [
+                          "Pos"
+                        ]
+                      },
+                      {
+                        "slot": "a1",
+                        "target_slot": null,
+                        "degree": [
+                          "Cmp"
+                        ]
+                      }
+                    ],
+                    "defaults": {
+                      "a0": "expensive",
+                      "n0": "the",
+                      "a1": "better"
+                    },
+                    "adjective_lemmas": [
+                      "expensive",
+                      "well"
+                    ]
+                  },
+                  "ledger": {
+                    "text": "The more expensive, the better.",
+                    "template_id": "50151a5a4689d6a7357bcb96ef44ce5f8a28ab78ff051ec0aa551536fe842afb",
+                    "bindings": {
+                      "a0": "expensive",
+                      "n0": "the",
+                      "a1": "better"
+                    },
+                    "tokens": [
+                      {
+                        "i": 0,
+                        "text": "The",
+                        "span": [
+                          0,
+                          3
+                        ],
+                        "lemma": "the",
+                        "parser_lemma": "the",
+                        "pos": "DET",
+                        "tag": "DT",
+                        "dep": "det",
+                        "head": 5,
+                        "morph": "Definite=Def|PronType=Art",
+                        "kind": null,
+                        "analysis": "parser",
+                        "verb_lemmas": [],
+                        "adjective_lemmas": []
+                      },
+                      {
+                        "i": 1,
+                        "text": "more",
+                        "span": [
+                          4,
+                          8
+                        ],
+                        "lemma": "more",
+                        "parser_lemma": "more",
+                        "pos": "ADV",
+                        "tag": "RBR",
+                        "dep": "advmod",
+                        "head": 2,
+                        "morph": "Degree=Cmp",
+                        "kind": null,
+                        "analysis": "parser",
+                        "verb_lemmas": [
+                          "more"
+                        ],
+                        "adjective_lemmas": []
+                      },
+                      {
+                        "i": 2,
+                        "text": "expensive",
+                        "span": [
+                          9,
+                          18
+                        ],
+                        "lemma": "expensive",
+                        "parser_lemma": "expensive",
+                        "pos": "ADJ",
+                        "tag": "JJ",
+                        "dep": "amod",
+                        "head": 5,
+                        "morph": "Degree=Pos",
+                        "kind": "adjective",
+                        "analysis": "parser",
+                        "verb_lemmas": [],
+                        "adjective_lemmas": []
+                      },
+                      {
+                        "i": 3,
+                        "text": ",",
+                        "span": [
+                          18,
+                          19
+                        ],
+                        "lemma": ",",
+                        "parser_lemma": ",",
+                        "pos": "PUNCT",
+                        "tag": ",",
+                        "dep": "punct",
+                        "head": 5,
+                        "morph": "PunctType=Comm",
+                        "kind": null,
+                        "analysis": "parser",
+                        "verb_lemmas": [],
+                        "adjective_lemmas": []
+                      },
+                      {
+                        "i": 4,
+                        "text": "the",
+                        "span": [
+                          20,
+                          23
+                        ],
+                        "lemma": "the",
+                        "parser_lemma": "the",
+                        "pos": "PRON",
+                        "tag": "DT",
+                        "dep": "advmod",
+                        "head": 5,
+                        "morph": "Definite=Def|PronType=Art",
+                        "kind": "nominal",
+                        "analysis": "parser",
+                        "verb_lemmas": [],
+                        "adjective_lemmas": []
+                      },
+                      {
+                        "i": 5,
+                        "text": "better",
+                        "span": [
+                          24,
+                          30
+                        ],
+                        "lemma": "well",
+                        "parser_lemma": "well",
+                        "pos": "ADJ",
+                        "tag": "JJR",
+                        "dep": "ROOT",
+                        "head": 5,
+                        "morph": "Degree=Cmp",
+                        "kind": "adjective",
+                        "analysis": "parser",
+                        "verb_lemmas": [
+                          "better"
+                        ],
+                        "adjective_lemmas": []
+                      },
+                      {
+                        "i": 6,
+                        "text": ".",
+                        "span": [
+                          30,
+                          31
+                        ],
+                        "lemma": ".",
+                        "parser_lemma": ".",
+                        "pos": "PUNCT",
+                        "tag": ".",
+                        "dep": "punct",
+                        "head": 5,
+                        "morph": "PunctType=Peri",
+                        "kind": null,
+                        "analysis": "parser",
+                        "verb_lemmas": [],
+                        "adjective_lemmas": []
+                      }
+                    ],
+                    "attributes": [
+                      {
+                        "slot": "a0",
+                        "target_slot": null,
+                        "degree": [
+                          "Pos"
+                        ],
+                        "modifiers": [
+                          {
+                            "text": "more",
+                            "span": [
+                              4,
+                              8
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "slot": "a1",
+                        "target_slot": null,
+                        "degree": [
+                          "Cmp"
+                        ],
+                        "modifiers": [
+                          {
+                            "text": "the",
+                            "span": [
+                              20,
+                              23
+                            ]
+                          }
+                        ]
+                      }
+                    ],
+                    "predicate_groups": [],
+                    "analysis_status": "lexical_alternatives_recorded",
+                    "sentence_template": "the more expensive , the better .",
+                    "predicate_templates": [],
+                    "automatic_revision": {
+                      "version": "hybrid_whole_bank_rules_v1",
+                      "rules": [
+                        "clear_non_nominal_adjective_target"
+                      ],
+                      "token_changes": [],
+                      "unresolved_adjective_targets": [
+                        {
+                          "slot": "a0",
+                          "previous_target": "a1",
+                          "previous_target_kind": "adjective"
+                        }
+                      ],
+                      "previous_payload_sha256": "867eedf7bf77151829102fe97c3df5c447c5622947744080ea38597adad6368b",
+                      "review_status": "UNREVIEWED",
+                      "semantic_approval": false
+                    }
+                  },
+                  "flags": [
+                    "automatic_rule_unreviewed",
+                    "no_verb_or_fragment"
+                  ],
+                  "variant": {
+                    "predicates": [],
+                    "operators": [],
+                    "constructions": [],
+                    "question": false
+                  },
+                  "method": "local_spacy_syntax",
+                  "review_status": "UNREVIEWED",
+                  "entities": [],
+                  "syntax_revision": "hybrid_whole_bank_rules_v1"
+                }
+              },
+              "review": {
+                "id": "train:5884:8:1",
+                "method": "direct_assistant_source_review",
+                "preimage": "eec7f4e041004e6495d211cd2c83434a70de90c403e14e5c25ccf98d3721947f",
+                "context_sha256": "95d155cb2175a7d44d4ea1b75d85b7ba6186fddbfc4513088fd4e8590826b432",
+                "before_turn": "The more expensive, the better.",
+                "after_turn": "The more expensive, the better.",
+                "dropped_tokens": [],
+                "outputs": [
+                  {
+                    "id": "train:5884:8:1",
+                    "span": [
+                      0,
+                      31
+                    ],
+                    "unit": "fragment",
+                    "meaning": {
+                      "speech_act": "advice",
+                      "event_status": "comparative_preference",
+                      "completed_action_asserted": false,
+                      "content": {
+                        "interpretation": "In choosing an interview suit, the speaker prefers a more expensive option. This is comparative advice rather than a guarantee of quality."
+                      },
+                      "unknown": [
+                        "The existing adjective-to-adjective analysis does not fully encode the comparative-correlative relation; generic property substitution remains blocked."
+                      ]
+                    },
+                    "evidence_turns": [
+                      1,
+                      2,
+                      3,
+                      4,
+                      5,
+                      6,
+                      7,
+                      8
+                    ],
+                    "tokens": [
+                      {
+                        "from": [
+                          0
+                        ],
+                        "set": {}
+                      },
+                      {
+                        "from": [
+                          1
+                        ],
+                        "set": {}
+                      },
+                      {
+                        "from": [
+                          2
+                        ],
+                        "set": {}
+                      },
+                      {
+                        "from": [
+                          3
+                        ],
+                        "set": {}
+                      },
+                      {
+                        "from": [
+                          4
+                        ],
+                        "set": {}
+                      },
+                      {
+                        "from": [
+                          5
+                        ],
+                        "set": {}
+                      },
+                      {
+                        "from": [
+                          6
+                        ],
+                        "set": {}
+                      }
+                    ],
+                    "boundary_flags": [],
+                    "usage": {
+                      "mode": "context_only",
+                      "reasons": [
+                        "Only this explicitly reviewed contextual meaning is supported; generic action-role QA and recombination are blocked.",
+                        "In choosing an interview suit, the speaker prefers a more expensive option. This is comparative advice rather than a guarantee of quality."
+                      ],
+                      "fixed_expressions": [
+                        {
+                          "text": "The more expensive, the better.",
+                          "span": [
+                            0,
+                            31
+                          ],
+                          "meaning": "Comparative preference for a higher-priced suit in this context, not a guarantee of quality."
+                        }
+                      ],
+                      "property_bindings": [
+                        {
+                          "slot": "a0",
+                          "target_slot": null,
+                          "target_kind": "implicit_participant",
+                          "scope": "In choosing an interview suit, the speaker prefers a more expensive option. This is comparative advice rather than a guarantee of quality."
+                        },
+                        {
+                          "slot": "a1",
+                          "target_slot": null,
+                          "target_kind": "implicit_participant",
+                          "scope": "In choosing an interview suit, the speaker prefers a more expensive option. This is comparative advice rather than a guarantee of quality."
+                        }
+                      ]
+                    },
+                    "note": "In choosing an interview suit, the speaker prefers a more expensive option. This is comparative advice rather than a guarantee of quality. The existing adjective-to-adjective analysis does not fully encode the comparative-correlative relation; generic property substitution remains blocked."
+                  }
+                ],
+                "note": "Fresh random QC outside paid warnings. Explicit model reading of the visible prefix; original wording and all sentence boundaries retained. Candidate construction labels are hypotheses, not approved phrasal verbs.",
+                "semantic_approval": false,
+                "publication": false
+              },
+              "semantic_approval": false
+            }
+          },
+          "entities": [],
+          "flags": [
+            "context_reviewed_occurrence",
+            "no_verb_or_fragment"
+          ],
+          "variant": {
+            "predicates": [],
+            "operators": [],
+            "constructions": [],
+            "question": false
+          },
+          "method": "local_spacy_syntax",
+          "review_status": "UNREVIEWED",
+          "syntax_revision": "reviewed_source_segmentation_v6"
+        }
+      },
+      "image_sha256": "42ae88bfbc06eacf9de410ff1bd686b8df2a9cec8418acbae41ebd2634eb3c7c",
+      "status": "OPEN",
+      "publication": false,
+      "source_text_changed": false,
+      "next_action": "Review the unresolved specific detail without inventing a lexical repair or identity."
+    }
+  ]
+}

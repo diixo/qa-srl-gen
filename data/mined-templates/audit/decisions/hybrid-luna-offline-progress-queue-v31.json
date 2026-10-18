@@ -1,0 +1,346 @@
+{
+  "version": "offline-source-wording-and-punctuation-v31",
+  "date": "2026-10-18",
+  "previous_progress": "data/dailydialog/review-parts/hybrid-luna-offline-progress-queue-v30.json",
+  "candidate": "artifacts/dailydialog-hybrid-source-v31",
+  "ledger": "data/dailydialog/review-parts/luna-offline-source-v31",
+  "review_status": "UNREVIEWED",
+  "full_candidate_published": false,
+  "semantic_review_complete": false,
+  "source_text_changes": 0,
+  "joined_segment_pairs": 2,
+  "api_calls": 0,
+  "parser_inference_calls": 0,
+  "source_warnings_triaged": 193,
+  "source_warnings_contextually_reviewed": 31,
+  "reviewed_occurrences": 31,
+  "new_adapters": 2,
+  "catalog_patterns": 731,
+  "representation_only_closures": 29,
+  "boundary_closures": 2,
+  "remaining": {
+    "main_warning_queue": 220,
+    "supplemental_ambiguities": 5,
+    "quality_findings": 2,
+    "total_open_review_items": 227,
+    "main_warning_occurrences": 216,
+    "main_occurrences_with_adapter": 193,
+    "main_occurrences_without_adapter": 23,
+    "pending_items_are_not_all_unread": true,
+    "source_warnings": 162,
+    "semantic_warnings": 48,
+    "structural_warnings": 10,
+    "caveat": "These are open review dispositions, not a count of unknown linguistic details: the 29 source-wording acceptances retain their explicit unknowns and permit only limited interpretations. The full candidate remains UNREVIEWED.",
+    "next_actions": [
+      "Review the 162 retained source warnings against original prefixes; preserve missing words, ambiguous predicates, quantities and units as unknown.",
+      "Keep the 58 semantic/structural warnings, five supplemental cases and two QC cases open until evidence supports a stronger decision.",
+      "Keep the 23 insufficient-content occurrences without invented adapters; two punctuation-only occurrences now belong to their original complete sentences."
+    ]
+  },
+  "quarantined_api_warnings": 220,
+  "quarantined_current_occurrences": 216,
+  "quarantine_groups": {
+    "source": 162,
+    "ambiguity": 48,
+    "sentence_boundary": 1,
+    "negation_or_modality": 1,
+    "coordination": 3,
+    "other_syntax": 3,
+    "clause_attachment": 2
+  },
+  "supplemental_ambiguities": 5,
+  "random_quality_findings": 2,
+  "validation": {
+    "status": "passed",
+    "source_sha256": "4eefa6fc599be0088d5e140be54f8c11c3f92311ea1a6b62f93b7cac9b8b99b2",
+    "templates": 101298,
+    "attested_roundtrips": 110187,
+    "source_records": 161312,
+    "token_spans": 1378085,
+    "verbs_occurrences": 289417,
+    "adjectives_occurrences": 71912
+  },
+  "conservation": {
+    "status": "passed",
+    "counts": {
+      "old_segments": 161314,
+      "old_tokens": 1378085,
+      "new_segments": 161312,
+      "new_tokens": 1378085,
+      "unchanged_analyses": 161281,
+      "revised_outputs": 31,
+      "grouped_input_segments": 2,
+      "joined_input_segments": 2
+    },
+    "explicit_token_delta": 0,
+    "reference_expansion_token_delta": 0,
+    "previous_preimages_retained": true
+  },
+  "apostrophes": {
+    "status": "passed",
+    "normalized_segments": 161312,
+    "ascii_apostrophes": 49411,
+    "noncanonical_apostrophes": 0,
+    "target": "'",
+    "original_contexts_preserved": true,
+    "previous_contexts_retained_in_source_candidate": true,
+    "source_corrections_explicit": true
+  },
+  "tests": {
+    "passed": 1652,
+    "seconds": 39.455,
+    "report": "artifacts/dailydialog-source-v31/pytest.xml"
+  },
+  "fragment_generation_smoke": {
+    "status": "passed",
+    "seed": 31,
+    "task": "fragment_meaning",
+    "catalog_patterns": 731,
+    "previous_catalog_preserved": true,
+    "checked_patterns": 31,
+    "covered_source_occurrences": 31,
+    "catalog_sha256": "05aba245a0feb5ec9d6d5864723a79ebc20d25c30aa14a4952df25dd3e628b92",
+    "splits": {
+      "user-assistant/train": {
+        "episodes": 31,
+        "history": 31,
+        "memory": 31,
+        "extraction": 93
+      },
+      "user-assistant/validation": {
+        "episodes": 31,
+        "history": 31,
+        "memory": 31,
+        "extraction": 93
+      },
+      "user-assistant/test": {
+        "episodes": 31,
+        "history": 31,
+        "memory": 31,
+        "extraction": 93
+      },
+      "named-people/train": {
+        "episodes": 31,
+        "history": 31,
+        "memory": 31,
+        "extraction": 93
+      },
+      "named-people/validation": {
+        "episodes": 31,
+        "history": 31,
+        "memory": 31,
+        "extraction": 93
+      },
+      "named-people/test": {
+        "episodes": 31,
+        "history": 31,
+        "memory": 31,
+        "extraction": 93
+      }
+    },
+    "generated_episodes": 186,
+    "extraction_rows": 558,
+    "history_rows": 186,
+    "memory_rows": 186,
+    "original_reply_text_unchanged": true,
+    "json_inside_content": false,
+    "invented_completed_events": 0,
+    "cross_split_prompt_overlaps": [],
+    "examples": [
+      {
+        "pattern": "dd_v19_train_1328_11_1",
+        "assistant": "You were describing tornadoes in your childhood. What do you remember about them?",
+        "original_reply": "Actually, some of my fon best memories of my childhood were of spending time with my family in the basement waiting for the tornados to pass.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | recalled family time in the basement waiting for tornadoes and described some of those childhood memories positively; fon remains uninterpreted"
+      },
+      {
+        "pattern": "dd_v21_train_1869_3_2",
+        "assistant": "I want to go trick-or-treating even though I am an adult.",
+        "original_reply": "Trick - or-treating is for kids, plus, I'm sure people will think you're a kidnapper or something, running around with kids NCP at night.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | warned that people might mistake the listener for a kidnapper while accompanying children at night; NCP remains unexplained and no kidnapping was asserted"
+      },
+      {
+        "pattern": "dd_v19_train_1432_12_2",
+        "assistant": "We were comparing Janet with Kate. How would you characterize Kate in that comparison?",
+        "original_reply": "Now we are talking but ugly.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | expressed a negative appearance judgment in the comparison with Kate; the wording but ugly leaves the intensity uncertain"
+      },
+      {
+        "pattern": "dd_v23_train_10083_10_1",
+        "assistant": "What is your long-term goal at ABC Company?",
+        "original_reply": "I'd like to bring to ABC Company not only my technical skills, ambition, enthusiasm, but also my loyalty, a sensor desire to become an administrative assistant.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | expressed a wish to contribute skills, ambition, enthusiasm and loyalty and become an administrative assistant; sensor remains unclear and hiring was not asserted"
+      },
+      {
+        "pattern": "dd_v21_train_1817_7_1",
+        "assistant": "How much would a mover cost?",
+        "original_reply": "Around 200 RIB for a truck.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | quoted approximately 200 RIB per truck for moving services; the currency remains unknown"
+      },
+      {
+        "pattern": "dd_v31_test_495_5_1",
+        "assistant": "What would you ask a restaurant guest after taking their food order?",
+        "original_reply": "Can I get you anything to drink? :",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | offered to get the guest something to drink, without specifying a drink or saying it had been served"
+      },
+      {
+        "pattern": "dd_v31_train_10530_1_2",
+        "assistant": "Please introduce yourself and the person joining you for this baseball broadcast.",
+        "original_reply": "My name is Rick Fields and of course, I am here, once again, with the man that seals the deal, Bob Copeland. '",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | identified the speaker as Rick Fields and said they were here again with Bob Copeland, without reporting any completed deal"
+      }
+    ],
+    "scope": "Reviewed visible-pair interpretations, including two punctuation-join adapters; no general role QA.",
+    "api_calls": 0,
+    "parser_inference_calls": 0
+  },
+  "fragment_admission": {
+    "status": "passed",
+    "published": true,
+    "new_patterns": 2,
+    "checked_patterns": 2,
+    "catalog_patterns": 731,
+    "source_dialogues": 2,
+    "episodes_checked": 4,
+    "transitions_checked": 12,
+    "previous_patterns_preserved": 729,
+    "previous_catalog_sha256": "c36b044b0dba8e3a5b96f5f464c317468cf1d70638149afce2d4ac6d5c05d3d9",
+    "result_catalog_sha256": "cc8fe01dce77b544e4df21a96af13a03ee9b727a0619014a0af9fc9dafaba2cc",
+    "template_bank_changed": false,
+    "api_calls": 0,
+    "parser_inference_calls": 0
+  },
+  "independent_verification": {
+    "status": "passed",
+    "reviewed_occurrences": 31,
+    "source_warnings_triaged": 193,
+    "source_warnings_contextually_reviewed": 31,
+    "original_text_unchanged": true,
+    "token_text_and_count_unchanged": true,
+    "original_segment_snapshots_preserved": true,
+    "joins": [
+      "test:495:5:1",
+      "train:10530:1:2"
+    ],
+    "context_only_guard_checks": 31,
+    "previous_bindings_preserved": true,
+    "previous_catalog_patterns_preserved": 729,
+    "new_adapters": 2,
+    "catalog_patterns": 731,
+    "protected_files_unchanged": 1054,
+    "source_dialogues_preserved": 13118,
+    "manual_dialogues_preserved": 510,
+    "parts_preserved": 100,
+    "paid_evidence_identical": true,
+    "saved_warnings_preserved": 12978,
+    "explicit_warning_rechecks": 43,
+    "representation_only_closures": 29,
+    "boundary_closures": 2,
+    "unknown_details_in_limited_interpretations_retained": true,
+    "remaining": {
+      "main_warning_queue": 220,
+      "supplemental_ambiguities": 5,
+      "quality_findings": 2,
+      "total_open_review_items": 227,
+      "main_warning_occurrences": 216,
+      "main_occurrences_with_adapter": 193,
+      "main_occurrences_without_adapter": 23,
+      "pending_items_are_not_all_unread": true,
+      "source_warnings": 162,
+      "semantic_warnings": 48,
+      "structural_warnings": 10,
+      "caveat": "These are open review dispositions, not a count of unknown linguistic details: the 29 source-wording acceptances retain their explicit unknowns and permit only limited interpretations. The full candidate remains UNREVIEWED.",
+      "next_actions": [
+        "Review the 162 retained source warnings against original prefixes; preserve missing words, ambiguous predicates, quantities and units as unknown.",
+        "Keep the 58 semantic/structural warnings, five supplemental cases and two QC cases open until evidence supports a stronger decision.",
+        "Keep the 23 insufficient-content occurrences without invented adapters; two punctuation-only occurrences now belong to their original complete sentences."
+      ]
+    },
+    "api_calls": 0,
+    "parser_inference_calls": 0
+  },
+  "decisions": {
+    "hybrid-fragment-adapters-v31.json": {
+      "path": "data/dailydialog/review-parts/hybrid-fragment-adapters-v31.json",
+      "sha256": "bd803aadb11d109fbdd72e426fdf793cb9bfe4bd4c4ef4cf0574ddf1c8445f6c"
+    },
+    "hybrid-fragment-admission-v31.json": {
+      "path": "data/dailydialog/review-parts/hybrid-fragment-admission-v31.json",
+      "sha256": "861fb27a34f084a25c9f95d5e0b0a935f92bbd94281b5dfea49a4736db1ecb6a"
+    },
+    "hybrid-fragment-contexts-v31.jsonl.gz": {
+      "path": "data/dailydialog/review-parts/hybrid-fragment-contexts-v31.jsonl.gz",
+      "sha256": "cbe88b9be59f7c3e43959da3e6ac1d7a110cf248f28a5cf036850ccabc66eac1"
+    },
+    "hybrid-open-review-items-v31.json": {
+      "path": "data/dailydialog/review-parts/hybrid-open-review-items-v31.json",
+      "sha256": "04351de0b608f898bc1393a76de07baa3742cffe89692ba5cd8634c64dd9c5b6"
+    },
+    "hybrid-quarantine-coverage-summary-v31.json": {
+      "path": "data/dailydialog/review-parts/hybrid-quarantine-coverage-summary-v31.json",
+      "sha256": "6491886ae4d8541715826a2cb7371ae098a8da8bea622107a885f4fb28f41b8a"
+    },
+    "hybrid-quarantine-coverage-v31.jsonl.gz": {
+      "path": "data/dailydialog/review-parts/hybrid-quarantine-coverage-v31.jsonl.gz",
+      "sha256": "926fa180d481340083c460ca8e493622fe33f42742b5fe56be485ddb29dd26f2"
+    },
+    "hybrid-source-after-v31.jsonl.gz": {
+      "path": "data/dailydialog/review-parts/hybrid-source-after-v31.jsonl.gz",
+      "sha256": "b5f9a583da1b80f2491147865121316a9b7b2a098a419c9439d255c94c7d2be3"
+    },
+    "hybrid-source-context-v31.jsonl": {
+      "path": "data/dailydialog/review-parts/hybrid-source-context-v31.jsonl",
+      "sha256": "1fae33037013b7c1282858fd6bd62ed8501e98e7be7d539281f62ea937cd38d9"
+    },
+    "hybrid-source-outcomes-v31.json": {
+      "path": "data/dailydialog/review-parts/hybrid-source-outcomes-v31.json",
+      "sha256": "66b27df890ba244193150669cc6543dd5ec05270ccff0450fcd2cfcaf2a38b44"
+    },
+    "hybrid-source-snapshot-v31.jsonl.gz": {
+      "path": "data/dailydialog/review-parts/hybrid-source-snapshot-v31.jsonl.gz",
+      "sha256": "0a25292d4fb75d12ec4c8fc4ad2f0183a527d75f182d720611212fd74fe21e52"
+    },
+    "hybrid-source-triage-v31.jsonl.gz": {
+      "path": "data/dailydialog/review-parts/hybrid-source-triage-v31.jsonl.gz",
+      "sha256": "1d56217633238f981b7fc4ed24bc90f386a2adc0bd929b3b49578e6e142bec50"
+    },
+    "hybrid-source-warning-rechecks-v31.jsonl": {
+      "path": "data/dailydialog/review-parts/hybrid-source-warning-rechecks-v31.jsonl",
+      "sha256": "f7e745c36f9c8d565c0629cd0c9af030296bcc696c41575f06fda3dd8889e44a"
+    }
+  },
+  "next": {
+    "qc_file": "hybrid-quality-decisions-v29.json",
+    "supplemental_file": "hybrid-supplemental-decisions-v27.json",
+    "reviewed_but_insufficient_for_adapter": [
+      "test:234:9:2",
+      "test:364:2:4",
+      "test:45:3:2",
+      "test:493:3:2",
+      "test:679:5:1",
+      "test:794:7:3",
+      "test:808:13:3",
+      "test:856:3:1",
+      "test:928:2:4",
+      "test:961:1:1",
+      "train:10044:10:4",
+      "train:10070:11:1",
+      "train:10158:7:2",
+      "train:1040:1:5",
+      "train:10542:8:4",
+      "train:1061:1:1",
+      "train:1061:2:1",
+      "train:10882:5:4",
+      "train:10986:8:1",
+      "train:1273:1:1",
+      "train:1466:6:4",
+      "train:1674:10:4",
+      "train:2502:5:4"
+    ],
+    "priorities": [
+      "Review the 162 retained source warnings against original prefixes; preserve missing words, ambiguous predicates, quantities and units as unknown.",
+      "Keep the 58 semantic/structural warnings, five supplemental cases and two QC cases open until evidence supports a stronger decision.",
+      "Keep the 23 insufficient-content occurrences without invented adapters; two punctuation-only occurrences now belong to their original complete sentences."
+    ]
+  }
+}

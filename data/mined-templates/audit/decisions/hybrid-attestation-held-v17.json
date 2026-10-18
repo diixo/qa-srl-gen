@@ -1,0 +1,205 @@
+{
+  "version": "attestation-held-v17",
+  "candidate": "artifacts/dailydialog-hybrid-attestation-v17",
+  "resolved_fragments": [
+    {
+      "id": "test:63:6:2",
+      "pattern_id": "dd_v17_thanks_order",
+      "status": "adapted_visible_pair_published",
+      "catalog": "data/mined-templates/reviewed/dialogue-fragments.json",
+      "scope": "Only the explicitly adapted visible preceding utterance and reply. No generic semantic approval of the source template."
+    },
+    {
+      "id": "test:809:9:1",
+      "pattern_id": "dd_v17_acknowledge_study_advice",
+      "status": "adapted_visible_pair_published",
+      "catalog": "data/mined-templates/reviewed/dialogue-fragments.json",
+      "scope": "Only the explicitly adapted visible preceding utterance and reply. No generic semantic approval of the source template."
+    }
+  ],
+  "remaining_semantic_ambiguities": [
+    {
+      "id": "train:1770:4:4",
+      "unit": "sentence",
+      "meaning": {
+        "speech_act": "statement",
+        "event_status": "negative_completion_with_deadline",
+        "content": {
+          "interpretation": "The deadlines for the two assigned projects are approaching and the speaker reports unfinished work. The wording still have not finished one of them does not safely fix how many of the two are complete; preserve the negative completion claim without choosing a quantifier reading."
+        },
+        "completed_action_asserted": false,
+        "unknown": [
+          "Whether one project is unfinished or neither is finished remains ambiguous."
+        ]
+      },
+      "evidence_turns": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "text": "Now the deadlines are near and I still haven't finished one of them.",
+      "image_sha256": "4920283f8f9b0ac60fe2e28b9df5c18c047d38d678cecd4c67ba3ccce6df5423",
+      "context_sha256": "77b541a1d6f7184eb447858cb7fea3ec46b76f472224b98be156055337849cf9",
+      "published": false,
+      "status": "quarantined_unresolved_meaning",
+      "next_action": "Keep restricted; do not guess the omitted unit or the scope of one under negation.",
+      "snapshot": "data/dailydialog/review-parts/hybrid-attestation-snapshot-v15.jsonl.gz",
+      "carried_from": "data/dailydialog/review-parts/hybrid-attestation-held-resolution-v16.json"
+    },
+    {
+      "id": "train:2641:3:1",
+      "unit": "sentence",
+      "meaning": {
+        "speech_act": "statement",
+        "event_status": "approximate_habitual_temperature",
+        "content": {
+          "interpretation": "The speaker reports a summer temperature of about 20 or 25 in their city. Preserve the approximate alternatives and recurring reading. Do not turn or into an exact closed range or supply a unit solely from the other speaker's city."
+        },
+        "completed_action_asserted": false,
+        "unknown": [
+          "The measurement unit for this speaker's figure is not explicitly established; usually often is redundant source wording."
+        ]
+      },
+      "evidence_turns": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "text": "The summer temperature usually often reaches about 20 or 25 in my city.",
+      "image_sha256": "342435177f9110855da12fb6f148dd173fddbcd118a0698c75808349d2cb215e",
+      "context_sha256": "81af538dba75cbb154f41148caf2d9451aadf9b18d5fb1e8aa8eca1e0a3ce6c8",
+      "published": false,
+      "status": "quarantined_unresolved_meaning",
+      "next_action": "Keep restricted; do not guess the omitted unit or the scope of one under negation.",
+      "snapshot": "data/dailydialog/review-parts/hybrid-attestation-snapshot-v15.jsonl.gz",
+      "carried_from": "data/dailydialog/review-parts/hybrid-attestation-held-resolution-v16.json"
+    },
+    {
+      "id": "test:215:9:4",
+      "unit": "sentence",
+      "meaning": {
+        "speech_act": "statement",
+        "event_status": "claimed_quality_selection",
+        "content": {
+          "interpretation": "The salesperson claims that only the creme makes it through inspection in a discussion of chocolate quality. Makes it through means passes the inspection, not manufactures an object. The source word creme is retained; no ingredient or precise selected product is inferred."
+        },
+        "completed_action_asserted": false,
+        "unknown": [
+          "Creme could be literal cream or a figurative reference to the best quality; the dialogue does not establish which."
+        ]
+      },
+      "evidence_turns": [
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "text": "Only the creme makes it through inspection.",
+      "context": [
+        "I'm glad you could find time to meet with me, Mr. Johnson. I can't think of a nicer environment for our meeting today, the ambiance here is lovely!",
+        "No problem, if possible I always combine business with pleasure. Now, let's hear more about these chocolates you're offering.",
+        "Well, as you know, I have recently become the sole distributor for Grangers Gourmet Bon-bons here in the United States. They're a new manufacturer and are looking to break into the luxury market. Naturally, your restaurant sprang into my mind immediately. I think your brand exemplifies many of the same traits as Grangers and serving these chocolates would really add to your reputation for providing elegant, luxurious, first class dining.",
+        "Mmmm, sounds interesting... gourmet chocolates, where are they produced? Belgium?",
+        "Actually, the factory is located in Scotland.",
+        "Really? I didn't think they were known for their luxury chocolate production",
+        "That's what makes this such a fantastic opportunity! The government is one hundred percent supportive of creating new export markets and has guaranteed a low tariff for all wholesale orders of over one thousand units. They've also reduced the red tape involved at customs as well. Here, I brought these especially for you, try one!",
+        "Oh, thanks. Mmm, hmm, creamy texture, very smooth...",
+        "Unique, aren't they? I bet you've never tasted anything like it! Quality is assured as I personally visit the factory to make sure no one's cutting corners with the ingredients. Only the creme makes it through inspection.",
+        "Yes, very interesting flavors... Slightly spicy, very unique, that's for sure. Exactly what ARE the ingredients?",
+        "I have it on highest authority that this traditional secret recipe has been handed down in the Granger family for generations. I'm sure you can keep a secret. Buttermilk, cacao beans, sugar and Haggis.",
+        "Haggis? What's Haggis?",
+        "It's a traditional Scottish delicacy, you take sheep's liver, heart and lung and stuff it inside of the sheep's stomach.",
+        "Ah, get back to you.",
+        "Mr. Johnson? Mr. Johnson?"
+      ],
+      "image_sha256": "9a893ec64df411556a6a24d25d0a971afdeb71eb8a1474a83f8bf25677e0f00e",
+      "context_sha256": "11853d8c10f41af38e7fad2a5324c483fdbd75926f4c59e5f183f4cc51ad5dc6",
+      "published": false,
+      "snapshot": "data/dailydialog/review-parts/hybrid-attestation-snapshot-v17.jsonl.gz",
+      "status": "quarantined_unresolved_meaning",
+      "next_action": "Keep restricted. Review the source ambiguity explicitly; do not invent a replacement word or a missing clause link."
+    },
+    {
+      "id": "test:423:4:2",
+      "unit": "sentence",
+      "meaning": {
+        "speech_act": "attributed_statement",
+        "event_status": "reported_credit_description",
+        "content": {
+          "interpretation": "The speaker attributes a high credit reading to a record in a loan discussion. The statement provides no numeric score, approval or disbursement. Keep reading as printed; the text correction addressed shows only."
+        },
+        "completed_action_asserted": false,
+        "unknown": [
+          "The intended term credit reading is unclear; do not silently replace it with credit rating or infer a loan decision."
+        ]
+      },
+      "evidence_turns": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "text": "A record shows your credit reading is quite high.",
+      "context": [
+        "I'd like to apply for a personal loan.",
+        "How much would you like to borrow?",
+        "A thousand dollars.",
+        "Let me check with a credit manager. A record shows your credit reading is quite high. I don't think you have any problems.",
+        "What's the current interest rate?",
+        "Our monthly interest is 1.5 % of the outstanding balance. Would you please fill out the application the form?"
+      ],
+      "image_sha256": "c74cd60c7401b9144d701e0e7307775a5553fa796bb3bba4cf2ebe81832d5ed1",
+      "context_sha256": "70de3cd31c251e87f9fc1c925ec5f34b3b5c434c0073b769cdad1cd257dbeead",
+      "published": false,
+      "snapshot": "data/dailydialog/review-parts/hybrid-attestation-snapshot-v17.jsonl.gz",
+      "status": "quarantined_unresolved_meaning",
+      "next_action": "Keep restricted. Review the source ambiguity explicitly; do not invent a replacement word or a missing clause link."
+    },
+    {
+      "id": "test:605:6:2",
+      "unit": "sentence",
+      "meaning": {
+        "speech_act": "statement",
+        "event_status": "negative_preference_with_awkward_linkage",
+        "content": {
+          "interpretation": "The speaker reports not liking to drink alone and mentions someone sitting next to them. The negation concerns liking solitary drinking, not all drinking or the existence of the other person. No completed drink is inferred."
+        },
+        "completed_action_asserted": false,
+        "unknown": [
+          "Especially there is has defective linkage; whether a conditional or other connective is omitted cannot be recovered reliably."
+        ]
+      },
+      "evidence_turns": [
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "text": "I know I don't like to drink alone, especially there is someone sitting there next to me.",
+      "context": [
+        "Please help yourself to whatever you like, don't be shy.",
+        "Yes, thank you. I've already been helping myself.",
+        "This dish tastes terrific. Would you like to try a little? It is a little hot, but very good.",
+        "I like hot food, especially Sichuan cuisine.",
+        "Would you like another beer?",
+        "I'll have another cup of beer insist. I know I don't like to drink alone, especially there is someone sitting there next to me.",
+        "Come on, it's the weekend. Let's taste and enjoy this meal. Cheers!",
+        "Bottoms up, and you're right. This meal is incredible. I wish I had known this restaurant before. Thanks for bringing me here. I know I'll be back agile soon."
+      ],
+      "image_sha256": "040363c00f354ccf5375b678ab4b084ed1f0be62ad52b9c51017767cbbb0ec9b",
+      "context_sha256": "b9106ff7ef5e95770a96330c1bf10bd5bf0166cdd4d957afd4fd9944b0712939",
+      "published": false,
+      "snapshot": "data/dailydialog/review-parts/hybrid-attestation-snapshot-v17.jsonl.gz",
+      "status": "quarantined_unresolved_meaning",
+      "next_action": "Keep restricted. Review the source ambiguity explicitly; do not invent a replacement word or a missing clause link."
+    }
+  ],
+  "note": "Five supplemental semantic ambiguities (two carried, three new) are tracked separately from 705 original API warnings. Both reviewed fragments now have explicit adapters."
+}

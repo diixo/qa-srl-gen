@@ -1,0 +1,743 @@
+{
+  "version": "offline-residual-v12",
+  "date": "2026-10-17",
+  "previous_progress": "data/dailydialog/review-parts/hybrid-luna-offline-progress-boundaries-v11.json",
+  "candidate": "artifacts/dailydialog-hybrid-residual-v12",
+  "ledger": "data/dailydialog/review-parts/luna-offline-residual-v12",
+  "api_calls": 0,
+  "parser_inference_calls": 0,
+  "full_candidate_published": false,
+  "review_status": "UNREVIEWED",
+  "semantic_review_complete": false,
+  "all_50_remaining_structural_cases_reviewed": true,
+  "selected_structural_warnings": 52,
+  "reviewed_case_groups": 50,
+  "reviewed_input_occurrences": 108,
+  "reviewed_output_occurrences": 125,
+  "warning_rechecks": 89,
+  "closed_previously_open_warnings": 36,
+  "reconfirmed_previous_closures": 20,
+  "rechecked_still_unresolved": 33,
+  "saved_warnings": 12978,
+  "quarantined_warnings": 818,
+  "quarantined_current_occurrences": 797,
+  "decisions": {
+    "reviews": "data/dailydialog/review-parts/hybrid-residual-reviews-v12.jsonl",
+    "warning_rechecks": "data/dailydialog/review-parts/hybrid-residual-warning-rechecks-v12.jsonl",
+    "snapshot": "data/dailydialog/review-parts/hybrid-residual-snapshot-v12.jsonl.gz",
+    "admission": "data/dailydialog/review-parts/hybrid-residual-admission-reviews-v12.jsonl"
+  },
+  "snapshot_sha256": "23d84890c101307fdad9faec02827f1369f93a73c975193b2378e905193e79ca",
+  "changes": [
+    "Read all 50 current cases with warnings outside source and ambiguity, their graphs, every associated warning and nearby turns. This pass covers the entire selected residual queue, not a sample.",
+    "Split independent statements, questions, reactions and quoted sentences while retaining complete context, original characters, quote scope and exact before/after lineage.",
+    "Repair Smell as an imperative, wanna as a verbal invitation, the false invitation PERSON span, Miss. Parker, vocative sir/Steven/Mike, face-off, corrupt clause heads and transparent literal tokenization of the fused source.",
+    "Treat Susan as a contextual vocative fragment; preserve the borrowed manually reviewed following sentence without expansion or alteration.",
+    "Keep source defects and real ambiguity unresolved: truncated clauses, is/has gone, relative antecedents, malformed coordination and unknown lexical material. Do not supply missing predicates, articles, words or renamed people.",
+    "Preserve proposed quotations as quoted proposals, epistemic must have overslept as inference, invitations and permission as prospective, and picking up brochures as a separate reported preparation."
+  ],
+  "scope": {
+    "all_125_candidate_outputs_context_only": true,
+    "semantic_approval": false,
+    "missing_meaning_not_inferred": true,
+    "original_source_text_unchanged": true,
+    "unseen_group_members_approved": false
+  },
+  "verification": {
+    "validation": {
+      "status": "passed",
+      "source_sha256": "907f7b079087951cc444682d79b7ca969637432609574c8f6f49a6527749e245",
+      "templates": 101086,
+      "attested_roundtrips": 110011,
+      "source_records": 161316,
+      "token_spans": 1378079,
+      "verbs_occurrences": 289421,
+      "adjectives_occurrences": 71915
+    },
+    "conservation": {
+      "status": "passed",
+      "counts": {
+        "old_segments": 161299,
+        "old_tokens": 1378079,
+        "new_segments": 161316,
+        "new_tokens": 1378079,
+        "unchanged_analyses": 161191,
+        "revised_outputs": 125,
+        "grouped_input_segments": 58,
+        "joined_input_segments": 4
+      },
+      "explicit_token_delta": 0,
+      "reference_expansion_token_delta": 0,
+      "previous_preimages_retained": true
+    },
+    "generation_smoke": "artifacts/dailydialog-hybrid-residual-v12/generation-smoke.json",
+    "exact_candidate_renders": 125,
+    "source_dialogues_preserved": 13118,
+    "source_files_updated": 0,
+    "source_part_and_manual_files_unchanged": 109,
+    "manual_annotation_files_unchanged": 6,
+    "manual_reference_dialogues_preserved": 510,
+    "all_100_parts_match_filtered": true,
+    "paid_evidence_identical": true,
+    "received_evidence_sha256": "68f72401d4ccd5e4a26eaaf23e1558dc268f136195680c658a2f857f8be68391",
+    "apostrophes": {
+      "normalized_segments": 161316,
+      "ascii_apostrophes": 49412,
+      "noncanonical_apostrophes": 0,
+      "target": "'"
+    },
+    "retired_segments": [
+      "test:63:6:3",
+      "train:1691:6:3",
+      "train:2027:1:3",
+      "train:2425:2:8"
+    ]
+  },
+  "admission": {
+    "bank": "data/mined-templates",
+    "source_id": "dailydialog-residual-admission-v12",
+    "published": true,
+    "report": "artifacts/dailydialog-residual-admission-v12/report.json",
+    "occurrences": [
+      "test:364:10:1",
+      "test:364:10:2",
+      "test:765:6:1",
+      "test:768:2:1",
+      "test:817:3:1",
+      "test:817:3:2",
+      "test:971:1:1",
+      "test:971:1:2",
+      "test:971:1:3",
+      "train:10480:6:2",
+      "train:10480:6:3",
+      "train:10480:6:4",
+      "train:10480:6:5",
+      "train:10579:7:3",
+      "train:10579:7:4",
+      "train:10580:7:2",
+      "train:10941:3:2",
+      "train:1128:3:1",
+      "train:1128:3:2",
+      "train:1128:3:3",
+      "train:1295:7:2",
+      "train:1426:1:1",
+      "train:1426:1:2",
+      "train:1426:1:3",
+      "train:1438:3:2",
+      "train:1438:3:3",
+      "train:1592:10:1",
+      "train:1689:6:2",
+      "train:1689:6:3",
+      "train:1691:6:1",
+      "train:1721:2:1",
+      "train:1721:2:2",
+      "train:1721:4:1",
+      "train:1721:4:2",
+      "train:1721:4:3",
+      "train:1728:4:2",
+      "train:1728:6:1",
+      "train:1761:7:2",
+      "train:1792:6:1",
+      "train:1792:6:2",
+      "train:1792:6:3",
+      "train:1792:6:4",
+      "train:1934:13:1",
+      "train:1937:11:2",
+      "train:1937:11:5",
+      "train:1966:4:1",
+      "train:1966:4:2",
+      "train:1966:4:3",
+      "train:1966:4:4",
+      "train:2027:1:2",
+      "train:2087:2:2",
+      "train:2112:1:1",
+      "train:2112:1:2",
+      "train:2139:2:2",
+      "train:2277:2:1",
+      "train:2277:2:2",
+      "train:2277:2:3",
+      "train:2413:1:2",
+      "train:2413:1:3",
+      "train:2434:3:2",
+      "train:2434:3:3",
+      "train:2434:3:4"
+    ],
+    "admitted_occurrences_count": 62,
+    "usage": "Exact attested sentences with embedded context only; no recombination, factual dependency QA or action realization.",
+    "previous_pool_files_preserved": 344,
+    "generation_smoke": "artifacts/dailydialog-residual-admission-v12/published-smoke.json",
+    "exact_published_renders": 62,
+    "builtin_documents": 29,
+    "normal_controlled_predicate_exclusions": [
+      "test:817:3:1",
+      "test:817:3:2",
+      "train:10480:6:2",
+      "train:10480:6:5",
+      "train:10579:7:3",
+      "train:10580:7:2",
+      "train:10941:3:2",
+      "train:1128:3:2",
+      "train:1128:3:3",
+      "train:1426:1:2",
+      "train:1426:1:3",
+      "train:1438:3:2",
+      "train:1592:10:1",
+      "train:1691:6:1",
+      "train:1721:2:2",
+      "train:1721:4:1",
+      "train:1761:7:2",
+      "train:1792:6:1",
+      "train:1792:6:2",
+      "train:1792:6:3",
+      "train:1937:11:2",
+      "train:1937:11:5",
+      "train:1966:4:1",
+      "train:1966:4:2",
+      "train:1966:4:3",
+      "train:2027:1:2",
+      "train:2087:2:2",
+      "train:2139:2:2",
+      "train:2277:2:1",
+      "train:2277:2:2",
+      "train:2277:2:3",
+      "train:2413:1:2",
+      "train:2434:3:3"
+    ]
+  },
+  "reproduction": {
+    "rebuild": "python -X utf8 -B scripts/resegment_dailydialog_hybrid_source.py --source artifacts/dailydialog-hybrid-boundaries-v11 --reviews data/dailydialog/review-parts/hybrid-residual-reviews-v12.jsonl --out artifacts/dailydialog-hybrid-residual-v12",
+    "finalize": "python -X utf8 -B scripts/finalize_dailydialog_quarantine.py --candidate artifacts/dailydialog-hybrid-residual-v12 --ledger data/dailydialog/review-parts/luna-offline-boundaries-v11 --reviews data/dailydialog/review-parts/hybrid-residual-warning-rechecks-v12.jsonl --out data/dailydialog/review-parts/luna-offline-residual-v12"
+  },
+  "tests": {
+    "passed": 151,
+    "elapsed_seconds": 47.15,
+    "command": "python -X utf8 -B -m pytest -q tests/test_dailydialog_source_segmentation.py tests/test_dailydialog_quarantine_finalization.py tests/test_dailydialog_admission.py tests/test_template_usage.py"
+  },
+  "next_step": {
+    "priority": "Move to the 708 source warnings and 94 ambiguity warnings. The remaining 16 structural warnings have now been explicitly rechecked; revisit them when missing wording or contextual ambiguity can be resolved, rather than repeating the same parse or marking them fixed.",
+    "held_outputs_with_explicit_unknowns": [
+      {
+        "id": "test:364:10:3",
+        "unknown": [
+          "Unspoken main predicate after you"
+        ],
+        "has_open_saved_warning": true
+      },
+      {
+        "id": "test:63:6:2",
+        "unknown": [
+          "Missing separator in Thank you.sir. is retained in the source"
+        ],
+        "has_open_saved_warning": true
+      },
+      {
+        "id": "test:765:6:3",
+        "unknown": [
+          "The intended identity of an and the continuation after family are unknown"
+        ],
+        "has_open_saved_warning": true
+      },
+      {
+        "id": "test:768:2:2",
+        "unknown": [
+          "Missing head after one last prevents a complete attachment"
+        ],
+        "has_open_saved_warning": true
+      },
+      {
+        "id": "test:971:1:4",
+        "unknown": [
+          "Missing referent or continuation after there is"
+        ],
+        "has_open_saved_warning": false
+      },
+      {
+        "id": "train:10347:7:1",
+        "unknown": [
+          "The intended telephone-service wording offer your call is uncertain"
+        ],
+        "has_open_saved_warning": false
+      },
+      {
+        "id": "train:10480:6:1",
+        "unknown": [
+          "Malformed That maybe true lacks an overt copula",
+          "The identity of Ces remains unverified"
+        ],
+        "has_open_saved_warning": true
+      },
+      {
+        "id": "train:10579:7:2",
+        "unknown": [
+          "The link between dresser and Mr. Li is unresolved",
+          "The intended form of is just finish is unknown"
+        ],
+        "has_open_saved_warning": true
+      },
+      {
+        "id": "train:10665:5:2",
+        "unknown": [
+          "Contraction may expand to is or has; the exact reading remains unresolved"
+        ],
+        "has_open_saved_warning": true
+      },
+      {
+        "id": "train:10941:3:3",
+        "unknown": [
+          "The lexical complement of cannot is missing"
+        ],
+        "has_open_saved_warning": true
+      },
+      {
+        "id": "train:1128:3:4",
+        "unknown": [
+          "The syntactic attachment of more learning by doing is not uniquely determined"
+        ],
+        "has_open_saved_warning": true
+      },
+      {
+        "id": "train:1203:6:1",
+        "unknown": [
+          "The intended wording of are just been in friendly is unknown",
+          "Roman in the place phrase is not silently changed to Rome"
+        ],
+        "has_open_saved_warning": true
+      },
+      {
+        "id": "train:1273:1:1",
+        "unknown": [
+          "Function and intended wording of isolated Too are unknown"
+        ],
+        "has_open_saved_warning": true
+      },
+      {
+        "id": "train:1310:7:2",
+        "unknown": [
+          "Missing recipient preposition after thanks remains unresolved"
+        ],
+        "has_open_saved_warning": true
+      },
+      {
+        "id": "train:1588:1:1",
+        "unknown": [
+          "The intended fee-related verb in you'recommending remains unverified"
+        ],
+        "has_open_saved_warning": true
+      },
+      {
+        "id": "train:1592:10:2",
+        "unknown": [
+          "The intended verb and gap relation in photos that I look recently remain unresolved"
+        ],
+        "has_open_saved_warning": true
+      },
+      {
+        "id": "train:1689:6:1",
+        "unknown": [
+          "The continuation of but is missing"
+        ],
+        "has_open_saved_warning": false
+      },
+      {
+        "id": "train:1691:6:2",
+        "unknown": [
+          "The original title punctuation Miss. remains uncorrected"
+        ],
+        "has_open_saved_warning": true
+      },
+      {
+        "id": "train:1721:2:3",
+        "unknown": [
+          "Nonstandard doubled period after industry is retained"
+        ],
+        "has_open_saved_warning": true
+      },
+      {
+        "id": "train:1721:3:1",
+        "unknown": [
+          "Missing predicate after which",
+          "The intended clothing word suites is unverified"
+        ],
+        "has_open_saved_warning": true
+      },
+      {
+        "id": "train:1761:7:1",
+        "unknown": [
+          "The intended word frigid in this context is unknown"
+        ],
+        "has_open_saved_warning": false
+      },
+      {
+        "id": "train:1778:4:1",
+        "unknown": [
+          "Beautiful may evaluate the weather or the stated temperature expression",
+          "Missing connector, punctuation or article cannot be chosen from this context"
+        ],
+        "has_open_saved_warning": true
+      },
+      {
+        "id": "train:1934:13:2",
+        "unknown": [
+          "The coordination target of living is ambiguous",
+          "The text ends at 200 years a; its intended completion is unknown"
+        ],
+        "has_open_saved_warning": true
+      },
+      {
+        "id": "train:1935:1:1",
+        "unknown": [
+          "The discourse boundary and tense relationship to the following sentence are uncertain"
+        ],
+        "has_open_saved_warning": true
+      },
+      {
+        "id": "train:1956:5:1",
+        "unknown": [
+          "The spurious contraction in What's strength is retained without selecting a source repair"
+        ],
+        "has_open_saved_warning": true
+      },
+      {
+        "id": "train:2100:5:2",
+        "unknown": [
+          "The grammatical link and understood subject of drive are unresolved",
+          "The intended manner phrase safe way is uncertain"
+        ],
+        "has_open_saved_warning": true
+      },
+      {
+        "id": "train:2112:1:3",
+        "unknown": [
+          "The antecedent of which may be the facilities or the preceding situation"
+        ],
+        "has_open_saved_warning": true
+      },
+      {
+        "id": "train:2195:4:5",
+        "unknown": [
+          "Missing noun after trailing a"
+        ],
+        "has_open_saved_warning": true
+      },
+      {
+        "id": "train:2229:3:1",
+        "unknown": [
+          "The intended wording and boundary within crony is mand remain unknown"
+        ],
+        "has_open_saved_warning": true
+      },
+      {
+        "id": "train:2434:3:5",
+        "unknown": [
+          "The canonical player identity behind Federal is unverified"
+        ],
+        "has_open_saved_warning": false
+      }
+    ],
+    "reviewed_unresolved": [
+      {
+        "id": "test:364:10:3",
+        "issue_index": 0,
+        "group": "other_syntax",
+        "unknown": [
+          "Unspoken main predicate after you"
+        ]
+      },
+      {
+        "id": "test:63:6:3",
+        "issue_index": 1,
+        "group": "source",
+        "unknown": [
+          "Missing separator in Thank you.sir. is retained in the source"
+        ]
+      },
+      {
+        "id": "test:765:6:3",
+        "issue_index": 0,
+        "group": "source",
+        "unknown": [
+          "The intended identity of an and the continuation after family are unknown"
+        ]
+      },
+      {
+        "id": "test:768:2:2",
+        "issue_index": 0,
+        "group": "other_syntax",
+        "unknown": [
+          "Missing head after one last prevents a complete attachment"
+        ]
+      },
+      {
+        "id": "train:10480:6:1",
+        "issue_index": 0,
+        "group": "source",
+        "unknown": [
+          "Malformed That maybe true lacks an overt copula",
+          "The identity of Ces remains unverified"
+        ]
+      },
+      {
+        "id": "train:10579:7:2",
+        "issue_index": 0,
+        "group": "sentence_boundary",
+        "unknown": [
+          "The link between dresser and Mr. Li is unresolved",
+          "The intended form of is just finish is unknown"
+        ]
+      },
+      {
+        "id": "train:10579:7:2",
+        "issue_index": 2,
+        "group": "source",
+        "unknown": [
+          "The link between dresser and Mr. Li is unresolved",
+          "The intended form of is just finish is unknown"
+        ]
+      },
+      {
+        "id": "train:10665:5:2",
+        "issue_index": 0,
+        "group": "property_attachment",
+        "unknown": [
+          "Contraction may expand to is or has; the exact reading remains unresolved"
+        ]
+      },
+      {
+        "id": "train:10941:3:3",
+        "issue_index": 0,
+        "group": "source",
+        "unknown": [
+          "The lexical complement of cannot is missing"
+        ]
+      },
+      {
+        "id": "train:10941:3:3",
+        "issue_index": 1,
+        "group": "negation_or_modality",
+        "unknown": [
+          "The lexical complement of cannot is missing"
+        ]
+      },
+      {
+        "id": "train:1128:3:4",
+        "issue_index": 0,
+        "group": "coordination",
+        "unknown": [
+          "The syntactic attachment of more learning by doing is not uniquely determined"
+        ]
+      },
+      {
+        "id": "train:1203:6:1",
+        "issue_index": 1,
+        "group": "source",
+        "unknown": [
+          "The intended wording of are just been in friendly is unknown",
+          "Roman in the place phrase is not silently changed to Rome"
+        ]
+      },
+      {
+        "id": "train:1273:1:1",
+        "issue_index": 0,
+        "group": "other_syntax",
+        "unknown": [
+          "Function and intended wording of isolated Too are unknown"
+        ]
+      },
+      {
+        "id": "train:1310:7:1",
+        "issue_index": 1,
+        "group": "source",
+        "unknown": [
+          "Missing recipient preposition after thanks remains unresolved"
+        ]
+      },
+      {
+        "id": "train:1588:1:1",
+        "issue_index": 0,
+        "group": "source",
+        "unknown": [
+          "The intended fee-related verb in you'recommending remains unverified"
+        ]
+      },
+      {
+        "id": "train:1592:10:2",
+        "issue_index": 0,
+        "group": "clause_attachment",
+        "unknown": [
+          "The intended verb and gap relation in photos that I look recently remain unresolved"
+        ]
+      },
+      {
+        "id": "train:1592:10:2",
+        "issue_index": 1,
+        "group": "source",
+        "unknown": [
+          "The intended verb and gap relation in photos that I look recently remain unresolved"
+        ]
+      },
+      {
+        "id": "train:1691:6:2",
+        "issue_index": 1,
+        "group": "source",
+        "unknown": [
+          "The original title punctuation Miss. remains uncorrected"
+        ]
+      },
+      {
+        "id": "train:1721:2:3",
+        "issue_index": 2,
+        "group": "source",
+        "unknown": [
+          "Nonstandard doubled period after industry is retained"
+        ]
+      },
+      {
+        "id": "train:1721:3:1",
+        "issue_index": 0,
+        "group": "other_syntax",
+        "unknown": [
+          "Missing predicate after which",
+          "The intended clothing word suites is unverified"
+        ]
+      },
+      {
+        "id": "train:1721:3:1",
+        "issue_index": 2,
+        "group": "source",
+        "unknown": [
+          "Missing predicate after which",
+          "The intended clothing word suites is unverified"
+        ]
+      },
+      {
+        "id": "train:1778:4:1",
+        "issue_index": 0,
+        "group": "other_syntax",
+        "unknown": [
+          "Beautiful may evaluate the weather or the stated temperature expression",
+          "Missing connector, punctuation or article cannot be chosen from this context"
+        ]
+      },
+      {
+        "id": "train:1778:4:1",
+        "issue_index": 1,
+        "group": "source",
+        "unknown": [
+          "Beautiful may evaluate the weather or the stated temperature expression",
+          "Missing connector, punctuation or article cannot be chosen from this context"
+        ]
+      },
+      {
+        "id": "train:1934:13:2",
+        "issue_index": 0,
+        "group": "coordination",
+        "unknown": [
+          "The coordination target of living is ambiguous",
+          "The text ends at 200 years a; its intended completion is unknown"
+        ]
+      },
+      {
+        "id": "train:1934:13:2",
+        "issue_index": 1,
+        "group": "other_syntax",
+        "unknown": [
+          "The coordination target of living is ambiguous",
+          "The text ends at 200 years a; its intended completion is unknown"
+        ]
+      },
+      {
+        "id": "train:1934:13:2",
+        "issue_index": 2,
+        "group": "source",
+        "unknown": [
+          "The coordination target of living is ambiguous",
+          "The text ends at 200 years a; its intended completion is unknown"
+        ]
+      },
+      {
+        "id": "train:1935:1:1",
+        "issue_index": 0,
+        "group": "sentence_boundary",
+        "unknown": [
+          "The discourse boundary and tense relationship to the following sentence are uncertain"
+        ]
+      },
+      {
+        "id": "train:1956:5:1",
+        "issue_index": 0,
+        "group": "source",
+        "unknown": [
+          "The spurious contraction in What's strength is retained without selecting a source repair"
+        ]
+      },
+      {
+        "id": "train:2100:5:2",
+        "issue_index": 0,
+        "group": "coordination",
+        "unknown": [
+          "The grammatical link and understood subject of drive are unresolved",
+          "The intended manner phrase safe way is uncertain"
+        ]
+      },
+      {
+        "id": "train:2100:5:2",
+        "issue_index": 1,
+        "group": "source",
+        "unknown": [
+          "The grammatical link and understood subject of drive are unresolved",
+          "The intended manner phrase safe way is uncertain"
+        ]
+      },
+      {
+        "id": "train:2112:1:3",
+        "issue_index": 0,
+        "group": "clause_attachment",
+        "unknown": [
+          "The antecedent of which may be the facilities or the preceding situation"
+        ]
+      },
+      {
+        "id": "train:2195:4:5",
+        "issue_index": 0,
+        "group": "other_syntax",
+        "unknown": [
+          "Missing noun after trailing a"
+        ]
+      },
+      {
+        "id": "train:2229:3:1",
+        "issue_index": 0,
+        "group": "source",
+        "unknown": [
+          "The intended wording and boundary within crony is mand remain unknown"
+        ]
+      }
+    ],
+    "other_syntax_cases": [
+      "test:364:10:3",
+      "test:768:2:2",
+      "train:1273:1:1",
+      "train:1273:1:2",
+      "train:1273:1:3",
+      "train:1721:3:1",
+      "train:1778:4:1",
+      "train:1934:13:2",
+      "train:2195:4:5"
+    ],
+    "boundary_cases": [
+      "train:10579:7:2",
+      "train:1935:1:1"
+    ],
+    "continuing_groups": {
+      "source": 708,
+      "ambiguity": 94,
+      "other_syntax": 7,
+      "sentence_boundary": 2,
+      "property_attachment": 1,
+      "negation_or_modality": 1,
+      "coordination": 3,
+      "clause_attachment": 2
+    },
+    "full_semantic_review_still_required": true
+  }
+}

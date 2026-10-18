@@ -1,0 +1,148 @@
+{
+  "version": "dailydialog-central-pool-cleanup-v38",
+  "nothing_deleted": true,
+  "git_index_changed": false,
+  "condition": "Commit or back up the shared files, both indexes, reviewed/ and audit/checkpoint together. Verify them, then check for any newer files before removing local working copies.",
+  "review_parts_required": false,
+  "preserved_optional_local_copies": [
+    {
+      "path": "data/dailydialog/review-parts",
+      "files": 951,
+      "bytes": 1447215403,
+      "all_files_preserved": true,
+      "preserved_in": "data/mined-templates/audit/checkpoint",
+      "reason": "No runtime dependency. Exact original bytes are preserved; restore historical workspace only if needed."
+    },
+    {
+      "path": "artifacts/dailydialog-import-pending",
+      "files": 6,
+      "bytes": 7688658,
+      "all_files_preserved": true,
+      "preserved_in": "data/mined-templates/audit/import.json",
+      "reason": "No runtime dependency. Exact original bytes are preserved; restore historical workspace only if needed."
+    },
+    {
+      "path": "artifacts/dialogue-dailydialog-reviewed-v38",
+      "files": 17,
+      "bytes": 89700766,
+      "all_files_preserved": true,
+      "preserved_in": "data/mined-templates/audit/checkpoint",
+      "reason": "No runtime dependency. Exact original bytes are preserved; restore historical workspace only if needed."
+    },
+    {
+      "path": "artifacts/dailydialog-sentence-pilot",
+      "files": 171,
+      "bytes": 19388052,
+      "all_files_preserved": true,
+      "preserved_in": "data/mined-templates/audit/checkpoint",
+      "reason": "No runtime dependency. Exact original bytes are preserved; restore historical workspace only if needed."
+    },
+    {
+      "path": "artifacts/dailydialog-hybrid-quality-v38",
+      "files": 592,
+      "bytes": 738418120,
+      "all_files_preserved": true,
+      "preserved_in": "data/mined-templates/audit/checkpoint",
+      "reason": "No runtime dependency. Exact original bytes are preserved; restore historical workspace only if needed."
+    }
+  ],
+  "temporary_verification_copies": [
+    {
+      "path": "artifacts/dailydialog-checkpoint-v38-restore",
+      "files": 2031,
+      "logical_bytes": 4323880080,
+      "reason": "Temporary restore/verification copy created for this consolidation; no unique annotations. Pool-only copy uses hard links, so logical size is not reclaimable disk size."
+    },
+    {
+      "path": "artifacts/dailydialog-checkpoint-v38-resume-check",
+      "files": 1,
+      "logical_bytes": 333594624,
+      "reason": "Temporary restore/verification copy created for this consolidation; no unique annotations. Pool-only copy uses hard links, so logical size is not reclaimable disk size."
+    },
+    {
+      "path": "artifacts/dailydialog-pool-only-v38-check",
+      "files": 1160,
+      "logical_bytes": 1803958788,
+      "reason": "Temporary restore/verification copy created for this consolidation; no unique annotations. Pool-only copy uses hard links, so logical size is not reclaimable disk size."
+    },
+    {
+      "path": "artifacts/dailydialog-pool-layout-before-merge",
+      "files": 325,
+      "logical_bytes": 202562940,
+      "reason": "Temporary layout backup or isolated test copy; actual resources are now stored in the shared files and checkpoint. Keep until the updated pool is committed or backed up."
+    },
+    {
+      "path": "artifacts/dailydialog-shared-files-check",
+      "files": 858,
+      "logical_bytes": 1794142219,
+      "reason": "Temporary layout backup or isolated test copy; actual resources are now stored in the shared files and checkpoint. Keep until the updated pool is committed or backed up."
+    }
+  ],
+  "keep": [
+    "data/mined-templates/ (all shared files, manifest.json, pending.json, reviewed/ and audit/)",
+    "semantic_corpus/",
+    "scripts/",
+    "tests/",
+    "data/dailydialog/filtered/ (original corrected source)"
+  ],
+  "not_losslessly_discardable_experiments": [
+    {
+      "path": "artifacts/dailydialog-quality-v37/gpt2-sft",
+      "files": 38,
+      "bytes": 1508219026,
+      "all_files_archived": false,
+      "reason": "Not used to prepare the dataset. NOT archived; deleting loses these experiment results."
+    },
+    {
+      "path": "artifacts/dailydialog-quality-v37/extraction-pilot",
+      "files": 4,
+      "bytes": 10450191,
+      "all_files_archived": false,
+      "reason": "Not used to prepare the dataset. NOT archived; deleting loses these experiment results."
+    },
+    {
+      "path": "artifacts/dailydialog-quality-v37/evaluation-pretrained",
+      "files": 2,
+      "bytes": 118230,
+      "all_files_archived": false,
+      "reason": "Not used to prepare the dataset. NOT archived; deleting loses these experiment results."
+    },
+    {
+      "path": "artifacts/dailydialog-quality-v37/evaluation-sft",
+      "files": 2,
+      "bytes": 138043,
+      "all_files_archived": false,
+      "reason": "Not used to prepare the dataset. NOT archived; deleting loses these experiment results."
+    },
+    {
+      "path": "artifacts/dailydialog-quality-v37/evaluation-existing-extraction",
+      "files": 2,
+      "bytes": 445209,
+      "all_files_archived": false,
+      "reason": "Not used to prepare the dataset. NOT archived; deleting loses these experiment results."
+    }
+  ],
+  "other_old_candidates": "Do not blanket-delete artifacts/dailydialog-hybrid-*: the checkpoint preserves all of the current v38 candidate and its necessary base inputs, but only plans for many intermediate revisions. Those historical banks/SQLite revisions are not all archived.",
+  "rebuildable_caches": [
+    ".pytest_cache",
+    "__pycache__ directories (Python bytecode only)"
+  ],
+  "physical_candidate_directories_required": false,
+  "artifacts_reference_check": {
+    "report": "data/mined-templates/audit/checkpoint/verification.json#artifacts_review_parts_references",
+    "text_files_with_mentions_including_verification_copies": 978,
+    "verification_or_layout_copy_files": 483,
+    "original_files_with_mentions": 495,
+    "original_files_by_suffix": {
+      ".py": 219,
+      ".json": 256,
+      ".jsonl": 13,
+      ".xml": 7
+    },
+    "originals_with_exact_saved_copy": 125,
+    "originals_without_exact_saved_copy": 370,
+    "scripts_without_exact_saved_copy": 200,
+    "blanket_delete_authorized": false,
+    "note": "The archived review-parts can be restored for historical scripts. Some old artifacts scripts/reports/compiled intermediate files have no exact archived copy; do not treat the entire artifacts directory as a verified disposable copy."
+  }
+}

@@ -1,0 +1,446 @@
+{
+  "version": "offline-quarantine-constructions-v2",
+  "previous_progress": "data/dailydialog/review-parts/hybrid-luna-offline-progress-semantic-admission-v1.json",
+  "candidate": "artifacts/dailydialog-hybrid-quarantine-constructions-v2",
+  "bank": "artifacts/dailydialog-hybrid-quarantine-constructions-v2/bank",
+  "ledger": "data/dailydialog/review-parts/luna-offline-quarantine-constructions-v2",
+  "quarantine_snapshot": "data/dailydialog/review-parts/luna-offline-quarantine-constructions-v2/quarantine-cases.jsonl.gz",
+  "quarantined_warnings": 1356,
+  "quarantined_occurrences": 1238,
+  "semantic_review_complete": false,
+  "full_candidate_published": false,
+  "api_calls": 0,
+  "api_unanswered_cases": 112802,
+  "next_api_job_if_ever_resumed": 18376,
+  "cohort": {
+    "contextually_inspected_occurrences": 29,
+    "candidate_occurrences_changed": 27,
+    "syntax_or_tokenization_changed": 23,
+    "warning_decisions_rechecked": 42,
+    "previously_open_warnings_closed": 23,
+    "previously_closed_decisions_rechecked": 7,
+    "cohort_warnings_still_open": 12,
+    "context_only": [
+      "test:182:7:3",
+      "test:291:7:1",
+      "test:631:2:1",
+      "test:9:5:1",
+      "train:10063:2:1",
+      "train:1007:1:3",
+      "train:10309:6:1",
+      "train:10631:3:2",
+      "train:10743:5:1",
+      "train:10806:13:7",
+      "train:10807:3:1",
+      "train:10941:3:3",
+      "train:11047:8:1",
+      "train:1397:6:3",
+      "train:1541:5:1",
+      "train:1918:6:1",
+      "train:2194:5:1",
+      "train:2565:5:2"
+    ],
+    "judgments": "data/dailydialog/review-parts/hybrid-quarantine-constructions-judgments-v2.jsonl",
+    "reviews": "data/dailydialog/review-parts/hybrid-quarantine-constructions-reviews-v2.jsonl",
+    "warning_rechecks": "data/dailydialog/review-parts/hybrid-quarantine-constructions-warning-rechecks-v2.jsonl",
+    "snapshot": "data/dailydialog/review-parts/hybrid-quarantine-constructions-snapshot-v2.jsonl.gz"
+  },
+  "resolved_additional_semantic_followup": {
+    "id": "train:1216:5:1",
+    "reason": "according to is now ADP rather than accord predicate",
+    "published_attestation": true
+  },
+  "held_interpretations": [
+    {
+      "id": "test:182:7:3",
+      "meaning": {
+        "speech_act": "conditional_alternative",
+        "event_status": "prospective",
+        "content": {
+          "interpretation": "The customer threatens to go elsewhere if the shoe-repair price is not accepted. Another determines the destination B.; the expansion of B. is not supplied. No departure is asserted."
+        },
+        "completed_action_asserted": false,
+        "unknown": [
+          "What B. abbreviates"
+        ]
+      },
+      "pending_warning_indices": []
+    },
+    {
+      "id": "test:291:7:1",
+      "meaning": {
+        "speech_act": "exhortation",
+        "event_status": "nonliteral",
+        "content": {
+          "interpretation": "C'mon encourages acceptance of a workout schedule change. It does not assert or request physical motion."
+        },
+        "completed_action_asserted": false,
+        "unknown": []
+      },
+      "pending_warning_indices": []
+    },
+    {
+      "id": "test:631:2:1",
+      "meaning": {
+        "speech_act": "hypothetical_question",
+        "event_status": "conditional_negative",
+        "content": {
+          "interpretation": "The speaker echoes the worry that the project might not succeed. What heads an elliptical what-if question; work out remains in its negated conditional clause. Right is a confirmation tag, not a property or the main predicate. No actual failure is asserted."
+        },
+        "completed_action_asserted": false,
+        "unknown": [
+          "Consequences of the hypothetical failure"
+        ]
+      },
+      "pending_warning_indices": []
+    },
+    {
+      "id": "test:9:5:1",
+      "meaning": {
+        "speech_act": "question",
+        "event_status": "incomplete_question",
+        "content": {
+          "interpretation": "The diner asks which condiment the cook uses. Condiment is the object of use. The final for lacks a complement; the specific omitted purpose or dish is not supplied."
+        },
+        "completed_action_asserted": false,
+        "unknown": [
+          "Missing complement after for"
+        ]
+      },
+      "pending_warning_indices": [
+        1
+      ]
+    },
+    {
+      "id": "train:10063:2:1",
+      "meaning": {
+        "speech_act": "prediction",
+        "event_status": "future_passive",
+        "content": {
+          "interpretation": "Key handover is scheduled for Tuesday night. In belongs to turn in; on Tuesday night supplies time. The current archive still offers turn in on as a combined construction candidate; it must not be treated as an approved phrasal verb."
+        },
+        "completed_action_asserted": false,
+        "unknown": [
+          "Compiler must separate the time preposition from the particle construction"
+        ]
+      },
+      "pending_warning_indices": [
+        0
+      ]
+    },
+    {
+      "id": "train:1007:1:3",
+      "meaning": {
+        "speech_act": "question",
+        "event_status": "source_defect",
+        "content": {
+          "interpretation": "The speaker asks what is happening, following a question about Leo looking terrible. The written going'on is fused and currently misparsed as a noun. Preserve the observed spelling until a separate source correction and retokenization; do not approve this parse."
+        },
+        "completed_action_asserted": false,
+        "unknown": [
+          "Fused going'on needs an explicit source revision"
+        ]
+      },
+      "pending_warning_indices": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "train:10309:6:1",
+      "meaning": {
+        "speech_act": "exhortation",
+        "event_status": "nonliteral",
+        "content": {
+          "interpretation": "C'mon addresses an injured, distressed person and urges cooperation or calm. The following instruction is Just don't move, so physical coming is not inferred. The reduced form is retained as an interjection, with no plural-noun slot."
+        },
+        "completed_action_asserted": false,
+        "unknown": []
+      },
+      "pending_warning_indices": []
+    },
+    {
+      "id": "train:10631:3:2",
+      "meaning": {
+        "speech_act": "conditional_fee_statement",
+        "event_status": "source_defect",
+        "content": {
+          "interpretation": "The speaker mentions a usual 0.5 percent redemption rate and a conditional 1.6 percent charge. The malformed rate fragment is attached with the deliberately unspecified dep relation to charge, not to punctuation. Its exact financial relation remains unknown. Buy remains xcomp of apply, with infinitival to."
+        },
+        "completed_action_asserted": false,
+        "unknown": [
+          "Missing relation or wording in for redeeming, a rate of a usual 0.5 %"
+        ]
+      },
+      "pending_warning_indices": [
+        1
+      ]
+    },
+    {
+      "id": "train:10743:5:1",
+      "meaning": {
+        "speech_act": "acknowledgement_and_question",
+        "event_status": "elliptical_question",
+        "content": {
+          "interpretation": "Good acknowledges the salary offer. The separate about phrase asks about employer-provided living conditions; Good does not attribute a positive property to those conditions. The next turn answers with an apartment offer."
+        },
+        "completed_action_asserted": false,
+        "unknown": [
+          "Omitted question predicate is not inserted"
+        ]
+      },
+      "pending_warning_indices": []
+    },
+    {
+      "id": "train:10806:13:7",
+      "meaning": {
+        "speech_act": "complaint",
+        "event_status": "truncated_negative_belief",
+        "content": {
+          "interpretation": "The customer says they do not think they have the patience, then the source stops at fo. Keep the negation on think and the incomplete fo as an unanalysed continuation near patience, not a think-fo construction. Do not invent the missing complement."
+        },
+        "completed_action_asserted": false,
+        "unknown": [
+          "Missing text after fo"
+        ]
+      },
+      "pending_warning_indices": [
+        1
+      ]
+    },
+    {
+      "id": "train:10807:3:1",
+      "meaning": {
+        "speech_act": "answer",
+        "event_status": "reservation_identification",
+        "content": {
+          "interpretation": "In response to the cancellation clerk, the speaker supplies name Rudy Randolph, phone 818-555-1234 and reservation dates April ninth to the fifteenth. The phone is one sequence; the dates are not modifiers of its digits. This response supplies booking details and does not itself assert the cancellation has been executed."
+        },
+        "completed_action_asserted": false,
+        "unknown": [
+          "Year of the reservation is not supplied"
+        ]
+      },
+      "pending_warning_indices": []
+    },
+    {
+      "id": "train:10941:3:3",
+      "meaning": {
+        "speech_act": "report",
+        "event_status": "incomplete_negative_ability",
+        "content": {
+          "interpretation": "The speaker reports learning table manners for hours. The coordinated can't really it lacks its lexical predicate. Preserve the ongoing learning and the existence of an unresolved negative-ability clause without inventing understand, master or remember, or assigning its negation to learning."
+        },
+        "completed_action_asserted": false,
+        "unknown": [
+          "Predicate after cannot really",
+          "Relation of it in the missing predicate"
+        ]
+      },
+      "pending_warning_indices": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "train:11047:8:1",
+      "meaning": {
+        "speech_act": "question",
+        "event_status": "tentative_landmark_identification",
+        "content": {
+          "interpretation": "The helper asks about a bank nearby and tentatively suggests the name Standard Charted as written. Near there modifies bank. Is remains ROOT and the name remains a nominal afterthought. Context does not verify the official spelling; do not silently replace it with Standard Chartered."
+        },
+        "completed_action_asserted": false,
+        "unknown": [
+          "Verified spelling of the bank name"
+        ]
+      },
+      "pending_warning_indices": [
+        2
+      ]
+    },
+    {
+      "id": "train:1397:6:3",
+      "meaning": {
+        "speech_act": "explanation",
+        "event_status": "comparative_affordance",
+        "content": {
+          "interpretation": "An aisle seat makes getting in and out easier. Get is the infinitival complement of easier; in and out are coordinated directional particles. The current construction extractor still lacks the coordinated get out entry; no actual movement is asserted."
+        },
+        "completed_action_asserted": false,
+        "unknown": [
+          "Compiler support for the coordinated get out construction"
+        ]
+      },
+      "pending_warning_indices": [
+        0
+      ]
+    },
+    {
+      "id": "train:1541:5:1",
+      "meaning": {
+        "speech_act": "report",
+        "event_status": "past_performance_with_corrupt_quantity",
+        "content": {
+          "interpretation": "The actor says they have played the leading role before and are tired of it. Times modifies done; the fragment is not a separate root or a prepositional complement. Ay remains unanalysed source corruption; the intended quantifier and precise count are not invented."
+        },
+        "completed_action_asserted": true,
+        "unknown": [
+          "Intended word Ay and quantity of past performances"
+        ]
+      },
+      "pending_warning_indices": [
+        0
+      ]
+    },
+    {
+      "id": "train:1918:6:1",
+      "meaning": {
+        "speech_act": "exclamation",
+        "event_status": "stage_direction_and_reaction",
+        "content": {
+          "interpretation": "The parenthetical At the zoo supplies the scene; Wow expresses surprise. Wow is not an object of At. The stage direction and the spoken reaction remain distinct, without inventing a travel event."
+        },
+        "completed_action_asserted": false,
+        "unknown": []
+      },
+      "pending_warning_indices": []
+    },
+    {
+      "id": "train:2194:5:1",
+      "meaning": {
+        "speech_act": "instruction",
+        "event_status": "generic_procedure",
+        "content": {
+          "interpretation": "The speaker describes use of disposable contact lenses: put them in in the morning, take them out at night and throw them away. Pop'em splits into pop and reduced object 'em; the first in is a particle and the second introduces time. You is the shared subject of coordinated instructions, not evidence of completed actions."
+        },
+        "completed_action_asserted": false,
+        "unknown": []
+      },
+      "pending_warning_indices": []
+    },
+    {
+      "id": "train:2565:5:2",
+      "meaning": {
+        "speech_act": "question",
+        "event_status": "questioned_switching_method",
+        "content": {
+          "interpretation": "The guest asks how the air conditioning is turned on and off. Off is coordinated with on under the same verb; the current archive still records only turn on. The missing turn off construction requires a compiler change, not a claim that switching occurred."
+        },
+        "completed_action_asserted": false,
+        "unknown": [
+          "Compiler support for the coordinated turn off construction"
+        ]
+      },
+      "pending_warning_indices": [
+        0
+      ]
+    }
+  ],
+  "publication": {
+    "bank": "data/mined-templates",
+    "component": "dailydialog-constructions-admission-v2",
+    "admitted_attestations": 11,
+    "admitted_occurrences": [
+      "test:30:2:7",
+      "test:390:4:1",
+      "test:517:7:1",
+      "test:640:2:1",
+      "train:10144:9:1",
+      "train:10622:2:1",
+      "train:10978:7:2",
+      "train:1216:5:1",
+      "train:2186:1:2",
+      "train:2342:3:2",
+      "train:2381:5:3"
+    ],
+    "reviews": "data/dailydialog/review-parts/hybrid-constructions-admission-reviews-v2.jsonl",
+    "mode": "attested_sentence",
+    "recombination": false,
+    "dependency_qa": false,
+    "previous_pool_files_preserved": 344,
+    "report": "artifacts/dailydialog-constructions-admission-v2/report.json",
+    "smoke": {
+      "status": "passed",
+      "component": "dailydialog-constructions-admission-v2",
+      "template_outputs": 11,
+      "built_in_documents": 4,
+      "recombination_blocked": true,
+      "unreviewed_dependency_qa_blocked": true,
+      "context_embedded": true
+    }
+  },
+  "verification": {
+    "validation": {
+      "status": "passed",
+      "source_sha256": "977c127d13ff418bb1b0c1b14b1d75372da3b21729f58b3638bbcf9b786f661b",
+      "templates": 100827,
+      "attested_roundtrips": 109762,
+      "source_records": 161264,
+      "token_spans": 1378176,
+      "verbs_occurrences": 289434,
+      "adjectives_occurrences": 71885
+    },
+    "conservation": {
+      "status": "passed",
+      "counts": {
+        "occurrences": 161264,
+        "unchanged_occurrences": 161237,
+        "revised_occurrences": 27
+      },
+      "source_unchanged": true,
+      "prior_decisions_preserved_in_preimages": true,
+      "all_unaddressed_occurrences_identical": true
+    },
+    "apostrophes": {
+      "status": "passed",
+      "normalized_segments": 161264,
+      "ascii_apostrophes": 49413,
+      "noncanonical_apostrophes": 0,
+      "target": "'",
+      "original_contexts_preserved": true
+    },
+    "source_part_and_manual_files_unchanged": 109,
+    "source_dialogues_preserved": 13118,
+    "manual_reference_dialogues_preserved": 510,
+    "paid_evidence_identical": true,
+    "protected_admission_inputs_unchanged": true,
+    "review_snapshot_sha256": "a1af4d9f3ab8c253719f0cedad742e9853c23df92efa782d2e609fad7a586fed"
+  },
+  "tests": {
+    "unique_tests_passed": 146,
+    "runs": [
+      {
+        "passed": 145,
+        "command": "python -X utf8 -B -m pytest -q tests/test_dailydialog_quarantine_finalization.py tests/test_dailydialog_quarantine_reviews.py tests/test_dailydialog_local_syntax.py tests/test_dailydialog_context_revision.py tests/test_dailydialog_source_segmentation.py tests/test_template_usage.py"
+      },
+      {
+        "passed": 21,
+        "command": "python -X utf8 -B -m pytest -q tests/test_dailydialog_quarantine_finalization.py",
+        "note": "After adding one source-lineage regression; 20 tests repeat the first run."
+      }
+    ]
+  },
+  "next_step": {
+    "priority": "Handle coordinated particles and separate temporal prepositions from phrasal constructions; keep all remaining ambiguous source cases in quarantine.",
+    "examples": [
+      "train:1397:6:3",
+      "train:2565:5:2",
+      "train:10063:2:1"
+    ],
+    "continuing_groups": {
+      "source": 719,
+      "other_syntax": 278,
+      "coordination": 95,
+      "clause_attachment": 41,
+      "ambiguity": 94,
+      "property_attachment": 80,
+      "sentence_boundary": 25,
+      "direct_address": 12,
+      "lemma_or_inflection": 7,
+      "particle_or_preposition": 4,
+      "negation_or_modality": 1
+    },
+    "full_semantic_review_still_required": true
+  }
+}

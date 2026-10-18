@@ -1,0 +1,1561 @@
+{
+  "version": "offline-original-wording-queue-v23",
+  "date": "2026-10-18",
+  "previous_progress": "data/dailydialog/review-parts/hybrid-luna-offline-progress-queue-v22.json",
+  "candidate": "artifacts/dailydialog-hybrid-originals-v23-preserved-bindings",
+  "ledger": "data/dailydialog/review-parts/luna-offline-originals-v23-preserved-bindings",
+  "review_status": "UNREVIEWED",
+  "full_candidate_published": false,
+  "semantic_review_complete": false,
+  "selected_source_warnings": 90,
+  "contextual_segments": 88,
+  "warning_rechecks": 132,
+  "source_warnings_closed_as_representation_only": 66,
+  "source_warnings_held": 24,
+  "related_structural_or_ambiguity_warnings_held": 0,
+  "previous_closures_reconfirmed": 42,
+  "source_text_corrections": 0,
+  "token_changes": 0,
+  "api_calls": 0,
+  "parser_inference_calls": 0,
+  "supported_original_adapters": 86,
+  "partial_adapters": 22,
+  "source_dialogues_for_adapters": 68,
+  "insufficient_proposition": [
+    "train:10044:10:4",
+    "train:10158:7:2"
+  ],
+  "original_training_wording_restored_from_source": [
+    "train:10186:1:1",
+    "train:10447:10:4"
+  ],
+  "original_wording_policy": "Training adapters use exact original spans, including tided and are in two previously corrected cases. Earlier candidate corrections and token evidence remain as historical evidence; no raw source or prior decision is rewritten.",
+  "property_binding_preservation": {
+    "status": "passed",
+    "affected": [
+      "train:2637:12:2",
+      "train:10080:8:1",
+      "train:10289:9:2"
+    ],
+    "changes": {
+      "hybrid-queue-context-v23.jsonl": {
+        "before_sha256": "450530b506b141c1e1a2fabb92c88c93602dd713d96505ffdf13702e51bcf5c4",
+        "after_sha256": "ce71ce7e390d9db0d97a6a9d3aad0d810cdd72b75aa84fbdc5ed3715f7cf5100"
+      },
+      "hybrid-queue-snapshot-v23.jsonl.gz": {
+        "before_sha256": "ccf45f1da9b5a62770679225d96a9ca918324bd553e1762e575071aded254c28",
+        "after_sha256": "d0d016a8f913ce070981d3ab863ec8035e023e31088aeb3adacc568bcb0ced4a"
+      },
+      "hybrid-queue-warning-rechecks-v23.jsonl": {
+        "before_sha256": "c3748fa9d6172f5b9d03c60417b61130ee1a4b97976b1d9902b3b14e001c416b",
+        "after_sha256": "282e3e2e401403305d4c56ee73324da9c36e9ce753d29ae6f5603f0b87443f91"
+      }
+    },
+    "reason": "Explicit property scopes were omitted by the review authoring helper. They are now copied from the prior reviewed analysis and verified identical. No source, tokens or review dispositions changed.",
+    "superseded_candidate": "artifacts/dailydialog-hybrid-originals-v23",
+    "corrected_candidate": "artifacts/dailydialog-hybrid-originals-v23-preserved-bindings"
+  },
+  "quarantined_api_warnings": 454,
+  "quarantined_current_occurrences": 443,
+  "quarantine_groups": {
+    "source": 366,
+    "ambiguity": 72,
+    "other_syntax": 7,
+    "sentence_boundary": 2,
+    "property_attachment": 1,
+    "negation_or_modality": 1,
+    "coordination": 3,
+    "clause_attachment": 2
+  },
+  "saved_warnings": 12978,
+  "supplemental_semantic_ambiguities": 5,
+  "invalidated_without_new_review": 0,
+  "decisions": {
+    "hybrid-queue-context-v23.jsonl": {
+      "path": "data/dailydialog/review-parts/hybrid-queue-context-v23.jsonl",
+      "sha256": "ce71ce7e390d9db0d97a6a9d3aad0d810cdd72b75aa84fbdc5ed3715f7cf5100"
+    },
+    "hybrid-queue-snapshot-v23.jsonl.gz": {
+      "path": "data/dailydialog/review-parts/hybrid-queue-snapshot-v23.jsonl.gz",
+      "sha256": "d0d016a8f913ce070981d3ab863ec8035e023e31088aeb3adacc568bcb0ced4a"
+    },
+    "hybrid-queue-warning-rechecks-v23.jsonl": {
+      "path": "data/dailydialog/review-parts/hybrid-queue-warning-rechecks-v23.jsonl",
+      "sha256": "282e3e2e401403305d4c56ee73324da9c36e9ce753d29ae6f5603f0b87443f91"
+    },
+    "hybrid-queue-adapters-v23.json": {
+      "path": "data/dailydialog/review-parts/hybrid-queue-adapters-v23.json",
+      "sha256": "0db1ed67c7b4644ad03330f1ec4ce9d570f9dbdad22ad77440d6a5364f6bc0ae"
+    },
+    "hybrid-queue-original-contexts-v23.jsonl.gz": {
+      "path": "data/dailydialog/review-parts/hybrid-queue-original-contexts-v23.jsonl.gz",
+      "sha256": "f32c23fe7529da296cf1ace7c3b13dfa9ab9a18476ed87354b88f7a384b43297"
+    },
+    "hybrid-queue-outcomes-v23.json": {
+      "path": "data/dailydialog/review-parts/hybrid-queue-outcomes-v23.json",
+      "sha256": "7b4495d3df21fcef2cb42f47cb366c6129cc0df83a04d052061800460b420cae"
+    }
+  },
+  "validation": {
+    "status": "passed",
+    "source_sha256": "f7a4ce67e3a587bb03105364b1a6ce8297b3efe52721d4075a99689a7f2c4e9a",
+    "templates": 101229,
+    "attested_roundtrips": 110135,
+    "source_records": 161316,
+    "token_spans": 1378085,
+    "verbs_occurrences": 289417,
+    "adjectives_occurrences": 71912
+  },
+  "conservation": {
+    "status": "passed",
+    "counts": {
+      "old_segments": 161316,
+      "old_tokens": 1378085,
+      "new_segments": 161316,
+      "new_tokens": 1378085,
+      "unchanged_analyses": 161228,
+      "revised_outputs": 88
+    },
+    "explicit_token_delta": 0,
+    "reference_expansion_token_delta": 0,
+    "previous_preimages_retained": true
+  },
+  "independent_verification": {
+    "status": "passed",
+    "selected_source_warnings": 90,
+    "contextual_segments": 88,
+    "warning_rechecks": 132,
+    "source_warnings_accepted_as_original": 66,
+    "source_warnings_still_held": 24,
+    "additional_structural_or_ambiguity_warnings_held": 0,
+    "previous_closures_reconfirmed": 42,
+    "quarantine_warnings": 454,
+    "quarantine_occurrences": 443,
+    "original_text_adapters": 86,
+    "partial_adapters": 22,
+    "source_dialogues_for_adapters": 68,
+    "insufficient_proposition": [
+      "train:10044:10:4",
+      "train:10158:7:2"
+    ],
+    "expanded_original_turns": [
+      "train:10096:3:1",
+      "train:10217:5:1",
+      "train:10423:3:2",
+      "train:10447:9:2"
+    ],
+    "original_wording_instead_of_earlier_correction": [
+      "train:10186:1:1",
+      "train:10447:10:4"
+    ],
+    "original_dialogues_preserved": 13118,
+    "parts_preserved": 100,
+    "manual_dialogues_preserved": 510,
+    "paid_evidence_identical": true,
+    "full_candidate_segments": 161316,
+    "ascii_apostrophes": 49411,
+    "source_text_changes": 0,
+    "token_changes": 0,
+    "unchanged_boundaries": true,
+    "unchanged_contexts": true,
+    "recombination_blocked": true,
+    "dependency_qa_blocked": true,
+    "prior_property_bindings_preserved": [
+      "train:2637:12:2",
+      "train:10080:8:1",
+      "train:10289:9:2"
+    ],
+    "generic_action_realization_blocked": true,
+    "full_candidate_published": false,
+    "api_calls": 0
+  },
+  "fragment_publication": {
+    "status": "passed",
+    "published": true,
+    "new_patterns": 86,
+    "checked_patterns": 86,
+    "catalog_patterns": 411,
+    "source_dialogues": 68,
+    "episodes_checked": 172,
+    "transitions_checked": 516,
+    "previous_patterns_preserved": 325,
+    "previous_catalog_sha256": "e0954a7b63b479d2ba8afe74e5a9ba1e83c52f251e5b0c3940cc52637eccf115",
+    "result_catalog_sha256": "396a0319df9846b928f4e59ba6c4c96e0f0edc823ba4c2c14ed20dda9aaeade0",
+    "template_bank_changed": false,
+    "api_calls": 0,
+    "parser_inference_calls": 0
+  },
+  "fragment_generation_smoke": {
+    "status": "passed",
+    "task": "fragment_meaning",
+    "seed": 23,
+    "catalog_patterns": 411,
+    "new_patterns": 86,
+    "previous_patterns_preserved": 325,
+    "catalog_sha256": "ca1c73ce2ebb436eb18d9d33eb9b89315850c131832cbe4a9292e5738f086535",
+    "splits": {
+      "user-assistant/train": {
+        "episodes": 86,
+        "history": 86,
+        "memory": 86,
+        "extraction": 258
+      },
+      "user-assistant/validation": {
+        "episodes": 86,
+        "history": 86,
+        "memory": 86,
+        "extraction": 258
+      },
+      "user-assistant/test": {
+        "episodes": 86,
+        "history": 86,
+        "memory": 86,
+        "extraction": 258
+      },
+      "named-people/train": {
+        "episodes": 86,
+        "history": 86,
+        "memory": 86,
+        "extraction": 258
+      },
+      "named-people/validation": {
+        "episodes": 86,
+        "history": 86,
+        "memory": 86,
+        "extraction": 258
+      },
+      "named-people/test": {
+        "episodes": 86,
+        "history": 86,
+        "memory": 86,
+        "extraction": 258
+      }
+    },
+    "generated_episodes": 516,
+    "extraction_rows": 1548,
+    "history_rows": 516,
+    "memory_rows": 516,
+    "original_reply_text_unchanged": true,
+    "json_inside_content": false,
+    "invented_completed_events": 0,
+    "extraction_scope": "Explicit textual utterance_interpretation; no generic action-role extraction or completion is inferred.",
+    "api_calls": 0,
+    "parser_inference_calls": 0,
+    "examples": [
+      {
+        "pattern": "dd_v23_train_10186_1_1",
+        "assistant": "We are talking about our marriage. What do you remember?",
+        "original_reply": "I don't know if you remember, but with honest every day last year we tided the knot.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | referred to getting married last year; the damaged temporal phrase leaves the exact date unclear and does not assert repeated daily marriages",
+        "answer": "You referred to getting married last year; the damaged temporal phrase leaves the exact date unclear and does not assert repeated daily marriages."
+      },
+      {
+        "pattern": "dd_v23_train_10092_1_1",
+        "assistant": "How do I look to you?",
+        "original_reply": "You look like in perfect condition.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | described the listener as looking in excellent condition, as an impression rather than a medical finding",
+        "answer": "You described the listener as looking in excellent condition, as an impression rather than a medical finding."
+      },
+      {
+        "pattern": "dd_v23_train_2566_9_3",
+        "assistant": "How do you feel about going out and socializing?",
+        "original_reply": "I'm always excited about going out to party or other social event and meeting people.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | described recurring enthusiasm for social events and meeting people, without reporting a particular completed outing",
+        "answer": "You described recurring enthusiasm for social events and meeting people, without reporting a particular completed outing."
+      },
+      {
+        "pattern": "dd_v23_train_10347_2_1",
+        "assistant": "Hello, this is Mary from the Taipei new station. How can I help?",
+        "original_reply": "Hello, Marry, this is Lin Wang, calling from network.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | introduced the caller as Lin Wang from the affiliation written network and addressed Mary using Marry, without identifying a particular organization",
+        "answer": "You introduced the caller as Lin Wang from the affiliation written network and addressed Mary using Marry, without identifying a particular organization."
+      },
+      {
+        "pattern": "dd_v23_train_2557_9_1",
+        "assistant": "I think coffee helps me wake up and improves my short-term memory.",
+        "original_reply": "Well, I adjust going to have to disagree with you.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | expressed disagreement with the listener's opinion about coffee",
+        "answer": "You expressed disagreement with the listener's opinion about coffee."
+      },
+      {
+        "pattern": "dd_v23_train_10447_6_1",
+        "assistant": "What are the accompaniments on these plates?",
+        "original_reply": "Oh, they are pancakes, hollowed sesame buns, scallions, cucumbers and oisin sauce.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | identified pancakes, hollowed sesame buns, scallions, cucumbers and sauce labelled oisin, retaining the supplied sauce name",
+        "answer": "You identified pancakes, hollowed sesame buns, scallions, cucumbers and sauce labelled oisin, retaining the supplied sauce name."
+      },
+      {
+        "pattern": "dd_v23_train_10269_2_2",
+        "assistant": "There is something wrong with my old car.",
+        "original_reply": "Why not change a new one?",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | suggested replacing the old car with a new one, without asserting that it was replaced",
+        "answer": "You suggested replacing the old car with a new one, without asserting that it was replaced."
+      },
+      {
+        "pattern": "dd_v23_train_2531_3_1",
+        "assistant": "I think her dress looks fine.",
+        "original_reply": "Are you kidding She is behind the times.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | challenged that opinion and characterized the woman's fashion as outdated",
+        "answer": "You challenged that opinion and characterized the woman's fashion as outdated."
+      },
+      {
+        "pattern": "dd_v23_train_2512_13_1",
+        "assistant": "I failed the final exam and I am upset.",
+        "original_reply": "Well, don't get bend on a ship about it.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | urged the listener not to become excessively upset about the exam failure, without describing a ship journey",
+        "answer": "You urged the listener not to become excessively upset about the exam failure, without describing a ship journey."
+      },
+      {
+        "pattern": "dd_v23_train_10198_5_1",
+        "assistant": "What is the thirty-yuan item on my hotel bill?",
+        "original_reply": "This is the charge for your laundry service on Nov. 20thA",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | identified the charge as laundry service with the supplied date Nov. 20thA; the suffix A and year remain unresolved and payment was not confirmed",
+        "answer": "You identified the charge as laundry service with the supplied date Nov. 20thA; the suffix A and year remain unresolved and payment was not confirmed."
+      },
+      {
+        "pattern": "dd_v23_train_10169_5_1",
+        "assistant": "What is the place on Yellow River Road like?",
+        "original_reply": "It's a two-bedroom one, and renovated building with an eat-in kitchen.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | described the housing option as renovated, with two bedrooms and an eat-in kitchen, without asserting a rental or purchase",
+        "answer": "You described the housing option as renovated, with two bedrooms and an eat-in kitchen, without asserting a rental or purchase."
+      },
+      {
+        "pattern": "dd_v23_train_10198_1_1",
+        "assistant": "Hello, I need help with hotel service.",
+        "original_reply": "Good coming, sir.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | greeted the customer politely, without specifying a time of day",
+        "answer": "You greeted the customer politely, without specifying a time of day."
+      },
+      {
+        "pattern": "dd_v23_train_2550_8_1",
+        "assistant": "Which sports do people follow in your country?",
+        "original_reply": "A great deal of people follow rugby in my country.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | reported that many people follow rugby in their country, without giving an exact count",
+        "answer": "You reported that many people follow rugby in their country, without giving an exact count."
+      },
+      {
+        "pattern": "dd_v23_train_2635_7_2",
+        "assistant": "What will the manicurist do during your visit?",
+        "original_reply": "The manicurist will remove my cuticles, file my nails, and apply at least nails coats of nail polish!",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | expected cuticle removal, nail filing and polish application; the minimum coat count is unclear and the manicure was not completed",
+        "answer": "You expected cuticle removal, nail filing and polish application; the minimum coat count is unclear and the manicure was not completed."
+      },
+      {
+        "pattern": "dd_v23_train_10398_11_1",
+        "assistant": "Why are you looking for a new party outfit?",
+        "original_reply": "I got a replace my party outfit, I trashed it last week.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | reported ruining the outfit last week and needing a replacement, without asserting that it was replaced",
+        "answer": "You reported ruining the outfit last week and needing a replacement, without asserting that it was replaced."
+      },
+      {
+        "pattern": "dd_v23_train_2641_12_4",
+        "assistant": "What do you prefer doing at the beach in hot weather?",
+        "original_reply": "I prefer to sand bath on the beach when the weather is hot in sunny.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | preferred a beach activity written sand bath in hot and sunny weather; the precise activity remains uncertain and was not asserted as completed",
+        "answer": "You preferred a beach activity written sand bath in hot and sunny weather; the precise activity remains uncertain and was not asserted as completed."
+      },
+      {
+        "pattern": "dd_v23_train_2557_6_3",
+        "assistant": "You said a book described studies about coffee. What claim did it report?",
+        "original_reply": "Researchers have found strong evidence that coffee reduces the risk of several serious aimed 3'including diabetes, heart disease and cirrhosis of the liver.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | attributed to researchers a claim about reduced risks of diabetes, heart disease and liver cirrhosis; the phrase aimed 3'including remains damaged and the claim is not medically verified",
+        "answer": "You attributed to researchers a claim about reduced risks of diabetes, heart disease and liver cirrhosis; the phrase aimed 3'including remains damaged and the claim is not medically verified."
+      },
+      {
+        "pattern": "dd_v23_train_10179_12_1",
+        "assistant": "How do you know so much about dieting?",
+        "original_reply": "You might not believe this, but I used to be twice the size than I am now!",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | reported being twice their current size in the past, without supplying a weight, measurement or method",
+        "answer": "You reported being twice their current size in the past, without supplying a weight, measurement or method."
+      },
+      {
+        "pattern": "dd_v23_train_10148_6_1",
+        "assistant": "Which beer brand would you like with your order?",
+        "original_reply": "Carlsborg.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | selected the brand written Carlsborg, without confirming delivery or correcting its name",
+        "answer": "You selected the brand written Carlsborg, without confirming delivery or correcting its name."
+      },
+      {
+        "pattern": "dd_v23_train_10394_2_1",
+        "assistant": "What would you like to order?",
+        "original_reply": "I'd like a beef-burger, a French fries and a milk shake, please.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | requested a beef burger, French fries and a milkshake, without confirming service or consumption",
+        "answer": "You requested a beef burger, French fries and a milkshake, without confirming service or consumption."
+      },
+      {
+        "pattern": "dd_v23_train_10461_7_1",
+        "assistant": "Leave requests require the manager's approval.",
+        "original_reply": "But if there is an emergency and the manager is of absence, what should we do?",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | asked what to do in an emergency if the manager is absent, without asserting that either condition currently holds",
+        "answer": "You asked what to do in an emergency if the manager is absent, without asserting that either condition currently holds."
+      },
+      {
+        "pattern": "dd_v23_train_2526_7_1",
+        "assistant": "How are your cases coming along?",
+        "original_reply": "Very well, thanks, I will probably finish next week, but this is still a lot of work, I have been worked on in for six months, and I'm so closed to end.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | reported six months of work and being near the end, with probable completion next week and work still remaining",
+        "answer": "You reported six months of work and being near the end, with probable completion next week and work still remaining."
+      },
+      {
+        "pattern": "dd_v23_train_2593_3_1",
+        "assistant": "When I pray, I picture the Lord's face in my mind.",
+        "original_reply": "Does that help you faith?",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | asked whether that practice helps the listener's faith, without asserting that it does",
+        "answer": "You asked whether that practice helps the listener's faith, without asserting that it does."
+      },
+      {
+        "pattern": "dd_v23_train_10217_5_1",
+        "assistant": "The non-direct flight currently has a ten-percent discount.",
+        "original_reply": "What if I buy around ticket? Can you offer me some more?",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | asked whether buying the ticket type written around would bring an additional discount; that type remains unclear and no purchase was confirmed",
+        "answer": "You asked whether buying the ticket type written around would bring an additional discount; that type remains unclear and no purchase was confirmed."
+      },
+      {
+        "pattern": "dd_v23_train_2510_6_1",
+        "assistant": "I have invited you to the Star Wars premiere. Were you interested in seeing it on opening day?",
+        "original_reply": "I really wanted to watch the Star Wars on the opening day, but the pre-sale tickets were sold out.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | reported wanting to see Star Wars on opening day but finding advance tickets sold out, without asserting attendance",
+        "answer": "You reported wanting to see Star Wars on opening day but finding advance tickets sold out, without asserting attendance."
+      },
+      {
+        "pattern": "dd_v23_train_10434_4_1",
+        "assistant": "What is wrong with your brakes?",
+        "original_reply": "I hear a noise and feel vibrations when step on the brake.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | reported noise and vibration when pressing the brake, without identifying a mechanical cause",
+        "answer": "You reported noise and vibration when pressing the brake, without identifying a mechanical cause."
+      },
+      {
+        "pattern": "dd_v23_train_10420_4_2",
+        "assistant": "Is everything ready for me?",
+        "original_reply": "We have your cocktail and there're salad.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | announced that the listener's cocktail and salad are available, without asserting consumption",
+        "answer": "You announced that the listener's cocktail and salad are available, without asserting consumption."
+      },
+      {
+        "pattern": "dd_v23_train_10247_2_1",
+        "assistant": "You look professional in that suit. Is there a dress requirement?",
+        "original_reply": "The company regulates that men should wear a suit and tie in business meeting.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | reported a company requirement for men to wear a suit and tie at business meetings, without asserting general compliance",
+        "answer": "You reported a company requirement for men to wear a suit and tie at business meetings, without asserting general compliance."
+      },
+      {
+        "pattern": "dd_v23_train_2641_7_3",
+        "assistant": "We are comparing how often our cities have fog and storms.",
+        "original_reply": "the sky are usually clearly over your city, are they?",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | asked for confirmation that the sky over the listener's city is usually clear",
+        "answer": "You asked for confirmation that the sky over the listener's city is usually clear."
+      },
+      {
+        "pattern": "dd_v23_train_10041_4_2",
+        "assistant": "You are speaking to the export manager. What information prompted your call?",
+        "original_reply": "I learned that you are the leading export of cloth by Hummed company.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | reported learning of a leading cloth-export role connected with Hummed company; the exact role and commercial relationship remain unclear",
+        "answer": "You reported learning of a leading cloth-export role connected with Hummed company; the exact role and commercial relationship remain unclear."
+      },
+      {
+        "pattern": "dd_v23_train_10096_3_1",
+        "assistant": "We are looking at the zones in the amusement park.",
+        "original_reply": "Look at your right-hand. Is it the zone of the Lost Maya Kingdom?",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | directed attention to the right-hand side and asked whether the zone is the Lost Maya Kingdom, without confirming its identity or a completed visit",
+        "answer": "You directed attention to the right-hand side and asked whether the zone is the Lost Maya Kingdom, without confirming its identity or a completed visit."
+      },
+      {
+        "pattern": "dd_v23_train_2571_3_4",
+        "assistant": "The office dress code seems casual. What might you wear on your first day?",
+        "original_reply": "Probably, I should put on car key and simple shirt.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | tentatively proposed a simple shirt and an item written car key; that item remains unidentified and no completed dressing was asserted",
+        "answer": "You tentatively proposed a simple shirt and an item written car key; that item remains unidentified and no completed dressing was asserted."
+      },
+      {
+        "pattern": "dd_v23_train_2637_12_2",
+        "assistant": "You congratulated me on my promotion. What will you add to Sue's letter?",
+        "original_reply": "I'll just tell them how round I am of you for getting a promotion and then I'll thank Sue for her kind letter.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | planned to describe their reaction to the promotion and thank Sue for her letter; round of you remains unclear and sending was not reported",
+        "answer": "You planned to describe their reaction to the promotion and thank Sue for her letter; round of you remains unclear and sending was not reported."
+      },
+      {
+        "pattern": "dd_v23_train_10329_2_1",
+        "assistant": "How can I help with the MP4 player?",
+        "original_reply": "I bought the MP4 in your store a week before, but it doesn't work today.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | reported a purchase from the store and failure to work today; the reference point of a week before remains unclear",
+        "answer": "You reported a purchase from the store and failure to work today; the reference point of a week before remains unclear."
+      },
+      {
+        "pattern": "dd_v23_train_10269_3_1",
+        "assistant": "Would you like to replace your old car?",
+        "original_reply": "I want to change a new car.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | expressed a wish to replace the car with a new one, without confirming purchase or replacement",
+        "answer": "You expressed a wish to replace the car with a new one, without confirming purchase or replacement."
+      },
+      {
+        "pattern": "dd_v23_train_10249_1_1",
+        "assistant": "What kind of suit are you looking for?",
+        "original_reply": "I want a suit of workmanship and suitable for formal meetings.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | expressed a wish for a suit with suitable workmanship for formal meetings, without specifying a brand or confirming purchase",
+        "answer": "You expressed a wish for a suit with suitable workmanship for formal meetings, without specifying a brand or confirming purchase."
+      },
+      {
+        "pattern": "dd_v23_train_2549_5_2",
+        "assistant": "I am working twelve hours a day, including five hours of overtime.",
+        "original_reply": "Do you think your health can afford?",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | asked whether the listener's health can withstand that workload, without asserting a diagnosis or injury",
+        "answer": "You asked whether the listener's health can withstand that workload, without asserting a diagnosis or injury."
+      },
+      {
+        "pattern": "dd_v23_train_2520_5_1",
+        "assistant": "You mentioned someone who made the dinner reservation. Which person do you mean?",
+        "original_reply": "Yes, the one with the R $ D team.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | identified that person by affiliation with the team written R $ D, without expanding or correcting its label",
+        "answer": "You identified that person by affiliation with the team written R $ D, without expanding or correcting its label."
+      },
+      {
+        "pattern": "dd_v23_train_2515_1_1",
+        "assistant": "What would you suggest for our party?",
+        "original_reply": "Don't you think that's good idea to hold a party outside?",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | suggested holding the party outside and sought agreement, without asserting that it happened",
+        "answer": "You suggested holding the party outside and sought agreement, without asserting that it happened."
+      },
+      {
+        "pattern": "dd_v23_train_2641_5_3",
+        "assistant": "Summer temperatures in my city often reach 37 to 40 degrees centigrade.",
+        "original_reply": "with high such temperatures you must get some thunderstorms.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | inferred that the hot city probably gets thunderstorms, without confirming a particular storm",
+        "answer": "You inferred that the hot city probably gets thunderstorms, without confirming a particular storm."
+      },
+      {
+        "pattern": "dd_v23_train_10082_5_1",
+        "assistant": "I would like a car but cannot afford the expensive one we saw.",
+        "original_reply": "They are By new models now, they are not very expensive.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | described new car models as not very expensive; By remains unclear and no purchase was asserted",
+        "answer": "You described new car models as not very expensive; By remains unclear and no purchase was asserted."
+      },
+      {
+        "pattern": "dd_v23_train_10395_5_2",
+        "assistant": "I am looking for a special engagement ring for my girlfriend.",
+        "original_reply": "Tell me a little bit about what you might be wanted.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | asked the customer to describe their ring preferences, without confirming a sale",
+        "answer": "You asked the customer to describe their ring preferences, without confirming a sale."
+      },
+      {
+        "pattern": "dd_v23_train_2549_7_1",
+        "assistant": "I work long overtime hours because I need money.",
+        "original_reply": "Surely you'll be paid extra for overtime, but do you think it's really worth?",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | expected extra pay but questioned whether the overtime is worthwhile, without confirming payment or harm",
+        "answer": "You expected extra pay but questioned whether the overtime is worthwhile, without confirming payment or harm."
+      },
+      {
+        "pattern": "dd_v23_train_10242_1_3",
+        "assistant": "You said you have lost your baggage tags and receipt. What help do you need?",
+        "original_reply": "How can I do about it?",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | asked what to do about the lost baggage tags and receipt, without asserting recovery",
+        "answer": "You asked what to do about the lost baggage tags and receipt, without asserting recovery."
+      },
+      {
+        "pattern": "dd_v23_train_2630_4_2",
+        "assistant": "Is traffic bad in your city centre?",
+        "original_reply": "Cars are not permitted in several parts of city centre, especially in the main shopping areas.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | reported restrictions on cars in several central areas, especially the main shopping areas, without asserting actual compliance",
+        "answer": "You reported restrictions on cars in several central areas, especially the main shopping areas, without asserting actual compliance."
+      },
+      {
+        "pattern": "dd_v23_train_10284_6_2",
+        "assistant": "How does shopping online work?",
+        "original_reply": "You can log in a website, browse through many items and categories comfortably at home, order the goods, pay by credit or debit card, and the goods will be delivered to your home.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | described the possible sequence of logging in, browsing at home, ordering, paying by card and receiving delivery, without reporting completed steps",
+        "answer": "You described the possible sequence of logging in, browsing at home, ordering, paying by card and receiving delivery, without reporting completed steps."
+      },
+      {
+        "pattern": "dd_v23_train_2526_8_4",
+        "assistant": "We are approaching a building during the drive.",
+        "original_reply": "Is this the red of building?",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | asked whether the indicated building is the red one, without confirming its identity or arrival",
+        "answer": "You asked whether the indicated building is the red one, without confirming its identity or arrival."
+      },
+      {
+        "pattern": "dd_v23_train_10447_10_4",
+        "assistant": "What fuel is used when roasting this duck, and why?",
+        "original_reply": "Only wood of fruit trees are used to fuel the fire to give the duck a unique",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | described using only fruit-tree wood for the fire; the intended unique result is missing and was not guessed",
+        "answer": "You described using only fruit-tree wood for the fire; the intended unique result is missing and was not guessed."
+      },
+      {
+        "pattern": "dd_v23_train_10423_3_2",
+        "assistant": "Is my order of fries ready yet?",
+        "original_reply": "You need to wait a few minutes for the fries. They are still in the flyer.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | said the fries require a few more minutes and are still in the place written flyer; that location remains unclear and delivery was not confirmed",
+        "answer": "You said the fries require a few more minutes and are still in the place written flyer; that location remains unclear and delivery was not confirmed."
+      },
+      {
+        "pattern": "dd_v23_train_2641_11_1",
+        "assistant": "Does your city's river ever freeze?",
+        "original_reply": "The river in my city sometime freeze over.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | reported that the river sometimes freezes over, without giving a frequency or identifying a particular event",
+        "answer": "You reported that the river sometimes freezes over, without giving a frequency or identifying a particular event."
+      },
+      {
+        "pattern": "dd_v23_train_2594_4_2",
+        "assistant": "You said you are feeling homesick. Why are the approaching holidays difficult?",
+        "original_reply": "It's just that the holidays are coming up and I won't be able to home because I can't afford the airfare.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | said unaffordable airfare prevents going home for the holidays, without reporting a completed journey",
+        "answer": "You said unaffordable airfare prevents going home for the holidays, without reporting a completed journey."
+      },
+      {
+        "pattern": "dd_v23_train_10289_9_2",
+        "assistant": "We are discussing philosophy in martial-arts fiction.",
+        "original_reply": "What makes a true, respectable da via, or a warrior hero?",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | asked what makes a true and respectable warrior hero, using the supplied label da via without correcting it",
+        "answer": "You asked what makes a true and respectable warrior hero, using the supplied label da via without correcting it."
+      },
+      {
+        "pattern": "dd_v23_train_10289_1_1",
+        "assistant": "We are discussing your first few months of kung fu study.",
+        "original_reply": "Now that you have learned Kung fu for a few months, what are your general impression of it?",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | asked for the listener's general impression after a few months of kung fu study, without supplying the opinion or asserting mastery",
+        "answer": "You asked for the listener's general impression after a few months of kung fu study, without supplying the opinion or asserting mastery."
+      },
+      {
+        "pattern": "dd_v23_train_10016_9_4",
+        "assistant": "How are the chocolates selected during inspection?",
+        "original_reply": "Only the creme make it through inspection.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | claimed that only the group called creme passes inspection; its product-category or quality meaning remains uncertain",
+        "answer": "You claimed that only the group called creme passes inspection; its product-category or quality meaning remains uncertain."
+      },
+      {
+        "pattern": "dd_v23_train_10254_7_1",
+        "assistant": "My camera and cash were taken, and I have travel insurance. What happens next?",
+        "original_reply": "I'll make a report for you and please claim this to the insurance company with this report.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | offered to prepare a report and advised submitting an insurance claim with it, without confirming completion or reimbursement",
+        "answer": "You offered to prepare a report and advised submitting an insurance claim with it, without confirming completion or reimbursement."
+      },
+      {
+        "pattern": "dd_v23_train_10193_9_1",
+        "assistant": "Do you want to pick up the customer at our office?",
+        "original_reply": "No, I'll discuss the business with him at hotel.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | declined that arrangement and planned a business discussion with the customer at the hotel, without reporting a completed meeting",
+        "answer": "You declined that arrangement and planned a business discussion with the customer at the hotel, without reporting a completed meeting."
+      },
+      {
+        "pattern": "dd_v23_train_10144_2_2",
+        "assistant": "How will the computers be packed for shipment?",
+        "original_reply": "Besides, I would like to make it clear that each piece of computer will be dismantled into several parts before shipment.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | said each computer would be dismantled into several parts before shipping, without confirming either action as completed",
+        "answer": "You said each computer would be dismantled into several parts before shipping, without confirming either action as completed."
+      },
+      {
+        "pattern": "dd_v23_train_10222_7_1",
+        "assistant": "Your ticket is valid for another train but must be checked.",
+        "original_reply": "Shall I pay extra charge?",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | asked whether an additional charge must be paid, without asserting a charge or completed payment",
+        "answer": "You asked whether an additional charge must be paid, without asserting a charge or completed payment."
+      },
+      {
+        "pattern": "dd_v23_train_2594_5_3",
+        "assistant": "How did you cope with homesickness when you first arrived?",
+        "original_reply": "I almost let it get to me, but then I started going out, keeping myself busy and before I knew it, I was used to to it.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | recalled beginning to go out and keep busy, then becoming accustomed to the situation after nearly being overwhelmed by homesickness",
+        "answer": "You recalled beginning to go out and keep busy, then becoming accustomed to the situation after nearly being overwhelmed by homesickness."
+      },
+      {
+        "pattern": "dd_v23_train_10241_2_2",
+        "assistant": "Could you give us the prices of your printed pure-silk scarves?",
+        "original_reply": "But your enquiry is too vague to reply.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | said the enquiry was too vague to answer, without supplying prices",
+        "answer": "You said the enquiry was too vague to answer, without supplying prices."
+      },
+      {
+        "pattern": "dd_v23_train_10209_6_1",
+        "assistant": "Is there anything you want the doctor to check during your physical?",
+        "original_reply": "I've being kind of been having problems being out of breath.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | reported difficulty with breathlessness, without specifying its onset, cause or diagnosis",
+        "answer": "You reported difficulty with breathlessness, without specifying its onset, cause or diagnosis."
+      },
+      {
+        "pattern": "dd_v23_train_10052_5_2",
+        "assistant": "I am not a good swimmer. How deep is the pool?",
+        "original_reply": "The deepest place is two meters but you can swim in the shallow area, which is only l. 4 meter in depth.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | reported a maximum depth of two meters and a shallower area with the unclear measurement l. 4 meter; the shallow depth and suitability are not verified",
+        "answer": "You reported a maximum depth of two meters and a shallower area with the unclear measurement l. 4 meter; the shallow depth and suitability are not verified."
+      },
+      {
+        "pattern": "dd_v23_train_2602_1_1",
+        "assistant": "How would you prefer to approach the situation?",
+        "original_reply": "I would much rather see her once or twice and not do anything about it — — what could I about it anyway?",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | preferred seeing her once or twice without taking further action; the people, situation and missing predicate in the final question remain unspecified",
+        "answer": "You preferred seeing her once or twice without taking further action; the people, situation and missing predicate in the final question remain unspecified."
+      },
+      {
+        "pattern": "dd_v23_train_10080_8_1",
+        "assistant": "We are discussing eye contact when speaking with older or senior people.",
+        "original_reply": "In China, it is impolite to look into the senior speakers eyes while speaking.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | described eye contact with senior speakers as impolite in China, as the speaker's generalization rather than a verified universal rule",
+        "answer": "You described eye contact with senior speakers as impolite in China, as the speaker's generalization rather than a verified universal rule."
+      },
+      {
+        "pattern": "dd_v23_train_10345_4_1",
+        "assistant": "You said casual office clothes are allowed. Is there anything else I should know?",
+        "original_reply": "But remind you, there are some forbidden activities.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | reminded the listener that some office activities are forbidden, without listing them or asserting a violation",
+        "answer": "You reminded the listener that some office activities are forbidden, without listing them or asserting a violation."
+      },
+      {
+        "pattern": "dd_v23_train_2526_2_3",
+        "assistant": "Good morning, Mike. It is Sally.",
+        "original_reply": "You seem many hurry!",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | observed that Sally seems to be in a hurry, without establishing its cause",
+        "answer": "You observed that Sally seems to be in a hurry, without establishing its cause."
+      },
+      {
+        "pattern": "dd_v23_train_10014_8_1",
+        "assistant": "What happens if I move out before my lease ends?",
+        "original_reply": "If you move out before then, you will not get your deductible.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | said an early move would prevent receiving the item called deductible; its financial identity remains unclear and no move was reported",
+        "answer": "You said an early move would prevent receiving the item called deductible; its financial identity remains unclear and no move was reported."
+      },
+      {
+        "pattern": "dd_v23_train_10447_9_2",
+        "assistant": "You have just tasted the duck roll. What do you think?",
+        "original_reply": "Oh, it's terrific. I love the floor. Can you tell me how it was prepared?",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | called the food terrific and asked about its preparation; the object floor in the love statement remains unresolved",
+        "answer": "You called the food terrific and asked about its preparation; the object floor in the love statement remains unresolved."
+      },
+      {
+        "pattern": "dd_v23_train_10242_2_3",
+        "assistant": "I have lost my baggage tag and receipt.",
+        "original_reply": "And do not remember the tag's number or color?",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | asked whether the customer remembers the tag's number or color, without asserting forgetfulness or supplying either value",
+        "answer": "You asked whether the customer remembers the tag's number or color, without asserting forgetfulness or supplying either value."
+      },
+      {
+        "pattern": "dd_v23_train_10258_2_2",
+        "assistant": "What were the results of the department's quarterly performance review?",
+        "original_reply": "Most of us had positive review in last quarter.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | reported that most of the group had positive reviews for the last quarter, without giving exact ratings or confirming raises",
+        "answer": "You reported that most of the group had positive reviews for the last quarter, without giving exact ratings or confirming raises."
+      },
+      {
+        "pattern": "dd_v23_train_10141_3_2",
+        "assistant": "It will be cold on the mountain. Are you ready for the trip?",
+        "original_reply": "Have you packed the windshelled clothes and bodywarmers?",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | asked whether clothes described as windshelled and bodywarmers were packed; the exact garment specification remains unclear and packing was not confirmed",
+        "answer": "You asked whether clothes described as windshelled and bodywarmers were packed; the exact garment specification remains unclear and packing was not confirmed."
+      },
+      {
+        "pattern": "dd_v23_train_10241_1_1",
+        "assistant": "How can I help with your enquiry?",
+        "original_reply": "We are very interested in your printed pure silk scarves, so could you introduce us your prices?",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | expressed interest in the printed pure-silk scarves and requested their prices, without placing an order",
+        "answer": "You expressed interest in the printed pure-silk scarves and requested their prices, without placing an order."
+      },
+      {
+        "pattern": "dd_v23_train_10083_10_1",
+        "assistant": "What is your long-term goal at ABC Company?",
+        "original_reply": "I'd like to bring to ABC Company not only my technical skills, ambition, enthusiasm, but also my loyalty, a sensor desire to become an administrative assistant.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | expressed a wish to contribute skills, ambition, enthusiasm and loyalty and become an administrative assistant; sensor remains unclear and hiring was not asserted",
+        "answer": "You expressed a wish to contribute skills, ambition, enthusiasm and loyalty and become an administrative assistant; sensor remains unclear and hiring was not asserted."
+      },
+      {
+        "pattern": "dd_v23_train_10439_6_1",
+        "assistant": "The morning flight to Guangzhou departs at 9:12; there is also an afternoon flight.",
+        "original_reply": "When will the plane reach for the morning flight?",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | asked when the morning flight to Guangzhou arrives, without providing a time or confirming a flight",
+        "answer": "You asked when the morning flight to Guangzhou arrives, without providing a time or confirming a flight."
+      },
+      {
+        "pattern": "dd_v23_train_10100_3_2",
+        "assistant": "You said I scratched your car. What damage do you see?",
+        "original_reply": "Oh, God, a paint was scratched off.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | reported paint being scratched off the car, without asserting injury or repair",
+        "answer": "You reported paint being scratched off the car, without asserting injury or repair."
+      },
+      {
+        "pattern": "dd_v23_train_10418_1_1",
+        "assistant": "Hello, I am visiting J P Interior Design.",
+        "original_reply": "Good coming!",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | greeted the visitor without specifying a time of day",
+        "answer": "You greeted the visitor without specifying a time of day."
+      },
+      {
+        "pattern": "dd_v23_train_10335_9_3",
+        "assistant": "We are standing beside a priority seat on the train.",
+        "original_reply": "We should give the seats to those eld, pregnant and disabled people.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | said seats should be given to pregnant and disabled people and the group written eld; that label remains unresolved and no seat transfer was confirmed",
+        "answer": "You said seats should be given to pregnant and disabled people and the group written eld; that label remains unresolved and no seat transfer was confirmed."
+      },
+      {
+        "pattern": "dd_v23_train_10423_2_1",
+        "assistant": "What would you like to order?",
+        "original_reply": "Give me a six-piece chicken nuggets, a large fry and a large Coke.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | requested six chicken nuggets, large fries and a large Coke, without confirming service or consumption",
+        "answer": "You requested six chicken nuggets, large fries and a large Coke, without confirming service or consumption."
+      },
+      {
+        "pattern": "dd_v23_train_10204_4_1",
+        "assistant": "I lost my purse. It just disappeared.",
+        "original_reply": "Myrdal, purse doesn't just disappear.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | challenged the idea of an unexplained disappearance while addressing Myrdal, without locating or recovering the purse",
+        "answer": "You challenged the idea of an unexplained disappearance while addressing Myrdal, without locating or recovering the purse."
+      },
+      {
+        "pattern": "dd_v23_train_2641_11_3",
+        "assistant": "What do people do on the river in summer?",
+        "original_reply": "on summer people go boating on the river.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | described people boating on the river in summer, without reporting a particular completed trip",
+        "answer": "You described people boating on the river in summer, without reporting a particular completed trip."
+      },
+      {
+        "pattern": "dd_v23_train_10342_3_1",
+        "assistant": "Why has my appointment with Mr. Smith been postponed?",
+        "original_reply": "Mr. Smith called just now that he had to fly to Shanghai on urgent business today.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | reported Mr. Smith's call about a need to fly to Shanghai on urgent business today, without confirming the flight",
+        "answer": "You reported Mr. Smith's call about a need to fly to Shanghai on urgent business today, without confirming the flight."
+      },
+      {
+        "pattern": "dd_v23_train_10121_2_1",
+        "assistant": "I have gained weight. What activity would you suggest?",
+        "original_reply": "Since summer is coming, I think swimming is a good way for you to do.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | suggested swimming with summer approaching, without asserting that swimming or weight loss had occurred",
+        "answer": "You suggested swimming with summer approaching, without asserting that swimming or weight loss had occurred."
+      },
+      {
+        "pattern": "dd_v23_train_10258_5_2",
+        "assistant": "What is happening with Fred and David after their performance reviews?",
+        "original_reply": "Fred is promoted to be the assistant of manager in marketing department and David to be director of office.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | reported Fred's promotion to assistant to the marketing manager and David's to office director, without specifying start dates or salary changes",
+        "answer": "You reported Fred's promotion to assistant to the marketing manager and David's to office director, without specifying start dates or salary changes."
+      },
+      {
+        "pattern": "dd_v23_train_10410_6_1",
+        "assistant": "Do you think overcharging customers by such a margin is annoying?",
+        "original_reply": "Of course, that's something really irritation.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | agreed that the described overcharging is irritating",
+        "answer": "You agreed that the described overcharging is irritating."
+      },
+      {
+        "pattern": "dd_v23_train_10145_7_2",
+        "assistant": "What do you expect people to like about the new product?",
+        "original_reply": "And the new product will be a pleasure to be hold.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | predicted a pleasurable response to the product; be hold leaves the intended experience unclear and no experience was reported as completed",
+        "answer": "You predicted a pleasurable response to the product; be hold leaves the intended experience unclear and no experience was reported as completed."
+      },
+      {
+        "pattern": "dd_v23_train_10012_8_2",
+        "assistant": "The suite costs two hundred dollars per night. Is that acceptable?",
+        "original_reply": "I'm told that your hotel is offering discount now.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | reported hearing that the hotel currently offers a discount, without specifying a rate or confirming eligibility",
+        "answer": "You reported hearing that the hotel currently offers a discount, without specifying a rate or confirming eligibility."
+      }
+    ]
+  },
+  "extraction_scope": "Explicit utterance_interpretation in a reviewed visible pair. Original wording and unknowns retained; generic role extraction and template recombination are not licensed.",
+  "checks": {
+    "total_tests": 995,
+    "source_and_ledger_tests": {
+      "passed": 106,
+      "seconds": 19.52,
+      "command": "python -X utf8 -B -m pytest -q tests/test_dailydialog_source_segmentation.py tests/test_dailydialog_quarantine_finalization.py"
+    },
+    "published_catalog_tests": {
+      "passed": 889,
+      "seconds": 18.46,
+      "command": "python -X utf8 -B -m pytest -q tests/test_dialogue_fragments.py tests/test_dailydialog_fragment_admission.py tests/test_dialogue_extraction_text.py"
+    },
+    "received_evidence_sha256": "68f72401d4ccd5e4a26eaaf23e1558dc268f136195680c658a2f857f8be68391",
+    "only_intentional_post_validation_change": "data/mined-templates/reviewed/dialogue-fragments.json",
+    "prior_catalog_patterns_preserved": 325,
+    "fragment_generator_source": "semantic_corpus/dialogue_generator/fragments.py",
+    "fragment_generator_sha256": "2b65fe206eede198daee9e07732bd5904ede2ba1a66a4fd285d999d9fee88347"
+  },
+  "reproduction": {
+    "commands": [
+      "python -X utf8 -B scripts/resegment_dailydialog_hybrid_source.py --source artifacts/dailydialog-hybrid-originals-v22 --reviews data/dailydialog/review-parts/hybrid-queue-context-v23.jsonl --out artifacts/dailydialog-hybrid-originals-v23-preserved-bindings",
+      "python -X utf8 -B scripts/finalize_dailydialog_quarantine.py --candidate artifacts/dailydialog-hybrid-originals-v23-preserved-bindings --ledger data/dailydialog/review-parts/luna-offline-originals-v22 --reviews data/dailydialog/review-parts/hybrid-queue-warning-rechecks-v23.jsonl --out data/dailydialog/review-parts/luna-offline-originals-v23-preserved-bindings",
+      "python -X utf8 -B scripts/admit_dailydialog_fragments.py --reviews data/dailydialog/review-parts/hybrid-queue-adapters-v23.json --contexts data/dailydialog/review-parts/hybrid-queue-original-contexts-v23.jsonl.gz --publish --report artifacts/dailydialog-originals-v23-replay/publication.json"
+    ],
+    "generation": {
+      "generator": "semantic_corpus.dialogue_generator.DialogueGenerator",
+      "task": "fragment_meaning",
+      "seed": 23,
+      "count_per_mode_per_split": 411,
+      "user_assistant_only": [
+        true,
+        false
+      ],
+      "splits": [
+        "train",
+        "validation",
+        "test"
+      ],
+      "selected_condition_prefix": "dd_v23_",
+      "catalog_sha256": "ca1c73ce2ebb436eb18d9d33eb9b89315850c131832cbe4a9292e5738f086535",
+      "outputs": "artifacts/dailydialog-originals-v23/datasets"
+    },
+    "note": "Authoritative review files carry all decisions; ignored authoring helpers are unnecessary. Use new output directories on replay and validate before publishing."
+  },
+  "next_step": {
+    "original_text_policy_applies": true,
+    "previous_corrected_segments_pending_original_text_review": [],
+    "previous_corrected_segments_now_usable_as_original": [
+      "train:1372:2:1",
+      "train:1006:2:3",
+      "train:1009:4:1",
+      "train:1025:4:2",
+      "train:1043:4:1",
+      "train:1056:4:1",
+      "train:1082:1:1",
+      "train:1082:1:2",
+      "train:1084:1:2",
+      "train:1084:8:1",
+      "train:1089:17:2",
+      "train:1128:2:1",
+      "train:1139:11:2",
+      "train:1157:1:1",
+      "train:1157:4:1",
+      "train:1161:10:1",
+      "train:1161:1:2",
+      "train:1172:5:2",
+      "train:1203:5:1",
+      "train:1203:6:1",
+      "train:1209:5:2",
+      "train:1211:7:1",
+      "train:1213:4:2",
+      "train:1236:4:5",
+      "train:1238:3:1",
+      "train:1268:2:2",
+      "train:1305:12:1",
+      "train:1314:2:3",
+      "train:1317:4:1",
+      "train:1322:10:2",
+      "train:1339:1:2",
+      "train:1344:3:2",
+      "train:1371:2:3",
+      "train:1372:2:3",
+      "train:1380:2:1",
+      "train:1388:6:4",
+      "train:1392:1:1",
+      "train:1396:2:1",
+      "train:1406:8:2",
+      "train:1410:4:2",
+      "train:1436:11:1",
+      "train:1436:12:1",
+      "train:1440:10:1",
+      "train:1442:3:2",
+      "train:1453:6:2",
+      "train:1462:12:1",
+      "train:1462:13:2",
+      "train:1473:7:3",
+      "train:10186:1:1",
+      "train:10447:10:4"
+    ],
+    "warning_queue": "data/dailydialog/review-parts/luna-offline-originals-v23-preserved-bindings/quarantine-cases.jsonl.gz",
+    "supplemental_queue": "data/dailydialog/review-parts/hybrid-attestation-held-v17.json",
+    "this_block_held_source_warning_keys": [
+      [
+        "train:10014:8:1",
+        1,
+        "2c0c30597937503f1d1940d7321963470b2dd70d9559632e212ea3613becc1a8"
+      ],
+      [
+        "train:10016:9:4",
+        0,
+        "9a8bd0cc8ffa1e76b5a0aa7d4daf56395c9ad3d58fec02eb01937dd32753f137"
+      ],
+      [
+        "train:10041:4:2",
+        0,
+        "1b7bd30d773e4e77cf9c37e4a7db01ba0a7a329a6e9deb69991f8060295c724f"
+      ],
+      [
+        "train:10044:10:4",
+        0,
+        "1a2e1d097a886b4e7a5902a4bb4a8aa48aa5b9c662a60bca822765c27df9c924"
+      ],
+      [
+        "train:10052:5:2",
+        1,
+        "19fdab2a56ce4c02ad1ef67434ba60251555e432825176b3fe0c0f4b9e405f3f"
+      ],
+      [
+        "train:10082:5:1",
+        1,
+        "33ce2b7e7a06ddaeb011dc811c9376446eff6bc625e54c518632a7ad996c8aa0"
+      ],
+      [
+        "train:10083:10:1",
+        1,
+        "27e984dd3e80bd4e709d75bd08c85ab74f947371218d93e8dca5ea36c2465ccc"
+      ],
+      [
+        "train:10141:3:2",
+        0,
+        "7795005d812327c8d1ba3383d5bede383e032ce1c02c17eadf3be275e22eedc1"
+      ],
+      [
+        "train:10145:7:2",
+        0,
+        "37408337d66472664ada58d31a4bbed7c3cf278e3d9ec85c0542f6728e00465a"
+      ],
+      [
+        "train:10158:7:2",
+        0,
+        "3346dd26109669a5f55a2dece9d7ffd249997e52a78b4eafef0806817a4b173f"
+      ],
+      [
+        "train:10186:1:1",
+        0,
+        "04da5d20ca198a455a237e1eef574cdc127f8d73e43d649e9966b81584e88e13"
+      ],
+      [
+        "train:10198:5:2",
+        1,
+        "7124664790b08c4f32c49f6645b6fdf50b376dc646d27ee6eb65df64fbdfc1fe"
+      ],
+      [
+        "train:10217:5:1",
+        0,
+        "c1f574481bbb26e0132060acd2b87007071fd3d460cbad1ed9efbf888a8735fb"
+      ],
+      [
+        "train:10329:2:1",
+        0,
+        "8d2b6c21c909c39ffb4e15172f40a90e9f89d40ca0e3769b763c24c8ec67d260"
+      ],
+      [
+        "train:10335:9:3",
+        0,
+        "cad74a3109f76690e9001ea369c728498666f35259c8021fce5e985296764b23"
+      ],
+      [
+        "train:10423:3:2",
+        0,
+        "2c775a5d5de2b0987ce831ba63a836830284fb95196c229d0bfac6b96f9e6656"
+      ],
+      [
+        "train:10447:10:4",
+        1,
+        "2ebadc8f42dd9e2c7cc30fa1710a01226038082a2ea22ee032ee7aa6e54d10fe"
+      ],
+      [
+        "train:10447:9:2",
+        0,
+        "d5528c1a16ea9e147c7916a62839d86a148e2c5cb5fa0262018d5c634f7fbc0a"
+      ],
+      [
+        "train:2557:6:3",
+        2,
+        "b93f5020c606b33caa81dff00c11e56e8e10b0ba044fd20f3dd438c63f487e46"
+      ],
+      [
+        "train:2571:3:4",
+        0,
+        "757f3a0daa4060bda0b2fe13a3ef5adbc82db79de0d6d46a10d6a3345a5f8766"
+      ],
+      [
+        "train:2602:1:1",
+        0,
+        "d4ae986eb5d52939ba88bf7daf3f3ad3474aae04b5a5b1e2231f2fa70f975bc2"
+      ],
+      [
+        "train:2635:7:2",
+        0,
+        "ee0d8a416754147fc4cb98f7e21a295aed3a1cfae85fbfe79f773af1397251c7"
+      ],
+      [
+        "train:2637:12:2",
+        1,
+        "01427d6c1d8e4cbf5e58d6b7c0ef995cefe4b39b2c680fa93945f057b4238f5c"
+      ],
+      [
+        "train:2641:12:4",
+        0,
+        "b282309be8c182eb857d586a75ada11e3bfc7abdae98b2bbe5c99b369a4c7b63"
+      ]
+    ],
+    "this_block_partial_adapter_ids": [
+      "dd_v23_train_2557_6_3",
+      "dd_v23_train_2571_3_4",
+      "dd_v23_train_2602_1_1",
+      "dd_v23_train_2635_7_2",
+      "dd_v23_train_2637_12_2",
+      "dd_v23_train_2641_12_4",
+      "dd_v23_train_10014_8_1",
+      "dd_v23_train_10016_9_4",
+      "dd_v23_train_10041_4_2",
+      "dd_v23_train_10052_5_2",
+      "dd_v23_train_10082_5_1",
+      "dd_v23_train_10083_10_1",
+      "dd_v23_train_10141_3_2",
+      "dd_v23_train_10145_7_2",
+      "dd_v23_train_10186_1_1",
+      "dd_v23_train_10198_5_1",
+      "dd_v23_train_10217_5_1",
+      "dd_v23_train_10329_2_1",
+      "dd_v23_train_10335_9_3",
+      "dd_v23_train_10423_3_2",
+      "dd_v23_train_10447_9_2",
+      "dd_v23_train_10447_10_4"
+    ],
+    "this_block_insufficient_proposition": [
+      "train:10044:10:4",
+      "train:10158:7:2"
+    ],
+    "next_train_source_warning_keys": [
+      [
+        "train:10468:7:1",
+        0,
+        "9bb93f31aa06a9f52e9302406008962e9567b61a001ad14f9a39250f14e73e7c"
+      ],
+      [
+        "train:10474:3:1",
+        0,
+        "6c399b3d26696147f781fc50e82cd25c0ed7b4fcd7e2b32d5a5bee8871c50f31"
+      ],
+      [
+        "train:10474:3:2",
+        0,
+        "fb6da0b5f2bd9f35650e94f297f26199d0ae21b69f014ba4394b030f3a47ef25"
+      ],
+      [
+        "train:10475:4:1",
+        0,
+        "ba3316123580e519704bf98b59a180cac9a259e6ca5dc5cfdde28cd3ea14f47e"
+      ],
+      [
+        "train:10480:6:1",
+        0,
+        "ddc5dff81d489d03d44b1b48e1add397e24df614dc2db120eab6eb1b4a61f97e"
+      ],
+      [
+        "train:10506:4:1",
+        0,
+        "c00928a60b1a097c20f59fbe20d52212c7ae502117d3e436b636912dbce3c241"
+      ],
+      [
+        "train:10508:7:1",
+        0,
+        "1eebfcf9d773178f51c89ed54c8bcfd154241a7440a532cb4f3b30e4bc00c5aa"
+      ],
+      [
+        "train:10512:1:5",
+        0,
+        "ce9a773471b38c0182bbee484d13c1cd0a5652a5daf59a0903f42f01707e63c6"
+      ],
+      [
+        "train:10526:9:1",
+        0,
+        "977d4a4fcc755487a2c803da5682b8dace2285b7199f422476b813ac4686c77a"
+      ],
+      [
+        "train:10530:1:3",
+        0,
+        "0bdde2eebbc42b9d98baeb7e40745d8d44ead10f519b779e25902ff45d25fe2e"
+      ],
+      [
+        "train:10536:2:1",
+        0,
+        "1abcdfcd927ef35a6c5aee183fac1de7b636550d287255a03f409d7d0353d676"
+      ],
+      [
+        "train:10542:8:4",
+        0,
+        "c0cf0791108c2a23669ff9cbf163880c1ac8af271abf44d72b15a72f7309b88d"
+      ],
+      [
+        "train:10544:9:2",
+        0,
+        "c4e93890c4426b4da546fd065ebe85d149371651af9487266aa40d375c9d5079"
+      ],
+      [
+        "train:10549:4:1",
+        0,
+        "25b3d48b4ef2c76fc8ed8257c382113fde7429ea59935298ace341d2d33cc79e"
+      ],
+      [
+        "train:10551:1:2",
+        0,
+        "0d910981744ae59eb8e569c3f46bcba20c41e8016cae66a41de983ba488fec2b"
+      ],
+      [
+        "train:10567:2:3",
+        0,
+        "ff70498a08c5f5fdc7205be67af02a00caf813defaf66eb1f52b3e45d174dd6f"
+      ],
+      [
+        "train:10567:4:1",
+        0,
+        "b8bd1347fc91b6e12430ed39fef339f2de158220b8d02c80162bf859417c75d0"
+      ],
+      [
+        "train:10575:3:1",
+        0,
+        "8fd0a9b4e06417511991469d2196294851ff24886055798962e3ba94e961bbd4"
+      ],
+      [
+        "train:10577:4:1",
+        0,
+        "31c63d85e506e12ce58ecd69048c19b51dac1982c623320aa10e522db6ad2cc6"
+      ],
+      [
+        "train:10579:5:1",
+        1,
+        "a5ef6c2649e27f4cd218ac0be757c1abb4488d4b669f2734129186d14b8475df"
+      ],
+      [
+        "train:10579:5:1",
+        2,
+        "c19b892925e8e7de9a99af4a94d02ee1ca42f5e521a236210a9209abe845fb25"
+      ],
+      [
+        "train:10579:7:2",
+        2,
+        "d89333c71b9b72b938479a81824eb0fc837c2511da0433efe652d996de55facc"
+      ],
+      [
+        "train:10598:4:1",
+        1,
+        "c65987c2a95044ab7d78d992b1d19de1aef3ef7dc544fcce00b99fcf045db71d"
+      ],
+      [
+        "train:10601:1:3",
+        0,
+        "75f07f19b0840cff400dd4c9385197af2922e5fb448100c093d4f2a87b2a4c89"
+      ],
+      [
+        "train:10615:3:1",
+        0,
+        "e5e0277e5fcc2f7958219ca4675dbe67d5f7fe543201bda9d47fd6b41964e0bc"
+      ],
+      [
+        "train:10617:7:1",
+        0,
+        "44933bd201a7c5c81c516f1b9242ee3f3ad7e83ad765928edce97576430cfae2"
+      ],
+      [
+        "train:10621:4:2",
+        0,
+        "825d3ec37673a371422b043af65aea172ddd1e442458085435056ceae1a7ae44"
+      ],
+      [
+        "train:10631:3:2",
+        1,
+        "1bb14acc14e455fcb87249364e7e010303c479a6a80ea00fb2adb85ed764f307"
+      ],
+      [
+        "train:10644:4:1",
+        0,
+        "01effbdcb6181ff7f12ea8c8593400685a0eff5750d930534ef9b0ed5dfd71c1"
+      ],
+      [
+        "train:10651:7:1",
+        0,
+        "111056f59aabc6fcaf7717345f6467f8bd885fed8a5fac80e6dace5bb773aaa4"
+      ],
+      [
+        "train:10668:1:1",
+        0,
+        "ca2e687492ba422f0322fc9dcf758e9e317d44ce5ef9db0478567aee44fa563a"
+      ],
+      [
+        "train:10672:2:1",
+        1,
+        "95d0bb012b789831230f997db39bb3cc7063b41d16130d561d6b7cc179559c7c"
+      ],
+      [
+        "train:10673:2:1",
+        0,
+        "3adbeb4722ecb16079899326db439f654b5220c69b0cb7e6a7ab9aafdfd32c3d"
+      ],
+      [
+        "train:10699:6:2",
+        0,
+        "37bda19356986ecc1c3e6b959d87f8ed0386b59422b28bfe18dfd40778faa386"
+      ],
+      [
+        "train:10702:6:2",
+        0,
+        "579875f2c1b6061cb414d15b6317d2f1b04a90d7a6b72b465b20696964b63b81"
+      ],
+      [
+        "train:10705:4:1",
+        0,
+        "f516767fbe77d7d266b3ea559cbbb0d9f496c19dd2609a9c40ecd8fd1a6c9ec2"
+      ],
+      [
+        "train:10717:4:1",
+        2,
+        "4a02c3885655be6c307fcbc202dc96424e3f59f962accf42044c6e57a5cd20b2"
+      ],
+      [
+        "train:10719:10:1",
+        0,
+        "16971c10406680d5432d530a7c9824accd34222f54d4deb8ed6faf094add333d"
+      ],
+      [
+        "train:10719:13:1",
+        1,
+        "32cb32bcd5996012a4f52f5ac5883ef3bbc0ab596add1cb899bcd2884a307e88"
+      ],
+      [
+        "train:10720:6:2",
+        0,
+        "04d188fb935b47535f1aa245d199d51b136de1f2c18eefdf647ce0ec44ff4b02"
+      ],
+      [
+        "train:10725:3:1",
+        1,
+        "212b2faf0f8718953110662b5e116aad125faf8bd98d46bc3a36f70016b76eb5"
+      ],
+      [
+        "train:10727:8:1",
+        0,
+        "1f2044f222048f00bb32243820f5e8849c033d8cf7d24d2c7e9ed9887651bf6e"
+      ],
+      [
+        "train:10727:8:3",
+        1,
+        "b20bb3869256f84269b802029f8cf038a119a3d501534e6da5d0a8e820eff90e"
+      ],
+      [
+        "train:10727:8:4",
+        0,
+        "eb482e6d5f893852b9c79e6e9d7510a62812872402bbcf9e63d4ccff8f87711f"
+      ],
+      [
+        "train:10728:1:1",
+        0,
+        "1e319f5c6caddc77ebb98c0d12db0186d41f441de218a28ab185b4c76fb93bcd"
+      ],
+      [
+        "train:10728:4:1",
+        0,
+        "1c70895bc52dd800e4777639a4f01e3275799813e99877e6c068485d2650c91f"
+      ],
+      [
+        "train:10731:4:1",
+        0,
+        "b15f732f1ae508226bd68cb100bb90b7a0498d3ed18a26d701382c26cf1adb26"
+      ],
+      [
+        "train:10733:10:1",
+        0,
+        "23dc97488fe481926923d993e7bb7032d8be7d85712b3a7c74fa4f52c1d7c2df"
+      ],
+      [
+        "train:10743:3:1",
+        0,
+        "84cdaa417af34f90a7a89feb6d9c9767ac2566710e991e9c5338ca67e0965437"
+      ],
+      [
+        "train:10743:8:1",
+        0,
+        "1abf087c48dfc28f4bee30499c50d2a66bc9ffa4c751440189cecf03c09b68a5"
+      ],
+      [
+        "train:10746:5:3",
+        0,
+        "378776c0e80f63c30054d2bf01d3cdf9a0769169c8a9458ada65f82c76556f5d"
+      ],
+      [
+        "train:10751:4:1",
+        0,
+        "707c9f790f30da6b53bd2e798dd0ff3f0e781838bbb95d719119a0386c887c55"
+      ],
+      [
+        "train:10752:4:1",
+        0,
+        "0118f926251276aff9e29bf8d018146ab9a64d1a77f72e4daf019f74801096df"
+      ],
+      [
+        "train:10755:2:3",
+        0,
+        "7c79b4b87003b2e2f1234794f802a354bc647044580f0ae50dba9cf50ef46101"
+      ],
+      [
+        "train:10758:3:1",
+        0,
+        "81ce0da67d6291d63f058e35489fc4fea3254f4f7ff5931e59690340053613db"
+      ],
+      [
+        "train:10782:2:1",
+        1,
+        "3315b3340a5ed00164e6e51a27e8875934fdd89a4d4c1cb70ae535b4d5eabca9"
+      ],
+      [
+        "train:10792:5:4",
+        0,
+        "c9084f7891fa14b9711f25038d863940ca7998a2f80709d3dde424fcc912b6e0"
+      ],
+      [
+        "train:10793:4:1",
+        1,
+        "6a214634185f21114f9f1c6e95e404cb86b145aac7bc60c54628273d07eaeeff"
+      ],
+      [
+        "train:10796:5:3",
+        0,
+        "b0b70db6caea7275d61242bbb5f398eb748ffa53b6aaae32ba460fd7933e9411"
+      ],
+      [
+        "train:10806:13:7",
+        1,
+        "cf918d90d8473ea2e324d24e1bb9bf2e884d78ea79d816364e028fbb4ba9fb64"
+      ],
+      [
+        "train:10816:6:2",
+        0,
+        "11c0cc1c48eced0353b8256501e33a155a8535a1aa852f6441a4728353a89517"
+      ],
+      [
+        "train:10839:6:3",
+        0,
+        "332e9386cb0e23fb6415800bc5031f0d1c027fb40c8410811294905350886926"
+      ],
+      [
+        "train:10844:7:6",
+        0,
+        "1e687b6a2e56f3a3e6e8b6803150729bf9a00631007023042eb52ec14e72db5f"
+      ],
+      [
+        "train:10850:5:4",
+        0,
+        "3a12fc06ecb6c8ab7ee7f73b07fc3bd24334d944958198563760f91cedb5a5d7"
+      ],
+      [
+        "train:10850:7:2",
+        0,
+        "44fbbf9a4cad9278d593a4094f5b9c95076fe4c5f11e60f90e0921e16b3bfde6"
+      ],
+      [
+        "train:10850:7:3",
+        0,
+        "2dd04eb308877dfb160e39f5d45d491b7de28f0f2398dd3cd98585c424a1b9bc"
+      ],
+      [
+        "train:10853:3:3",
+        0,
+        "9ac9e06c8a3f881324cf93961ec6829196cdb638b63f4bd1b0a64ec2fd5c5f8a"
+      ],
+      [
+        "train:10862:8:1",
+        0,
+        "417df17f552e98a2cf7891fb6f6d873d8e8bbd06d1c7607c230a858826dfd5a8"
+      ],
+      [
+        "train:10864:10:2",
+        0,
+        "01d1769586fc6086091cef6a7824b0d02404b9b2618b04273b39f375bb5c4620"
+      ],
+      [
+        "train:10868:2:1",
+        0,
+        "96510abfbff0e0e4d98282f5fba8212d2e7c79fe3d2a8e9bf6e375285fec5fa6"
+      ],
+      [
+        "train:10871:2:5",
+        0,
+        "72a02280101fc124fee3755a44261963a440560d9892d8acfb7ae16974877d83"
+      ],
+      [
+        "train:10874:3:4",
+        0,
+        "c895fdc5c64dd8535f78898b187f0f2670803b142e50cdae4d517ea6faac12e9"
+      ],
+      [
+        "train:10874:5:1",
+        0,
+        "beecb5af0d0e63c4e83e73c86231c3e36ed2a693df116e0f89379afc5496ace4"
+      ],
+      [
+        "train:10890:11:4",
+        0,
+        "1211454280938a657d7eb94438d0f42445965a6e21850a56504199f4cc80ecc7"
+      ],
+      [
+        "train:10892:3:1",
+        0,
+        "abe87b66d309dd5afe851cc478089f684e1c60c271a4bd323300bbeace9775d3"
+      ],
+      [
+        "train:10892:9:1",
+        0,
+        "47fa66cb255873e0e72473a4ee3e5439c7868ebe0957a416c09e171976d4c65b"
+      ],
+      [
+        "train:10895:5:2",
+        0,
+        "a8f41c2ee9c4ae2b8c8ca385ebcc4afc4dd32c6314077aadd8d3a2d8143f720b"
+      ],
+      [
+        "train:10896:4:2",
+        0,
+        "e67068811a4a00178e18c732bb8cae6b4fb8e1abf75109248dac761c5e63791f"
+      ],
+      [
+        "train:10896:6:2",
+        1,
+        "08393054006f9a2f916d80ba90759b4efd3515fbad8ff8afa13e009fb6ef1b4c"
+      ],
+      [
+        "train:10896:8:1",
+        3,
+        "5c93f3f65924ab4bca715dc687cfc90d9df5d8faf9874f54f213725d36e47315"
+      ],
+      [
+        "train:10901:6:4",
+        0,
+        "7439abcdec43fd465e3d60b1a3f317d6a7a97a7bac7d379bc071835cae41c0b2"
+      ],
+      [
+        "train:10901:8:2",
+        0,
+        "8b2a26705f895019b96a00d57fffb47d34b704321580f741fcab8368b0f989aa"
+      ],
+      [
+        "train:10903:3:2",
+        1,
+        "afd06c8e16c7b387076a125b89023f2db0c95e53867d43c8ef2ed28797821b53"
+      ],
+      [
+        "train:10916:3:1",
+        0,
+        "359cdd6698cf58a4cc62895eb90d7afd9213f8fbeeb04cfffcf9ef701d5c82f5"
+      ],
+      [
+        "train:10916:8:1",
+        2,
+        "30da031afbaba4b3b83fd10791fea96a403a0fcfe572050436cabca603bc80c1"
+      ],
+      [
+        "train:10932:6:2",
+        0,
+        "b8c24b2b973008a4a67f292ed7f32d3ea752f31da587ac9286ff6ac02ccbaa8a"
+      ],
+      [
+        "train:10941:3:3",
+        0,
+        "2911de5f21cc5896f61374680f18e572b3c341581cccabc4fde69bda354958eb"
+      ],
+      [
+        "train:10944:5:3",
+        0,
+        "83fc8dcd0219319c4ab8017640157ae296eb94c8bc39bf1c95cea9514ccd4088"
+      ],
+      [
+        "train:10947:2:2",
+        0,
+        "6527332bdab28dd0118b94621f2a6f1df545378feab2522eb34dac0e3b676f71"
+      ],
+      [
+        "train:10951:6:4",
+        0,
+        "818655e4009916e140793fd6c69fb955a43f1c192b79bfc11e5f13d0e1cddfa8"
+      ]
+    ],
+    "remaining_train_source_warnings_after_this_block": 123,
+    "priorities": [
+      "Continue the saved queue from train:10468:7:1.",
+      "Use understandable original wording with explicit partial meanings.",
+      "Keep unspecified words, measurements, times and structural ambiguities unresolved."
+    ],
+    "full_semantic_review_still_required": true
+  }
+}

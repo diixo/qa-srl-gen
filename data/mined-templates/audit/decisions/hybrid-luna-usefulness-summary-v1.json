@@ -1,0 +1,96 @@
+{
+  "version": "luna-usefulness-sample-v1",
+  "seed": "20261014-luna-offline-review-v1",
+  "outputs_sha256": "f792915163ff9f8a309ba840b55ebe1cf461c8f1d74d4de40b02990766f5c0e3",
+  "plan_sha256": "80049880dcbebe91eb59d1f6874cc522fa38dc483172cc3380a1c5f3b9d55f2f",
+  "received_results": 47077,
+  "received_splits": {
+    "test": 12429,
+    "train": 34639,
+    "val": 9
+  },
+  "sampling_population": {
+    "clear": 35815,
+    "flagged": 11162,
+    "total": 46977,
+    "pilot_excluded": 100
+  },
+  "sample": {
+    "total": 100,
+    "clear": 50,
+    "flagged": 50,
+    "final_findings": {
+      "random_clear": {
+        "acceptable": 49,
+        "error": 1
+      },
+      "random_flagged": {
+        "error": 39,
+        "acceptable": 9,
+        "uncertain": 2
+      }
+    },
+    "blind_findings": {
+      "random_clear": {
+        "acceptable": 49,
+        "error": 1
+      },
+      "random_flagged": {
+        "error": 38,
+        "acceptable": 10,
+        "uncertain": 2
+      }
+    }
+  },
+  "flagged_with_confirmed_useful_detection": {
+    "count": 38,
+    "total": 50,
+    "rate": 0.76,
+    "wilson_95": [
+      0.6258731624205708,
+      0.8570260860300828
+    ]
+  },
+  "clear_with_missed_error": {
+    "count": 1,
+    "total": 50,
+    "rate": 0.02,
+    "wilson_95": [
+      0.003539259271646236,
+      0.10495443589637815
+    ]
+  },
+  "issue_detection_counts": {
+    "confirmed": 47,
+    "not_demonstrated": 9,
+    "unresolved": 7
+  },
+  "correction_review_counts": {
+    "minimal_edit": 27,
+    "no_change": 9,
+    "context_review": 8,
+    "source_review": 9,
+    "requires_rewrite": 9,
+    "unsafe_replacement": 1
+  },
+  "weighted_confirmed_detection": {
+    "rate_among_received_bulk": 0.18058028396875067,
+    "estimated_cases": 8483.12,
+    "sampling_interval_cases": [
+      6985.996238938411,
+      9566.125172267784
+    ],
+    "interpretation": "Cases with at least one useful warning, NOT fully corrected cases or training improvement."
+  },
+  "limitations": [
+    "Only received bulk results; queue ordering is not random across train/test/val or the unprocessed remainder.",
+    "Assistant review, not an independent human gold standard; blind initial judgments are preserved separately.",
+    "Initial blind token display omitted morphology; case 11 was corrected after API reveal. Post-reveal adjudications are explicit.",
+    "Wilson intervals describe random-sampling uncertainty, not reviewer error or correlated dialogue phenomena.",
+    "No inference about trained-model accuracy, complete error recall, or publication safety.",
+    "Minimal-edit proposals still require compilation and validation. No repairs or publication in this evaluation."
+  ],
+  "api_calls": 0,
+  "publication": false,
+  "review_sha256": "03f05bdc9aeedde8578d45670f0aec086c506662cc5c8e9c9303d47f17b84879"
+}

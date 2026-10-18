@@ -1,0 +1,653 @@
+{
+  "method": "explicit_user_authorized_unanswered_replay",
+  "retries": [
+    {
+      "parent_job": 16429,
+      "child_job": 23978,
+      "request_sha256": "99968ffe5f3b966049b6f5d00e18499b0177cdce97c740cddcdf86f74523f405",
+      "status": "valid",
+      "returned_cases": 20,
+      "charge_usd": 0.002301,
+      "seconds": 28.248,
+      "parent_reserve_usd": 0.0147295
+    },
+    {
+      "parent_job": 16431,
+      "child_job": 23979,
+      "request_sha256": "5742a371713ecea656d1d75baff92667d2de42a55031e920f76dc4fdd0336066",
+      "status": "valid",
+      "returned_cases": 20,
+      "charge_usd": 0.003712,
+      "seconds": 42.486,
+      "parent_reserve_usd": 0.0172105
+    }
+  ],
+  "charge_usd": 0.006013,
+  "background_run": {
+    "launched_at": "2026-10-13T17:18:48.5574142Z",
+    "stdout": "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-luna-medium-bank-v2\\bulk-20261013-201848.stdout.log",
+    "request_limit": null,
+    "shared_budget_usd": 50,
+    "retries": [
+      23978,
+      23979
+    ],
+    "python": "C:\\Users\\APodoba\\AppData\\Local\\Programs\\Python\\Python310\\python.exe",
+    "stderr": "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-luna-medium-bank-v2\\bulk-20261013-201848.stderr.log",
+    "arguments": [
+      "-u",
+      "-B",
+      "scripts/review_dailydialog_bank_api.py",
+      "run",
+      "--out",
+      "artifacts/dailydialog-luna-medium-bank-v2",
+      "--phase",
+      "bulk",
+      "--workers",
+      "2",
+      "--interval",
+      "3",
+      "--skip-unresolved"
+    ],
+    "pid": 39048
+  },
+  "snapshot": {
+    "jobs": {
+      "invalid": 24,
+      "partial": 29,
+      "pending": 5993,
+      "transport_error": 23,
+      "valid": 1947
+    },
+    "cases": {
+      "invalid": 480,
+      "partial": 580,
+      "pending": 119859,
+      "transport_error": 120,
+      "valid": 38840
+    },
+    "api_verdicts": {
+      "clear": 30061,
+      "issues": 9027,
+      "uncertain": 298
+    },
+    "returned_cases": 39386,
+    "missing_attempted_cases": 514,
+    "accounted_exposure_usd": 6.459443,
+    "publication": false,
+    "authorized_retries": [
+      {
+        "parent_job": 16429,
+        "child_job": 23978,
+        "status": "valid"
+      },
+      {
+        "parent_job": 16431,
+        "child_job": 23979,
+        "status": "valid"
+      },
+      {
+        "parent_job": 16454,
+        "child_job": 23980,
+        "status": "valid"
+      },
+      {
+        "parent_job": 16459,
+        "child_job": 23981,
+        "status": "valid"
+      },
+      {
+        "parent_job": 16531,
+        "child_job": 23982,
+        "status": "valid"
+      },
+      {
+        "parent_job": 16551,
+        "child_job": 23983,
+        "status": "valid"
+      },
+      {
+        "parent_job": 16553,
+        "child_job": 23984,
+        "status": "valid"
+      },
+      {
+        "parent_job": 16554,
+        "child_job": 23985,
+        "status": "valid"
+      },
+      {
+        "parent_job": 16579,
+        "child_job": 23986,
+        "status": "valid"
+      },
+      {
+        "parent_job": 16720,
+        "child_job": 23987,
+        "status": "transport_error"
+      },
+      {
+        "parent_job": 16774,
+        "child_job": 23988,
+        "status": "valid"
+      },
+      {
+        "parent_job": 17141,
+        "child_job": 23989,
+        "status": "transport_error"
+      },
+      {
+        "parent_job": 17328,
+        "child_job": 23990,
+        "status": "valid"
+      },
+      {
+        "parent_job": 17397,
+        "child_job": 23991,
+        "status": "transport_error"
+      },
+      {
+        "parent_job": 17597,
+        "child_job": 23992,
+        "status": "transport_error"
+      },
+      {
+        "parent_job": 17983,
+        "child_job": 23993,
+        "status": "transport_error"
+      },
+      {
+        "parent_job": 17984,
+        "child_job": 23994,
+        "status": "transport_error"
+      }
+    ]
+  },
+  "tests_passed": 68,
+  "protected_files_unchanged": 9,
+  "publication": false,
+  "retry_after_metadata_failure": {
+    "parent_job": 16454,
+    "child_job": 23980,
+    "returned_cases": 20,
+    "charge_usd": 0.002282,
+    "seconds": 29.31,
+    "request_sha256": "1fdfa4288161b2a599a07dc6b6bd0d9ce3512a95a65170895db1713bc5168695",
+    "status": "valid"
+  },
+  "initial_retry_charge_usd": 0.006013,
+  "all_retry_charge_usd": 0.026835,
+  "active_background": {
+    "restart_reason": "User-authorized restart; usage probe succeeded after startup timeout; one worker and five-second pause",
+    "launched_at": "2026-10-14T09:54:24.3923962Z",
+    "queued_retry": 23994,
+    "stdout": "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-luna-medium-bank-v2\\bulk-20261014-125424.stdout.log",
+    "request_limit": null,
+    "shared_budget_usd": 50,
+    "previous_pid": 50136,
+    "python": "C:\\Users\\APodoba\\AppData\\Local\\Programs\\Python\\Python310\\python.exe",
+    "stderr": "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-luna-medium-bank-v2\\bulk-20261014-125424.stderr.log",
+    "arguments": [
+      "-u",
+      "-B",
+      "scripts/review_dailydialog_bank_api.py",
+      "run",
+      "--out",
+      "artifacts/dailydialog-luna-medium-bank-v2",
+      "--phase",
+      "bulk",
+      "--workers",
+      "1",
+      "--interval",
+      "5",
+      "--skip-unresolved",
+      "--retry-transient"
+    ],
+    "pid": 35668
+  },
+  "retry_after_gateway_timeout": {
+    "parent_job": 16459,
+    "child_job": 23981,
+    "returned_cases": 20,
+    "request_sha256": "a36c72dc0a41849c8d76c6abc3a74382477bd2a8408166598fe8738f8b944d0d",
+    "charge_usd": 0.001587,
+    "seconds": 27.891,
+    "status": "valid",
+    "original_error": "{\"http_status\":504,\"codes\":[],\"retry_after_seconds\":null,\"kind\":\"unknown\",\"body_sha256\":\"12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126\"}"
+  },
+  "retry_after_client_timeout": {
+    "parent_job": 16531,
+    "child_job": 23982,
+    "returned_cases": 20,
+    "request_sha256": "aaaadccb05263ebccdb87e6d6094c37e08035a31759c181fe5fefd01bdff9a3e",
+    "charge_usd": 0.002238,
+    "seconds": 35.717,
+    "status": "valid",
+    "original_error": "TimeoutError",
+    "original_seconds": 201.104,
+    "parent_reserve_usd": 0.0165985
+  },
+  "transient_retry_policy": {
+    "flag": "--retry-transient",
+    "model_batch_sentences": 20,
+    "workers": 2,
+    "interval_seconds": 3,
+    "max_retries_per_request": 1,
+    "retry_errors": [
+      "TimeoutError",
+      "ConnectionResetError",
+      "HTTP 502",
+      "HTTP 503",
+      "HTTP 504",
+      "HTTP 400 with code upstream_request_failed (quota errors excluded)"
+    ],
+    "backoff_seconds": [
+      60,
+      120,
+      240,
+      300
+    ],
+    "jitter_seconds": [
+      0,
+      5
+    ],
+    "retry_after_respected": true,
+    "stop_after_transient_errors": 3,
+    "error_window_seconds": 600,
+    "quota_and_unknown_errors_stop": true,
+    "shared_budget_usd": 50,
+    "original_attempts_and_reserves_preserved": true,
+    "frozen_plan_unchanged": true,
+    "runtime_policy_recorded_in_state_runs": true
+  },
+  "snapshot_time": 1791971732.886175,
+  "retry_after_upstream_request_failure": {
+    "parent_job": 16551,
+    "child_job": 23983,
+    "returned_cases": 20,
+    "request_sha256": "3357ed81addfe5903d50d88ca0f606f99c30b581d7f6fd6b237ca980051349f4",
+    "charge_usd": 0.00248,
+    "seconds": 27.936,
+    "status": "valid",
+    "original_error": {
+      "http_status": 400,
+      "codes": [
+        "upstream_request_failed"
+      ],
+      "retry_after_seconds": null,
+      "kind": "unknown",
+      "body_sha256": "9abf748401d8d3fa49aa556b646a4563f4e35aedd0c1931ac49056de646c97f7"
+    },
+    "original_seconds": 3.82,
+    "parent_reserve_usd": 0.01514075,
+    "request_unchanged": true,
+    "root_cause": "unknown; identical request succeeded on authorized replay"
+  },
+  "protected_files_changed_since_freeze": [
+    "data/dailydialog/filtered/dailydialog-train.jsonl"
+  ],
+  "frozen_train_context_check": {
+    "checked": 10618,
+    "changed_dialogues": [],
+    "source_not_modified_by_this_recovery": true
+  },
+  "retry_after_access_denial": {
+    "parent_job": 17328,
+    "child_job": 23990,
+    "status": "valid",
+    "returned_cases": 20,
+    "seconds": 37.841,
+    "charge_usd": 0.003731,
+    "request_unchanged": true,
+    "original_error": {
+      "http_status": 403,
+      "codes": [],
+      "retry_after_seconds": null,
+      "kind": "unknown",
+      "body_sha256": "3b5e6007bc244435db533cafe2d65a6317ff60a434dd43e3ef8791a23373a678"
+    },
+    "parent_reserve_usd": 0.01730925,
+    "request_sha256": "ca570d0db5f8cbd189edd6f173302012f2e525e54a914012e8f56298b276a6dd"
+  },
+  "access_diagnostic_20261014": {
+    "checked_at": "2026-10-14T01:02:02.305187+00:00",
+    "endpoint": "/usage",
+    "model_calls": 1,
+    "http_status": 200,
+    "usage": {
+      "consumer": "podoba",
+      "charged_usd": 64.596707,
+      "available_usd": 914.385167,
+      "inference_reserved_usd": 1.018126,
+      "unresolved_requests": 8,
+      "stopped": false
+    },
+    "model_probe": {
+      "parent_job": 17328,
+      "child_job": 23990,
+      "status": "valid",
+      "returned_cases": 20,
+      "seconds": 37.841,
+      "charge_usd": 0.003731,
+      "request_unchanged": true
+    },
+    "root_cause": "Unknown: old HTTP 403 retained no explanatory message. Access to usage and identical model request now succeeds; no automatic retry of 403 enabled.",
+    "tests_passed": 67
+  },
+  "missing_completed_attempts": [
+    {
+      "status": "invalid",
+      "cases": 480
+    },
+    {
+      "status": "partial",
+      "cases": 34
+    },
+    {
+      "status": "transport_error",
+      "cases": 120
+    }
+  ],
+  "latest_restart": {
+    "after": "three transient failures within ten minutes",
+    "workers": 1,
+    "interval_seconds": 5,
+    "batch_sentences": 20,
+    "pending_retry_result": {
+      "id": 23994,
+      "status": "transport_error",
+      "error": "{\"http_status\":400,\"codes\":[\"upstream_request_failed\"],\"retry_after_seconds\":null,\"kind\":\"transient\",\"body_sha256\":\"e9a9d4779a0cb3d5740d0f7470e5519ac09f32e77806ac14d9f883aba2710eb3\",\"body_format\":\"json\",\"message_excerpt\":null}",
+      "seconds": 1.962
+    },
+    "startup_usage_timeout": true,
+    "usage_probe": {
+      "ok": true,
+      "http_status": 200,
+      "seconds": 2.526,
+      "consumer": "podoba",
+      "stopped": false,
+      "available_usd": 912.332949,
+      "charged_usd": 66.521319,
+      "model_calls": 0
+    },
+    "further_replay_of_failed_child": false,
+    "confirmed_new_result": {
+      "job": 17985,
+      "status": "valid",
+      "returned_cases": 20,
+      "seconds": 48.765,
+      "total_results": 39406,
+      "confirmed_at": 1791971803.9303741
+    }
+  },
+  "upstream_failure_diagnostic_20261014": {
+    "checked_at": "2026-10-14T11:28:51.062920+00:00",
+    "root_cause": "Unknown: gateway omits provider error details; no server log access.",
+    "http_400_original_jobs": 9,
+    "successful_unchanged_retries": 1,
+    "failed_retries": 8,
+    "failed_repeat_cases": 160,
+    "roots": [
+      {
+        "job": 16551,
+        "retry": 23983,
+        "retry_status": "valid",
+        "seconds": 3.82,
+        "dialogues": [
+          "test:891",
+          "test:892",
+          "test:893"
+        ]
+      },
+      {
+        "job": 16720,
+        "retry": 23987,
+        "retry_status": "transport_error",
+        "seconds": 3.518,
+        "dialogues": [
+          "train:10140",
+          "train:10141"
+        ]
+      },
+      {
+        "job": 17141,
+        "retry": 23989,
+        "retry_status": "transport_error",
+        "seconds": 1.657,
+        "dialogues": [
+          "train:1073",
+          "train:10740"
+        ]
+      },
+      {
+        "job": 17397,
+        "retry": 23991,
+        "retry_status": "transport_error",
+        "seconds": 1.589,
+        "dialogues": [
+          "train:11083",
+          "train:11084"
+        ]
+      },
+      {
+        "job": 17597,
+        "retry": 23992,
+        "retry_status": "transport_error",
+        "seconds": 3.761,
+        "dialogues": [
+          "train:1376",
+          "train:1377",
+          "train:1378",
+          "train:1379"
+        ]
+      },
+      {
+        "job": 17983,
+        "retry": 23993,
+        "retry_status": "transport_error",
+        "seconds": 1.67,
+        "dialogues": [
+          "train:2004",
+          "train:2005"
+        ]
+      },
+      {
+        "job": 17984,
+        "retry": 23994,
+        "retry_status": "transport_error",
+        "seconds": 1.669,
+        "dialogues": [
+          "train:2005",
+          "train:2006"
+        ]
+      },
+      {
+        "job": 18054,
+        "retry": 23995,
+        "retry_status": "transport_error",
+        "seconds": 1.503,
+        "dialogues": [
+          "train:2128",
+          "train:2129"
+        ]
+      },
+      {
+        "job": 18055,
+        "retry": 23996,
+        "retry_status": "transport_error",
+        "seconds": 1.572,
+        "dialogues": [
+          "train:2129",
+          "train:2130",
+          "train:2131"
+        ]
+      }
+    ],
+    "context_correlations": [
+      {
+        "jobs": [
+          17983,
+          17984
+        ],
+        "shared_dialogue": "train:2005",
+        "neighboring_successes": [
+          17982,
+          17985
+        ]
+      },
+      {
+        "jobs": [
+          18054,
+          18055
+        ],
+        "shared_dialogue": "train:2129",
+        "neighboring_successes": [
+          18053,
+          18056
+        ]
+      }
+    ],
+    "inference": "Observed errors cluster around shared dialogue content; input-dependent rejection is plausible. Content filtering is not confirmed.",
+    "neighboring_request_settings_identical": true,
+    "control": {
+      "id": 18056,
+      "status": "valid",
+      "seconds": 39.577,
+      "charge": 0.003053,
+      "sha256": "7a37ea7fbe2c6a78bcb1744f1dd7959443cee176b27356abbe86469aba01ad70",
+      "returned_cases": 20
+    },
+    "control_startup_usage_timeout": true,
+    "gateway_usage": {
+      "charged_usd": 66.736182,
+      "available_usd": 912.03018,
+      "inference_reserved_usd": 1.233638,
+      "unresolved_requests": 20,
+      "completed_requests": 3430,
+      "stopped": false,
+      "month": "2026-10"
+    },
+    "rate_limit_evidence": "No 429, Retry-After or quota code on these HTTP 400 responses. Successful control rules out a continuously exhausted hard request quota at this check; transient or hidden provider limits remain possible.",
+    "circuit_breaker": "Counts failed attempts, including retries: jobs 18054, 23995 and 18055 caused the latest bulk stop. This is two distinct input batches, not three.",
+    "gateway_error_fields": [
+      "code",
+      "request_id",
+      "reservation_retained"
+    ],
+    "diagnostic_change": "Future HTTP errors retain a validated non-secret gateway_request_id and boolean reservation_retained; active API key remains redacted.",
+    "captured_request_id_available": false,
+    "tests_passed": 69,
+    "returned_cases": 40766,
+    "remaining_cases": 119113,
+    "missing_queue_cases": 694,
+    "background_running": false,
+    "publication": false,
+    "next_bulk_budget_authorized_usd": 100,
+    "current_frozen_budget_usd": 50,
+    "recommendation": "Continue other pending batches with bounded retries and retain the eight exhausted batches for separate review; do not repeatedly replay them or treat their cases as reviewed."
+  },
+  "resume_remaining_with_budget_100_20261014": {
+    "checked_at": 1791977625.8166897,
+    "pid": 32880,
+    "workers": 1,
+    "interval_seconds": 5,
+    "batch_sentences": 20,
+    "total_stage_budget_usd": 100,
+    "budget_amendment": "artifacts\\dailydialog-luna-medium-bank-v2\\budget-amendment-50-to-100.json",
+    "baseline_reset": false,
+    "exhausted_retry_batches": 8,
+    "exhausted_retry_cases": 160,
+    "confirmed_new_result": {
+      "id": 18057,
+      "status": "valid",
+      "seconds": 24.163,
+      "charge": 0.002256,
+      "returned_cases": 20
+    },
+    "returned_cases_at_check": 40806,
+    "remaining_cases_at_check": 119073,
+    "stderr_empty": true,
+    "stdout": "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-luna-medium-bank-v2\\bulk-20261014-113223Z.stdout.log",
+    "stderr": "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-luna-medium-bank-v2\\bulk-20261014-113223Z.stderr.log",
+    "budget_tests_passed": 6,
+    "automatic_restart_after_circuit_breaker": false,
+    "publication": false
+  },
+  "network_recovery_with_accounting_retries_20261014": {
+    "checked_at": 1791988801.2494879,
+    "stopped_utc": "2026-10-14T13:05:32.223891+00:00",
+    "stopped_reason": "accounting check failed: URLError",
+    "failed_parent": 18174,
+    "failed_retry": 23999,
+    "exhausted_retry_cases": 180,
+    "connectivity_diagnostic": "artifacts\\dailydialog-luna-medium-bank-v2\\network-recovery-20261014.json",
+    "startup_timeout_pid": 44948,
+    "fix": "At most three attempts of read-only /usage on recognized transient errors; 15/30 second backoff, honor longer Retry-After; no new model calls until accounting succeeds.",
+    "tests_passed": 73,
+    "pid": 47456,
+    "shared_budget_usd": 100,
+    "workers": 1,
+    "interval_seconds": 5,
+    "batch_sentences": 20,
+    "confirmed_new_result": {
+      "id": 18175,
+      "status": "valid",
+      "seconds": 18.757,
+      "charge": 0.00195,
+      "returned_cases": 20
+    },
+    "returned_cases_at_check": 43142,
+    "remaining_cases_at_check": 116737,
+    "missing_queue_cases": 718,
+    "stderr_empty": true,
+    "publication": false
+  },
+  "webapp_stopped_20261014_evening": {
+    "checked_at": 1792002225.703862,
+    "stopped_utc": "2026-10-14T17:09:38.813711+00:00",
+    "reason": "Gateway /usage returned HTTP 403 with Azure Web App page: This web app is stopped. Independent availability probe still returns Site Disabled.",
+    "diagnostic": {
+      "checked_at": "2026-10-14T18:22:26.002571+00:00",
+      "endpoint": "/usage",
+      "model_calls": 0,
+      "prior_error": "HTTP 403: This web app is stopped",
+      "ok": false,
+      "seconds": 20.875,
+      "failure": {
+        "http_status": 403,
+        "codes": [],
+        "retry_after_seconds": null,
+        "kind": "unknown",
+        "body_sha256": "3b5e6007bc244435db533cafe2d65a6317ff60a434dd43e3ef8791a23373a678",
+        "body_format": "text",
+        "message_excerpt": "Web App - Unavailable html{height:100%;width:100%;}#feature{width:960px;margin:95px auto 0 auto;overflow:auto;}#content{font-family:\"Segoe UI\";font-weight:normal;font-size:22px;color:#fff;float:left;width:460px;margin-top:68px;margin-left:0px;vertical-align:middle;}#content h1{font-family:\"Segoe UI Light\";color:#fff;font-weight:normal;font-size:60px;line-height:48pt;width:800px;}p a,p a:visited,p a:active,p a:hover{color:#fff;} Error 403 - This web app is stopped. The web app you have attempted to reach is currently stopped and does not accept any requests. Please try to reload the page or vis",
+        "gateway_request_id": null,
+        "reservation_retained": null
+      },
+      "error_type": "HTTPError",
+      "reason_type": "str",
+      "errno": null,
+      "reason": "Site Disabled"
+    },
+    "last_successful_job": {
+      "id": 18375,
+      "status": "valid",
+      "seconds": 33.075,
+      "charge": 0.00312,
+      "returned_cases": 20
+    },
+    "returned_cases": 47077,
+    "remaining_cases": 112802,
+    "pending_jobs": 5602,
+    "missing_queue_cases": 763,
+    "exhausted_retry_cases": 200,
+    "last_account_delta_usd": 7.297668,
+    "last_inference_reserve_usd": 0.531041,
+    "shared_budget_usd": 100,
+    "background_running": false,
+    "restarted": false,
+    "publication": false,
+    "same_body_hash_as_prior_403": true,
+    "limitation": "The gateway page identifies a stopped web application, but not why it was stopped. Quota, maintenance or operator action cannot be distinguished locally."
+  }
+}

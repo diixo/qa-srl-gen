@@ -1,0 +1,1180 @@
+{
+  "version": "independent-quality-review-v37",
+  "size": 50,
+  "dialogues": 50,
+  "outcome_counts": {
+    "no_specific_parse_error_identified": 39,
+    "confirmed_annotation_error": 11
+  },
+  "corrected_occurrences": 11,
+  "context_only_outputs": 50,
+  "sentence_units": 35,
+  "fragment_units": 15,
+  "unknown_source_artifact_cases": [
+    5
+  ],
+  "source_text_changes": 0,
+  "source_character_changes": 0,
+  "retokenized_occurrences": 1,
+  "token_delta": 2,
+  "api_calls": 0,
+  "parser_inference_calls": 0,
+  "full_candidate_status": "UNREVIEWED",
+  "publication": false,
+  "scope": "One directly reviewed occurrence from each of fifty distinct dialogues, selected uniformly from 148053 eligible occurrences; not fifty fully reviewed dialogues. All original prefixes inspected before viewing automatic parses.",
+  "limitations": "One model reviewer, not human gold. Eleven occurrence-level annotation repairs are not a trained Extraction-model error rate. No error identified does not authorize generic QA or unreviewed corpus members.",
+  "frozen_plan_sha256": "201a4f72b165f810a19f84a9995c28e361606297ddc204da1ab14f9856ff771a",
+  "blind_readings_sha256": "04642b3a463325cb0a9e450e23b40ae7b4355a7b3b4bd711935c92038872436a",
+  "decisions": [
+    {
+      "case": 1,
+      "id": "train:9624:8:4",
+      "baseline_image_sha256": "da768f6155dca5603135895da3e056f1dff9b5a1b45879f49406787a04a021cd",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "necessity",
+        "event_status": "required_cancellation",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker says the dinner appointment needs to be cancelled to prioritize the doctor visit; cancellation is not reported as completed."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "a2cf4f3b03ddf385b3cccee3210722cfed45bfc736088416250806e58e5dbb7e"
+    },
+    {
+      "case": 2,
+      "id": "train:5591:8:1",
+      "baseline_image_sha256": "ccc9d1077e61f1afebe337adc5d31cf6b65fc7ec37a8e4da04733fb983dce3ca",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "commitment",
+        "event_status": "future_guided_visit",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker promises to take the listener to Li River after walking around the present area; neither activity is confirmed as completed."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "c3ab8a5ca503515a82cde4df702faf4ecb75f4ffec2251a1ba7fdba335fb839c"
+    },
+    {
+      "case": 3,
+      "id": "train:9970:2:2",
+      "baseline_image_sha256": "64c9f552f2d077283353fe1a6de419420f323614bdc35a84e3fa60a52723e0be",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "denial",
+        "event_status": "negated_category",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker says the listener is not a runner; this does not deny wanting running shoes."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "88961d12cf0ac971c470cf717d1cf3e01a6b1e183d1a77423bf1a41fdd5e0a5e"
+    },
+    {
+      "case": 4,
+      "id": "val:785:8:1",
+      "baseline_image_sha256": "7d02b18990ab670e79c96463da4ea72208171b2e17bd0e7e853e927f89b16602",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "acceptance",
+        "event_status": "intended_trial",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker agrees to try the Oolong tea just identified by the listener; drinking or tasting is not confirmed."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "4b2e1db1bb6bb7d5e225d41004097497c0f9be3a5d57ff686535cc844e962e54"
+    },
+    {
+      "case": 5,
+      "id": "train:660:3:2",
+      "baseline_image_sha256": "a4f6626253f21ab589545b01073231cca6b9a36bcf0d2d8a2464a903630ccbcf",
+      "outcome": "confirmed_annotation_error",
+      "reason": "The isolated 5 is not an established cookout quantity. Mark its attachment unresolved, and attach for new professors / at the home to the cookout. Preserve every original character and the unknown digit role.",
+      "annotation_edits": {
+        "7": {
+          "dep": "dep"
+        },
+        "8": {
+          "head": 6
+        },
+        "11": {
+          "head": 6
+        }
+      },
+      "meaning": {
+        "speech_act": "report",
+        "event_status": "past_attendance",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "The speaker reports going to a cookout for new professors at Dean Barksdale's home last week. The isolated 5 appears extraneous and has no established semantic role."
+        },
+        "unknown": [
+          "The role of the isolated digit 5 is unknown; it is not a quantity of people or cookouts."
+        ]
+      },
+      "unknowns_retained": [
+        "The role of the isolated digit 5 is unknown; it is not a quantity of people or cookouts."
+      ],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "9830aaa64c963e00e57e3619c92960428d0b73b07e05184449b4cd5e6c3d2386"
+    },
+    {
+      "case": 6,
+      "id": "train:8824:6:1",
+      "baseline_image_sha256": "18d1c8504ab4203960beb9a880c84d00031815c48193b62585f94e72e82f3bf3",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "insistence",
+        "event_status": "elliptical_obligation",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The doctor insists that the listener must slow down; I am afraid softens the unwelcome advice rather than reporting fear. Slowing down is not confirmed."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "f5c4c7b6cf89068cb324ddf54f19bf6112256793d5f940f42947d21bb309988d"
+    },
+    {
+      "case": 7,
+      "id": "train:2157:12:2",
+      "baseline_image_sha256": "167cf6bbd7a71e57194c7aa48f6828e1a988738bd41b88645c50aa46e5e86279",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "statement",
+        "event_status": "acquaintance",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker says they know Mary, supporting their assessment of her decisiveness; this does not assert a new meeting."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "fe3abab197c4ec99d037a68875a089ff91e51763722a10e43702d28aa19ae397"
+    },
+    {
+      "case": 8,
+      "id": "train:998:3:3",
+      "baseline_image_sha256": "77d09ae7fb174a904090141999ccff1aaf2d889ac1c12b53d01e0859b8f4b1ac",
+      "outcome": "confirmed_annotation_error",
+      "reason": "Now scopes the current office-clerk occupation rather than the parenthetical you see.",
+      "annotation_edits": {
+        "1": {
+          "head": 6
+        }
+      },
+      "meaning": {
+        "speech_act": "self_description",
+        "event_status": "current_occupation",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker contrasts a childhood aspiration with their current job as an ordinary office clerk; you see is a discourse marker."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "f33e7b6d15ddd724dfa889d10bc1aaeeab86a510f2aaa06c17dc4273fc64647d"
+    },
+    {
+      "case": 9,
+      "id": "train:7730:12:1",
+      "baseline_image_sha256": "4f4a6906a3a06f44dedb09cd980f769e67ad3f074cb4bbbd1397e64dc93c16a8",
+      "outcome": "confirmed_annotation_error",
+      "reason": "Best modifies the preference like, not the cooking method.",
+      "annotation_edits": {
+        "12": {
+          "head": 3
+        }
+      },
+      "meaning": {
+        "speech_act": "preference",
+        "event_status": "favored_food",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker says fish cooked in sweet and sour sauce is their favorite; the sentence does not report a new cooking action."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "f2802dfdbef70e552a4fc568de220f57da6ecacb78f163c6a43dab3c730ea680"
+    },
+    {
+      "case": 10,
+      "id": "test:459:4:2",
+      "baseline_image_sha256": "dbcff1ddce983c88488dbf0da7775e7884b944c0b772d13a39a611813c1b600d",
+      "outcome": "confirmed_annotation_error",
+      "reason": "Put in means install here; in is a particle and carpeting is the direct object, not the object of a location preposition. Worn-out condition and desired installation remain separate.",
+      "annotation_edits": {
+        "16": {
+          "dep": "prt",
+          "tag": "RP"
+        },
+        "23": {
+          "dep": "dobj",
+          "head": 15
+        }
+      },
+      "meaning": {
+        "speech_act": "description_and_desire",
+        "event_status": "condition_and_desired_replacement",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The living-room carpet is described as worn out and the speaker wants to install new wall-to-wall carpeting; installation is not confirmed."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "6e700f04f372af7dbc858b20b64c5797e6f06c3e462e60b23a95079b86114d0b"
+    },
+    {
+      "case": 11,
+      "id": "train:5449:3:1",
+      "baseline_image_sha256": "67fb6cda2a795394f5ad938defe25078f026e7a3dc010da632d37e617e994d15",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "offer",
+        "event_status": "conditional_offer_of_help",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker offers assistance and asks to be told if help is needed; no particular assistance has been performed."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "d378965196e7281709b333f5b5b12792405a0117836823e69e63958a2e8875cb"
+    },
+    {
+      "case": 12,
+      "id": "train:1211:15:3",
+      "baseline_image_sha256": "0f746a5101edd7fba26222ccb68d90fd496690b53de7f7aacdd8debce0a8c215",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "proposal",
+        "event_status": "suggested_departure",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker proposes going to see the film just discussed; departure and viewing are not confirmed."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "3ec755cd8c814437736b02a59cc6807d77b2727c87ca34061d18d317baaf833f"
+    },
+    {
+      "case": 13,
+      "id": "train:10530:3:1",
+      "baseline_image_sha256": "f97a9f2f94e0fd0985d9de4f6e56c23596a6f96227e06f07f717fda88d2dd7ee",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "report",
+        "event_status": "anthem_completed_game_started",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "The speaker reports that the anthem has just been sung and the umpire has started the game; completion concerns the anthem, not the game."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "e9631af44d4b33762a0106cd82c89d0200e257ea221d933d5aa7e800942f0b40"
+    },
+    {
+      "case": 14,
+      "id": "train:5575:1:2",
+      "baseline_image_sha256": "18f1eeabfb865dd7e9c4be43a278a018c4f6055d58e5bfbb7c7fe545273559e5",
+      "outcome": "confirmed_annotation_error",
+      "reason": "Pull over is an independent request coordinated by juxtaposition with the purchase intention, not a subordinate event claimed to have occurred.",
+      "annotation_edits": {
+        "0": {
+          "dep": "parataxis"
+        }
+      },
+      "meaning": {
+        "speech_act": "request_and_intention",
+        "event_status": "requested_stop_planned_purchase",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker asks the driver to pull over at the indicated store and intends to buy drinks; neither stopping nor buying is confirmed."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "3eee76a2e53e90a297d791eb9e4dbfdfd1abc8b54b321657c649b5f60ea93d3d"
+    },
+    {
+      "case": 15,
+      "id": "train:2357:5:1",
+      "baseline_image_sha256": "371d52ef0522762f6044cad301b4b441013beaa6782cb1f17f6207b535304b13",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "confirmation_question",
+        "event_status": "surprised_inquiry",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker reacts with surprise and asks for confirmation about George having problems; the reaction is not independent verification."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "c5e07cece54969c8629ab433ba9bd7c62e64d844f032cbe7b7df895c0c8c629f"
+    },
+    {
+      "case": 16,
+      "id": "train:711:4:2",
+      "baseline_image_sha256": "fb7161ebab7047cdbce93c631bff105095fdd84ed1cf5c6eba25934ff468e588",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "description",
+        "event_status": "elliptical_ongoing_viewing",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker says they are watching the sports highlight on ESPN now; the activity is ongoing, not completed."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "e569f95621aaa1aed22dfe269e3ce2b6ad77f58b3b327750294922e28cfd71bb"
+    },
+    {
+      "case": 17,
+      "id": "train:1683:9:2",
+      "baseline_image_sha256": "03468a101e2d501033b436f828e58da3d37040ed9d0a24d00a3bca1411fd6506",
+      "outcome": "confirmed_annotation_error",
+      "reason": "In touch is a prepositional complement in the contact idiom; keep in is not the lexical particle unit here.",
+      "annotation_edits": {
+        "3": {
+          "dep": "prep",
+          "tag": "IN"
+        },
+        "4": {
+          "dep": "pobj",
+          "head": 3
+        }
+      },
+      "meaning": {
+        "speech_act": "question",
+        "event_status": "contact_query",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker asks whether the step-brother stays in contact with his mother; no ongoing contact is confirmed."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "fdbb98fbfc6c0d941f57ed0a68b58179ae0430fb058e0bf33dda09b64556cd1c"
+    },
+    {
+      "case": 18,
+      "id": "train:6754:2:1",
+      "baseline_image_sha256": "4f2aaad1c6ecfb41105c1276c2ba9643cd1d368499e83cc0a1afcd174524e0ad",
+      "outcome": "confirmed_annotation_error",
+      "reason": "Certainly expresses acceptance; Mr. Baker is the addressee, not the head of a referential noun phrase modified by certainly.",
+      "annotation_edits": {
+        "0": {
+          "dep": "ROOT",
+          "head": 0
+        },
+        "1": {
+          "head": 0
+        },
+        "3": {
+          "dep": "vocative",
+          "head": 0
+        },
+        "4": {
+          "head": 0
+        }
+      },
+      "meaning": {
+        "speech_act": "acceptance",
+        "event_status": "accepted_request",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker agrees to Mr. Baker's request to type the report; the typing is not confirmed as completed."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "27dc4255fb40a060d7ee98d6d56ba426d215dd253cc72f11ab91f3f9d507bd88"
+    },
+    {
+      "case": 19,
+      "id": "val:380:13:1",
+      "baseline_image_sha256": "f7960e88adb4fc5ccb1339bf78ac61ae63f0034f384408995b8cf20192232cc9",
+      "outcome": "confirmed_annotation_error",
+      "reason": "Split the merged months'trial token into months, apostrophe and trial without adding spaces or changing the original text; duration modifies trial rather than being embedded in a novel noun lemma.",
+      "annotation_edits": {
+        "6": {
+          "head": 10
+        },
+        "8": {
+          "text": "months",
+          "parser_lemma": "month",
+          "pos": "NOUN",
+          "tag": "NNS",
+          "dep": "poss",
+          "head": 10,
+          "morph": "Number=Plur"
+        }
+      },
+      "meaning": {
+        "speech_act": "intention",
+        "event_status": "tentative_trial_offer",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The employer tentatively intends to give the applicant a three-month trial; the offer is prospective and no trial period has been completed."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "03912d815a1efa1d7d9746bddab64e23dca23c65806c24f64ac198e4d9b86b8d"
+    },
+    {
+      "case": 20,
+      "id": "train:1859:3:3",
+      "baseline_image_sha256": "ac860b597638a9d815799e0caff6cf378918b55c41a537a1220cbfbf7585f7ba",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "complaint",
+        "event_status": "negative_tolerance",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker doubts being able to tolerate the disappointing accommodation for two weeks; stand is endure, not stand upright."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "70ec4e0852229a32cef04382175da123bb4b5f03119116f26d136214c8918d66"
+    },
+    {
+      "case": 21,
+      "id": "train:8245:5:2",
+      "baseline_image_sha256": "5b19ebce99dab942a48a8c723dee9ed706e255ad4df8dca52c385a470f089d01",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "report",
+        "event_status": "involuntary_falling_asleep",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "The speaker reports being unable to avoid falling asleep during the opera; could not help is an idiom, not refusal to assist."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "3cc01e6879b332f81daa1308f91c3f20186008b27ca91da51b65a6dc557d2700"
+    },
+    {
+      "case": 22,
+      "id": "train:3818:5:1",
+      "baseline_image_sha256": "774674a55dd7443a2beabfe04e22728af4890ce48028dcd34f3a613701c11646",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "lack_of_knowledge",
+        "event_status": "unknown_bookstore_location",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker does not know the location of the bookstore; this does not deny the bookstore's existence."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "2d4bb2c6a65c695e7f2c3f0cb9bdf917fad73a35b0cc39551e8d9f03da562fe9"
+    },
+    {
+      "case": 23,
+      "id": "train:10423:7:4",
+      "baseline_image_sha256": "49964852acaef2b400a0a8b93f77db93e15ffc468420b812e5bb3436f80555c8",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "commitment",
+        "event_status": "future_delivery",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The server promises to bring the fries out in two minutes; delivery and readiness are not reported as completed."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "179018c8a445c9bb8732eb0a5aae9a8ec48e17700c738a1c92a007024bc4eb36"
+    },
+    {
+      "case": 24,
+      "id": "train:6552:8:3",
+      "baseline_image_sha256": "39d3e071622f857d0c430a20636981f8ef767046d7f66a45dd9297c16fe69e24",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "question",
+        "event_status": "emergency_contact_query",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker asks who serves as the visitor's emergency contact in America; no identity is supplied."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "a90fd27ee05b5e450a01dbb77aef04100fbb62eadd9560e915540f3647b18ba5"
+    },
+    {
+      "case": 25,
+      "id": "test:380:3:2",
+      "baseline_image_sha256": "f3eba12ffb32096ab077b79d818a7345f21d413cd0830250d2a40a99dd856015",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "offer",
+        "event_status": "alternative_order",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The employee offers a large pizza instead of the requested medium pizza; acceptance and purchase are not confirmed."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "77e7df4e0b5c34b68641b9c106cad7e100ac575d5fd1bed5ae6f2c6f1ba61511"
+    },
+    {
+      "case": 26,
+      "id": "train:1591:6:1",
+      "baseline_image_sha256": "964c243f1f68e9fc3626c8b8ce4c0b3d77e4d77db5baf65ff82f119a817d7aa0",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "correction",
+        "event_status": "reported_meeting_place",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "The speaker corrects the proposed meeting place: they met their husband at university, not at work."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "62af8dff83a0292f1b3a8276f7c631f1a9c589f822ff08f824a74e4dd9b4e42c"
+    },
+    {
+      "case": 27,
+      "id": "train:4120:5:1",
+      "baseline_image_sha256": "3a94539f22fb195f4d21a129f71366eb2f89d279037394b7435eae0547e8517e",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "explanation",
+        "event_status": "elliptical_purpose",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker gives passing time and making new friends as reasons for going to bars; killing time is idiomatic, and no killing or successful friendship formation is reported."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "ae4f64438868e897fabee677a54a4be052c625bc388d152ff5d6fba23b9be1ea"
+    },
+    {
+      "case": 28,
+      "id": "train:505:4:3",
+      "baseline_image_sha256": "65a175693263840110e739f81d23c628748a2dd340cd6ddc8e85dc670924ac66",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "report",
+        "event_status": "effort_with_limited_progress",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "The speaker reports spending months trying to learn more Chinese and making little progress; trying does not establish mastery."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "844a30a471d9231a35cb72da279b828817881ebb1c22298f0d2527bb7ca335d2"
+    },
+    {
+      "case": 29,
+      "id": "test:394:1:1",
+      "baseline_image_sha256": "cf92934f917e55300bf29a5dcbcf113365df33b333c9862e13cb8b712512ce34",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "suggestion",
+        "event_status": "proposed_employment",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker suggests coming to work at their company; the negative question form is an invitation, not denial of employment or a completed move."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "eb22d164d9ed1faf806e3d8f7fae9b7c6700a382fc1350c2a259a7ea11d44912"
+    },
+    {
+      "case": 30,
+      "id": "train:4606:5:2",
+      "baseline_image_sha256": "be8dd93d0d56e43b0059bce47d7041aad9f7760771a7d3d3dddaeb8be00f7f42",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "followup_question",
+        "event_status": "elliptical_colleague_evaluation",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker proposes Bob as another example in the discussion of an ideal colleague and asks about him; the fragment alone does not assert that he is perfect."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "6ffd53d6d65708472f18c4139898d619bc70e439478dd3094bf29b7f282b8ba0"
+    },
+    {
+      "case": 31,
+      "id": "train:4915:9:1",
+      "baseline_image_sha256": "a02612e9f06ca981910c2d2daf9b7228a4f08b7fa9bc8c563a9b6e06df5165e9",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "possibility",
+        "event_status": "possible_advice_request",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker says they can ask Mr. Locker for stock-market advice; asking and receiving advice have not been confirmed."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "f0bf2823752d9831f84d7059dbf13e67301c5ffe9825437124a9175cb36ba828"
+    },
+    {
+      "case": 32,
+      "id": "train:946:3:2",
+      "baseline_image_sha256": "c03ffb7d4bfdfb4f6d7cf0567dd8169581102d5fb9bd4b355bb4315c340b6f2b",
+      "outcome": "confirmed_annotation_error",
+      "reason": "Who is the fronted object of with in in love with, not a copular identifying attribute.",
+      "annotation_edits": {
+        "2": {
+          "dep": "pobj",
+          "head": 7
+        }
+      },
+      "meaning": {
+        "speech_act": "question",
+        "event_status": "romantic_interest_query",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker asks whether the listener knows the person Joe is in love with; the identity and reciprocity of the love remain unspecified."
+        },
+        "unknown": [
+          "The romantic interest is not identified."
+        ]
+      },
+      "unknowns_retained": [
+        "The romantic interest is not identified."
+      ],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "500fcf2879f9a1394c1e11c7598025dcf6336649045bc7748ffc384e2c59dff4"
+    },
+    {
+      "case": 33,
+      "id": "train:5237:6:1",
+      "baseline_image_sha256": "019320b5795bd3ff83f9d43b23c9bdd8d58ecbb8c238b6e4e9133a4954394212",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "description",
+        "event_status": "facility_location",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker reports that a computer lab is available on the first floor; no visit or computer use is reported."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "c2d2e45f24bf21ca81619a9824a37296edff3fa1729ce8851062c85c97cc2707"
+    },
+    {
+      "case": 34,
+      "id": "train:7750:5:1",
+      "baseline_image_sha256": "9df818ee7c317ab9ab7900cc0c9f6f0fb4e12a81e01ba94a7d6d43c3077731b6",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "confirmation",
+        "event_status": "interview_purpose",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker confirms coming for the interview; completion of the interview is not established."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "81f8c06e3434788c5a16d5effc7a57ea408ef5c1e6c14da825863b24192bda27"
+    },
+    {
+      "case": 35,
+      "id": "train:8028:11:2",
+      "baseline_image_sha256": "4c39379a7e9945ab9a3fc0688abb2567539f90255249acc6a04f730bb2372841",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "complaint",
+        "event_status": "conditional_deserved_pay_and_negative_assessment",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker says appreciation of their work should be reflected in pay, and feels that it is not; the second it refers to that appreciation being reflected, not to a new completed payment."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "8505ee1c8c2143d9fa13f513b7cb89ea7e6fe500e51d8f8f10f0a5e96f778dc3"
+    },
+    {
+      "case": 36,
+      "id": "train:5986:13:1",
+      "baseline_image_sha256": "6c3dbec95e02798f6a5a2ed581a1cca617937251c21a26e2d4e2d7cc7076ee5b",
+      "outcome": "confirmed_annotation_error",
+      "reason": "Dear is an affectionate nominal vocative; it is not an adjective or adverbial component of a take dear construction.",
+      "annotation_edits": {
+        "3": {
+          "pos": "NOUN",
+          "tag": "NN",
+          "dep": "vocative",
+          "morph": "Number=Sing"
+        }
+      },
+      "meaning": {
+        "speech_act": "farewell",
+        "event_status": "wish_for_safety",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The parent tells the departing child to take care; dear is an affectionate address and no possession transfer or completed action is asserted."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "1ff74c4b7f816da0ac4e7484971184d09b2a32dd44d5a8341889036b288a173a"
+    },
+    {
+      "case": 37,
+      "id": "train:5044:2:6",
+      "baseline_image_sha256": "f4ebcb4b21c746f91c9abc16b71a80a7937acda682f8e7409e9244529e44abc2",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "question",
+        "event_status": "schedule_change_query",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The hotel employee asks whether the group's schedule has changed; no change is confirmed. The original wording is preserved."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "5f34689eb4dea9745ab85760a59858b256c8628299e69c75864df73da2a2b47e"
+    },
+    {
+      "case": 38,
+      "id": "train:9847:10:1",
+      "baseline_image_sha256": "420fb851cb713e79fa36b127aa553eebc2d8e594529932bc500c054fce6e7e5e",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "approval",
+        "event_status": "positive_reaction_to_plan",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker welcomes the proposed train journey and ticket booking; no booking or journey is confirmed."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "9f62bb0d765260b2ca2e1d8dfc0b38440a2373db8cdde2c12e9419207c1164c4"
+    },
+    {
+      "case": 39,
+      "id": "train:3699:9:1",
+      "baseline_image_sha256": "806528e6fbcdbef598bf9880e98d9285232fcccfb7289ff8526200c7add8048a",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "tentative_agreement",
+        "event_status": "probable_cost_explanation",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker tentatively agrees that lobster is too expensive to include in the buffet; probably preserves uncertainty."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "30d7d7d239275a2fe34d8e79c32f510c198129f00e70b930bf83a794c0f271a6"
+    },
+    {
+      "case": 40,
+      "id": "train:10756:4:2",
+      "baseline_image_sha256": "30429384c9121ee94ca08f4351c8f625ab12dac20fc39e74f00d591ea6e8991e",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "offer",
+        "event_status": "possible_exchange",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The employee asks whether the customer wants to exchange the faulty sweater for another one; no exchange is completed."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "5c27e93fc00abc3b985cc1d4403b600eb26a90f7fadd219d176cea89941bb40d"
+    },
+    {
+      "case": 41,
+      "id": "train:3885:11:2",
+      "baseline_image_sha256": "2067e39dd58ac77668ef5a657897d85f9c54437b7754ddfb0f1b4c9b29586b38",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "positive_response",
+        "event_status": "prospective_event_evaluation",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker welcomes the offer of fashion-show tickets; would be retains the prospective scope and no attendance or ticket receipt is established."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "5c87eb951988160e4b85eccde21ce357665abeb7f891cccab03af6bf6b746c6f"
+    },
+    {
+      "case": 42,
+      "id": "test:463:8:1",
+      "baseline_image_sha256": "f0b1650ea8fb8c8ea5da130d36668ca1be549e96aa89306efd92ef2604c4709c",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "confirmation",
+        "event_status": "carry_on_choice",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The passenger confirms keeping the small bag as carry-on luggage; this does not mean it has been checked in."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "28dcb4e3092c9fc0cbb0b4390d5ff38e78d01bbbdd470197dc39c9d62f62c9ce"
+    },
+    {
+      "case": 43,
+      "id": "train:5530:3:1",
+      "baseline_image_sha256": "1e063cbc1243465f68e9eeb39fd3bb8e8b33cb834cd03231f6c475054b97d2db",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "evaluation",
+        "event_status": "positive_packaging_assessment",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker positively evaluates the proposed or displayed packaging; the reply does not describe the blouses as good or confirm a sale."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "d43e178123e2b3e7329d13d1e116983f2dc4b9d96803164c45554f82cf2051a2"
+    },
+    {
+      "case": 44,
+      "id": "test:494:1:1",
+      "baseline_image_sha256": "f49f2b5f7630fd12c0a97c7c797977244f344dfd33b04a549da3135ef3467867",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "greeting",
+        "event_status": "addressed_greeting",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker greets Jack; Jack is the addressee, not the speaker's self-identification."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "3f7007bb5e7f01678b71d4d7e7f3f6a16b5f24f2537cb2810ea0aff8152027f2"
+    },
+    {
+      "case": 45,
+      "id": "train:3002:3:1",
+      "baseline_image_sha256": "592fee940f0fbef7374df4ddba1bd0a56511c3d7521ca788786198f36615101f",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "acknowledgment",
+        "event_status": "permission_acknowledged",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker acknowledges permission to ask a personal question before proceeding; all right is agreement, not a spatial direction."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "44f2751c4546e96655d4a3a6db7d4142910860996e601133caceea9fd1a40f22"
+    },
+    {
+      "case": 46,
+      "id": "val:376:4:1",
+      "baseline_image_sha256": "80ffb35310d1371ada6c1bccc9c97d5c811f61e72c7a798bf1dcf5d431465db7",
+      "outcome": "confirmed_annotation_error",
+      "reason": "Despite awkward wording, mean is the main predicate with food as its object; the clause is not a parenthetical attached to a nominal root.",
+      "annotation_edits": {
+        "1": {
+          "dep": "ROOT",
+          "head": 1
+        },
+        "3": {
+          "dep": "dobj",
+          "head": 1
+        },
+        "7": {
+          "head": 1
+        }
+      },
+      "meaning": {
+        "speech_act": "preference",
+        "event_status": "spicy_food_choice",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "Despite awkward wording, the speaker answers the food-preference question by indicating spicy food; no meal is chosen or eaten yet."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "cbf9077b73e9e705d5725c99d4875c1cab905fb7e0cd9c8bb02f74816fdc6c23"
+    },
+    {
+      "case": 47,
+      "id": "train:9571:3:1",
+      "baseline_image_sha256": "b55b61d9ae44e41066693c8cf0a6084c397e6157d80bc884b4ad672bda8953c5",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "thanks",
+        "event_status": "gratitude_for_permission",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker thanks the listener for allowing use of the bathroom; use of the bathroom is not reported as completed."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "a9bf63743a52fb2f7e80fdb909029f65de623cd729d986caeaa53e1a3ecf97e4"
+    },
+    {
+      "case": 48,
+      "id": "train:1267:8:2",
+      "baseline_image_sha256": "ea604e47881af6f315054139614dce70d38718504bec2b3c4ee43bf4e0b78ac2",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "correction",
+        "event_status": "elliptical_low_frequency",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker says they dance only occasionally, correcting the suggestion that they dance a lot; no specific dance event is reported."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "5924b18a0246bebbf3848b9e423fc71a7ac1d1d3ec30cbba09168159b641f147"
+    },
+    {
+      "case": 49,
+      "id": "train:8425:8:1",
+      "baseline_image_sha256": "d03099042a3e8c88f7ed1990f31f531322c6b55ae79b2203c6bd2ccc443bf9a5",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "question",
+        "event_status": "vehicle_control_knowledge",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker asks whether the listener knows the car's controls; this does not establish knowledge or ability to drive safely."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "ce52c531936d78766137891b857c81749e4fc7701ba27308b2104238754ece6f"
+    },
+    {
+      "case": 50,
+      "id": "train:3927:6:1",
+      "baseline_image_sha256": "46fa0da106c51154a6f15a2440fa4c14e2e4eef5c946564c7cfb408de3d756db",
+      "outcome": "no_specific_parse_error_identified",
+      "reason": null,
+      "annotation_edits": {},
+      "meaning": {
+        "speech_act": "invitation",
+        "event_status": "anticipatory_attention",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker tells the listener to wait and watch what happens next at the reception; the upcoming event is not yet described or reported as completed."
+        },
+        "unknown": []
+      },
+      "unknowns_retained": [],
+      "source_text_changed": false,
+      "full_template_semantics_approved": false,
+      "after_image_sha256": "5420a458dad4ed0561d64fbd9ba1058cecd041784c43fbc11249f6d986a0d0e2"
+    }
+  ]
+}

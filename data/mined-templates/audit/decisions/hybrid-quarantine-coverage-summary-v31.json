@@ -1,0 +1,275 @@
+{
+  "version": "quarantine-adapter-coverage-v31",
+  "status": "passed",
+  "ledger": "data/dailydialog/review-parts/luna-offline-source-v31",
+  "catalog": "data/mined-templates/reviewed/dialogue-fragments.json",
+  "catalog_sha256": "05aba245a0feb5ec9d6d5864723a79ebc20d25c30aa14a4952df25dd3e628b92",
+  "warning_count": 220,
+  "occurrences": 216,
+  "occurrences_with_original_adapter": 193,
+  "occurrences_without_original_adapter": 23,
+  "uncovered_by_split": {
+    "test": 10,
+    "train": 13
+  },
+  "coverage_path": "data/dailydialog/review-parts/hybrid-quarantine-coverage-v31.jsonl.gz",
+  "coverage_sha256": "926fa180d481340083c460ca8e493622fe33f42742b5fe56be485ddb29dd26f2",
+  "uncovered": [
+    {
+      "id": "test:234:9:2",
+      "candidate_text": "You look anilic.",
+      "warning_keys": [
+        [
+          "test:234:9:2",
+          0,
+          "379d596e0a3667f715171b5c0f842c2a5ba96fa269a67798d0476a2c703dc747"
+        ]
+      ]
+    },
+    {
+      "id": "test:364:2:4",
+      "candidate_text": "You have to be very c",
+      "warning_keys": [
+        [
+          "test:364:2:4",
+          0,
+          "236d803bbf2f076e168de9534287150ef6f2d6eac1195204f4d72a3fbed75441"
+        ]
+      ]
+    },
+    {
+      "id": "test:45:3:2",
+      "candidate_text": "Oh, what we live!",
+      "warning_keys": [
+        [
+          "test:45:3:2",
+          0,
+          "e61840a79e599ef24e74bef99486e63b432363356d79a81cdb6e8832d45154b4"
+        ]
+      ]
+    },
+    {
+      "id": "test:493:3:2",
+      "candidate_text": "B",
+      "warning_keys": [
+        [
+          "test:493:3:2",
+          0,
+          "a8fee753044af9d93ea285885b94ba5d7b33ceb95533eda56ce51424beb07d2d"
+        ]
+      ]
+    },
+    {
+      "id": "test:679:5:1",
+      "candidate_text": "Hug!",
+      "warning_keys": [
+        [
+          "test:679:5:1",
+          0,
+          "ff5dbcea8441253ea546ff1bd29045d06564c788d60a297a1b7d66c09ab255bb"
+        ]
+      ]
+    },
+    {
+      "id": "test:794:7:3",
+      "candidate_text": "It's really.",
+      "warning_keys": [
+        [
+          "test:794:7:3",
+          0,
+          "8ecbe8543c3902e57b2ad1caf8b58bfcdd69c3f5d4412a02cecd161d116e3905"
+        ]
+      ]
+    },
+    {
+      "id": "test:808:13:3",
+      "candidate_text": "Egg...",
+      "warning_keys": [
+        [
+          "test:808:13:3",
+          1,
+          "3eaaf4f09423ae5a5005eacb54bac7dc8e2e0386a0f2fdce5b7b2b45d5348935"
+        ]
+      ]
+    },
+    {
+      "id": "test:856:3:1",
+      "candidate_text": "I hear that John's leading a double wife.",
+      "warning_keys": [
+        [
+          "test:856:3:1",
+          0,
+          "f60687a06c46b5d23e00f191b58e86024a084bfafb4a090b6cebf93ba442c7a5"
+        ]
+      ]
+    },
+    {
+      "id": "test:928:2:4",
+      "candidate_text": "Many of the company's advertisements are her child trains.",
+      "warning_keys": [
+        [
+          "test:928:2:4",
+          0,
+          "53841d9a8e36981a6bde9feb62bc0327ba63eb5e8206495f2047fc828abf39aa"
+        ]
+      ]
+    },
+    {
+      "id": "test:961:1:1",
+      "candidate_text": "I'm afraid I spoke in all of the table clock.",
+      "warning_keys": [
+        [
+          "test:961:1:1",
+          0,
+          "fa8db00c91b2bd333b8207dc11b3d35c050a727c8db36f27ea96a1bf2b42b070"
+        ]
+      ]
+    },
+    {
+      "id": "train:10044:10:4",
+      "candidate_text": "I '",
+      "warning_keys": [
+        [
+          "train:10044:10:4",
+          0,
+          "1a2e1d097a886b4e7a5902a4bb4a8aa48aa5b9c662a60bca822765c27df9c924"
+        ]
+      ]
+    },
+    {
+      "id": "train:10070:11:1",
+      "candidate_text": "Yes, it is the credit demand.",
+      "warning_keys": [
+        [
+          "train:10070:11:1",
+          0,
+          "a7d5c0a3a2cb2519725f5375d6e97a1778e33e3aa3675047368305cf05a7f223"
+        ]
+      ]
+    },
+    {
+      "id": "train:10158:7:2",
+      "candidate_text": "S",
+      "warning_keys": [
+        [
+          "train:10158:7:2",
+          0,
+          "3346dd26109669a5f55a2dece9d7ffd249997e52a78b4eafef0806817a4b173f"
+        ]
+      ]
+    },
+    {
+      "id": "train:1040:1:5",
+      "candidate_text": "A",
+      "warning_keys": [
+        [
+          "train:1040:1:5",
+          0,
+          "ccd6e10ce5069b03f0dff1fecad407f01da40c16d84f5ad65df59af433585a43"
+        ]
+      ]
+    },
+    {
+      "id": "train:10542:8:4",
+      "candidate_text": "Th",
+      "warning_keys": [
+        [
+          "train:10542:8:4",
+          0,
+          "c0cf0791108c2a23669ff9cbf163880c1ac8af271abf44d72b15a72f7309b88d"
+        ]
+      ]
+    },
+    {
+      "id": "train:1061:1:1",
+      "candidate_text": "Cheer!",
+      "warning_keys": [
+        [
+          "train:1061:1:1",
+          0,
+          "ae2730ae19096af2a16bb0fe1c51c49ad317dbf75467baf999066bdf7cbc115b"
+        ]
+      ]
+    },
+    {
+      "id": "train:1061:2:1",
+      "candidate_text": "Cheer!",
+      "warning_keys": [
+        [
+          "train:1061:2:1",
+          0,
+          "ae2730ae19096af2a16bb0fe1c51c49ad317dbf75467baf999066bdf7cbc115b"
+        ]
+      ]
+    },
+    {
+      "id": "train:10882:5:4",
+      "candidate_text": "A",
+      "warning_keys": [
+        [
+          "train:10882:5:4",
+          0,
+          "3c559a37f45ae0f7cca12e1be113c3f1df254aed8c326c4e54d90092cc5cce24"
+        ]
+      ]
+    },
+    {
+      "id": "train:10986:8:1",
+      "candidate_text": "Are you riding?",
+      "warning_keys": [
+        [
+          "train:10986:8:1",
+          0,
+          "8927003ec44bda31bd9b2ecbe62fa79cad3f5231c15ba698a21bd77762f3f3bc"
+        ]
+      ]
+    },
+    {
+      "id": "train:1273:1:1",
+      "candidate_text": "Too...",
+      "warning_keys": [
+        [
+          "train:1273:1:1",
+          0,
+          "b26a95ed612398b3ff8b006cdcc80caf173ec43b05106b084e10eb0245699169"
+        ]
+      ]
+    },
+    {
+      "id": "train:1466:6:4",
+      "candidate_text": "There are many s",
+      "warning_keys": [
+        [
+          "train:1466:6:4",
+          0,
+          "8aec10f9bc99bc38b417f3e8c3de62fabaed4266ebe6dbc0a0ebb1362f9cd9ee"
+        ]
+      ]
+    },
+    {
+      "id": "train:1674:10:4",
+      "candidate_text": "It would almost b",
+      "warning_keys": [
+        [
+          "train:1674:10:4",
+          0,
+          "1bbf71fa2e80922163b2980f4bdedc1de6ffd13e19a16e5522e3f0c0ddb6a125"
+        ]
+      ]
+    },
+    {
+      "id": "train:2502:5:4",
+      "candidate_text": "Someone wit",
+      "warning_keys": [
+        [
+          "train:2502:5:4",
+          0,
+          "5b9df5a3ba1ce742070945845114d964f0cad75e2ea6b6d26bad4ed8c5683688"
+        ]
+      ]
+    }
+  ],
+  "source_text_changed": false,
+  "full_candidate_published": false,
+  "scope": "Limited use of original wording, with explicit unknowns retained. Generic QA stays disabled."
+}

@@ -1,0 +1,448 @@
+{
+  "version": "offline-originals-and-random-quality-v27",
+  "date": "2026-10-18",
+  "previous_progress": "data/dailydialog/review-parts/hybrid-luna-offline-progress-queue-v26.json",
+  "candidate": "artifacts/dailydialog-hybrid-quality-v27-reviewed",
+  "ledger": "data/dailydialog/review-parts/luna-offline-quality-v27",
+  "review_status": "UNREVIEWED",
+  "full_candidate_published": false,
+  "semantic_review_complete": false,
+  "api_calls": 0,
+  "parser_inference_calls": 0,
+  "source_text_changes": 0,
+  "token_text_changes": 0,
+  "new_partial_adapters": 5,
+  "catalog_patterns": 605,
+  "supplemental_ambiguities_retained": 5,
+  "supplemental_decisions": "data/dailydialog/review-parts/hybrid-supplemental-decisions-v27.json",
+  "quarantine_coverage": {
+    "occurrences": 345,
+    "with_original_adapter": 199,
+    "without_original_adapter": 146,
+    "uncovered_by_split": {
+      "test": 132,
+      "train": 14
+    },
+    "report": "data/dailydialog/review-parts/hybrid-quarantine-coverage-summary-v27.json",
+    "current_quarantine_images_identical_to_coverage_snapshot": true,
+    "meaning": "Coverage of explicit original-text paired adapters; existence of an adapter does not close a warning or approve the general template."
+  },
+  "random_quality": {
+    "seed": 2026101827,
+    "sentences": 50,
+    "dialogues": 50,
+    "baseline_outcomes": {
+      "no_specific_parse_error_identified": 43,
+      "supported_local_annotation_repair": 4,
+      "held_specific_detail": 3
+    },
+    "explicit_annotation_repairs": 4,
+    "remaining_details": 3,
+    "all_outputs_context_only": true,
+    "publication": false,
+    "caveat": "One randomly selected sentence per selected dialogue, read with its available dialogue prefix. This is not a full review of 50 dialogues, an overall bank accuracy estimate, or a trained-model evaluation.",
+    "sampling_plan": "data/dailydialog/review-parts/hybrid-random-quality-plan-v27.json",
+    "decisions": "data/dailydialog/review-parts/hybrid-random-quality-review-v27.json",
+    "pending": "data/dailydialog/review-parts/hybrid-random-quality-held-v27.json"
+  },
+  "saved_warnings": 12978,
+  "quarantined_api_warnings": 353,
+  "quarantined_current_occurrences": 345,
+  "quarantine_groups": {
+    "source": 284,
+    "ambiguity": 59,
+    "sentence_boundary": 1,
+    "negation_or_modality": 1,
+    "coordination": 3,
+    "other_syntax": 3,
+    "clause_attachment": 2
+  },
+  "invalidated_without_new_review": 0,
+  "validation": {
+    "status": "passed",
+    "source_sha256": "427d9c47f51de7863591120b578ccd32c2a8b747a771e10c41b014ac3b650c01",
+    "templates": 101275,
+    "attested_roundtrips": 110172,
+    "source_records": 161316,
+    "token_spans": 1378085,
+    "verbs_occurrences": 289417,
+    "adjectives_occurrences": 71912
+  },
+  "conservation": {
+    "status": "passed",
+    "counts": {
+      "old_segments": 161316,
+      "old_tokens": 1378085,
+      "new_segments": 161316,
+      "new_tokens": 1378085,
+      "unchanged_analyses": 161266,
+      "revised_outputs": 50
+    },
+    "explicit_token_delta": 0,
+    "reference_expansion_token_delta": 0,
+    "previous_preimages_retained": true
+  },
+  "apostrophes": {
+    "status": "passed",
+    "normalized_segments": 161316,
+    "ascii_apostrophes": 49411,
+    "noncanonical_apostrophes": 0,
+    "target": "'",
+    "original_contexts_preserved": true,
+    "previous_contexts_retained_in_source_candidate": true,
+    "source_corrections_explicit": true
+  },
+  "independent_verification": {
+    "status": "passed",
+    "sample_sentences": 50,
+    "source_dialogues": 50,
+    "token_annotation_repairs": [
+      "train:9528:2:1",
+      "train:3267:1:1",
+      "train:2193:8:2",
+      "train:10315:7:1"
+    ],
+    "original_texts_and_spans_unchanged": true,
+    "preimages_retained": true,
+    "all_recombination_and_generic_qa_blocked": true,
+    "all_prior_catalog_patterns_preserved": 600,
+    "protected_file_hashes_unchanged": 706,
+    "manual_dialogues_preserved": 510,
+    "source_dialogues_preserved": 13118,
+    "parts_preserved": 100,
+    "paid_warnings_preserved": 12978,
+    "paid_evidence_identical": true,
+    "quarantine_images_identical": true,
+    "remaining_paid_warnings": 353,
+    "remaining_paid_occurrences": 345,
+    "new_qc_details_held": 3,
+    "api_calls": 0,
+    "parser_inference_calls": 0
+  },
+  "tests": {
+    "published_catalog": {
+      "passed": 1277,
+      "seconds": 21.46,
+      "command": "python -X utf8 -B -m pytest -q tests/test_dialogue_fragments.py tests/test_dailydialog_fragment_admission.py tests/test_dialogue_extraction_text.py"
+    },
+    "source_and_ledger": {
+      "passed": 106,
+      "seconds": 22.99,
+      "command": "python -X utf8 -B -m pytest -q tests/test_dailydialog_source_segmentation.py tests/test_dailydialog_quarantine_finalization.py"
+    },
+    "total": 1383
+  },
+  "fragment_generation_smoke": {
+    "status": "passed",
+    "task": "fragment_meaning",
+    "seed": 27,
+    "catalog_patterns": 605,
+    "new_patterns": 5,
+    "previous_patterns_preserved": 600,
+    "catalog_sha256": "5fa7548523a1c995075179337caa0c28e35f2fce530ab689edcd80483d558037",
+    "splits": {
+      "user-assistant/train": {
+        "episodes": 5,
+        "history": 5,
+        "memory": 5,
+        "extraction": 15
+      },
+      "user-assistant/validation": {
+        "episodes": 5,
+        "history": 5,
+        "memory": 5,
+        "extraction": 15
+      },
+      "user-assistant/test": {
+        "episodes": 5,
+        "history": 5,
+        "memory": 5,
+        "extraction": 15
+      },
+      "named-people/train": {
+        "episodes": 5,
+        "history": 5,
+        "memory": 5,
+        "extraction": 15
+      },
+      "named-people/validation": {
+        "episodes": 5,
+        "history": 5,
+        "memory": 5,
+        "extraction": 15
+      },
+      "named-people/test": {
+        "episodes": 5,
+        "history": 5,
+        "memory": 5,
+        "extraction": 15
+      }
+    },
+    "generated_episodes": 30,
+    "extraction_rows": 90,
+    "history_rows": 30,
+    "memory_rows": 30,
+    "original_reply_text_unchanged": true,
+    "json_inside_content": false,
+    "invented_completed_events": 0,
+    "extraction_scope": "Explicit textual utterance_interpretation; no generic action-role extraction or completion is inferred.",
+    "api_calls": 0,
+    "parser_inference_calls": 0,
+    "examples": [
+      {
+        "pattern": "dd_v27_test_423_4_2",
+        "assistant": "What does the record say about my credit?",
+        "original_reply": "A record show your credit reading is quite high.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | reported a record describing the credit reading as quite high, without giving a score or confirming loan approval",
+        "answer": "You reported a record describing the credit reading as quite high, without giving a score or confirming loan approval."
+      },
+      {
+        "pattern": "dd_v27_test_215_9_4",
+        "assistant": "What passes inspection when checking the chocolates?",
+        "original_reply": "Only the creme make it through inspection.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | said that only what was called creme passes inspection, leaving the precise meaning of creme unresolved",
+        "answer": "You said that only what was called creme passes inspection, leaving the precise meaning of creme unresolved."
+      },
+      {
+        "pattern": "dd_v27_train_1770_4_4",
+        "assistant": "How are the two projects going as their deadlines approach?",
+        "original_reply": "Now the deadlines are near and I still haven't finish one of them.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | said some project work was unfinished as deadlines approached, without establishing how many projects were complete",
+        "answer": "You said some project work was unfinished as deadlines approached, without establishing how many projects were complete."
+      },
+      {
+        "pattern": "dd_v27_test_605_6_2",
+        "assistant": "How do you feel about drinking alone?",
+        "original_reply": "I know I don't like to drink alone, especially there are someone sitting there next to me.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | said they dislike drinking alone and mentioned someone sitting beside them; the exact linkage is unclear and no completed drinking was asserted",
+        "answer": "You said they dislike drinking alone and mentioned someone sitting beside them; the exact linkage is unclear and no completed drinking was asserted."
+      },
+      {
+        "pattern": "dd_v27_train_2641_3_1",
+        "assistant": "What summer temperatures do you usually get in your city?",
+        "original_reply": "The summer temperature usually often reaches about 20 or25 in my city.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | reported summer temperatures of about 20 or 25, without specifying the temperature scale",
+        "answer": "You reported summer temperatures of about 20 or 25, without specifying the temperature scale."
+      }
+    ]
+  },
+  "decisions": {
+    "hybrid-quarantine-coverage-summary-v27.json": {
+      "path": "data/dailydialog/review-parts/hybrid-quarantine-coverage-summary-v27.json",
+      "sha256": "6dbcfcc61da5d3aa32ae60545887bf3b38e15c076ba15d644d1c080d1c144254"
+    },
+    "hybrid-quarantine-coverage-v27.jsonl.gz": {
+      "path": "data/dailydialog/review-parts/hybrid-quarantine-coverage-v27.jsonl.gz",
+      "sha256": "674163ebeecfcb32bd9e4ba17c164379ac9e8032894c5e106682ff0950e3e19d"
+    },
+    "hybrid-random-quality-after-v27.jsonl.gz": {
+      "path": "data/dailydialog/review-parts/hybrid-random-quality-after-v27.jsonl.gz",
+      "sha256": "8e66e55f02cb9b606fa96a24babcd2cb3c066e2a62663fba427842e721af7d99"
+    },
+    "hybrid-random-quality-context-v27.jsonl": {
+      "path": "data/dailydialog/review-parts/hybrid-random-quality-context-v27.jsonl",
+      "sha256": "2002cf3b34ec080d0245126446d5a750413353ccc788f56a5eee0f12c496ffd9"
+    },
+    "hybrid-random-quality-current-snapshot-v27.jsonl.gz": {
+      "path": "data/dailydialog/review-parts/hybrid-random-quality-current-snapshot-v27.jsonl.gz",
+      "sha256": "a841fab7b4496ee0457e5841eed8fdf737a6a8f09e848fc48e585e6c6a0755d8"
+    },
+    "hybrid-random-quality-held-v27.json": {
+      "path": "data/dailydialog/review-parts/hybrid-random-quality-held-v27.json",
+      "sha256": "a6920db1bb625919140afcf21b25faf69b910e7fe10ec872f03e7c9ee4a0583c"
+    },
+    "hybrid-random-quality-plan-v27.json": {
+      "path": "data/dailydialog/review-parts/hybrid-random-quality-plan-v27.json",
+      "sha256": "8636ba73862f0ede5184e98815629cca877c4b77938ca9d19eb747b30e9a936a"
+    },
+    "hybrid-random-quality-review-v27.json": {
+      "path": "data/dailydialog/review-parts/hybrid-random-quality-review-v27.json",
+      "sha256": "da7bce5d80ce213abfa7ed8845c9c74a49b83d3bbd040f2851d6c46a285545ae"
+    },
+    "hybrid-random-quality-snapshot-v27.jsonl.gz": {
+      "path": "data/dailydialog/review-parts/hybrid-random-quality-snapshot-v27.jsonl.gz",
+      "sha256": "e0530f02acdc12e81c190c9ea7e3a5ffc8dd3f33101a3fab0f887eef16e72a03"
+    },
+    "hybrid-random-quality-warning-rechecks-v27.jsonl": {
+      "path": "data/dailydialog/review-parts/hybrid-random-quality-warning-rechecks-v27.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "hybrid-supplemental-adapters-v27.json": {
+      "path": "data/dailydialog/review-parts/hybrid-supplemental-adapters-v27.json",
+      "sha256": "26fcbbfe98cdde2b31d149dc88ae8072de45d5591a2b0b87b621030bfd67e914"
+    },
+    "hybrid-supplemental-decisions-v27.json": {
+      "path": "data/dailydialog/review-parts/hybrid-supplemental-decisions-v27.json",
+      "sha256": "f1dc06baf54b7247d4631106f8d7e8c1231c1f5cd03ba471da095d4ab7231c6a"
+    },
+    "hybrid-supplemental-original-contexts-v27.jsonl.gz": {
+      "path": "data/dailydialog/review-parts/hybrid-supplemental-original-contexts-v27.jsonl.gz",
+      "sha256": "6980c900350335f169ef0bcad08be5595a3a2b3cd066b5c0779c0faf5f3f84c9"
+    },
+    "hybrid-supplemental-snapshots-v27.jsonl.gz": {
+      "path": "data/dailydialog/review-parts/hybrid-supplemental-snapshots-v27.jsonl.gz",
+      "sha256": "9885afc3c46ffd63ea5d2c5e07007542825beadc7b50cf1552c5963e04e8a8e2"
+    }
+  },
+  "failed_build": {
+    "path": "artifacts/dailydialog-hybrid-quality-v27",
+    "usable": false,
+    "reason": "Preimage guard rejected derived export metadata. Exact current overlay images reconciled; no text, tokens or meaning changed. Use only the validated -reviewed successor."
+  },
+  "next": {
+    "uncovered_quarantine_ids": [
+      "test:9:5:1",
+      "test:28:6:2",
+      "test:34:2:2",
+      "test:34:7:1",
+      "test:44:6:2",
+      "test:45:3:2",
+      "test:46:2:1",
+      "test:51:6:2",
+      "test:55:7:3",
+      "test:68:2:2",
+      "test:74:10:1",
+      "test:95:9:1",
+      "test:116:4:1",
+      "test:124:3:1",
+      "test:142:8:2",
+      "test:153:2:1",
+      "test:162:2:1",
+      "test:162:5:4",
+      "test:165:8:3",
+      "test:166:6:1",
+      "test:171:5:1",
+      "test:177:6:1",
+      "test:186:4:2",
+      "test:190:6:2",
+      "test:203:1:2",
+      "test:234:9:2",
+      "test:259:2:5",
+      "test:275:4:4",
+      "test:278:11:1",
+      "test:283:2:1",
+      "test:284:7:1",
+      "test:286:7:1",
+      "test:299:1:1",
+      "test:299:4:1",
+      "test:318:6:2",
+      "test:349:1:1",
+      "test:353:5:1",
+      "test:354:2:2",
+      "test:354:4:2",
+      "test:360:2:2",
+      "test:364:2:4",
+      "test:366:6:1",
+      "test:369:7:1",
+      "test:377:8:1",
+      "test:378:5:2",
+      "test:378:6:2",
+      "test:396:12:1",
+      "test:402:6:1",
+      "test:408:5:1",
+      "test:409:3:1",
+      "test:415:2:2",
+      "test:418:7:1",
+      "test:420:10:1",
+      "test:444:4:1",
+      "test:458:2:3",
+      "test:458:2:5",
+      "test:463:11:2",
+      "test:476:3:1",
+      "test:493:3:2",
+      "test:495:5:2",
+      "test:504:5:1",
+      "test:506:5:2",
+      "test:512:8:3",
+      "test:542:2:1",
+      "test:559:1:1",
+      "test:570:2:1",
+      "test:584:1:2",
+      "test:587:2:2",
+      "test:590:4:3",
+      "test:603:2:1",
+      "test:605:6:1",
+      "test:609:3:2",
+      "test:615:4:2",
+      "test:638:10:1",
+      "test:640:5:2",
+      "test:646:3:1",
+      "test:646:6:1",
+      "test:656:9:2",
+      "test:667:3:2",
+      "test:672:8:2",
+      "test:673:2:1",
+      "test:679:5:1",
+      "test:683:2:2",
+      "test:697:1:1",
+      "test:697:3:2",
+      "test:720:2:2",
+      "test:729:2:2",
+      "test:730:6:4",
+      "test:730:7:3",
+      "test:738:1:1",
+      "test:749:3:1",
+      "test:752:3:1",
+      "test:758:4:1",
+      "test:765:6:3",
+      "test:774:3:1",
+      "test:790:1:1",
+      "test:790:5:1",
+      "test:790:5:2",
+      "test:794:7:3",
+      "test:806:4:3",
+      "test:807:4:1",
+      "test:808:13:3",
+      "test:826:9:2",
+      "test:827:3:1",
+      "test:834:8:3",
+      "test:847:3:2",
+      "test:852:9:1",
+      "test:856:3:1",
+      "test:867:7:2",
+      "test:873:4:2",
+      "test:875:5:2",
+      "test:878:6:2",
+      "test:878:7:2",
+      "test:884:5:2",
+      "test:888:2:1",
+      "test:894:7:2",
+      "test:899:11:2",
+      "test:925:12:1",
+      "test:928:2:4",
+      "test:939:2:2",
+      "test:942:5:1",
+      "test:946:3:1",
+      "test:946:4:1",
+      "test:954:2:3",
+      "test:954:6:1",
+      "test:954:10:5",
+      "test:961:1:1",
+      "test:963:3:1",
+      "test:971:2:1",
+      "test:980:2:2",
+      "test:984:3:1",
+      "test:998:4:1",
+      "train:1040:1:5",
+      "train:1061:1:1",
+      "train:1061:2:1",
+      "train:1273:1:1",
+      "train:1466:6:4",
+      "train:1674:10:4",
+      "train:2502:5:4",
+      "train:10044:10:4",
+      "train:10070:11:1",
+      "train:10158:7:2",
+      "train:10530:1:3",
+      "train:10542:8:4",
+      "train:10882:5:4",
+      "train:10986:8:1"
+    ],
+    "priorities": [
+      "Review the 146 uncovered original-text cases (132 test, 14 train) for supported partial adapters; do not guess missing propositions.",
+      "Resolve the three explicit fresh QC details where evidence permits; preserve unknown identities and source wording.",
+      "Continue occurrence-level semantic admission and generation checks; no automatic whole-bank publication from a clear audit result."
+    ],
+    "old_warnings_and_new_qc_findings_are_separate": true
+  }
+}

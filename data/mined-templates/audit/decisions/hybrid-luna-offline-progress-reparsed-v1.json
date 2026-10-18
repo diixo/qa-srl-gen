@@ -1,0 +1,118 @@
+{
+  "version": "offline-reparsed-recheck-v1",
+  "candidate": "artifacts/dailydialog-hybrid-offline-reparsed-v1",
+  "bank": "artifacts/dailydialog-hybrid-offline-reparsed-v1/bank",
+  "ledger": "data/dailydialog/review-parts/luna-offline-reparsed-v1",
+  "previous_progress": "data/dailydialog/review-parts/hybrid-luna-offline-progress-final.json",
+  "warning_counts": {
+    "fixed_in_candidate": 8809,
+    "quarantined_unresolved": 1409,
+    "closed_representation_only": 469,
+    "closed_not_supported": 599,
+    "fixed_boundary_only": 269,
+    "fixed_wording_only": 1211,
+    "closed_verified_after_source_revision": 160,
+    "closed_source_warning_not_supported": 52
+  },
+  "recheck_findings": {
+    "unresolved": 40,
+    "boundary_only": 54,
+    "verified_current": 160,
+    "fixed": 421,
+    "representation": 11,
+    "not_supported": 4
+  },
+  "rechecked_warnings": 690,
+  "locally_closed_warnings": 650,
+  "quarantined_warnings": 1409,
+  "quarantined_cases": 1286,
+  "quarantine_groups": {
+    "source": 730,
+    "other_syntax": 291,
+    "coordination": 96,
+    "clause_attachment": 41,
+    "ambiguity": 98,
+    "particle_or_preposition": 26,
+    "property_attachment": 81,
+    "sentence_boundary": 25,
+    "direct_address": 12,
+    "lemma_or_inflection": 7,
+    "negation_or_modality": 2
+  },
+  "saved_warning_offline_pass_complete": true,
+  "reparsed_warning_recheck_complete": true,
+  "semantic_review_complete": false,
+  "api_calls": 0,
+  "api_unanswered_cases": 112802,
+  "next_api_job_if_ever_resumed": 18376,
+  "verification": {
+    "status": "passed",
+    "source_parts_verified_dialogues": 13118,
+    "manual_reference_dialogues_preserved": 510,
+    "api_calls": 0,
+    "saved_api_outputs": 47077,
+    "outputs_sha256": "f792915163ff9f8a309ba840b55ebe1cf461c8f1d74d4de40b02990766f5c0e3",
+    "ledger": {
+      "status": "passed",
+      "warnings": 12978,
+      "rechecked": 690,
+      "untouched_dispositions": 12288,
+      "exact_prior_dispositions_preserved": true,
+      "paid_evidence_identical": true,
+      "current_tokens_heads_attributes_context_and_lineage_verified": true,
+      "semantic_approval": false,
+      "publication": false
+    },
+    "validation": {
+      "status": "passed",
+      "source_sha256": "c4048cc025a71c38dde82fdc3bb17838d9e028ce2ad73d3f13f1a368f49448a4",
+      "templates": 100817,
+      "attested_roundtrips": 109754,
+      "source_records": 161260,
+      "token_spans": 1378197,
+      "verbs_occurrences": 289433,
+      "adjectives_occurrences": 71890
+    },
+    "conservation": {
+      "status": "passed",
+      "counts": {
+        "segments": 161260,
+        "tokens": 1378197,
+        "unchanged_occurrences": 160894,
+        "revised_occurrences": 366
+      },
+      "source_and_tokens_unchanged": true,
+      "previous_reviews_preserved": true,
+      "all_unaddressed_occurrences_identical": true
+    },
+    "protected_files_unchanged": 1323,
+    "noncanonical_apostrophes": 0
+  },
+  "publication": {
+    "bank": "data/mined-templates",
+    "component": "dailydialog-offline-qc-v1",
+    "admitted_attestations": 29,
+    "mode": "attested_sentence",
+    "recombination": false,
+    "dependency_qa": false,
+    "smoke": "artifacts/dailydialog-offline-published-smoke-v1.json"
+  },
+  "full_candidate_published": false,
+  "quality_control": "data/dailydialog/review-parts/hybrid-offline-reparsed-local-qc-v1.json",
+  "quality_note": "Direct assistant local-warning review plus 20 randomly sampled local repairs. Not an independent estimate of whole-corpus semantic quality.",
+  "tests": {
+    "passed": 158,
+    "suites": [
+      "quarantine recheck",
+      "local syntax",
+      "offline finalization",
+      "offline resolution",
+      "candidate wording",
+      "source segmentation",
+      "bank audit",
+      "admission",
+      "attribute targets"
+    ]
+  },
+  "next_step": "Keep the 1409 explicitly unresolved warnings in quarantine. Any further publication requires per-occurrence semantic admission; local closure, API clear and technical validation do not approve the full candidate."
+}

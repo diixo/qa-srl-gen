@@ -1,0 +1,156 @@
+{
+  "version": "offline-possessives-v6",
+  "date": "2026-10-16",
+  "previous_progress": "data/dailydialog/review-parts/hybrid-luna-offline-progress-quote-boundaries-v5.json",
+  "candidate": "artifacts/dailydialog-hybrid-possessives-v6",
+  "ledger": "data/dailydialog/review-parts/luna-offline-possessives-v6",
+  "api_calls": 0,
+  "parser_inference_calls": 0,
+  "full_candidate_published": false,
+  "review_status": "UNREVIEWED",
+  "semantic_review_complete": false,
+  "reviewed_input_occurrences": 11,
+  "reviewed_output_occurrences": 11,
+  "warning_rechecks": 7,
+  "closed_previously_open_warnings": 4,
+  "reconfirmed_previous_closures": 1,
+  "rechecked_still_unresolved": 2,
+  "saved_warnings": 12978,
+  "quarantined_warnings": 1308,
+  "quarantined_current_occurrences": 1199,
+  "decisions": {
+    "reviews": "data/dailydialog/review-parts/hybrid-possessives-reviews-v6.jsonl",
+    "warning_rechecks": "data/dailydialog/review-parts/hybrid-possessives-warning-rechecks-v6.jsonl",
+    "snapshot": "data/dailydialog/review-parts/hybrid-possessives-snapshot-v6.jsonl.gz",
+    "admission": "data/dailydialog/review-parts/hybrid-possessives-admission-reviews-v6.jsonl"
+  },
+  "snapshot_sha256": "8e7e61a73326acd07680d21d23e4ef26665cdfc71ca16215b889b3abf9e292cb",
+  "changes": [
+    "Correct Susan'brother to Susan's brother and insert the missing article in is a bottomless pit, reviewing all four sentences of that turn.",
+    "Separate boss' pet while retaining the existing possessive spelling; preserve favourite-employee meaning and the prospective negative dismissal prediction.",
+    "Separate it 'sword' in a word-pronunciation instruction; remove false person/place labels without inventing phonetic content.",
+    "Preserve then'd and the isolated quote literally in quarantine, with partial conditional meaning or an explicit absence of a recoverable proposition.",
+    "Distinguish an offer of accommodation, reported visit, idiomatic agreement and annoyance, metaphor and pronunciation directive from independently verified completed actions."
+  ],
+  "scope": {
+    "all_11_candidate_outputs_context_only": true,
+    "semantic_approval": false,
+    "unseen_group_members_approved": false,
+    "missing_meaning_not_inferred": true,
+    "retained_unknowns": {
+      "train:2244:5:2": "The exact subject and auxiliary in then'd cannot be restored with certainty.",
+      "train:10530:1:3": "The unmatched quote has no recoverable standalone proposition or reliably established attachment."
+    },
+    "additional_fragment_not_admitted": "train:10944:8:1"
+  },
+  "verification": {
+    "validation": {
+      "status": "passed",
+      "source_sha256": "f208c7d23a62042d6ee30204ec3cbbdd4dd3da38fff54f5d1c11491e8338c245",
+      "templates": 100843,
+      "attested_roundtrips": 109778,
+      "source_records": 161260,
+      "token_spans": 1378191,
+      "verbs_occurrences": 289426,
+      "adjectives_occurrences": 71888
+    },
+    "conservation": {
+      "status": "passed",
+      "counts": {
+        "old_segments": 161260,
+        "old_tokens": 1378184,
+        "new_segments": 161260,
+        "new_tokens": 1378191,
+        "unchanged_analyses": 161249,
+        "revised_outputs": 11,
+        "grouped_input_segments": 6
+      },
+      "explicit_token_delta": 7,
+      "reference_expansion_token_delta": 0,
+      "previous_preimages_retained": true
+    },
+    "source_files_report": "artifacts/dailydialog-hybrid-possessives-v6/source-files.json",
+    "original_file_backups": "artifacts/dailydialog-hybrid-possessives-v6/source-before",
+    "source_dialogues_preserved": 13118,
+    "changed_source_turns": [
+      "train:1007:2",
+      "train:10944:8",
+      "train:10979:2"
+    ],
+    "source_files_updated": 4,
+    "source_part_and_manual_files_unchanged": 106,
+    "manual_annotation_files_unchanged": 6,
+    "manual_reference_dialogues_preserved": 510,
+    "all_100_parts_match_filtered": true,
+    "paid_evidence_identical": true,
+    "received_evidence_sha256": "68f72401d4ccd5e4a26eaaf23e1558dc268f136195680c658a2f857f8be68391",
+    "generation_smoke": "artifacts/dailydialog-hybrid-possessives-v6/generation-smoke.json",
+    "exact_candidate_renders": 11,
+    "apostrophes": {
+      "normalized_segments": 161260,
+      "ascii_apostrophes": 49412,
+      "noncanonical_apostrophes": 0,
+      "target": "'"
+    }
+  },
+  "admission": {
+    "bank": "data/mined-templates",
+    "source_id": "dailydialog-possessives-admission-v6",
+    "published": true,
+    "report": "artifacts/dailydialog-possessives-admission-v6/report.json",
+    "occurrences": [
+      "train:1007:2:1",
+      "train:1007:2:2",
+      "train:1007:2:3",
+      "train:1007:2:4",
+      "train:10944:8:2",
+      "train:10944:8:3",
+      "train:10944:8:4",
+      "train:10979:2:1"
+    ],
+    "admitted_occurrences_count": 8,
+    "usage": "Exact attested sentence with embedded context only; no recombination, factual dependency QA or action realization.",
+    "previous_pool_files_preserved": 344,
+    "generation_smoke": "artifacts/dailydialog-possessives-admission-v6/published-smoke.json",
+    "exact_published_renders": 8,
+    "builtin_documents": 4,
+    "normal_controlled_predicate_exclusions": [
+      "train:1007:2:4",
+      "train:10944:8:2",
+      "train:10944:8:3",
+      "train:10944:8:4"
+    ]
+  },
+  "tests": {
+    "passed": 151,
+    "command": "python -X utf8 -B -m pytest -q tests/test_dailydialog_source_segmentation.py tests/test_dailydialog_quarantine_finalization.py tests/test_dailydialog_admission.py tests/test_template_usage.py"
+  },
+  "next_step": {
+    "priority": "Review property/complement attachments, idiomatic up/easy/better and the remaining lexical-form case in full dialogue context. Accumulate decisions for one rebuild; do not infer missing wording.",
+    "examples": [
+      "test:36:7:1",
+      "test:486:2:2",
+      "test:563:3:2",
+      "test:565:1:1",
+      "test:644:3:1",
+      "test:944:2:2",
+      "test:984:10:3",
+      "train:10282:2:1",
+      "train:10437:7:3",
+      "test:808:7:3"
+    ],
+    "continuing_groups": {
+      "source": 710,
+      "other_syntax": 259,
+      "coordination": 91,
+      "clause_attachment": 37,
+      "ambiguity": 94,
+      "property_attachment": 78,
+      "sentence_boundary": 25,
+      "direct_address": 12,
+      "lemma_or_inflection": 1,
+      "negation_or_modality": 1
+    },
+    "full_semantic_review_still_required": true
+  }
+}

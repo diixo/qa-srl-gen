@@ -1,0 +1,948 @@
+{
+  "status": "APPLIED_AND_CHECKED",
+  "baseline_report": "hybrid-random-quality-50-result-v1.json",
+  "baseline_summary": {
+    "cases": 50,
+    "verdicts": {
+      "structural_error": 10,
+      "usable_syntax_with_restrictions": 38,
+      "source_ambiguity": 2
+    },
+    "error_categories": {
+      "dependency_or_pos": 7,
+      "compiled_property_link": 3
+    },
+    "structural_error_fraction": 0.2,
+    "approximate_wilson_95": [
+      0.1124375001577611,
+      0.3303710593222542
+    ],
+    "boundary_errors_observed": 0,
+    "source_defects": 2,
+    "context_turns_read": 471,
+    "baseline_semantic_status": "UNREVIEWED for every selected occurrence; no scored factual-event semantics exists"
+  },
+  "baseline_changed": false,
+  "unit": "50 occurrences in 50 distinct dialogues, with full contexts read",
+  "candidate": "artifacts/dailydialog-hybrid-random-quality-v1",
+  "candidate_status": "UNREVIEWED",
+  "rebuild": {
+    "status": "source_segmentation_complete",
+    "counts": {
+      "compiled_occurrences": 161294,
+      "reviewed_syntax_reuses": 1088,
+      "fragment_or_nonverbal_candidates": 26290,
+      "context_reviewed_occurrences": 343,
+      "context_syntax_corrections": 144,
+      "groups": 70844,
+      "entity_candidates": 10535,
+      "sample_cases": 110
+    },
+    "validation": {
+      "status": "passed",
+      "source_sha256": "914d97e6969c455b25e36e466b2ae43f64db29909e10420caff43fe74ba3d0c0",
+      "templates": 98816,
+      "attested_roundtrips": 107649,
+      "source_records": 161294,
+      "token_spans": 1377804,
+      "verbs_occurrences": 289392,
+      "adjectives_occurrences": 71977
+    },
+    "conservation": {
+      "status": "passed",
+      "counts": {
+        "old_segments": 161294,
+        "old_tokens": 1377804,
+        "new_segments": 161294,
+        "new_tokens": 1377804,
+        "unchanged_analyses": 161244,
+        "revised_outputs": 50
+      },
+      "explicit_token_delta": 0,
+      "reference_expansion_token_delta": 0,
+      "previous_preimages_retained": true
+    },
+    "dialogues": 12608,
+    "turns": 99224,
+    "previous_bank_unchanged": true,
+    "protected_files": 482,
+    "source_files_updated": 0,
+    "api_calls": 0,
+    "parser_inference_calls": 0,
+    "published": false,
+    "elapsed_seconds": 247.47
+  },
+  "preservation": {
+    "status": "passed",
+    "applied_random_cases": 50,
+    "earlier_qc_cases_preserved": 50,
+    "original_quality_report_preserved": true,
+    "exact_compiled_outputs_matched": 100,
+    "current_preimages_retained": 50,
+    "previous_manual_dialogues_unchanged": 510,
+    "protected_input_files_verified": 458,
+    "source_contexts_identical": true,
+    "source_files_updated": 0,
+    "admitted_sentences": 36,
+    "context_only": 14,
+    "published": true,
+    "templates_published": 36,
+    "published_records_exactly_match": true,
+    "previous_published_qc_templates_preserved": 33,
+    "bank_id": "dailydialog-hybrid-random-quality-v1",
+    "previous_pool_files_preserved": 344
+  },
+  "random_admission": {
+    "admitted_occurrences": [
+      "train:9306:6:1",
+      "train:3133:19:2",
+      "train:2297:7:4",
+      "train:9629:6:1",
+      "train:7172:7:5",
+      "train:3194:2:1",
+      "train:10222:8:2",
+      "train:7562:14:1",
+      "train:10912:1:1",
+      "val:806:5:1",
+      "train:7609:1:1",
+      "train:3681:2:1",
+      "train:4814:3:1",
+      "train:1570:11:2",
+      "train:10743:7:3",
+      "train:3607:2:1",
+      "train:10351:4:1",
+      "train:5652:7:1",
+      "val:670:2:6",
+      "train:3939:9:1",
+      "train:9011:1:1",
+      "val:791:9:2",
+      "train:4795:2:1",
+      "train:2854:11:1",
+      "train:3784:5:3",
+      "test:982:2:1",
+      "test:670:12:1",
+      "train:10798:5:4",
+      "train:8949:9:7",
+      "train:2515:2:1",
+      "train:1690:9:2",
+      "test:67:6:1",
+      "train:6599:2:2",
+      "train:7917:8:2",
+      "train:7791:4:8",
+      "train:4088:12:1"
+    ],
+    "held_back": [
+      "train:7081:12:1",
+      "train:8252:11:1",
+      "train:9827:4:1",
+      "train:4194:2:1",
+      "train:7960:7:1",
+      "train:8457:4:1",
+      "test:378:3:1",
+      "train:3140:12:2",
+      "train:3701:3:1",
+      "train:2920:6:1",
+      "train:8594:9:1",
+      "train:5898:1:1",
+      "train:6900:9:2",
+      "train:6182:6:1"
+    ],
+    "validation": {
+      "status": "passed",
+      "source_sha256": "78f0f05ab74c3e28368f64c1d97fe6ba1ab5e40d3d48776da3670166f43f8af5",
+      "templates": 36,
+      "attested_roundtrips": 36,
+      "source_records": 36,
+      "token_spans": 302,
+      "verbs_occurrences": 69,
+      "adjectives_occurrences": 20
+    },
+    "api_calls": 0,
+    "parser_inference_calls": 0,
+    "published": true,
+    "bank_id": "dailydialog-hybrid-random-quality-v1",
+    "previous_files_preserved": 344
+  },
+  "fragments": {
+    "status": "passed",
+    "published": true,
+    "new_patterns": 26,
+    "checked_patterns": 26,
+    "catalog_patterns": 54,
+    "source_dialogues": 26,
+    "episodes_checked": 52,
+    "transitions_checked": 156,
+    "previous_patterns_preserved": 28,
+    "previous_catalog_sha256": "01ce58248df69236c1c2abe569a1c6363eedf4bdd3ccb79f82951f188bc45981",
+    "result_catalog_sha256": "4efae7199ea793f7a0256d9361a8d89a5218eb6ae431c77715fb6f57611140bc",
+    "template_bank_changed": false,
+    "api_calls": 0,
+    "parser_inference_calls": 0
+  },
+  "fragment_adapters": "hybrid-quality-fragment-adapters-v2.json",
+  "remaining_unadmitted_from_both_samples": [
+    {
+      "id": "train:2918:3:1",
+      "text": "I guess it is a formal one because the general director will give a speech there, and most of the staff will take part in.",
+      "meaning": {
+        "speech_act": "tentative_assessment",
+        "event_status": "guess_and_future_participation",
+        "content": {
+          "it_and_one": "upcoming company party",
+          "formal": "party",
+          "general": "director's title",
+          "take_part_in": "participate in the party",
+          "most": "majority of staff"
+        },
+        "completed_action_asserted": false,
+        "unknown": [
+          "actual formality",
+          "whether the speech or participation occurs",
+          "exact scope of the final coordination under guess/because"
+        ]
+      }
+    },
+    {
+      "id": "train:2641:5:1",
+      "text": "In winter temperature often falls to zero at night temperature can be below that.",
+      "meaning": {
+        "speech_act": "weather_description",
+        "event_status": "habitual_conditions_and_possibility",
+        "content": {
+          "recoverable": "winter temperature often falls to zero; temperature can be below zero",
+          "attachment_alternatives": [
+            {
+              "at night": "modifies falls to zero"
+            },
+            {
+              "at night": "modifies can be below zero"
+            }
+          ],
+          "syntax_status": "unresolved; stored dependency tree is known defective and not approved"
+        },
+        "completed_action_asserted": false,
+        "unknown": [
+          "whether at night modifies the first or second clause",
+          "intended punctuation between the clauses"
+        ]
+      }
+    },
+    {
+      "id": "train:4359:4:3",
+      "text": "No way, I am watching that, but I don't understand why everyone is so excited about these films about vampires.",
+      "meaning": {
+        "speech_act": "objection_with_uncertain_watching_clause",
+        "event_status": "source_polarity_conflict",
+        "content": {
+          "recoverable": "speaker objects to Twilight enthusiasm and says they do not understand its appeal",
+          "watching_readings": [
+            "idiomatic emphatic refusal with malformed inversion or punctuation",
+            "surprise followed by a positive surface watching claim"
+          ],
+          "watching_polarity": "unresolved"
+        },
+        "completed_action_asserted": false,
+        "unknown": [
+          "whether the intended wording was No way am I watching that",
+          "whether the comma separates surprise from a positive watching statement",
+          "whether a word or punctuation is missing"
+        ]
+      }
+    },
+    {
+      "id": "train:4194:2:1",
+      "text": "Rocky six is suppose to come out this Friday.",
+      "meaning": {
+        "speech_act": "report",
+        "event_status": "expected_future_release",
+        "completed_action_asserted": false,
+        "content": {
+          "film": "Rocky six",
+          "expected_event": "film comes out this Friday",
+          "source_defect": "is suppose likely means is supposed"
+        },
+        "unknown": [
+          "whether release actually occurs"
+        ]
+      }
+    },
+    {
+      "id": "train:8457:4:1",
+      "text": "Don'mention it.",
+      "meaning": {
+        "speech_act": "polite_response",
+        "event_status": "damaged_gratitude_response",
+        "completed_action_asserted": false,
+        "content": {
+          "recoverable": "reassures Stacy that helping is no trouble",
+          "source_defect": "Don'mention it likely intends Don't mention it"
+        },
+        "unknown": [
+          "literal grammatical analysis of malformed Don'mention",
+          "whether help has already occurred"
+        ]
+      }
+    }
+  ],
+  "prior_diagnostic_sentences_preserved": 33,
+  "total_sentence_attestations_from_both_samples": 69,
+  "usage": "Exact attested wording and quotation only. These sentence admissions do not license recombination or dependency-derived factual QA. The 26 explicitly reviewed fragment adapters supply bounded contextual meanings separately.",
+  "fragment_generation": {
+    "status": "passed",
+    "scope": "fragment_meaning only, complete catalog",
+    "tokenizer": {
+      "model": "gpt2",
+      "chatml_format": "gpt2-chatml-v1",
+      "tokenizers_version": "0.22.1",
+      "source_sha256": "8414cab924d8b9b33013f0d221c5862f365ee9be39c5c2bfae8a5a9e970478a6",
+      "configured_tokenizer_sha256": "f84442eed8070ab1b6a7dc60a6a939c83ca7bbcdcfa4bca45137d336832c1e79",
+      "chat_template_sha256": "17762d2e5131cb2a950db7dd5700c50095547773d3302b52baebe9ae32257a55"
+    },
+    "previous_patterns_preserved": 28,
+    "new_patterns": 26,
+    "catalog_patterns": 54,
+    "profiles": {
+      "user-assistant": {
+        "parameters": {
+          "seed": 20261013,
+          "quota_per_split": 54,
+          "user_assistant_only": true,
+          "include_metadata": false,
+          "max_length": 768
+        },
+        "splits": {
+          "train": {
+            "episodes": 54,
+            "patterns": 54,
+            "new_patterns": 26,
+            "rows": {
+              "history": 54,
+              "memory": 54,
+              "extraction": 162
+            },
+            "max_tokens": {
+              "history": 180,
+              "memory": 192,
+              "extraction": 671
+            }
+          },
+          "validation": {
+            "episodes": 54,
+            "patterns": 54,
+            "new_patterns": 26,
+            "rows": {
+              "history": 54,
+              "memory": 54,
+              "extraction": 162
+            },
+            "max_tokens": {
+              "history": 180,
+              "memory": 191,
+              "extraction": 671
+            }
+          },
+          "test": {
+            "episodes": 54,
+            "patterns": 54,
+            "new_patterns": 26,
+            "rows": {
+              "history": 54,
+              "memory": 54,
+              "extraction": 162
+            },
+            "max_tokens": {
+              "history": 180,
+              "memory": 191,
+              "extraction": 671
+            }
+          }
+        }
+      },
+      "named": {
+        "parameters": {
+          "seed": 20261013,
+          "quota_per_split": 54,
+          "user_assistant_only": false,
+          "include_metadata": false,
+          "max_length": 768
+        },
+        "splits": {
+          "train": {
+            "episodes": 54,
+            "patterns": 54,
+            "new_patterns": 26,
+            "rows": {
+              "history": 54,
+              "memory": 54,
+              "extraction": 162
+            },
+            "max_tokens": {
+              "history": 173,
+              "memory": 178,
+              "extraction": 651
+            }
+          },
+          "validation": {
+            "episodes": 54,
+            "patterns": 54,
+            "new_patterns": 26,
+            "rows": {
+              "history": 54,
+              "memory": 54,
+              "extraction": 162
+            },
+            "max_tokens": {
+              "history": 172,
+              "memory": 180,
+              "extraction": 651
+            }
+          },
+          "test": {
+            "episodes": 54,
+            "patterns": 54,
+            "new_patterns": 26,
+            "rows": {
+              "history": 54,
+              "memory": 54,
+              "extraction": 162
+            },
+            "max_tokens": {
+              "history": 172,
+              "memory": 179,
+              "extraction": 651
+            }
+          }
+        }
+      }
+    }
+  },
+  "sentence_generation": {
+    "surface_sentences": 36,
+    "renderings_checked": 108,
+    "synthetic_eligible": 19,
+    "native_references": 0,
+    "derived_factual_qa": 0,
+    "scope": "Only this new component is indexed; other task resources unchanged.",
+    "profiles": {
+      "dialogue-smoke-user-assistant": {
+        "parameters": {
+          "train": 1,
+          "validation": 1,
+          "test": 1,
+          "seed": 20261013,
+          "user_assistant_only": true,
+          "include_metadata": false,
+          "mined_train": 0,
+          "max_length": 768
+        },
+        "splits": {
+          "train": {
+            "episodes": 118,
+            "by_task": {
+              "recall": 1,
+              "correction": 1,
+              "negation": 1,
+              "desire_vs_done": 1,
+              "option_reference": 1,
+              "ambiguous_reference": 1,
+              "unknown": 1,
+              "suggestion_vs_done": 1,
+              "topic_return": 1,
+              "retraction": 1,
+              "capability": 1,
+              "event_scope": 1,
+              "event_progress": 1,
+              "event_updates": 1,
+              "event_states": 1,
+              "mined_predicates": 102,
+              "fragment_meaning": 1
+            },
+            "actions": {
+              "answer": 78,
+              "unknown": 38,
+              "clarify": 1,
+              "explain_limitation": 1
+            },
+            "extraction_rows": 294,
+            "extraction_duplicates": 139,
+            "delta_operations": {
+              "add": 149,
+              "replace": 2,
+              "invalidate": 1,
+              "event_add": 110,
+              "event_replace": 1,
+              "event_invalidate": 0,
+              "no_change": 125
+            }
+          },
+          "validation": {
+            "episodes": 17,
+            "by_task": {
+              "recall": 1,
+              "correction": 1,
+              "negation": 1,
+              "desire_vs_done": 1,
+              "option_reference": 1,
+              "ambiguous_reference": 1,
+              "unknown": 1,
+              "suggestion_vs_done": 1,
+              "topic_return": 1,
+              "retraction": 1,
+              "capability": 1,
+              "event_scope": 1,
+              "event_progress": 1,
+              "event_updates": 1,
+              "event_states": 1,
+              "mined_predicates": 1,
+              "fragment_meaning": 1
+            },
+            "actions": {
+              "answer": 10,
+              "unknown": 5,
+              "clarify": 1,
+              "explain_limitation": 1
+            },
+            "extraction_rows": 61,
+            "extraction_duplicates": 3,
+            "delta_operations": {
+              "add": 51,
+              "replace": 1,
+              "invalidate": 1,
+              "event_add": 11,
+              "event_replace": 1,
+              "event_invalidate": 1,
+              "no_change": 24
+            }
+          },
+          "test": {
+            "episodes": 17,
+            "by_task": {
+              "recall": 1,
+              "correction": 1,
+              "negation": 1,
+              "desire_vs_done": 1,
+              "option_reference": 1,
+              "ambiguous_reference": 1,
+              "unknown": 1,
+              "suggestion_vs_done": 1,
+              "topic_return": 1,
+              "retraction": 1,
+              "capability": 1,
+              "event_scope": 1,
+              "event_progress": 1,
+              "event_updates": 1,
+              "event_states": 1,
+              "mined_predicates": 1,
+              "fragment_meaning": 1
+            },
+            "actions": {
+              "answer": 11,
+              "clarify": 1,
+              "unknown": 4,
+              "explain_limitation": 1
+            },
+            "extraction_rows": 63,
+            "extraction_duplicates": 1,
+            "delta_operations": {
+              "add": 58,
+              "replace": 1,
+              "invalidate": 1,
+              "event_add": 10,
+              "event_replace": 1,
+              "event_invalidate": 0,
+              "no_change": 24
+            }
+          }
+        },
+        "lengths": {
+          "max_length": 768,
+          "unit": "complete GPT-2 ChatML example",
+          "policy": "resample_whole_episode_without_truncation",
+          "tokenizer": {
+            "model": "gpt2",
+            "chatml_format": "gpt2-chatml-v1",
+            "tokenizers_version": "0.22.1",
+            "source_sha256": "8414cab924d8b9b33013f0d221c5862f365ee9be39c5c2bfae8a5a9e970478a6",
+            "configured_tokenizer_sha256": "f84442eed8070ab1b6a7dc60a6a939c83ca7bbcdcfa4bca45137d336832c1e79",
+            "chat_template_sha256": "17762d2e5131cb2a950db7dd5700c50095547773d3302b52baebe9ae32257a55"
+          },
+          "rejected_episodes": 0,
+          "splits": {
+            "train": {
+              "rejected_episodes": 0,
+              "rejected_by_task": {},
+              "over_limit_by_view": {},
+              "max_exported_tokens": {
+                "history": 227,
+                "memory": 223,
+                "extraction": 663
+              }
+            },
+            "validation": {
+              "rejected_episodes": 0,
+              "rejected_by_task": {},
+              "over_limit_by_view": {},
+              "max_exported_tokens": {
+                "history": 219,
+                "memory": 215,
+                "extraction": 648
+              }
+            },
+            "test": {
+              "rejected_episodes": 0,
+              "rejected_by_task": {},
+              "over_limit_by_view": {},
+              "max_exported_tokens": {
+                "history": 225,
+                "memory": 221,
+                "extraction": 633
+              }
+            }
+          }
+        },
+        "quoted_episodes": 104,
+        "observed_source_ids": [
+          "test:670:12:1",
+          "test:67:6:1",
+          "test:982:2:1",
+          "train:10222:8:2",
+          "train:10798:5:4",
+          "train:10912:1:1",
+          "train:1690:9:2",
+          "train:2297:7:4",
+          "train:2515:2:1",
+          "train:2854:11:1",
+          "train:3133:19:2",
+          "train:3194:2:1",
+          "train:3607:2:1",
+          "train:3681:2:1",
+          "train:4088:12:1",
+          "train:4795:2:1",
+          "train:4814:3:1",
+          "train:6599:2:2",
+          "train:7172:7:5",
+          "train:7609:1:1",
+          "train:7791:4:8",
+          "train:8949:9:7",
+          "train:9011:1:1",
+          "train:9306:6:1",
+          "train:9629:6:1",
+          "val:670:2:6",
+          "val:791:9:2",
+          "val:806:5:1"
+        ]
+      },
+      "dialogue-smoke-named": {
+        "parameters": {
+          "train": 1,
+          "validation": 1,
+          "test": 1,
+          "seed": 20261013,
+          "user_assistant_only": false,
+          "include_metadata": false,
+          "mined_train": 0,
+          "max_length": 768
+        },
+        "splits": {
+          "train": {
+            "episodes": 119,
+            "by_task": {
+              "recall": 1,
+              "correction": 1,
+              "different_people": 1,
+              "negation": 1,
+              "desire_vs_done": 1,
+              "option_reference": 1,
+              "ambiguous_reference": 1,
+              "unknown": 1,
+              "suggestion_vs_done": 1,
+              "topic_return": 1,
+              "retraction": 1,
+              "capability": 1,
+              "event_scope": 1,
+              "event_progress": 1,
+              "event_updates": 1,
+              "event_states": 1,
+              "mined_predicates": 102,
+              "fragment_meaning": 1
+            },
+            "actions": {
+              "answer": 76,
+              "clarify": 1,
+              "unknown": 41,
+              "explain_limitation": 1
+            },
+            "extraction_rows": 299,
+            "extraction_duplicates": 139,
+            "delta_operations": {
+              "add": 127,
+              "replace": 1,
+              "invalidate": 1,
+              "event_add": 109,
+              "event_replace": 0,
+              "event_invalidate": 1,
+              "no_change": 123
+            }
+          },
+          "validation": {
+            "episodes": 18,
+            "by_task": {
+              "recall": 1,
+              "correction": 1,
+              "different_people": 1,
+              "negation": 1,
+              "desire_vs_done": 1,
+              "option_reference": 1,
+              "ambiguous_reference": 1,
+              "unknown": 1,
+              "suggestion_vs_done": 1,
+              "topic_return": 1,
+              "retraction": 1,
+              "capability": 1,
+              "event_scope": 1,
+              "event_progress": 1,
+              "event_updates": 1,
+              "event_states": 1,
+              "mined_predicates": 1,
+              "fragment_meaning": 1
+            },
+            "actions": {
+              "answer": 10,
+              "unknown": 6,
+              "clarify": 1,
+              "explain_limitation": 1
+            },
+            "extraction_rows": 68,
+            "extraction_duplicates": 0,
+            "delta_operations": {
+              "add": 35,
+              "replace": 1,
+              "invalidate": 1,
+              "event_add": 9,
+              "event_replace": 1,
+              "event_invalidate": 1,
+              "no_change": 23
+            }
+          },
+          "test": {
+            "episodes": 18,
+            "by_task": {
+              "recall": 1,
+              "correction": 1,
+              "different_people": 1,
+              "negation": 1,
+              "desire_vs_done": 1,
+              "option_reference": 1,
+              "ambiguous_reference": 1,
+              "unknown": 1,
+              "suggestion_vs_done": 1,
+              "topic_return": 1,
+              "retraction": 1,
+              "capability": 1,
+              "event_scope": 1,
+              "event_progress": 1,
+              "event_updates": 1,
+              "event_states": 1,
+              "mined_predicates": 1,
+              "fragment_meaning": 1
+            },
+            "actions": {
+              "answer": 10,
+              "unknown": 6,
+              "clarify": 1,
+              "explain_limitation": 1
+            },
+            "extraction_rows": 66,
+            "extraction_duplicates": 0,
+            "delta_operations": {
+              "add": 35,
+              "replace": 1,
+              "invalidate": 1,
+              "event_add": 9,
+              "event_replace": 1,
+              "event_invalidate": 0,
+              "no_change": 22
+            }
+          }
+        },
+        "lengths": {
+          "max_length": 768,
+          "unit": "complete GPT-2 ChatML example",
+          "policy": "resample_whole_episode_without_truncation",
+          "tokenizer": {
+            "model": "gpt2",
+            "chatml_format": "gpt2-chatml-v1",
+            "tokenizers_version": "0.22.1",
+            "source_sha256": "8414cab924d8b9b33013f0d221c5862f365ee9be39c5c2bfae8a5a9e970478a6",
+            "configured_tokenizer_sha256": "f84442eed8070ab1b6a7dc60a6a939c83ca7bbcdcfa4bca45137d336832c1e79",
+            "chat_template_sha256": "17762d2e5131cb2a950db7dd5700c50095547773d3302b52baebe9ae32257a55"
+          },
+          "rejected_episodes": 0,
+          "splits": {
+            "train": {
+              "rejected_episodes": 0,
+              "rejected_by_task": {},
+              "over_limit_by_view": {},
+              "max_exported_tokens": {
+                "history": 227,
+                "memory": 223,
+                "extraction": 644
+              }
+            },
+            "validation": {
+              "rejected_episodes": 0,
+              "rejected_by_task": {},
+              "over_limit_by_view": {},
+              "max_exported_tokens": {
+                "history": 219,
+                "memory": 215,
+                "extraction": 632
+              }
+            },
+            "test": {
+              "rejected_episodes": 0,
+              "rejected_by_task": {},
+              "over_limit_by_view": {},
+              "max_exported_tokens": {
+                "history": 225,
+                "memory": 221,
+                "extraction": 633
+              }
+            }
+          }
+        },
+        "quoted_episodes": 104,
+        "observed_source_ids": [
+          "test:670:12:1",
+          "test:67:6:1",
+          "test:982:2:1",
+          "train:10222:8:2",
+          "train:10798:5:4",
+          "train:10912:1:1",
+          "train:1690:9:2",
+          "train:2297:7:4",
+          "train:2515:2:1",
+          "train:2854:11:1",
+          "train:3133:19:2",
+          "train:3194:2:1",
+          "train:3607:2:1",
+          "train:3681:2:1",
+          "train:4088:12:1",
+          "train:4795:2:1",
+          "train:4814:3:1",
+          "train:6599:2:2",
+          "train:7172:7:5",
+          "train:7609:1:1",
+          "train:7791:4:8",
+          "train:8949:9:7",
+          "train:9011:1:1",
+          "train:9306:6:1",
+          "train:9629:6:1",
+          "val:670:2:6",
+          "val:791:9:2",
+          "val:806:5:1"
+        ]
+      }
+    },
+    "available_lemmas": [
+      "accept",
+      "break",
+      "catch",
+      "check",
+      "consider",
+      "develop",
+      "do",
+      "find",
+      "get",
+      "give",
+      "help",
+      "hope",
+      "knock",
+      "know",
+      "learn",
+      "look",
+      "make",
+      "mean",
+      "move",
+      "need",
+      "scare",
+      "see",
+      "send",
+      "should",
+      "study",
+      "take",
+      "tell",
+      "think",
+      "try",
+      "turn",
+      "walk",
+      "want",
+      "will",
+      "would"
+    ]
+  },
+  "synthetic": {
+    "status": "passed",
+    "operation": "TemplateBank.generate with Synthetic corpus predicate policy",
+    "count_per_template": 1,
+    "seed": 20261013,
+    "outputs": 19,
+    "source_ids": [
+      "train:3607:2:1",
+      "train:7172:7:5",
+      "train:9306:6:1",
+      "train:3194:2:1",
+      "train:3681:2:1",
+      "val:791:9:2",
+      "train:8949:9:7",
+      "train:7609:1:1",
+      "val:806:5:1",
+      "train:9011:1:1",
+      "train:10912:1:1",
+      "test:67:6:1",
+      "train:6599:2:2",
+      "train:1690:9:2",
+      "train:3133:19:2",
+      "test:982:2:1",
+      "train:4088:12:1",
+      "train:2515:2:1",
+      "train:2854:11:1"
+    ],
+    "derived_factual_qa": 0
+  },
+  "tests": {
+    "tests-catalog.xml": {
+      "tests": "136",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "1.870"
+    },
+    "tests-final-fragments.xml": {
+      "tests": "118",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "10.891"
+    },
+    "tests-final.xml": {
+      "tests": "173",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "400.441"
+    },
+    "tests.xml": {
+      "tests": "208",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "39.374"
+    }
+  },
+  "compiler_regression_tests": 18,
+  "api_calls": 0,
+  "parser_inference_calls": 0,
+  "model_training": false,
+  "next_work": "Review remaining candidate groups. Five cases from the two QC samples remain context_only without generation adapters. This does not approve the rest of the corpus or establish manual/hybrid equivalence."
+}

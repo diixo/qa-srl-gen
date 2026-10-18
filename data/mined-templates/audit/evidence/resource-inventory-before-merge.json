@@ -1,0 +1,54 @@
+{
+  "format": "dailydialog-preserved-resource-candidates-v1",
+  "review_status": "UNREVIEWED",
+  "registered_for_generation": false,
+  "inventories": {
+    "adverbs.jsonl.gz": {
+      "records": 884,
+      "original_review_status_counts": {
+        "UNREVIEWED": 884
+      }
+    },
+    "entities.jsonl.gz": {
+      "records": 897,
+      "original_review_status_counts": {
+        "REVIEWED": 897
+      }
+    },
+    "entity_candidates.jsonl.gz": {
+      "records": 12853,
+      "original_review_status_counts": {
+        "UNREVIEWED": 12853
+      }
+    },
+    "nominals.jsonl.gz": {
+      "records": 72078,
+      "original_review_status_counts": {
+        "UNREVIEWED": 72078
+      }
+    }
+  },
+  "files": {
+    "adverbs.jsonl.gz": {
+      "source": "artifacts/dailydialog-import-pending/adverbs.jsonl.gz",
+      "sha256": "e282782512881af05326de0eda2c20976e30a703124ebcfb319c18c0f17f6842",
+      "size": 129078
+    },
+    "entities.jsonl.gz": {
+      "source": "artifacts/dailydialog-import-pending/entities.jsonl.gz",
+      "sha256": "01bc660eebaf0db0301b9465cd39645cada1d3c8ddc8735b74ce1c201658cab4",
+      "size": 114533
+    },
+    "entity_candidates.jsonl.gz": {
+      "source": "artifacts/dailydialog-import-pending/entity_candidates.jsonl.gz",
+      "sha256": "79cd4a81a61adb383668e9bdecb1f0c05ba970ee44c2a206d53a8152b3ad29ce",
+      "size": 1095474
+    },
+    "nominals.jsonl.gz": {
+      "source": "artifacts/dailydialog-import-pending/nominals.jsonl.gz",
+      "sha256": "60f3ed4372e368329e42643e3cbf256a492dddc7e5787fd90359d36b2c089da7",
+      "size": 6324644
+    }
+  },
+  "note": "Exact earlier extraction outputs preserved after rollback. Row review_status values are historical claims; this import does not grant admission. Automatic candidates include known parser errors. Existing registered inventories remain unchanged."
+}

@@ -1,0 +1,205 @@
+{
+  "format": "reviewed-fragment-adapters-v1",
+  "patterns": [
+    {
+      "id": "dd_v34_test_234_9_2",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "How would you describe my appearance?",
+      "reply": "You look anilic.",
+      "value": "described the listener's appearance using anilic; the intended property remains unknown and no diagnosis is established",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v34_test_234_9_2",
+      "source": {
+        "split": "test",
+        "dialogue": 234,
+        "turn": 9,
+        "segment": 2,
+        "span": [
+          33,
+          49
+        ],
+        "text": "You look anilic.",
+        "context": [
+          "What seems to the trouble Mr Brown?",
+          "I'm in pretty bad shape, Doctor Ford.",
+          "Oh, In what way.",
+          "No appetite, always unaged and I can't sleep well.",
+          "Did you lose any weight?",
+          "YES. I've lost quite a few pounds since last month.",
+          "When was the last time you have track up?",
+          "About two month ago.",
+          "Let me take your blood pressure. You look anilic. Well, Mr. Brown. I'm happy to say it's nothing serious. You just a little run down from overwork.",
+          "What am I suppose to do?",
+          "I think you'll needs just vacation. Try to get out doors more. I'll be sure if you get more rest.",
+          "Thank you, doctor. I'll do what you say."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "source_sha256": "320a7dc29c854862713ae899534d50f8f5bdd6f8848b8cf06363a58e0323b992",
+        "context_sha256": "3649711461c3a84a5ac4fbb57a19f49721094f6e9478543dac899034c3cfe058",
+        "adaptation": "Preserve the original wording and unknowns. The visible prompt grounds only the conversation topic; do not infer a missing word, diagnosis, authorship, financial fact or actual activity. You look provides an appearance assessment even though anilic is uninterpreted. Admit only that speech act and raw property label, preserving the prohibition on guessed diagnoses."
+      }
+    },
+    {
+      "id": "dd_v34_test_928_2_4",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "You were discussing Sally, a designer. What did you say about the company's advertisements?",
+      "reply": "Many of the company's advertisements are her child trains.",
+      "value": "associated the company's advertisements with Sally through the unclear expression her child trains; the relationship remains unknown and authorship is not established",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v34_test_928_2_4",
+      "source": {
+        "split": "test",
+        "dialogue": 928,
+        "turn": 2,
+        "segment": 4,
+        "span": [
+          61,
+          119
+        ],
+        "text": "Many of the company's advertisements are her child trains.",
+        "context": [
+          "Do you know Sally?",
+          "Sally. She is a bachelor girl. She is an excellent designer. Many of the company's advertisements are her child trains.",
+          "Why is she still single? She must have a face that would stop clock.",
+          "Oh, quite the other way round. She is a knock-out. She devotes much of her time to her career."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2
+        ],
+        "source_sha256": "09d9756c6c4ff093d973e3c1c98d0e209011ac1ed2cd2b74dcf6ba00591ca364",
+        "context_sha256": "b491d6f85dfc767660a3240747454a0723a9de4bd6d831c402e40e63f30d1ed2",
+        "adaptation": "Preserve the original wording and unknowns. The visible prompt grounds only the conversation topic; do not infer a missing word, diagnosis, authorship, financial fact or actual activity. The sentence explicitly associates the advertisements with Sally through her child trains. Admit this opaque association only, without authorship, literal children or trains, or a brainchildren repair."
+      }
+    },
+    {
+      "id": "dd_v34_train_10070_11_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Here is your money. Please count it and sign your name.",
+      "reply": "Yes, it is the credit demand.",
+      "value": "responded affirmatively in the money-counting exchange while credit demand remained unclear; no correct amount, completed counting or signature was confirmed",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v34_train_10070_11_1",
+      "source": {
+        "split": "train",
+        "dialogue": 10070,
+        "turn": 11,
+        "segment": 1,
+        "span": [
+          0,
+          29
+        ],
+        "text": "Yes, it is the credit demand.",
+        "context": [
+          "Good morning, miss.",
+          "Good morning, sir.",
+          "Could you tell me please where can I find a currents exchange?",
+          "Right here, how can I help you today, sir?",
+          "I'd like to exchange 5000 Singapore dollars into the US dollars please.",
+          "Do you have an account this bank, sir?",
+          "Yes, here is my account number.",
+          "May I please see ID?",
+          "Sure, here is my passport, by the way what is the rate today?",
+          "Today's rate is 2.57 Singapore dollars for 1 US dollar, here is your money, sir. Please count it and sign your name here.",
+          "Yes, it is the credit demand. Where can I cash travellers'cheques?",
+          "You can cash them here, how much do you want to cash?",
+          "900 dollars.",
+          "How would you like it?",
+          "I need 8 hundreds and the rest in 10s please?",
+          "Ok, here you are.",
+          "Thank you, have a nice day.",
+          "Thank you, have a good day."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source_sha256": "4fe880ff371048fa7c5ed8394997c46f08d7cc36fa8c61ad5ed08ab944376cd9",
+        "context_sha256": "4d0656738588cacb3be9afdca573f987b499678c7a70322969153f7c32752d6f",
+        "adaptation": "Preserve the original wording and unknowns. The visible prompt grounds only the conversation topic; do not infer a missing word, diagnosis, authorship, financial fact or actual activity. The initial Yes is an affirmative response in the money-counting exchange. Credit demand supplies no reliable financial fact, correct amount, completed counting or signature. Admit only that limited acknowledgment."
+      }
+    },
+    {
+      "id": "dd_v34_train_10986_8_1",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "I cannot connect to the internet and do not have antivirus software.",
+      "reply": "Are you riding?",
+      "value": "asked about an activity written riding; its intended meaning remains unclear and no activity was confirmed",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_v34_train_10986_8_1",
+      "source": {
+        "split": "train",
+        "dialogue": 10986,
+        "turn": 8,
+        "segment": 1,
+        "span": [
+          0,
+          15
+        ],
+        "text": "Are you riding?",
+        "context": [
+          "Could you come and help me mend the computer, Neel?",
+          "What's wrong with it?",
+          "I can't log on the internet again.",
+          "Let me see. Did you change anything on your computer?",
+          "No, never.",
+          "What kind of anti-virus software do you use?",
+          "I don't have this kind of software.",
+          "Are you riding? You have to install an anti-virus software on your computer. If not, you will be attacked by viruses, and it can lead your computer into failure."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "source_sha256": "5a7584105d1e094c326e493ec02e43ca7a586be23828563c7c8b6b12aacc3bbf",
+        "context_sha256": "f76e35ee3f7dc056a0521ac0a28682478413d154d5c0451247dda2508aa18858",
+        "adaptation": "Preserve the original wording and unknowns. The visible prompt grounds only the conversation topic; do not infer a missing word, diagnosis, authorship, financial fact or actual activity. Are you introduces a question about the source-worded activity riding. Admit that question with its intended sense unknown; computer context does not authorize kidding or any actual riding event."
+      }
+    }
+  ]
+}

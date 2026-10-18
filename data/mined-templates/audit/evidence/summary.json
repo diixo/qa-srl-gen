@@ -1,0 +1,38 @@
+{
+  "version": "quarantine_current_candidate_v1",
+  "candidate": "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-hybrid-source-v34",
+  "previous_ledger": "C:\\git\\qa-srl-gen\\data\\dailydialog\\review-parts\\luna-offline-source-v33",
+  "saved_warnings": 12978,
+  "explicitly_rechecked": 75,
+  "recheck_findings": {
+    "closed_representation_only": 57,
+    "closed_verified_after_source_revision": 18
+  },
+  "invalidated_without_new_review": 0,
+  "warning_counts": {
+    "closed_verified_after_source_revision": 734,
+    "fixed_in_candidate": 8974,
+    "closed_representation_only": 1112,
+    "closed_not_supported": 585,
+    "fixed_wording_only": 1243,
+    "fixed_boundary_only": 260,
+    "closed_source_warning_not_supported": 51,
+    "quarantined_unresolved": 19
+  },
+  "quarantined_warnings": 19,
+  "quarantined_original_cases": 19,
+  "quarantined_current_occurrences": 21,
+  "quarantine_groups": {
+    "source": 13,
+    "ambiguity": 5,
+    "other_syntax": 1
+  },
+  "received_evidence_sha256": "68f72401d4ccd5e4a26eaaf23e1558dc268f136195680c658a2f857f8be68391",
+  "review_sha256": "9ab554c2ef826ed33cbcc276894770be34c246f55ba3aa1c33f04f0034c716e2",
+  "current_source_and_context_embedded": true,
+  "unknowns_retained": true,
+  "exclusions": 0,
+  "semantic_review_complete": false,
+  "full_candidate_published": false,
+  "api_calls": 0
+}

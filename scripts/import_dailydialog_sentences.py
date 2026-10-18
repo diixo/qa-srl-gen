@@ -161,17 +161,18 @@ def manual_record(segment, provenance):
     record = deepcopy(segment['record'])
     rendered = CorpusTemplate(record).render()
     tokens = []
+    api = provenance.get('annotation_provenance', {}).get('method') == 'llm_api'
     for key, slot in record['slots'].items():
         text = record['defaults'][key]
         lemma = slot.get('lemma', text.lower())
         tokens.append(dict(text=text, span=rendered['spans'][key], lemma=lemma, parser_lemma=lemma,
                            kind=slot['kind'], pos=slot['pos'], tag=slot['tag'], morph=slot.get('morph',''),
-                           dep=slot['dependency'], analysis='model_reviewed', slot=key,
+                           dep=slot['dependency'], analysis='llm_api' if api else 'model_reviewed', slot=key,
                            verb_lemmas=[], adjective_lemmas=[]))
     ledger = dict(**provenance, text=rendered['text'], template_id=record['template_id'],
                   bindings=record['defaults'], tokens=sorted(tokens, key=lambda t:t['span']),
                   attributes=rendered['attributes'], predicate_groups=rendered['predicate_groups'],
-                  analysis_status='model_reviewed_sentence', sentence_template=CorpusTemplate(record).text,
+                  analysis_status='llm_api_sentence' if api else 'model_reviewed_sentence', sentence_template=CorpusTemplate(record).text,
                   predicate_templates=[])
     return record, ledger
 
@@ -199,7 +200,8 @@ def compile_reviews(rows, output, work, wiktionary):
                 accepted[idx] = segment
                 write_row(sink, dict(idx=idx, example=segment['text'], provenance=dict(
                     origin=segment['origin'], original=segment['original'],
-                    correction=segment.get('correction'), review_note=segment.get('note',''))))
+                    correction=segment.get('correction'), review_note=segment.get('note',''),
+                    **({'annotation_provenance':turn['annotation_provenance']} if 'annotation_provenance' in turn else {}))))
     manifest = build_bank(source, output, work/'shards', LiteralInputs(), wiktionary=wiktionary,
                           record_compiler=lambda doc,p,a:manual_record(accepted[p['idx']],p))
     entities, candidates, nominals = {}, {}, {}
@@ -218,8 +220,12 @@ def compile_reviews(rows, output, work, wiktionary):
             if named['label']:
                 entity = dict(text=named['text'], labels=[named['label'],'NAMED_ENTITY'], named=True)
                 entity_from_json(entity)
-                observe(entities,(named['text'],named['label']),dict(entity=entity,review_status='REVIEWED',
-                         review_method='model_context_review'),turn['original'],span,origin)
+                provenance = turn.get('annotation_provenance', {})
+                api = provenance.get('method') == 'llm_api'
+                reviewed = not api or provenance.get('semantic_review') == 'passed'
+                observe(entities,(named['text'],named['label']),dict(entity=entity,
+                         review_status='REVIEWED' if reviewed else 'UNREVIEWED',
+                         review_method='llm_api' if api else 'model_context_review'),turn['original'],span,origin)
             else:
                 observe(candidates,named['text'],dict(text=named['text'],review_status='UNREVIEWED',note=named['note']),
                          turn['original'],span,origin)
@@ -242,11 +248,16 @@ def compile_reviews(rows, output, work, wiktionary):
         for turn in rows:
             write_row(sink,{**turn,'segments':[{k:v for k,v in s.items() if k!='record'} for s in turn['segments']]})
     manifest.pop('source',None)
-    manifest['manual_import'] = dict(method='model_reviewed',unit='sentence',complete_corpus=False,
+    methods = {t.get('annotation_provenance', {}).get('method', 'model_reviewed') for t in rows}
+    manifest['manual_import'] = dict(method=next(iter(methods)) if len(methods)==1 else 'mixed_model_annotations',unit='sentence',complete_corpus=False,
                                     reviewed_turns={turn_id(t):fingerprint(t) for t in rows},
                                     statuses=dict(Counter(s['status'] for t in rows for s in t['segments'])),
                                     spans='Explicit lexical slots, including noun phrases; not a complete token dependency parse.',
                                     source_policy='Self-contained templates; no duplicate source ZIP or JSONL.')
+    if 'llm_api' in methods:
+        manifest['model'] = dict(name='API-authored sentence annotations',parser=None)
+        manifest['annotation_provenance'] = list({fingerprint(t['annotation_provenance']):t['annotation_provenance']
+                                                for t in rows if 'annotation_provenance' in t}.values())
     write_json(output/'manifest.json',manifest)
     validation = validate_bank(TemplateBank(output),source)
     write_json(output/'validation.json',validation)

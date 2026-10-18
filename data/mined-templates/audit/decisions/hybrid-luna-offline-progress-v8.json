@@ -1,0 +1,141 @@
+{
+  "version": "offline-luna-progress-v8",
+  "candidate": "artifacts/dailydialog-hybrid-offline-final-local-v1",
+  "bank": "artifacts/dailydialog-hybrid-offline-final-local-v1/bank",
+  "report": {
+    "status": "local_syntax_reviews_complete",
+    "validation": {
+      "status": "passed",
+      "source_sha256": "51ced25bd01e9e7637175be33cd1f7d710df7c1c69679a076fc518ddcb79d996",
+      "templates": 100698,
+      "attested_roundtrips": 109624,
+      "source_records": 161293,
+      "token_spans": 1377807,
+      "verbs_occurrences": 289381,
+      "adjectives_occurrences": 71881
+    },
+    "conservation": {
+      "status": "passed",
+      "counts": {
+        "segments": 161293,
+        "tokens": 1377807,
+        "unchanged_occurrences": 160910,
+        "revised_occurrences": 383
+      },
+      "source_and_tokens_unchanged": true,
+      "previous_reviews_preserved": true,
+      "all_unaddressed_occurrences_identical": true
+    },
+    "counts": {
+      "compiled_occurrences": 161293,
+      "reviewed_syntax_reuses": 1088,
+      "fragment_or_nonverbal_candidates": 26250,
+      "context_reviewed_occurrences": 557,
+      "context_syntax_corrections": 308,
+      "groups": 71755,
+      "entity_candidates": 10534,
+      "sample_cases": 111
+    },
+    "dialogues": 12608,
+    "turns": 99224,
+    "protected_files_unchanged": 1286,
+    "api_calls": 0,
+    "parser_inference_calls": 0,
+    "published": false,
+    "elapsed_seconds": 761.38
+  },
+  "queue": "data/dailydialog/review-parts/luna-offline-v28/pending-warnings.jsonl.gz",
+  "received_evidence": "data/dailydialog/review-parts/luna-offline-v28/received-evidence.jsonl.gz",
+  "warning_counts": {
+    "fixed_in_candidate": 8778,
+    "pending_context_or_source_review": 3125,
+    "closed_representation_only": 468,
+    "closed_not_supported": 607
+  },
+  "pending_cases": 2745,
+  "pending_groups": {
+    "source": 1993,
+    "sentence_boundary": 244,
+    "other_syntax": 416,
+    "property_attachment": 104,
+    "coordination": 125,
+    "clause_attachment": 74,
+    "ambiguity": 98,
+    "particle_or_preposition": 44,
+    "lemma_or_inflection": 12,
+    "direct_address": 13,
+    "negation_or_modality": 2
+  },
+  "verification": {
+    "source_parts_verified_dialogues": 13118,
+    "manual_reference_dialogues_preserved": 510,
+    "all_warning_addresses_preserved": 12978,
+    "all_previous_closures_preserved": true,
+    "saved_api_evidence_unchanged": true,
+    "received_evidence_sha256": "68f72401d4ccd5e4a26eaaf23e1558dc268f136195680c658a2f857f8be68391",
+    "noncanonical_apostrophes": 0,
+    "validation": {
+      "status": "passed",
+      "source_sha256": "51ced25bd01e9e7637175be33cd1f7d710df7c1c69679a076fc518ddcb79d996",
+      "templates": 100698,
+      "attested_roundtrips": 109624,
+      "source_records": 161293,
+      "token_spans": 1377807,
+      "verbs_occurrences": 289381,
+      "adjectives_occurrences": 71881
+    },
+    "conservation": {
+      "status": "passed",
+      "counts": {
+        "segments": 161293,
+        "tokens": 1377807,
+        "unchanged_occurrences": 160910,
+        "revised_occurrences": 383
+      },
+      "source_and_tokens_unchanged": true,
+      "previous_reviews_preserved": true,
+      "all_unaddressed_occurrences_identical": true
+    }
+  },
+  "semantic_review_complete": false,
+  "api_status": "offline_by_user_request",
+  "api_calls": 0,
+  "api_unanswered_cases": 112802,
+  "outputs_sha256": "f792915163ff9f8a309ba840b55ebe1cf461c8f1d74d4de40b02990766f5c0e3",
+  "next_api_job_if_ever_resumed": 18376,
+  "quality_control": "data/dailydialog/review-parts/hybrid-offline-completion-qc-summary-v1.json",
+  "publication": {
+    "bank": "data/mined-templates",
+    "component": "dailydialog-offline-qc-v1",
+    "admitted_attestations": 29,
+    "mode": "attested_sentence",
+    "recombination": false,
+    "dependency_qa": false,
+    "smoke": "artifacts/dailydialog-offline-published-smoke-v1.json"
+  },
+  "full_candidate_published": false,
+  "dialogue_smoke": "artifacts/dailydialog-offline-qc-dialogue-smoke-v1",
+  "tests": {
+    "passed": 349,
+    "elapsed_seconds": 476.06,
+    "suites": [
+      "test_template_attribute_targets.py",
+      "test_template_bank.py",
+      "test_template_semantics.py",
+      "test_template_registry.py",
+      "test_template_usage.py",
+      "test_resource_pool.py",
+      "test_dailydialog_attribute_targets.py",
+      "test_dailydialog_local_syntax.py",
+      "test_dailydialog_offline_resolution.py",
+      "test_dailydialog_offline_catalog.py",
+      "test_dailydialog_offline_rules.py",
+      "test_dailydialog_bank_audit.py",
+      "test_dailydialog_admission.py",
+      "test_dailydialog_context_revision.py",
+      "test_dailydialog_source_segmentation.py",
+      "test_dialogue_generator.py"
+    ]
+  },
+  "next_step": "Continue grouped offline adjudication of the preserved pending warnings; do not treat the full scan, local fixes or API clear as sentence-level approval."
+}

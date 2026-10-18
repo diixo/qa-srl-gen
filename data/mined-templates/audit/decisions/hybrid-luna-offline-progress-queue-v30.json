@@ -1,0 +1,318 @@
+{
+  "version": "offline-source-wording-and-boundaries-v30",
+  "date": "2026-10-18",
+  "previous_progress": "data/dailydialog/review-parts/hybrid-luna-offline-progress-queue-v29.json",
+  "candidate": "artifacts/dailydialog-hybrid-source-v30",
+  "ledger": "data/dailydialog/review-parts/luna-offline-source-v30",
+  "review_status": "UNREVIEWED",
+  "full_candidate_published": false,
+  "semantic_review_complete": false,
+  "source_text_changes": 0,
+  "joined_segment_pairs": 2,
+  "api_calls": 0,
+  "parser_inference_calls": 0,
+  "source_warnings_triaged": 228,
+  "source_warnings_contextually_reviewed": 35,
+  "reviewed_occurrences": 34,
+  "new_adapters": 0,
+  "catalog_patterns": 729,
+  "representation_only_closures": 33,
+  "boundary_closures": 2,
+  "remaining": {
+    "main_warning_queue": 251,
+    "supplemental_ambiguities": 5,
+    "quality_findings": 2,
+    "total_open_review_items": 258,
+    "main_warning_occurrences": 247,
+    "main_occurrences_with_adapter": 222,
+    "main_occurrences_without_adapter": 25,
+    "pending_items_are_not_all_unread": true,
+    "source_warnings": 193,
+    "semantic_warnings": 48,
+    "structural_warnings": 10,
+    "caveat": "251 saved warnings plus five supplemental cases and two QC cases. Counts do not cover the full UNREVIEWED candidate. Acceptance of source wording does not establish corrected spelling or unknown facts.",
+    "next_actions": [
+      "Continue evidence-based review of the 193 retained source warnings; separate incomplete-but-usable content from genuinely missing predicates, referents, quantities and units.",
+      "Keep the 58 previously reviewed semantic/structural warnings, five supplemental cases and two QC cases with their explicit unknowns until new evidence supports a narrower decision.",
+      "Do not publish the full candidate or infer missing content for the 25 insufficient-content occurrences."
+    ]
+  },
+  "quarantined_api_warnings": 251,
+  "quarantined_current_occurrences": 247,
+  "quarantine_groups": {
+    "source": 193,
+    "ambiguity": 48,
+    "sentence_boundary": 1,
+    "negation_or_modality": 1,
+    "coordination": 3,
+    "other_syntax": 3,
+    "clause_attachment": 2
+  },
+  "supplemental_ambiguities": 5,
+  "random_quality_findings": 2,
+  "validation": {
+    "status": "passed",
+    "source_sha256": "693e1a6b6639de81caab0e727bec51f3039a43092899b03a87f3dcf5c44ed317",
+    "templates": 101298,
+    "attested_roundtrips": 110187,
+    "source_records": 161314,
+    "token_spans": 1378085,
+    "verbs_occurrences": 289417,
+    "adjectives_occurrences": 71912
+  },
+  "conservation": {
+    "status": "passed",
+    "counts": {
+      "old_segments": 161316,
+      "old_tokens": 1378085,
+      "new_segments": 161314,
+      "new_tokens": 1378085,
+      "unchanged_analyses": 161280,
+      "revised_outputs": 34,
+      "grouped_input_segments": 2,
+      "joined_input_segments": 2
+    },
+    "explicit_token_delta": 0,
+    "reference_expansion_token_delta": 0,
+    "previous_preimages_retained": true
+  },
+  "apostrophes": {
+    "status": "passed",
+    "normalized_segments": 161314,
+    "ascii_apostrophes": 49411,
+    "noncanonical_apostrophes": 0,
+    "target": "'",
+    "original_contexts_preserved": true,
+    "previous_contexts_retained_in_source_candidate": true,
+    "source_corrections_explicit": true
+  },
+  "tests": {
+    "passed": 1648,
+    "seconds": 40.075,
+    "report": "artifacts/dailydialog-source-v30/pytest.xml"
+  },
+  "fragment_generation_smoke": {
+    "status": "passed",
+    "seed": 30,
+    "task": "fragment_meaning",
+    "catalog_patterns": 729,
+    "catalog_unchanged": true,
+    "checked_patterns": 34,
+    "covered_source_occurrences": 34,
+    "catalog_sha256": "ddfc4926c56226b5ff5c9be89d28be8522e1a56752b9af273cdc92a0dc6100a4",
+    "splits": {
+      "user-assistant/train": {
+        "episodes": 34,
+        "history": 34,
+        "memory": 34,
+        "extraction": 102
+      },
+      "user-assistant/validation": {
+        "episodes": 34,
+        "history": 34,
+        "memory": 34,
+        "extraction": 102
+      },
+      "user-assistant/test": {
+        "episodes": 34,
+        "history": 34,
+        "memory": 34,
+        "extraction": 102
+      },
+      "named-people/train": {
+        "episodes": 34,
+        "history": 34,
+        "memory": 34,
+        "extraction": 102
+      },
+      "named-people/validation": {
+        "episodes": 34,
+        "history": 34,
+        "memory": 34,
+        "extraction": 102
+      },
+      "named-people/test": {
+        "episodes": 34,
+        "history": 34,
+        "memory": 34,
+        "extraction": 102
+      }
+    },
+    "generated_episodes": 204,
+    "extraction_rows": 612,
+    "history_rows": 204,
+    "memory_rows": 204,
+    "original_reply_text_unchanged": true,
+    "json_inside_content": false,
+    "invented_completed_events": 0,
+    "cross_split_prompt_overlaps": [],
+    "examples": [
+      {
+        "pattern": "dd_v28_test_153_2_1",
+        "assistant": "What seems to be the problem?",
+        "original_reply": "Is your blood pressure, I'm afraid.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | identified blood pressure as the concern, with I'm afraid functioning as a hedge"
+      },
+      {
+        "pattern": "dd_v28_test_360_2_2",
+        "assistant": "What would my restaurant duties involve?",
+        "original_reply": "One of your duties is to know the number of the customer and accept reservation.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | described duties involving customer-number information and accepting reservations"
+      },
+      {
+        "pattern": "dd_v28_test_378_5_2",
+        "assistant": "Which places did the article list among the winners?",
+        "original_reply": "Also amongst the winners is Petra, in Jordan, Mach Pitch in Peru and the pyramid in Chichenitza in Mexico.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | listed Petra in Jordan, a place named Mach Pitch in Peru, and a pyramid in Chichenitza in Mexico as reported winners"
+      },
+      {
+        "pattern": "dd_v19_train_1019_4_1",
+        "assistant": "You are studying science. Which subjects do you have to take?",
+        "original_reply": "Well, I have to take biology, chemistry, maps and physics.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | reported a requirement to take biology, chemistry, a subject written as maps, and physics; attendance is not confirmed"
+      },
+      {
+        "pattern": "dd_v24_train_10480_6_1",
+        "assistant": "Supporters say the bailout could save jobs. What is your objection?",
+        "original_reply": "That maybe true, and I for one don't want to see anyone lose their job, but how can these Ces ask for a bailout when they're making millions of dollars?",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | conceded that jobs might be saved and opposed job losses, but challenged high earners asking for a bailout; Ces remains an unresolved label"
+      },
+      {
+        "pattern": "dd_v28_test_807_4_1",
+        "assistant": "Would a new place to meet people interest you?",
+        "original_reply": "Need a new. Girlfriend, huh?",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | asked whether the addressee needed a new girlfriend, with the internal period retained"
+      },
+      {
+        "pattern": "dd_v28_test_980_2_2",
+        "assistant": "What language does your teacher use in class?",
+        "original_reply": "Oh, we never speak Spanish in class! Miss. Parker speaks to us only in English.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | said Spanish was never used in class and Miss Parker spoke only English"
+      }
+    ],
+    "scope": "Previously admitted visible-pair utterance_interpretation; no new patterns or general role QA.",
+    "api_calls": 0,
+    "parser_inference_calls": 0
+  },
+  "independent_verification": {
+    "status": "passed",
+    "reviewed_occurrences": 34,
+    "source_warnings_triaged": 228,
+    "source_warnings_contextually_reviewed": 35,
+    "original_text_unchanged": true,
+    "token_text_and_count_unchanged": true,
+    "original_segment_snapshots_preserved": true,
+    "joins": [
+      "test:807:4:1",
+      "test:980:2:2"
+    ],
+    "context_only_guard_checks": 34,
+    "previous_bindings_preserved": true,
+    "catalog_patterns_preserved": 729,
+    "new_adapters": 0,
+    "protected_files_unchanged": 1055,
+    "source_dialogues_preserved": 13118,
+    "manual_dialogues_preserved": 510,
+    "parts_preserved": 100,
+    "paid_evidence_identical": true,
+    "saved_warnings_preserved": 12978,
+    "explicit_warning_rechecks": 49,
+    "representation_only_closures": 33,
+    "boundary_closures": 2,
+    "remaining": {
+      "main_warning_queue": 251,
+      "supplemental_ambiguities": 5,
+      "quality_findings": 2,
+      "total_open_review_items": 258,
+      "main_warning_occurrences": 247,
+      "main_occurrences_with_adapter": 222,
+      "main_occurrences_without_adapter": 25,
+      "pending_items_are_not_all_unread": true,
+      "source_warnings": 193,
+      "semantic_warnings": 48,
+      "structural_warnings": 10,
+      "caveat": "251 saved warnings plus five supplemental cases and two QC cases. Counts do not cover the full UNREVIEWED candidate. Acceptance of source wording does not establish corrected spelling or unknown facts.",
+      "next_actions": [
+        "Continue evidence-based review of the 193 retained source warnings; separate incomplete-but-usable content from genuinely missing predicates, referents, quantities and units.",
+        "Keep the 58 previously reviewed semantic/structural warnings, five supplemental cases and two QC cases with their explicit unknowns until new evidence supports a narrower decision.",
+        "Do not publish the full candidate or infer missing content for the 25 insufficient-content occurrences."
+      ]
+    },
+    "api_calls": 0,
+    "parser_inference_calls": 0
+  },
+  "decisions": {
+    "hybrid-open-review-items-v30.json": {
+      "path": "data/dailydialog/review-parts/hybrid-open-review-items-v30.json",
+      "sha256": "394e9f1e60a6812da65f891ffd25e28a464ff0f6d4a1520732246f5ca139cd85"
+    },
+    "hybrid-quarantine-coverage-summary-v30.json": {
+      "path": "data/dailydialog/review-parts/hybrid-quarantine-coverage-summary-v30.json",
+      "sha256": "68e8b5bde46fd89a154461912f9ce397cf5f211c19c872a280b4b41287eb851f"
+    },
+    "hybrid-quarantine-coverage-v30.jsonl.gz": {
+      "path": "data/dailydialog/review-parts/hybrid-quarantine-coverage-v30.jsonl.gz",
+      "sha256": "3485db58b5b17ac4b13ba1036ec5f8f6c7a2ddfc1ba5f57353a90078c0473d39"
+    },
+    "hybrid-source-after-v30.jsonl.gz": {
+      "path": "data/dailydialog/review-parts/hybrid-source-after-v30.jsonl.gz",
+      "sha256": "1b91cdb07c5a4ca434a2b231d341c8f5490e61ba868793fe04cfb0891216ef63"
+    },
+    "hybrid-source-context-v30.jsonl": {
+      "path": "data/dailydialog/review-parts/hybrid-source-context-v30.jsonl",
+      "sha256": "7cf24f6738d1ef50f60086a8d48e4d0ada24c249bb3b5b3e82fcd001a1260498"
+    },
+    "hybrid-source-outcomes-v30.json": {
+      "path": "data/dailydialog/review-parts/hybrid-source-outcomes-v30.json",
+      "sha256": "5592a3bfce5c5d4e0c4a93bddf8dc8370d0ebccda1fbd2e63352b502ea6fc6f9"
+    },
+    "hybrid-source-snapshot-v30.jsonl.gz": {
+      "path": "data/dailydialog/review-parts/hybrid-source-snapshot-v30.jsonl.gz",
+      "sha256": "187cdcd1dd7af1a1a9d964a87ec9de30e94b9c8096f20e08773934aff85203b1"
+    },
+    "hybrid-source-triage-v30.jsonl.gz": {
+      "path": "data/dailydialog/review-parts/hybrid-source-triage-v30.jsonl.gz",
+      "sha256": "ff762f8c8a12bb0b42c73b0a153482992b1339a68bafcd76a94ee24bb1aa94f5"
+    },
+    "hybrid-source-warning-rechecks-v30.jsonl": {
+      "path": "data/dailydialog/review-parts/hybrid-source-warning-rechecks-v30.jsonl",
+      "sha256": "215218afb4eeedfcd5a5a616383834b5a6840b63345763ed4a61ff7fdd68020f"
+    }
+  },
+  "next": {
+    "qc_file": "hybrid-quality-decisions-v29.json",
+    "supplemental_file": "hybrid-supplemental-decisions-v27.json",
+    "reviewed_but_insufficient_for_adapter": [
+      "test:234:9:2",
+      "test:364:2:4",
+      "test:45:3:2",
+      "test:493:3:2",
+      "test:495:5:2",
+      "test:679:5:1",
+      "test:794:7:3",
+      "test:808:13:3",
+      "test:856:3:1",
+      "test:928:2:4",
+      "test:961:1:1",
+      "train:10044:10:4",
+      "train:10070:11:1",
+      "train:10158:7:2",
+      "train:1040:1:5",
+      "train:10530:1:3",
+      "train:10542:8:4",
+      "train:1061:1:1",
+      "train:1061:2:1",
+      "train:10882:5:4",
+      "train:10986:8:1",
+      "train:1273:1:1",
+      "train:1466:6:4",
+      "train:1674:10:4",
+      "train:2502:5:4"
+    ],
+    "priorities": [
+      "Continue evidence-based review of the 193 retained source warnings; separate incomplete-but-usable content from genuinely missing predicates, referents, quantities and units.",
+      "Keep the 58 previously reviewed semantic/structural warnings, five supplemental cases and two QC cases with their explicit unknowns until new evidence supports a narrower decision.",
+      "Do not publish the full candidate or infer missing content for the 25 insufficient-content occurrences."
+    ]
+  }
+}

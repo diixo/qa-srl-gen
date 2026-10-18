@@ -1,0 +1,301 @@
+{
+  "version": "offline-residual-and-quality-v29",
+  "date": "2026-10-18",
+  "previous_progress": "data/dailydialog/review-parts/hybrid-luna-offline-progress-queue-v28.json",
+  "candidate": "artifacts/dailydialog-hybrid-reviewed-v29",
+  "ledger": "data/dailydialog/review-parts/luna-offline-reviewed-v29",
+  "review_status": "UNREVIEWED",
+  "full_candidate_published": false,
+  "semantic_review_complete": false,
+  "source_text_changes": 0,
+  "token_annotation_changes": 1,
+  "api_calls": 0,
+  "parser_inference_calls": 0,
+  "reviewed_occurrences": 14,
+  "residual_warnings_directly_reviewed": 69,
+  "new_adapters": 3,
+  "catalog_patterns": 729,
+  "closed_as_source_label_only": 11,
+  "quality_findings_fixed": 1,
+  "remaining": {
+    "main_warning_queue": 286,
+    "supplemental_ambiguities": 5,
+    "quality_findings": 2,
+    "total_open_review_items": 293,
+    "main_warning_occurrences": 280,
+    "main_occurrences_with_adapter": 255,
+    "main_occurrences_without_adapter": 25,
+    "pending_items_are_not_all_unread": true,
+    "reviewed_held_non_source_warnings": 58,
+    "caveat": "286 warning records plus five supplemental cases and two QC cases; not a count of dialogues or the entire UNREVIEWED candidate. Representation-only closures preserve unresolved real-world labels as written.",
+    "next_actions": [
+      "Retain the 58 reviewed non-source warnings and the 25 insufficient-content occurrences with their explicit unknowns; avoid blind repeated reparsing.",
+      "Review retained source-defect groups only where an independently supported interpretation or repair can be established. Never silently expand unknown names or missing words.",
+      "Keep full-candidate admission separate from tested original-text adapters and from the API clear response."
+    ]
+  },
+  "quarantined_api_warnings": 286,
+  "quarantined_current_occurrences": 280,
+  "quarantine_groups": {
+    "source": 228,
+    "ambiguity": 48,
+    "sentence_boundary": 1,
+    "negation_or_modality": 1,
+    "coordination": 3,
+    "other_syntax": 3,
+    "clause_attachment": 2
+  },
+  "supplemental_ambiguities": 5,
+  "random_quality_findings": 2,
+  "validation": {
+    "status": "passed",
+    "source_sha256": "f5b18a487779da6069b6b336454c2f1043ce8f64554f3ee2425bfb97cb8c88e7",
+    "templates": 101300,
+    "attested_roundtrips": 110189,
+    "source_records": 161316,
+    "token_spans": 1378085,
+    "verbs_occurrences": 289417,
+    "adjectives_occurrences": 71912
+  },
+  "conservation": {
+    "status": "passed",
+    "counts": {
+      "old_segments": 161316,
+      "old_tokens": 1378085,
+      "new_segments": 161316,
+      "new_tokens": 1378085,
+      "unchanged_analyses": 161302,
+      "revised_outputs": 14
+    },
+    "explicit_token_delta": 0,
+    "reference_expansion_token_delta": 0,
+    "previous_preimages_retained": true
+  },
+  "apostrophes": {
+    "status": "passed",
+    "normalized_segments": 161316,
+    "ascii_apostrophes": 49411,
+    "noncanonical_apostrophes": 0,
+    "target": "'",
+    "original_contexts_preserved": true,
+    "previous_contexts_retained_in_source_candidate": true,
+    "source_corrections_explicit": true
+  },
+  "tests": {
+    "passed": 1648,
+    "seconds": 38.437,
+    "report": "artifacts/dailydialog-review-v29/pytest.xml"
+  },
+  "fragment_generation_smoke": {
+    "status": "passed",
+    "seed": 29,
+    "task": "fragment_meaning",
+    "catalog_patterns": 729,
+    "previous_patterns_preserved": 726,
+    "new_patterns": 3,
+    "catalog_sha256": "ddfc4926c56226b5ff5c9be89d28be8522e1a56752b9af273cdc92a0dc6100a4",
+    "splits": {
+      "user-assistant/train": {
+        "episodes": 3,
+        "history": 3,
+        "memory": 3,
+        "extraction": 9
+      },
+      "user-assistant/validation": {
+        "episodes": 3,
+        "history": 3,
+        "memory": 3,
+        "extraction": 9
+      },
+      "user-assistant/test": {
+        "episodes": 3,
+        "history": 3,
+        "memory": 3,
+        "extraction": 9
+      },
+      "named-people/train": {
+        "episodes": 3,
+        "history": 3,
+        "memory": 3,
+        "extraction": 9
+      },
+      "named-people/validation": {
+        "episodes": 3,
+        "history": 3,
+        "memory": 3,
+        "extraction": 9
+      },
+      "named-people/test": {
+        "episodes": 3,
+        "history": 3,
+        "memory": 3,
+        "extraction": 9
+      }
+    },
+    "generated_episodes": 18,
+    "extraction_rows": 54,
+    "history_rows": 18,
+    "memory_rows": 18,
+    "original_reply_text_unchanged": true,
+    "json_inside_content": false,
+    "invented_completed_events": 0,
+    "cross_split_prompt_overlaps": [],
+    "extraction_scope": "Explicit utterance_interpretation in the visible pair; unresolved names and syntax are not generalized.",
+    "examples": [
+      {
+        "pattern": "dd_v29_train_5884_8_1",
+        "assistant": "How expensive should my interview suit be?",
+        "original_reply": "The more expensive, the better.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | recommended a higher-priced interview suit, without claiming a purchase or guaranteed quality",
+        "answer": "You recommended a higher-priced interview suit, without claiming a purchase or guaranteed quality."
+      },
+      {
+        "pattern": "dd_v29_train_8624_2_3",
+        "assistant": "May I make up your room now?",
+        "original_reply": "You can put up make up sign on.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | suggested putting up a sign during the discussion of room service, without saying that the sign had been put up",
+        "answer": "You suggested putting up a sign during the discussion of room service, without saying that the sign had been put up."
+      },
+      {
+        "pattern": "dd_v29_val_616_1_1",
+        "assistant": "What did you think of my presentation to the client?",
+        "original_reply": "I think your presentation impressed the client, Daniel.",
+        "target": "SET_CONTEXT user | utterance_interpretation | asserted | positive | expressed the belief that the addressee's presentation impressed the client, without resolving whether Daniel names the addressee or the client",
+        "answer": "You expressed the belief that the addressee's presentation impressed the client, without resolving whether Daniel names the addressee or the client."
+      }
+    ],
+    "api_calls": 0,
+    "parser_inference_calls": 0
+  },
+  "independent_verification": {
+    "status": "passed",
+    "reviewed_occurrences": 14,
+    "residual_warnings_directly_reviewed": 69,
+    "source_texts_and_boundaries_unchanged": true,
+    "token_annotation_repairs": [
+      "train:5884:8:1"
+    ],
+    "all_previous_property_bindings_preserved": true,
+    "context_only_guard_checks": 14,
+    "previous_catalog_patterns_preserved": 726,
+    "new_original_text_adapters": 3,
+    "new_catalog_patterns": 729,
+    "protected_files_unchanged": 1055,
+    "source_dialogues_preserved": 13118,
+    "manual_dialogues_preserved": 510,
+    "parts_preserved": 100,
+    "paid_evidence_identical": true,
+    "saved_warnings_preserved": 12978,
+    "explicit_warning_rechecks": 13,
+    "closed_as_source_label_only": 11,
+    "real_world_names_normalized": 0,
+    "remaining": {
+      "main_warning_queue": 286,
+      "supplemental_ambiguities": 5,
+      "quality_findings": 2,
+      "total_open_review_items": 293,
+      "main_warning_occurrences": 280,
+      "main_occurrences_with_adapter": 255,
+      "main_occurrences_without_adapter": 25,
+      "pending_items_are_not_all_unread": true,
+      "reviewed_held_non_source_warnings": 58,
+      "caveat": "286 warning records plus five supplemental cases and two QC cases; not a count of dialogues or the entire UNREVIEWED candidate. Representation-only closures preserve unresolved real-world labels as written.",
+      "next_actions": [
+        "Retain the 58 reviewed non-source warnings and the 25 insufficient-content occurrences with their explicit unknowns; avoid blind repeated reparsing.",
+        "Review retained source-defect groups only where an independently supported interpretation or repair can be established. Never silently expand unknown names or missing words.",
+        "Keep full-candidate admission separate from tested original-text adapters and from the API clear response."
+      ]
+    },
+    "api_calls": 0,
+    "parser_inference_calls": 0
+  },
+  "decisions": {
+    "hybrid-open-review-items-v29.json": {
+      "path": "data/dailydialog/review-parts/hybrid-open-review-items-v29.json",
+      "sha256": "5c05c4754bcd4319516cd123a9fd89c28c9b466274a850a9c35cdd836c41eb7d"
+    },
+    "hybrid-quality-adapters-v29.json": {
+      "path": "data/dailydialog/review-parts/hybrid-quality-adapters-v29.json",
+      "sha256": "e7b7741334929acb4b98647d24abe5c1b255d82344d09688ad1b9d88d209d46c"
+    },
+    "hybrid-quality-decisions-v29.json": {
+      "path": "data/dailydialog/review-parts/hybrid-quality-decisions-v29.json",
+      "sha256": "ed61df95c0159270d99bea9e526141c853f66902a1a7829d87cb9a4f19ae2f91"
+    },
+    "hybrid-quality-original-contexts-v29.jsonl.gz": {
+      "path": "data/dailydialog/review-parts/hybrid-quality-original-contexts-v29.jsonl.gz",
+      "sha256": "a0416819fcbfc807446e33c839d80876ed61a77c6a6d238a6a45d9b44f4ac8a8"
+    },
+    "hybrid-quarantine-coverage-summary-v29.json": {
+      "path": "data/dailydialog/review-parts/hybrid-quarantine-coverage-summary-v29.json",
+      "sha256": "5398c7cec90ec9232b38e681eb339d0294bfaa10594a112b2d893d65326928af"
+    },
+    "hybrid-quarantine-coverage-v29.jsonl.gz": {
+      "path": "data/dailydialog/review-parts/hybrid-quarantine-coverage-v29.jsonl.gz",
+      "sha256": "a7f4326716df8ebc502ecf13cfb99d00a45254b55322acb94158332b332fc238"
+    },
+    "hybrid-residual-after-v29.jsonl.gz": {
+      "path": "data/dailydialog/review-parts/hybrid-residual-after-v29.jsonl.gz",
+      "sha256": "eba7849a6d0f0f26a0c8843ea98f11ad6669b1325ee8dab21d18322f558c5ce5"
+    },
+    "hybrid-residual-context-v29.jsonl": {
+      "path": "data/dailydialog/review-parts/hybrid-residual-context-v29.jsonl",
+      "sha256": "a52fa98c02338e6a7b86e4c39230d49994cf5614191fad9294cf6268e59ca1b2"
+    },
+    "hybrid-residual-outcomes-v29.json": {
+      "path": "data/dailydialog/review-parts/hybrid-residual-outcomes-v29.json",
+      "sha256": "35acce7509e87c93ab3b96a535da6a219ff964e6678f199c01f53c2d1006c57f"
+    },
+    "hybrid-residual-snapshot-v29.jsonl.gz": {
+      "path": "data/dailydialog/review-parts/hybrid-residual-snapshot-v29.jsonl.gz",
+      "sha256": "a9d7780adbabc01424cecf8bbb5aa0abfef9ef18479c38eb515f2af79def8162"
+    },
+    "hybrid-residual-sweep-v29.jsonl.gz": {
+      "path": "data/dailydialog/review-parts/hybrid-residual-sweep-v29.jsonl.gz",
+      "sha256": "fe82c378da2f497cbb90916aee7886eef368315787c8752396ccaabc413741c8"
+    },
+    "hybrid-residual-warning-rechecks-v29.jsonl": {
+      "path": "data/dailydialog/review-parts/hybrid-residual-warning-rechecks-v29.jsonl",
+      "sha256": "ce148f5e397861af7c6f4a1f3b57684f8f1bb5e6c4c825f4436d7e9793071f30"
+    }
+  },
+  "next": {
+    "qc_findings": [
+      "train:8624:2:3",
+      "val:616:1:1"
+    ],
+    "supplemental_file": "hybrid-supplemental-decisions-v27.json",
+    "reviewed_but_insufficient_for_adapter": [
+      "test:234:9:2",
+      "test:364:2:4",
+      "test:45:3:2",
+      "test:493:3:2",
+      "test:495:5:2",
+      "test:679:5:1",
+      "test:794:7:3",
+      "test:808:13:3",
+      "test:856:3:1",
+      "test:928:2:4",
+      "test:961:1:1",
+      "train:10044:10:4",
+      "train:10070:11:1",
+      "train:10158:7:2",
+      "train:1040:1:5",
+      "train:10530:1:3",
+      "train:10542:8:4",
+      "train:1061:1:1",
+      "train:1061:2:1",
+      "train:10882:5:4",
+      "train:10986:8:1",
+      "train:1273:1:1",
+      "train:1466:6:4",
+      "train:1674:10:4",
+      "train:2502:5:4"
+    ],
+    "priorities": [
+      "Retain the 58 reviewed non-source warnings and the 25 insufficient-content occurrences with their explicit unknowns; avoid blind repeated reparsing.",
+      "Review retained source-defect groups only where an independently supported interpretation or repair can be established. Never silently expand unknown names or missing words.",
+      "Keep full-candidate admission separate from tested original-text adapters and from the API clear response."
+    ]
+  }
+}

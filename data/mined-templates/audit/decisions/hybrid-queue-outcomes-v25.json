@@ -1,0 +1,1387 @@
+{
+  "version": "original-wording-queue-v25",
+  "cases": [
+    {
+      "id": "train:10956:6:3",
+      "source": {
+        "split": "train",
+        "dialogue": 10956,
+        "turn": 6,
+        "segment": 3,
+        "span": [
+          27,
+          108
+        ],
+        "text": "We have cocktail and salad, fried chicken, French fries and icecream for dessert.",
+        "context": [
+          "Dai Ling.",
+          "Oh, Henry, I haven't seen you for ages. Come in. Let me take your coat. How are you getting along?",
+          "Very well, thank you.",
+          "Please take a seat. Everything would be ready in a minute.",
+          "Can you bring me a glass of orange juice, please? I am quite thirsty.",
+          "Here you are. Here you go. We have cocktail and salad, fried chicken, French fries and icecream for dessert. Eating chicken while it's hot. It tastes better.",
+          "Wow, you're right. Everything is absolutely delicious. Please pass the pepper.",
+          "Here you are. Taste the French fries.",
+          "They're soft.",
+          "Would you like some more?",
+          "No more, thank you.",
+          "Here is to our friendship and health!",
+          "Bottom is up."
+        ]
+      },
+      "candidate_text": "We have cocktail and salad, fried chicken, French fries and icecream for dessert.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "announcement",
+        "event_status": "available_food_and_drink",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker lists cocktail, salad, fried chicken and French fries, with icecream for dessert. Retain the joined spelling; availability does not establish consumption."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v25_train_10956_6_3",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10956:13:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10956,
+        "turn": 13,
+        "segment": 1,
+        "span": [
+          0,
+          13
+        ],
+        "text": "Bottom is up.",
+        "context": [
+          "Dai Ling.",
+          "Oh, Henry, I haven't seen you for ages. Come in. Let me take your coat. How are you getting along?",
+          "Very well, thank you.",
+          "Please take a seat. Everything would be ready in a minute.",
+          "Can you bring me a glass of orange juice, please? I am quite thirsty.",
+          "Here you are. Here you go. We have cocktail and salad, fried chicken, French fries and icecream for dessert. Eating chicken while it's hot. It tastes better.",
+          "Wow, you're right. Everything is absolutely delicious. Please pass the pepper.",
+          "Here you are. Taste the French fries.",
+          "They're soft.",
+          "Would you like some more?",
+          "No more, thank you.",
+          "Here is to our friendship and health!",
+          "Bottom is up."
+        ]
+      },
+      "candidate_text": "Bottom is up.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "toast",
+        "event_status": "response_to_friendship_and_health_toast",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "In response to a toast to friendship and health, Bottom is up participates in the toast. Preserve its wording without describing an object's orientation or asserting drinking was completed."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v25_train_10956_13_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10965:4:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10965,
+        "turn": 4,
+        "segment": 1,
+        "span": [
+          0,
+          165
+        ],
+        "text": "Well, since it's summer, and I had looked that you had quite a bit sun, I'll recommend our summer special, it's specially suited for individuals with sensitive skin.",
+        "context": [
+          "I'd like a facial.",
+          "Which kind would you like? We have five different varieties of facials.",
+          "Which would you recommend?",
+          "Well, since it's summer, and I had looked that you had quite a bit sun, I'll recommend our summer special, it's specially suited for individuals with sensitive skin.",
+          "What does it included?",
+          "The facial will start with thorough cleansing.",
+          "Does it include facial mask and massage?",
+          "Yes, the reviving mask will promote blood circulation and tighten your skin. You can also choose to get hand or back massage as well.",
+          "Will it exfoliate the skin as well?",
+          "Yes, we also apply a special day cream that protect the skin from the sun and the night cream that moisturize to the skin.",
+          "That sounds great."
+        ]
+      },
+      "candidate_text": "Well, since it's summer, and I had looked that you had quite a bit of sun, I'll recommend our summer special; it's specially suited for individuals with sensitive skin.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "recommendation",
+        "event_status": "summer_facial_based_on_perceived_sun_exposure",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker recommends the summer facial based on the season and perceived sun exposure, claiming it suits sensitive skin. Keep the original looked that and bit sun forms; the advice is attributed and does not diagnose skin or establish treatment completion."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v25_train_10965_4_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": true,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10969:4:6",
+      "source": {
+        "split": "train",
+        "dialogue": 10969,
+        "turn": 4,
+        "segment": 6,
+        "span": [
+          165,
+          209
+        ],
+        "text": "Your bill for this month comes to 87.42 RIB.",
+        "context": [
+          "Which type of telephone bill would you like to pay today?",
+          "My home phone, the landline. I don't have a mobile phone, far too complicated for an old lady like me! Do you need my Bank Book?",
+          "I'll need your Bank Card, please. Your Bank Book is required for over the counter services; with the ATM you just need to have your card.",
+          "Let's get started. First, select the service you require. That's household bill payment for you. Then we select the type of bill, so that's landline... here you go. Your bill for this month comes to 87.42 RIB. The money will come out of your account and go straight to the phone company.",
+          "Well, that is easy! It sure beats waiting in line for ages waiting to deal with a real person!"
+        ]
+      },
+      "candidate_text": "Your bill for this month comes to 87.42 RIB.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "quotation",
+        "event_status": "quoted_monthly_bill",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker states this month's bill as 87.42 in the unit labelled RIB. Retain that label without substituting a currency or claiming payment occurred."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v25_train_10969_4_6",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10970:8:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10970,
+        "turn": 8,
+        "segment": 1,
+        "span": [
+          0,
+          75
+        ],
+        "text": "Ever since I saw computer can do your project, I wanted to have a computer.",
+        "context": [
+          "Let's start to study how to use computers, Paler. It's good to know that a computer has two major parts, the hardware and the software.",
+          "What's the hardware?",
+          "The hardware of computer is basically all the concrete things you can touch with your hands and see with your eyes.",
+          "That's seems obvious enough. Then what about the software?",
+          "The software of computer is all the programmes inside the computer that allow you to use the computer to do things.",
+          "I see, actually the hardware is the easy part, I do want to study how to use the software.",
+          "Right you are, Paler, and since what you want to learn is how to use software, we should also learn to refer to the computer menus.",
+          "Ever since I saw computer can do your project, I wanted to have a computer."
+        ]
+      },
+      "candidate_text": "Ever since I saw computer can do your project, I wanted to have a computer.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "recollection",
+        "event_status": "desire_for_computer_after_observing_capability",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "The speaker recalls wanting a computer after seeing its ability to do the listener's project. A missing determiner does not establish ownership or completed project work."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v25_train_10970_8_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10972:4:3",
+      "source": {
+        "split": "train",
+        "dialogue": 10972,
+        "turn": 4,
+        "segment": 3,
+        "span": [
+          55,
+          117
+        ],
+        "text": "I think the manager will understand and approve you a day off.",
+        "context": [
+          "I would like to ask for one day off next week. Do you think the manager will agree? I know it is the busy time for our company, but I do have some important things to handle.",
+          "Well, it is hard to say. At least you need to come up with a good reason.",
+          "Actually, it is my mother's wedding. My parents divorced many years ago. Now she is ready to establish a new family. It is a special occasion. I've got to be there, right?",
+          "Yes, you should be there. Go find the manager and ask. I think the manager will understand and approve you a day off. Don't forget to fill in the leave application form. It will be signed by the manager for approval.",
+          "Thank you so much."
+        ]
+      },
+      "candidate_text": "I think the manager will understand and approve you a day off.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "prediction",
+        "event_status": "expected_leave_approval",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker expects the manager to understand and approve a day off. I think and will mark an expectation rather than a granted request; preserve the nonstandard approve construction."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v25_train_10972_4_3",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10985:3:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10985,
+        "turn": 3,
+        "segment": 1,
+        "span": [
+          0,
+          150
+        ],
+        "text": "There are many famous places such as Robson Street, Stanley Park, Gaston, Lion Gate Bridge, The Vancouver Art Gallery, and The Canadian Crafts Museum.",
+        "context": [
+          "Vancouver is the third largest city in Canada.",
+          "Would you please tell me what places are worth visiting?",
+          "There are many famous places such as Robson Street, Stanley Park, Gaston, Lion Gate Bridge, The Vancouver Art Gallery, and The Canadian Crafts Museum."
+        ]
+      },
+      "candidate_text": "There are many famous places such as Robson Street, Stanley Park, Gaston, Lion Gate Bridge, The Vancouver Art Gallery, and The Canadian Crafts Museum.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "recommendation",
+        "event_status": "landmarks_with_literal_names",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker suggests Vancouver places and lists Robson Street, Stanley Park, Gaston, Lion Gate Bridge, The Vancouver Art Gallery and The Canadian Crafts Museum. Preserve names as supplied without correcting or externally verifying them, and without claiming visits."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v25_train_10985_3_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10991:3:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10991,
+        "turn": 3,
+        "segment": 1,
+        "span": [
+          0,
+          69
+        ],
+        "text": "Appropriate greetings will win the interviewer's favorable impression",
+        "context": [
+          "Greetings should never be ignored in the interview.",
+          "Sure. It is helpful to shorten the distance between you and the interviewer and create a lively atmosphere.",
+          "Appropriate greetings will win the interviewer's favorable impression",
+          "But you should pay special attention to your words and attitudes.",
+          "In the beginning of the interview, greet the interviewer with a kind smile.",
+          "In the interview, use polite words, such as'Thank you', or'Please'.",
+          "That's right. Details can mean succeed or fail.",
+          "When talking you should focus your eyes on the interviewer in order to closely watch his or her expressions.",
+          "At the end of the interview, you should make your acknowledgements and say Goode.",
+          "Whatever the result is, you should keep your good demeanor.",
+          "Only in this way can you leave a good impression on the interviewer.",
+          "In short, you should present the best of yourself throughout the interview."
+        ]
+      },
+      "candidate_text": "Appropriate greetings will win the interviewer's favorable impression",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "prediction",
+        "event_status": "greetings_and_favorable_impression",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker predicts that appropriate greetings will produce a favorable impression on the interviewer. The unusual win collocation is retained; no actual interview outcome is established."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v25_train_10991_3_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:10991:9:1",
+      "source": {
+        "split": "train",
+        "dialogue": 10991,
+        "turn": 9,
+        "segment": 1,
+        "span": [
+          0,
+          81
+        ],
+        "text": "At the end of the interview, you should make your acknowledgements and say Goode.",
+        "context": [
+          "Greetings should never be ignored in the interview.",
+          "Sure. It is helpful to shorten the distance between you and the interviewer and create a lively atmosphere.",
+          "Appropriate greetings will win the interviewer's favorable impression",
+          "But you should pay special attention to your words and attitudes.",
+          "In the beginning of the interview, greet the interviewer with a kind smile.",
+          "In the interview, use polite words, such as'Thank you', or'Please'.",
+          "That's right. Details can mean succeed or fail.",
+          "When talking you should focus your eyes on the interviewer in order to closely watch his or her expressions.",
+          "At the end of the interview, you should make your acknowledgements and say Goode.",
+          "Whatever the result is, you should keep your good demeanor.",
+          "Only in this way can you leave a good impression on the interviewer.",
+          "In short, you should present the best of yourself throughout the interview."
+        ]
+      },
+      "candidate_text": "At the end of the interview, you should make your acknowledgements and say Goode.",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "advice",
+        "event_status": "acknowledgements_and_unclear_closing_word",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker advises acknowledgements at the end of an interview and saying the word written Goode. Do not replace the closing word or claim that the interview has ended."
+        },
+        "unknown": [
+          "The intended closing word represented by Goode is unclear."
+        ]
+      },
+      "adapter_id": "dd_v25_train_10991_9_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:11004:3:1",
+      "source": {
+        "split": "train",
+        "dialogue": 11004,
+        "turn": 3,
+        "segment": 1,
+        "span": [
+          0,
+          59
+        ],
+        "text": "Do you know if there is Japanese restaurant near the hotel?",
+        "context": [
+          "Can you help me please?",
+          "Certainly sir.",
+          "Do you know if there is Japanese restaurant near the hotel?",
+          "Actually there's one on the same street as this hotel.",
+          "Is it far?",
+          "Not at all. Turn left out of the hotel and it's about a five minute walk."
+        ]
+      },
+      "candidate_text": "Do you know if there is Japanese restaurant near the hotel?",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "question",
+        "event_status": "queried_nearby_japanese_restaurant",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker asks whether there is a Japanese restaurant near the hotel. The missing article does not assert existence or provide directions."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v25_train_11004_3_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:11007:1:1",
+      "source": {
+        "split": "train",
+        "dialogue": 11007,
+        "turn": 1,
+        "segment": 1,
+        "span": [
+          0,
+          43
+        ],
+        "text": "Excuse me, which way is to the post office?",
+        "context": [
+          "Excuse me, which way is to the post office?",
+          "The post office? Sorry, I'm not sure.",
+          "Well, thanks anyway."
+        ]
+      },
+      "candidate_text": "Excuse me, which way is to the post office?",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "request",
+        "event_status": "directions_to_post_office",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "Excuse me introduces a directions request to the post office. Preserve the malformed which way is to construction; no route, arrival or travel event is supplied."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v25_train_11007_1_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:11016:8:1",
+      "source": {
+        "split": "train",
+        "dialogue": 11016,
+        "turn": 8,
+        "segment": 1,
+        "span": [
+          0,
+          19
+        ],
+        "text": "I almost forget it.",
+        "context": [
+          "What are you doing, Steven?",
+          "I'm going to Beijing tomorrow. I'm packing my luggage.",
+          "What will you bring along when traveling?",
+          "I will take some clothes to change and cleaning items.",
+          "Have you packed the camera yet?",
+          "Yes. I've already put it in my suitcase.",
+          "Pack some necessary medicine in your carry-on.",
+          "I almost forget it. Thank you!"
+        ]
+      },
+      "candidate_text": "I almost forget it.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "acknowledgement",
+        "event_status": "near_forgetting_medicine",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "After the reminder to pack medicine, the speaker acknowledges nearly overlooking it. Retain present forget without claiming complete forgetting or that the medicine is already packed."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v25_train_11016_8_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:11029:5:2",
+      "source": {
+        "split": "train",
+        "dialogue": 11029,
+        "turn": 5,
+        "segment": 2,
+        "span": [
+          49,
+          81
+        ],
+        "text": "Frozen pizza are so bad for you!",
+        "context": [
+          "Do you have any plans for dinner tonight?",
+          "No, I was thinking of putting a frozen pizza in the oven or something. How about you?",
+          "I was thinking maybe we could make dinner together tonight. What do you think?",
+          "I'm absolutely useless at cooking!",
+          "I could teach you how to cook something healthy. Frozen pizza are so bad for you!",
+          "I know they aren't good for you, but they are cheap, convenient, and fairly tasty.",
+          "I recently saw a recipe for spicy chicken curry in a magazine. Maybe we could try that?",
+          "Yeah, why not. Do you have all the ingredients?",
+          "I bought all the ingredients this morning, so let's start!",
+          "What do we do first?",
+          "First, you need to wash the vegetables and then chop them into little pieces.",
+          "Ok. Should I heat the wok?",
+          "Yes. Once it gets hot, put a little oil in it, add the vegetables and stir-fry them for a few minutes.",
+          "What about the chicken?",
+          "That needs to be cut into thin strips about 3 cm long and then it can be stir-fried on its own until its cooked through.",
+          "How about the rice?",
+          "I'll prepare that. Do you prefer white rice or brown rice?",
+          "White rice, please. None of that healthy brown stuff for me!"
+        ]
+      },
+      "candidate_text": "Frozen pizza are so bad for you!",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "opinion",
+        "event_status": "attributed_food_health_judgment",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker judges frozen pizza unhealthy for the listener. Retain the number mismatch; this is the speaker's opinion, not a verified medical conclusion or a report of eating."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v25_train_11029_5_2",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:11038:10:1",
+      "source": {
+        "split": "train",
+        "dialogue": 11038,
+        "turn": 10,
+        "segment": 1,
+        "span": [
+          0,
+          60
+        ],
+        "text": "DEL isn't connected through your phone line, but dial-up is.",
+        "context": [
+          "I would like to order some internet today.",
+          "What kind would you like?",
+          "What kind of internet is there?",
+          "You can get DEL or dial-up.",
+          "Which of those two is best?",
+          "I would recommend DEL.",
+          "So that one better?",
+          "It's better because it doesn't tie up the phone.",
+          "What do you mean by that?",
+          "DEL isn't connected through your phone line, but dial-up is.",
+          "So then I can't use my phone if I'm on the internet?",
+          "That's correct. With DEL you can do both."
+        ]
+      },
+      "candidate_text": "DEL isn't connected through your phone line, but dial-up is.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "explanation",
+        "event_status": "contrasting_connection_claims",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker claims that the service labelled DEL is not connected through the telephone line whereas dial-up is. Preserve DEL and attribute the technical claim, without normalizing the technology name or independently verifying it."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v25_train_11038_10_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:11038:12:2",
+      "source": {
+        "split": "train",
+        "dialogue": 11038,
+        "turn": 12,
+        "segment": 2,
+        "span": [
+          16,
+          41
+        ],
+        "text": "With DEL you can do both.",
+        "context": [
+          "I would like to order some internet today.",
+          "What kind would you like?",
+          "What kind of internet is there?",
+          "You can get DEL or dial-up.",
+          "Which of those two is best?",
+          "I would recommend DEL.",
+          "So that one better?",
+          "It's better because it doesn't tie up the phone.",
+          "What do you mean by that?",
+          "DEL isn't connected through your phone line, but dial-up is.",
+          "So then I can't use my phone if I'm on the internet?",
+          "That's correct. With DEL you can do both."
+        ]
+      },
+      "candidate_text": "With DEL you can do both.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "explanation",
+        "event_status": "claimed_simultaneous_phone_and_internet_use",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "Both refers to using the phone and internet simultaneously. The speaker claims this is possible with DEL; retain the label and distinguish capability from completed use."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v25_train_11038_12_2",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:11043:2:3",
+      "source": {
+        "split": "train",
+        "dialogue": 11043,
+        "turn": 2,
+        "segment": 3,
+        "span": [
+          27,
+          59
+        ],
+        "text": "How would like to pay your bill?",
+        "context": [
+          "I would like to check out now. My room number is 712.",
+          "Let me see, Mr. Lee.right? How would like to pay your bill?",
+          "Do you accept traveler's checks?",
+          "Yes.",
+          "Here you are."
+        ]
+      },
+      "candidate_text": "How would like to pay your bill?",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "question",
+        "event_status": "queried_bill_payment_method",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The subjectless hotel-service question asks the guest's preferred payment method. The omission does not establish a choice or completed payment."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v25_train_11043_2_3",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:11047:8:1",
+      "source": {
+        "split": "train",
+        "dialogue": 11047,
+        "turn": 8,
+        "segment": 1,
+        "span": [
+          0,
+          58
+        ],
+        "text": "Oh, is there a bank near there, Standard Charted possibly?",
+        "context": [
+          "Hi, sir. Could you tell me where the Hilton Hotel is?",
+          "Well, there are two Hilton Hotels around here. Which one is your destination?",
+          "Eh, let me see. Sorry, I can't remember it, because I've been there only once, accompanied by my friends.",
+          "Then, it would be a little bit harder to find out your way. Do you remember the name of the street, or one or two landmarks?",
+          "A bookstore, probably. With a yellow and orange logo.",
+          "Good, any other clues?",
+          "I remembered there is a very busy street several miles away. I waited for the traffic light for a very long time.",
+          "Oh, is there a bank near there, Standard Charted possibly?",
+          "Oh, yeah, I got it, there is a bank My friend exchanged her money there.",
+          "That's the second branch hotel of Hilton. Walk straight down and you will see the bookstore you just mentioned. Turn left, I believe, you will get it.",
+          "Great! Many thanks!"
+        ]
+      },
+      "candidate_text": "Oh, is there a bank near there, Standard Charted possibly?",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "question",
+        "event_status": "bank_landmark_hypothesis",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker asks whether there is a nearby bank, possibly named Standard Charted, as a landmark for identifying the hotel. Preserve the supplied name; neither the bank's presence nor identity is confirmed."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v25_train_11047_8_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:11048:9:4",
+      "source": {
+        "split": "train",
+        "dialogue": 11048,
+        "turn": 9,
+        "segment": 4,
+        "span": [
+          123,
+          171
+        ],
+        "text": "There is no payment no interest until next June.",
+        "context": [
+          "Hi, can I help you?",
+          "No, thanks. I'm just looking.",
+          "All right. If you need any help, just let me know. My name is Greg.",
+          "Sure, I'll let you know if I need anything. Hm, this mattress is very firm. Jack will probably like it.",
+          "Did you find something you like?",
+          "Yes, this mattress is very good. It's pretty firm. The mattress I'm now sleeping on is saggy.",
+          "You are right. This is very good brand. It doesn't sag easily and we offer a lifetime warranty, so you don't have to worry about its quality.",
+          "Does it come with a frame?",
+          "Unfortunately, it doesn't. However we can give you a 10 % discount on the frame. We also offer a very good financing plan. There is no payment no interest until next June.",
+          "That's an attractive plan. I'll think about it."
+        ]
+      },
+      "candidate_text": "There is no payment no interest until next June.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "offer",
+        "event_status": "deferred_payment_and_interest_claim",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The salesperson describes a financing offer with no payment and no interest until next June. The missing conjunction does not turn this into a completed purchase, verified contract or perpetual interest exemption."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v25_train_11048_9_4",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:11050:4:1",
+      "source": {
+        "split": "train",
+        "dialogue": 11050,
+        "turn": 4,
+        "segment": 1,
+        "span": [
+          0,
+          34
+        ],
+        "text": "Now far. About 150 meters perhaps.",
+        "context": [
+          "Excuse me? How can I get to the nearest branch of the national bank?",
+          "There's branch on new street. Walk up this street until you get to the first set of traffic lights. Then turn right at the traffic lights.",
+          "How far up the street are the traffic lights?",
+          "Now far. About 150 meters perhaps.",
+          "Ok. So I turn right at the traffic lights. Then?",
+          "Then keep walking until you reach the war memorial. It's a big statue of a soldier. You can't miss it.",
+          "Ok. Where do I go then?",
+          "You'll see the national bank near the war memorial. It's a big building and you'll see a big sign on the front of the building.",
+          "God it. Thans very much."
+        ]
+      },
+      "candidate_text": "Now far.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "estimate",
+        "event_status": "distance_clarified_within_turn",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The full original turn follows Now far with About 150 meters perhaps. Use that explicit distance estimate without repairing Now or claiming an exact distance or arrival."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v25_train_11050_4_1",
+      "adapter_uses_full_original_turn": true,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:11050:9:1",
+      "source": {
+        "split": "train",
+        "dialogue": 11050,
+        "turn": 9,
+        "segment": 1,
+        "span": [
+          0,
+          7
+        ],
+        "text": "God it.",
+        "context": [
+          "Excuse me? How can I get to the nearest branch of the national bank?",
+          "There's branch on new street. Walk up this street until you get to the first set of traffic lights. Then turn right at the traffic lights.",
+          "How far up the street are the traffic lights?",
+          "Now far. About 150 meters perhaps.",
+          "Ok. So I turn right at the traffic lights. Then?",
+          "Then keep walking until you reach the war memorial. It's a big statue of a soldier. You can't miss it.",
+          "Ok. Where do I go then?",
+          "You'll see the national bank near the war memorial. It's a big building and you'll see a big sign on the front of the building.",
+          "God it. Thans very much."
+        ]
+      },
+      "candidate_text": "God it.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "acknowledgement",
+        "event_status": "understanding_of_directions",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "After the directions, God it functions as acknowledgement of understanding. Preserve the wording without describing a deity or claiming the listener has reached the bank."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v25_train_11050_9_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:11054:9:1",
+      "source": {
+        "split": "train",
+        "dialogue": 11054,
+        "turn": 9,
+        "segment": 1,
+        "span": [
+          0,
+          31
+        ],
+        "text": "Probably on the of the cabinet.",
+        "context": [
+          "Poor Danny. You are so enfeebled!",
+          "Don't worry. No big deal. Just a common cold.",
+          "Mom called just now saying that she and Dad will be back later. Do you want to speak to them on phone?",
+          "No. You can never count on the grown-ups when there is something.",
+          "Whatever. Have a drink of water.",
+          "Come on, sister. This is the seventh glass already.",
+          "Maybe later. I think we have a medicine-kit.",
+          "Do we? Where is it?",
+          "Probably on the of the cabinet. I'll go and get it.",
+          "Be careful. Now I have no one but you to depend on.",
+          "Oh, here it is. Patulin. Oh, no!",
+          "What's the new strike?",
+          "Keep lying down. The matter is that all the medicine here is past expiration.",
+          "Poor me!"
+        ]
+      },
+      "candidate_text": "Probably on the of the cabinet.",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "tentative_location",
+        "event_status": "medicine_kit_near_unspecified_cabinet_part",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker tentatively locates the medicine kit in relation to the cabinet. The missing noun in on the of does not identify its top, shelf, side or another part."
+        },
+        "unknown": [
+          "The exact cabinet part or position is missing."
+        ]
+      },
+      "adapter_id": "dd_v25_train_11054_9_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:11064:8:2",
+      "source": {
+        "split": "train",
+        "dialogue": 11064,
+        "turn": 8,
+        "segment": 2,
+        "span": [
+          140,
+          196
+        ],
+        "text": "How about shipping them from Seattle instead of network?",
+        "context": [
+          "It has just occurred to me that there is still another possibility to ensure a prompt delivery of the goods.",
+          "And that is?",
+          "How about making Hong Kong the port of shipment instead of New York?",
+          "I'm afraid we can't agree to that. We concluded the business with you here in Houston, and the goods you ordered are manufactured in New York. We wish to point out that all orders accepted by us are shipped from New York or Seattle. Hong Kong is out of the question.",
+          "It's like this. There are only one or two ships sailing a month from New York to Osaka, while sailings from Hong Kong are quite frequent. If shipment were effected from Hong Kong, we could receive the goods much earlier.",
+          "I see. You want to have your goods shipped from New York to Osaka via Hong Kong, where they can be transshipped. Is that the idea?",
+          "Yes, exactly, because I want these goods on our market at the earliest possible date.",
+          "Your idea may be a good one, but the trouble is that there are risks of pilferage or damage to the goods during transshipment at Hong Kong. How about shipping them from Seattle instead of network? You may choose either one as port of shipment. It makes no difference to us. There are more sailings from Seattle than from New York.",
+          "It sounds all right to me, but I will have to think about it. I'll give you a definite answer tomorrow. If I choose Seattle, will it be possible for you to ship the goods by the end of March?",
+          "We'll try our best. Anyway, we assure you that shipment will be made not later than the first half of April."
+        ]
+      },
+      "candidate_text": "How about shipping them from Seattle instead of network?",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "suggestion",
+        "event_status": "seattle_shipping_with_unclear_alternative",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker proposes shipping from Seattle rather than the alternative written network. Context discusses ports, but the exact word is not replaced with a city and shipment is not completed."
+        },
+        "unknown": [
+          "The alternative location represented by network is unresolved."
+        ]
+      },
+      "adapter_id": "dd_v25_train_11064_8_2",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:11067:4:2",
+      "source": {
+        "split": "train",
+        "dialogue": 11067,
+        "turn": 4,
+        "segment": 2,
+        "span": [
+          25,
+          100
+        ],
+        "text": "Do you me riding on the mountainous countryside just the neighboring towns?",
+        "context": [
+          "I'm planning to buy a bicycle. As you are quite a cycling enthusiast, I wish you might give me some advice.",
+          "With pleasure, chap. But before I start, I need to know what you want a bike for?",
+          "My purposes are two-fold. On the one hand, I've grown bored of commuting on suffocating buses every day and decided to ride to work. On the other hand, bicycling is a sport, and I intend to build up my body through constantly taking a ride over the weekends.",
+          "Cycling during weekends? Do you me riding on the mountainous countryside just the neighboring towns?",
+          "Does that make any difference?",
+          "Can't be greater. If you ride on bumpy, hilly roads, a mountain bike is what you need. But if you just ride comfortably along the city lanes, you might choose a road bike.",
+          "Are they designed differently?",
+          "A road bike features skinny tires and a light-weight frame. Its riding position puts you bent over the handlebars. It's not particularly beefy in construction, and generally, it won't stand up well under heavy loads or on really rough surfaces. In contrast, mountain bikes have wide tires and a stout frame. You sit higher on them and don't have to hunched over."
+        ]
+      },
+      "candidate_text": "Do you me riding on the mountainous countryside just the neighboring towns?",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "clarification_question",
+        "event_status": "cycling_location_with_unclear_contrast",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker seeks clarification about weekend cycling, mentioning mountainous countryside and neighboring towns. The malformed me and absent linkage do not settle the precise contrast or intended route."
+        },
+        "unknown": [
+          "The exact relationship between the countryside and neighboring-town alternatives is unclear."
+        ]
+      },
+      "adapter_id": "dd_v25_train_11067_4_2",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:11084:2:1",
+      "source": {
+        "split": "train",
+        "dialogue": 11084,
+        "turn": 2,
+        "segment": 1,
+        "span": [
+          0,
+          47
+        ],
+        "text": "I'd like to buy some perform for my girlfriend.",
+        "context": [
+          "How can I help you?",
+          "I'd like to buy some perform for my girlfriend.",
+          "Do you know what kind of scent she usually wears?",
+          "She usually doesn't wear anything but a few drops of Chanel No. 5. But I'd like to buy her a new Fragrance.",
+          "Ok, here are some of our most popular perfumes.",
+          "Which one would you recommend?",
+          "Personally, I quite like the new perfume by Clinique. It's a subtle flowery scent. What do you think?",
+          "That smells great. I'll take one bottle, please.",
+          "Would you like to buy any other cosmetics for your girlfriend? We have a full range of products from cosmetics to skin cleansers and moisturizers.",
+          "It's ok. She normally just wears a little foundation and some loose powder, and I wouldn't know what shade to buy.",
+          "How about some lipstick? Every woman needs a nice tube of red lipstick.",
+          "She doesn't usually wear lipstick. She thinks it makes her nose look too big.",
+          "How about some mascara? That will make her eyes look bigger.",
+          "No thank you. She has big enough eyes as it is.",
+          "I know what she would like---some whitening cream.",
+          "No thanks. Western women usually try to make their skin darker, no lighter.",
+          "Will that be all then?",
+          "That will be all. You're been very helpful, thanks."
+        ]
+      },
+      "candidate_text": "I'd like to buy some perform for my girlfriend.",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "request",
+        "event_status": "purchase_desire_with_unknown_item",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker wants to buy an item written perform for their girlfriend. Do not replace it with perfume or infer a completed purchase."
+        },
+        "unknown": [
+          "The intended item represented by perform is unknown."
+        ]
+      },
+      "adapter_id": "dd_v25_train_11084_2_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:11099:2:2",
+      "source": {
+        "split": "train",
+        "dialogue": 11099,
+        "turn": 2,
+        "segment": 2,
+        "span": [
+          27,
+          77
+        ],
+        "text": "I like golf a lot-but I guess like skating better.",
+        "context": [
+          "Say, what's you favorite sport?",
+          "Mmmm..., it's hard to say. I like golf a lot-but I guess like skating better.",
+          "Do you know how to skate, like a skater?",
+          "No, I'm strictly a spectator. I just like watching skating. It's so beautiful.",
+          "Then you must know a lot about skating."
+        ]
+      },
+      "candidate_text": "I like golf a lot-but I guess like skating better.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "preference",
+        "event_status": "tentative_skating_preference_over_golf",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker likes golf but tentatively prefers skating. The omitted subject after guess is supported by the first-person preference context; no game or skating trip is reported."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v25_train_11099_2_2",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:11101:8:1",
+      "source": {
+        "split": "train",
+        "dialogue": 11101,
+        "turn": 8,
+        "segment": 1,
+        "span": [
+          0,
+          57
+        ],
+        "text": "No, it's straps closed, and it has a buckle in the front.",
+        "context": [
+          "Can I help you, sir?",
+          "I'm here for the backpack you announced several minutes ago.",
+          "OK, take a seat please, sir. First of all, can you show me your ID please?",
+          "Sure. Here you are.",
+          "OK, could you please tell me what your backpack looks like?",
+          "Of course, it's a soft leather one, you know, not a sports one that looks childish.",
+          "Mmm... does it zip closed?",
+          "No, it's straps closed, and it has a buckle in the front.",
+          "OK, can you tell me the distinguishing features of this backpack?",
+          "Oh, yeah, the brand name.",
+          "So what's it, sir?",
+          "Oh, it's a Polo. It has the logo on the back and at the bottom in the left-hand corner.",
+          "OK, can you name the items in it?",
+          "Well, all the gifts for my family, you know, two pairs of sneakers for my children and a bottle of perfume for my wife.",
+          "OK, sir, I'm sure it's your bag. Thank you for your cooperation. You can have it now.",
+          "Thank you so much. You guys are really responsible.",
+          "Can I help you, sir?",
+          "I'm here for the backpack you announced several minutes ago.",
+          "OK, take a seat please, sir. First of all, can you show me your ID please?",
+          "Sure. Here you are.",
+          "OK, could you please tell me what your backpack looks like?",
+          "Of course, it's a soft leather one, you know, not a sports one that looks childish.",
+          "Mmm... does it zip closed?",
+          "No, it's straps closed, and it has a buckle in the front.",
+          "OK, can you tell me the distinguishing features of this backpack?",
+          "Oh, yeah, the brand name.",
+          "So what's it, sir?",
+          "Oh, it's a Polo. It has the logo on the back and at the bottom in the left-hand corner.",
+          "OK, can you name the items in it?",
+          "Well, all the gifts for my family, you know, two pairs of sneakers for my children and a bottle of perfume for my wife.",
+          "OK, sir, I'm sure it's your bag. Thank you for your cooperation. You can have it now.",
+          "Thank you so much. You guys are really responsible."
+        ]
+      },
+      "candidate_text": "No, it's straps closed, and it has a buckle in the front.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "description",
+        "event_status": "strap_closure_and_front_buckle",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The backpack owner denies a zip closure and describes a strap closure with a front buckle. Preserve the malformed straps closed construction; this describes the fastening, not a just-completed closing action."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v25_train_11101_8_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:11101:24:1",
+      "source": {
+        "split": "train",
+        "dialogue": 11101,
+        "turn": 24,
+        "segment": 1,
+        "span": [
+          0,
+          57
+        ],
+        "text": "No, it's straps closed, and it has a buckle in the front.",
+        "context": [
+          "Can I help you, sir?",
+          "I'm here for the backpack you announced several minutes ago.",
+          "OK, take a seat please, sir. First of all, can you show me your ID please?",
+          "Sure. Here you are.",
+          "OK, could you please tell me what your backpack looks like?",
+          "Of course, it's a soft leather one, you know, not a sports one that looks childish.",
+          "Mmm... does it zip closed?",
+          "No, it's straps closed, and it has a buckle in the front.",
+          "OK, can you tell me the distinguishing features of this backpack?",
+          "Oh, yeah, the brand name.",
+          "So what's it, sir?",
+          "Oh, it's a Polo. It has the logo on the back and at the bottom in the left-hand corner.",
+          "OK, can you name the items in it?",
+          "Well, all the gifts for my family, you know, two pairs of sneakers for my children and a bottle of perfume for my wife.",
+          "OK, sir, I'm sure it's your bag. Thank you for your cooperation. You can have it now.",
+          "Thank you so much. You guys are really responsible.",
+          "Can I help you, sir?",
+          "I'm here for the backpack you announced several minutes ago.",
+          "OK, take a seat please, sir. First of all, can you show me your ID please?",
+          "Sure. Here you are.",
+          "OK, could you please tell me what your backpack looks like?",
+          "Of course, it's a soft leather one, you know, not a sports one that looks childish.",
+          "Mmm... does it zip closed?",
+          "No, it's straps closed, and it has a buckle in the front.",
+          "OK, can you tell me the distinguishing features of this backpack?",
+          "Oh, yeah, the brand name.",
+          "So what's it, sir?",
+          "Oh, it's a Polo. It has the logo on the back and at the bottom in the left-hand corner.",
+          "OK, can you name the items in it?",
+          "Well, all the gifts for my family, you know, two pairs of sneakers for my children and a bottle of perfume for my wife.",
+          "OK, sir, I'm sure it's your bag. Thank you for your cooperation. You can have it now.",
+          "Thank you so much. You guys are really responsible."
+        ]
+      },
+      "candidate_text": "No, it's straps closed, and it has a buckle in the front.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "description",
+        "event_status": "strap_closure_and_front_buckle",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "In the repeated identification exchange, the owner again contrasts straps and a front buckle with a zip. Preserve this separate occurrence without treating it as a new closing event."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v25_train_11101_24_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:11102:10:1",
+      "source": {
+        "split": "train",
+        "dialogue": 11102,
+        "turn": 10,
+        "segment": 1,
+        "span": [
+          0,
+          108
+        ],
+        "text": "Aside from the Sunday roast, we usually eat dangers and mash, toad-in-the-hole, or fish'n chips once a week.",
+        "context": [
+          "Do you like cooking, Julia?",
+          "I really enjoy it, especially when it ends up tasting good!",
+          "How often do you usually cook?",
+          "I usually make a few salads for lunch throughout the week and I make dinner about 6 times a week.",
+          "That's a lot of cooking. You must save a lot of money by eating at home so much.",
+          "I do. If you cook at home, you can eat healthy food cheaply.",
+          "What kind of dishes do you usually make?",
+          "I almost always make either a beef roast or a chicken roast with asparagus, parsnips, peas, carrots and potatoes on Sundays.",
+          "Do you make a lot of traditional British food?",
+          "Aside from the Sunday roast, we usually eat dangers and mash, toad-in-the-hole, or fish'n chips once a week.",
+          "How about spicy food?",
+          "My family loves spicy food. We often eat Chinese, Thai, Indian, or Mexican food when we're in the mood for spice.",
+          "What's your favorite dish to make?",
+          "I absolutely love making mousaka, which is a Greek dish with eggplant. But it takes a lot of time, so I don't often make it."
+        ]
+      },
+      "candidate_text": "Aside from the Sunday roast, we usually eat dangers and mash, toad-in-the-hole, or fish'n chips once a week.",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "habit_report",
+        "event_status": "weekly_meals_with_unclear_dish_component",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker describes usual weekly choices beyond the Sunday roast: dangers and mash, toad-in-the-hole or fish'n chips. Preserve the unclear first component without substituting sausages or asserting a particular meal was eaten."
+        },
+        "unknown": [
+          "The dish component represented by dangers is unresolved."
+        ]
+      },
+      "adapter_id": "dd_v25_train_11102_10_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:11107:3:2",
+      "source": {
+        "split": "train",
+        "dialogue": 11107,
+        "turn": 3,
+        "segment": 2,
+        "span": [
+          28,
+          115
+        ],
+        "text": "What I was saying just now was that how to terminate the contract before its term's up?",
+        "context": [
+          "Actually, I was wondering what we should do if either one of us would like to terminate the contract?",
+          "Well, as a rule, the contract will become void automatically, if both sides do not agree to renew it when time comes.",
+          "I got it, but nevertheless. What I was saying just now was that how to terminate the contract before its term's up?",
+          "Oh, I am sorry. I misunderstood. Well, in that case, the contract can be canceled with a 2 month's notice. What do you say?",
+          "That sounds perfect for us."
+        ]
+      },
+      "candidate_text": "What I was saying just now was that how to terminate the contract before its term's up?",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "clarification_question",
+        "event_status": "early_contract_termination_procedure",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker clarifies that the question concerns terminating the contract before its term ends, not ordinary nonrenewal at expiry. The malformed that how construction does not assert actual termination."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v25_train_11107_3_2",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:11108:4:1",
+      "source": {
+        "split": "train",
+        "dialogue": 11108,
+        "turn": 4,
+        "segment": 1,
+        "span": [
+          0,
+          77
+        ],
+        "text": "I need to open a US dollar account, trade with America is going up each year.",
+        "context": [
+          "Hello Mr Fang! It's good to see you again. What can we do for you today?",
+          "Hello, Miao Ping. I'd like to open a Foreign Currency Account today.",
+          "That shouldn't be a problem, Mr Fang. Have you got your Certificate of Use of Foreign Exchange Account and the Foreign Exchange Account Opening Notice with you? Our most widely used currencies are US dollar, Japanese yen and Hong Kong dollar.",
+          "I need to open a US dollar account, trade with America is going up each year.",
+          "We will transact this for you as soon as we can after the materials you have given me have been checked and verified.",
+          "Good, thanks. I look forward to hearing from you."
+        ]
+      },
+      "candidate_text": "I need to open a US dollar account, trade with America is going up each year.",
+      "decision": "closed_representation_only",
+      "meaning": {
+        "speech_act": "request_and_explanation",
+        "event_status": "need_for_usd_account_due_to_trade_growth",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker needs a US dollar account and gives increasing trade with America as background. Keep the comma splice; no account opening or transaction is completed."
+        },
+        "unknown": []
+      },
+      "adapter_id": "dd_v25_train_11108_4_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:11114:3:1",
+      "source": {
+        "split": "train",
+        "dialogue": 11114,
+        "turn": 3,
+        "segment": 1,
+        "span": [
+          0,
+          93
+        ],
+        "text": "Now I came back to the hotel and try to show it to my friend, the pen is broken, I am afraid.",
+        "context": [
+          "Hello, I bought a pen in your shop just before.",
+          "Yes, thank you very much.",
+          "Now I came back to the hotel and try to show it to my friend, the pen is broken, I am afraid.",
+          "Oh, is it?",
+          "Would you change it to a new one?",
+          "Yes, certainly, you have the receipt?",
+          "Yes, I do.",
+          "Then would you kindly come to our shop with the receipt by 10 o'clock, we'll replace it.",
+          "Thank you so much!"
+        ]
+      },
+      "candidate_text": "Now I came back to the hotel and try to show it to my friend; the pen is broken, I am afraid.",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "complaint",
+        "event_status": "returned_to_hotel_and_broken_pen",
+        "completed_action_asserted": true,
+        "content": {
+          "interpretation": "The speaker reports returning to the hotel and finding the pen broken in connection with trying to show it to a friend. The mixture came and try does not fix the exact timing or completion of the showing attempt. Preserve the original comma and verb forms."
+        },
+        "unknown": [
+          "The exact timing and completion of the attempt to show the pen are uncertain."
+        ]
+      },
+      "adapter_id": "dd_v25_train_11114_3_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": true,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    },
+    {
+      "id": "train:11117:2:1",
+      "source": {
+        "split": "train",
+        "dialogue": 11117,
+        "turn": 2,
+        "segment": 1,
+        "span": [
+          0,
+          23
+        ],
+        "text": "I want a pair of locus.",
+        "context": [
+          "May I help you, sir?",
+          "I want a pair of locus.",
+          "Take a look at the ones on display, please.",
+          "I need size 41."
+        ]
+      },
+      "candidate_text": "I want a pair of locus.",
+      "decision": "quarantined_unresolved",
+      "meaning": {
+        "speech_act": "request",
+        "event_status": "desired_pair_with_unknown_item",
+        "completed_action_asserted": false,
+        "content": {
+          "interpretation": "The speaker requests a pair of an item written locus. This visible exchange does not identify the item or establish a purchase; no footwear subtype is guessed."
+        },
+        "unknown": [
+          "The requested item represented by locus is unknown."
+        ]
+      },
+      "adapter_id": "dd_v25_train_11117_2_1",
+      "adapter_uses_full_original_turn": false,
+      "adapter_uses_original_instead_of_earlier_correction": false,
+      "source_text_changed": false,
+      "full_candidate_semantic_approval": false
+    }
+  ]
+}
