@@ -1,0 +1,2106 @@
+{
+  "format": "mined-pending-resources-v1",
+  "sources": [
+    {
+      "id": "dailydialog",
+      "kind": "templates",
+      "review_status": "UNREVIEWED",
+      "generation_enabled": false,
+      "manifest": {
+        "format": "corpus-templates-v1",
+        "status": "complete",
+        "source": "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-hybrid-quality-v38\\sentences.jsonl",
+        "full_input": true,
+        "model": {
+          "lang": "en",
+          "name": "core_web_sm",
+          "version": "3.8.0",
+          "description": "English pipeline optimized for CPU. Components: tok2vec, tagger, parser, senter, ner, attribute_ruler, lemmatizer.",
+          "author": "Explosion",
+          "email": "contact@explosion.ai",
+          "url": "https://explosion.ai",
+          "license": "MIT",
+          "spacy_version": ">=3.8.0,<3.9.0",
+          "spacy_git_version": "5010fcbd3",
+          "vectors": {
+            "width": 0,
+            "vectors": 0,
+            "keys": 0,
+            "name": null,
+            "mode": "default"
+          },
+          "labels": {
+            "tok2vec": [],
+            "tagger": [
+              "$",
+              "''",
+              ",",
+              "-LRB-",
+              "-RRB-",
+              ".",
+              ":",
+              "ADD",
+              "AFX",
+              "CC",
+              "CD",
+              "DT",
+              "EX",
+              "FW",
+              "HYPH",
+              "IN",
+              "JJ",
+              "JJR",
+              "JJS",
+              "LS",
+              "MD",
+              "NFP",
+              "NN",
+              "NNP",
+              "NNPS",
+              "NNS",
+              "PDT",
+              "POS",
+              "PRP",
+              "PRP$",
+              "RB",
+              "RBR",
+              "RBS",
+              "RP",
+              "SYM",
+              "TO",
+              "UH",
+              "VB",
+              "VBD",
+              "VBG",
+              "VBN",
+              "VBP",
+              "VBZ",
+              "WDT",
+              "WP",
+              "WP$",
+              "WRB",
+              "XX",
+              "_SP",
+              "``"
+            ],
+            "parser": [
+              "ROOT",
+              "acl",
+              "acomp",
+              "advcl",
+              "advmod",
+              "agent",
+              "amod",
+              "appos",
+              "attr",
+              "aux",
+              "auxpass",
+              "case",
+              "cc",
+              "ccomp",
+              "compound",
+              "conj",
+              "csubj",
+              "csubjpass",
+              "dative",
+              "dep",
+              "det",
+              "dobj",
+              "expl",
+              "intj",
+              "mark",
+              "meta",
+              "neg",
+              "nmod",
+              "npadvmod",
+              "nsubj",
+              "nsubjpass",
+              "nummod",
+              "oprd",
+              "parataxis",
+              "pcomp",
+              "pobj",
+              "poss",
+              "preconj",
+              "predet",
+              "prep",
+              "prt",
+              "punct",
+              "quantmod",
+              "relcl",
+              "xcomp"
+            ],
+            "attribute_ruler": [],
+            "lemmatizer": [],
+            "ner": [
+              "CARDINAL",
+              "DATE",
+              "EVENT",
+              "FAC",
+              "GPE",
+              "LANGUAGE",
+              "LAW",
+              "LOC",
+              "MONEY",
+              "NORP",
+              "ORDINAL",
+              "ORG",
+              "PERCENT",
+              "PERSON",
+              "PRODUCT",
+              "QUANTITY",
+              "TIME",
+              "WORK_OF_ART"
+            ]
+          },
+          "pipeline": [
+            "tok2vec",
+            "tagger",
+            "parser",
+            "attribute_ruler",
+            "lemmatizer",
+            "ner"
+          ],
+          "components": [
+            "tok2vec",
+            "tagger",
+            "parser",
+            "senter",
+            "attribute_ruler",
+            "lemmatizer",
+            "ner"
+          ],
+          "disabled": [
+            "senter"
+          ],
+          "performance": {
+            "token_acc": 0.9986194413,
+            "token_p": 0.9956819193,
+            "token_r": 0.9957659295000001,
+            "token_f": 0.9957239226000001,
+            "tag_acc": 0.9729372620000001,
+            "sents_p": 0.9200841934,
+            "sents_r": 0.8939244013000001,
+            "sents_f": 0.9068156724,
+            "dep_uas": 0.9176955214,
+            "dep_las": 0.8991533598,
+            "dep_las_per_type": {
+              "prep": {
+                "p": 0.8541604085000001,
+                "r": 0.8631379245,
+                "f": 0.8586257006
+              },
+              "det": {
+                "p": 0.9768729642,
+                "r": 0.9782271875,
+                "f": 0.9775496068
+              },
+              "pobj": {
+                "p": 0.9620664033,
+                "r": 0.966071078,
+                "f": 0.9640645819
+              },
+              "nsubj": {
+                "p": 0.9573684677000001,
+                "r": 0.9454983571000001,
+                "f": 0.9513963894
+              },
+              "aux": {
+                "p": 0.9792295402000001,
+                "r": 0.982106294,
+                "f": 0.9806658074000001
+              },
+              "advmod": {
+                "p": 0.8525198045,
+                "r": 0.8510853104,
+                "f": 0.8518019535
+              },
+              "relcl": {
+                "p": 0.7660107335,
+                "r": 0.776850508,
+                "f": 0.7713925419000001
+              },
+              "root": {
+                "p": 0.9179682195000001,
+                "r": 0.8917474767,
+                "f": 0.9046678936
+              },
+              "xcomp": {
+                "p": 0.8814035088000001,
+                "r": 0.9016511127,
+                "f": 0.8914123492
+              },
+              "amod": {
+                "p": 0.9161996611000001,
+                "r": 0.9109167477000001,
+                "f": 0.9135505669
+              },
+              "compound": {
+                "p": 0.916113822,
+                "r": 0.9305524616,
+                "f": 0.9232766957
+              },
+              "poss": {
+                "p": 0.9741586538,
+                "r": 0.9788647343,
+                "f": 0.9765060241
+              },
+              "ccomp": {
+                "p": 0.7786216062,
+                "r": 0.8352342159,
+                "f": 0.8059349514
+              },
+              "attr": {
+                "p": 0.8972491909,
+                "r": 0.9327165685000001,
+                "f": 0.9146391753
+              },
+              "case": {
+                "p": 0.9782608696,
+                "r": 0.9909909910000001,
+                "f": 0.9845847837
+              },
+              "mark": {
+                "p": 0.9028511088000001,
+                "r": 0.906200318,
+                "f": 0.9045226131
+              },
+              "intj": {
+                "p": 0.6679841897000001,
+                "r": 0.619047619,
+                "f": 0.6425855513000001
+              },
+              "advcl": {
+                "p": 0.6656519533,
+                "r": 0.6607907328,
+                "f": 0.6632124352000001
+              },
+              "cc": {
+                "p": 0.8345964153000001,
+                "r": 0.8298050472,
+                "f": 0.8321938347000001
+              },
+              "neg": {
+                "p": 0.9475786321,
+                "r": 0.9523331661000001,
+                "f": 0.9499499499
+              },
+              "conj": {
+                "p": 0.7649689441,
+                "r": 0.7751762336,
+                "f": 0.7700387645
+              },
+              "nsubjpass": {
+                "p": 0.9159021407,
+                "r": 0.9215384615000001,
+                "f": 0.9187116564000001
+              },
+              "auxpass": {
+                "p": 0.9494232476000001,
+                "r": 0.9749430524,
+                "f": 0.9620139357
+              },
+              "dobj": {
+                "p": 0.9231431478000001,
+                "r": 0.9399155311,
+                "f": 0.9314538419
+              },
+              "nummod": {
+                "p": 0.9353284301,
+                "r": 0.9313131313,
+                "f": 0.9333164621000001
+              },
+              "npadvmod": {
+                "p": 0.7748267898000001,
+                "r": 0.7150976909,
+                "f": 0.7437650102000001
+              },
+              "prt": {
+                "p": 0.8148760331,
+                "r": 0.8835125448000001,
+                "f": 0.8478073947
+              },
+              "pcomp": {
+                "p": 0.8693820225000001,
+                "r": 0.8669467787,
+                "f": 0.8681626928
+              },
+              "expl": {
+                "p": 0.9789029536,
+                "r": 0.9935760171,
+                "f": 0.9861849097000001
+              },
+              "acl": {
+                "p": 0.7417295415,
+                "r": 0.6972176759000001,
+                "f": 0.7187851519
+              },
+              "agent": {
+                "p": 0.8994889267,
+                "r": 0.9462365591,
+                "f": 0.9222707424000001
+              },
+              "dative": {
+                "p": 0.7669172932,
+                "r": 0.7018348624,
+                "f": 0.7329341317
+              },
+              "acomp": {
+                "p": 0.9132441163,
+                "r": 0.8975056689,
+                "f": 0.9053064959
+              },
+              "dep": {
+                "p": 0.3686006826,
+                "r": 0.1753246753,
+                "f": 0.23762376240000002
+              },
+              "csubj": {
+                "p": 0.7039106145,
+                "r": 0.7455621302000001,
+                "f": 0.724137931
+              },
+              "quantmod": {
+                "p": 0.8625336927,
+                "r": 0.7798537774000001,
+                "f": 0.8191126280000001
+              },
+              "nmod": {
+                "p": 0.7528868360000001,
+                "r": 0.5959780622,
+                "f": 0.6653061224
+              },
+              "appos": {
+                "p": 0.6866606983,
+                "r": 0.6655097614000001,
+                "f": 0.6759198061
+              },
+              "predet": {
+                "p": 0.8406374502,
+                "r": 0.9055793991000001,
+                "f": 0.8719008264
+              },
+              "preconj": {
+                "p": 0.5591397849,
+                "r": 0.6046511628,
+                "f": 0.5810055866
+              },
+              "oprd": {
+                "p": 0.8287671233,
+                "r": 0.7223880597,
+                "f": 0.7719298246
+              },
+              "parataxis": {
+                "p": 0.5860215054,
+                "r": 0.4728850325,
+                "f": 0.5234093637
+              },
+              "meta": {
+                "p": 0.8,
+                "r": 0.4615384615,
+                "f": 0.5853658537
+              },
+              "csubjpass": {
+                "p": 0.625,
+                "r": 0.8333333333,
+                "f": 0.7142857143
+              }
+            },
+            "ents_p": 0.8429743795,
+            "ents_r": 0.8436498397000001,
+            "ents_f": 0.8433119744,
+            "ents_per_type": {
+              "DATE": {
+                "p": 0.8531038722000001,
+                "r": 0.8812698413000001,
+                "f": 0.8669581512000001
+              },
+              "GPE": {
+                "p": 0.9142205757,
+                "r": 0.8948396095000001,
+                "f": 0.9044262757
+              },
+              "ORDINAL": {
+                "p": 0.7741046832,
+                "r": 0.8726708075,
+                "f": 0.8204379562
+              },
+              "ORG": {
+                "p": 0.7904834996000001,
+                "r": 0.8191940615000001,
+                "f": 0.8045827366
+              },
+              "CARDINAL": {
+                "p": 0.8149386845000001,
+                "r": 0.8692033294,
+                "f": 0.8411967779
+              },
+              "FAC": {
+                "p": 0.3904761905,
+                "r": 0.3153846154,
+                "f": 0.3489361702
+              },
+              "PERSON": {
+                "p": 0.8574969021000001,
+                "r": 0.9033942559,
+                "f": 0.8798474253
+              },
+              "NORP": {
+                "p": 0.9031224980000001,
+                "r": 0.9024000000000001,
+                "f": 0.9027611044
+              },
+              "TIME": {
+                "p": 0.7454545455,
+                "r": 0.7192982456,
+                "f": 0.7321428571
+              },
+              "LOC": {
+                "p": 0.7356321839000001,
+                "r": 0.6114649682000001,
+                "f": 0.667826087
+              },
+              "MONEY": {
+                "p": 0.915274463,
+                "r": 0.9055489965,
+                "f": 0.9103857567
+              },
+              "QUANTITY": {
+                "p": 0.8153846154000001,
+                "r": 0.5824175824,
+                "f": 0.6794871795
+              },
+              "WORK_OF_ART": {
+                "p": 0.47445255470000003,
+                "r": 0.3350515464,
+                "f": 0.3927492447
+              },
+              "EVENT": {
+                "p": 0.6341463415,
+                "r": 0.29885057470000004,
+                "f": 0.40625000000000006
+              },
+              "LAW": {
+                "p": 0.44642857140000003,
+                "r": 0.390625,
+                "f": 0.4166666667
+              },
+              "PERCENT": {
+                "p": 0.9153354633,
+                "r": 0.8774885145,
+                "f": 0.8960125098
+              },
+              "LANGUAGE": {
+                "p": 0.7692307692,
+                "r": 0.625,
+                "f": 0.6896551724000001
+              },
+              "PRODUCT": {
+                "p": 0.5287356322,
+                "r": 0.2180094787,
+                "f": 0.3087248322
+              }
+            },
+            "speed": 9426.1029865937
+          },
+          "sources": [
+            {
+              "name": "OntoNotes 5",
+              "url": "https://catalog.ldc.upenn.edu/LDC2013T19",
+              "license": "commercial (licensed by Explosion)",
+              "author": "Ralph Weischedel, Martha Palmer, Mitchell Marcus, Eduard Hovy, Sameer Pradhan, Lance Ramshaw, Nianwen Xue, Ann Taylor, Jeff Kaufman, Michelle Franchini, Mohammed El-Bachouti, Robert Belvin, Ann Houston"
+            },
+            {
+              "name": "ClearNLP Constituent-to-Dependency Conversion",
+              "url": "https://github.com/clir/clearnlp-guidelines/blob/master/md/components/dependency_conversion.md",
+              "license": "Citation provided for reference, no code packaged with model",
+              "author": "Emory University"
+            },
+            {
+              "name": "WordNet 3.0",
+              "url": "https://wordnet.princeton.edu/",
+              "author": "Princeton University",
+              "license": "WordNet 3.0 License"
+            }
+          ],
+          "requirements": []
+        },
+        "review_status": "UNREVIEWED",
+        "field": "example",
+        "note": "QUARANTINE: automatic sentence/fragment candidates, not approved semantic annotations.",
+        "counts": {
+          "input_records": 161312,
+          "compiled_records": 161312,
+          "roundtrips_verified": 161312,
+          "tokens_audited": 1378087,
+          "verb_occurrences": 289407,
+          "adjective_alternative_analyses": 101350,
+          "verb_alternative_analyses": 295437,
+          "adjective_occurrences": 71909,
+          "participle_analyses": 32661,
+          "templates": 101353,
+          "template_occurrences": 161312,
+          "templates_with_adjectives": 40331,
+          "verb_lemmas": 2480,
+          "adjective_lemmas": 2728,
+          "verb_alternative_lemmas": 3456,
+          "adjective_alternative_forms": 2739,
+          "sentence_templates_covered": 79494,
+          "predicate_templates_covered": 64775,
+          "constructions": 12794
+        },
+        "analyses": {
+          "parsed_verbal": 134118,
+          "no_verbal_analysis": 10401,
+          "lexical_alternatives_recorded": 15705,
+          "model_reviewed_sentence": 1088
+        },
+        "elapsed_seconds": 115.891,
+        "source_sha256": "e05e75d0db7fcd5f5c22a73e26afb22d187cdcbf2b43da80aa425d989c793696",
+        "hybrid_import": {
+          "method": "dailydialog-hybrid-full-v1",
+          "review_status": "UNREVIEWED",
+          "published": false,
+          "context_file": "contexts.jsonl.gz",
+          "coverage_file": "coverage.jsonl.gz",
+          "semantic_approval": false,
+          "note": "Family review does not approve unseen instances; all original contexts are embedded.",
+          "whole_bank_audit": {
+            "version": "hybrid_quality_patterns_v1",
+            "review_status": "UNREVIEWED",
+            "audit_file": "review/syntax-audit.jsonl.gz",
+            "review_queue": "review/review-queue.jsonl.gz",
+            "affected_occurrences": 504,
+            "preserved_context_reviews": 2057
+          },
+          "source_segmentation_revision": {
+            "version": "reviewed_source_segmentation_v6",
+            "input_occurrences": 50,
+            "output_occurrences": 50,
+            "review_file": "review/source-segmentation-decisions.jsonl"
+          },
+          "context_revision": {
+            "review_file": "review/reviews.jsonl",
+            "occurrences": 2009,
+            "syntax_corrections": 909
+          }
+        }
+      },
+      "file_sha256": {
+        "adjective_alternatives.jsonl.gz": "1b06ed912644f750b17024156761310f87b3161d816d9c89f47d6e2fcee6ccc9",
+        "adjectives.jsonl.gz": "be333f84bdd1be26fe1b97116a6221297b294990aa253c7b596be76b208b053d",
+        "constructions.jsonl.gz": "4e373791a466599047babc0604710d520b984d9a1ba75cbd6a93b4c48e17be55",
+        "contexts.jsonl.gz": "dc57f4660bf58fc7ac759557b8b840320aab46a01d4d981ef20ffd637ac89909",
+        "coverage.jsonl.gz": "cd6256d221584c1835d9567b7ab97f73d9482d0848aac12c4ad58fbde23721ae",
+        "groups.jsonl.gz": "0c3fef136f330b76b6266703a0911bbc77c06faac3777d871b9ebd04db3e1a33",
+        "occurrences/00000.jsonl.gz": "28869565608eaf8869912db133167ae3cadb974118a4579ff14c041acc601284",
+        "occurrences/00001.jsonl.gz": "0353f34d99db44103d26ecea872cfe05f671ae3993b1c2409e877bce22a5f372",
+        "occurrences/00002.jsonl.gz": "f1ca4f60834c6f57fa87ee3c42a197fbf1d9032bce46c361f0e5ec2909615b42",
+        "occurrences/00003.jsonl.gz": "df18885ec2a739f58c6f39a8e47585d8c57904500bbf91ee59333fa21c1e6c9e",
+        "occurrences/00004.jsonl.gz": "9017e2271be067f6c9566c32c68e9cf5774cba9641b9ab43be1eebb00ad7a946",
+        "occurrences/00005.jsonl.gz": "df49034cfd8216f6e94d6fde3f2b78af4384521dfd0f32d0e44bbda118c4f10e",
+        "occurrences/00006.jsonl.gz": "d639b15c4cb90ed83f65bf407055783cc944d4b7be5d15e0a20495ddfdb7269b",
+        "occurrences/00007.jsonl.gz": "e3124e69602a8327ff47bbc83c79a0d2d0b0a14c924e7ed5469473c27cef60dc",
+        "occurrences/00008.jsonl.gz": "d53746bec8b07eb7976c3987913ff04fbbb0f55521265c3b68a80bb570a15ccc",
+        "occurrences/00009.jsonl.gz": "060f0255be13a6f64a21a7e52e3ad1bb6735632a4f686c7b2d50a2934ce317b4",
+        "occurrences/00010.jsonl.gz": "04590b08b37fc5317ffbf84dfeb0113482e1d6c6f215e6959b1c36d52b311992",
+        "occurrences/00011.jsonl.gz": "b5d2dbc496b2a69d05f162f980e2c4cc7f9110c1af56e07504328262c8722888",
+        "occurrences/00012.jsonl.gz": "107789b42a18c7620701ed2592bc9f11abc339584fe7c8333e5fec84c1c350ea",
+        "occurrences/00013.jsonl.gz": "3e78bedb343c32ffcc67519966e03383cdeb301a3d087b81836c9ff6e0ffb3ab",
+        "occurrences/00014.jsonl.gz": "df07867e6609878a5ed582ad26b55fc2c00148f4e6186a2b115a12eb5c507810",
+        "occurrences/00015.jsonl.gz": "88896c8637fd8d8e5fea575ff7672c6488115626bc92050f8cb2e89ed0b6cbe3",
+        "occurrences/00016.jsonl.gz": "8db0037bdabae18006e7a565b0beb3b558a3c802ad088e7a856f465d24d70bcd",
+        "outcomes.jsonl.gz": "668b8e8b06d9343c2a02c2506f38e0e79d288846a66c485106ef532231d30988",
+        "templates/00.jsonl.gz": "4bcfd82a68e4b7223901ade29d40b0f070e5881758e18302d1fa86c0302d55e8",
+        "templates/01.jsonl.gz": "4e65fee05e3296a91ef3f57cf3e124ec11639f74b042679d7a9fd7970f9e76fd",
+        "templates/02.jsonl.gz": "5ef8711aa1327221405b1ca7530382c034dfabff86966c390653b4308953a67f",
+        "templates/03.jsonl.gz": "b03c88f512e619f9de4773c58069a4573c7853ecc26e1766cec062c56cccb63c",
+        "templates/04.jsonl.gz": "ef605626182c2a1d4e00811e1f91d90f2240b49c13ecdb29ca0a45489f68d331",
+        "templates/05.jsonl.gz": "97e8d85ed9ae90e3ab40b0eb8cd2313a93225a804abafc35fcdef22e0660adc4",
+        "templates/06.jsonl.gz": "e312789a9127a807b3cab619fcbc9f97b22661202a5f7b30fe439d0394ce2577",
+        "templates/07.jsonl.gz": "0ffd973faf6952c6bbf744b1961ab85619d1f41a4ba9825e4fcda87f4ac8d6b0",
+        "templates/08.jsonl.gz": "0b97aa23bf9e68d629fb5b85a66062e628343bcaeded865d6c5330f47f1d3811",
+        "templates/09.jsonl.gz": "6196db21440eeaae587b2ddc5b2c0f328d0246b7d35fef995cbbb24c55a96855",
+        "templates/0a.jsonl.gz": "3a4d36cdcd2b7b9a0c76c0adcb8a1d44855fb1045b08f1cd3d8bf4ff9822a3a1",
+        "templates/0b.jsonl.gz": "7e8ea7d7b5dba358dd7a2eed4932897003ab9d8d4ae7cd47a44c3a77136ad1fd",
+        "templates/0c.jsonl.gz": "fbcd02d5ca2eab96d15590a2cc07a44b120d1603a508bd4549f4723a7a788c02",
+        "templates/0d.jsonl.gz": "a390a7896838904d40e65efc52311731d33be5e8606646cfa9f278ec432203ed",
+        "templates/0e.jsonl.gz": "209dc4325fd808ccbbfcd39678fdd1727e9c65d8e57a708c6f8b5332680503bb",
+        "templates/0f.jsonl.gz": "701010b8baeef64e36de9f348374f5a2a5a43f23541d5cb154d5f77654f97f5e",
+        "templates/10.jsonl.gz": "bc0ef26e10b7e0260c951efaef23a1b4a9cd56ae7942a97d3f997547d8262ed4",
+        "templates/11.jsonl.gz": "3a37a58bce3a17739aaef37cf0526bc7622f3575b10ae93160e683a946199314",
+        "templates/12.jsonl.gz": "c2e095200c03f0d38e3cddb6b89b5901e775c8f163fd020a7657956a74687864",
+        "templates/13.jsonl.gz": "f1e01ebbd46d1c88515c2b438e997d4a3dac3685ed4afe5a987b3820f4e0607c",
+        "templates/14.jsonl.gz": "83f06b4e4ba49d0d70aea5582a91926fd1833da7ef7517044cb92eb35ea52246",
+        "templates/15.jsonl.gz": "348a16930c3a0d76443ab3f28f72b7ffda91acb30796936d45123e3fc6838859",
+        "templates/16.jsonl.gz": "bfc24e3af6c6221ee6f6924cb5e3f10a3df8ad9082ec5fcbc2f515451fe65057",
+        "templates/17.jsonl.gz": "876f0d7b858725e4b14439247a5928f48bb7735747e35046ecad691da8e352ad",
+        "templates/18.jsonl.gz": "3d9739ba15cad45999781573a96a5dd7442777cafd09e4ceca8fcc0c0fd2abe3",
+        "templates/19.jsonl.gz": "89121f328dea3e21bc43204c88272e23d406dfc7e38a097c4c30e32ed2c9dbc9",
+        "templates/1a.jsonl.gz": "1aba69794102e6bc6a37a7d0a854ac669c95609edc850f76e4d9ee88cea14e6f",
+        "templates/1b.jsonl.gz": "f5e12effcbc9168c122bde4130d773134fdb41337d63234e9c656a15b4cf2f0b",
+        "templates/1c.jsonl.gz": "7141c603b86d0224880345223c24e2d8d314fb919e19c0f5731d208755cdad16",
+        "templates/1d.jsonl.gz": "906ab689374f8f18082ca48cc27806a850021caa7b1416abff4a3160afb20412",
+        "templates/1e.jsonl.gz": "a4e4b74023ca818fcd045fac5e7c057e4ddd1328f0291d07fdb5d03474bde287",
+        "templates/1f.jsonl.gz": "29990a52aef306b0b71157240c7c1d564db9bb9be25d52031416d8afd74fd5a9",
+        "templates/20.jsonl.gz": "3c5d7684f487b6345c68ba56d06241412957f9aaf6ba5d51606f4769d2e44fcd",
+        "templates/21.jsonl.gz": "02f2d70a7f0c03f59ae2f0e1ada75d7a119fbc1e7f2e2e6824fcb9c1b2ae4a12",
+        "templates/22.jsonl.gz": "27bff67fc297911fa8ab6f06f26b5865fe6cbda68c11902194a88f84a6249df6",
+        "templates/23.jsonl.gz": "f73e39c39f916635d4a47c7597b208b88e2b0cd82da4cb784e11f96e1a55b9a8",
+        "templates/24.jsonl.gz": "9a12cc2e32bd869b2295cd1fdecc4ad61bf10f6fc0ecbe5ec5eff9aa8047f554",
+        "templates/25.jsonl.gz": "fc4828200c0587523475f196642224967723862804210622a78878ca0c71203a",
+        "templates/26.jsonl.gz": "9bca3ebe9aad86b8ad5afad40754b211133586344fb538485fa3a3e4a4ad7b50",
+        "templates/27.jsonl.gz": "7fa8674d28cfde9f83c0fb6c844b78f20dd382af5731591222bd389326b29c8e",
+        "templates/28.jsonl.gz": "2a9ec33def8d93172e7b612a5184262133e927fad187d606975650d5827e543f",
+        "templates/29.jsonl.gz": "561044f6154cbd4e90f58b36f29353162a75c483ed439caec6434fd346f29ab9",
+        "templates/2a.jsonl.gz": "cb813965ab27746ef068b353dd976192401eb27a3c81314ac88bbbe970755734",
+        "templates/2b.jsonl.gz": "332cec404e7ca39e0f2ea1d528ad93bf068775a08f086a3fbde2e672d32c4152",
+        "templates/2c.jsonl.gz": "4f495e8634d7435e8d995fed566ea1b544f09f61e5206a4712d69c1c6a60d6cf",
+        "templates/2d.jsonl.gz": "4596a621b7bea23501ac7a707b44c6161af92aefb37f05324e5d7aad7a7c68e6",
+        "templates/2e.jsonl.gz": "236ed20f17b9b21361581cc98eb7a15c611256f73fd724e691532eb459a51140",
+        "templates/2f.jsonl.gz": "8886e915cd4658bf5f593db5149412de155ae96e4db2331f082d1a15b6e75330",
+        "templates/30.jsonl.gz": "94df7bbf8cbb9106d073159e75851864b6e8888c7598cb26756448401788df62",
+        "templates/31.jsonl.gz": "12bbebd7bde03d96097f14754dc1c72a7c7bb058db8647fcb53b665cefd232eb",
+        "templates/32.jsonl.gz": "4629bab73a1606ded5383564861da301bc31d42459d092e85e438ea2297b39c3",
+        "templates/33.jsonl.gz": "e8102d7e0a53e96475029ea9e1c29cce320ebeb46da070bab8bd200f1ed8a4c9",
+        "templates/34.jsonl.gz": "c36e7c5a816e26820b3ee1679cdbad2f1c0236bd9887d38400b6c6d30f43165b",
+        "templates/35.jsonl.gz": "681254b22bc6f9e506fe1ad3645c2e03c533b7b3a0ce8a758d4388280d38e03c",
+        "templates/36.jsonl.gz": "ae08fc13b3bdb874023b97baee8a2296d5e69d0f6c1f92acc8e8882f23b63300",
+        "templates/37.jsonl.gz": "9f003458557478dc5817aa67b5dc8d618e68597b404c0448bc2ddbd197227081",
+        "templates/38.jsonl.gz": "c6fc551be177a3317a7c2479eca36c0b71b54a78ea8aedf1013a445f567973b5",
+        "templates/39.jsonl.gz": "2f6afe4b25645fe5ed1c7e55e226489a79cf184bb8554daffe6822455a25b821",
+        "templates/3a.jsonl.gz": "cbe158ab78c230d48a3a05485e2b5670339615991cde86c7e9265ded96dd0ff5",
+        "templates/3b.jsonl.gz": "38f3226b3fd4cc9cd641108fa98ead8179a0caa9df184d55674613ca3ea0270f",
+        "templates/3c.jsonl.gz": "9694e1f6b04245a5f93dd4a9498e746a997853625465ece7152283a8d00d9b74",
+        "templates/3d.jsonl.gz": "f5dc02e7890e3b9519d4c8d1d48717c4b6a8db060670673f117b9c3d68fcea98",
+        "templates/3e.jsonl.gz": "be2729e21d6cfcd084199333c9c15564e307d3c0b89b20502f84df7c50f61ccb",
+        "templates/3f.jsonl.gz": "0fc95f4b8d4f4dcbbecfbff99c9dfd5c144f4f33dceb8aa0cbd0e637022219f1",
+        "templates/40.jsonl.gz": "4c72f3acf7d7a12e978f870621fc289e1930ff299dcfd044681f85ee2185c020",
+        "templates/41.jsonl.gz": "1b4b8b22aa18860ff940816ce911c574ff76e814fc97e57567052317ecede025",
+        "templates/42.jsonl.gz": "c7b6fcda03953555cda65df7b82058cdcee81e5f112b0697f8ccd8f501a46661",
+        "templates/43.jsonl.gz": "8c5b34c35c87fb1f20c0277ccc26a5a4a341beeccc08133b7dcf0cf9aec864cb",
+        "templates/44.jsonl.gz": "d3c1d137e87a82053ce4b317f17d2902daebcda8332c3ebe6414d978659c9577",
+        "templates/45.jsonl.gz": "aedd352dd126074ff6a03b6e589da8d62b0802f19f84a086dae889b7dcce5ef0",
+        "templates/46.jsonl.gz": "2491a4abdcf15d0a4187eb35b058940b122e0d91bbc8d20f146d895ff263a370",
+        "templates/47.jsonl.gz": "d93c5712de0af7d9ad22c73a4cf7aea8de59f4d94d926ba3cdaaf6391d633ef7",
+        "templates/48.jsonl.gz": "17c24df502619fbc7af0972558d5a297b25fdcbb0b2bb2eaf5d11c8c79748b5f",
+        "templates/49.jsonl.gz": "1b0c3a64d525aaa42870c31423aef1b25dc14b677af93f9c46aa873390c42ef1",
+        "templates/4a.jsonl.gz": "3d6c3623df553c2f9284f56290e9a3322750e37e6096c7144beb8f58497afe71",
+        "templates/4b.jsonl.gz": "89da8b40a48790b1a862898cf4613c6b9f19af08b945e44b4c7b55cc40969c5f",
+        "templates/4c.jsonl.gz": "f4479588ee5072c1e85cf862ff3628f6a1330e92e7aa0ce83bf55d415cc6a845",
+        "templates/4d.jsonl.gz": "186afb2a5da50704411a147a55fafa1e791189613ca80c256bbf264eb8f662b8",
+        "templates/4e.jsonl.gz": "cb96267e11a78bfdc0995fcd2df86b6152a6f38d54856ffdc75f79d702e787c7",
+        "templates/4f.jsonl.gz": "0602ae2effa1b745bc09a4bd85a0423ac72abb693389dbb616aa291aeef0134b",
+        "templates/50.jsonl.gz": "87c1448618e870d429ccf9c26adc890350cecf1f888670d3c89ec2c79f4356a1",
+        "templates/51.jsonl.gz": "e6ad8d2ff8aaebe99d35daeaf0bf3d0b8807cdc7a781faa7d955130353e2a737",
+        "templates/52.jsonl.gz": "7167a943698c05a92a8ceb5250e1f7de86b126742b65b94c212829291ec39f11",
+        "templates/53.jsonl.gz": "99e8cc305d8597df7d5ea66e1dc60409ef9c92abd2e1124f1d8bcc2a456530ec",
+        "templates/54.jsonl.gz": "b639667e0809dce2c74d0cd72364d97d1080c805172c221fe5d781dcd86e05f4",
+        "templates/55.jsonl.gz": "7e9dfd37829d76d227c3e067712516d100a6c0bf273c45b70549e33c73767c28",
+        "templates/56.jsonl.gz": "4f6bae3607ff96252f78bac7fc419523562b56f4eeea2620ae7912bf6c36e94e",
+        "templates/57.jsonl.gz": "4cbec96771db940b03d61aacaada8e24ba31d26f0c2a13d551b368d001f472da",
+        "templates/58.jsonl.gz": "272d1486bc943f13d289876e5c54fb9c14e6b8ae3459c4ade0476d8129ccf355",
+        "templates/59.jsonl.gz": "cd1cc5cfa6f422c811e7822f42d266b7f53e2c51afcc5ca3b777d7caf866b9bc",
+        "templates/5a.jsonl.gz": "24841579d018f4b9515d78aef28e430ebb8cc69565603b785482d3afd868fe7e",
+        "templates/5b.jsonl.gz": "9bff4a1aee3f1992fcd3d7eeb85d1a7cf66bda2985a1703043ebd8e7f2376f7e",
+        "templates/5c.jsonl.gz": "863d1ebdff881a47493d8f9d8e0a365469ba092d35f3decf636e6a0501ee054d",
+        "templates/5d.jsonl.gz": "15dc9260ebefc71a27f849704ddcd4bda847c0ce8db16af6b7fa0f93645134c8",
+        "templates/5e.jsonl.gz": "a5914f5acc6b3a86cddf6925b304c835e9f468cd5cd9f908ea7f4cd9ed1ad404",
+        "templates/5f.jsonl.gz": "84ed1d89bc945c20381708607a8151a7fda90f6cd7e86cdd2151329e05d79751",
+        "templates/60.jsonl.gz": "454b404805840b27a753e65967892619c512e4b8eea1ab9170ab27bea95bfbf0",
+        "templates/61.jsonl.gz": "401f345cca9b7d058755836d1cde1dd4af7b91b768f1c31e71069aa4fadb1e91",
+        "templates/62.jsonl.gz": "7bb5036ef4812fe909ad58b8d7d06e505f9e7e54a8d9c2dd92935a14ad72f76a",
+        "templates/63.jsonl.gz": "02a4e84bcfd5753e384233b16bf5e5874d04fb2a59c5739ae713474ee312ec02",
+        "templates/64.jsonl.gz": "447cbdb846f7c1c05f4add5d364a5e2ce1fcaadc70a222767519d3d872ad7de5",
+        "templates/65.jsonl.gz": "6e2bd78809305eb51b12a1dd7f6ee9b743187d44417514d4dab360f0da7c4536",
+        "templates/66.jsonl.gz": "d4348427b2e59c23460d9105cc4bd58f9334130ea638b7a16a943eefe9d4b3d6",
+        "templates/67.jsonl.gz": "5370b67c187bc7a05e1d5f5386dd662e40abae713cf40189a6731099ab5b13f2",
+        "templates/68.jsonl.gz": "41204da29d2607212a65f9042970dd3cf834c8ce5d3020263abb96fdac6a2ef9",
+        "templates/69.jsonl.gz": "a8c43ca7d6ec58697a66532b5b4aad4cece53786420b42a48e3241f9d453b3cf",
+        "templates/6a.jsonl.gz": "557d969912ad7fd4801e5a05308c90510f5c0bfbada3c04922f5ae660084a67d",
+        "templates/6b.jsonl.gz": "0acf8d3af023697ca8fd9d723ba47f0780ca380a7c33332c3a70299cfd70e01e",
+        "templates/6c.jsonl.gz": "18a93513afdbf728c4b81fb3ec69ecf9a207d9a5d39ba0887de1cb26a8a7e342",
+        "templates/6d.jsonl.gz": "795beab75aaa6ef9927de8f0d905a1c5dd2fab7cb5148e67c0f940b6c1a969a0",
+        "templates/6e.jsonl.gz": "e8a8ff1a9d988ef7b8df21e67d89d6984c094267d33a8be495083e32bc69da4e",
+        "templates/6f.jsonl.gz": "cc3649af05cc3dc78e1209e94a6ead47a787179a08f513fbc96c24dc52bd946c",
+        "templates/70.jsonl.gz": "f317a0969c9ef5a98ccaf29b4d23b5f5b7975f66769ea6252488b18120c31226",
+        "templates/71.jsonl.gz": "71aa6f25a3ea7720e68f4ecbd8e06f5fb8f07d8c1c1c6012ab07af1cee43bf63",
+        "templates/72.jsonl.gz": "efbdbf469a3e79e597ef770754a5633f854c2b587012d995ab63cf7bc8a9a511",
+        "templates/73.jsonl.gz": "20fb84723dd5add501c79c78201db0bfc16d6299d8b6f2b0fb8a2a6369a00b49",
+        "templates/74.jsonl.gz": "666c523cf84285495db74188c1a23476fa8ec8ae2d4dd507e498292ce96c36e2",
+        "templates/75.jsonl.gz": "f7855c53bfdac7a466fa5f9df9fcc0f06dabed6c6bb2ef0a75836c057ac3f4a1",
+        "templates/76.jsonl.gz": "ee49b74bcc681015f700bce7e6f9a179f529a3b715be987c43aa20489e04d0b5",
+        "templates/77.jsonl.gz": "cb1f1626bf4d9247872e158b6ba74f53d37cb95483ac48560e3bb9f014542368",
+        "templates/78.jsonl.gz": "6ad922b685b3cf30a53ad027165ccbc88a2257a4b26857445695439d3026a1c2",
+        "templates/79.jsonl.gz": "12ceb54417c8f58eceef25fde9b2726b6a69efea29d7c9bfc7a89552ba0a9bb9",
+        "templates/7a.jsonl.gz": "312f9fe79ded86f67bcb718286643039bec2da72d8abec15b5bf687cc29e0302",
+        "templates/7b.jsonl.gz": "94257990da279eed6a394d691f156e1b0f70b4c0812a90e09f3fdffed44cd0dc",
+        "templates/7c.jsonl.gz": "08d39c3e2dd8bd427be2fd77f0dd149ac1a9bc90332dd197bf227d11a36b2b47",
+        "templates/7d.jsonl.gz": "ebd61c30f7a248740cca5f3bb430cf887c29d365e6c9d4653ab03ae1f2f6aa63",
+        "templates/7e.jsonl.gz": "3e452d4fd6dfa55d464fdd6c66d4b604cfeddc1762a9589344bcf5a11787612a",
+        "templates/7f.jsonl.gz": "56caa2bfe00bb1bfea439d4a3e36125d470a2fbdd705ab1cea5d04023d59a1ba",
+        "templates/80.jsonl.gz": "d04961f5db87cb527371e50e8557cbb1c8fd0aa8541b611d61b289f6d57c0f68",
+        "templates/81.jsonl.gz": "710a2a4530814b5459fcda53d48c3c282cea38d7ba98db841b822bfa6a3be991",
+        "templates/82.jsonl.gz": "7656b8c8bdf22b273dd229a1140722c611ffefc6d2df4b02c32c909ee1432ba1",
+        "templates/83.jsonl.gz": "04479f564e70d6a1a7cb144ad0ffb509475e23bc95a857aedf90ba088d8424e7",
+        "templates/84.jsonl.gz": "86c53685909990ada966b0f916e9bc0f067003eb3dbce6c07942cff31948ebaf",
+        "templates/85.jsonl.gz": "cf358e5bf628ee1474ec134995b4e86310db0f2a6299e3c237e51d3903fac8d0",
+        "templates/86.jsonl.gz": "1f16bc34b5dff9e70dd4aa4ba2673e649ae830dd244067ee8bdfbe671a598d74",
+        "templates/87.jsonl.gz": "ea5853b3b3917f46363ce27243fe4704c03a9b777932ef0e61b658b44a457c98",
+        "templates/88.jsonl.gz": "f46c799235e08f376819440785e6b1db12c9ec1d7997fadb6a710124c7c6b35e",
+        "templates/89.jsonl.gz": "d535de2cee445befdeba154d7d6346abb94c6a42963f8e70e843ab42a872ddd4",
+        "templates/8a.jsonl.gz": "b24099134b588e9659718f5545b79c8fee665fb488ebc9f6cc2bc6afe2490af7",
+        "templates/8b.jsonl.gz": "0266ebcf7c87935c1e9ef3d2207ba09e8cd32fbe6da23e774e2df26dad46248c",
+        "templates/8c.jsonl.gz": "2ebc2f4a4e1d21e631586e3cb9f303f20c8890d92a9c020929d2b4e2d2e5ef93",
+        "templates/8d.jsonl.gz": "832febe6a81a42f52df523dd689b44240dbfb9e442039da5e2e477d9c437b624",
+        "templates/8e.jsonl.gz": "21b095959ba49a7e788cc9521dfe7917a9a08626ce6a8d63016aa2040ae42aa8",
+        "templates/8f.jsonl.gz": "402002ff42732ae8bc8bf5b39bcbdcffe6cbaa1f668453915a1edd188376c398",
+        "templates/90.jsonl.gz": "6274d397d074509dbb9a4f304cea13c394cc8b7b5eba1d50a314b49dbb6f60e5",
+        "templates/91.jsonl.gz": "f0130ef75e5708a1cebeea40aaa50652a0ad3aaf1c6eacb489975b842c758292",
+        "templates/92.jsonl.gz": "cc4f12247bc71e5d84e42e088d9a98e2632326036628a6c29c100437da172dcf",
+        "templates/93.jsonl.gz": "05fe9902b9b3f9bb55dafb23f9c9557e27c4c83d6f15d160d6df219c29568af9",
+        "templates/94.jsonl.gz": "4e1f5983c49b5dd72cf51858bfd1ff82a4cc2077668886e4c7f03e877e408465",
+        "templates/95.jsonl.gz": "f1010af739d364f94aacce95fad4ad24e62e84ebb38f2f7267f521f10323b8ab",
+        "templates/96.jsonl.gz": "72c01d63b1989aa6ad109a6db214dff4d6f085a441751095873a731455e34a65",
+        "templates/97.jsonl.gz": "8bff9cb59ee738017536ee57493fc460c8a5f01e5c86234c0d8ec9a5a757e32a",
+        "templates/98.jsonl.gz": "fa094dd223f1985ea018bee4f86d20f90fe46d4caa2a782e871985fdbc6a4c90",
+        "templates/99.jsonl.gz": "86f559fba426d01e8b01d3b49bc61c4159750d34627576ad58b778b36086d201",
+        "templates/9a.jsonl.gz": "4eec4442fe44d518f140dd47bf63181ac8648f74ecbddd51d8e5ec75081444d6",
+        "templates/9b.jsonl.gz": "c8dc2d9db7eed689ae03bdf2e7915e4760d551662b0ad532db454e8cdd1afe10",
+        "templates/9c.jsonl.gz": "a11362c0a951b704553d30e369cabe4fe7d66a4b1736bb5c58ac88f53de19c3e",
+        "templates/9d.jsonl.gz": "0a01a262f26ad30b72e6c8658b03850bdea2e0dc4e79ae28b93c3e72682e7108",
+        "templates/9e.jsonl.gz": "afaae9b09704f9bba925ee1bc2d83e1254052f49054e814bd3fd5669bc924d4e",
+        "templates/9f.jsonl.gz": "f119e7ee6f41e2a31655a74fbe0fd26db7ae0888972f0311759a324d22296e17",
+        "templates/a0.jsonl.gz": "e685593289619a81c350f6a2671cd9511956da157ed634174ea8b8bbedcb4db8",
+        "templates/a1.jsonl.gz": "b126631ba878343c7df61d4e0d9c3dc417ed5b0b73175bc3f75d125e8a4d99e0",
+        "templates/a2.jsonl.gz": "4f5f2069e5fb38c932d0ee5c032182654b82af1c1c11ff08dc0ef872b3dc991c",
+        "templates/a3.jsonl.gz": "4e8bfb3510de6e411eeec872c799947535539fc295df959bfd8554edcd00c220",
+        "templates/a4.jsonl.gz": "545e887b5b3c3654397fc87571e18e76cb22cf9f9a0660bccb0e6105b73c6939",
+        "templates/a5.jsonl.gz": "13ee46186f13ebeb5f509ad084735384396a296cdd838b4019d158e8ffde4806",
+        "templates/a6.jsonl.gz": "5fa50a1b1aaa1fe7477defbf6f3f2eb9915374f487ed22e3cf6db0ec888cb713",
+        "templates/a7.jsonl.gz": "104f98b2bdd11a1252e1eb69ba667adeeafff543318eaf4e3018e5b3549fc689",
+        "templates/a8.jsonl.gz": "29193e2fdd092127125b4ef4551d6ed7273b694b93a80c2d2bede4379c30b310",
+        "templates/a9.jsonl.gz": "b46eee211bb77b8816b2f0070afa28b329d24ba1c24d0e86afb7110b41add25e",
+        "templates/aa.jsonl.gz": "97f46234e7da867815360cd86732638d390a0c19220a1a80e66b277f50a3e968",
+        "templates/ab.jsonl.gz": "489e93041ecf53418cd956a2cb1219cdb1714cac2ebebe61f019f0cd52486360",
+        "templates/ac.jsonl.gz": "579da5fb8befa6a1285daf3974814e2b1bfafa5b6de59e564e01bb0be0588e23",
+        "templates/ad.jsonl.gz": "f37c1b52b3cc3eeab39bb969efd4fd1f961c7ac918f54bae88695df3e7e8c58e",
+        "templates/ae.jsonl.gz": "9aec14299844521aa11e53d504710ab0792577f27b8a507e29c71a1706c37b73",
+        "templates/af.jsonl.gz": "9c6597c0a6e7d426a81b72c935d75b74f1d0ff25b6b61fd77db62a615ee33af2",
+        "templates/b0.jsonl.gz": "9d945fe79ac6bba36ff76cdc7f2675f53cf6f8ebfc5ad0ce3f2e8a953f633aa9",
+        "templates/b1.jsonl.gz": "90092d38e71a656c076641bdaa61aed246d88f28c09a1171f055a35b9684903f",
+        "templates/b2.jsonl.gz": "678bdc9386159f44fef53020210808ecd6fbf3f7798b30c2824aa88c8cb7d9ee",
+        "templates/b3.jsonl.gz": "f78d2154031e531c580e67e1418469eea6cb3a646937a7af5682c829a0acdf7e",
+        "templates/b4.jsonl.gz": "ed66b558394d0c8091263899a8425f6ecb2e16c23683e14f914df645eb15c585",
+        "templates/b5.jsonl.gz": "d24743d6360005fae633190a9c5065ccb50105eca817a7ef103c8bd7aabbaaa0",
+        "templates/b6.jsonl.gz": "17b1692b4a4ad3f8035374eae2ed271c4e0044455df79795dee827a674c720c9",
+        "templates/b7.jsonl.gz": "a015b99b9e75c3e2939a674eda57c86084f55bd5fa50d8753ba309062a46a574",
+        "templates/b8.jsonl.gz": "ee99e934941e003c7e9cf9e1b903ee31dfbeded1a9de721f0aa9808451b0c672",
+        "templates/b9.jsonl.gz": "d24239ad08e2ea5ff1f4b1f8a2af3ae7578f2a2e74f197b9d7b7a29d2673a1a8",
+        "templates/ba.jsonl.gz": "4e0f2bca8df070f7f6a1f9715937ccb546b3c49a5307e70de2dd57e66d51b9d6",
+        "templates/bb.jsonl.gz": "b3315cd9e14fb248932da10eac19a8c5d06fcf5388ce37bfa0f6b3036a3a4e8b",
+        "templates/bc.jsonl.gz": "828664b92f99ed2edf0511b9f79077db1708d6293ac03327d55f85c53bb9a8bc",
+        "templates/bd.jsonl.gz": "05c05ea28d8836c6f1c5ef6bc7c4cf774b9d92f7160b93eff6a27c41232afd71",
+        "templates/be.jsonl.gz": "b89f3deea9d35f7ac304f294e70f24abae71da22853df32c3c687b8b1e17366c",
+        "templates/bf.jsonl.gz": "a90fc51dafb82d07140c10b5a63b0d7647d853f02f402997171488c4e3c07b40",
+        "templates/c0.jsonl.gz": "04379f7d9b4146c3ad6f6dc98a85541b0c0f038abd2b3243969fb03ae1f84299",
+        "templates/c1.jsonl.gz": "bea5d02c8602b2d64ac4abbdcb5e171b8d297720b0eb599e438c2b08a30e9ab8",
+        "templates/c2.jsonl.gz": "44947536decfd6af6c76a1af3c93d0dcc6b8cef8b6a3bd2ce655c98af0df0d92",
+        "templates/c3.jsonl.gz": "3e9d04cd932d15c292609cd36fed4e49cf89ee72ea5323ff6053c3afce8244ad",
+        "templates/c4.jsonl.gz": "f93405ce89cf6a0727733d9069415da3da68126935701e5cbf709da285a13860",
+        "templates/c5.jsonl.gz": "b7c2d5910357176631c544484b0f897b6f1f078cc3eebe9ad153b12ee7fc2784",
+        "templates/c6.jsonl.gz": "f20a0e0430b7b30443b781e93d0271cec2f2e479e76c2ebc8fddf87825149d50",
+        "templates/c7.jsonl.gz": "e95b7c6545d81894861c7615c9d321bf04bd450c3f9836d7e4bffeaa794b8015",
+        "templates/c8.jsonl.gz": "d54054cb8ff5cf13d953581ef9c9579a59730642501bac73e948f42c92c8beb1",
+        "templates/c9.jsonl.gz": "2f34ebf5b54d528e9a56391d82d756037f5397c86f9fd01c2ef6e6415e9993ed",
+        "templates/ca.jsonl.gz": "2351b04acb04355f8f5c7244fe5aea28309d883daf642dd2dec2643db4e2a4b1",
+        "templates/cb.jsonl.gz": "9d7a7d52064879bc4831101dacc37aa2671096361e2a12c3c4c1b699c4219dc1",
+        "templates/cc.jsonl.gz": "98bc53d2ade76fa55f05a6c4ded0e784b54ad3e2e3e465e7a84653b213f5268c",
+        "templates/cd.jsonl.gz": "f67169b1fbfff3781f3e7f4fed026f0ace48b9e20e1683ff6ddc01712c7ea3ef",
+        "templates/ce.jsonl.gz": "6f38512ad54e95eb1f067546cd4e850602dce337fef8bd883878f4ef8fde2b28",
+        "templates/cf.jsonl.gz": "7217af9dd898d0395af46bdf7c459add357a773413da99268d91c247aab3b26f",
+        "templates/d0.jsonl.gz": "f79183210d8802ff5d165ff13cf9e386d2e1d414da925f970512447eaef88315",
+        "templates/d1.jsonl.gz": "c77e6184a929e90c0adc6a8fa27d2d97e24cff1b66af9d2fe66f05939588a7a2",
+        "templates/d2.jsonl.gz": "ff9466c3a825166291692514135bff27293ca8fef86e31fc8b71fff97f169ddd",
+        "templates/d3.jsonl.gz": "48c581e9ac3221bdd0889447963d437d038a49ff4b2c917d0dc3cad6a1cd5cd7",
+        "templates/d4.jsonl.gz": "3a38776017c5ccc66eda80a77d735cec503ac3edbb6ad6c8c1ef8fb44319ce9f",
+        "templates/d5.jsonl.gz": "282dbcb412b818de4ed5d481362a872937888c5f6d3f4f024b336abe26aae367",
+        "templates/d6.jsonl.gz": "b8bb7873bdbaaccf1ffa0cbec2f6987e2293b2fffc7fdcc586374b30e1c1608c",
+        "templates/d7.jsonl.gz": "c5bf5bfd14fbf1e43040fbe589e89ec6522c6b408731434838fdab6f3f0f0e46",
+        "templates/d8.jsonl.gz": "266a9a3500995cc49bf4623f7544fec36ecd8c8315df251d92cb222da6875b04",
+        "templates/d9.jsonl.gz": "ec7b7639e9b2dc3d7ddf21f34160b5056e5ca307b47a2cd8553670ce6974db9b",
+        "templates/da.jsonl.gz": "6ffdacd961b7b276f477bbe554443c1e815129388d72c0553a2c8c9211ee2574",
+        "templates/db.jsonl.gz": "5cfa131d26ab26efcb1485012aa3fef5f862d7617735484aff948d6c33f5f0d6",
+        "templates/dc.jsonl.gz": "69549792a7414b4a0fdda9e9cfb9e3bc73f9f195089fedcf847849f9a8a8609e",
+        "templates/dd.jsonl.gz": "f830032237867c19b3ce1b94109685b42fa5a2bf9841757d8bd5350e772525cf",
+        "templates/de.jsonl.gz": "89de3a0a70885c3cff656bdd6dae7a58dcca818fda6d5a59e2cc5f35df34183d",
+        "templates/df.jsonl.gz": "1ef07f2947a929b2ef5e89092294991f9af8139edc925043e2dfc9da8335e417",
+        "templates/e0.jsonl.gz": "71c808cae3119c966101974779d3c33f251464913eda50013ed4bb9f47931024",
+        "templates/e1.jsonl.gz": "68c8c762bceb9a89a1b697fc6d126b785b9c7a6b94186767ad8c9da299a5f6b1",
+        "templates/e2.jsonl.gz": "87ff866d45318610fcbf2ab033bf434965412c0d98b7ddef1f335c7077ba7aa8",
+        "templates/e3.jsonl.gz": "028ca813cd58ee9388d58cfba63f07df72b473f836a1a7e8c9860e50c5b7bcfb",
+        "templates/e4.jsonl.gz": "f9b24783039426988816c772481b4ea26faaa7359d5726331ac58f998f13c421",
+        "templates/e5.jsonl.gz": "b8f5b945d1f857aae7350f97b4e79679fc59838c6d0309d20adf43a5d9f85fb6",
+        "templates/e6.jsonl.gz": "eea6e22295f10d9f7ebfb9b6f72b873b57186c7aae7394b2613c883dceead4d2",
+        "templates/e7.jsonl.gz": "25d835a9030c30b7b9aaf82e7c1898c1797605107c751a6a393ca79561484d2c",
+        "templates/e8.jsonl.gz": "20e3a5ca2a2b5ef55fc8ce815c4b5ad48609d3fe6c504ece5abde83e38b9c8ef",
+        "templates/e9.jsonl.gz": "b939c74c38aa065011dc9d8d2e9e4e2a9be4222cdb974d8b72739d1570b9bc0f",
+        "templates/ea.jsonl.gz": "4a2df413556f3e7abe49614085ca003763f77f8023ea64462b5a94bf4bc2590d",
+        "templates/eb.jsonl.gz": "7ab962926a27db6b88507c9693dc93b12e602e790fdaccc07f1020377c0f3772",
+        "templates/ec.jsonl.gz": "6a152c46c81fb64b128b340ed529666fb10bd29e54389ccf386e581461e5ddd3",
+        "templates/ed.jsonl.gz": "4c55477f00257736f492c41ede753157a6c6fd47971f0f7d91efacc7dcfa817d",
+        "templates/ee.jsonl.gz": "a61445c01d6e49359d4fb4a2e3a989c4a2e8210edbf83eda166ddcdd18c35c15",
+        "templates/ef.jsonl.gz": "2714283f7de0ff71a86d68c57d978ad75f7aa1117ffa72c9ff054a0909399ce9",
+        "templates/f0.jsonl.gz": "37fd18f01233d929c249d5bc265cb16f14a345df1a44ca3331efbe5a5648ef6b",
+        "templates/f1.jsonl.gz": "50b54367fe128153916437a866c7d1dac6d32f1ba01593d3d236cec54d1d2b1a",
+        "templates/f2.jsonl.gz": "cd74073f45bc8941b22654f71ff4fd038f7f4950b70d41cc8eacc6a89ffa7480",
+        "templates/f3.jsonl.gz": "1e488da8f8ff8459639e689fd72dc6a0d6420093620006eb999dfdff1b37dd11",
+        "templates/f4.jsonl.gz": "af6afd8e55c04d179682fc15e7ae80f5ecc278038f85066c91ca04f36f6c2e29",
+        "templates/f5.jsonl.gz": "793515e171646bda1791d65eb26d99fefe28f1c5646724d04dccd87525a43f7d",
+        "templates/f6.jsonl.gz": "328f29c297bb036d945f83c90cd10fe9569059fcf5b2a1b4c9a848bc80e109fc",
+        "templates/f7.jsonl.gz": "d57e55ff0ccb9cdbefda78af2e9bd7664df1efc6d394b4409989f8b083e17a8e",
+        "templates/f8.jsonl.gz": "c9efc246700a42b022e3b9efc36511bf9afaf93f10a14998d485502bc58f3115",
+        "templates/f9.jsonl.gz": "4bcf93f56c2a96bb127fc18405046d7e4a11780b2b831c15ef549fdabf3785d6",
+        "templates/fa.jsonl.gz": "57b1a6fc89808d06bf8fac1bb5d082797fbe4ceae5c2444cc4c52bd19108c37d",
+        "templates/fb.jsonl.gz": "fcdc1ee4c2c4ed1068710d548ed9e0482b7a5390a67fa17f3ee84f30560fb843",
+        "templates/fc.jsonl.gz": "d7a8b462d5d6e1a70644634b7b42d9c26ade1e744944bacd63a6029579a6f65f",
+        "templates/fd.jsonl.gz": "059e22f64dc31fa1a2b8cba432b12a87a85f58011d01b87eec4a6149a7cec3e0",
+        "templates/fe.jsonl.gz": "413d0832d2a7cd99f98c296bad56f34daeb9f9b1e4cfc46aec84b7c8610bb6f0",
+        "templates/ff.jsonl.gz": "bbda839ec0ea801e64a59a09fa75173368e5582874f7fad8206bce32ccb0676a",
+        "verb_alternatives.jsonl.gz": "2a90d3066dacecbae6f061363754a1856a502012b020840ba9a7da6f00623d4f",
+        "verbs.jsonl.gz": "a217c301364660909cccbce13a44513acb3a8765e399edb664f6e7aa2212c6a1",
+        "entity_candidates.jsonl.gz": "4b2b0987e862e3ed35db563e2d1c9204eea84939b6de70426276edaeeaa1b66f"
+      },
+      "validation": {
+        "status": "passed",
+        "source_sha256": "e05e75d0db7fcd5f5c22a73e26afb22d187cdcbf2b43da80aa425d989c793696",
+        "templates": 101353,
+        "attested_roundtrips": 110207,
+        "source_records": 161312,
+        "token_spans": 1378087,
+        "verbs_occurrences": 289407,
+        "adjectives_occurrences": 71909
+      },
+      "files": {
+        "adjective_alternatives.jsonl.gz": [
+          878751,
+          1091648
+        ],
+        "adjectives.jsonl.gz": [
+          675206,
+          1006063
+        ],
+        "constructions.jsonl.gz": [
+          2808338,
+          4167859
+        ],
+        "contexts.jsonl.gz": [
+          0,
+          2943011
+        ],
+        "coverage.jsonl.gz": [
+          0,
+          5128920
+        ],
+        "groups.jsonl.gz": [
+          0,
+          6972791
+        ],
+        "occurrences/00000.jsonl.gz": [
+          8294526,
+          7416390
+        ],
+        "occurrences/00001.jsonl.gz": [
+          1397511,
+          9194815
+        ],
+        "occurrences/00002.jsonl.gz": [
+          1480664,
+          7607112
+        ],
+        "occurrences/00003.jsonl.gz": [
+          1542735,
+          5616321
+        ],
+        "occurrences/00004.jsonl.gz": [
+          1642348,
+          5577374
+        ],
+        "occurrences/00005.jsonl.gz": [
+          1730866,
+          5551270
+        ],
+        "occurrences/00006.jsonl.gz": [
+          1747868,
+          5597567
+        ],
+        "occurrences/00007.jsonl.gz": [
+          1828722,
+          5556199
+        ],
+        "occurrences/00008.jsonl.gz": [
+          1884985,
+          5470214
+        ],
+        "occurrences/00009.jsonl.gz": [
+          1948112,
+          5701999
+        ],
+        "occurrences/00010.jsonl.gz": [
+          2046487,
+          5555337
+        ],
+        "occurrences/00011.jsonl.gz": [
+          2044457,
+          5620158
+        ],
+        "occurrences/00012.jsonl.gz": [
+          2099592,
+          8298939
+        ],
+        "occurrences/00013.jsonl.gz": [
+          2220357,
+          7248163
+        ],
+        "occurrences/00014.jsonl.gz": [
+          2186579,
+          5900085
+        ],
+        "occurrences/00015.jsonl.gz": [
+          2271302,
+          9603653
+        ],
+        "occurrences/00016.jsonl.gz": [
+          2361957,
+          1197155
+        ],
+        "outcomes.jsonl.gz": [
+          0,
+          6961698
+        ],
+        "templates/00.jsonl.gz": [
+          420541,
+          146963
+        ],
+        "templates/01.jsonl.gz": [
+          410940,
+          148891
+        ],
+        "templates/02.jsonl.gz": [
+          450604,
+          138011
+        ],
+        "templates/03.jsonl.gz": [
+          412984,
+          147950
+        ],
+        "templates/04.jsonl.gz": [
+          401353,
+          149236
+        ],
+        "templates/05.jsonl.gz": [
+          405174,
+          136097
+        ],
+        "templates/06.jsonl.gz": [
+          415754,
+          142543
+        ],
+        "templates/07.jsonl.gz": [
+          414741,
+          136371
+        ],
+        "templates/08.jsonl.gz": [
+          418015,
+          162778
+        ],
+        "templates/09.jsonl.gz": [
+          415466,
+          146862
+        ],
+        "templates/0a.jsonl.gz": [
+          409961,
+          143518
+        ],
+        "templates/0b.jsonl.gz": [
+          419865,
+          143476
+        ],
+        "templates/0c.jsonl.gz": [
+          419914,
+          138924
+        ],
+        "templates/0d.jsonl.gz": [
+          429982,
+          140833
+        ],
+        "templates/0e.jsonl.gz": [
+          420844,
+          158002
+        ],
+        "templates/0f.jsonl.gz": [
+          435832,
+          155205
+        ],
+        "templates/10.jsonl.gz": [
+          418157,
+          152560
+        ],
+        "templates/11.jsonl.gz": [
+          420004,
+          170872
+        ],
+        "templates/12.jsonl.gz": [
+          413121,
+          156650
+        ],
+        "templates/13.jsonl.gz": [
+          435976,
+          141376
+        ],
+        "templates/14.jsonl.gz": [
+          415048,
+          163986
+        ],
+        "templates/15.jsonl.gz": [
+          433146,
+          146810
+        ],
+        "templates/16.jsonl.gz": [
+          429752,
+          145204
+        ],
+        "templates/17.jsonl.gz": [
+          422536,
+          144340
+        ],
+        "templates/18.jsonl.gz": [
+          434168,
+          148390
+        ],
+        "templates/19.jsonl.gz": [
+          405856,
+          145811
+        ],
+        "templates/1a.jsonl.gz": [
+          428631,
+          143852
+        ],
+        "templates/1b.jsonl.gz": [
+          435580,
+          145518
+        ],
+        "templates/1c.jsonl.gz": [
+          419267,
+          160422
+        ],
+        "templates/1d.jsonl.gz": [
+          418173,
+          158454
+        ],
+        "templates/1e.jsonl.gz": [
+          408667,
+          160931
+        ],
+        "templates/1f.jsonl.gz": [
+          422754,
+          153118
+        ],
+        "templates/20.jsonl.gz": [
+          427925,
+          138581
+        ],
+        "templates/21.jsonl.gz": [
+          418807,
+          137611
+        ],
+        "templates/22.jsonl.gz": [
+          427909,
+          134788
+        ],
+        "templates/23.jsonl.gz": [
+          432499,
+          175083
+        ],
+        "templates/24.jsonl.gz": [
+          416874,
+          148522
+        ],
+        "templates/25.jsonl.gz": [
+          418607,
+          157673
+        ],
+        "templates/26.jsonl.gz": [
+          410933,
+          158454
+        ],
+        "templates/27.jsonl.gz": [
+          420392,
+          146938
+        ],
+        "templates/28.jsonl.gz": [
+          417994,
+          150845
+        ],
+        "templates/29.jsonl.gz": [
+          424279,
+          137439
+        ],
+        "templates/2a.jsonl.gz": [
+          437406,
+          153652
+        ],
+        "templates/2b.jsonl.gz": [
+          433276,
+          164475
+        ],
+        "templates/2c.jsonl.gz": [
+          429447,
+          137343
+        ],
+        "templates/2d.jsonl.gz": [
+          439360,
+          163021
+        ],
+        "templates/2e.jsonl.gz": [
+          416320,
+          148610
+        ],
+        "templates/2f.jsonl.gz": [
+          400173,
+          162271
+        ],
+        "templates/30.jsonl.gz": [
+          418688,
+          146954
+        ],
+        "templates/31.jsonl.gz": [
+          421554,
+          153881
+        ],
+        "templates/32.jsonl.gz": [
+          427801,
+          141090
+        ],
+        "templates/33.jsonl.gz": [
+          424412,
+          146428
+        ],
+        "templates/34.jsonl.gz": [
+          418553,
+          161220
+        ],
+        "templates/35.jsonl.gz": [
+          430380,
+          149796
+        ],
+        "templates/36.jsonl.gz": [
+          420759,
+          151961
+        ],
+        "templates/37.jsonl.gz": [
+          436036,
+          153512
+        ],
+        "templates/38.jsonl.gz": [
+          427036,
+          136076
+        ],
+        "templates/39.jsonl.gz": [
+          409889,
+          141157
+        ],
+        "templates/3a.jsonl.gz": [
+          427142,
+          139400
+        ],
+        "templates/3b.jsonl.gz": [
+          422151,
+          135725
+        ],
+        "templates/3c.jsonl.gz": [
+          428908,
+          139543
+        ],
+        "templates/3d.jsonl.gz": [
+          417438,
+          148732
+        ],
+        "templates/3e.jsonl.gz": [
+          400823,
+          145690
+        ],
+        "templates/3f.jsonl.gz": [
+          413246,
+          150919
+        ],
+        "templates/40.jsonl.gz": [
+          427043,
+          141844
+        ],
+        "templates/41.jsonl.gz": [
+          418812,
+          144462
+        ],
+        "templates/42.jsonl.gz": [
+          419162,
+          145100
+        ],
+        "templates/43.jsonl.gz": [
+          423586,
+          137516
+        ],
+        "templates/44.jsonl.gz": [
+          433156,
+          140353
+        ],
+        "templates/45.jsonl.gz": [
+          423727,
+          149433
+        ],
+        "templates/46.jsonl.gz": [
+          406715,
+          129878
+        ],
+        "templates/47.jsonl.gz": [
+          426325,
+          146247
+        ],
+        "templates/48.jsonl.gz": [
+          431797,
+          156087
+        ],
+        "templates/49.jsonl.gz": [
+          412688,
+          137485
+        ],
+        "templates/4a.jsonl.gz": [
+          428939,
+          142685
+        ],
+        "templates/4b.jsonl.gz": [
+          421432,
+          133188
+        ],
+        "templates/4c.jsonl.gz": [
+          431920,
+          156511
+        ],
+        "templates/4d.jsonl.gz": [
+          410668,
+          152285
+        ],
+        "templates/4e.jsonl.gz": [
+          395604,
+          155234
+        ],
+        "templates/4f.jsonl.gz": [
+          417474,
+          156809
+        ],
+        "templates/50.jsonl.gz": [
+          425140,
+          154696
+        ],
+        "templates/51.jsonl.gz": [
+          420667,
+          149860
+        ],
+        "templates/52.jsonl.gz": [
+          432890,
+          159904
+        ],
+        "templates/53.jsonl.gz": [
+          426845,
+          156176
+        ],
+        "templates/54.jsonl.gz": [
+          426125,
+          146766
+        ],
+        "templates/55.jsonl.gz": [
+          429750,
+          161860
+        ],
+        "templates/56.jsonl.gz": [
+          422966,
+          137445
+        ],
+        "templates/57.jsonl.gz": [
+          409824,
+          155501
+        ],
+        "templates/58.jsonl.gz": [
+          435233,
+          157452
+        ],
+        "templates/59.jsonl.gz": [
+          401702,
+          141574
+        ],
+        "templates/5a.jsonl.gz": [
+          415406,
+          156392
+        ],
+        "templates/5b.jsonl.gz": [
+          418612,
+          154711
+        ],
+        "templates/5c.jsonl.gz": [
+          434235,
+          159057
+        ],
+        "templates/5d.jsonl.gz": [
+          409722,
+          152825
+        ],
+        "templates/5e.jsonl.gz": [
+          424770,
+          157464
+        ],
+        "templates/5f.jsonl.gz": [
+          445082,
+          145817
+        ],
+        "templates/60.jsonl.gz": [
+          404251,
+          151190
+        ],
+        "templates/61.jsonl.gz": [
+          432279,
+          154287
+        ],
+        "templates/62.jsonl.gz": [
+          421417,
+          142364
+        ],
+        "templates/63.jsonl.gz": [
+          425155,
+          160443
+        ],
+        "templates/64.jsonl.gz": [
+          428244,
+          148120
+        ],
+        "templates/65.jsonl.gz": [
+          413540,
+          142283
+        ],
+        "templates/66.jsonl.gz": [
+          435819,
+          159572
+        ],
+        "templates/67.jsonl.gz": [
+          417299,
+          165768
+        ],
+        "templates/68.jsonl.gz": [
+          411355,
+          135423
+        ],
+        "templates/69.jsonl.gz": [
+          416409,
+          142056
+        ],
+        "templates/6a.jsonl.gz": [
+          428350,
+          135064
+        ],
+        "templates/6b.jsonl.gz": [
+          417475,
+          145141
+        ],
+        "templates/6c.jsonl.gz": [
+          439392,
+          157292
+        ],
+        "templates/6d.jsonl.gz": [
+          423704,
+          140666
+        ],
+        "templates/6e.jsonl.gz": [
+          420355,
+          160411
+        ],
+        "templates/6f.jsonl.gz": [
+          419927,
+          140864
+        ],
+        "templates/70.jsonl.gz": [
+          433650,
+          141499
+        ],
+        "templates/71.jsonl.gz": [
+          420908,
+          160436
+        ],
+        "templates/72.jsonl.gz": [
+          423382,
+          151635
+        ],
+        "templates/73.jsonl.gz": [
+          411671,
+          158286
+        ],
+        "templates/74.jsonl.gz": [
+          415543,
+          152468
+        ],
+        "templates/75.jsonl.gz": [
+          420393,
+          150022
+        ],
+        "templates/76.jsonl.gz": [
+          415454,
+          148671
+        ],
+        "templates/77.jsonl.gz": [
+          426830,
+          166354
+        ],
+        "templates/78.jsonl.gz": [
+          404151,
+          148474
+        ],
+        "templates/79.jsonl.gz": [
+          422551,
+          142568
+        ],
+        "templates/7a.jsonl.gz": [
+          421922,
+          157920
+        ],
+        "templates/7b.jsonl.gz": [
+          436090,
+          139416
+        ],
+        "templates/7c.jsonl.gz": [
+          426421,
+          149354
+        ],
+        "templates/7d.jsonl.gz": [
+          431840,
+          149846
+        ],
+        "templates/7e.jsonl.gz": [
+          416317,
+          146450
+        ],
+        "templates/7f.jsonl.gz": [
+          423188,
+          146763
+        ],
+        "templates/80.jsonl.gz": [
+          429964,
+          141397
+        ],
+        "templates/81.jsonl.gz": [
+          433493,
+          162200
+        ],
+        "templates/82.jsonl.gz": [
+          426444,
+          143815
+        ],
+        "templates/83.jsonl.gz": [
+          427185,
+          150760
+        ],
+        "templates/84.jsonl.gz": [
+          419308,
+          153072
+        ],
+        "templates/85.jsonl.gz": [
+          414040,
+          142373
+        ],
+        "templates/86.jsonl.gz": [
+          420639,
+          162847
+        ],
+        "templates/87.jsonl.gz": [
+          439759,
+          153475
+        ],
+        "templates/88.jsonl.gz": [
+          422215,
+          143096
+        ],
+        "templates/89.jsonl.gz": [
+          415069,
+          154857
+        ],
+        "templates/8a.jsonl.gz": [
+          410409,
+          156185
+        ],
+        "templates/8b.jsonl.gz": [
+          406428,
+          159917
+        ],
+        "templates/8c.jsonl.gz": [
+          412150,
+          154752
+        ],
+        "templates/8d.jsonl.gz": [
+          442218,
+          145013
+        ],
+        "templates/8e.jsonl.gz": [
+          424477,
+          148716
+        ],
+        "templates/8f.jsonl.gz": [
+          426754,
+          150187
+        ],
+        "templates/90.jsonl.gz": [
+          402810,
+          145406
+        ],
+        "templates/91.jsonl.gz": [
+          424523,
+          165545
+        ],
+        "templates/92.jsonl.gz": [
+          425090,
+          148556
+        ],
+        "templates/93.jsonl.gz": [
+          409607,
+          160455
+        ],
+        "templates/94.jsonl.gz": [
+          411576,
+          137994
+        ],
+        "templates/95.jsonl.gz": [
+          429426,
+          148924
+        ],
+        "templates/96.jsonl.gz": [
+          427741,
+          150927
+        ],
+        "templates/97.jsonl.gz": [
+          422903,
+          140969
+        ],
+        "templates/98.jsonl.gz": [
+          411412,
+          146625
+        ],
+        "templates/99.jsonl.gz": [
+          418531,
+          134603
+        ],
+        "templates/9a.jsonl.gz": [
+          422894,
+          154443
+        ],
+        "templates/9b.jsonl.gz": [
+          409701,
+          144612
+        ],
+        "templates/9c.jsonl.gz": [
+          422041,
+          143008
+        ],
+        "templates/9d.jsonl.gz": [
+          433875,
+          155142
+        ],
+        "templates/9e.jsonl.gz": [
+          421998,
+          140942
+        ],
+        "templates/9f.jsonl.gz": [
+          433099,
+          160956
+        ],
+        "templates/a0.jsonl.gz": [
+          397637,
+          139978
+        ],
+        "templates/a1.jsonl.gz": [
+          437927,
+          131710
+        ],
+        "templates/a2.jsonl.gz": [
+          417503,
+          140669
+        ],
+        "templates/a3.jsonl.gz": [
+          439465,
+          155018
+        ],
+        "templates/a4.jsonl.gz": [
+          418618,
+          153663
+        ],
+        "templates/a5.jsonl.gz": [
+          403210,
+          166144
+        ],
+        "templates/a6.jsonl.gz": [
+          405475,
+          146405
+        ],
+        "templates/a7.jsonl.gz": [
+          434035,
+          135784
+        ],
+        "templates/a8.jsonl.gz": [
+          402455,
+          144298
+        ],
+        "templates/a9.jsonl.gz": [
+          419655,
+          160948
+        ],
+        "templates/aa.jsonl.gz": [
+          433247,
+          142912
+        ],
+        "templates/ab.jsonl.gz": [
+          430167,
+          144177
+        ],
+        "templates/ac.jsonl.gz": [
+          443785,
+          150095
+        ],
+        "templates/ad.jsonl.gz": [
+          425874,
+          159316
+        ],
+        "templates/ae.jsonl.gz": [
+          427484,
+          142850
+        ],
+        "templates/af.jsonl.gz": [
+          422834,
+          143411
+        ],
+        "templates/b0.jsonl.gz": [
+          432211,
+          151105
+        ],
+        "templates/b1.jsonl.gz": [
+          412784,
+          154918
+        ],
+        "templates/b2.jsonl.gz": [
+          426883,
+          144565
+        ],
+        "templates/b3.jsonl.gz": [
+          437217,
+          147089
+        ],
+        "templates/b4.jsonl.gz": [
+          425453,
+          147245
+        ],
+        "templates/b5.jsonl.gz": [
+          430919,
+          139505
+        ],
+        "templates/b6.jsonl.gz": [
+          427059,
+          153721
+        ],
+        "templates/b7.jsonl.gz": [
+          423652,
+          154300
+        ],
+        "templates/b8.jsonl.gz": [
+          415850,
+          139240
+        ],
+        "templates/b9.jsonl.gz": [
+          434041,
+          157225
+        ],
+        "templates/ba.jsonl.gz": [
+          436410,
+          141092
+        ],
+        "templates/bb.jsonl.gz": [
+          407026,
+          162888
+        ],
+        "templates/bc.jsonl.gz": [
+          425167,
+          154887
+        ],
+        "templates/bd.jsonl.gz": [
+          427295,
+          143352
+        ],
+        "templates/be.jsonl.gz": [
+          428183,
+          173512
+        ],
+        "templates/bf.jsonl.gz": [
+          417250,
+          144996
+        ],
+        "templates/c0.jsonl.gz": [
+          412761,
+          156528
+        ],
+        "templates/c1.jsonl.gz": [
+          429327,
+          168867
+        ],
+        "templates/c2.jsonl.gz": [
+          432770,
+          146961
+        ],
+        "templates/c3.jsonl.gz": [
+          414491,
+          146451
+        ],
+        "templates/c4.jsonl.gz": [
+          426875,
+          143966
+        ],
+        "templates/c5.jsonl.gz": [
+          443877,
+          168250
+        ],
+        "templates/c6.jsonl.gz": [
+          426278,
+          144101
+        ],
+        "templates/c7.jsonl.gz": [
+          421245,
+          148972
+        ],
+        "templates/c8.jsonl.gz": [
+          397987,
+          143626
+        ],
+        "templates/c9.jsonl.gz": [
+          423883,
+          147418
+        ],
+        "templates/ca.jsonl.gz": [
+          407416,
+          149237
+        ],
+        "templates/cb.jsonl.gz": [
+          434405,
+          140883
+        ],
+        "templates/cc.jsonl.gz": [
+          414358,
+          148188
+        ],
+        "templates/cd.jsonl.gz": [
+          416261,
+          138322
+        ],
+        "templates/ce.jsonl.gz": [
+          428256,
+          175261
+        ],
+        "templates/cf.jsonl.gz": [
+          411105,
+          148815
+        ],
+        "templates/d0.jsonl.gz": [
+          419702,
+          141494
+        ],
+        "templates/d1.jsonl.gz": [
+          423258,
+          147895
+        ],
+        "templates/d2.jsonl.gz": [
+          428526,
+          140157
+        ],
+        "templates/d3.jsonl.gz": [
+          430312,
+          165043
+        ],
+        "templates/d4.jsonl.gz": [
+          412773,
+          144203
+        ],
+        "templates/d5.jsonl.gz": [
+          419231,
+          153303
+        ],
+        "templates/d6.jsonl.gz": [
+          406311,
+          159382
+        ],
+        "templates/d7.jsonl.gz": [
+          420204,
+          144831
+        ],
+        "templates/d8.jsonl.gz": [
+          415990,
+          167093
+        ],
+        "templates/d9.jsonl.gz": [
+          409624,
+          141480
+        ],
+        "templates/da.jsonl.gz": [
+          417953,
+          159870
+        ],
+        "templates/db.jsonl.gz": [
+          420880,
+          146135
+        ],
+        "templates/dc.jsonl.gz": [
+          430898,
+          154577
+        ],
+        "templates/dd.jsonl.gz": [
+          433925,
+          154171
+        ],
+        "templates/de.jsonl.gz": [
+          416149,
+          149699
+        ],
+        "templates/df.jsonl.gz": [
+          410398,
+          145520
+        ],
+        "templates/e0.jsonl.gz": [
+          418395,
+          143113
+        ],
+        "templates/e1.jsonl.gz": [
+          415875,
+          159220
+        ],
+        "templates/e2.jsonl.gz": [
+          414544,
+          140903
+        ],
+        "templates/e3.jsonl.gz": [
+          418662,
+          145645
+        ],
+        "templates/e4.jsonl.gz": [
+          425007,
+          141804
+        ],
+        "templates/e5.jsonl.gz": [
+          436649,
+          150709
+        ],
+        "templates/e6.jsonl.gz": [
+          433176,
+          144961
+        ],
+        "templates/e7.jsonl.gz": [
+          412425,
+          147568
+        ],
+        "templates/e8.jsonl.gz": [
+          409916,
+          142405
+        ],
+        "templates/e9.jsonl.gz": [
+          396480,
+          158132
+        ],
+        "templates/ea.jsonl.gz": [
+          412360,
+          156976
+        ],
+        "templates/eb.jsonl.gz": [
+          429886,
+          152046
+        ],
+        "templates/ec.jsonl.gz": [
+          429660,
+          163449
+        ],
+        "templates/ed.jsonl.gz": [
+          426975,
+          163257
+        ],
+        "templates/ee.jsonl.gz": [
+          431123,
+          153583
+        ],
+        "templates/ef.jsonl.gz": [
+          420786,
+          143358
+        ],
+        "templates/f0.jsonl.gz": [
+          418794,
+          153933
+        ],
+        "templates/f1.jsonl.gz": [
+          423520,
+          145801
+        ],
+        "templates/f2.jsonl.gz": [
+          426485,
+          155979
+        ],
+        "templates/f3.jsonl.gz": [
+          421732,
+          143701
+        ],
+        "templates/f4.jsonl.gz": [
+          425088,
+          160345
+        ],
+        "templates/f5.jsonl.gz": [
+          415444,
+          149817
+        ],
+        "templates/f6.jsonl.gz": [
+          397545,
+          144656
+        ],
+        "templates/f7.jsonl.gz": [
+          396933,
+          165459
+        ],
+        "templates/f8.jsonl.gz": [
+          410798,
+          157682
+        ],
+        "templates/f9.jsonl.gz": [
+          424504,
+          146325
+        ],
+        "templates/fa.jsonl.gz": [
+          398256,
+          144905
+        ],
+        "templates/fb.jsonl.gz": [
+          420008,
+          158787
+        ],
+        "templates/fc.jsonl.gz": [
+          432667,
+          155597
+        ],
+        "templates/fd.jsonl.gz": [
+          429094,
+          141482
+        ],
+        "templates/fe.jsonl.gz": [
+          427911,
+          157926
+        ],
+        "templates/ff.jsonl.gz": [
+          425328,
+          154678
+        ],
+        "verb_alternatives.jsonl.gz": [
+          1147306,
+          1629383
+        ],
+        "verbs.jsonl.gz": [
+          1273446,
+          1079724
+        ],
+        "entity_candidates.jsonl.gz": [
+          1102495,
+          207145
+        ]
+      },
+      "sha256": "c36d7b7b9eedf591957e59e7a6d8e242efcc97af70ddbdcc53c87ecea9bbddbe"
+    },
+    {
+      "id": "dailydialog-resources",
+      "kind": "inventories",
+      "review_status": "UNREVIEWED",
+      "generation_enabled": false,
+      "manifest": {
+        "format": "dailydialog-preserved-resource-candidates-v1",
+        "review_status": "UNREVIEWED",
+        "registered_for_generation": false,
+        "inventories": {
+          "adverbs.jsonl.gz": {
+            "records": 884,
+            "original_review_status_counts": {
+              "UNREVIEWED": 884
+            }
+          },
+          "entities.jsonl.gz": {
+            "records": 897,
+            "original_review_status_counts": {
+              "REVIEWED": 897
+            }
+          },
+          "entity_candidates.jsonl.gz": {
+            "records": 12853,
+            "original_review_status_counts": {
+              "UNREVIEWED": 12853
+            }
+          },
+          "nominals.jsonl.gz": {
+            "records": 72078,
+            "original_review_status_counts": {
+              "UNREVIEWED": 72078
+            }
+          }
+        },
+        "files": {
+          "adverbs.jsonl.gz": {
+            "source": "artifacts/dailydialog-import-pending/adverbs.jsonl.gz",
+            "sha256": "e282782512881af05326de0eda2c20976e30a703124ebcfb319c18c0f17f6842",
+            "size": 129078
+          },
+          "entities.jsonl.gz": {
+            "source": "artifacts/dailydialog-import-pending/entities.jsonl.gz",
+            "sha256": "01bc660eebaf0db0301b9465cd39645cada1d3c8ddc8735b74ce1c201658cab4",
+            "size": 114533
+          },
+          "entity_candidates.jsonl.gz": {
+            "source": "artifacts/dailydialog-import-pending/entity_candidates.jsonl.gz",
+            "sha256": "79cd4a81a61adb383668e9bdecb1f0c05ba970ee44c2a206d53a8152b3ad29ce",
+            "size": 1095474
+          },
+          "nominals.jsonl.gz": {
+            "source": "artifacts/dailydialog-import-pending/nominals.jsonl.gz",
+            "sha256": "60f3ed4372e368329e42643e3cbf256a492dddc7e5787fd90359d36b2c089da7",
+            "size": 6324644
+          }
+        },
+        "note": "Exact earlier extraction outputs preserved after rollback. Row review_status values are historical claims; this import does not grant admission. Automatic candidates include known parser errors. Existing registered inventories remain unchanged."
+      },
+      "file_sha256": {
+        "adverbs.jsonl.gz": "e282782512881af05326de0eda2c20976e30a703124ebcfb319c18c0f17f6842",
+        "entities.jsonl.gz": "01bc660eebaf0db0301b9465cd39645cada1d3c8ddc8735b74ce1c201658cab4",
+        "entity_candidates.jsonl.gz": "79cd4a81a61adb383668e9bdecb1f0c05ba970ee44c2a206d53a8152b3ad29ce",
+        "nominals.jsonl.gz": "60f3ed4372e368329e42643e3cbf256a492dddc7e5787fd90359d36b2c089da7"
+      },
+      "files": {
+        "adverbs.jsonl.gz": [
+          0,
+          129078
+        ],
+        "entities.jsonl.gz": [
+          25851,
+          114533
+        ],
+        "entity_candidates.jsonl.gz": [
+          7021,
+          1095474
+        ],
+        "nominals.jsonl.gz": [
+          199248,
+          6324644
+        ]
+      },
+      "sha256": "71d9952e57a71c019da75d247b2817abb0ccea9ef619f3f606c7e57efb38fe2e"
+    }
+  ]
+}

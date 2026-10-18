@@ -79,6 +79,20 @@ def test_object_role_keeps_separated_phrasal_particle():
     assert next(a.text for a in event.arguments if a.role == 'object') == 'a book'
 
 
+@pytest.mark.parametrize('coordinator',['and','or'])
+def test_coordinated_particles_are_not_collapsed_into_one_event(coordinator):
+    row=template(lemma='turn',verb='turned',particle=True,adjective=False)
+    index=len(row['parts'])-2
+    row['parts'][index]['literal']=' on '+coordinator+' off'
+    group=row['predicate_groups'][0]
+    group.update(lemma='turn',constructions=[
+        dict(lemma='turn on',kind='particle',separated=True,markers=[dict(part=index,start=1,end=3)]),
+        dict(lemma='turn off',kind='particle',separated=True,markers=[dict(part=index,start=len(coordinator)+5,end=len(coordinator)+8)])])
+    row['constructions']=['turn on','turn off']
+    spec,reason=active_phrase(row,'v0','turn',forms('turn'),{'Anna'})
+    assert spec is None and reason=='coordinated_particle_constructions'
+
+
 @pytest.mark.parametrize('surface,ops,tense,phase,statement,evidence', [
     ('were sold', (), 'past', 'reported', 'The books were sold today.', 'yes'),
     ('were not sold', ('not',), 'past', 'reported', 'The books were not sold today.', 'no'),

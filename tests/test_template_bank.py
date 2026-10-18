@@ -97,7 +97,12 @@ def test_full_coverage_includes_duplicates_and_verbless_records(bank):
     assert counts["templates"] == 3 and counts["template_occurrences"] == 5
     ledger = [row for f in sorted((bank.path / "occurrences").glob("*.gz")) for row in read_rows(f)]
     assert [row["line"] for row in ledger] == [1, 2, 3, 4, 5]
-    assert ledger[3]["analysis_status"] == "imperative_alternative_added"
+    assert ledger[3]["analysis_status"] == "lexical_alternatives_recorded"
+    assert ledger[3]["imperative_candidates"][0]["lemma"] == "jump"
+    assert ledger[3]["tokens"][0]["kind"] == "nominal"
+    assert ledger[3]["tokens"][0]["verb_lemmas"] == ["jump"]
+    assert not list(bank.templates(lemma="jump"))
+    assert "jump" in {r['lemma'] for r in bank.rows('verb_alternatives.jsonl.gz')}
     assert ledger[4]["analysis_status"] == "no_verbal_analysis"
     templates = {t.template_id: t for t in bank.templates()}
     for row in ledger:
@@ -157,7 +162,8 @@ def test_cli_renders_full_bank_and_refuses_overwrite(bank, tmp_path):
     assert len(list(read_rows(out))) == 3
     with pytest.raises(FileExistsError):
         generate_file(bank, out)
-    template, = bank.templates(lemma="jump")
+    # An ambiguous noun reading remains renderable, but is not a verb selector.
+    template = next(t for t in bank.templates() if 'Jump' in t.render()['text'])
     assert len(list(bank.generate(template_id=template.template_id))) == 1
     with pytest.raises(ValueError, match="SHA-256"):
         list(bank.templates(template_id="../../malicious"))
@@ -174,6 +180,32 @@ def test_wordnet_adjectives_and_comparison_are_audited(resources):
     assert adjective["degree"] == ["Cmp"] and adjective["target_slot"] == "n0"
     assert template["adjective_lemmas"] == ["good"]
     assert ledger["tokens"][2]["adjective_lemmas"] == ["good"]
+
+
+@pytest.mark.parametrize("words,heads,deps,pos,tags,lemmas,target", [
+    (["I", "find", "slingbacks", "very", "uncomfortable"], [1, 1, 4, 4, 1],
+     ["nsubj", "ROOT", "nsubj", "advmod", "ccomp"], ["PRON", "VERB", "NOUN", "ADV", "ADJ"],
+     ["PRP", "VBP", "NNS", "RB", "JJ"], ["I", "find", "slingback", "very", "uncomfortable"], "slingbacks"),
+    (["Consider", "yourself", "lucky"], [0, 2, 0], ["ROOT", "nsubj", "ccomp"],
+     ["VERB", "PRON", "ADJ"], ["VB", "PRP", "JJ"], ["consider", "yourself", "lucky"], "yourself"),
+])
+def test_adjective_small_clause_uses_its_own_subject(resources, words, heads, deps, pos, tags, lemmas, target):
+    record, ledger = compile_record(parsed(words, heads, deps, pos, tags, lemmas), {}, LexicalAudit(*resources))
+    attribute, = record["attributes"]
+    assert record["defaults"][attribute["target_slot"]] == target
+    assert ledger["attributes"][0]["target_slot"] == attribute["target_slot"]
+    rendered = CorpusTemplate(record).render({attribute["target_slot"]: "the replacement"})
+    bound = rendered["attributes"][0]
+    assert rendered["text"][slice(*bound["target_span"])] == "the replacement"
+
+
+def test_interjection_tagged_adjective_is_not_a_property(resources):
+    doc = parsed(["OK", "thanks", "for", "checking"], [1, 1, 1, 2],
+        ["intj", "ROOT", "prep", "pobj"], ["ADJ", "NOUN", "ADP", "VERB"],
+        ["JJ", "NNS", "IN", "VBG"], ["ok", "thank", "for", "check"])
+    record, ledger = compile_record(doc, {}, LexicalAudit(*resources))
+    assert not record["attributes"] and not ledger["attributes"]
+    assert CorpusTemplate(record).render()["text"] == doc.text
 
 
 def test_literal_braces_and_unicode_are_preserved(resources):

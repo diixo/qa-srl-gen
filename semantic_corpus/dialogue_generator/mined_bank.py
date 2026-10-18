@@ -260,6 +260,8 @@ class DialogueMinedBank:
                            'inflection_source': entry['inflection_source'], 'review_status': 'UNREVIEWED',
                            'source_text': row['text'], 'head_slot': head,
                            'slots': row['slots'], 'spans': row['spans'], 'predicate_groups': row['predicate_groups']}
+        if 'usage_constraints' in row:
+            info['usage_constraints'] = row['usage_constraints']
         if spec:
             def realize(candidate):
                 subject, reason = realize_subject(template.record, candidate, row['bindings'], self.person_names, self.pool.entities)

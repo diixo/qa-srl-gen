@@ -220,7 +220,8 @@ class BuiltInPool:
                                   "resource_pool": "built-in", "bank_manifest_sha256": identity,
                                   "controlled_policy": CONTROLLED_VERSION,
                                   "bank_source_sha256": bank.manifest.get("source_sha256"),
-                                  "recombined": recombine, "split_policy": SPLIT_POLICY})
+                                  "recombined": recombine and 'usage_constraints' not in row,
+                                  "split_policy": SPLIT_POLICY})
             except ValueError as error:
                 if str(error) != "no templates match the selection":
                     raise

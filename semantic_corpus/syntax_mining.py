@@ -18,7 +18,59 @@ from pathlib import Path
 import shutil
 import time
 
-EXTRACTOR_VERSION = "2"
+EXTRACTOR_VERSION = "3"
+
+
+def _particle_variants(particles):
+    """Expand coordinated particles, retaining their observed token positions.
+
+    A conjunct with its own complement is not assumed to be a particle. The
+    source still carries and/or; these are structural candidates, not a claim
+    that either (or both) events happened.
+    """
+    if len(particles) != 1:
+        return [particles]
+    root = particles[0]
+    variants, pending, seen = [[root]], [root], {root.i}
+    while pending:
+        parent = pending.pop()
+        for child in sorted(parent.children, key=lambda t: t.i):
+            if (child.dep_ != 'conj' or child.i in seen
+                    or child.pos_ not in {'ADP', 'ADV', 'PART'}
+                    or any(c.dep_ in {'pobj', 'pcomp', 'prep', 'nsubj', 'ccomp', 'xcomp'}
+                           for c in child.children)):
+                continue
+            coordinators = [c for head in (parent, child) for c in head.children if c.dep_ == 'cc']
+            if not coordinators or any(c.lower_ not in {'and', 'or', 'but'} for c in coordinators):
+                continue
+            seen.add(child.i)
+            variants.append([child])
+            pending.append(child)
+    return sorted(variants, key=lambda ts: ts[0].i)
+
+
+def _time_phrase_candidate(prep):
+    """Recognize narrow time-PP candidates without depending on NER models.
+
+    These remain observations in the audit, not approved semantic roles. Do
+    not generalize to every preposition/date pair: 'put up with winter' and
+    'look forward to Monday' can be governed complements.
+    """
+    if prep.lower_ not in {'at', 'on', 'in'}:
+        return False
+    objects = [c for c in prep.children if c.dep_ == 'pobj']
+    if len(objects) != 1:
+        return False
+    head = objects[0]
+    if any(c.dep_ in {'relcl', 'acl', 'prep', 'conj'} for c in head.children):
+        return False
+    if head.lower_ in {'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'}:
+        return True
+    if head.lower_ not in {'morning', 'afternoon', 'evening', 'night', 'noon', 'midnight'}:
+        return False
+    return prep.lower_ in {'at', 'in'} or any(
+        c.lower_ in {'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday',
+                     'this', 'that', 'christmas'} for c in head.children)
 
 
 def enrich(result):
@@ -81,9 +133,12 @@ def extract(doc):
             continue
         children = sorted(token.children, key=lambda t: t.i)
         particles = [t for t in children if t.dep_ == "prt"]
+        variants = _particle_variants(particles)
+        coordinated = len(variants) > 1
         preps = [t for t in children if t.dep_ == "prep"]
         objects = [t for t in children if t.dep_ in ("dobj", "obj")]
-        unit = " ".join([lemma, *(t.lower_ for t in particles)])
+        # No single lexical unit covers both 'turn on' and 'turn off'.
+        unit = lemma if coordinated else " ".join([lemma, *(t.lower_ for t in particles)])
         ordered = [(token.i, "{VERB}")]
         arguments = []
         for child in children:
@@ -99,14 +154,30 @@ def extract(doc):
             ordered.append((child.i, wording))
             arguments.append({"dependency": dep, "head": child.text,
                               "head_span": _span(child)})
-        constructions = []
+        if coordinated:
+            # Conjunct particles and their coordinators are grandchildren of
+            # the verb; preserve them in the diagnostic predicate template too.
+            extras = {p.i: p for variant in variants[1:] for p in variant}
+            for variant in variants:
+                for part in variant:
+                    extras.update({c.i: c for c in part.children if c.dep_ in {'cc', 'neg'}})
+            ordered.extend((i, t.lower_) for i, t in extras.items())
+        constructions, temporal_adjuncts = [], []
         if particles:
-            separated = any(token.i < obj.i < part.i
-                            for obj in objects for part in particles)
-            constructions.append({"lemma": unit, "kind": "particle",
-                                  "separated": separated,
-                                  "markers": [_span(t) for t in particles]})
+            for variant in variants:
+                separated = any(token.i < obj.i < part.i
+                                for obj in objects for part in variant)
+                constructions.append({"lemma": " ".join([lemma, *(t.lower_ for t in variant)]),
+                                      "kind": "particle", "separated": separated,
+                                      "markers": [_span(t) for t in variant]})
         for prep in preps:
+            if particles and _time_phrase_candidate(prep):
+                subtree = list(prep.subtree)
+                temporal_adjuncts.append(dict(
+                    preposition=prep.lower_, marker=_span(prep),
+                    span=[min(t.idx for t in subtree), max(t.idx + len(t) for t in subtree)],
+                    status='UNREVIEWED', rule='time_pp_separate_from_particle_v1'))
+                continue
             # Include chained prepositions (get out of, put up with).
             chain = [prep]
             while True:
@@ -114,11 +185,14 @@ def extract(doc):
                 if len(nested) != 1:
                     break
                 chain.append(nested[0])
+            # The PP's scope over coordinated particles is unresolved. Keep a
+            # bare preposition candidate rather than inventing cross-products.
+            attached_particles = [] if coordinated else particles
             constructions.append({
                 "lemma": " ".join([unit, *(t.lower_ for t in chain)]),
-                "kind": "particle_preposition" if particles else "preposition_candidate",
+                "kind": "particle_preposition" if attached_particles else "preposition_candidate",
                 "separated": False,
-                "markers": [_span(t) for t in (*particles, *chain)],
+                "markers": [_span(t) for t in (*attached_particles, *chain)],
             })
         predicates.append({
             "lemma": lemma, "lexical_unit": unit, "surface": token.text,
@@ -126,6 +200,7 @@ def extract(doc):
             "morphology": str(token.morph),
             "template": " ".join(word for _, word in sorted(ordered)),
             "arguments": arguments, "constructions": constructions,
+            **({'temporal_adjunct_candidates': temporal_adjuncts} if temporal_adjuncts else {}),
         })
 
     # These placeholders describe syntax, never ontology labels or QA roles.
@@ -285,7 +360,9 @@ def reindex(source, output):
     started = time.perf_counter()
     previous_elapsed = manifest["elapsed_seconds"]
     output.mkdir(parents=True, exist_ok=False)
-    manifest.update(extractor_version=EXTRACTOR_VERSION, reindexed_from=str(source.resolve()))
+    # This ledger lacks full dependency tokens: reindexing cannot rerun new
+    # particle/PP extraction rules. Retain the version that produced its parses.
+    manifest.update(reindex_version=EXTRACTOR_VERSION, reindexed_from=str(source.resolve()))
 
     def save(status):
         elapsed = round(time.perf_counter() - started, 3)

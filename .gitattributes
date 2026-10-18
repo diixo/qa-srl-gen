@@ -1,0 +1,4 @@
+# Audit manifests bind the exact stored bytes, including line endings.
+/data/dailydialog/filtered/*.jsonl -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/data/dailydialog/review-parts/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/data/mined-templates/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

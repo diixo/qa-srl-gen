@@ -64,11 +64,12 @@ class LexicalAudit:
             }
         return self.cache[key]
 
-    def recovery(self, doc):
-        """Expose missed bare imperatives as an explicit alternative analysis.
+    def imperative_candidates(self, doc):
+        """Retain possible missed imperatives without overriding the parser.
 
-        Fires per clause, even if another sentence in the record has a verb.
-        It does not pretend that ambiguous 'Fire!' cannot be a nominal warning.
+        Dictionary membership alone does not distinguish 'Fire!' as a command
+        from a warning, or 'Yes.' as a reply from the rare verb 'yes'. These
+        readings belong in the audit ledger, never in executable verb slots.
         """
         found = {}
         for sentence in doc.sents:
@@ -85,9 +86,59 @@ class LexicalAudit:
         return found
 
 
+def adjective_target(token):
+    """Return a syntactically licensed nominal bearer, or leave it unresolved.
+
+    Adjective-shaped objects, measures and adverbs do not automatically describe
+    the subject of the nearest verb. This does not resolve pronoun reference,
+    event status or the meaning of an anticipatory 'it'.
+    """
+    nominal = {"NOUN", "PROPN", "PRON"}
+    subjects = {"nsubj", "nsubjpass"}
+    if token.dep_ == "amod":
+        return token.head if token.head.pos_ in nominal else None
+    if token.dep_ == "conj":
+        current, seen = token, set()
+        while current.dep_ == "conj" and current.i not in seen:
+            seen.add(current.i)
+            if (current.head.pos_ != "ADJ"
+                    or any(c.dep_ in subjects | {"csubj", "csubjpass", "expl", "ccomp", "xcomp"}
+                           for c in current.children)):
+                return None
+            current = current.head
+        if current.i in seen or current.lemma_.lower() == token.lemma_.lower():
+            return None
+        coordinators = [c for t in (token, current) for c in t.children if c.dep_ == "cc"]
+        if not coordinators or any(c.lower_ not in {"and", "but"} for c in coordinators):
+            return None
+        target = adjective_target(current)
+        return target if target is not None and target.lower_ != "it" else None
+    if token.dep_ not in {"ROOT", "acomp", "oprd", "ccomp", "xcomp"}:
+        return None
+    own = [t for t in token.children if t.dep_ in subjects]
+    if own:
+        return own[0] if len(own) == 1 and own[0].pos_ in nominal else None
+    governor = token.head
+    if governor == token or governor.pos_ not in {"VERB", "AUX"}:
+        return None
+    objects = [t for t in governor.children if t.dep_ in {"dobj", "obj"}]
+    if objects:
+        # Object predicatives: 'I find it interesting', 'keep the door open'.
+        if (governor.lemma_.lower() in {"find", "consider", "make", "get", "keep", "leave", "drive", "have"}
+                and len(objects) == 1 and objects[0].pos_ in nominal):
+            return objects[0]
+        return None
+    if governor.lemma_.lower() not in {
+            "be", "become", "remain", "seem", "appear", "look", "feel", "sound",
+            "smell", "taste", "grow", "go", "turn", "stay", "get", "fall", "end", "act", "play"}:
+        return None
+    candidates = [t for t in governor.children if t.dep_ in subjects]
+    return candidates[0] if len(candidates) == 1 and candidates[0].pos_ in nominal else None
+
+
 def compile_record(doc, source, audit):
     observation = extract(doc)
-    recovered = audit.recovery(doc)
+    candidates = audit.imperative_candidates(doc)
     token_slots = {}
     slots, defaults, parts = {}, {}, []
     tokens, attributes = [], []
@@ -95,15 +146,15 @@ def compile_record(doc, source, audit):
     counts = Counter()
     for token in doc:
         alternatives = audit.alternatives(token.text)
-        kind = ("verb" if token.pos_ in ("VERB", "AUX") or token.i in recovered
+        kind = ("verb" if token.pos_ in ("VERB", "AUX")
                 else "adjective" if token.pos_ == "ADJ" or token.tag_ in ("JJ", "JJR", "JJS")
                 else "nominal" if token.pos_ in ("NOUN", "PROPN", "PRON") else None)
-        lemma = recovered.get(token.i, token.lemma_.lower() or token.lower_)
+        lemma = token.lemma_.lower() or token.lower_
         item = {"i": token.i, "text": token.text, "span": [token.idx, token.idx + len(token)],
                 "lemma": lemma, "parser_lemma": token.lemma_.lower() or token.lower_,
                 "pos": token.pos_, "tag": token.tag_, "dep": token.dep_,
                 "head": token.head.i, "morph": str(token.morph), "kind": kind,
-                "analysis": "imperative_alternative" if token.i in recovered else "parser",
+                "analysis": "parser",
                 **alternatives}
         tokens.append(item)
         if kind is None:
@@ -139,9 +190,8 @@ def compile_record(doc, source, audit):
                     "text": token.head.lower_,
                     "head_slot": token_slots.get(token.head.head.i),
                 }
-        if key and (token.pos_ == "ADJ" or token.tag_ in ("JJ", "JJR", "JJS")):
-            target = token.head if token.dep_ == "amod" else next(
-                (t for t in token.head.children if t.dep_ in ("nsubj", "nsubjpass")), None)
+        if key and token.dep_ != "intj" and (token.pos_ == "ADJ" or token.tag_ in ("JJ", "JJR", "JJS")):
+            target = adjective_target(token)
             attributes.append({"slot": key, "target_slot": token_slots.get(target.i) if target else None,
                                "degree": token.morph.get("Degree"),
                                "modifiers": [{"text": t.text, "span": [t.idx, t.idx + len(t)]}
@@ -154,9 +204,6 @@ def compile_record(doc, source, audit):
             raise AssertionError("predicate head disappeared")
         groups.append({"head_slot": token_slots.get(head.i), "lemma": predicate["lexical_unit"],
                        "constructions": predicate["constructions"]})
-    for index, lemma in recovered.items():
-        groups.append({"head_slot": token_slots[index], "lemma": lemma,
-                       "constructions": [], "analysis": "imperative_alternative"})
     # Markers are source offsets in the audit. Runtime groups use template parts
     # and token slots, so replacement lengths never invalidate their positions.
     runtime_groups = []
@@ -196,15 +243,24 @@ def compile_record(doc, source, audit):
               "adjective_lemmas": sorted({t["parser_lemma"] for t in tokens if t["pos"] == "ADJ" or t["tag"] in ("JJ", "JJR", "JJS")})}
     if CorpusTemplate(record).render()["text"] != doc.text:
         raise AssertionError(f"record {source}: template roundtrip lost source text")
-    status = ("imperative_alternative_added" if recovered else "parsed_verbal" if verbs
+    status = ("parsed_verbal" if verbs
               else "lexical_alternatives_recorded" if any(t["verb_lemmas"] for t in tokens)
               else "no_verbal_analysis")
     ledger = {**source, "text": doc.text, "template_id": record["template_id"],
               "bindings": defaults, "tokens": tokens, "attributes": attributes,
               "predicate_groups": groups, "analysis_status": status,
+              "imperative_candidates": [
+                  {"token": i, "span": tokens[i]["span"], "lemma": lemma,
+                   "evidence": "dictionary_only", "review_status": "UNREVIEWED"}
+                  for i, lemma in candidates.items()],
               "sentence_template": observation["sentence_template"],
               "predicate_templates": [{"lemma": p["lexical_unit"], "template": p["template"]}
                                       for p in observation["predicates"]]}
+    temporal = [dict(predicate_span=p['span'], **adjunct)
+                for p in observation['predicates']
+                for adjunct in p.get('temporal_adjunct_candidates', [])]
+    if temporal:
+        ledger['temporal_adjunct_candidates'] = temporal
     return record, ledger
 
 

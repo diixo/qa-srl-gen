@@ -24,6 +24,32 @@ def _registry_root(repo_root):
     return (Path(repo_root) if repo_root is not None else REPO_ROOT) / "data" / "mined-templates"
 
 
+def _check_hybrid_admission(bank, *, repo_root=None):
+    from .dailydialog_quarantine import check_admitted_ids, check_template, pool_holds
+
+    policy = bank.manifest.get('hybrid_import')
+    if policy is None:
+        return
+    if policy.get('review_status') != 'REVIEWED_ATTESTATIONS':
+        raise ValueError('unreviewed hybrid quarantine cannot be published')
+    admitted = policy.get('admitted_occurrences', [])
+    if not admitted or len(set(admitted)) != len(admitted):
+        raise ValueError('hybrid admission requires unique reviewed occurrences')
+    holds = pool_holds(repo_root)
+    check_admitted_ids(admitted, holds)
+    observed = []
+    for template in bank.templates():
+        check_template(template.record, holds)
+        usage = template.record.get('usage_constraints', {})
+        if usage.get('mode') != 'attested_sentence' or template.record['count'] != 1:
+            raise ValueError('hybrid admission only permits individually reviewed sentences')
+        template.render()  # Validate the embedded interpretation and source context.
+        observed.append(usage['source_id'])
+    if (sorted(observed) != sorted(admitted) or
+            len(observed) != bank.manifest['counts']['compiled_records']):
+        raise ValueError('hybrid admission coverage mismatch')
+
+
 def _validated_report(bank, report=None):
     report = report if report is not None else json.loads((bank.path / "validation.json").read_text(encoding="utf-8"))
     if not isinstance(report, dict):
@@ -173,6 +199,7 @@ def register_bank(bank_path, source_path, *, repo_root=None, bank_id, before_pub
     bank = TemplateBank(bank_path)
     if bank.manifest["format"] == POOL_FORMAT:
         raise ValueError("register a newly compiled source, not the shared bank itself")
+    _check_hybrid_admission(bank, repo_root=repo_root)
     destination = _registry_root(repo_root)
     destination.parent.mkdir(parents=True, exist_ok=True)
     # Resolve an existing parent, not a path another worker is just creating.
@@ -187,6 +214,7 @@ def register_bank(bank_path, source_path, *, repo_root=None, bank_id, before_pub
         copied = TemplateBank(staging / "bank")
         if copied.manifest != bank.manifest:
             raise ValueError("bank manifest changed during publication")
+        _check_hybrid_admission(copied, repo_root=repo_root)
         report = _validated_report(copied, validate_bank(copied, staging / "source.jsonl"))
         publication = _publication(copied, report, bank_id)
         with _writer_lock(root):

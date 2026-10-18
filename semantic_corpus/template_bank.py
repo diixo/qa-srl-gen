@@ -14,6 +14,9 @@ import io
 import json
 from pathlib import Path
 import random
+from copy import deepcopy
+
+from .template_usage import validate_usage
 
 FORMAT = "corpus-templates-v1"
 POOL_FORMAT = "corpus-templates-pool-v1"
@@ -89,6 +92,9 @@ class CorpusTemplate:
             if unknown:
                 raise ValueError(f"unknown template slots: {sorted(unknown)}")
             values.update(bindings)
+        usage = self.record.get('usage_constraints')
+        if usage is not None and values != self.record['defaults']:
+            raise ValueError('context-reviewed attestation does not license slot replacement')
         fragments, spans, cursor, part_spans = [], {}, 0, []
         for part in self.record["parts"]:
             if "literal" in part:
@@ -120,10 +126,13 @@ class CorpusTemplate:
             groups.append({**group, "head_span": spans.get(group["head_slot"]), "constructions": variants})
         attributes = [{**a, "span": spans[a["slot"]],
                        "target_span": spans.get(a["target_slot"])} for a in self.record.get("attributes", ())]
+        if usage is not None:
+            validate_usage(usage, result, self.slots)
         return {"template_id": self.template_id, "text": result, "bindings": values, "slots": self.slots,
                 "spans": spans, "verbs": list(self.verbs),
                 "predicate_groups": groups, "attributes": attributes,
-                "review_status": "UNREVIEWED"}
+                "review_status": "UNREVIEWED",
+                **({'usage_constraints': deepcopy(usage)} if usage is not None else {})}
 
     def attested(self, adjective_forms=None):
         attested = self.record["attested_bindings"]
@@ -138,6 +147,9 @@ class CorpusTemplate:
     def sample(self, *, seed=0, variant=0, recombine=False, adjective_forms=None):
         rng = random.Random(fingerprint([seed, self.template_id, variant]))
         attested = self.attested(adjective_forms)
+        if self.record.get('usage_constraints') is not None:
+            # A recombination request cannot override an occurrence's review.
+            return self.render(rng.choice(attested))
         if recombine:
             # Pools are local to this exact lexical/dependency/morphology shape;
             # predicates and markers are never replaced by a random other verb.
@@ -200,6 +212,11 @@ class TemplateBank:
         if self.manifest['format'] == POOL_FORMAT:
             return tuple(TemplateBank(self.path, _entry=entry) for entry in self.manifest['sources'])
         return (self,)
+
+    def pending_components(self):
+        """Inspect unapproved templates stored in the same files, outside generation."""
+        from .template_pending import pending_banks
+        return pending_banks(self.path)
 
     def rows(self, name):
         """Read one logical file from this source's immutable committed range."""

@@ -1,0 +1,842 @@
+{
+  "format": "dailydialog-quarantine-v1",
+  "date": "2026-10-18",
+  "review_method": "direct_assistant_disposition_review",
+  "note": "19 unresolved warnings are deferred, not fixed or deleted. Only two exact previously reviewed adjacent adapters are permitted. All originals remain available.",
+  "unresolved_warnings": 19,
+  "blocked_template_occurrences": 21,
+  "deferred_occurrences": 19,
+  "adapter_only_occurrences": 2,
+  "candidate": "data/mined-templates",
+  "previous_progress": "data/dailydialog/review-parts/hybrid-luna-offline-progress-queue-v34.json",
+  "evidence": {
+    "data/mined-templates/audit/evidence/summary.json": "94b40e9304da564d7b79a87ce6847a5798b73c2e63ac23a1e3c3cad4b8acc08e",
+    "data/mined-templates/audit/evidence/quarantined-warnings.jsonl.gz": "9028fe467ed79f76ced6e38fe3d53a58810a732ee9013a0831bd58fa35d1b7c1",
+    "data/mined-templates/audit/evidence/quarantine-cases.jsonl.gz": "8af4012560e13bf3146955086a5640fac0717349f798108005ce766fb3b0023a",
+    "data/mined-templates/audit/evidence/received-evidence.jsonl.gz": "68f72401d4ccd5e4a26eaaf23e1558dc268f136195680c658a2f857f8be68391",
+    "data/mined-templates/reviewed/dialogue-fragments.json": "df9b07ed35d541459e2427eda2810c58ccfe9b8f69a2a2d5740b3091bd4139d8"
+  },
+  "occurrences": [
+    {
+      "id": "test:364:2:4",
+      "warning_key": [
+        "test:364:2:4",
+        0,
+        "236d803bbf2f076e168de9534287150ef6f2d6eac1195204f4d72a3fbed75441"
+      ],
+      "warning_sha256": "be2f82d7b0cdb732961492687a63113498e581a8c11d40f7a5c64d94e1e75566",
+      "status": "deferred_missing_evidence",
+      "category": "truncated_content",
+      "reason": "The obligation is visible, but very c does not identify the required property. Do not insert careful or cautious.",
+      "reopen_when": "Obtain the missing source continuation or explicit author clarification, then review again without rewriting the preserved original.",
+      "automatic_retry": false,
+      "template_admission": false,
+      "allowed_adapters": {},
+      "source": {
+        "split": "test",
+        "dialogue": 364,
+        "turn": 2,
+        "segment": 4,
+        "span": [
+          179,
+          200
+        ],
+        "text": "You have to be very c"
+      },
+      "original_prefix": [
+        "Do you use an anti-virus program to protect your computer?",
+        "Yes, I do. I also use an anti-spyware program and a firewall. There are so many nasties on the internet and so many people who are trying to use the internet to hurt other users. You have to be very c"
+      ],
+      "original_prefix_sha256": "c4ca1a3f8cb4a3b23f4954e71a06b04f4c21eefdd66c36bb7bd6ba91c6303aed",
+      "unknown": [
+        "The word after very is truncated at c; do not guess careful or cautious."
+      ],
+      "candidate_image_sha256": "ad808e826f096866f409ed937ca62c87251fab9cf9d4dddd48dc7b4b1ade6f93"
+    },
+    {
+      "id": "test:45:3:2",
+      "warning_key": [
+        "test:45:3:2",
+        0,
+        "e61840a79e599ef24e74bef99486e63b432363356d79a81cdb6e8832d45154b4"
+      ],
+      "warning_sha256": "0d88a4ad0cb2670c98db6e0f779593ef986062ad81d5b1575022afdb2c203261",
+      "status": "deferred_missing_evidence",
+      "category": "unclear_wording",
+      "reason": "What we live has no reliable reading. The unavailable toilets and later thanks do not identify the intended proposition or emotional reaction.",
+      "reopen_when": "Obtain disambiguating source evidence available at this turn, then review again; later dialogue turns alone do not license an earlier target.",
+      "automatic_retry": false,
+      "template_admission": false,
+      "allowed_adapters": {},
+      "source": {
+        "split": "test",
+        "dialogue": 45,
+        "turn": 3,
+        "segment": 2,
+        "span": [
+          6,
+          23
+        ],
+        "text": "Oh, what we live!"
+      },
+      "original_prefix": [
+        "By the way miss, where is the toilet?",
+        "Toilets are in the rear, I am afraid all the toilets are fully occupied at the moment.",
+        "What? Oh, what we live! Thank you very much for your help, miss."
+      ],
+      "original_prefix_sha256": "330d68d2095d45985e3a8e1fc662ebb710b940a7089bd3fd46e401a02c3b9f0a",
+      "unknown": [
+        "The expression what we live cannot be reconstructed reliably."
+      ],
+      "candidate_image_sha256": "79238b64506073cc6a8511e2875e26f54ec37d77647adc76b2b6d41ef40bfbe1"
+    },
+    {
+      "id": "test:493:3:2",
+      "warning_key": [
+        "test:493:3:2",
+        0,
+        "a8fee753044af9d93ea285885b94ba5d7b33ceb95533eda56ce51424beb07d2d"
+      ],
+      "warning_sha256": "2d4c71604099cd38a700500828b8d7c95ec0eca815b624ca1a26cbe75e8e4397",
+      "status": "deferred_missing_evidence",
+      "category": "truncated_content",
+      "reason": "The isolated B follows a complete hair-treatment question. It is neither a reliable word nor an established speaker label.",
+      "reopen_when": "Obtain the missing source continuation or explicit author clarification, then review again without rewriting the preserved original.",
+      "automatic_retry": false,
+      "template_admission": false,
+      "allowed_adapters": {},
+      "source": {
+        "split": "test",
+        "dialogue": 493,
+        "turn": 3,
+        "segment": 2,
+        "span": [
+          25,
+          26
+        ],
+        "text": "B"
+      },
+      "original_prefix": [
+        "How would you like your hair set?",
+        "I'd like to have it in big waves.",
+        "Shall I put some oil on? B"
+      ],
+      "original_prefix_sha256": "3b3ed9d28c2b37b30d98210569f743888284b64b1eedf4db8500da8778313374",
+      "unknown": [
+        "It may be a label or artifact; no missing meaning is invented."
+      ],
+      "candidate_image_sha256": "972a5261016a900b56f514199220bd5c3381c92736411d495fa405dd5c8339f1"
+    },
+    {
+      "id": "test:679:5:1",
+      "warning_key": [
+        "test:679:5:1",
+        0,
+        "ff5dbcea8441253ea546ff1bd29045d06564c788d60a297a1b7d66c09ab255bb"
+      ],
+      "warning_sha256": "5746118015e68341ca64feabf9318ca25338fe0f774b6f0ae08ebb8148549d4c",
+      "status": "deferred_missing_evidence",
+      "category": "unclear_wording",
+      "reason": "Hug may be a literal request or damaged interjection. The clothing discussion does not establish which; do not substitute Ugh.",
+      "reopen_when": "Obtain disambiguating source evidence available at this turn, then review again; later dialogue turns alone do not license an earlier target.",
+      "automatic_retry": false,
+      "template_admission": false,
+      "allowed_adapters": {},
+      "source": {
+        "split": "test",
+        "dialogue": 679,
+        "turn": 5,
+        "segment": 1,
+        "span": [
+          0,
+          4
+        ],
+        "text": "Hug!"
+      },
+      "original_prefix": [
+        "What do you think of this one?",
+        "Eh, so so.",
+        "And this one? Too flashy?",
+        "Nah, not too flashy.",
+        "Hug! And this sweater from my aunt? Isn't it hideous?"
+      ],
+      "original_prefix_sha256": "52d8e647644d71bf468232987404a9118bdf7bf1ccdca5c6fd67d60c40391c37",
+      "unknown": [
+        "Do not replace it with Ugh or invent a hug request."
+      ],
+      "candidate_image_sha256": "16d0e4165f38438a66cf3cb0f614a6e179a1296085ddfedc61840cc58a711a59"
+    },
+    {
+      "id": "test:794:7:3",
+      "warning_key": [
+        "test:794:7:3",
+        0,
+        "8ecbe8543c3902e57b2ad1caf8b58bfcdd69c3f5d4412a02cecd161d116e3905"
+      ],
+      "warning_sha256": "9f3388b7cdccfd96e6823da9e4da61c86ae16765ccc5040b34482c59c50e512c",
+      "status": "deferred_missing_evidence",
+      "category": "truncated_content",
+      "reason": "It is really lacks its predicate complement. Earlier praise and a visit to Dalian do not supply the omitted property.",
+      "reopen_when": "Obtain the missing source continuation or explicit author clarification, then review again without rewriting the preserved original.",
+      "automatic_retry": false,
+      "template_admission": false,
+      "allowed_adapters": {},
+      "source": {
+        "split": "test",
+        "dialogue": 794,
+        "turn": 7,
+        "segment": 3,
+        "span": [
+          69,
+          81
+        ],
+        "text": "It's really."
+      },
+      "original_prefix": [
+        "How do you arrange this summer vacation?",
+        "I want to travel.",
+        "Where would you like to go?",
+        "The seaside.",
+        "That's really a good idea. Taking a walk on the beach and lying in the sun are pretty good. I recommend you Qingdao or Dalian.",
+        "I've been to Qingdao before, so I'll choose Dalian. I've heard that the environment there is very good.",
+        "Yes, that's a good place to spend a holiday. Last year I went there. It's really."
+      ],
+      "original_prefix_sha256": "b631d75365b11d852c90dc88a8b817d46fa0c27ffd4d936232f1cd76b2bd94e3",
+      "unknown": [
+        "Do not borrow the preceding holiday praise as the missing continuation."
+      ],
+      "candidate_image_sha256": "cc6d18a3ccbb3609208e7c4c243acfbcb76e0c8f17121b7ea7754bd65fbfed3e"
+    },
+    {
+      "id": "test:808:13:3",
+      "warning_key": [
+        "test:808:13:3",
+        1,
+        "3eaaf4f09423ae5a5005eacb54bac7dc8e2e0386a0f2fdce5b7b2b45d5348935"
+      ],
+      "warning_sha256": "97fac26f8b637048ac7a4a6e75a943eb81d463742af2c6f8d274e7735582d3c3",
+      "status": "deferred_missing_evidence",
+      "category": "unclear_wording",
+      "reason": "Egg after the farewell is anomalous. The following insult does not justify a food entity or a guessed interjection.",
+      "reopen_when": "Obtain disambiguating source evidence available at this turn, then review again; later dialogue turns alone do not license an earlier target.",
+      "automatic_retry": false,
+      "template_admission": false,
+      "allowed_adapters": {},
+      "source": {
+        "split": "test",
+        "dialogue": 808,
+        "turn": 13,
+        "segment": 3,
+        "span": [
+          19,
+          25
+        ],
+        "text": "Egg..."
+      },
+      "original_prefix": [
+        "Valerie! Hi! Wow how are you? It's been such a long time!",
+        "Darlene! Indeed, it's been a while! How have you been? Wow, you look amazing! I love what you've done with your hair!",
+        "Really? Thanks! I went to that hair salon that you told me about, but enough about me! Look at you! You haven't aged a day since the last time I saw you! What is your secret!",
+        "Ha ha, come on! Well, I've been watching what I eat, and working out three times a week. By the way, I heard your son recently graduated!",
+        "Yes, my little Paul is finally a doctor. They grow up so fast you know.",
+        "He is such a handsome guy. He gets his looks from his mother of course!",
+        "Thank you! What about your daughter, Pamela? I heard she has passed the bar exam and married recently.",
+        "Oh yes. She had a beautiful wedding in Cozumel Mexico and we all attended.",
+        "Such a lovely girl. I hope my Paul is lucky enough to find a girl like that someday!",
+        "But of course! Well, it's been great talking to you, but I have to get going.",
+        "Same here! We will catch up soon, maybe over coffee!",
+        "That would be great! Give me a call!",
+        "See you soon! Bye! Egg... I can't stand that woman or her obnoxious daughter."
+      ],
+      "original_prefix_sha256": "4ba2b39a94ecc1d73bbfbf59f9e19941de2d336c4189ef999e2715d745461cbe",
+      "unknown": [
+        "Do not invent a food entity or replace it with a guessed interjection."
+      ],
+      "candidate_image_sha256": "4f41d5ed7eae227098f8f82adc241538d8d342918fde728d2c27fd36fe739bc6"
+    },
+    {
+      "id": "test:856:3:1",
+      "warning_key": [
+        "test:856:3:1",
+        0,
+        "f60687a06c46b5d23e00f191b58e86024a084bfafb4a090b6cebf93ba442c7a5"
+      ],
+      "warning_sha256": "94eed94a3c8e10a2b2999e6f611b63eb4284fb30c9f4c924f7efa15e6aa87149",
+      "status": "deferred_missing_evidence",
+      "category": "unclear_wording",
+      "reason": "The hearsay frame is explicit, but leading a double wife does not establish its content. Do not assert an affair, bigamy or two wives, or silently substitute life. The later accusation is not earlier-turn evidence.",
+      "reopen_when": "Obtain disambiguating source evidence available at this turn, then review again; later dialogue turns alone do not license an earlier target.",
+      "automatic_retry": false,
+      "template_admission": false,
+      "allowed_adapters": {},
+      "source": {
+        "split": "test",
+        "dialogue": 856,
+        "turn": 3,
+        "segment": 1,
+        "span": [
+          0,
+          41
+        ],
+        "text": "I hear that John's leading a double wife."
+      },
+      "original_prefix": [
+        "It's said that John's broken up.",
+        "Really? But his wife has always waited on him hand and foot.",
+        "I hear that John's leading a double wife."
+      ],
+      "original_prefix_sha256": "f6d87b67129de10db8e0163c0aca316182346f46c7995bd63968373641f93451",
+      "unknown": [
+        "Do not infer an affair, bigamy, two wives, or replace wife with life."
+      ],
+      "candidate_image_sha256": "f4ce66a3a77d5a0370eba7e4e84b66377d1ae30def29e2e05cbd29949662c426"
+    },
+    {
+      "id": "test:961:1:1",
+      "warning_key": [
+        "test:961:1:1",
+        0,
+        "fa8db00c91b2bd333b8207dc11b3d35c050a727c8db36f27ea96a1bf2b42b070"
+      ],
+      "warning_sha256": "cf7e3b6ba1787942a700588342680c8698063ed20d51ae939415f6c4e8db491d",
+      "status": "deferred_missing_evidence",
+      "category": "unclear_wording",
+      "reason": "Spoke in all of the table clock does not identify an event. The later apology and payment offer cannot establish spilled liquid, damage or a tablecloth.",
+      "reopen_when": "Obtain disambiguating source evidence available at this turn, then review again; later dialogue turns alone do not license an earlier target.",
+      "automatic_retry": false,
+      "template_admission": false,
+      "allowed_adapters": {},
+      "source": {
+        "split": "test",
+        "dialogue": 961,
+        "turn": 1,
+        "segment": 1,
+        "span": [
+          0,
+          45
+        ],
+        "text": "I'm afraid I spoke in all of the table clock."
+      },
+      "original_prefix": [
+        "I'm afraid I spoke in all of the table clock."
+      ],
+      "original_prefix_sha256": "0cde6bc060cd72d92ba1e226aa183df15ff4123f9826ab69eb18b16c8e583a5c",
+      "unknown": [
+        "Do not infer spilling, damage, a tablecloth, or another guessed action or object."
+      ],
+      "candidate_image_sha256": "8f4bd1a21213d659d698aa4711acfc7162b931d4c8cdf87f352c79074e35a4ea"
+    },
+    {
+      "id": "train:10044:10:4",
+      "warning_key": [
+        "train:10044:10:4",
+        0,
+        "1a2e1d097a886b4e7a5902a4bb4a8aa48aa5b9c662a60bca822765c27df9c924"
+      ],
+      "warning_sha256": "95effa963ea164d97b5978293e473c416c19fda46d79e72984088a9e5a98955d",
+      "status": "deferred_missing_evidence",
+      "category": "truncated_content",
+      "reason": "I followed by an apostrophe has no predicate. Earlier currency trades do not supply the missing continuation.",
+      "reopen_when": "Obtain the missing source continuation or explicit author clarification, then review again without rewriting the preserved original.",
+      "automatic_retry": false,
+      "template_admission": false,
+      "allowed_adapters": {},
+      "source": {
+        "split": "train",
+        "dialogue": 10044,
+        "turn": 10,
+        "segment": 4,
+        "span": [
+          196,
+          199
+        ],
+        "text": "I '"
+      },
+      "original_prefix": [
+        "Hey, John! I haven't seen you in ages! What's new? What have you been up to?",
+        "Pete! Nice to see you Well, on top the norm, you know, wife and kids and work, I've actually gotten into doing some trading.",
+        "Trading? You, big guy? What are you trading?",
+        "Currencies.",
+        "Currencies? As in Euros, Dollars, Pounds and Rupees?",
+        "It's called Forex. Foreign Exchange. The great thing about it is that I don't have to invest a huge amount. I put in a margin deposit and then I can buy and sell up to 100 times that much!",
+        "I don't understand. You're buying and selling money?",
+        "You got it! Just last night I made USD 150!",
+        "Last night?",
+        "Yeah! It's a 24 hour market! I had bought some RIB earlier at a low asking price but last night it appreciated drastically so I made a split second decision and sold all my RIB at an amazing bid! I '"
+      ],
+      "original_prefix_sha256": "f8dc4b816852df3bd4d9c7bbc44c8c68e0a86c5a1945060578fec2b17ae4c5d7",
+      "unknown": [
+        "The preceding currency trades do not supply the missing continuation."
+      ],
+      "candidate_image_sha256": "f68c8d575595ccef342c13049db1232642ddb07e7d7bd72661df52d624f28e4e"
+    },
+    {
+      "id": "train:10158:7:2",
+      "warning_key": [
+        "train:10158:7:2",
+        0,
+        "3346dd26109669a5f55a2dece9d7ffd249997e52a78b4eafef0806817a4b173f"
+      ],
+      "warning_sha256": "0a141eb8faa29e20dc1f7423189fd5f8910c256cb17394a91736721bcd728930",
+      "status": "deferred_missing_evidence",
+      "category": "truncated_content",
+      "reason": "S after the salary figure does not establish a salary period, condition or continuation.",
+      "reopen_when": "Obtain the missing source continuation or explicit author clarification, then review again without rewriting the preserved original.",
+      "automatic_retry": false,
+      "template_admission": false,
+      "allowed_adapters": {},
+      "source": {
+        "split": "train",
+        "dialogue": 10158,
+        "turn": 7,
+        "segment": 2,
+        "span": [
+          23,
+          24
+        ],
+        "text": "S"
+      },
+      "original_prefix": [
+        "Hi, is this Sue?",
+        "Yes?",
+        "Sue, this is Tom Lin from Allied Trust and I'm calling to offer you a position with our firm.",
+        "What position?",
+        "Senior account rep.",
+        "How much does it pay?",
+        "It starts at $ 30,000. S"
+      ],
+      "original_prefix_sha256": "b83197a0da77d98d8d5024bad6c26329eecff2dbfdc07d14d4d1ddf963d81561",
+      "unknown": [
+        "Do not infer a salary period or a missing condition."
+      ],
+      "candidate_image_sha256": "6bff37ff4871388559ccd9776c8e6cc0d5a755ab5b3d03e4eba09d919ce04a6d"
+    },
+    {
+      "id": "train:1040:1:5",
+      "warning_key": [
+        "train:1040:1:5",
+        0,
+        "ccd6e10ce5069b03f0dff1fecad407f01da40c16d84f5ad65df59af433585a43"
+      ],
+      "warning_sha256": "d8df6613f7ff6ae9743ac7b6760f7635abe8d7020fbe70433297ebabe74ab003",
+      "status": "deferred_missing_evidence",
+      "category": "truncated_content",
+      "reason": "The final A is an incomplete or extraneous letter. Do not append a word to the beach description.",
+      "reopen_when": "Obtain the missing source continuation or explicit author clarification, then review again without rewriting the preserved original.",
+      "automatic_retry": false,
+      "template_admission": false,
+      "allowed_adapters": {},
+      "source": {
+        "split": "train",
+        "dialogue": 1040,
+        "turn": 1,
+        "segment": 5,
+        "span": [
+          198,
+          199
+        ],
+        "text": "A"
+      },
+      "original_prefix": [
+        "Oh, George, what a beautiful day it is today! The sun is hot and there are just a few clouds scattered here and there! What a perfect day to be at the beach! The kids are going to have so much fun! A"
+      ],
+      "original_prefix_sha256": "9bc06417064ec7d47ecc7c8901ff128c75a66ce137178952ddd74a642034a136",
+      "unknown": [
+        "The missing word and continuation are not guessed."
+      ],
+      "candidate_image_sha256": "c975b056b06cb215ffa23538d232a84fda544dff425a372eb6760251a2dc566e"
+    },
+    {
+      "id": "train:10542:8:4",
+      "warning_key": [
+        "train:10542:8:4",
+        0,
+        "c0cf0791108c2a23669ff9cbf163880c1ac8af271abf44d72b15a72f7309b88d"
+      ],
+      "warning_sha256": "d93de36e1ef01c47e7055093f2b8e3830e600a9727658c362a222384635c3acd",
+      "status": "deferred_missing_evidence",
+      "category": "truncated_content",
+      "reason": "Th after the pricing advice supplies no complete word or further instruction.",
+      "reopen_when": "Obtain the missing source continuation or explicit author clarification, then review again without rewriting the preserved original.",
+      "automatic_retry": false,
+      "template_admission": false,
+      "allowed_adapters": {},
+      "source": {
+        "split": "train",
+        "dialogue": 10542,
+        "turn": 8,
+        "segment": 4,
+        "span": [
+          198,
+          200
+        ],
+        "text": "Th"
+      },
+      "original_prefix": [
+        "What do you think of the most important things to do when running a business?",
+        "Well, there are several things. Of course, you must do everything you can to keep costs down and revenues high.",
+        "So, do you think workers should be paid as little as possible?",
+        "No. if you do that, the workers won't like their jobs. They will be less efficient and you will get a high staff turnover. Those things will increase you costs.",
+        "How can a business maximise revenues?",
+        "You need to invest in some good advertising. You have to know where your potential customers are and target them. It's no good trying to sell computer games to older people. The market is too small.",
+        "What else do you suggest?",
+        "Find out what other companies charge for the same products or services. Price yourself near the low end. Don't be much cheaper than everyone else, because many customers distrust very cheap things. Th"
+      ],
+      "original_prefix_sha256": "8f2022b75953cf72f49e3d9fc3baeb834818d28c0d9644e99900cd0fe209926a",
+      "unknown": [
+        "Do not complete the word from the preceding business advice."
+      ],
+      "candidate_image_sha256": "962d1b91b8e825749d1da0ccf5ca80758d93febc722aecc574cbadf7d23433ef"
+    },
+    {
+      "id": "train:1061:1:1",
+      "warning_key": [
+        "train:1061:1:1",
+        0,
+        "ae2730ae19096af2a16bb0fe1c51c49ad317dbf75467baf999066bdf7cbc115b"
+      ],
+      "warning_sha256": "3d72958fc7cd22f078f0aa65ff2ade704020a90a73f77587a2d1f2e8a6fb3da1",
+      "status": "deferred_missing_evidence",
+      "category": "unclear_wording",
+      "reason": "The opening Cheer lacks prior context distinguishing a toast, exhortation or source error. Bottoms up appears only in future turns and cannot license the earlier training target.",
+      "reopen_when": "Obtain disambiguating source evidence available at this turn, then review again; later dialogue turns alone do not license an earlier target.",
+      "automatic_retry": false,
+      "template_admission": false,
+      "allowed_adapters": {},
+      "source": {
+        "split": "train",
+        "dialogue": 1061,
+        "turn": 1,
+        "segment": 1,
+        "span": [
+          0,
+          6
+        ],
+        "text": "Cheer!"
+      },
+      "original_prefix": [
+        "Cheer!"
+      ],
+      "original_prefix_sha256": "255f332c42ed8615e9f15b145e8f94386b9c9443b0e424c1c0c32de23bf69e92",
+      "unknown": [
+        "Do not decide between a toast, an exhortation, or a misspelling."
+      ],
+      "candidate_image_sha256": "963628985053af2033ba8340de7cfed648615c29a5b756c66f028b6a562978ce"
+    },
+    {
+      "id": "train:1061:2:1",
+      "warning_key": [
+        "train:1061:2:1",
+        0,
+        "ae2730ae19096af2a16bb0fe1c51c49ad317dbf75467baf999066bdf7cbc115b"
+      ],
+      "warning_sha256": "5663024df98bd13936276ff8a3e0635d3f650e6b851e0acbe21e7cb2520ebc96",
+      "status": "deferred_missing_evidence",
+      "category": "unclear_wording",
+      "reason": "Repeating Cheer does not resolve its function. The later drinking exchange cannot be used as evidence available at this turn.",
+      "reopen_when": "Obtain disambiguating source evidence available at this turn, then review again; later dialogue turns alone do not license an earlier target.",
+      "automatic_retry": false,
+      "template_admission": false,
+      "allowed_adapters": {},
+      "source": {
+        "split": "train",
+        "dialogue": 1061,
+        "turn": 2,
+        "segment": 1,
+        "span": [
+          0,
+          6
+        ],
+        "text": "Cheer!"
+      },
+      "original_prefix": [
+        "Cheer!",
+        "Cheer!"
+      ],
+      "original_prefix_sha256": "4f42402e4e6628bdf04a6948da832ab8f2bf94354435a2ad5b5f2bee48f55feb",
+      "unknown": [
+        "Do not infer a toast or a completed cheering event from repetition."
+      ],
+      "candidate_image_sha256": "65f24f4424a0ec61fa13cd62471db2f772d2c48749621cf441e2c72ff1f1f555"
+    },
+    {
+      "id": "train:10882:5:4",
+      "warning_key": [
+        "train:10882:5:4",
+        0,
+        "3c559a37f45ae0f7cca12e1be113c3f1df254aed8c326c4e54d90092cc5cce24"
+      ],
+      "warning_sha256": "02d5554599c20e1ce60d11125e81d902ea23d5d1b4231787088dda69a75cc121",
+      "status": "deferred_missing_evidence",
+      "category": "truncated_content",
+      "reason": "The final A after a breakfast question supplies neither a selected item nor a speaker identity.",
+      "reopen_when": "Obtain the missing source continuation or explicit author clarification, then review again without rewriting the preserved original.",
+      "automatic_retry": false,
+      "template_admission": false,
+      "allowed_adapters": {},
+      "source": {
+        "split": "train",
+        "dialogue": 10882,
+        "turn": 5,
+        "segment": 4,
+        "span": [
+          94,
+          95
+        ],
+        "text": "A"
+      },
+      "original_prefix": [
+        "This is the menu. What would you like to have?",
+        "I don't know what to have. If you don't mind, I'll just leave the choice to you.",
+        "With pleasure, sir. May I suggest Steamed stuffed buns and deep-fried twisted dough sticks? They are popular breakfast among Chinese people.",
+        "OK. Anything to drink?",
+        "Yes, sir. We usually serve soya-bean milk and jellied beancurd. Which one do you prefer, sir? A"
+      ],
+      "original_prefix_sha256": "751b9ac5ce6b648bece4a75e674452c2e70b31743ea60168f9d44e2bcc817da7",
+      "unknown": [
+        "Do not choose a breakfast item or treat it as a speaker label."
+      ],
+      "candidate_image_sha256": "b8a2314453117108884e21257fc9748a00eba9a342b489a1115a22f6523810ef"
+    },
+    {
+      "id": "train:1273:1:1",
+      "warning_key": [
+        "train:1273:1:1",
+        0,
+        "b26a95ed612398b3ff8b006cdcc80caf173ec43b05106b084e10eb0245699169"
+      ],
+      "warning_sha256": "84c16984c55092604b5e0c12172d84f5aaf279fb9658c170f6b93aaf03022979",
+      "status": "deferred_missing_evidence",
+      "category": "truncated_content",
+      "reason": "Too before the ellipsis has no reliable attachment. Preserve the separate oily-face assessment and favorable reaction, without extending the degree word across the break.",
+      "reopen_when": "Obtain the missing source continuation or explicit author clarification, then review again without rewriting the preserved original.",
+      "automatic_retry": false,
+      "template_admission": false,
+      "allowed_adapters": {},
+      "source": {
+        "split": "train",
+        "dialogue": 1273,
+        "turn": 1,
+        "segment": 1,
+        "span": [
+          0,
+          6
+        ],
+        "text": "Too..."
+      },
+      "original_prefix": [
+        "Too... your face is really oily... perfect!"
+      ],
+      "original_prefix_sha256": "abe4c49039c6b26bd3b0b5aa625427b89515664840ae87aa7dec4d905b3164fe",
+      "unknown": [
+        "Do not force attachment to oily across the interruption."
+      ],
+      "candidate_image_sha256": "82bf4f2a1b7082744045f1a02a3a1075b0828444910093589db35265acb615cb"
+    },
+    {
+      "id": "train:1273:1:2",
+      "warning_key": [
+        "train:1273:1:1",
+        0,
+        "b26a95ed612398b3ff8b006cdcc80caf173ec43b05106b084e10eb0245699169"
+      ],
+      "warning_sha256": "84c16984c55092604b5e0c12172d84f5aaf279fb9658c170f6b93aaf03022979",
+      "status": "adapter_only",
+      "category": "reviewed_adjacent_fragment",
+      "reason": "Use only the existing reviewed visible-pair adapter for this separate span. The earlier Too is unresolved; do not publish the sentence as a freely usable template.",
+      "reopen_when": "A new explicit review is required to change this adapter or to admit the full sentence; its current limited meaning is already usable.",
+      "automatic_retry": false,
+      "template_admission": false,
+      "allowed_adapters": {
+        "dd_v26_train_1273_1_2": "36cad91ba9220dd37d451a356630962d7db3642dedd6fcad60830f92ee973cb0"
+      },
+      "source": {
+        "split": "train",
+        "dialogue": 1273,
+        "turn": 1,
+        "segment": 2,
+        "span": [
+          7,
+          34
+        ],
+        "text": "your face is really oily..."
+      },
+      "original_prefix": [
+        "Too... your face is really oily... perfect!"
+      ],
+      "original_prefix_sha256": "abe4c49039c6b26bd3b0b5aa625427b89515664840ae87aa7dec4d905b3164fe",
+      "unknown": [
+        "The scope of the earlier Too fragment is unresolved."
+      ],
+      "candidate_image_sha256": "407caaa0c8905a81b03eb2f02abb8567023593e7c83a2e1d11267840362e7a3c"
+    },
+    {
+      "id": "train:1273:1:3",
+      "warning_key": [
+        "train:1273:1:1",
+        0,
+        "b26a95ed612398b3ff8b006cdcc80caf173ec43b05106b084e10eb0245699169"
+      ],
+      "warning_sha256": "84c16984c55092604b5e0c12172d84f5aaf279fb9658c170f6b93aaf03022979",
+      "status": "adapter_only",
+      "category": "reviewed_adjacent_fragment",
+      "reason": "Use only the existing reviewed visible-pair adapter for this separate span. The earlier Too is unresolved; do not publish the sentence as a freely usable template.",
+      "reopen_when": "A new explicit review is required to change this adapter or to admit the full sentence; its current limited meaning is already usable.",
+      "automatic_retry": false,
+      "template_admission": false,
+      "allowed_adapters": {
+        "dd_v26_train_1273_1_3": "a928b381180a14b015e385b128ba2315d72f246c2bdb7b4824b17748faaa2ca7"
+      },
+      "source": {
+        "split": "train",
+        "dialogue": 1273,
+        "turn": 1,
+        "segment": 3,
+        "span": [
+          35,
+          43
+        ],
+        "text": "perfect!"
+      },
+      "original_prefix": [
+        "Too... your face is really oily... perfect!"
+      ],
+      "original_prefix_sha256": "abe4c49039c6b26bd3b0b5aa625427b89515664840ae87aa7dec4d905b3164fe",
+      "unknown": [
+        "The exact evaluative target and relation to Too remain unresolved."
+      ],
+      "candidate_image_sha256": "be439038fc30428a80483628ef5d5d74160b1a12a1b68b7fd6bcdb2041f8c313"
+    },
+    {
+      "id": "train:1466:6:4",
+      "warning_key": [
+        "train:1466:6:4",
+        0,
+        "8aec10f9bc99bc38b417f3e8c3de62fabaed4266ebe6dbc0a0ebb1362f9cd9ee"
+      ],
+      "warning_sha256": "1cc7263a6ed5c8bc82dacb6113e31ac9a39f66b10b28a9c8df5fca064d05f8e8",
+      "status": "deferred_missing_evidence",
+      "category": "truncated_content",
+      "reason": "There are many s omits its noun. The preceding restaurant discussion does not identify shops, shows or another referent.",
+      "reopen_when": "Obtain the missing source continuation or explicit author clarification, then review again without rewriting the preserved original.",
+      "automatic_retry": false,
+      "template_admission": false,
+      "allowed_adapters": {},
+      "source": {
+        "split": "train",
+        "dialogue": 1466,
+        "turn": 6,
+        "segment": 4,
+        "span": [
+          184,
+          200
+        ],
+        "text": "There are many s"
+      },
+      "original_prefix": [
+        "What's your city like?",
+        "It's quite an interesting place to live. The best thing to do in my city is go shopping. There are several indoor and outdoor markets, department stores and shopping malls.",
+        "Is the traffic bad in the city centre?",
+        "Not really. Cars are not permitted in several parts of city centre, especially in the main shopping areas. The public transport system is pretty good.",
+        "What about restaurants and entertainment?",
+        "There are restaurants with food from all over the world. We have a small Chinatown near the city centre. There are many Indian, thai, and Italian restaurants all over the city centre. There are many s"
+      ],
+      "original_prefix_sha256": "8ca2e2d694daa4b438c92147e75b8e288ef5e336eff0f327f1be4fa9e5dcae5c",
+      "unknown": [
+        "The noun cut off at s is missing; do not guess shops or restaurants."
+      ],
+      "candidate_image_sha256": "e994082c927131493b76c946192a0781720c3708af717172d04a6a7957bec8f9"
+    },
+    {
+      "id": "train:1674:10:4",
+      "warning_key": [
+        "train:1674:10:4",
+        0,
+        "1bbf71fa2e80922163b2980f4bdedc1de6ffd13e19a16e5522e3f0c0ddb6a125"
+      ],
+      "warning_sha256": "9d0149a1d4c97d58c5a185c44d5b5aa105b65b6f5fe0a57f92130211a7aa0fa1",
+      "status": "deferred_missing_evidence",
+      "category": "truncated_content",
+      "reason": "It would almost b contains modality but no recoverable predicate or complement. Do not infer that dismissal would be welcome.",
+      "reopen_when": "Obtain the missing source continuation or explicit author clarification, then review again without rewriting the preserved original.",
+      "automatic_retry": false,
+      "template_admission": false,
+      "allowed_adapters": {},
+      "source": {
+        "split": "train",
+        "dialogue": 1674,
+        "turn": 10,
+        "segment": 4,
+        "span": [
+          184,
+          201
+        ],
+        "text": "It would almost b"
+      },
+      "original_prefix": [
+        "Our company is going to do some cutbacks soon.",
+        "Really? Where did you hear that?",
+        "I met with the supervisor just this morning. I don't know, but I am a little worried. Who do you think will get sacked?",
+        "I'm not sure... Well, first, it couldn't be George. He is such a kiss-ass. He'd wash the boss's dog if he asked.",
+        "No, it's not going to be George. I don't think it's Andy either. He is involved with the boss's sister in-law. And you know how whipped our boss is.",
+        "That's true. What about Lisa? I bet there's nobody who could do a worse job than her.",
+        "Lisa? No way. I've heard a rumor that she and the boss were having an affair. You know rumors can't come out from nowhere.",
+        "Well, okay. Then there is still Michael. But he's pet after having the best sales record for three months in a row. It definitely won't be Michael.",
+        "No, that would be crazy. But then who will it be? Oh dear, it must be me. I should have known it! Why else would he have talked to me alone about the downsizing. What should I do? I've got a family t",
+        "Well, it could be me too. But I am not too worried. This place is suffocating me with this boss being such a hard-ass and colleagues who barely know how to get dressed in the morning. It would almost b"
+      ],
+      "original_prefix_sha256": "0b2a97e80d855e688f2283d8a4fd53d25ac9e62d9db6ed16d1cfad5806d70098",
+      "unknown": [
+        "Do not infer that dismissal would be welcome or complete the word b."
+      ],
+      "candidate_image_sha256": "99b8ffa950e597ab15019b22c7abbdb57e39fea3da983aaf00b9f6876c742c87"
+    },
+    {
+      "id": "train:2502:5:4",
+      "warning_key": [
+        "train:2502:5:4",
+        0,
+        "5b9df5a3ba1ce742070945845114d964f0cad75e2ea6b6d26bad4ed8c5683688"
+      ],
+      "warning_sha256": "b54202b4b06e8498682df2a3408d15de2623a769a48f9de149d9ad5a72049c6d",
+      "status": "deferred_missing_evidence",
+      "category": "truncated_content",
+      "reason": "Someone wit has no complete property or predicate. It does not establish qualifications, a job offer or a genetics claim.",
+      "reopen_when": "Obtain the missing source continuation or explicit author clarification, then review again without rewriting the preserved original.",
+      "automatic_retry": false,
+      "template_admission": false,
+      "allowed_adapters": {},
+      "source": {
+        "split": "train",
+        "dialogue": 2502,
+        "turn": 5,
+        "segment": 4,
+        "span": [
+          189,
+          200
+        ],
+        "text": "Someone wit"
+      },
+      "original_prefix": [
+        "So, you finally got your doctorate in genetics. Well done!",
+        "Thanks. Now, I have to find a job.",
+        "What are you thinking of doing?",
+        "I'd like to conduct some scientific research into genes. It would be wonderful to make a medical breakthrough.",
+        "There must be several private companies that are interested in employing someone like you. You could do some research for a university. There's a lot of discussion about genetics nowadays. Someone wit"
+      ],
+      "original_prefix_sha256": "8e3153dd0fc558fdd25e371e4947d4dbdb49fa4159a791bf5b9acace630f982e",
+      "unknown": [
+        "Do not invent a qualification or employment offer."
+      ],
+      "candidate_image_sha256": "3732b87eee0a22e7cf79e8ca11e89313d4c2cd62c71cf0a1bdfeaea21b9ef366"
+    }
+  ],
+  "catalog_evidence": {
+    "path": "data/mined-templates/reviewed/dialogue-fragments.json",
+    "patterns": 735,
+    "serialization": "utf8-json-indent2-lf"
+  },
+  "import_state": "data/mined-templates/audit/import.json",
+  "historical_candidate": "artifacts/dailydialog-hybrid-source-v34",
+  "candidate_source_id": "dailydialog"
+}

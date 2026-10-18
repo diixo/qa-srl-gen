@@ -16442,41 +16442,6563 @@
           13714
         ]
       }
+    },
+    {
+      "id": "dailydialog-hybrid-attested-v1",
+      "manifest": {
+        "format": "corpus-templates-v1",
+        "status": "complete",
+        "full_input": true,
+        "model": {
+          "name": "explicit contextual attestation reviews",
+          "parser": null
+        },
+        "review_status": "UNREVIEWED",
+        "field": "example",
+        "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+        "counts": {
+          "input_records": 8,
+          "compiled_records": 8,
+          "roundtrips_verified": 8,
+          "tokens_audited": 70,
+          "verb_occurrences": 13,
+          "verb_alternative_analyses": 15,
+          "participle_analyses": 2,
+          "adjective_alternative_analyses": 3,
+          "adjective_occurrences": 8,
+          "templates": 8,
+          "template_occurrences": 8,
+          "templates_with_adjectives": 5,
+          "verb_lemmas": 7,
+          "adjective_lemmas": 8,
+          "verb_alternative_lemmas": 13,
+          "adjective_alternative_forms": 4,
+          "sentence_templates_covered": 8,
+          "predicate_templates_covered": 10,
+          "constructions": 2
+        },
+        "analyses": {
+          "parsed_verbal": 8
+        },
+        "elapsed_seconds": 0.392,
+        "source_sha256": "b8da01388d8e5d2e9afe99a870668479da20b29643f2bfd1e479270238df10e3",
+        "hybrid_import": {
+          "review_status": "REVIEWED_ATTESTATIONS",
+          "admitted_occurrences": [
+            "test:763:4:2",
+            "train:9423:1:3",
+            "train:6300:2:2",
+            "train:1691:7:1",
+            "train:1683:4:2",
+            "train:1516:10:6",
+            "train:8172:3:1",
+            "train:7367:3:2"
+          ],
+          "semantic_approval": false,
+          "source_revision": "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-hybrid-scopes-v1",
+          "review_file": "data\\dailydialog\\review-parts\\hybrid-scope-reviews-v1.jsonl",
+          "review_sha256": "be5d870b877c48298e5f0930f816824810af68ff6545040c5eaf54388b3bb728",
+          "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed."
+        }
+      },
+      "validation": {
+        "status": "passed",
+        "source_sha256": "b8da01388d8e5d2e9afe99a870668479da20b29643f2bfd1e479270238df10e3",
+        "templates": 8,
+        "attested_roundtrips": 8,
+        "source_records": 8,
+        "token_spans": 70,
+        "verbs_occurrences": 13,
+        "adjectives_occurrences": 8
+      },
+      "publication": {
+        "format": "built-in-template-component-v1",
+        "bank_id": "dailydialog-hybrid-attested-v1",
+        "source_sha256": "b8da01388d8e5d2e9afe99a870668479da20b29643f2bfd1e479270238df10e3",
+        "manifest_sha256": "3e5eb2af0d3008f0662b2c6afd2d7376ecac2a3a81c7303964748764eda849cf",
+        "validation_sha256": "de04b4aa3260088d06d11107a10359faebaadcd28a1c8f9bc0681d6140f3a54f"
+      },
+      "files": {
+        "adjective_alternatives.jsonl.gz": [
+          554315,
+          1933
+        ],
+        "adjectives.jsonl.gz": [
+          436410,
+          3327
+        ],
+        "constructions.jsonl.gz": [
+          2556606,
+          1773
+        ],
+        "occurrences/00000.jsonl.gz": [
+          2645260,
+          8613
+        ],
+        "templates/22.jsonl.gz": [
+          419547,
+          2084
+        ],
+        "templates/30.jsonl.gz": [
+          414820,
+          2248
+        ],
+        "templates/31.jsonl.gz": [
+          418049,
+          1664
+        ],
+        "templates/37.jsonl.gz": [
+          433836,
+          2200
+        ],
+        "templates/57.jsonl.gz": [
+          406345,
+          1782
+        ],
+        "templates/ad.jsonl.gz": [
+          420353,
+          1972
+        ],
+        "templates/d0.jsonl.gz": [
+          413400,
+          1386
+        ],
+        "templates/f9.jsonl.gz": [
+          414086,
+          1832
+        ],
+        "verb_alternatives.jsonl.gz": [
+          509572,
+          5307
+        ],
+        "verbs.jsonl.gz": [
+          741840,
+          4497
+        ]
+      }
+    },
+    {
+      "id": "dailydialog-hybrid-participles-v1",
+      "manifest": {
+        "format": "corpus-templates-v1",
+        "status": "complete",
+        "full_input": true,
+        "model": {
+          "name": "explicit contextual attestation reviews",
+          "parser": null
+        },
+        "review_status": "UNREVIEWED",
+        "field": "example",
+        "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+        "counts": {
+          "input_records": 21,
+          "compiled_records": 21,
+          "roundtrips_verified": 21,
+          "tokens_audited": 255,
+          "verb_alternative_analyses": 49,
+          "verb_occurrences": 73,
+          "participle_analyses": 28,
+          "adjective_occurrences": 11,
+          "adjective_alternative_analyses": 25,
+          "templates": 21,
+          "template_occurrences": 21,
+          "templates_with_adjectives": 8,
+          "verb_lemmas": 33,
+          "adjective_lemmas": 11,
+          "verb_alternative_lemmas": 39,
+          "adjective_alternative_forms": 31,
+          "sentence_templates_covered": 21,
+          "predicate_templates_covered": 43,
+          "constructions": 21
+        },
+        "analyses": {
+          "parsed_verbal": 21
+        },
+        "elapsed_seconds": 0.621,
+        "source_sha256": "593c20624e03e3e147f61e087ef6a5eaf1e12e423dafb3c323970bacff01b91d",
+        "hybrid_import": {
+          "review_status": "REVIEWED_ATTESTATIONS",
+          "admitted_occurrences": [
+            "train:555:3:1",
+            "train:595:1:1",
+            "train:687:2:1",
+            "train:784:4:1",
+            "train:865:13:3",
+            "train:900:1:1",
+            "train:906:2:1",
+            "train:913:6:2",
+            "train:1007:5:3",
+            "train:1009:2:1",
+            "train:1025:2:2",
+            "val:20:3:2",
+            "val:156:3:1",
+            "val:331:3:1",
+            "val:480:14:2",
+            "test:131:3:1",
+            "test:323:5:3",
+            "test:373:11:1",
+            "test:856:1:1",
+            "test:865:3:1",
+            "test:867:3:1"
+          ],
+          "semantic_approval": false,
+          "source_revision": "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-hybrid-participles-v2",
+          "review_file": "data\\dailydialog\\review-parts\\hybrid-participle-reviews-v1.jsonl",
+          "review_sha256": "b451a4ac7696641bbbd326545b5e44edb27368f900fe29bf1a35b1d921ab0b7f",
+          "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed."
+        }
+      },
+      "validation": {
+        "status": "passed",
+        "source_sha256": "593c20624e03e3e147f61e087ef6a5eaf1e12e423dafb3c323970bacff01b91d",
+        "templates": 21,
+        "attested_roundtrips": 21,
+        "source_records": 21,
+        "token_spans": 255,
+        "verbs_occurrences": 73,
+        "adjectives_occurrences": 11
+      },
+      "publication": {
+        "format": "built-in-template-component-v1",
+        "bank_id": "dailydialog-hybrid-participles-v1",
+        "source_sha256": "593c20624e03e3e147f61e087ef6a5eaf1e12e423dafb3c323970bacff01b91d",
+        "manifest_sha256": "609e341231bf1f3bc52dc960b7a1e7a891b9343d81d5ab6350c76c1043f82f0b",
+        "validation_sha256": "10e3b7555a2ea786ddabd7c55f60d2ab5b2945263ecdb8534bf944fb7ac140db"
+      },
+      "files": {
+        "adjective_alternatives.jsonl.gz": [
+          556248,
+          14473
+        ],
+        "adjectives.jsonl.gz": [
+          439737,
+          4691
+        ],
+        "constructions.jsonl.gz": [
+          2558379,
+          6867
+        ],
+        "occurrences/00000.jsonl.gz": [
+          2653873,
+          24195
+        ],
+        "templates/07.jsonl.gz": [
+          404178,
+          2118
+        ],
+        "templates/1c.jsonl.gz": [
+          417167,
+          2100
+        ],
+        "templates/2d.jsonl.gz": [
+          434085,
+          3394
+        ],
+        "templates/54.jsonl.gz": [
+          410256,
+          1789
+        ],
+        "templates/5b.jsonl.gz": [
+          409622,
+          3323
+        ],
+        "templates/69.jsonl.gz": [
+          405822,
+          2270
+        ],
+        "templates/6b.jsonl.gz": [
+          413374,
+          1600
+        ],
+        "templates/82.jsonl.gz": [
+          418778,
+          1662
+        ],
+        "templates/95.jsonl.gz": [
+          425767,
+          1973
+        ],
+        "templates/9a.jsonl.gz": [
+          413432,
+          2145
+        ],
+        "templates/9b.jsonl.gz": [
+          403470,
+          1788
+        ],
+        "templates/9d.jsonl.gz": [
+          422842,
+          2074
+        ],
+        "templates/ae.jsonl.gz": [
+          418153,
+          2702
+        ],
+        "templates/b3.jsonl.gz": [
+          424637,
+          1978
+        ],
+        "templates/c4.jsonl.gz": [
+          421048,
+          2133
+        ],
+        "templates/c6.jsonl.gz": [
+          411997,
+          2174
+        ],
+        "templates/e6.jsonl.gz": [
+          423492,
+          1989
+        ],
+        "templates/ff.jsonl.gz": [
+          420236,
+          1655
+        ],
+        "verb_alternatives.jsonl.gz": [
+          514879,
+          12973
+        ],
+        "verbs.jsonl.gz": [
+          746337,
+          13940
+        ]
+      }
+    },
+    {
+      "id": "dailydialog-hybrid-properties-boundaries-v1",
+      "manifest": {
+        "format": "corpus-templates-v1",
+        "status": "complete",
+        "full_input": true,
+        "model": {
+          "name": "explicit contextual attestation reviews",
+          "parser": null
+        },
+        "review_status": "UNREVIEWED",
+        "field": "example",
+        "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+        "counts": {
+          "input_records": 14,
+          "compiled_records": 14,
+          "roundtrips_verified": 14,
+          "tokens_audited": 95,
+          "verb_occurrences": 20,
+          "verb_alternative_analyses": 17,
+          "participle_analyses": 4,
+          "adjective_alternative_analyses": 4,
+          "adjective_occurrences": 4,
+          "templates": 14,
+          "template_occurrences": 14,
+          "templates_with_adjectives": 4,
+          "verb_lemmas": 16,
+          "adjective_lemmas": 4,
+          "verb_alternative_lemmas": 15,
+          "adjective_alternative_forms": 7,
+          "sentence_templates_covered": 12,
+          "predicate_templates_covered": 17,
+          "constructions": 6
+        },
+        "analyses": {
+          "parsed_verbal": 14
+        },
+        "elapsed_seconds": 0.509,
+        "source_sha256": "9ae3312140bb425e56d9aa7cdafc944764c8df9d258edaee835285b2c87489fe",
+        "hybrid_import": {
+          "review_status": "REVIEWED_ATTESTATIONS",
+          "admitted_occurrences": [
+            "train:1514:2:2",
+            "train:6894:2:1",
+            "train:5177:10:2",
+            "train:9061:3:3",
+            "test:800:14:1",
+            "val:783:7:1",
+            "train:2994:4:2",
+            "train:10289:8:1",
+            "train:4788:3:3",
+            "val:742:8:3",
+            "val:316:2:2",
+            "test:59:7:1",
+            "test:941:3:2",
+            "test:399:10:1"
+          ],
+          "semantic_approval": false,
+          "source_revision": "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-hybrid-properties-boundaries-v2",
+          "review_inputs": [
+            {
+              "path": "data\\dailydialog\\review-parts\\hybrid-property-targets-reviews-v1.jsonl",
+              "sha256": "695b89ba30377cd5be8a49bcd20826d00aea9c7464f2cd42b205e587c95b64fd"
+            },
+            {
+              "path": "data\\dailydialog\\review-parts\\hybrid-boundaries-reviews-v1.jsonl",
+              "sha256": "e55cea6cf3e8bf5b6bd31363f8946f8a2ff36791e41e940dc0c6dc46701c5f22"
+            },
+            {
+              "path": "data\\dailydialog\\review-parts\\hybrid-ordinary-control-reviews-v1.jsonl",
+              "sha256": "a3baf3afaa8fa8e7552d857e688e5a0f5ea3e89177850b24f3b41f50a89cd361"
+            }
+          ],
+          "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed."
+        }
+      },
+      "validation": {
+        "status": "passed",
+        "source_sha256": "9ae3312140bb425e56d9aa7cdafc944764c8df9d258edaee835285b2c87489fe",
+        "templates": 14,
+        "attested_roundtrips": 14,
+        "source_records": 14,
+        "token_spans": 95,
+        "verbs_occurrences": 20,
+        "adjectives_occurrences": 4
+      },
+      "publication": {
+        "format": "built-in-template-component-v1",
+        "bank_id": "dailydialog-hybrid-properties-boundaries-v1",
+        "source_sha256": "9ae3312140bb425e56d9aa7cdafc944764c8df9d258edaee835285b2c87489fe",
+        "manifest_sha256": "0d8d320a51e1224eac6ab1c315b757a2c24fc271290e72b06fb8113ca0f5ea64",
+        "validation_sha256": "25e8647c6375e09826e928cddde08a1d4fc088b73365d0efebfb2a2b0082d948"
+      },
+      "files": {
+        "adjective_alternatives.jsonl.gz": [
+          570721,
+          3318
+        ],
+        "adjectives.jsonl.gz": [
+          444428,
+          2484
+        ],
+        "constructions.jsonl.gz": [
+          2565246,
+          3275
+        ],
+        "occurrences/00000.jsonl.gz": [
+          2678068,
+          12621
+        ],
+        "templates/0a.jsonl.gz": [
+          400369,
+          2500
+        ],
+        "templates/0b.jsonl.gz": [
+          413142,
+          2141
+        ],
+        "templates/3e.jsonl.gz": [
+          399286,
+          1537
+        ],
+        "templates/50.jsonl.gz": [
+          419413,
+          1966
+        ],
+        "templates/53.jsonl.gz": [
+          418109,
+          1796
+        ],
+        "templates/5d.jsonl.gz": [
+          400466,
+          2500
+        ],
+        "templates/a2.jsonl.gz": [
+          406108,
+          1725
+        ],
+        "templates/a5.jsonl.gz": [
+          398754,
+          2150
+        ],
+        "templates/b4.jsonl.gz": [
+          419042,
+          1846
+        ],
+        "templates/c6.jsonl.gz": [
+          414171,
+          1657
+        ],
+        "templates/c7.jsonl.gz": [
+          412895,
+          1694
+        ],
+        "templates/c8.jsonl.gz": [
+          391930,
+          1911
+        ],
+        "templates/ca.jsonl.gz": [
+          397011,
+          1474
+        ],
+        "templates/ee.jsonl.gz": [
+          421383,
+          1569
+        ],
+        "verb_alternatives.jsonl.gz": [
+          527852,
+          5655
+        ],
+        "verbs.jsonl.gz": [
+          760277,
+          7492
+        ]
+      }
+    },
+    {
+      "id": "dailydialog-hybrid-source-boundaries-v1",
+      "manifest": {
+        "format": "corpus-templates-v1",
+        "status": "complete",
+        "full_input": true,
+        "model": {
+          "name": "explicit contextual attestation reviews",
+          "parser": null
+        },
+        "review_status": "UNREVIEWED",
+        "field": "example",
+        "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+        "counts": {
+          "input_records": 5,
+          "compiled_records": 5,
+          "roundtrips_verified": 5,
+          "tokens_audited": 64,
+          "verb_occurrences": 15,
+          "verb_alternative_analyses": 13,
+          "adjective_alternative_analyses": 6,
+          "adjective_occurrences": 9,
+          "participle_analyses": 2,
+          "templates": 5,
+          "template_occurrences": 5,
+          "templates_with_adjectives": 3,
+          "verb_lemmas": 10,
+          "adjective_lemmas": 9,
+          "verb_alternative_lemmas": 12,
+          "adjective_alternative_forms": 7,
+          "sentence_templates_covered": 5,
+          "predicate_templates_covered": 8,
+          "constructions": 3
+        },
+        "analyses": {
+          "parsed_verbal": 5
+        },
+        "elapsed_seconds": 0.375,
+        "source_sha256": "ecb49fb6410b0194fb213271c424c64a46927f79c9dc7aefe5cc823948beeff5",
+        "hybrid_import": {
+          "review_status": "REVIEWED_ATTESTATIONS",
+          "admitted_occurrences": [
+            "train:5961:1:3",
+            "val:365:10:1",
+            "train:6226:8:3",
+            "val:659:5:1",
+            "train:2441:4:1"
+          ],
+          "semantic_approval": false,
+          "source_revision": "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-hybrid-source-boundaries-v1",
+          "review_inputs": [
+            {
+              "path": "artifacts\\dailydialog-hybrid-source-boundaries-v1\\admission-reviews.jsonl",
+              "sha256": "e67ac605e4b79a0076c7e182c028123c701afa12acf7281aad70123a03b2d046"
+            }
+          ],
+          "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+          "review_file": "artifacts\\dailydialog-hybrid-source-boundaries-v1\\admission-reviews.jsonl",
+          "review_sha256": "e67ac605e4b79a0076c7e182c028123c701afa12acf7281aad70123a03b2d046"
+        }
+      },
+      "validation": {
+        "status": "passed",
+        "source_sha256": "ecb49fb6410b0194fb213271c424c64a46927f79c9dc7aefe5cc823948beeff5",
+        "templates": 5,
+        "attested_roundtrips": 5,
+        "source_records": 5,
+        "token_spans": 64,
+        "verbs_occurrences": 15,
+        "adjectives_occurrences": 9
+      },
+      "publication": {
+        "format": "built-in-template-component-v1",
+        "bank_id": "dailydialog-hybrid-source-boundaries-v1",
+        "source_sha256": "ecb49fb6410b0194fb213271c424c64a46927f79c9dc7aefe5cc823948beeff5",
+        "manifest_sha256": "9dd2071c2ecff1dde9457b8f73f84321e18da2984d1cfd07a6323edf828d9966",
+        "validation_sha256": "0386faf3cc6b56b680688b7f9f2d8673e1bd5cea80a59557268be67ba2affd25"
+      },
+      "files": {
+        "adjective_alternatives.jsonl.gz": [
+          574039,
+          3992
+        ],
+        "adjectives.jsonl.gz": [
+          446912,
+          3311
+        ],
+        "constructions.jsonl.gz": [
+          2568521,
+          3057
+        ],
+        "occurrences/00000.jsonl.gz": [
+          2690689,
+          16619
+        ],
+        "templates/1e.jsonl.gz": [
+          401029,
+          3071
+        ],
+        "templates/71.jsonl.gz": [
+          409910,
+          2425
+        ],
+        "templates/8c.jsonl.gz": [
+          408189,
+          2130
+        ],
+        "templates/bb.jsonl.gz": [
+          395184,
+          1791
+        ],
+        "templates/f8.jsonl.gz": [
+          408665,
+          2133
+        ],
+        "verb_alternatives.jsonl.gz": [
+          533507,
+          4586
+        ],
+        "verbs.jsonl.gz": [
+          767769,
+          5082
+        ]
+      }
+    },
+    {
+      "id": "dailydialog-hybrid-residual-context-v1",
+      "manifest": {
+        "format": "corpus-templates-v1",
+        "status": "complete",
+        "full_input": true,
+        "model": {
+          "name": "explicit contextual attestation reviews",
+          "parser": null
+        },
+        "review_status": "UNREVIEWED",
+        "field": "example",
+        "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+        "counts": {
+          "input_records": 3,
+          "compiled_records": 3,
+          "roundtrips_verified": 3,
+          "tokens_audited": 31,
+          "verb_occurrences": 8,
+          "participle_analyses": 1,
+          "adjective_occurrences": 2,
+          "verb_alternative_analyses": 4,
+          "templates": 3,
+          "template_occurrences": 3,
+          "templates_with_adjectives": 1,
+          "verb_lemmas": 5,
+          "adjective_lemmas": 2,
+          "verb_alternative_lemmas": 4,
+          "adjective_alternative_forms": 1,
+          "sentence_templates_covered": 3,
+          "predicate_templates_covered": 5,
+          "constructions": 2
+        },
+        "analyses": {
+          "parsed_verbal": 3
+        },
+        "elapsed_seconds": 0.31,
+        "source_sha256": "475db43ea107a9162f1544d32534da71e87690de0de375c87434288213b19c06",
+        "hybrid_import": {
+          "review_status": "REVIEWED_ATTESTATIONS",
+          "admitted_occurrences": [
+            "train:9331:6:4",
+            "train:2317:1:3",
+            "train:3576:5:1"
+          ],
+          "semantic_approval": false,
+          "source_revision": "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-hybrid-residual-context-v1",
+          "review_inputs": [
+            {
+              "path": "artifacts\\dailydialog-hybrid-residual-context-v1\\admission-reviews.jsonl",
+              "sha256": "223e8858dd5e0a097cbfdd3d3c00b6c7a21142f5425367bfe223f77a8aa3d72d"
+            }
+          ],
+          "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+          "review_file": "artifacts\\dailydialog-hybrid-residual-context-v1\\admission-reviews.jsonl",
+          "review_sha256": "223e8858dd5e0a097cbfdd3d3c00b6c7a21142f5425367bfe223f77a8aa3d72d"
+        }
+      },
+      "validation": {
+        "status": "passed",
+        "source_sha256": "475db43ea107a9162f1544d32534da71e87690de0de375c87434288213b19c06",
+        "templates": 3,
+        "attested_roundtrips": 3,
+        "source_records": 3,
+        "token_spans": 31,
+        "verbs_occurrences": 8,
+        "adjectives_occurrences": 2
+      },
+      "publication": {
+        "format": "built-in-template-component-v1",
+        "bank_id": "dailydialog-hybrid-residual-context-v1",
+        "source_sha256": "475db43ea107a9162f1544d32534da71e87690de0de375c87434288213b19c06",
+        "manifest_sha256": "e844d0b42148dd37f3773fa90c4cce0e2587f58b7c71dfc9db8b38a081b78159",
+        "validation_sha256": "b11256235adad57c058e869edc968d68db34e5adbf069ea6671461303d4e4766"
+      },
+      "files": {
+        "adjective_alternatives.jsonl.gz": [
+          578031,
+          1509
+        ],
+        "adjectives.jsonl.gz": [
+          450223,
+          1537
+        ],
+        "constructions.jsonl.gz": [
+          2571578,
+          1543
+        ],
+        "occurrences/00000.jsonl.gz": [
+          2707308,
+          9330
+        ],
+        "templates/0d.jsonl.gz": [
+          420245,
+          2727
+        ],
+        "templates/32.jsonl.gz": [
+          415181,
+          1735
+        ],
+        "templates/c5.jsonl.gz": [
+          438391,
+          1989
+        ],
+        "verb_alternatives.jsonl.gz": [
+          538093,
+          1850
+        ],
+        "verbs.jsonl.gz": [
+          772851,
+          3465
+        ]
+      }
+    },
+    {
+      "id": "dailydialog-hybrid-quotes-contractions-v1",
+      "manifest": {
+        "format": "corpus-templates-v1",
+        "status": "complete",
+        "full_input": true,
+        "model": {
+          "name": "explicit contextual attestation reviews",
+          "parser": null
+        },
+        "review_status": "UNREVIEWED",
+        "field": "example",
+        "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+        "counts": {
+          "input_records": 18,
+          "compiled_records": 18,
+          "roundtrips_verified": 18,
+          "tokens_audited": 214,
+          "verb_occurrences": 51,
+          "participle_analyses": 11,
+          "verb_alternative_analyses": 44,
+          "adjective_alternative_analyses": 13,
+          "adjective_occurrences": 12,
+          "templates": 18,
+          "template_occurrences": 18,
+          "templates_with_adjectives": 10,
+          "verb_lemmas": 25,
+          "adjective_lemmas": 12,
+          "verb_alternative_lemmas": 36,
+          "adjective_alternative_forms": 20,
+          "sentence_templates_covered": 18,
+          "predicate_templates_covered": 35,
+          "constructions": 11
+        },
+        "analyses": {
+          "parsed_verbal": 18
+        },
+        "elapsed_seconds": 0.697,
+        "source_sha256": "5759589dc49283f20b87913ec3bce6b6c8c9e1f99d391adae90a48d518859d63",
+        "hybrid_import": {
+          "review_status": "REVIEWED_ATTESTATIONS",
+          "admitted_occurrences": [
+            "train:1118:7:1",
+            "train:1792:2:1",
+            "train:1929:19:1",
+            "train:2211:8:1",
+            "train:5425:4:1",
+            "train:8356:5:1",
+            "train:9091:6:1",
+            "train:9231:4:2",
+            "train:10714:5:2",
+            "test:745:4:1",
+            "train:5075:6:1",
+            "train:5075:6:2",
+            "train:5391:4:1",
+            "train:5391:4:4",
+            "train:5391:4:5",
+            "train:10185:4:2",
+            "train:6226:8:1",
+            "train:6226:8:2"
+          ],
+          "semantic_approval": false,
+          "source_revision": "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-hybrid-quotes-contractions-v1",
+          "review_inputs": [
+            {
+              "path": "artifacts\\dailydialog-hybrid-quotes-contractions-v1\\admission-reviews.jsonl",
+              "sha256": "19dd55a5835622f8f6900b9330556046ef3b31f6974a59789a34cb41855f6fa2"
+            }
+          ],
+          "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+          "review_file": "artifacts\\dailydialog-hybrid-quotes-contractions-v1\\admission-reviews.jsonl",
+          "review_sha256": "19dd55a5835622f8f6900b9330556046ef3b31f6974a59789a34cb41855f6fa2"
+        }
+      },
+      "validation": {
+        "status": "passed",
+        "source_sha256": "5759589dc49283f20b87913ec3bce6b6c8c9e1f99d391adae90a48d518859d63",
+        "templates": 18,
+        "attested_roundtrips": 18,
+        "source_records": 18,
+        "token_spans": 214,
+        "verbs_occurrences": 51,
+        "adjectives_occurrences": 12
+      },
+      "publication": {
+        "format": "built-in-template-component-v1",
+        "bank_id": "dailydialog-hybrid-quotes-contractions-v1",
+        "source_sha256": "5759589dc49283f20b87913ec3bce6b6c8c9e1f99d391adae90a48d518859d63",
+        "manifest_sha256": "f83caa56ecb52e10ba3c5027e6d26a5d6b5d0df58f7733ebd40edd48e7a59b6c",
+        "validation_sha256": "5175e8aae82bd4014035f32ab13fd4736c807984f6f55c4831048cb4dacecd14"
+      },
+      "files": {
+        "adjective_alternatives.jsonl.gz": [
+          579540,
+          8154
+        ],
+        "adjectives.jsonl.gz": [
+          451760,
+          5491
+        ],
+        "constructions.jsonl.gz": [
+          2573121,
+          5370
+        ],
+        "occurrences/00000.jsonl.gz": [
+          2716638,
+          37238
+        ],
+        "templates/05.jsonl.gz": [
+          399730,
+          1707
+        ],
+        "templates/11.jsonl.gz": [
+          411016,
+          2541
+        ],
+        "templates/29.jsonl.gz": [
+          416249,
+          2080
+        ],
+        "templates/35.jsonl.gz": [
+          425894,
+          2705
+        ],
+        "templates/4c.jsonl.gz": [
+          421989,
+          2229
+        ],
+        "templates/58.jsonl.gz": [
+          424245,
+          1798
+        ],
+        "templates/61.jsonl.gz": [
+          422207,
+          1874
+        ],
+        "templates/66.jsonl.gz": [
+          422145,
+          2256
+        ],
+        "templates/93.jsonl.gz": [
+          401532,
+          2005
+        ],
+        "templates/ba.jsonl.gz": [
+          426730,
+          2316
+        ],
+        "templates/be.jsonl.gz": [
+          420014,
+          2043
+        ],
+        "templates/ca.jsonl.gz": [
+          398485,
+          2003
+        ],
+        "templates/ce.jsonl.gz": [
+          417083,
+          1693
+        ],
+        "templates/db.jsonl.gz": [
+          414965,
+          1954
+        ],
+        "templates/dc.jsonl.gz": [
+          416860,
+          1826
+        ],
+        "templates/e2.jsonl.gz": [
+          408152,
+          1891
+        ],
+        "templates/e4.jsonl.gz": [
+          419447,
+          1871
+        ],
+        "templates/e6.jsonl.gz": [
+          425481,
+          1974
+        ],
+        "verb_alternatives.jsonl.gz": [
+          539943,
+          11450
+        ],
+        "verbs.jsonl.gz": [
+          776316,
+          9018
+        ]
+      }
+    },
+    {
+      "id": "dailydialog-hybrid-remaining-quotes-v1",
+      "manifest": {
+        "format": "corpus-templates-v1",
+        "status": "complete",
+        "full_input": true,
+        "model": {
+          "name": "explicit contextual attestation reviews",
+          "parser": null
+        },
+        "review_status": "UNREVIEWED",
+        "field": "example",
+        "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+        "counts": {
+          "input_records": 40,
+          "compiled_records": 40,
+          "roundtrips_verified": 40,
+          "tokens_audited": 668,
+          "verb_occurrences": 154,
+          "adjective_occurrences": 45,
+          "verb_alternative_analyses": 130,
+          "adjective_alternative_analyses": 48,
+          "participle_analyses": 38,
+          "templates": 40,
+          "template_occurrences": 40,
+          "templates_with_adjectives": 30,
+          "verb_lemmas": 46,
+          "adjective_lemmas": 29,
+          "verb_alternative_lemmas": 66,
+          "adjective_alternative_forms": 45,
+          "sentence_templates_covered": 32,
+          "predicate_templates_covered": 75,
+          "constructions": 26
+        },
+        "analyses": {
+          "parsed_verbal": 40
+        },
+        "elapsed_seconds": 0.961,
+        "source_sha256": "4c38b0e999f5763a51f67a01ee8efe917a8132ccb3ea50f0e7e4439871c1574b",
+        "hybrid_import": {
+          "review_status": "REVIEWED_ATTESTATIONS",
+          "admitted_occurrences": [
+            "train:1098:1:2",
+            "train:1874:6:2",
+            "train:1874:9:2",
+            "train:1874:9:4",
+            "train:1874:9:6",
+            "train:1999:7:2",
+            "train:8708:7:2",
+            "train:2022:5:2",
+            "train:2319:6:2",
+            "train:2630:8:1",
+            "train:2777:3:1",
+            "train:3487:6:1",
+            "train:3654:7:6",
+            "train:3654:8:2",
+            "train:3963:2:2",
+            "test:883:2:2",
+            "train:4288:1:1",
+            "train:5119:3:2",
+            "train:5375:7:2",
+            "train:6081:5:2",
+            "train:6174:5:2",
+            "train:6208:10:2",
+            "train:6287:10:2",
+            "train:6575:8:1",
+            "val:77:8:1",
+            "train:6724:6:2",
+            "train:8090:4:3",
+            "train:10421:4:3",
+            "test:601:4:3",
+            "train:8682:3:2",
+            "train:9492:5:2",
+            "train:9543:4:2",
+            "train:10316:4:1",
+            "train:10913:4:1",
+            "train:10316:4:2",
+            "train:10913:4:2",
+            "train:11004:6:2",
+            "test:41:5:5",
+            "test:286:6:1",
+            "test:470:8:1"
+          ],
+          "semantic_approval": false,
+          "source_revision": "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-hybrid-remaining-quotes-v1",
+          "review_inputs": [
+            {
+              "path": "artifacts\\dailydialog-hybrid-remaining-quotes-v1\\admission-reviews.jsonl",
+              "sha256": "2628c656ec76533f66e2929de78ad7d1d598e18df440baec8275dd99e79100d8"
+            }
+          ],
+          "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+          "review_file": "artifacts\\dailydialog-hybrid-remaining-quotes-v1\\admission-reviews.jsonl",
+          "review_sha256": "2628c656ec76533f66e2929de78ad7d1d598e18df440baec8275dd99e79100d8"
+        }
+      },
+      "validation": {
+        "status": "passed",
+        "source_sha256": "4c38b0e999f5763a51f67a01ee8efe917a8132ccb3ea50f0e7e4439871c1574b",
+        "templates": 40,
+        "attested_roundtrips": 40,
+        "source_records": 40,
+        "token_spans": 668,
+        "verbs_occurrences": 154,
+        "adjectives_occurrences": 45
+      },
+      "publication": {
+        "format": "built-in-template-component-v1",
+        "bank_id": "dailydialog-hybrid-remaining-quotes-v1",
+        "source_sha256": "4c38b0e999f5763a51f67a01ee8efe917a8132ccb3ea50f0e7e4439871c1574b",
+        "manifest_sha256": "b089c78ab5b51072108c34652cd761c7534de2213cdacd1121a0ae62acc88e12",
+        "validation_sha256": "9237be8a300a13aec00a86237885d455969e171de57599349d6bfccbc765bb02"
+      },
+      "files": {
+        "adjective_alternatives.jsonl.gz": [
+          587694,
+          20113
+        ],
+        "adjectives.jsonl.gz": [
+          457251,
+          14970
+        ],
+        "constructions.jsonl.gz": [
+          2578491,
+          10237
+        ],
+        "occurrences/00000.jsonl.gz": [
+          2753876,
+          104933
+        ],
+        "templates/00.jsonl.gz": [
+          415100,
+          1759
+        ],
+        "templates/0a.jsonl.gz": [
+          402869,
+          2815
+        ],
+        "templates/23.jsonl.gz": [
+          425325,
+          1759
+        ],
+        "templates/24.jsonl.gz": [
+          410987,
+          2206
+        ],
+        "templates/26.jsonl.gz": [
+          406773,
+          2291
+        ],
+        "templates/28.jsonl.gz": [
+          409821,
+          4017
+        ],
+        "templates/2a.jsonl.gz": [
+          427930,
+          3444
+        ],
+        "templates/2f.jsonl.gz": [
+          391522,
+          2478
+        ],
+        "templates/3f.jsonl.gz": [
+          408644,
+          2279
+        ],
+        "templates/4a.jsonl.gz": [
+          418293,
+          2078
+        ],
+        "templates/4c.jsonl.gz": [
+          424218,
+          2089
+        ],
+        "templates/4d.jsonl.gz": [
+          402930,
+          3248
+        ],
+        "templates/58.jsonl.gz": [
+          426043,
+          2054
+        ],
+        "templates/5d.jsonl.gz": [
+          402966,
+          2068
+        ],
+        "templates/5e.jsonl.gz": [
+          419624,
+          1806
+        ],
+        "templates/6b.jsonl.gz": [
+          414974,
+          2501
+        ],
+        "templates/71.jsonl.gz": [
+          412335,
+          2243
+        ],
+        "templates/7a.jsonl.gz": [
+          414293,
+          3469
+        ],
+        "templates/8c.jsonl.gz": [
+          410319,
+          1831
+        ],
+        "templates/99.jsonl.gz": [
+          411619,
+          2279
+        ],
+        "templates/a3.jsonl.gz": [
+          434842,
+          2272
+        ],
+        "templates/ac.jsonl.gz": [
+          431632,
+          2813
+        ],
+        "templates/b0.jsonl.gz": [
+          423781,
+          2437
+        ],
+        "templates/b1.jsonl.gz": [
+          409514,
+          3270
+        ],
+        "templates/b5.jsonl.gz": [
+          423764,
+          2455
+        ],
+        "templates/b7.jsonl.gz": [
+          421606,
+          2046
+        ],
+        "templates/bb.jsonl.gz": [
+          396975,
+          3225
+        ],
+        "templates/ce.jsonl.gz": [
+          418776,
+          2759
+        ],
+        "templates/d1.jsonl.gz": [
+          414508,
+          2296
+        ],
+        "templates/d7.jsonl.gz": [
+          411071,
+          2487
+        ],
+        "templates/e5.jsonl.gz": [
+          417780,
+          2161
+        ],
+        "templates/ea.jsonl.gz": [
+          408331,
+          1930
+        ],
+        "templates/ec.jsonl.gz": [
+          425445,
+          1659
+        ],
+        "templates/ed.jsonl.gz": [
+          418569,
+          2352
+        ],
+        "templates/f5.jsonl.gz": [
+          411560,
+          2119
+        ],
+        "verb_alternatives.jsonl.gz": [
+          551393,
+          29417
+        ],
+        "verbs.jsonl.gz": [
+          785334,
+          22547
+        ]
+      }
+    },
+    {
+      "id": "dailydialog-hybrid-parentheses-v1",
+      "manifest": {
+        "format": "corpus-templates-v1",
+        "status": "complete",
+        "full_input": true,
+        "model": {
+          "name": "explicit contextual attestation reviews",
+          "parser": null
+        },
+        "review_status": "UNREVIEWED",
+        "field": "example",
+        "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+        "counts": {
+          "input_records": 3,
+          "compiled_records": 3,
+          "roundtrips_verified": 3,
+          "tokens_audited": 52,
+          "verb_occurrences": 5,
+          "verb_alternative_analyses": 16,
+          "adjective_alternative_analyses": 3,
+          "adjective_occurrences": 1,
+          "templates": 3,
+          "template_occurrences": 3,
+          "templates_with_adjectives": 1,
+          "verb_lemmas": 4,
+          "adjective_lemmas": 1,
+          "verb_alternative_lemmas": 15,
+          "adjective_alternative_forms": 2,
+          "sentence_templates_covered": 3,
+          "predicate_templates_covered": 4,
+          "constructions": 0
+        },
+        "analyses": {
+          "parsed_verbal": 3
+        },
+        "elapsed_seconds": 0.319,
+        "source_sha256": "58dab3a9758264661321ad3234cb4b2c11379ef896f7c6ca343f759559eb5305",
+        "hybrid_import": {
+          "review_status": "REVIEWED_ATTESTATIONS",
+          "admitted_occurrences": [
+            "train:7664:1:1",
+            "train:10363:12:1",
+            "train:10363:12:2"
+          ],
+          "semantic_approval": false,
+          "source_revision": "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-hybrid-parentheses-v1",
+          "review_inputs": [
+            {
+              "path": "artifacts\\dailydialog-hybrid-parentheses-v1\\admission-reviews.jsonl",
+              "sha256": "09cfbe467f83b942ec1d038babeb1095cf7333a525e778593f101451147ceaba"
+            }
+          ],
+          "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+          "review_file": "artifacts\\dailydialog-hybrid-parentheses-v1\\admission-reviews.jsonl",
+          "review_sha256": "09cfbe467f83b942ec1d038babeb1095cf7333a525e778593f101451147ceaba"
+        }
+      },
+      "validation": {
+        "status": "passed",
+        "source_sha256": "58dab3a9758264661321ad3234cb4b2c11379ef896f7c6ca343f759559eb5305",
+        "templates": 3,
+        "attested_roundtrips": 3,
+        "source_records": 3,
+        "token_spans": 52,
+        "verbs_occurrences": 5,
+        "adjectives_occurrences": 1
+      },
+      "publication": {
+        "format": "built-in-template-component-v1",
+        "bank_id": "dailydialog-hybrid-parentheses-v1",
+        "source_sha256": "58dab3a9758264661321ad3234cb4b2c11379ef896f7c6ca343f759559eb5305",
+        "manifest_sha256": "cb93cfe5cb259f8336210f780e61050fa96be1f21f18541276b1a21e7b86eaa6",
+        "validation_sha256": "60b0ac5b1a9e76401585e0c290724a38092b1d1d77627ef284c9ee95fcc2a400"
+      },
+      "files": {
+        "adjective_alternatives.jsonl.gz": [
+          607807,
+          1821
+        ],
+        "adjectives.jsonl.gz": [
+          472221,
+          1059
+        ],
+        "constructions.jsonl.gz": [
+          2588728,
+          45
+        ],
+        "occurrences/00000.jsonl.gz": [
+          2858809,
+          10782
+        ],
+        "templates/38.jsonl.gz": [
+          419333,
+          2042
+        ],
+        "templates/74.jsonl.gz": [
+          405167,
+          1925
+        ],
+        "templates/d3.jsonl.gz": [
+          419647,
+          2459
+        ],
+        "verb_alternatives.jsonl.gz": [
+          580810,
+          2727
+        ],
+        "verbs.jsonl.gz": [
+          807881,
+          2346
+        ]
+      }
+    },
+    {
+      "id": "dailydialog-hybrid-qc-fixes-v1",
+      "manifest": {
+        "format": "corpus-templates-v1",
+        "status": "complete",
+        "full_input": true,
+        "model": {
+          "name": "explicit contextual attestation reviews",
+          "parser": null
+        },
+        "review_status": "UNREVIEWED",
+        "field": "example",
+        "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+        "counts": {
+          "input_records": 5,
+          "compiled_records": 5,
+          "roundtrips_verified": 5,
+          "tokens_audited": 70,
+          "verb_occurrences": 11,
+          "verb_alternative_analyses": 18,
+          "adjective_occurrences": 3,
+          "participle_analyses": 1,
+          "adjective_alternative_analyses": 2,
+          "templates": 5,
+          "template_occurrences": 5,
+          "templates_with_adjectives": 2,
+          "verb_lemmas": 7,
+          "adjective_lemmas": 3,
+          "verb_alternative_lemmas": 15,
+          "adjective_alternative_forms": 3,
+          "sentence_templates_covered": 5,
+          "predicate_templates_covered": 8,
+          "constructions": 5
+        },
+        "analyses": {
+          "parsed_verbal": 5
+        },
+        "elapsed_seconds": 0.377,
+        "source_sha256": "73bb9927c68efd2c8267633a6232fa19968c4a1fefe90508aa3138f6275a77ed",
+        "hybrid_import": {
+          "review_status": "REVIEWED_ATTESTATIONS",
+          "admitted_occurrences": [
+            "train:2115:5:1",
+            "test:989:6:2",
+            "val:581:1:1",
+            "train:4908:1:1",
+            "test:377:4:1"
+          ],
+          "semantic_approval": false,
+          "source_revision": "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-hybrid-qc-fixes-v1",
+          "review_inputs": [
+            {
+              "path": "artifacts\\dailydialog-hybrid-qc-fixes-v1\\admission-reviews.jsonl",
+              "sha256": "3ff4a7615fcb8095c387b6c45470093f464dc4520c72383423e62e06dfc11693"
+            }
+          ],
+          "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+          "review_file": "artifacts\\dailydialog-hybrid-qc-fixes-v1\\admission-reviews.jsonl",
+          "review_sha256": "3ff4a7615fcb8095c387b6c45470093f464dc4520c72383423e62e06dfc11693"
+        }
+      },
+      "validation": {
+        "status": "passed",
+        "source_sha256": "73bb9927c68efd2c8267633a6232fa19968c4a1fefe90508aa3138f6275a77ed",
+        "templates": 5,
+        "attested_roundtrips": 5,
+        "source_records": 5,
+        "token_spans": 70,
+        "verbs_occurrences": 11,
+        "adjectives_occurrences": 3
+      },
+      "publication": {
+        "format": "built-in-template-component-v1",
+        "bank_id": "dailydialog-hybrid-qc-fixes-v1",
+        "source_sha256": "73bb9927c68efd2c8267633a6232fa19968c4a1fefe90508aa3138f6275a77ed",
+        "manifest_sha256": "9f513c3371b4adf26a6114bc1975ebeef04c2f8611ede96360c42b44549b076d",
+        "validation_sha256": "8aa555d6a96cbc849156669f3d04716ebdfd6770fcda2216d2c38184e79c4a75"
+      },
+      "files": {
+        "adjective_alternatives.jsonl.gz": [
+          609628,
+          1840
+        ],
+        "adjectives.jsonl.gz": [
+          473280,
+          1625
+        ],
+        "constructions.jsonl.gz": [
+          2588773,
+          1861
+        ],
+        "occurrences/00000.jsonl.gz": [
+          2869591,
+          16714
+        ],
+        "templates/18.jsonl.gz": [
+          423566,
+          2140
+        ],
+        "templates/35.jsonl.gz": [
+          428599,
+          1781
+        ],
+        "templates/4b.jsonl.gz": [
+          416209,
+          2063
+        ],
+        "templates/94.jsonl.gz": [
+          407516,
+          1816
+        ],
+        "templates/ac.jsonl.gz": [
+          434445,
+          2627
+        ],
+        "verb_alternatives.jsonl.gz": [
+          583537,
+          4224
+        ],
+        "verbs.jsonl.gz": [
+          810227,
+          3293
+        ]
+      }
+    },
+    {
+      "id": "dailydialog-hybrid-qc-admission-v1",
+      "manifest": {
+        "format": "corpus-templates-v1",
+        "status": "complete",
+        "full_input": true,
+        "model": {
+          "name": "explicit contextual attestation reviews",
+          "parser": null
+        },
+        "review_status": "UNREVIEWED",
+        "field": "example",
+        "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+        "counts": {
+          "input_records": 28,
+          "compiled_records": 28,
+          "roundtrips_verified": 28,
+          "tokens_audited": 203,
+          "verb_occurrences": 42,
+          "verb_alternative_analyses": 37,
+          "adjective_alternative_analyses": 8,
+          "adjective_occurrences": 14,
+          "participle_analyses": 3,
+          "templates": 28,
+          "template_occurrences": 28,
+          "templates_with_adjectives": 9,
+          "verb_lemmas": 31,
+          "adjective_lemmas": 13,
+          "verb_alternative_lemmas": 30,
+          "adjective_alternative_forms": 11,
+          "sentence_templates_covered": 23,
+          "predicate_templates_covered": 33,
+          "constructions": 6
+        },
+        "analyses": {
+          "parsed_verbal": 28
+        },
+        "elapsed_seconds": 0.788,
+        "source_sha256": "d354bad11b2995927a7ea05d3bebdbfd806a8257017cefff993d78076f31e54f",
+        "hybrid_import": {
+          "review_status": "REVIEWED_ATTESTATIONS",
+          "admitted_occurrences": [
+            "train:10411:3:1",
+            "train:3612:2:1",
+            "train:1011:1:1",
+            "train:925:3:1",
+            "train:1770:4:3",
+            "train:11016:8:2",
+            "train:801:5:2",
+            "train:9228:6:1",
+            "train:546:4:1",
+            "val:683:3:1",
+            "train:5811:5:1",
+            "train:507:2:2",
+            "train:2935:2:1",
+            "train:6372:7:2",
+            "train:2920:9:1",
+            "train:6376:9:1",
+            "val:106:12:1",
+            "train:10866:11:1",
+            "val:727:5:3",
+            "train:8875:6:2",
+            "train:5794:1:1",
+            "train:7812:14:1",
+            "test:423:6:1",
+            "val:164:1:1",
+            "train:1608:11:3",
+            "train:8342:6:3",
+            "train:9801:8:1",
+            "val:347:14:1"
+          ],
+          "semantic_approval": false,
+          "source_revision": "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-hybrid-qc-admission-v1",
+          "review_inputs": [
+            {
+              "path": "artifacts\\dailydialog-hybrid-qc-admission-v1\\admission-reviews.jsonl",
+              "sha256": "9809398ae536201fee9e46dfcd873d5b38639f61f76e9df30f1b5ac03cc0283e"
+            }
+          ],
+          "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+          "review_file": "artifacts\\dailydialog-hybrid-qc-admission-v1\\admission-reviews.jsonl",
+          "review_sha256": "9809398ae536201fee9e46dfcd873d5b38639f61f76e9df30f1b5ac03cc0283e"
+        }
+      },
+      "validation": {
+        "status": "passed",
+        "source_sha256": "d354bad11b2995927a7ea05d3bebdbfd806a8257017cefff993d78076f31e54f",
+        "templates": 28,
+        "attested_roundtrips": 28,
+        "source_records": 28,
+        "token_spans": 203,
+        "verbs_occurrences": 42,
+        "adjectives_occurrences": 14
+      },
+      "publication": {
+        "format": "built-in-template-component-v1",
+        "bank_id": "dailydialog-hybrid-qc-admission-v1",
+        "source_sha256": "d354bad11b2995927a7ea05d3bebdbfd806a8257017cefff993d78076f31e54f",
+        "manifest_sha256": "f859f40bb51b5c9c6f276e62b5a69051c8ae578830fb803f5f147b32a62284d6",
+        "validation_sha256": "9d467d25c5a87bd855ecc1f26e73f1173d7183df9186df30797368324a567541"
+      },
+      "files": {
+        "adjective_alternatives.jsonl.gz": [
+          611468,
+          4946
+        ],
+        "adjectives.jsonl.gz": [
+          474905,
+          5288
+        ],
+        "constructions.jsonl.gz": [
+          2590634,
+          2371
+        ],
+        "occurrences/00000.jsonl.gz": [
+          2886305,
+          43234
+        ],
+        "templates/00.jsonl.gz": [
+          416859,
+          1859
+        ],
+        "templates/07.jsonl.gz": [
+          406296,
+          1387
+        ],
+        "templates/0d.jsonl.gz": [
+          422972,
+          1535
+        ],
+        "templates/12.jsonl.gz": [
+          407665,
+          1741
+        ],
+        "templates/14.jsonl.gz": [
+          405179,
+          1889
+        ],
+        "templates/16.jsonl.gz": [
+          423415,
+          1955
+        ],
+        "templates/18.jsonl.gz": [
+          425706,
+          2046
+        ],
+        "templates/23.jsonl.gz": [
+          427084,
+          1613
+        ],
+        "templates/2b.jsonl.gz": [
+          423069,
+          1818
+        ],
+        "templates/33.jsonl.gz": [
+          420918,
+          1595
+        ],
+        "templates/44.jsonl.gz": [
+          422983,
+          2886
+        ],
+        "templates/45.jsonl.gz": [
+          422179,
+          1548
+        ],
+        "templates/54.jsonl.gz": [
+          412045,
+          1344
+        ],
+        "templates/66.jsonl.gz": [
+          424401,
+          1680
+        ],
+        "templates/68.jsonl.gz": [
+          406831,
+          1523
+        ],
+        "templates/72.jsonl.gz": [
+          410753,
+          1741
+        ],
+        "templates/80.jsonl.gz": [
+          423817,
+          1921
+        ],
+        "templates/89.jsonl.gz": [
+          409634,
+          1752
+        ],
+        "templates/9d.jsonl.gz": [
+          424916,
+          2353
+        ],
+        "templates/a4.jsonl.gz": [
+          411357,
+          2297
+        ],
+        "templates/a6.jsonl.gz": [
+          399932,
+          1788
+        ],
+        "templates/ad.jsonl.gz": [
+          422325,
+          1464
+        ],
+        "templates/cc.jsonl.gz": [
+          405580,
+          1902
+        ],
+        "templates/d8.jsonl.gz": [
+          407148,
+          2589
+        ],
+        "templates/db.jsonl.gz": [
+          416919,
+          1694
+        ],
+        "templates/df.jsonl.gz": [
+          405674,
+          1757
+        ],
+        "templates/f0.jsonl.gz": [
+          417081,
+          1713
+        ],
+        "templates/fc.jsonl.gz": [
+          423819,
+          2256
+        ],
+        "verb_alternatives.jsonl.gz": [
+          587761,
+          9270
+        ],
+        "verbs.jsonl.gz": [
+          813520,
+          14738
+        ]
+      }
+    },
+    {
+      "id": "dailydialog-hybrid-random-quality-v1",
+      "manifest": {
+        "format": "corpus-templates-v1",
+        "status": "complete",
+        "full_input": true,
+        "model": {
+          "name": "explicit contextual attestation reviews",
+          "parser": null
+        },
+        "review_status": "UNREVIEWED",
+        "field": "example",
+        "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+        "counts": {
+          "input_records": 36,
+          "compiled_records": 36,
+          "roundtrips_verified": 36,
+          "tokens_audited": 302,
+          "verb_alternative_analyses": 65,
+          "verb_occurrences": 69,
+          "adjective_alternative_analyses": 26,
+          "adjective_occurrences": 20,
+          "participle_analyses": 7,
+          "templates": 36,
+          "template_occurrences": 36,
+          "templates_with_adjectives": 16,
+          "verb_lemmas": 40,
+          "adjective_lemmas": 20,
+          "verb_alternative_lemmas": 48,
+          "adjective_alternative_forms": 21,
+          "sentence_templates_covered": 36,
+          "predicate_templates_covered": 50,
+          "constructions": 21
+        },
+        "analyses": {
+          "parsed_verbal": 36
+        },
+        "elapsed_seconds": 0.933,
+        "source_sha256": "78f0f05ab74c3e28368f64c1d97fe6ba1ab5e40d3d48776da3670166f43f8af5",
+        "hybrid_import": {
+          "review_status": "REVIEWED_ATTESTATIONS",
+          "admitted_occurrences": [
+            "train:9306:6:1",
+            "train:3133:19:2",
+            "train:2297:7:4",
+            "train:9629:6:1",
+            "train:7172:7:5",
+            "train:3194:2:1",
+            "train:10222:8:2",
+            "train:7562:14:1",
+            "train:10912:1:1",
+            "val:806:5:1",
+            "train:7609:1:1",
+            "train:3681:2:1",
+            "train:4814:3:1",
+            "train:1570:11:2",
+            "train:10743:7:3",
+            "train:3607:2:1",
+            "train:10351:4:1",
+            "train:5652:7:1",
+            "val:670:2:6",
+            "train:3939:9:1",
+            "train:9011:1:1",
+            "val:791:9:2",
+            "train:4795:2:1",
+            "train:2854:11:1",
+            "train:3784:5:3",
+            "test:982:2:1",
+            "test:670:12:1",
+            "train:10798:5:4",
+            "train:8949:9:7",
+            "train:2515:2:1",
+            "train:1690:9:2",
+            "test:67:6:1",
+            "train:6599:2:2",
+            "train:7917:8:2",
+            "train:7791:4:8",
+            "train:4088:12:1"
+          ],
+          "semantic_approval": false,
+          "source_revision": "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-hybrid-random-quality-v1",
+          "review_inputs": [
+            {
+              "path": "artifacts\\dailydialog-hybrid-random-quality-v1\\admission-reviews.jsonl",
+              "sha256": "5fffeb715a5f747372f84550711013d343e92d53d40db481893e48d62669c391"
+            }
+          ],
+          "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+          "review_file": "artifacts\\dailydialog-hybrid-random-quality-v1\\admission-reviews.jsonl",
+          "review_sha256": "5fffeb715a5f747372f84550711013d343e92d53d40db481893e48d62669c391"
+        }
+      },
+      "validation": {
+        "status": "passed",
+        "source_sha256": "78f0f05ab74c3e28368f64c1d97fe6ba1ab5e40d3d48776da3670166f43f8af5",
+        "templates": 36,
+        "attested_roundtrips": 36,
+        "source_records": 36,
+        "token_spans": 302,
+        "verbs_occurrences": 69,
+        "adjectives_occurrences": 20
+      },
+      "publication": {
+        "format": "built-in-template-component-v1",
+        "bank_id": "dailydialog-hybrid-random-quality-v1",
+        "source_sha256": "78f0f05ab74c3e28368f64c1d97fe6ba1ab5e40d3d48776da3670166f43f8af5",
+        "manifest_sha256": "be272164cdb4496383e52176614231c5911d258d94dd640f8378115ad534061d",
+        "validation_sha256": "93ba043fe6a05ded198801c84ec6d75518e0594818d2efa654b5def5270b25b8"
+      },
+      "files": {
+        "adjective_alternatives.jsonl.gz": [
+          616414,
+          9356
+        ],
+        "adjectives.jsonl.gz": [
+          480193,
+          7924
+        ],
+        "constructions.jsonl.gz": [
+          2593005,
+          8955
+        ],
+        "occurrences/00000.jsonl.gz": [
+          2929539,
+          59848
+        ],
+        "templates/07.jsonl.gz": [
+          407683,
+          1617
+        ],
+        "templates/11.jsonl.gz": [
+          413557,
+          1696
+        ],
+        "templates/14.jsonl.gz": [
+          407068,
+          2012
+        ],
+        "templates/23.jsonl.gz": [
+          428697,
+          1895
+        ],
+        "templates/26.jsonl.gz": [
+          409064,
+          1869
+        ],
+        "templates/29.jsonl.gz": [
+          418329,
+          1550
+        ],
+        "templates/2b.jsonl.gz": [
+          424887,
+          1857
+        ],
+        "templates/31.jsonl.gz": [
+          419713,
+          1841
+        ],
+        "templates/38.jsonl.gz": [
+          421375,
+          3505
+        ],
+        "templates/3a.jsonl.gz": [
+          416225,
+          1651
+        ],
+        "templates/3b.jsonl.gz": [
+          415640,
+          1998
+        ],
+        "templates/43.jsonl.gz": [
+          417286,
+          2053
+        ],
+        "templates/5c.jsonl.gz": [
+          426469,
+          2029
+        ],
+        "templates/61.jsonl.gz": [
+          424081,
+          1625
+        ],
+        "templates/73.jsonl.gz": [
+          402040,
+          1832
+        ],
+        "templates/77.jsonl.gz": [
+          420783,
+          1647
+        ],
+        "templates/89.jsonl.gz": [
+          411386,
+          1820
+        ],
+        "templates/8d.jsonl.gz": [
+          430705,
+          2162
+        ],
+        "templates/92.jsonl.gz": [
+          421335,
+          1532
+        ],
+        "templates/93.jsonl.gz": [
+          403537,
+          1967
+        ],
+        "templates/a2.jsonl.gz": [
+          407833,
+          1738
+        ],
+        "templates/a9.jsonl.gz": [
+          415891,
+          1701
+        ],
+        "templates/b0.jsonl.gz": [
+          426218,
+          2011
+        ],
+        "templates/b3.jsonl.gz": [
+          426615,
+          2026
+        ],
+        "templates/bd.jsonl.gz": [
+          415441,
+          1884
+        ],
+        "templates/bf.jsonl.gz": [
+          412745,
+          2257
+        ],
+        "templates/ca.jsonl.gz": [
+          400488,
+          2123
+        ],
+        "templates/ce.jsonl.gz": [
+          421535,
+          1369
+        ],
+        "templates/d2.jsonl.gz": [
+          426473,
+          2053
+        ],
+        "templates/d8.jsonl.gz": [
+          409737,
+          2030
+        ],
+        "templates/dd.jsonl.gz": [
+          428921,
+          2436
+        ],
+        "templates/e5.jsonl.gz": [
+          419941,
+          2331
+        ],
+        "templates/ed.jsonl.gz": [
+          420921,
+          2025
+        ],
+        "templates/fb.jsonl.gz": [
+          415785,
+          2178
+        ],
+        "verb_alternatives.jsonl.gz": [
+          597031,
+          17627
+        ],
+        "verbs.jsonl.gz": [
+          828258,
+          17669
+        ]
+      }
+    },
+    {
+      "id": "dailydialog-offline-qc-v1",
+      "manifest": {
+        "format": "corpus-templates-v1",
+        "status": "complete",
+        "full_input": true,
+        "model": {
+          "name": "explicit contextual attestation reviews",
+          "parser": null
+        },
+        "review_status": "UNREVIEWED",
+        "field": "example",
+        "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+        "counts": {
+          "input_records": 29,
+          "compiled_records": 29,
+          "roundtrips_verified": 29,
+          "tokens_audited": 289,
+          "verb_occurrences": 62,
+          "adjective_occurrences": 15,
+          "verb_alternative_analyses": 49,
+          "adjective_alternative_analyses": 22,
+          "participle_analyses": 8,
+          "templates": 29,
+          "template_occurrences": 29,
+          "templates_with_adjectives": 14,
+          "verb_lemmas": 27,
+          "adjective_lemmas": 15,
+          "verb_alternative_lemmas": 34,
+          "adjective_alternative_forms": 19,
+          "sentence_templates_covered": 29,
+          "predicate_templates_covered": 43,
+          "constructions": 22
+        },
+        "analyses": {
+          "parsed_verbal": 29
+        },
+        "elapsed_seconds": 0.922,
+        "source_sha256": "95f259adddb8d9bcd4c4627e0d8c5f5daa33340a2d4870db9e967a9e2c4efa9e",
+        "hybrid_import": {
+          "review_status": "REVIEWED_ATTESTATIONS",
+          "admitted_occurrences": [
+            "train:2614:5:2",
+            "train:10273:2:2",
+            "train:10153:4:1",
+            "train:11013:2:2",
+            "train:1957:2:1",
+            "train:10291:8:1",
+            "train:10097:2:3",
+            "train:1436:10:1",
+            "train:10247:1:1",
+            "train:1966:2:5",
+            "train:1158:1:3",
+            "train:1725:2:1",
+            "train:8438:8:2",
+            "train:9673:4:1",
+            "test:654:4:2",
+            "val:536:1:2",
+            "train:5251:1:1",
+            "train:4496:6:3",
+            "train:8098:3:1",
+            "train:6572:4:2",
+            "train:6662:5:2",
+            "train:3121:12:2",
+            "train:3516:2:1",
+            "train:8010:3:2",
+            "train:9279:7:1",
+            "train:7976:9:1",
+            "train:9764:5:1",
+            "train:5869:6:3",
+            "val:65:11:2"
+          ],
+          "semantic_approval": false,
+          "source_revision": "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-hybrid-offline-qc-v1",
+          "review_inputs": [
+            {
+              "path": "artifacts\\dailydialog-hybrid-offline-qc-v1\\admission-reviews.jsonl",
+              "sha256": "722af7011cbb7d3d29057eb2976b6beb9598ae14644c0d7b2973fc0a875a47d2"
+            }
+          ],
+          "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+          "review_file": "artifacts\\dailydialog-hybrid-offline-qc-v1\\admission-reviews.jsonl",
+          "review_sha256": "722af7011cbb7d3d29057eb2976b6beb9598ae14644c0d7b2973fc0a875a47d2"
+        }
+      },
+      "validation": {
+        "status": "passed",
+        "source_sha256": "95f259adddb8d9bcd4c4627e0d8c5f5daa33340a2d4870db9e967a9e2c4efa9e",
+        "templates": 29,
+        "attested_roundtrips": 29,
+        "source_records": 29,
+        "token_spans": 289,
+        "verbs_occurrences": 62,
+        "adjectives_occurrences": 15
+      },
+      "publication": {
+        "format": "built-in-template-component-v1",
+        "bank_id": "dailydialog-offline-qc-v1",
+        "source_sha256": "95f259adddb8d9bcd4c4627e0d8c5f5daa33340a2d4870db9e967a9e2c4efa9e",
+        "manifest_sha256": "6aa7a9458ddd35fe491efeb67b3c98d12068fed2da2c4393bbd7a5cf7136d56a",
+        "validation_sha256": "71b360a0cbe6ef7480e356a275534a8c41cd8f88398b8d44ea640d2df66812b8"
+      },
+      "files": {
+        "adjective_alternatives.jsonl.gz": [
+          625770,
+          6694
+        ],
+        "adjectives.jsonl.gz": [
+          488117,
+          5317
+        ],
+        "constructions.jsonl.gz": [
+          2601960,
+          6763
+        ],
+        "occurrences/00000.jsonl.gz": [
+          2989387,
+          45983
+        ],
+        "templates/03.jsonl.gz": [
+          406720,
+          1576
+        ],
+        "templates/04.jsonl.gz": [
+          394694,
+          2255
+        ],
+        "templates/0e.jsonl.gz": [
+          408735,
+          3364
+        ],
+        "templates/24.jsonl.gz": [
+          413193,
+          1685
+        ],
+        "templates/25.jsonl.gz": [
+          416664,
+          1943
+        ],
+        "templates/27.jsonl.gz": [
+          416342,
+          1545
+        ],
+        "templates/3c.jsonl.gz": [
+          418770,
+          1882
+        ],
+        "templates/47.jsonl.gz": [
+          417378,
+          2919
+        ],
+        "templates/48.jsonl.gz": [
+          424505,
+          1842
+        ],
+        "templates/50.jsonl.gz": [
+          421379,
+          2051
+        ],
+        "templates/57.jsonl.gz": [
+          408127,
+          1697
+        ],
+        "templates/64.jsonl.gz": [
+          416724,
+          1473
+        ],
+        "templates/66.jsonl.gz": [
+          426081,
+          1956
+        ],
+        "templates/6c.jsonl.gz": [
+          420054,
+          1908
+        ],
+        "templates/76.jsonl.gz": [
+          407184,
+          1712
+        ],
+        "templates/7a.jsonl.gz": [
+          417762,
+          1864
+        ],
+        "templates/7d.jsonl.gz": [
+          423845,
+          1744
+        ],
+        "templates/87.jsonl.gz": [
+          429532,
+          1754
+        ],
+        "templates/8f.jsonl.gz": [
+          423037,
+          1504
+        ],
+        "templates/9e.jsonl.gz": [
+          414524,
+          1941
+        ],
+        "templates/b2.jsonl.gz": [
+          411263,
+          1620
+        ],
+        "templates/c4.jsonl.gz": [
+          423181,
+          1584
+        ],
+        "templates/c7.jsonl.gz": [
+          414589,
+          2099
+        ],
+        "templates/d6.jsonl.gz": [
+          398397,
+          1645
+        ],
+        "templates/e2.jsonl.gz": [
+          410043,
+          2257
+        ],
+        "templates/e5.jsonl.gz": [
+          422272,
+          1718
+        ],
+        "templates/ef.jsonl.gz": [
+          416679,
+          1489
+        ],
+        "templates/f4.jsonl.gz": [
+          416471,
+          1544
+        ],
+        "verb_alternatives.jsonl.gz": [
+          614658,
+          9568
+        ],
+        "verbs.jsonl.gz": [
+          845927,
+          11742
+        ]
+      }
+    },
+    {
+      "id": "dailydialog-semantic-admission-v1",
+      "manifest": {
+        "format": "corpus-templates-v1",
+        "status": "complete",
+        "full_input": true,
+        "model": {
+          "name": "explicit contextual attestation reviews",
+          "parser": null
+        },
+        "review_status": "UNREVIEWED",
+        "field": "example",
+        "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+        "counts": {
+          "input_records": 27,
+          "compiled_records": 27,
+          "roundtrips_verified": 27,
+          "tokens_audited": 395,
+          "verb_alternative_analyses": 86,
+          "verb_occurrences": 73,
+          "adjective_occurrences": 10,
+          "adjective_alternative_analyses": 33,
+          "participle_analyses": 11,
+          "templates": 27,
+          "template_occurrences": 27,
+          "templates_with_adjectives": 5,
+          "verb_lemmas": 39,
+          "adjective_lemmas": 9,
+          "verb_alternative_lemmas": 50,
+          "adjective_alternative_forms": 25,
+          "sentence_templates_covered": 27,
+          "predicate_templates_covered": 56,
+          "constructions": 26
+        },
+        "analyses": {
+          "parsed_verbal": 27
+        },
+        "elapsed_seconds": 2.737,
+        "source_sha256": "07cc77164d13d94431abbf464f24b64797270bf0e817b6042761905350dbdc84",
+        "hybrid_import": {
+          "review_status": "REVIEWED_ATTESTATIONS",
+          "admitted_occurrences": [
+            "test:111:7:1",
+            "test:164:4:1",
+            "test:28:9:1",
+            "test:34:6:2",
+            "test:364:8:5",
+            "test:542:3:2",
+            "test:570:5:2",
+            "test:600:8:3",
+            "test:933:8:2",
+            "test:933:8:3",
+            "train:10144:1:1",
+            "train:10205:2:1",
+            "train:10205:4:1",
+            "train:10211:5:2",
+            "train:10818:2:1",
+            "train:10874:10:1",
+            "train:10890:12:1",
+            "train:10927:3:1",
+            "train:10927:3:3",
+            "train:1248:2:1",
+            "train:1299:3:1",
+            "train:1312:5:1",
+            "train:1804:1:1",
+            "train:1892:5:2",
+            "train:1984:2:2",
+            "train:2009:8:1",
+            "train:2252:4:1"
+          ],
+          "semantic_approval": false,
+          "source_revision": "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-hybrid-quarantine-reviewed-v1",
+          "review_inputs": [
+            {
+              "path": "data\\dailydialog\\review-parts\\hybrid-semantic-admission-reviews-v1.jsonl",
+              "sha256": "949c7a7ea17e559c178e05d488cfd3a2547f2bbd4b9a8ed6d731cb2ed9526043"
+            }
+          ],
+          "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+          "review_file": "data\\dailydialog\\review-parts\\hybrid-semantic-admission-reviews-v1.jsonl",
+          "review_sha256": "949c7a7ea17e559c178e05d488cfd3a2547f2bbd4b9a8ed6d731cb2ed9526043"
+        }
+      },
+      "validation": {
+        "status": "passed",
+        "source_sha256": "07cc77164d13d94431abbf464f24b64797270bf0e817b6042761905350dbdc84",
+        "templates": 27,
+        "attested_roundtrips": 27,
+        "source_records": 27,
+        "token_spans": 395,
+        "verbs_occurrences": 73,
+        "adjectives_occurrences": 10
+      },
+      "publication": {
+        "format": "built-in-template-component-v1",
+        "bank_id": "dailydialog-semantic-admission-v1",
+        "source_sha256": "07cc77164d13d94431abbf464f24b64797270bf0e817b6042761905350dbdc84",
+        "manifest_sha256": "e31e07792f01bdcc601a0727467af8b2ad25ac39bd82516e14d3087922aef3dd",
+        "validation_sha256": "f82023121c42b08f26bcd12d331c764f1d59a305a80eaafc8a3a79e6e5e13ecd"
+      },
+      "files": {
+        "adjective_alternatives.jsonl.gz": [
+          632464,
+          12246
+        ],
+        "adjectives.jsonl.gz": [
+          493434,
+          3690
+        ],
+        "constructions.jsonl.gz": [
+          2608723,
+          9996
+        ],
+        "occurrences/00000.jsonl.gz": [
+          3035370,
+          228713
+        ],
+        "templates/02.jsonl.gz": [
+          444064,
+          2532
+        ],
+        "templates/05.jsonl.gz": [
+          401437,
+          1755
+        ],
+        "templates/0d.jsonl.gz": [
+          424507,
+          2836
+        ],
+        "templates/11.jsonl.gz": [
+          415253,
+          2379
+        ],
+        "templates/13.jsonl.gz": [
+          422097,
+          2457
+        ],
+        "templates/2f.jsonl.gz": [
+          394000,
+          1783
+        ],
+        "templates/3f.jsonl.gz": [
+          410923,
+          2323
+        ],
+        "templates/69.jsonl.gz": [
+          408092,
+          1919
+        ],
+        "templates/76.jsonl.gz": [
+          408896,
+          2222
+        ],
+        "templates/7b.jsonl.gz": [
+          429388,
+          2354
+        ],
+        "templates/7c.jsonl.gz": [
+          420676,
+          2077
+        ],
+        "templates/7d.jsonl.gz": [
+          425589,
+          2189
+        ],
+        "templates/99.jsonl.gz": [
+          413898,
+          2800
+        ],
+        "templates/9e.jsonl.gz": [
+          416465,
+          1863
+        ],
+        "templates/a7.jsonl.gz": [
+          423837,
+          1960
+        ],
+        "templates/b9.jsonl.gz": [
+          421306,
+          2737
+        ],
+        "templates/c9.jsonl.gz": [
+          420285,
+          2008
+        ],
+        "templates/cd.jsonl.gz": [
+          412531,
+          1769
+        ],
+        "templates/d5.jsonl.gz": [
+          410724,
+          2294
+        ],
+        "templates/d6.jsonl.gz": [
+          400042,
+          2172
+        ],
+        "templates/de.jsonl.gz": [
+          412194,
+          1568
+        ],
+        "templates/e1.jsonl.gz": [
+          411571,
+          2294
+        ],
+        "templates/e5.jsonl.gz": [
+          423990,
+          2002
+        ],
+        "templates/f1.jsonl.gz": [
+          411577,
+          1804
+        ],
+        "templates/f2.jsonl.gz": [
+          424496,
+          1989
+        ],
+        "templates/ff.jsonl.gz": [
+          421891,
+          1756
+        ],
+        "verb_alternatives.jsonl.gz": [
+          624226,
+          22326
+        ],
+        "verbs.jsonl.gz": [
+          857669,
+          21405
+        ]
+      }
+    },
+    {
+      "id": "dailydialog-constructions-admission-v2",
+      "manifest": {
+        "format": "corpus-templates-v1",
+        "status": "complete",
+        "full_input": true,
+        "model": {
+          "name": "explicit contextual attestation reviews",
+          "parser": null
+        },
+        "review_status": "UNREVIEWED",
+        "field": "example",
+        "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+        "counts": {
+          "input_records": 11,
+          "compiled_records": 11,
+          "roundtrips_verified": 11,
+          "tokens_audited": 191,
+          "verb_alternative_analyses": 52,
+          "adjective_alternative_analyses": 17,
+          "adjective_occurrences": 7,
+          "verb_occurrences": 29,
+          "participle_analyses": 5,
+          "templates": 11,
+          "template_occurrences": 11,
+          "templates_with_adjectives": 6,
+          "verb_lemmas": 19,
+          "adjective_lemmas": 7,
+          "verb_alternative_lemmas": 41,
+          "adjective_alternative_forms": 17,
+          "sentence_templates_covered": 11,
+          "predicate_templates_covered": 21,
+          "constructions": 7
+        },
+        "analyses": {
+          "parsed_verbal": 11
+        },
+        "elapsed_seconds": 0.795,
+        "source_sha256": "6bd561e3a388d99da02eea1661fde49500a3cf9c547d0921264bceb1fb66308b",
+        "hybrid_import": {
+          "review_status": "REVIEWED_ATTESTATIONS",
+          "admitted_occurrences": [
+            "test:30:2:7",
+            "test:390:4:1",
+            "test:517:7:1",
+            "test:640:2:1",
+            "train:10144:9:1",
+            "train:10622:2:1",
+            "train:10978:7:2",
+            "train:1216:5:1",
+            "train:2186:1:2",
+            "train:2342:3:2",
+            "train:2381:5:3"
+          ],
+          "semantic_approval": false,
+          "source_revision": "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-hybrid-quarantine-constructions-v2",
+          "review_inputs": [
+            {
+              "path": "data\\dailydialog\\review-parts\\hybrid-constructions-admission-reviews-v2.jsonl",
+              "sha256": "4260e161c28a03326710ac0c29e2c1759d680b9bac1fbaa43641a0ba13ef8d91"
+            }
+          ],
+          "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+          "review_file": "data\\dailydialog\\review-parts\\hybrid-constructions-admission-reviews-v2.jsonl",
+          "review_sha256": "4260e161c28a03326710ac0c29e2c1759d680b9bac1fbaa43641a0ba13ef8d91"
+        }
+      },
+      "validation": {
+        "status": "passed",
+        "source_sha256": "6bd561e3a388d99da02eea1661fde49500a3cf9c547d0921264bceb1fb66308b",
+        "templates": 11,
+        "attested_roundtrips": 11,
+        "source_records": 11,
+        "token_spans": 191,
+        "verbs_occurrences": 29,
+        "adjectives_occurrences": 7
+      },
+      "publication": {
+        "format": "built-in-template-component-v1",
+        "bank_id": "dailydialog-constructions-admission-v2",
+        "source_sha256": "6bd561e3a388d99da02eea1661fde49500a3cf9c547d0921264bceb1fb66308b",
+        "manifest_sha256": "7f959a10d6110540a41987805f16d75e264e5f7335be66847edac6b247a18704",
+        "validation_sha256": "9cb2246fca903f5996a03004aba9c78b109b45a7f68dc874688912892f2a4c36"
+      },
+      "files": {
+        "adjective_alternatives.jsonl.gz": [
+          644710,
+          6312
+        ],
+        "adjectives.jsonl.gz": [
+          497124,
+          4112
+        ],
+        "constructions.jsonl.gz": [
+          2618719,
+          3711
+        ],
+        "occurrences/00000.jsonl.gz": [
+          3264083,
+          137445
+        ],
+        "templates/06.jsonl.gz": [
+          406683,
+          1853
+        ],
+        "templates/3c.jsonl.gz": [
+          420652,
+          2483
+        ],
+        "templates/4f.jsonl.gz": [
+          409803,
+          2657
+        ],
+        "templates/55.jsonl.gz": [
+          417051,
+          1705
+        ],
+        "templates/59.jsonl.gz": [
+          397896,
+          1803
+        ],
+        "templates/67.jsonl.gz": [
+          408285,
+          1932
+        ],
+        "templates/81.jsonl.gz": [
+          428825,
+          2435
+        ],
+        "templates/94.jsonl.gz": [
+          409332,
+          2244
+        ],
+        "templates/a1.jsonl.gz": [
+          425321,
+          1852
+        ],
+        "templates/bc.jsonl.gz": [
+          420307,
+          2946
+        ],
+        "templates/e5.jsonl.gz": [
+          425992,
+          2108
+        ],
+        "verb_alternatives.jsonl.gz": [
+          646552,
+          13173
+        ],
+        "verbs.jsonl.gz": [
+          879074,
+          8758
+        ]
+      }
+    },
+    {
+      "id": "dailydialog-token-boundaries-admission-v4",
+      "manifest": {
+        "format": "corpus-templates-v1",
+        "status": "complete",
+        "full_input": true,
+        "model": {
+          "name": "explicit contextual attestation reviews",
+          "parser": null
+        },
+        "review_status": "UNREVIEWED",
+        "field": "example",
+        "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+        "counts": {
+          "input_records": 10,
+          "compiled_records": 10,
+          "roundtrips_verified": 10,
+          "tokens_audited": 161,
+          "verb_occurrences": 34,
+          "verb_alternative_analyses": 33,
+          "participle_analyses": 4,
+          "adjective_alternative_analyses": 4,
+          "adjective_occurrences": 4,
+          "templates": 10,
+          "template_occurrences": 10,
+          "templates_with_adjectives": 4,
+          "verb_lemmas": 21,
+          "adjective_lemmas": 3,
+          "verb_alternative_lemmas": 22,
+          "adjective_alternative_forms": 6,
+          "sentence_templates_covered": 9,
+          "predicate_templates_covered": 22,
+          "constructions": 9
+        },
+        "analyses": {
+          "parsed_verbal": 10
+        },
+        "elapsed_seconds": 0.71,
+        "source_sha256": "c9f45ff6119e7fc94805500dfe9f6c5442454bc4800ffab0d0c710a30394b259",
+        "hybrid_import": {
+          "review_status": "REVIEWED_ATTESTATIONS",
+          "admitted_occurrences": [
+            "test:157:10:1",
+            "test:192:4:2",
+            "test:331:4:1",
+            "test:459:4:1",
+            "train:1075:4:1",
+            "train:1854:8:1",
+            "train:2067:10:1",
+            "train:2328:8:1",
+            "train:2582:5:1",
+            "train:11063:10:2"
+          ],
+          "semantic_approval": false,
+          "source_revision": "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-hybrid-token-boundaries-v4",
+          "review_inputs": [
+            {
+              "path": "data\\dailydialog\\review-parts\\hybrid-token-boundaries-admission-reviews-v4.jsonl",
+              "sha256": "710bab5487b8ee99a79be194e71bfb36f8df869670eff86b4cb25608463b09b5"
+            }
+          ],
+          "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+          "review_file": "data\\dailydialog\\review-parts\\hybrid-token-boundaries-admission-reviews-v4.jsonl",
+          "review_sha256": "710bab5487b8ee99a79be194e71bfb36f8df869670eff86b4cb25608463b09b5"
+        }
+      },
+      "validation": {
+        "status": "passed",
+        "source_sha256": "c9f45ff6119e7fc94805500dfe9f6c5442454bc4800ffab0d0c710a30394b259",
+        "templates": 10,
+        "attested_roundtrips": 10,
+        "source_records": 10,
+        "token_spans": 161,
+        "verbs_occurrences": 34,
+        "adjectives_occurrences": 4
+      },
+      "publication": {
+        "format": "built-in-template-component-v1",
+        "bank_id": "dailydialog-token-boundaries-admission-v4",
+        "source_sha256": "c9f45ff6119e7fc94805500dfe9f6c5442454bc4800ffab0d0c710a30394b259",
+        "manifest_sha256": "65fab9d75dac16f7186917dda5da9671b90af0e1f650e93cbd9ee11bac36ce88",
+        "validation_sha256": "5e5813abdfe9467a7cf0bf6e02f6dc936249d3e4625e0ddd40fc868d0756ba9d"
+      },
+      "files": {
+        "adjective_alternatives.jsonl.gz": [
+          651022,
+          4708
+        ],
+        "adjectives.jsonl.gz": [
+          501236,
+          2614
+        ],
+        "constructions.jsonl.gz": [
+          2622430,
+          4434
+        ],
+        "occurrences/00000.jsonl.gz": [
+          3401528,
+          71605
+        ],
+        "templates/11.jsonl.gz": [
+          417632,
+          2372
+        ],
+        "templates/18.jsonl.gz": [
+          427752,
+          2197
+        ],
+        "templates/58.jsonl.gz": [
+          428097,
+          2008
+        ],
+        "templates/66.jsonl.gz": [
+          428037,
+          2488
+        ],
+        "templates/6f.jsonl.gz": [
+          417616,
+          2311
+        ],
+        "templates/71.jsonl.gz": [
+          414578,
+          2257
+        ],
+        "templates/7b.jsonl.gz": [
+          431742,
+          2393
+        ],
+        "templates/91.jsonl.gz": [
+          417653,
+          2158
+        ],
+        "templates/ca.jsonl.gz": [
+          402611,
+          2376
+        ],
+        "templates/d1.jsonl.gz": [
+          416804,
+          2310
+        ],
+        "verb_alternatives.jsonl.gz": [
+          659725,
+          7255
+        ],
+        "verbs.jsonl.gz": [
+          887832,
+          8873
+        ]
+      }
+    },
+    {
+      "id": "dailydialog-quote-boundaries-admission-v5",
+      "manifest": {
+        "format": "corpus-templates-v1",
+        "status": "complete",
+        "full_input": true,
+        "model": {
+          "name": "explicit contextual attestation reviews",
+          "parser": null
+        },
+        "review_status": "UNREVIEWED",
+        "field": "example",
+        "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+        "counts": {
+          "input_records": 6,
+          "compiled_records": 6,
+          "roundtrips_verified": 6,
+          "tokens_audited": 128,
+          "verb_occurrences": 31,
+          "participle_analyses": 5,
+          "verb_alternative_analyses": 31,
+          "adjective_alternative_analyses": 16,
+          "adjective_occurrences": 5,
+          "templates": 6,
+          "template_occurrences": 6,
+          "templates_with_adjectives": 3,
+          "verb_lemmas": 23,
+          "adjective_lemmas": 4,
+          "verb_alternative_lemmas": 19,
+          "adjective_alternative_forms": 14,
+          "sentence_templates_covered": 6,
+          "predicate_templates_covered": 23,
+          "constructions": 10
+        },
+        "analyses": {
+          "parsed_verbal": 6
+        },
+        "elapsed_seconds": 0.533,
+        "source_sha256": "7a700b62fdd3d9f30fd3d375a2854d9f0a8d5500a8eb89f6456b694b32d799fa",
+        "hybrid_import": {
+          "review_status": "REVIEWED_ATTESTATIONS",
+          "admitted_occurrences": [
+            "train:1007:1:3",
+            "train:1425:5:2",
+            "train:1588:9:2",
+            "train:1762:5:1",
+            "test:188:8:2",
+            "test:199:2:2"
+          ],
+          "semantic_approval": false,
+          "source_revision": "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-hybrid-quote-boundaries-v5",
+          "review_inputs": [
+            {
+              "path": "data\\dailydialog\\review-parts\\hybrid-quote-boundaries-admission-reviews-v5.jsonl",
+              "sha256": "c3bb5ef423008a71b8b49730eb6ca824025ca32a5ae558a113148456e5f58061"
+            }
+          ],
+          "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+          "review_file": "data\\dailydialog\\review-parts\\hybrid-quote-boundaries-admission-reviews-v5.jsonl",
+          "review_sha256": "c3bb5ef423008a71b8b49730eb6ca824025ca32a5ae558a113148456e5f58061"
+        }
+      },
+      "validation": {
+        "status": "passed",
+        "source_sha256": "7a700b62fdd3d9f30fd3d375a2854d9f0a8d5500a8eb89f6456b694b32d799fa",
+        "templates": 6,
+        "attested_roundtrips": 6,
+        "source_records": 6,
+        "token_spans": 128,
+        "verbs_occurrences": 31,
+        "adjectives_occurrences": 5
+      },
+      "publication": {
+        "format": "built-in-template-component-v1",
+        "bank_id": "dailydialog-quote-boundaries-admission-v5",
+        "source_sha256": "7a700b62fdd3d9f30fd3d375a2854d9f0a8d5500a8eb89f6456b694b32d799fa",
+        "manifest_sha256": "8a5d907e9d88bee8c1c55417adbebfc2e1bfff12af4707a478f1b3ec710063e0",
+        "validation_sha256": "e64af21a9f666136e14cb774bcf5b714d8afd791b6e7d395438780054e5f4748"
+      },
+      "files": {
+        "adjective_alternatives.jsonl.gz": [
+          655730,
+          5230
+        ],
+        "adjectives.jsonl.gz": [
+          503850,
+          2785
+        ],
+        "constructions.jsonl.gz": [
+          2626864,
+          4514
+        ],
+        "occurrences/00000.jsonl.gz": [
+          3473133,
+          63639
+        ],
+        "templates/32.jsonl.gz": [
+          416916,
+          3516
+        ],
+        "templates/5d.jsonl.gz": [
+          405034,
+          2625
+        ],
+        "templates/ae.jsonl.gz": [
+          420855,
+          2266
+        ],
+        "templates/bd.jsonl.gz": [
+          417325,
+          2460
+        ],
+        "templates/d0.jsonl.gz": [
+          414786,
+          2826
+        ],
+        "templates/d8.jsonl.gz": [
+          411767,
+          2207
+        ],
+        "verb_alternatives.jsonl.gz": [
+          666980,
+          7756
+        ],
+        "verbs.jsonl.gz": [
+          896705,
+          8709
+        ]
+      }
+    },
+    {
+      "id": "dailydialog-possessives-admission-v6",
+      "manifest": {
+        "format": "corpus-templates-v1",
+        "status": "complete",
+        "full_input": true,
+        "model": {
+          "name": "explicit contextual attestation reviews",
+          "parser": null
+        },
+        "review_status": "UNREVIEWED",
+        "field": "example",
+        "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+        "counts": {
+          "input_records": 8,
+          "compiled_records": 8,
+          "roundtrips_verified": 8,
+          "tokens_audited": 85,
+          "verb_alternative_analyses": 17,
+          "verb_occurrences": 14,
+          "adjective_alternative_analyses": 12,
+          "adjective_occurrences": 3,
+          "participle_analyses": 2,
+          "templates": 8,
+          "template_occurrences": 8,
+          "templates_with_adjectives": 3,
+          "verb_lemmas": 9,
+          "adjective_lemmas": 3,
+          "verb_alternative_lemmas": 15,
+          "adjective_alternative_forms": 9,
+          "sentence_templates_covered": 8,
+          "predicate_templates_covered": 11,
+          "constructions": 8
+        },
+        "analyses": {
+          "parsed_verbal": 8
+        },
+        "elapsed_seconds": 0.598,
+        "source_sha256": "4eba0fa7419e9634f4d06483cabac43700e1934cdb895c88e62ab9b1cfb6458a",
+        "hybrid_import": {
+          "review_status": "REVIEWED_ATTESTATIONS",
+          "admitted_occurrences": [
+            "train:1007:2:1",
+            "train:1007:2:2",
+            "train:1007:2:3",
+            "train:1007:2:4",
+            "train:10944:8:2",
+            "train:10944:8:3",
+            "train:10944:8:4",
+            "train:10979:2:1"
+          ],
+          "semantic_approval": false,
+          "source_revision": "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-hybrid-possessives-v6",
+          "review_inputs": [
+            {
+              "path": "data\\dailydialog\\review-parts\\hybrid-possessives-admission-reviews-v6.jsonl",
+              "sha256": "3cc0934ba5e1ab20b8e69c234115b18989dbf2ea531419f9e146641659bc238f"
+            }
+          ],
+          "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+          "review_file": "data\\dailydialog\\review-parts\\hybrid-possessives-admission-reviews-v6.jsonl",
+          "review_sha256": "3cc0934ba5e1ab20b8e69c234115b18989dbf2ea531419f9e146641659bc238f"
+        }
+      },
+      "validation": {
+        "status": "passed",
+        "source_sha256": "4eba0fa7419e9634f4d06483cabac43700e1934cdb895c88e62ab9b1cfb6458a",
+        "templates": 8,
+        "attested_roundtrips": 8,
+        "source_records": 8,
+        "token_spans": 85,
+        "verbs_occurrences": 14,
+        "adjectives_occurrences": 3
+      },
+      "publication": {
+        "format": "built-in-template-component-v1",
+        "bank_id": "dailydialog-possessives-admission-v6",
+        "source_sha256": "4eba0fa7419e9634f4d06483cabac43700e1934cdb895c88e62ab9b1cfb6458a",
+        "manifest_sha256": "a42e0ecefeeb6975e4a29da42f5b1b3bc4d4978c9be202745d01bbf07aa75fb9",
+        "validation_sha256": "64593f55d80e2cf1cde977f6e223cc268725c47bb75d719ba98084e4e180c95d"
+      },
+      "files": {
+        "adjective_alternatives.jsonl.gz": [
+          660960,
+          4035
+        ],
+        "adjectives.jsonl.gz": [
+          506635,
+          2514
+        ],
+        "constructions.jsonl.gz": [
+          2631378,
+          3543
+        ],
+        "occurrences/00000.jsonl.gz": [
+          3536772,
+          129035
+        ],
+        "templates/0d.jsonl.gz": [
+          427343,
+          2639
+        ],
+        "templates/1e.jsonl.gz": [
+          404100,
+          2784
+        ],
+        "templates/34.jsonl.gz": [
+          414220,
+          2301
+        ],
+        "templates/55.jsonl.gz": [
+          418756,
+          2141
+        ],
+        "templates/73.jsonl.gz": [
+          403872,
+          2264
+        ],
+        "templates/9b.jsonl.gz": [
+          405258,
+          2126
+        ],
+        "templates/b8.jsonl.gz": [
+          405905,
+          2312
+        ],
+        "templates/eb.jsonl.gz": [
+          417215,
+          1896
+        ],
+        "verb_alternatives.jsonl.gz": [
+          674736,
+          4824
+        ],
+        "verbs.jsonl.gz": [
+          905414,
+          5277
+        ]
+      }
+    },
+    {
+      "id": "dailydialog-attributes-admission-v7",
+      "manifest": {
+        "format": "corpus-templates-v1",
+        "status": "complete",
+        "full_input": true,
+        "model": {
+          "name": "explicit contextual attestation reviews",
+          "parser": null
+        },
+        "review_status": "UNREVIEWED",
+        "field": "example",
+        "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+        "counts": {
+          "input_records": 58,
+          "compiled_records": 58,
+          "roundtrips_verified": 58,
+          "tokens_audited": 560,
+          "verb_alternative_analyses": 120,
+          "verb_occurrences": 115,
+          "participle_analyses": 12,
+          "adjective_occurrences": 67,
+          "adjective_alternative_analyses": 34,
+          "templates": 58,
+          "template_occurrences": 58,
+          "templates_with_adjectives": 49,
+          "verb_lemmas": 36,
+          "adjective_lemmas": 43,
+          "verb_alternative_lemmas": 75,
+          "adjective_alternative_forms": 30,
+          "sentence_templates_covered": 44,
+          "predicate_templates_covered": 68,
+          "constructions": 27
+        },
+        "analyses": {
+          "parsed_verbal": 58
+        },
+        "elapsed_seconds": 1.64,
+        "source_sha256": "8f95263d5781d74cb26ecea5777d7c30911c3e8e76b29142f063730af281cff2",
+        "hybrid_import": {
+          "review_status": "REVIEWED_ATTESTATIONS",
+          "admitted_occurrences": [
+            "test:235:11:1",
+            "test:36:7:1",
+            "test:403:5:2",
+            "test:486:2:2",
+            "test:563:3:2",
+            "test:944:2:2",
+            "train:1083:1:2",
+            "train:1528:1:2",
+            "train:1550:1:2",
+            "train:1580:1:1",
+            "train:1681:1:2",
+            "train:1924:1:2",
+            "train:2191:2:1",
+            "train:2233:2:2",
+            "test:565:1:1",
+            "test:593:4:1",
+            "test:644:3:1",
+            "test:808:7:3",
+            "test:984:10:3",
+            "train:10073:1:3",
+            "train:10282:2:1",
+            "train:10299:2:1",
+            "train:10437:7:3",
+            "train:10623:14:1",
+            "train:1397:14:1",
+            "train:10642:3:1",
+            "train:10778:3:1",
+            "train:10808:6:2",
+            "train:11051:6:1",
+            "train:1127:3:2",
+            "train:1128:5:1",
+            "train:2039:5:1",
+            "train:1225:6:1",
+            "train:1363:5:2",
+            "train:2088:5:2",
+            "train:1432:6:2",
+            "train:1473:12:1",
+            "train:1530:11:2",
+            "train:1588:8:2",
+            "train:1690:9:3",
+            "train:1738:9:1",
+            "train:1761:1:1",
+            "train:1792:4:3",
+            "train:1850:7:1",
+            "train:2021:1:1",
+            "train:2088:6:2",
+            "train:2102:7:1",
+            "train:2154:4:1",
+            "train:2193:10:2",
+            "train:2193:1:1",
+            "train:2217:7:2",
+            "train:2522:7:2",
+            "train:2223:10:1",
+            "train:2234:2:2",
+            "train:2361:2:3",
+            "train:4352:8:3",
+            "train:2373:11:2",
+            "train:2373:3:2"
+          ],
+          "semantic_approval": false,
+          "source_revision": "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-hybrid-attributes-v7",
+          "review_inputs": [
+            {
+              "path": "data\\dailydialog\\review-parts\\hybrid-attributes-admission-reviews-v7.jsonl",
+              "sha256": "f28b4494e196567a5e472b589501532ba7c4be1ef58b5054e2cad6e341287590"
+            }
+          ],
+          "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+          "review_file": "data\\dailydialog\\review-parts\\hybrid-attributes-admission-reviews-v7.jsonl",
+          "review_sha256": "f28b4494e196567a5e472b589501532ba7c4be1ef58b5054e2cad6e341287590"
+        }
+      },
+      "validation": {
+        "status": "passed",
+        "source_sha256": "8f95263d5781d74cb26ecea5777d7c30911c3e8e76b29142f063730af281cff2",
+        "templates": 58,
+        "attested_roundtrips": 58,
+        "source_records": 58,
+        "token_spans": 560,
+        "verbs_occurrences": 115,
+        "adjectives_occurrences": 67
+      },
+      "publication": {
+        "format": "built-in-template-component-v1",
+        "bank_id": "dailydialog-attributes-admission-v7",
+        "source_sha256": "8f95263d5781d74cb26ecea5777d7c30911c3e8e76b29142f063730af281cff2",
+        "manifest_sha256": "d309c82676a1b8a36e0d2d508b85d8d166f61bc0f603fa82b0abee6afe4fcd80",
+        "validation_sha256": "66e6959b39e0419f43b872198937721a72cf7eccc2a11e32a21f864472837063"
+      },
+      "files": {
+        "adjective_alternatives.jsonl.gz": [
+          664995,
+          18122
+        ],
+        "adjectives.jsonl.gz": [
+          509149,
+          26936
+        ],
+        "constructions.jsonl.gz": [
+          2634921,
+          13434
+        ],
+        "occurrences/00000.jsonl.gz": [
+          3665807,
+          273943
+        ],
+        "templates/02.jsonl.gz": [
+          446596,
+          2486
+        ],
+        "templates/06.jsonl.gz": [
+          408536,
+          1997
+        ],
+        "templates/13.jsonl.gz": [
+          424554,
+          2008
+        ],
+        "templates/14.jsonl.gz": [
+          409080,
+          3748
+        ],
+        "templates/15.jsonl.gz": [
+          426839,
+          2513
+        ],
+        "templates/1b.jsonl.gz": [
+          433692,
+          1888
+        ],
+        "templates/1e.jsonl.gz": [
+          406884,
+          1783
+        ],
+        "templates/23.jsonl.gz": [
+          430592,
+          1907
+        ],
+        "templates/2a.jsonl.gz": [
+          431374,
+          1787
+        ],
+        "templates/3a.jsonl.gz": [
+          417876,
+          1772
+        ],
+        "templates/41.jsonl.gz": [
+          414371,
+          2364
+        ],
+        "templates/48.jsonl.gz": [
+          426347,
+          2068
+        ],
+        "templates/4a.jsonl.gz": [
+          420371,
+          1735
+        ],
+        "templates/54.jsonl.gz": [
+          413389,
+          3946
+        ],
+        "templates/55.jsonl.gz": [
+          420897,
+          3786
+        ],
+        "templates/59.jsonl.gz": [
+          399699,
+          2003
+        ],
+        "templates/5e.jsonl.gz": [
+          421430,
+          3340
+        ],
+        "templates/60.jsonl.gz": [
+          402504,
+          1747
+        ],
+        "templates/61.jsonl.gz": [
+          425706,
+          1748
+        ],
+        "templates/64.jsonl.gz": [
+          418197,
+          2544
+        ],
+        "templates/6c.jsonl.gz": [
+          421962,
+          3572
+        ],
+        "templates/82.jsonl.gz": [
+          420440,
+          1814
+        ],
+        "templates/8e.jsonl.gz": [
+          420108,
+          2013
+        ],
+        "templates/97.jsonl.gz": [
+          418683,
+          1921
+        ],
+        "templates/9e.jsonl.gz": [
+          418328,
+          1964
+        ],
+        "templates/a2.jsonl.gz": [
+          409571,
+          3872
+        ],
+        "templates/b3.jsonl.gz": [
+          428641,
+          2643
+        ],
+        "templates/b6.jsonl.gz": [
+          418145,
+          1870
+        ],
+        "templates/b9.jsonl.gz": [
+          424043,
+          2908
+        ],
+        "templates/ba.jsonl.gz": [
+          429046,
+          2517
+        ],
+        "templates/bd.jsonl.gz": [
+          419785,
+          2067
+        ],
+        "templates/be.jsonl.gz": [
+          422057,
+          1900
+        ],
+        "templates/c8.jsonl.gz": [
+          393841,
+          1820
+        ],
+        "templates/cb.jsonl.gz": [
+          430126,
+          2505
+        ],
+        "templates/d3.jsonl.gz": [
+          422106,
+          1832
+        ],
+        "templates/d4.jsonl.gz": [
+          404499,
+          2055
+        ],
+        "templates/df.jsonl.gz": [
+          407431,
+          2967
+        ],
+        "templates/e4.jsonl.gz": [
+          421318,
+          1897
+        ],
+        "templates/e6.jsonl.gz": [
+          427455,
+          1949
+        ],
+        "templates/e7.jsonl.gz": [
+          407227,
+          2157
+        ],
+        "templates/e9.jsonl.gz": [
+          392241,
+          2181
+        ],
+        "templates/ea.jsonl.gz": [
+          410261,
+          2099
+        ],
+        "templates/ed.jsonl.gz": [
+          422946,
+          1662
+        ],
+        "templates/ee.jsonl.gz": [
+          422952,
+          2145
+        ],
+        "templates/f3.jsonl.gz": [
+          411613,
+          3772
+        ],
+        "templates/f9.jsonl.gz": [
+          415918,
+          2310
+        ],
+        "templates/fa.jsonl.gz": [
+          396067,
+          2189
+        ],
+        "templates/fc.jsonl.gz": [
+          426075,
+          2278
+        ],
+        "templates/fe.jsonl.gz": [
+          422590,
+          2341
+        ],
+        "verb_alternatives.jsonl.gz": [
+          679560,
+          43289
+        ],
+        "verbs.jsonl.gz": [
+          910691,
+          25026
+        ]
+      }
+    },
+    {
+      "id": "dailydialog-clauses-admission-v8",
+      "manifest": {
+        "format": "corpus-templates-v1",
+        "status": "complete",
+        "full_input": true,
+        "model": {
+          "name": "explicit contextual attestation reviews",
+          "parser": null
+        },
+        "review_status": "UNREVIEWED",
+        "field": "example",
+        "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+        "counts": {
+          "input_records": 39,
+          "compiled_records": 39,
+          "roundtrips_verified": 39,
+          "tokens_audited": 574,
+          "verb_alternative_analyses": 118,
+          "verb_occurrences": 120,
+          "adjective_alternative_analyses": 41,
+          "participle_analyses": 13,
+          "adjective_occurrences": 33,
+          "templates": 39,
+          "template_occurrences": 39,
+          "templates_with_adjectives": 24,
+          "verb_lemmas": 54,
+          "adjective_lemmas": 28,
+          "verb_alternative_lemmas": 74,
+          "adjective_alternative_forms": 27,
+          "sentence_templates_covered": 38,
+          "predicate_templates_covered": 90,
+          "constructions": 31
+        },
+        "analyses": {
+          "parsed_verbal": 39
+        },
+        "elapsed_seconds": 1.39,
+        "source_sha256": "87fb54262ea36273af2ebf299f9d314ac261b08d2e46cebb3fc37fd98844b616",
+        "hybrid_import": {
+          "review_status": "REVIEWED_ATTESTATIONS",
+          "admitted_occurrences": [
+            "test:158:2:1",
+            "test:390:8:1",
+            "test:808:13:4",
+            "test:813:10:1",
+            "train:10012:16:1",
+            "train:10026:10:1",
+            "train:10042:5:3",
+            "train:10097:4:2",
+            "train:10108:4:2",
+            "train:2299:1:2",
+            "train:10104:3:1",
+            "train:10337:9:4",
+            "train:1059:8:4",
+            "train:10608:11:2",
+            "train:10647:7:1",
+            "train:10651:4:1",
+            "train:1065:5:1",
+            "train:10821:2:2",
+            "train:10937:3:2",
+            "train:10962:4:2",
+            "train:10981:3:3",
+            "train:11097:4:1",
+            "train:1133:8:2",
+            "train:1322:10:1",
+            "train:1371:7:3",
+            "train:1407:3:1",
+            "train:1679:6:2",
+            "train:1906:4:2",
+            "train:1952:2:1",
+            "train:2215:6:2",
+            "train:2498:1:4",
+            "train:2525:9:1",
+            "train:2564:5:2",
+            "train:2575:4:1",
+            "train:2636:10:1",
+            "train:2641:11:2",
+            "test:403:4:1",
+            "test:403:4:2",
+            "test:403:4:3"
+          ],
+          "semantic_approval": false,
+          "source_revision": "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-hybrid-clauses-v8",
+          "review_inputs": [
+            {
+              "path": "data\\dailydialog\\review-parts\\hybrid-clauses-admission-reviews-v8.jsonl",
+              "sha256": "243b8b226e04743fdc6e14a1d9fbb3bdcadd4a480b7533fbd8e8c4b94818a134"
+            }
+          ],
+          "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+          "review_file": "data\\dailydialog\\review-parts\\hybrid-clauses-admission-reviews-v8.jsonl",
+          "review_sha256": "243b8b226e04743fdc6e14a1d9fbb3bdcadd4a480b7533fbd8e8c4b94818a134"
+        }
+      },
+      "validation": {
+        "status": "passed",
+        "source_sha256": "87fb54262ea36273af2ebf299f9d314ac261b08d2e46cebb3fc37fd98844b616",
+        "templates": 39,
+        "attested_roundtrips": 39,
+        "source_records": 39,
+        "token_spans": 574,
+        "verbs_occurrences": 120,
+        "adjectives_occurrences": 33
+      },
+      "publication": {
+        "format": "built-in-template-component-v1",
+        "bank_id": "dailydialog-clauses-admission-v8",
+        "source_sha256": "87fb54262ea36273af2ebf299f9d314ac261b08d2e46cebb3fc37fd98844b616",
+        "manifest_sha256": "143d0dd1de831baf95e508fc34faf17aa7a7905c913ef5044a1cebe34419cc41",
+        "validation_sha256": "09bcc2a7b802c9d01b393550ae7c02c3a789b3ade3e6ae02e6874bc38fc41b45"
+      },
+      "files": {
+        "adjective_alternatives.jsonl.gz": [
+          683117,
+          17924
+        ],
+        "adjectives.jsonl.gz": [
+          536085,
+          14996
+        ],
+        "constructions.jsonl.gz": [
+          2648355,
+          16794
+        ],
+        "occurrences/00000.jsonl.gz": [
+          3939750,
+          268170
+        ],
+        "templates/01.jsonl.gz": [
+          408321,
+          2619
+        ],
+        "templates/07.jsonl.gz": [
+          409300,
+          2701
+        ],
+        "templates/12.jsonl.gz": [
+          409406,
+          1907
+        ],
+        "templates/13.jsonl.gz": [
+          426562,
+          2269
+        ],
+        "templates/16.jsonl.gz": [
+          425370,
+          1977
+        ],
+        "templates/18.jsonl.gz": [
+          429949,
+          2018
+        ],
+        "templates/27.jsonl.gz": [
+          417887,
+          2505
+        ],
+        "templates/3c.jsonl.gz": [
+          423135,
+          3336
+        ],
+        "templates/4a.jsonl.gz": [
+          422106,
+          2597
+        ],
+        "templates/5b.jsonl.gz": [
+          412945,
+          1862
+        ],
+        "templates/5c.jsonl.gz": [
+          428498,
+          1848
+        ],
+        "templates/5f.jsonl.gz": [
+          440697,
+          2118
+        ],
+        "templates/64.jsonl.gz": [
+          420741,
+          1996
+        ],
+        "templates/67.jsonl.gz": [
+          410217,
+          2418
+        ],
+        "templates/6c.jsonl.gz": [
+          425534,
+          2607
+        ],
+        "templates/70.jsonl.gz": [
+          429043,
+          2346
+        ],
+        "templates/72.jsonl.gz": [
+          412494,
+          2439
+        ],
+        "templates/74.jsonl.gz": [
+          407092,
+          2158
+        ],
+        "templates/88.jsonl.gz": [
+          415684,
+          2718
+        ],
+        "templates/90.jsonl.gz": [
+          400253,
+          2557
+        ],
+        "templates/a0.jsonl.gz": [
+          395201,
+          2436
+        ],
+        "templates/a2.jsonl.gz": [
+          413443,
+          2128
+        ],
+        "templates/a6.jsonl.gz": [
+          401720,
+          3755
+        ],
+        "templates/aa.jsonl.gz": [
+          428595,
+          2841
+        ],
+        "templates/ac.jsonl.gz": [
+          437072,
+          2770
+        ],
+        "templates/b2.jsonl.gz": [
+          412883,
+          2312
+        ],
+        "templates/b8.jsonl.gz": [
+          408217,
+          4633
+        ],
+        "templates/d1.jsonl.gz": [
+          419114,
+          1948
+        ],
+        "templates/d3.jsonl.gz": [
+          423938,
+          1859
+        ],
+        "templates/d5.jsonl.gz": [
+          413018,
+          1878
+        ],
+        "templates/d6.jsonl.gz": [
+          402214,
+          2285
+        ],
+        "templates/e0.jsonl.gz": [
+          414401,
+          1898
+        ],
+        "templates/ee.jsonl.gz": [
+          425097,
+          2057
+        ],
+        "templates/f1.jsonl.gz": [
+          413381,
+          1918
+        ],
+        "templates/f4.jsonl.gz": [
+          418015,
+          2272
+        ],
+        "templates/f9.jsonl.gz": [
+          418228,
+          2329
+        ],
+        "verb_alternatives.jsonl.gz": [
+          722849,
+          44244
+        ],
+        "verbs.jsonl.gz": [
+          935717,
+          35850
+        ]
+      }
+    },
+    {
+      "id": "dailydialog-coordination-admission-v9",
+      "manifest": {
+        "format": "corpus-templates-v1",
+        "status": "complete",
+        "full_input": true,
+        "model": {
+          "name": "explicit contextual attestation reviews",
+          "parser": null
+        },
+        "review_status": "UNREVIEWED",
+        "field": "example",
+        "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+        "counts": {
+          "input_records": 65,
+          "compiled_records": 65,
+          "roundtrips_verified": 65,
+          "tokens_audited": 1185,
+          "verb_occurrences": 270,
+          "adjective_occurrences": 56,
+          "verb_alternative_analyses": 260,
+          "adjective_alternative_analyses": 99,
+          "participle_analyses": 31,
+          "templates": 65,
+          "template_occurrences": 65,
+          "templates_with_adjectives": 35,
+          "verb_lemmas": 83,
+          "adjective_lemmas": 44,
+          "verb_alternative_lemmas": 122,
+          "adjective_alternative_forms": 54,
+          "sentence_templates_covered": 60,
+          "predicate_templates_covered": 174,
+          "constructions": 54
+        },
+        "analyses": {
+          "parsed_verbal": 65
+        },
+        "elapsed_seconds": 1.917,
+        "source_sha256": "deb011e58b3c8efe18772e24a851e59e3aef04cf64d915eeb40041d9b7d1e9d8",
+        "hybrid_import": {
+          "review_status": "REVIEWED_ATTESTATIONS",
+          "admitted_occurrences": [
+            "test:144:9:1",
+            "test:223:2:1",
+            "test:355:1:1",
+            "test:372:8:2",
+            "test:517:9:1",
+            "test:650:4:2",
+            "test:74:11:1",
+            "test:752:6:4",
+            "test:935:4:2",
+            "train:10020:9:1",
+            "train:10058:14:1",
+            "train:10122:1:1",
+            "train:10202:7:1",
+            "train:10264:5:1",
+            "train:10303:12:1",
+            "train:10368:4:1",
+            "train:10374:12:1",
+            "train:10412:10:2",
+            "train:10437:5:1",
+            "train:10485:4:5",
+            "train:1049:6:2",
+            "train:10526:11:1",
+            "train:10574:7:2",
+            "train:10577:15:1",
+            "train:10603:19:2",
+            "train:10658:3:1",
+            "train:10659:4:1",
+            "train:10763:3:2",
+            "train:1080:5:1",
+            "train:10997:7:2",
+            "train:11096:4:3",
+            "train:1152:3:2",
+            "train:1184:7:1",
+            "train:1291:8:2",
+            "train:1316:5:3",
+            "train:1339:4:1",
+            "train:1356:2:1",
+            "train:1363:4:2",
+            "train:1375:6:1",
+            "train:1400:19:2",
+            "train:1425:9:1",
+            "train:1467:3:3",
+            "train:1605:8:2",
+            "train:1712:17:2",
+            "train:1723:3:1",
+            "train:1738:6:2",
+            "train:1766:4:4",
+            "train:1766:8:2",
+            "train:1779:17:2",
+            "train:1809:8:2",
+            "train:1829:14:1",
+            "train:1925:9:1",
+            "train:2014:2:1",
+            "train:2088:4:2",
+            "train:2168:2:1",
+            "train:2193:3:1",
+            "train:2266:3:1",
+            "train:2275:7:3",
+            "train:2290:3:1",
+            "train:2296:14:1",
+            "train:2337:6:2",
+            "train:2476:10:2",
+            "train:2478:4:2",
+            "train:2495:8:2",
+            "train:2539:3:2"
+          ],
+          "semantic_approval": false,
+          "source_revision": "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-hybrid-coordination-v9",
+          "review_inputs": [
+            {
+              "path": "data\\dailydialog\\review-parts\\hybrid-coordination-admission-reviews-v9.jsonl",
+              "sha256": "d596ce13ae1a70303188fd1ce581b802e5791d0414d7c704a16b2e7fc760f988"
+            }
+          ],
+          "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+          "review_file": "data\\dailydialog\\review-parts\\hybrid-coordination-admission-reviews-v9.jsonl",
+          "review_sha256": "d596ce13ae1a70303188fd1ce581b802e5791d0414d7c704a16b2e7fc760f988"
+        }
+      },
+      "validation": {
+        "status": "passed",
+        "source_sha256": "deb011e58b3c8efe18772e24a851e59e3aef04cf64d915eeb40041d9b7d1e9d8",
+        "templates": 65,
+        "attested_roundtrips": 65,
+        "source_records": 65,
+        "token_spans": 1185,
+        "verbs_occurrences": 270,
+        "adjectives_occurrences": 56
+      },
+      "publication": {
+        "format": "built-in-template-component-v1",
+        "bank_id": "dailydialog-coordination-admission-v9",
+        "source_sha256": "deb011e58b3c8efe18772e24a851e59e3aef04cf64d915eeb40041d9b7d1e9d8",
+        "manifest_sha256": "92e9c325c50046fcebe9d605d2d0ae5a692a1d1fda23fc8f5e1a48c3d9755c02",
+        "validation_sha256": "d465e3c579e468118195c324c958f1a362e1ce2af109a6deb29b104d3f6c2f4b"
+      },
+      "files": {
+        "adjective_alternatives.jsonl.gz": [
+          701041,
+          40795
+        ],
+        "adjectives.jsonl.gz": [
+          551081,
+          24944
+        ],
+        "constructions.jsonl.gz": [
+          2665149,
+          29537
+        ],
+        "occurrences/00000.jsonl.gz": [
+          4207920,
+          441627
+        ],
+        "templates/06.jsonl.gz": [
+          410533,
+          2803
+        ],
+        "templates/07.jsonl.gz": [
+          412001,
+          2740
+        ],
+        "templates/08.jsonl.gz": [
+          411330,
+          3626
+        ],
+        "templates/0e.jsonl.gz": [
+          412099,
+          2340
+        ],
+        "templates/10.jsonl.gz": [
+          414589,
+          1967
+        ],
+        "templates/13.jsonl.gz": [
+          428831,
+          3346
+        ],
+        "templates/1a.jsonl.gz": [
+          421482,
+          2291
+        ],
+        "templates/21.jsonl.gz": [
+          414470,
+          2491
+        ],
+        "templates/28.jsonl.gz": [
+          413838,
+          2339
+        ],
+        "templates/2d.jsonl.gz": [
+          437479,
+          1881
+        ],
+        "templates/32.jsonl.gz": [
+          420432,
+          2418
+        ],
+        "templates/3c.jsonl.gz": [
+          426471,
+          2437
+        ],
+        "templates/46.jsonl.gz": [
+          402232,
+          2180
+        ],
+        "templates/4b.jsonl.gz": [
+          418272,
+          3160
+        ],
+        "templates/4f.jsonl.gz": [
+          412460,
+          2320
+        ],
+        "templates/51.jsonl.gz": [
+          416309,
+          2528
+        ],
+        "templates/54.jsonl.gz": [
+          417335,
+          2528
+        ],
+        "templates/5b.jsonl.gz": [
+          414807,
+          1974
+        ],
+        "templates/63.jsonl.gz": [
+          420525,
+          2609
+        ],
+        "templates/64.jsonl.gz": [
+          422737,
+          2782
+        ],
+        "templates/66.jsonl.gz": [
+          430525,
+          2912
+        ],
+        "templates/6c.jsonl.gz": [
+          428141,
+          2039
+        ],
+        "templates/74.jsonl.gz": [
+          409250,
+          2113
+        ],
+        "templates/7d.jsonl.gz": [
+          427778,
+          2033
+        ],
+        "templates/80.jsonl.gz": [
+          425738,
+          2161
+        ],
+        "templates/82.jsonl.gz": [
+          422254,
+          2116
+        ],
+        "templates/86.jsonl.gz": [
+          414242,
+          2175
+        ],
+        "templates/87.jsonl.gz": [
+          431286,
+          2767
+        ],
+        "templates/88.jsonl.gz": [
+          418402,
+          2014
+        ],
+        "templates/8a.jsonl.gz": [
+          405811,
+          2745
+        ],
+        "templates/8d.jsonl.gz": [
+          432867,
+          2586
+        ],
+        "templates/8e.jsonl.gz": [
+          422121,
+          2356
+        ],
+        "templates/98.jsonl.gz": [
+          408903,
+          2509
+        ],
+        "templates/9a.jsonl.gz": [
+          415577,
+          2610
+        ],
+        "templates/a1.jsonl.gz": [
+          427173,
+          3862
+        ],
+        "templates/b2.jsonl.gz": [
+          415195,
+          5315
+        ],
+        "templates/b3.jsonl.gz": [
+          431284,
+          3830
+        ],
+        "templates/b5.jsonl.gz": [
+          426219,
+          2515
+        ],
+        "templates/b9.jsonl.gz": [
+          426951,
+          2791
+        ],
+        "templates/bc.jsonl.gz": [
+          423253,
+          1914
+        ],
+        "templates/be.jsonl.gz": [
+          423957,
+          2583
+        ],
+        "templates/bf.jsonl.gz": [
+          415002,
+          2248
+        ],
+        "templates/c6.jsonl.gz": [
+          415828,
+          2178
+        ],
+        "templates/c7.jsonl.gz": [
+          416688,
+          2132
+        ],
+        "templates/c8.jsonl.gz": [
+          395661,
+          2326
+        ],
+        "templates/ca.jsonl.gz": [
+          404987,
+          2429
+        ],
+        "templates/cc.jsonl.gz": [
+          407482,
+          2365
+        ],
+        "templates/dc.jsonl.gz": [
+          418686,
+          2363
+        ],
+        "templates/dd.jsonl.gz": [
+          431357,
+          2568
+        ],
+        "templates/de.jsonl.gz": [
+          413762,
+          2387
+        ],
+        "templates/e2.jsonl.gz": [
+          412300,
+          2244
+        ],
+        "templates/e4.jsonl.gz": [
+          423215,
+          1792
+        ],
+        "templates/e5.jsonl.gz": [
+          428100,
+          2176
+        ],
+        "templates/eb.jsonl.gz": [
+          419111,
+          4811
+        ],
+        "templates/f3.jsonl.gz": [
+          415385,
+          4654
+        ],
+        "templates/f6.jsonl.gz": [
+          393162,
+          2308
+        ],
+        "verb_alternatives.jsonl.gz": [
+          767093,
+          83556
+        ],
+        "verbs.jsonl.gz": [
+          971567,
+          61710
+        ]
+      }
+    },
+    {
+      "id": "dailydialog-syntax-admission-v10",
+      "manifest": {
+        "format": "corpus-templates-v1",
+        "status": "complete",
+        "full_input": true,
+        "model": {
+          "name": "explicit contextual attestation reviews",
+          "parser": null
+        },
+        "review_status": "UNREVIEWED",
+        "field": "example",
+        "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+        "counts": {
+          "input_records": 58,
+          "compiled_records": 58,
+          "roundtrips_verified": 58,
+          "tokens_audited": 576,
+          "adjective_occurrences": 43,
+          "verb_alternative_analyses": 121,
+          "verb_occurrences": 136,
+          "adjective_alternative_analyses": 46,
+          "participle_analyses": 20,
+          "templates": 58,
+          "template_occurrences": 58,
+          "templates_with_adjectives": 33,
+          "verb_lemmas": 52,
+          "adjective_lemmas": 35,
+          "verb_alternative_lemmas": 68,
+          "adjective_alternative_forms": 31,
+          "sentence_templates_covered": 56,
+          "predicate_templates_covered": 88,
+          "constructions": 39
+        },
+        "analyses": {
+          "parsed_verbal": 58
+        },
+        "elapsed_seconds": 2.197,
+        "source_sha256": "30ed1077249e233e1acae74f621b9a41ebd8c709540686f6c79b5c997f212656",
+        "hybrid_import": {
+          "review_status": "REVIEWED_ATTESTATIONS",
+          "admitted_occurrences": [
+            "test:129:6:1",
+            "test:140:8:4",
+            "test:212:3:1",
+            "test:310:4:3",
+            "test:34:12:1",
+            "test:474:3:1",
+            "test:55:6:2",
+            "test:632:4:2",
+            "test:648:10:1",
+            "test:652:9:2",
+            "test:675:2:2",
+            "test:731:2:2",
+            "test:800:14:2",
+            "test:908:3:1",
+            "train:10007:8:1",
+            "train:10058:9:1",
+            "train:10115:1:1",
+            "train:10125:5:3",
+            "train:10127:7:2",
+            "train:10132:4:2",
+            "train:1015:8:2",
+            "train:10203:12:2",
+            "train:10227:14:1",
+            "train:10332:2:1",
+            "train:10354:5:1",
+            "train:10363:16:2",
+            "train:10469:6:1",
+            "train:10488:2:1",
+            "train:10546:4:1",
+            "train:10629:3:2",
+            "train:10639:2:1",
+            "train:10708:12:3",
+            "train:10795:4:1",
+            "train:10888:7:1",
+            "train:10957:2:1",
+            "train:1183:2:1",
+            "train:1204:7:1",
+            "train:1218:5:3",
+            "train:1246:7:1",
+            "train:1254:20:1",
+            "train:1291:2:1",
+            "train:1319:7:1",
+            "train:1636:14:1",
+            "train:1639:2:1",
+            "train:1683:6:2",
+            "train:1695:10:1",
+            "train:1869:2:3",
+            "train:2176:7:1",
+            "train:2195:6:1",
+            "train:2211:19:2",
+            "train:2250:8:2",
+            "train:2333:13:1",
+            "train:2336:10:3",
+            "train:2378:13:3",
+            "train:2502:4:2",
+            "train:2541:2:1",
+            "train:2545:13:2",
+            "train:2590:5:1"
+          ],
+          "semantic_approval": false,
+          "source_revision": "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-hybrid-syntax-v10",
+          "review_inputs": [
+            {
+              "path": "data\\dailydialog\\review-parts\\hybrid-syntax-admission-reviews-v10.jsonl",
+              "sha256": "8b867057240287cc84f7392db524d31b27908a67935b139d26e4d3ed73c9c0ca"
+            }
+          ],
+          "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+          "review_file": "data\\dailydialog\\review-parts\\hybrid-syntax-admission-reviews-v10.jsonl",
+          "review_sha256": "8b867057240287cc84f7392db524d31b27908a67935b139d26e4d3ed73c9c0ca"
+        }
+      },
+      "validation": {
+        "status": "passed",
+        "source_sha256": "30ed1077249e233e1acae74f621b9a41ebd8c709540686f6c79b5c997f212656",
+        "templates": 58,
+        "attested_roundtrips": 58,
+        "source_records": 58,
+        "token_spans": 576,
+        "verbs_occurrences": 136,
+        "adjectives_occurrences": 43
+      },
+      "publication": {
+        "format": "built-in-template-component-v1",
+        "bank_id": "dailydialog-syntax-admission-v10",
+        "source_sha256": "30ed1077249e233e1acae74f621b9a41ebd8c709540686f6c79b5c997f212656",
+        "manifest_sha256": "a083826f4be8a715eac1d695959f469c199d1f621ac4d69833c7b9c2805f421f",
+        "validation_sha256": "7acf78a3d394f145776698e96ef57c7c49f00ded63056929779b44554f6ad67f"
+      },
+      "files": {
+        "adjective_alternatives.jsonl.gz": [
+          741836,
+          17994
+        ],
+        "adjectives.jsonl.gz": [
+          576025,
+          18272
+        ],
+        "constructions.jsonl.gz": [
+          2694686,
+          17853
+        ],
+        "occurrences/00000.jsonl.gz": [
+          4649547,
+          246869
+        ],
+        "templates/0b.jsonl.gz": [
+          415283,
+          2353
+        ],
+        "templates/0c.jsonl.gz": [
+          410530,
+          2660
+        ],
+        "templates/0e.jsonl.gz": [
+          414439,
+          2442
+        ],
+        "templates/17.jsonl.gz": [
+          418718,
+          1988
+        ],
+        "templates/2a.jsonl.gz": [
+          433161,
+          2146
+        ],
+        "templates/2c.jsonl.gz": [
+          425595,
+          1801
+        ],
+        "templates/2e.jsonl.gz": [
+          406346,
+          1984
+        ],
+        "templates/2f.jsonl.gz": [
+          395783,
+          2176
+        ],
+        "templates/33.jsonl.gz": [
+          422513,
+          1899
+        ],
+        "templates/36.jsonl.gz": [
+          415027,
+          3410
+        ],
+        "templates/38.jsonl.gz": [
+          424880,
+          2156
+        ],
+        "templates/3a.jsonl.gz": [
+          419648,
+          2853
+        ],
+        "templates/44.jsonl.gz": [
+          425869,
+          3422
+        ],
+        "templates/4a.jsonl.gz": [
+          424703,
+          2143
+        ],
+        "templates/52.jsonl.gz": [
+          423504,
+          2419
+        ],
+        "templates/54.jsonl.gz": [
+          419863,
+          1967
+        ],
+        "templates/55.jsonl.gz": [
+          424683,
+          1757
+        ],
+        "templates/5a.jsonl.gz": [
+          411103,
+          2096
+        ],
+        "templates/5b.jsonl.gz": [
+          416781,
+          1831
+        ],
+        "templates/5d.jsonl.gz": [
+          407659,
+          2063
+        ],
+        "templates/62.jsonl.gz": [
+          416743,
+          2186
+        ],
+        "templates/63.jsonl.gz": [
+          423134,
+          2021
+        ],
+        "templates/65.jsonl.gz": [
+          402523,
+          2449
+        ],
+        "templates/69.jsonl.gz": [
+          410011,
+          1993
+        ],
+        "templates/6a.jsonl.gz": [
+          425230,
+          3120
+        ],
+        "templates/73.jsonl.gz": [
+          406136,
+          3465
+        ],
+        "templates/74.jsonl.gz": [
+          411363,
+          1686
+        ],
+        "templates/79.jsonl.gz": [
+          416517,
+          3517
+        ],
+        "templates/7b.jsonl.gz": [
+          434135,
+          1955
+        ],
+        "templates/7c.jsonl.gz": [
+          422753,
+          3668
+        ],
+        "templates/7e.jsonl.gz": [
+          414208,
+          2109
+        ],
+        "templates/82.jsonl.gz": [
+          424370,
+          2074
+        ],
+        "templates/88.jsonl.gz": [
+          420416,
+          1799
+        ],
+        "templates/8f.jsonl.gz": [
+          424541,
+          2213
+        ],
+        "templates/91.jsonl.gz": [
+          419811,
+          2150
+        ],
+        "templates/92.jsonl.gz": [
+          422867,
+          2223
+        ],
+        "templates/9e.jsonl.gz": [
+          420292,
+          1706
+        ],
+        "templates/a7.jsonl.gz": [
+          425797,
+          1871
+        ],
+        "templates/a9.jsonl.gz": [
+          417592,
+          2063
+        ],
+        "templates/b4.jsonl.gz": [
+          420888,
+          1962
+        ],
+        "templates/bd.jsonl.gz": [
+          421852,
+          2090
+        ],
+        "templates/cb.jsonl.gz": [
+          432631,
+          1774
+        ],
+        "templates/cd.jsonl.gz": [
+          414300,
+          1961
+        ],
+        "templates/d0.jsonl.gz": [
+          417612,
+          2090
+        ],
+        "templates/d5.jsonl.gz": [
+          414896,
+          2256
+        ],
+        "templates/e8.jsonl.gz": [
+          408147,
+          1769
+        ],
+        "templates/eb.jsonl.gz": [
+          423922,
+          3768
+        ],
+        "templates/f1.jsonl.gz": [
+          415299,
+          2166
+        ],
+        "templates/f4.jsonl.gz": [
+          420287,
+          2357
+        ],
+        "templates/f7.jsonl.gz": [
+          392534,
+          2046
+        ],
+        "templates/ff.jsonl.gz": [
+          423647,
+          1681
+        ],
+        "verb_alternatives.jsonl.gz": [
+          850649,
+          36316
+        ],
+        "verbs.jsonl.gz": [
+          1033277,
+          29320
+        ]
+      }
+    },
+    {
+      "id": "dailydialog-boundaries-admission-v11",
+      "manifest": {
+        "format": "corpus-templates-v1",
+        "status": "complete",
+        "full_input": true,
+        "model": {
+          "name": "explicit contextual attestation reviews",
+          "parser": null
+        },
+        "review_status": "UNREVIEWED",
+        "field": "example",
+        "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+        "counts": {
+          "input_records": 79,
+          "compiled_records": 79,
+          "roundtrips_verified": 79,
+          "tokens_audited": 728,
+          "verb_alternative_analyses": 144,
+          "verb_occurrences": 163,
+          "adjective_occurrences": 28,
+          "participle_analyses": 19,
+          "adjective_alternative_analyses": 66,
+          "templates": 79,
+          "template_occurrences": 79,
+          "templates_with_adjectives": 26,
+          "verb_lemmas": 63,
+          "adjective_lemmas": 26,
+          "verb_alternative_lemmas": 85,
+          "adjective_alternative_forms": 36,
+          "sentence_templates_covered": 79,
+          "predicate_templates_covered": 113,
+          "constructions": 47
+        },
+        "analyses": {
+          "parsed_verbal": 79
+        },
+        "elapsed_seconds": 2.319,
+        "source_sha256": "91818ff8e1963c2d81ca0c16af3708c6f87f1da20de6a7abb50ee1e38c981f13",
+        "hybrid_import": {
+          "review_status": "REVIEWED_ATTESTATIONS",
+          "admitted_occurrences": [
+            "test:125:2:3",
+            "test:125:2:4",
+            "test:463:4:2",
+            "test:488:9:2",
+            "test:488:9:3",
+            "test:548:1:3",
+            "test:548:5:2",
+            "test:548:5:3",
+            "test:568:8:2",
+            "test:568:8:3",
+            "test:569:5:2",
+            "test:569:5:3",
+            "test:569:5:4",
+            "test:628:6:3",
+            "test:628:6:4",
+            "test:69:2:1",
+            "test:6:7:2",
+            "test:6:7:3",
+            "test:741:2:2",
+            "test:857:7:2",
+            "test:899:10:2",
+            "test:899:10:3",
+            "train:10034:8:1",
+            "train:10034:8:2",
+            "train:10068:5:3",
+            "train:10086:9:2",
+            "train:10398:14:2",
+            "train:10398:14:3",
+            "train:10403:9:2",
+            "train:10407:5:2",
+            "train:10407:5:3",
+            "train:10407:5:4",
+            "train:10450:8:2",
+            "train:10472:4:2",
+            "train:10474:6:1",
+            "train:10474:6:2",
+            "train:10474:6:3",
+            "train:10474:6:4",
+            "train:10474:6:5",
+            "train:10474:6:6",
+            "train:10596:10:1",
+            "train:10605:2:3",
+            "train:10627:2:3",
+            "train:10659:2:3",
+            "train:10659:2:4",
+            "train:10695:2:3",
+            "train:10726:4:2",
+            "train:10737:2:2",
+            "train:10741:2:2",
+            "train:10780:6:2",
+            "train:10804:3:2",
+            "train:10823:6:1",
+            "train:10823:6:2",
+            "train:10823:6:3",
+            "train:10823:6:4",
+            "train:10862:9:2",
+            "train:10866:4:2",
+            "train:10869:7:3",
+            "train:10869:7:5",
+            "train:10869:7:6",
+            "train:10869:7:7",
+            "train:1089:9:2",
+            "train:1089:9:3",
+            "train:1089:9:4",
+            "train:10944:4:2",
+            "train:10944:4:4",
+            "train:11033:2:2",
+            "train:11033:2:3",
+            "train:1240:5:6",
+            "train:1240:5:7",
+            "train:1267:2:2",
+            "train:1317:2:2",
+            "train:1709:2:2",
+            "train:1709:2:3",
+            "train:2190:6:1",
+            "train:2484:8:1",
+            "train:2484:8:2",
+            "train:2548:5:3",
+            "train:2552:1:1"
+          ],
+          "semantic_approval": false,
+          "source_revision": "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-hybrid-boundaries-v11",
+          "review_inputs": [
+            {
+              "path": "data\\dailydialog\\review-parts\\hybrid-boundaries-admission-reviews-v11.jsonl",
+              "sha256": "5de2333ac5b135bcdaf99b39abd1c97c899f2e6845673b5bd1f15bb28eee73a0"
+            }
+          ],
+          "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+          "review_file": "data\\dailydialog\\review-parts\\hybrid-boundaries-admission-reviews-v11.jsonl",
+          "review_sha256": "5de2333ac5b135bcdaf99b39abd1c97c899f2e6845673b5bd1f15bb28eee73a0"
+        }
+      },
+      "validation": {
+        "status": "passed",
+        "source_sha256": "91818ff8e1963c2d81ca0c16af3708c6f87f1da20de6a7abb50ee1e38c981f13",
+        "templates": 79,
+        "attested_roundtrips": 79,
+        "source_records": 79,
+        "token_spans": 728,
+        "verbs_occurrences": 163,
+        "adjectives_occurrences": 28
+      },
+      "publication": {
+        "format": "built-in-template-component-v1",
+        "bank_id": "dailydialog-boundaries-admission-v11",
+        "source_sha256": "91818ff8e1963c2d81ca0c16af3708c6f87f1da20de6a7abb50ee1e38c981f13",
+        "manifest_sha256": "0eb741f996233d90e9eee89a4452fed7203a99c0ae88bd4c8de3a7f0d60d108f",
+        "validation_sha256": "3a9009a33ca9ee97753c80a140637a7b7b1c078babf815481c07856c147c76cf"
+      },
+      "files": {
+        "adjective_alternatives.jsonl.gz": [
+          759830,
+          20370
+        ],
+        "adjectives.jsonl.gz": [
+          594297,
+          11549
+        ],
+        "constructions.jsonl.gz": [
+          2712539,
+          19570
+        ],
+        "occurrences/00000.jsonl.gz": [
+          4896416,
+          751728
+        ],
+        "templates/0c.jsonl.gz": [
+          413190,
+          1739
+        ],
+        "templates/0e.jsonl.gz": [
+          416881,
+          1888
+        ],
+        "templates/14.jsonl.gz": [
+          412828,
+          2220
+        ],
+        "templates/15.jsonl.gz": [
+          429352,
+          1766
+        ],
+        "templates/16.jsonl.gz": [
+          427347,
+          2405
+        ],
+        "templates/1f.jsonl.gz": [
+          420690,
+          2064
+        ],
+        "templates/20.jsonl.gz": [
+          421262,
+          2566
+        ],
+        "templates/24.jsonl.gz": [
+          414878,
+          1996
+        ],
+        "templates/28.jsonl.gz": [
+          416177,
+          1817
+        ],
+        "templates/2a.jsonl.gz": [
+          435307,
+          2099
+        ],
+        "templates/2e.jsonl.gz": [
+          408330,
+          1925
+        ],
+        "templates/2f.jsonl.gz": [
+          397959,
+          2214
+        ],
+        "templates/34.jsonl.gz": [
+          416521,
+          2032
+        ],
+        "templates/39.jsonl.gz": [
+          405868,
+          1992
+        ],
+        "templates/3b.jsonl.gz": [
+          417638,
+          1849
+        ],
+        "templates/44.jsonl.gz": [
+          429291,
+          1803
+        ],
+        "templates/47.jsonl.gz": [
+          420297,
+          1861
+        ],
+        "templates/48.jsonl.gz": [
+          428415,
+          3382
+        ],
+        "templates/49.jsonl.gz": [
+          409701,
+          2987
+        ],
+        "templates/4a.jsonl.gz": [
+          426846,
+          2093
+        ],
+        "templates/4c.jsonl.gz": [
+          426307,
+          3403
+        ],
+        "templates/4d.jsonl.gz": [
+          406178,
+          1760
+        ],
+        "templates/52.jsonl.gz": [
+          425923,
+          2232
+        ],
+        "templates/53.jsonl.gz": [
+          419905,
+          2526
+        ],
+        "templates/54.jsonl.gz": [
+          421830,
+          2080
+        ],
+        "templates/5c.jsonl.gz": [
+          430346,
+          1801
+        ],
+        "templates/61.jsonl.gz": [
+          427454,
+          2796
+        ],
+        "templates/64.jsonl.gz": [
+          425519,
+          2725
+        ],
+        "templates/67.jsonl.gz": [
+          412635,
+          1991
+        ],
+        "templates/6c.jsonl.gz": [
+          430180,
+          2960
+        ],
+        "templates/72.jsonl.gz": [
+          414933,
+          1990
+        ],
+        "templates/7a.jsonl.gz": [
+          419626,
+          2296
+        ],
+        "templates/7d.jsonl.gz": [
+          429811,
+          2029
+        ],
+        "templates/7f.jsonl.gz": [
+          421313,
+          1875
+        ],
+        "templates/83.jsonl.gz": [
+          420959,
+          1876
+        ],
+        "templates/8d.jsonl.gz": [
+          435453,
+          2000
+        ],
+        "templates/93.jsonl.gz": [
+          405504,
+          2057
+        ],
+        "templates/9c.jsonl.gz": [
+          420108,
+          1933
+        ],
+        "templates/9d.jsonl.gz": [
+          427269,
+          1988
+        ],
+        "templates/ab.jsonl.gz": [
+          419113,
+          2852
+        ],
+        "templates/ac.jsonl.gz": [
+          439842,
+          1991
+        ],
+        "templates/b0.jsonl.gz": [
+          428229,
+          1768
+        ],
+        "templates/b2.jsonl.gz": [
+          420510,
+          1845
+        ],
+        "templates/b8.jsonl.gz": [
+          412850,
+          3000
+        ],
+        "templates/b9.jsonl.gz": [
+          429742,
+          1703
+        ],
+        "templates/c1.jsonl.gz": [
+          425166,
+          1891
+        ],
+        "templates/c2.jsonl.gz": [
+          427828,
+          1809
+        ],
+        "templates/c3.jsonl.gz": [
+          412062,
+          2429
+        ],
+        "templates/c5.jsonl.gz": [
+          440380,
+          1840
+        ],
+        "templates/c6.jsonl.gz": [
+          418006,
+          1888
+        ],
+        "templates/c7.jsonl.gz": [
+          418820,
+          2425
+        ],
+        "templates/c9.jsonl.gz": [
+          422293,
+          1590
+        ],
+        "templates/cc.jsonl.gz": [
+          409847,
+          2225
+        ],
+        "templates/ce.jsonl.gz": [
+          422904,
+          3226
+        ],
+        "templates/d1.jsonl.gz": [
+          421062,
+          2196
+        ],
+        "templates/d3.jsonl.gz": [
+          425797,
+          2067
+        ],
+        "templates/d4.jsonl.gz": [
+          406554,
+          3692
+        ],
+        "templates/d7.jsonl.gz": [
+          413558,
+          1720
+        ],
+        "templates/d8.jsonl.gz": [
+          413974,
+          2016
+        ],
+        "templates/e5.jsonl.gz": [
+          430276,
+          1999
+        ],
+        "templates/e6.jsonl.gz": [
+          429404,
+          3772
+        ],
+        "templates/ee.jsonl.gz": [
+          427154,
+          1749
+        ],
+        "templates/f1.jsonl.gz": [
+          417465,
+          2180
+        ],
+        "templates/f3.jsonl.gz": [
+          420039,
+          1693
+        ],
+        "templates/f9.jsonl.gz": [
+          420557,
+          1714
+        ],
+        "templates/fc.jsonl.gz": [
+          428353,
+          1890
+        ],
+        "templates/fe.jsonl.gz": [
+          424931,
+          2980
+        ],
+        "verb_alternatives.jsonl.gz": [
+          886965,
+          45068
+        ],
+        "verbs.jsonl.gz": [
+          1062597,
+          38425
+        ]
+      }
+    },
+    {
+      "id": "dailydialog-residual-admission-v12",
+      "manifest": {
+        "format": "corpus-templates-v1",
+        "status": "complete",
+        "full_input": true,
+        "model": {
+          "name": "explicit contextual attestation reviews",
+          "parser": null
+        },
+        "review_status": "UNREVIEWED",
+        "field": "example",
+        "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+        "counts": {
+          "input_records": 62,
+          "compiled_records": 62,
+          "roundtrips_verified": 62,
+          "tokens_audited": 633,
+          "verb_occurrences": 136,
+          "adjective_occurrences": 37,
+          "verb_alternative_analyses": 135,
+          "participle_analyses": 16,
+          "adjective_alternative_analyses": 53,
+          "templates": 62,
+          "template_occurrences": 62,
+          "templates_with_adjectives": 30,
+          "verb_lemmas": 62,
+          "adjective_lemmas": 34,
+          "verb_alternative_lemmas": 85,
+          "adjective_alternative_forms": 38,
+          "sentence_templates_covered": 62,
+          "predicate_templates_covered": 97,
+          "constructions": 40
+        },
+        "analyses": {
+          "parsed_verbal": 62
+        },
+        "elapsed_seconds": 3.541,
+        "source_sha256": "2227caebe537c17a11b7f3bb3aff85c2cb1cb30ec8c1abccd9a0b02f6f0a6806",
+        "hybrid_import": {
+          "review_status": "REVIEWED_ATTESTATIONS",
+          "admitted_occurrences": [
+            "test:364:10:1",
+            "test:364:10:2",
+            "test:765:6:1",
+            "test:768:2:1",
+            "test:817:3:1",
+            "test:817:3:2",
+            "test:971:1:1",
+            "test:971:1:2",
+            "test:971:1:3",
+            "train:10480:6:2",
+            "train:10480:6:3",
+            "train:10480:6:4",
+            "train:10480:6:5",
+            "train:10579:7:3",
+            "train:10579:7:4",
+            "train:10580:7:2",
+            "train:10941:3:2",
+            "train:1128:3:1",
+            "train:1128:3:2",
+            "train:1128:3:3",
+            "train:1295:7:2",
+            "train:1426:1:1",
+            "train:1426:1:2",
+            "train:1426:1:3",
+            "train:1438:3:2",
+            "train:1438:3:3",
+            "train:1592:10:1",
+            "train:1689:6:2",
+            "train:1689:6:3",
+            "train:1691:6:1",
+            "train:1721:2:1",
+            "train:1721:2:2",
+            "train:1721:4:1",
+            "train:1721:4:2",
+            "train:1721:4:3",
+            "train:1728:4:2",
+            "train:1728:6:1",
+            "train:1761:7:2",
+            "train:1792:6:1",
+            "train:1792:6:2",
+            "train:1792:6:3",
+            "train:1792:6:4",
+            "train:1934:13:1",
+            "train:1937:11:2",
+            "train:1937:11:5",
+            "train:1966:4:1",
+            "train:1966:4:2",
+            "train:1966:4:3",
+            "train:1966:4:4",
+            "train:2027:1:2",
+            "train:2087:2:2",
+            "train:2112:1:1",
+            "train:2112:1:2",
+            "train:2139:2:2",
+            "train:2277:2:1",
+            "train:2277:2:2",
+            "train:2277:2:3",
+            "train:2413:1:2",
+            "train:2413:1:3",
+            "train:2434:3:2",
+            "train:2434:3:3",
+            "train:2434:3:4"
+          ],
+          "semantic_approval": false,
+          "source_revision": "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-hybrid-residual-v12",
+          "review_inputs": [
+            {
+              "path": "data\\dailydialog\\review-parts\\hybrid-residual-admission-reviews-v12.jsonl",
+              "sha256": "6c1d612d68ad7c9bace799acfb4fbfb273eb1165bb8b65fe323de8ec8d56d2cd"
+            }
+          ],
+          "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+          "review_file": "data\\dailydialog\\review-parts\\hybrid-residual-admission-reviews-v12.jsonl",
+          "review_sha256": "6c1d612d68ad7c9bace799acfb4fbfb273eb1165bb8b65fe323de8ec8d56d2cd"
+        }
+      },
+      "validation": {
+        "status": "passed",
+        "source_sha256": "2227caebe537c17a11b7f3bb3aff85c2cb1cb30ec8c1abccd9a0b02f6f0a6806",
+        "templates": 62,
+        "attested_roundtrips": 62,
+        "source_records": 62,
+        "token_spans": 633,
+        "verbs_occurrences": 136,
+        "adjectives_occurrences": 37
+      },
+      "publication": {
+        "format": "built-in-template-component-v1",
+        "bank_id": "dailydialog-residual-admission-v12",
+        "source_sha256": "2227caebe537c17a11b7f3bb3aff85c2cb1cb30ec8c1abccd9a0b02f6f0a6806",
+        "manifest_sha256": "5cffb8b617a5f34402b372289ff14cc894e7736d153e42079227fee8763cfe3c",
+        "validation_sha256": "fef980183bb79675dc5dc86d4a4155b4defb1eb3734262288c93ab464c9afe99"
+      },
+      "files": {
+        "adjective_alternatives.jsonl.gz": [
+          780200,
+          21047
+        ],
+        "adjectives.jsonl.gz": [
+          605846,
+          15195
+        ],
+        "constructions.jsonl.gz": [
+          2732109,
+          17378
+        ],
+        "occurrences/00000.jsonl.gz": [
+          5648144,
+          922200
+        ],
+        "templates/02.jsonl.gz": [
+          449082,
+          1522
+        ],
+        "templates/06.jsonl.gz": [
+          413336,
+          2418
+        ],
+        "templates/0b.jsonl.gz": [
+          417636,
+          2229
+        ],
+        "templates/0f.jsonl.gz": [
+          432034,
+          1872
+        ],
+        "templates/10.jsonl.gz": [
+          416556,
+          1601
+        ],
+        "templates/13.jsonl.gz": [
+          432177,
+          2014
+        ],
+        "templates/17.jsonl.gz": [
+          420706,
+          1830
+        ],
+        "templates/1a.jsonl.gz": [
+          423773,
+          2156
+        ],
+        "templates/2b.jsonl.gz": [
+          426744,
+          2056
+        ],
+        "templates/2c.jsonl.gz": [
+          427396,
+          2051
+        ],
+        "templates/36.jsonl.gz": [
+          418437,
+          2322
+        ],
+        "templates/39.jsonl.gz": [
+          407860,
+          2029
+        ],
+        "templates/41.jsonl.gz": [
+          416735,
+          2077
+        ],
+        "templates/46.jsonl.gz": [
+          404412,
+          2303
+        ],
+        "templates/50.jsonl.gz": [
+          423430,
+          1710
+        ],
+        "templates/55.jsonl.gz": [
+          426440,
+          3310
+        ],
+        "templates/58.jsonl.gz": [
+          430105,
+          2447
+        ],
+        "templates/5c.jsonl.gz": [
+          432147,
+          2088
+        ],
+        "templates/5f.jsonl.gz": [
+          442815,
+          2267
+        ],
+        "templates/61.jsonl.gz": [
+          430250,
+          2029
+        ],
+        "templates/65.jsonl.gz": [
+          404972,
+          2299
+        ],
+        "templates/6c.jsonl.gz": [
+          433140,
+          1883
+        ],
+        "templates/6e.jsonl.gz": [
+          413739,
+          1575
+        ],
+        "templates/70.jsonl.gz": [
+          431389,
+          2261
+        ],
+        "templates/71.jsonl.gz": [
+          416835,
+          1754
+        ],
+        "templates/72.jsonl.gz": [
+          416923,
+          2040
+        ],
+        "templates/75.jsonl.gz": [
+          415525,
+          2055
+        ],
+        "templates/77.jsonl.gz": [
+          422430,
+          2147
+        ],
+        "templates/83.jsonl.gz": [
+          422835,
+          1917
+        ],
+        "templates/84.jsonl.gz": [
+          417026,
+          2282
+        ],
+        "templates/87.jsonl.gz": [
+          434053,
+          2439
+        ],
+        "templates/8b.jsonl.gz": [
+          404059,
+          2369
+        ],
+        "templates/8d.jsonl.gz": [
+          437453,
+          2392
+        ],
+        "templates/93.jsonl.gz": [
+          407561,
+          2046
+        ],
+        "templates/95.jsonl.gz": [
+          427740,
+          1686
+        ],
+        "templates/97.jsonl.gz": [
+          420604,
+          2299
+        ],
+        "templates/99.jsonl.gz": [
+          416698,
+          1833
+        ],
+        "templates/a5.jsonl.gz": [
+          400904,
+          2306
+        ],
+        "templates/a7.jsonl.gz": [
+          427668,
+          1907
+        ],
+        "templates/aa.jsonl.gz": [
+          431436,
+          1811
+        ],
+        "templates/ab.jsonl.gz": [
+          421965,
+          1925
+        ],
+        "templates/ad.jsonl.gz": [
+          423789,
+          2085
+        ],
+        "templates/b6.jsonl.gz": [
+          420015,
+          2388
+        ],
+        "templates/bb.jsonl.gz": [
+          400200,
+          2299
+        ],
+        "templates/bd.jsonl.gz": [
+          423942,
+          3353
+        ],
+        "templates/be.jsonl.gz": [
+          426540,
+          1643
+        ],
+        "templates/c1.jsonl.gz": [
+          427057,
+          2270
+        ],
+        "templates/c6.jsonl.gz": [
+          419894,
+          2359
+        ],
+        "templates/ce.jsonl.gz": [
+          426130,
+          2126
+        ],
+        "templates/d7.jsonl.gz": [
+          415278,
+          2077
+        ],
+        "templates/e0.jsonl.gz": [
+          416299,
+          2096
+        ],
+        "templates/e7.jsonl.gz": [
+          409384,
+          3041
+        ],
+        "templates/eb.jsonl.gz": [
+          427690,
+          2196
+        ],
+        "templates/f4.jsonl.gz": [
+          422644,
+          2444
+        ],
+        "templates/f5.jsonl.gz": [
+          413679,
+          1765
+        ],
+        "templates/f6.jsonl.gz": [
+          395470,
+          2075
+        ],
+        "templates/fd.jsonl.gz": [
+          424434,
+          4660
+        ],
+        "verb_alternatives.jsonl.gz": [
+          932033,
+          44129
+        ],
+        "verbs.jsonl.gz": [
+          1101022,
+          35937
+        ]
+      }
+    },
+    {
+      "id": "dailydialog-ambiguity-admission-v13",
+      "manifest": {
+        "format": "corpus-templates-v1",
+        "status": "complete",
+        "full_input": true,
+        "model": {
+          "name": "explicit contextual attestation reviews",
+          "parser": null
+        },
+        "review_status": "UNREVIEWED",
+        "field": "example",
+        "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+        "counts": {
+          "input_records": 14,
+          "compiled_records": 14,
+          "roundtrips_verified": 14,
+          "tokens_audited": 179,
+          "verb_alternative_analyses": 40,
+          "verb_occurrences": 29,
+          "adjective_occurrences": 15,
+          "adjective_alternative_analyses": 12,
+          "templates": 14,
+          "template_occurrences": 14,
+          "templates_with_adjectives": 10,
+          "verb_lemmas": 17,
+          "adjective_lemmas": 15,
+          "verb_alternative_lemmas": 31,
+          "adjective_alternative_forms": 7,
+          "sentence_templates_covered": 14,
+          "predicate_templates_covered": 24,
+          "constructions": 6
+        },
+        "analyses": {
+          "parsed_verbal": 14
+        },
+        "elapsed_seconds": 0.759,
+        "source_sha256": "285540acdc1f9d8eed7d1ea50ad480592c2cbbefb3c9e93c2d2d3a54465dfa54",
+        "hybrid_import": {
+          "review_status": "REVIEWED_ATTESTATIONS",
+          "admitted_occurrences": [
+            "test:254:8:3",
+            "test:680:6:3",
+            "train:1007:7:2",
+            "train:10292:10:1",
+            "train:10609:3:1",
+            "train:1090:2:3",
+            "train:11039:5:1",
+            "train:1115:2:2",
+            "train:1172:3:2",
+            "train:1329:12:1",
+            "train:1525:2:2",
+            "train:1690:4:3",
+            "train:2463:4:1",
+            "train:2609:1:2"
+          ],
+          "semantic_approval": false,
+          "source_revision": "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-hybrid-ambiguity-v13b",
+          "review_inputs": [
+            {
+              "path": "data\\dailydialog\\review-parts\\hybrid-ambiguity-admission-reviews-v13.jsonl",
+              "sha256": "9ba3766dfbbfc75e8d42383caf11690dc7bceee943125aae014500d7cf7be287"
+            }
+          ],
+          "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+          "review_file": "data\\dailydialog\\review-parts\\hybrid-ambiguity-admission-reviews-v13.jsonl",
+          "review_sha256": "9ba3766dfbbfc75e8d42383caf11690dc7bceee943125aae014500d7cf7be287"
+        }
+      },
+      "validation": {
+        "status": "passed",
+        "source_sha256": "285540acdc1f9d8eed7d1ea50ad480592c2cbbefb3c9e93c2d2d3a54465dfa54",
+        "templates": 14,
+        "attested_roundtrips": 14,
+        "source_records": 14,
+        "token_spans": 179,
+        "verbs_occurrences": 29,
+        "adjectives_occurrences": 15
+      },
+      "publication": {
+        "format": "built-in-template-component-v1",
+        "bank_id": "dailydialog-ambiguity-admission-v13",
+        "source_sha256": "285540acdc1f9d8eed7d1ea50ad480592c2cbbefb3c9e93c2d2d3a54465dfa54",
+        "manifest_sha256": "7903bf3c861e406620da282a6520527a826aa46faef8bfb5f1a28e2b66d2ab70",
+        "validation_sha256": "f82c8ca504a2eac99e00ee32f61d44ecbc17b00f881ecd7f4d03a16b2dfc037d"
+      },
+      "files": {
+        "adjective_alternatives.jsonl.gz": [
+          801247,
+          4983
+        ],
+        "adjectives.jsonl.gz": [
+          621041,
+          6924
+        ],
+        "constructions.jsonl.gz": [
+          2749487,
+          3670
+        ],
+        "occurrences/00000.jsonl.gz": [
+          6570344,
+          97691
+        ],
+        "templates/29.jsonl.gz": [
+          419879,
+          2357
+        ],
+        "templates/30.jsonl.gz": [
+          417068,
+          1620
+        ],
+        "templates/47.jsonl.gz": [
+          422158,
+          1737
+        ],
+        "templates/53.jsonl.gz": [
+          422431,
+          2040
+        ],
+        "templates/66.jsonl.gz": [
+          433437,
+          2382
+        ],
+        "templates/6c.jsonl.gz": [
+          435023,
+          2446
+        ],
+        "templates/6d.jsonl.gz": [
+          421512,
+          2192
+        ],
+        "templates/81.jsonl.gz": [
+          431260,
+          2233
+        ],
+        "templates/85.jsonl.gz": [
+          412260,
+          1780
+        ],
+        "templates/86.jsonl.gz": [
+          416417,
+          2170
+        ],
+        "templates/8a.jsonl.gz": [
+          408556,
+          1853
+        ],
+        "templates/a1.jsonl.gz": [
+          431035,
+          2546
+        ],
+        "templates/b2.jsonl.gz": [
+          422355,
+          2219
+        ],
+        "templates/bb.jsonl.gz": [
+          402499,
+          2321
+        ],
+        "verb_alternatives.jsonl.gz": [
+          976162,
+          11783
+        ],
+        "verbs.jsonl.gz": [
+          1136959,
+          8540
+        ]
+      }
+    },
+    {
+      "id": "dailydialog-attestation-admission-v15",
+      "manifest": {
+        "format": "corpus-templates-v1",
+        "status": "complete",
+        "full_input": true,
+        "model": {
+          "name": "explicit contextual attestation reviews",
+          "parser": null
+        },
+        "review_status": "UNREVIEWED",
+        "field": "example",
+        "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+        "counts": {
+          "input_records": 47,
+          "compiled_records": 47,
+          "roundtrips_verified": 47,
+          "tokens_audited": 590,
+          "verb_occurrences": 121,
+          "verb_alternative_analyses": 137,
+          "adjective_alternative_analyses": 50,
+          "adjective_occurrences": 32,
+          "participle_analyses": 11,
+          "templates": 47,
+          "template_occurrences": 47,
+          "templates_with_adjectives": 24,
+          "verb_lemmas": 51,
+          "adjective_lemmas": 29,
+          "verb_alternative_lemmas": 89,
+          "adjective_alternative_forms": 33,
+          "sentence_templates_covered": 46,
+          "predicate_templates_covered": 88,
+          "constructions": 38
+        },
+        "analyses": {
+          "parsed_verbal": 47
+        },
+        "elapsed_seconds": 1.938,
+        "source_sha256": "967d9baaebceb6c9c6113852d4813380819c4cb24c081b75823e6a1c5788c8ee",
+        "hybrid_import": {
+          "review_status": "REVIEWED_ATTESTATIONS",
+          "admitted_occurrences": [
+            "test:1000:7:1",
+            "test:114:3:2",
+            "test:127:3:1",
+            "test:127:6:1",
+            "test:127:7:1",
+            "test:140:4:2",
+            "test:149:2:1",
+            "test:156:4:1",
+            "test:156:5:2",
+            "test:162:9:2",
+            "test:188:5:1",
+            "test:213:3:1",
+            "test:25:2:1",
+            "test:41:5:3",
+            "test:605:3:1",
+            "test:610:4:2",
+            "test:802:2:2",
+            "test:813:2:1",
+            "test:813:8:1",
+            "test:848:8:2",
+            "train:10383:1:1",
+            "train:10410:3:3",
+            "train:10540:11:2",
+            "train:10699:1:1",
+            "train:10699:3:1",
+            "train:10703:4:1",
+            "train:1314:1:3",
+            "train:1436:6:2",
+            "train:1516:7:1",
+            "train:1690:2:1",
+            "train:1690:7:7",
+            "train:1890:13:1",
+            "train:1890:2:2",
+            "train:1956:5:1",
+            "train:1957:12:1",
+            "train:1957:3:1",
+            "train:1957:9:1",
+            "train:1966:5:1",
+            "train:2022:2:2",
+            "train:2101:5:1",
+            "train:2297:8:2",
+            "train:2297:8:4",
+            "train:2336:1:1",
+            "train:2515:4:1",
+            "train:2592:3:1",
+            "train:2641:8:3",
+            "train:2641:8:4"
+          ],
+          "semantic_approval": false,
+          "source_revision": "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-hybrid-attestation-v15",
+          "review_inputs": [
+            {
+              "path": "data\\dailydialog\\review-parts\\hybrid-attestation-admission-v15.jsonl",
+              "sha256": "40bb8ff6409a86960015060432ea72fb44a1c48eaceea8a53af6d5c2fb83591a"
+            }
+          ],
+          "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+          "review_file": "data\\dailydialog\\review-parts\\hybrid-attestation-admission-v15.jsonl",
+          "review_sha256": "40bb8ff6409a86960015060432ea72fb44a1c48eaceea8a53af6d5c2fb83591a"
+        }
+      },
+      "validation": {
+        "status": "passed",
+        "source_sha256": "967d9baaebceb6c9c6113852d4813380819c4cb24c081b75823e6a1c5788c8ee",
+        "templates": 47,
+        "attested_roundtrips": 47,
+        "source_records": 47,
+        "token_spans": 590,
+        "verbs_occurrences": 121,
+        "adjectives_occurrences": 32
+      },
+      "publication": {
+        "format": "built-in-template-component-v1",
+        "bank_id": "dailydialog-attestation-admission-v15",
+        "source_sha256": "967d9baaebceb6c9c6113852d4813380819c4cb24c081b75823e6a1c5788c8ee",
+        "manifest_sha256": "3d3536b1c41f0059f42f1d9a4af0b07fcbbb527cf43db3a84f4a1f4a34ab9d5b",
+        "validation_sha256": "ba6c1833abd4334459f3b61d14ab8abc87e2461e392c68ef25559b3154999391"
+      },
+      "files": {
+        "adjective_alternatives.jsonl.gz": [
+          806230,
+          25024
+        ],
+        "adjectives.jsonl.gz": [
+          627965,
+          18382
+        ],
+        "constructions.jsonl.gz": [
+          2753157,
+          23252
+        ],
+        "occurrences/00000.jsonl.gz": [
+          6668035,
+          762429
+        ],
+        "templates/03.jsonl.gz": [
+          408296,
+          1633
+        ],
+        "templates/08.jsonl.gz": [
+          414956,
+          3059
+        ],
+        "templates/0a.jsonl.gz": [
+          405684,
+          2187
+        ],
+        "templates/0f.jsonl.gz": [
+          433906,
+          1926
+        ],
+        "templates/13.jsonl.gz": [
+          434191,
+          1785
+        ],
+        "templates/18.jsonl.gz": [
+          431967,
+          2201
+        ],
+        "templates/1a.jsonl.gz": [
+          425929,
+          2702
+        ],
+        "templates/22.jsonl.gz": [
+          421631,
+          3075
+        ],
+        "templates/3a.jsonl.gz": [
+          422501,
+          2215
+        ],
+        "templates/3b.jsonl.gz": [
+          419487,
+          2664
+        ],
+        "templates/47.jsonl.gz": [
+          423895,
+          2430
+        ],
+        "templates/4f.jsonl.gz": [
+          414780,
+          2694
+        ],
+        "templates/53.jsonl.gz": [
+          424471,
+          2374
+        ],
+        "templates/65.jsonl.gz": [
+          407271,
+          4163
+        ],
+        "templates/69.jsonl.gz": [
+          412004,
+          1812
+        ],
+        "templates/6c.jsonl.gz": [
+          437469,
+          1923
+        ],
+        "templates/75.jsonl.gz": [
+          417580,
+          2813
+        ],
+        "templates/76.jsonl.gz": [
+          411118,
+          1913
+        ],
+        "templates/80.jsonl.gz": [
+          427899,
+          2065
+        ],
+        "templates/86.jsonl.gz": [
+          418587,
+          2052
+        ],
+        "templates/8d.jsonl.gz": [
+          439845,
+          2373
+        ],
+        "templates/96.jsonl.gz": [
+          425446,
+          2295
+        ],
+        "templates/9d.jsonl.gz": [
+          429257,
+          2006
+        ],
+        "templates/9f.jsonl.gz": [
+          431060,
+          2039
+        ],
+        "templates/a1.jsonl.gz": [
+          433581,
+          2483
+        ],
+        "templates/a2.jsonl.gz": [
+          415571,
+          1932
+        ],
+        "templates/a3.jsonl.gz": [
+          437114,
+          2351
+        ],
+        "templates/b2.jsonl.gz": [
+          424574,
+          2309
+        ],
+        "templates/ba.jsonl.gz": [
+          431563,
+          2546
+        ],
+        "templates/c2.jsonl.gz": [
+          429637,
+          3133
+        ],
+        "templates/c6.jsonl.gz": [
+          422253,
+          2203
+        ],
+        "templates/d3.jsonl.gz": [
+          427864,
+          2448
+        ],
+        "templates/d5.jsonl.gz": [
+          417152,
+          2079
+        ],
+        "templates/dc.jsonl.gz": [
+          421049,
+          5874
+        ],
+        "templates/e5.jsonl.gz": [
+          432275,
+          2466
+        ],
+        "templates/e9.jsonl.gz": [
+          394422,
+          2058
+        ],
+        "templates/ec.jsonl.gz": [
+          427104,
+          2556
+        ],
+        "templates/ed.jsonl.gz": [
+          424608,
+          2367
+        ],
+        "templates/ee.jsonl.gz": [
+          428903,
+          2220
+        ],
+        "templates/f1.jsonl.gz": [
+          419645,
+          3875
+        ],
+        "templates/f9.jsonl.gz": [
+          422271,
+          2233
+        ],
+        "templates/fb.jsonl.gz": [
+          417963,
+          2045
+        ],
+        "verb_alternatives.jsonl.gz": [
+          987945,
+          60784
+        ],
+        "verbs.jsonl.gz": [
+          1145499,
+          43223
+        ]
+      }
+    },
+    {
+      "id": "dailydialog-attestation-admission-v17",
+      "manifest": {
+        "format": "corpus-templates-v1",
+        "status": "complete",
+        "full_input": true,
+        "model": {
+          "name": "explicit contextual attestation reviews",
+          "parser": null
+        },
+        "review_status": "UNREVIEWED",
+        "field": "example",
+        "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+        "counts": {
+          "input_records": 30,
+          "compiled_records": 30,
+          "roundtrips_verified": 30,
+          "tokens_audited": 416,
+          "verb_occurrences": 86,
+          "verb_alternative_analyses": 97,
+          "adjective_occurrences": 23,
+          "adjective_alternative_analyses": 30,
+          "participle_analyses": 12,
+          "templates": 30,
+          "template_occurrences": 30,
+          "templates_with_adjectives": 14,
+          "verb_lemmas": 44,
+          "adjective_lemmas": 19,
+          "verb_alternative_lemmas": 66,
+          "adjective_alternative_forms": 26,
+          "sentence_templates_covered": 30,
+          "predicate_templates_covered": 60,
+          "constructions": 24
+        },
+        "analyses": {
+          "parsed_verbal": 30
+        },
+        "elapsed_seconds": 1.527,
+        "source_sha256": "4c22837dd959599ec37320f7a6c0b7078030c8e638c40f5f974b60ee654de52e",
+        "hybrid_import": {
+          "review_status": "REVIEWED_ATTESTATIONS",
+          "admitted_occurrences": [
+            "test:1000:9:1",
+            "test:142:5:1",
+            "test:168:3:1",
+            "test:18:7:2",
+            "test:225:2:4",
+            "test:262:4:1",
+            "test:279:2:1",
+            "test:430:4:1",
+            "test:434:16:2",
+            "test:568:1:2",
+            "test:568:9:2",
+            "test:587:5:2",
+            "test:605:8:1",
+            "test:610:12:8",
+            "test:610:9:2",
+            "test:656:4:1",
+            "test:660:14:1",
+            "test:664:4:1",
+            "test:680:12:2",
+            "test:699:11:1",
+            "test:716:2:2",
+            "test:765:4:1",
+            "test:776:1:1",
+            "test:784:1:1",
+            "test:813:6:1",
+            "test:832:5:2",
+            "test:854:5:1",
+            "test:867:5:1",
+            "test:951:3:2",
+            "test:976:8:1"
+          ],
+          "semantic_approval": false,
+          "source_revision": "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-hybrid-attestation-v17",
+          "review_inputs": [
+            {
+              "path": "data\\dailydialog\\review-parts\\hybrid-attestation-admission-v17.jsonl",
+              "sha256": "e76fc98820c7ee6a9b322fcc9e8ad9a6e81b90d56fa5d7a7465b082df3bd26ec"
+            }
+          ],
+          "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+          "review_file": "data\\dailydialog\\review-parts\\hybrid-attestation-admission-v17.jsonl",
+          "review_sha256": "e76fc98820c7ee6a9b322fcc9e8ad9a6e81b90d56fa5d7a7465b082df3bd26ec"
+        }
+      },
+      "validation": {
+        "status": "passed",
+        "source_sha256": "4c22837dd959599ec37320f7a6c0b7078030c8e638c40f5f974b60ee654de52e",
+        "templates": 30,
+        "attested_roundtrips": 30,
+        "source_records": 30,
+        "token_spans": 416,
+        "verbs_occurrences": 86,
+        "adjectives_occurrences": 23
+      },
+      "publication": {
+        "format": "built-in-template-component-v1",
+        "bank_id": "dailydialog-attestation-admission-v17",
+        "source_sha256": "4c22837dd959599ec37320f7a6c0b7078030c8e638c40f5f974b60ee654de52e",
+        "manifest_sha256": "b6a19f2da7fde8a8d3e24fa821615145b038cf25dc69796f8c18e2c8fc7caf05",
+        "validation_sha256": "39a8f98970fcd8619da1a83eedb6376bc694f5818ee5bc8cf907fec46929725b"
+      },
+      "files": {
+        "adjective_alternatives.jsonl.gz": [
+          831254,
+          21155
+        ],
+        "adjectives.jsonl.gz": [
+          646347,
+          10930
+        ],
+        "constructions.jsonl.gz": [
+          2776409,
+          13190
+        ],
+        "occurrences/00000.jsonl.gz": [
+          7430464,
+          588180
+        ],
+        "templates/04.jsonl.gz": [
+          396949,
+          2614
+        ],
+        "templates/15.jsonl.gz": [
+          431118,
+          2028
+        ],
+        "templates/22.jsonl.gz": [
+          424706,
+          3203
+        ],
+        "templates/2e.jsonl.gz": [
+          410255,
+          2291
+        ],
+        "templates/32.jsonl.gz": [
+          422850,
+          2147
+        ],
+        "templates/40.jsonl.gz": [
+          425293,
+          1750
+        ],
+        "templates/43.jsonl.gz": [
+          419339,
+          2047
+        ],
+        "templates/4c.jsonl.gz": [
+          429710,
+          2210
+        ],
+        "templates/52.jsonl.gz": [
+          428155,
+          2458
+        ],
+        "templates/56.jsonl.gz": [
+          420729,
+          2237
+        ],
+        "templates/58.jsonl.gz": [
+          432552,
+          2681
+        ],
+        "templates/5a.jsonl.gz": [
+          413199,
+          2207
+        ],
+        "templates/62.jsonl.gz": [
+          418929,
+          2488
+        ],
+        "templates/67.jsonl.gz": [
+          414626,
+          2673
+        ],
+        "templates/6e.jsonl.gz": [
+          415314,
+          2512
+        ],
+        "templates/72.jsonl.gz": [
+          418963,
+          2212
+        ],
+        "templates/77.jsonl.gz": [
+          424577,
+          2253
+        ],
+        "templates/83.jsonl.gz": [
+          424752,
+          2433
+        ],
+        "templates/91.jsonl.gz": [
+          421961,
+          2562
+        ],
+        "templates/9a.jsonl.gz": [
+          418187,
+          2709
+        ],
+        "templates/9b.jsonl.gz": [
+          407384,
+          2317
+        ],
+        "templates/ab.jsonl.gz": [
+          423890,
+          2512
+        ],
+        "templates/ae.jsonl.gz": [
+          423121,
+          2299
+        ],
+        "templates/af.jsonl.gz": [
+          420231,
+          2603
+        ],
+        "templates/b3.jsonl.gz": [
+          435114,
+          2103
+        ],
+        "templates/b4.jsonl.gz": [
+          422850,
+          2603
+        ],
+        "templates/b6.jsonl.gz": [
+          422403,
+          2019
+        ],
+        "templates/b9.jsonl.gz": [
+          431445,
+          2596
+        ],
+        "templates/db.jsonl.gz": [
+          418613,
+          2267
+        ],
+        "templates/e3.jsonl.gz": [
+          416664,
+          1998
+        ],
+        "verb_alternatives.jsonl.gz": [
+          1048729,
+          44278
+        ],
+        "verbs.jsonl.gz": [
+          1188722,
+          31441
+        ]
+      }
+    },
+    {
+      "id": "dailydialog-independent-quality-v36",
+      "manifest": {
+        "format": "corpus-templates-v1",
+        "status": "complete",
+        "full_input": true,
+        "model": {
+          "name": "explicit contextual attestation reviews",
+          "parser": null
+        },
+        "review_status": "UNREVIEWED",
+        "field": "example",
+        "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+        "counts": {
+          "input_records": 41,
+          "compiled_records": 41,
+          "roundtrips_verified": 41,
+          "tokens_audited": 482,
+          "verb_occurrences": 95,
+          "verb_alternative_analyses": 111,
+          "adjective_alternative_analyses": 49,
+          "participle_analyses": 6,
+          "adjective_occurrences": 29,
+          "templates": 41,
+          "template_occurrences": 41,
+          "templates_with_adjectives": 19,
+          "verb_lemmas": 49,
+          "adjective_lemmas": 28,
+          "verb_alternative_lemmas": 63,
+          "adjective_alternative_forms": 25,
+          "sentence_templates_covered": 40,
+          "predicate_templates_covered": 71,
+          "constructions": 20
+        },
+        "analyses": {
+          "parsed_verbal": 41
+        },
+        "elapsed_seconds": 1.343,
+        "source_sha256": "8d36d82ba99c5502c03bec0f4854ea3ddc3367b05c0ffc5897b8d2c31382a41d",
+        "hybrid_import": {
+          "review_status": "REVIEWED_ATTESTATIONS",
+          "admitted_occurrences": [
+            "train:548:6:2",
+            "train:8156:4:1",
+            "test:667:11:2",
+            "train:7125:2:2",
+            "train:6740:4:2",
+            "train:5747:6:1",
+            "train:4175:1:1",
+            "train:8472:1:1",
+            "train:5234:9:1",
+            "train:6557:6:3",
+            "train:6493:5:1",
+            "train:10335:11:1",
+            "train:966:13:1",
+            "train:6871:2:2",
+            "train:8850:1:1",
+            "train:6876:4:1",
+            "val:82:4:1",
+            "train:3547:4:3",
+            "val:782:8:1",
+            "train:10030:4:1",
+            "val:185:3:1",
+            "train:7943:1:1",
+            "train:7671:5:1",
+            "train:7012:9:2",
+            "val:639:2:2",
+            "train:2206:14:2",
+            "train:920:5:3",
+            "train:3293:2:1",
+            "val:720:4:3",
+            "val:920:4:1",
+            "train:2456:6:1",
+            "train:8077:5:4",
+            "train:2992:1:1",
+            "train:8752:3:1",
+            "train:4944:10:1",
+            "train:7606:2:1",
+            "train:5495:5:1",
+            "train:4215:9:2",
+            "train:3927:4:2",
+            "train:8731:1:3",
+            "train:9562:5:5"
+          ],
+          "semantic_approval": false,
+          "source_revision": "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-hybrid-quality-v36",
+          "review_inputs": [
+            {
+              "path": "data\\dailydialog\\review-parts\\hybrid-independent-quality-admission-v36.jsonl",
+              "sha256": "44caf68243dd2d293520bf34464b2912eacde4bc67e88baf1c8fe36b9cff1fa2"
+            }
+          ],
+          "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+          "review_file": "data\\dailydialog\\review-parts\\hybrid-independent-quality-admission-v36.jsonl",
+          "review_sha256": "44caf68243dd2d293520bf34464b2912eacde4bc67e88baf1c8fe36b9cff1fa2"
+        }
+      },
+      "validation": {
+        "status": "passed",
+        "source_sha256": "8d36d82ba99c5502c03bec0f4854ea3ddc3367b05c0ffc5897b8d2c31382a41d",
+        "templates": 41,
+        "attested_roundtrips": 41,
+        "source_records": 41,
+        "token_spans": 482,
+        "verbs_occurrences": 95,
+        "adjectives_occurrences": 29
+      },
+      "publication": {
+        "format": "built-in-template-component-v1",
+        "bank_id": "dailydialog-independent-quality-v36",
+        "source_sha256": "8d36d82ba99c5502c03bec0f4854ea3ddc3367b05c0ffc5897b8d2c31382a41d",
+        "manifest_sha256": "456401ca48464586d0b986171d832c0f65e7208da74fe99444cb4a07343c3717",
+        "validation_sha256": "5c42ece87040c49adb4d958bb53ba31639e156c6ece7b0157ed9b40988e0aae4"
+      },
+      "files": {
+        "adjective_alternatives.jsonl.gz": [
+          852409,
+          13878
+        ],
+        "adjectives.jsonl.gz": [
+          657277,
+          12339
+        ],
+        "constructions.jsonl.gz": [
+          2789599,
+          8619
+        ],
+        "occurrences/00000.jsonl.gz": [
+          8018644,
+          157414
+        ],
+        "templates/00.jsonl.gz": [
+          418718,
+          1823
+        ],
+        "templates/03.jsonl.gz": [
+          409929,
+          3055
+        ],
+        "templates/04.jsonl.gz": [
+          399563,
+          1790
+        ],
+        "templates/0c.jsonl.gz": [
+          414929,
+          3209
+        ],
+        "templates/12.jsonl.gz": [
+          411313,
+          1808
+        ],
+        "templates/20.jsonl.gz": [
+          423828,
+          1946
+        ],
+        "templates/21.jsonl.gz": [
+          416961,
+          1846
+        ],
+        "templates/29.jsonl.gz": [
+          422236,
+          2043
+        ],
+        "templates/2b.jsonl.gz": [
+          428800,
+          2495
+        ],
+        "templates/2e.jsonl.gz": [
+          412546,
+          1764
+        ],
+        "templates/32.jsonl.gz": [
+          424997,
+          2804
+        ],
+        "templates/43.jsonl.gz": [
+          421386,
+          2200
+        ],
+        "templates/4d.jsonl.gz": [
+          407938,
+          2730
+        ],
+        "templates/52.jsonl.gz": [
+          430613,
+          2277
+        ],
+        "templates/54.jsonl.gz": [
+          423910,
+          2215
+        ],
+        "templates/69.jsonl.gz": [
+          413816,
+          2593
+        ],
+        "templates/71.jsonl.gz": [
+          418589,
+          2319
+        ],
+        "templates/73.jsonl.gz": [
+          409601,
+          2070
+        ],
+        "templates/79.jsonl.gz": [
+          420034,
+          2517
+        ],
+        "templates/87.jsonl.gz": [
+          436492,
+          3267
+        ],
+        "templates/89.jsonl.gz": [
+          413206,
+          1863
+        ],
+        "templates/9a.jsonl.gz": [
+          420896,
+          1998
+        ],
+        "templates/a1.jsonl.gz": [
+          436064,
+          1863
+        ],
+        "templates/a4.jsonl.gz": [
+          413654,
+          2932
+        ],
+        "templates/a7.jsonl.gz": [
+          429575,
+          2235
+        ],
+        "templates/ab.jsonl.gz": [
+          426402,
+          1864
+        ],
+        "templates/ac.jsonl.gz": [
+          441833,
+          1952
+        ],
+        "templates/b5.jsonl.gz": [
+          428734,
+          2185
+        ],
+        "templates/b6.jsonl.gz": [
+          424422,
+          2637
+        ],
+        "templates/bb.jsonl.gz": [
+          404820,
+          2206
+        ],
+        "templates/c4.jsonl.gz": [
+          424765,
+          2110
+        ],
+        "templates/c5.jsonl.gz": [
+          442220,
+          1657
+        ],
+        "templates/c6.jsonl.gz": [
+          424456,
+          1822
+        ],
+        "templates/cc.jsonl.gz": [
+          412072,
+          2286
+        ],
+        "templates/d6.jsonl.gz": [
+          404499,
+          1812
+        ],
+        "templates/d7.jsonl.gz": [
+          417355,
+          2849
+        ],
+        "templates/da.jsonl.gz": [
+          412480,
+          1938
+        ],
+        "templates/dc.jsonl.gz": [
+          426923,
+          1892
+        ],
+        "templates/ef.jsonl.gz": [
+          418168,
+          2618
+        ],
+        "verb_alternatives.jsonl.gz": [
+          1093007,
+          33732
+        ],
+        "verbs.jsonl.gz": [
+          1220163,
+          28909
+        ]
+      }
+    },
+    {
+      "id": "dailydialog-independent-quality-v37",
+      "manifest": {
+        "format": "corpus-templates-v1",
+        "status": "complete",
+        "full_input": true,
+        "model": {
+          "name": "explicit contextual attestation reviews",
+          "parser": null
+        },
+        "review_status": "UNREVIEWED",
+        "field": "example",
+        "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+        "counts": {
+          "input_records": 34,
+          "compiled_records": 34,
+          "roundtrips_verified": 34,
+          "tokens_audited": 363,
+          "verb_occurrences": 88,
+          "participle_analyses": 12,
+          "verb_alternative_analyses": 77,
+          "adjective_alternative_analyses": 36,
+          "adjective_occurrences": 12,
+          "templates": 34,
+          "template_occurrences": 34,
+          "templates_with_adjectives": 10,
+          "verb_lemmas": 45,
+          "adjective_lemmas": 11,
+          "verb_alternative_lemmas": 46,
+          "adjective_alternative_forms": 28,
+          "sentence_templates_covered": 34,
+          "predicate_templates_covered": 61,
+          "constructions": 24
+        },
+        "analyses": {
+          "parsed_verbal": 34
+        },
+        "elapsed_seconds": 1.188,
+        "source_sha256": "a1c87d3283f52784bb68cb3d63043f4eb95296bb4215b2b19250d7cf7c4e4378",
+        "hybrid_import": {
+          "review_status": "REVIEWED_ATTESTATIONS",
+          "admitted_occurrences": [
+            "train:9624:8:4",
+            "train:5591:8:1",
+            "train:9970:2:2",
+            "val:785:8:1",
+            "train:2157:12:2",
+            "train:998:3:3",
+            "train:7730:12:1",
+            "test:459:4:2",
+            "train:5449:3:1",
+            "train:1211:15:3",
+            "train:10530:3:1",
+            "train:5575:1:2",
+            "train:1683:9:2",
+            "val:380:13:1",
+            "train:1859:3:3",
+            "train:8245:5:2",
+            "train:3818:5:1",
+            "train:10423:7:4",
+            "train:6552:8:3",
+            "test:380:3:2",
+            "train:1591:6:1",
+            "train:505:4:3",
+            "test:394:1:1",
+            "train:4915:9:1",
+            "train:946:3:2",
+            "train:5237:6:1",
+            "train:8028:11:2",
+            "train:5986:13:1",
+            "train:5044:2:6",
+            "train:10756:4:2",
+            "train:3885:11:2",
+            "val:376:4:1",
+            "train:8425:8:1",
+            "train:3927:6:1"
+          ],
+          "semantic_approval": false,
+          "source_revision": "C:\\git\\qa-srl-gen\\artifacts\\dailydialog-hybrid-quality-v38",
+          "review_inputs": [
+            {
+              "path": "data\\dailydialog\\review-parts\\hybrid-independent-quality-admission-v37.jsonl",
+              "sha256": "bd4670591aff5a942853267f29db77978b1f696f394b574999fd669fc5c773b6"
+            }
+          ],
+          "note": "Exact attested sentences only. Context and limited meanings are embedded; dependency QA and recombination are not licensed.",
+          "review_file": "data\\dailydialog\\review-parts\\hybrid-independent-quality-admission-v37.jsonl",
+          "review_sha256": "bd4670591aff5a942853267f29db77978b1f696f394b574999fd669fc5c773b6"
+        }
+      },
+      "validation": {
+        "status": "passed",
+        "source_sha256": "a1c87d3283f52784bb68cb3d63043f4eb95296bb4215b2b19250d7cf7c4e4378",
+        "templates": 34,
+        "attested_roundtrips": 34,
+        "source_records": 34,
+        "token_spans": 363,
+        "verbs_occurrences": 88,
+        "adjectives_occurrences": 12
+      },
+      "publication": {
+        "format": "built-in-template-component-v1",
+        "bank_id": "dailydialog-independent-quality-v37",
+        "source_sha256": "a1c87d3283f52784bb68cb3d63043f4eb95296bb4215b2b19250d7cf7c4e4378",
+        "manifest_sha256": "d635510fc8907c2f04eb7d5bfc4a6a93a8d982dad9d764c252ca0d8a6df33086",
+        "validation_sha256": "11482d0198c42e942255234121a0dba79e33ce7acd117e9b032851d2986c6c04"
+      },
+      "files": {
+        "adjective_alternatives.jsonl.gz": [
+          866287,
+          12464
+        ],
+        "adjectives.jsonl.gz": [
+          669616,
+          5590
+        ],
+        "constructions.jsonl.gz": [
+          2798218,
+          10120
+        ],
+        "occurrences/00000.jsonl.gz": [
+          8176058,
+          118468
+        ],
+        "templates/05.jsonl.gz": [
+          403192,
+          1982
+        ],
+        "templates/0a.jsonl.gz": [
+          407871,
+          2090
+        ],
+        "templates/0c.jsonl.gz": [
+          418138,
+          1776
+        ],
+        "templates/0e.jsonl.gz": [
+          418769,
+          2075
+        ],
+        "templates/20.jsonl.gz": [
+          425774,
+          2151
+        ],
+        "templates/2b.jsonl.gz": [
+          431295,
+          1981
+        ],
+        "templates/2e.jsonl.gz": [
+          414310,
+          2010
+        ],
+        "templates/3a.jsonl.gz": [
+          424716,
+          2426
+        ],
+        "templates/3d.jsonl.gz": [
+          415432,
+          2006
+        ],
+        "templates/44.jsonl.gz": [
+          431094,
+          2062
+        ],
+        "templates/51.jsonl.gz": [
+          418837,
+          1830
+        ],
+        "templates/65.jsonl.gz": [
+          411434,
+          2106
+        ],
+        "templates/68.jsonl.gz": [
+          408354,
+          3001
+        ],
+        "templates/6e.jsonl.gz": [
+          417826,
+          2529
+        ],
+        "templates/72.jsonl.gz": [
+          421175,
+          2207
+        ],
+        "templates/74.jsonl.gz": [
+          413049,
+          2494
+        ],
+        "templates/76.jsonl.gz": [
+          413031,
+          2423
+        ],
+        "templates/9d.jsonl.gz": [
+          431263,
+          2612
+        ],
+        "templates/a4.jsonl.gz": [
+          416586,
+          2032
+        ],
+        "templates/a7.jsonl.gz": [
+          431810,
+          2225
+        ],
+        "templates/ab.jsonl.gz": [
+          428266,
+          1901
+        ],
+        "templates/ae.jsonl.gz": [
+          425420,
+          2064
+        ],
+        "templates/b0.jsonl.gz": [
+          429997,
+          2214
+        ],
+        "templates/ba.jsonl.gz": [
+          434109,
+          2301
+        ],
+        "templates/c0.jsonl.gz": [
+          410649,
+          2112
+        ],
+        "templates/d4.jsonl.gz": [
+          410246,
+          2527
+        ],
+        "templates/da.jsonl.gz": [
+          414418,
+          3535
+        ],
+        "templates/dc.jsonl.gz": [
+          428815,
+          2083
+        ],
+        "templates/e1.jsonl.gz": [
+          413865,
+          2010
+        ],
+        "templates/e5.jsonl.gz": [
+          434741,
+          1908
+        ],
+        "templates/f7.jsonl.gz": [
+          394580,
+          2353
+        ],
+        "templates/fc.jsonl.gz": [
+          430243,
+          2424
+        ],
+        "verb_alternatives.jsonl.gz": [
+          1126739,
+          20567
+        ],
+        "verbs.jsonl.gz": [
+          1249072,
+          24374
+        ]
+      }
     }
   ],
-  "source_sha256": "f6ff096d754958631c4bc413befd55fc3006dc038953715977eda7d9f5c9a85e",
+  "source_sha256": "fb592f8c86338c825652e3cf2d21ecc3102a5d1e043af0c926b83abe805bb456",
   "counts": {
-    "input_records": 740917,
-    "compiled_records": 740917,
-    "roundtrips_verified": 740917,
-    "tokens_audited": 6031364,
-    "verb_occurrences": 1575732,
-    "adjective_alternative_analyses": 1037165,
-    "verb_alternative_analyses": 1320767,
-    "adjective_occurrences": 266832,
-    "participle_analyses": 193150,
-    "templates": 600164,
-    "template_occurrences": 740917,
-    "templates_with_adjectives": 167891,
-    "verb_lemmas": 5980,
-    "adjective_lemmas": 5516,
-    "verb_alternative_lemmas": 4525,
-    "adjective_alternative_forms": 6722,
-    "sentence_templates_covered": 306975,
-    "predicate_templates_covered": 174678,
-    "constructions": 26182,
+    "input_records": 741716,
+    "compiled_records": 741716,
+    "roundtrips_verified": 741716,
+    "tokens_audited": 6040923,
+    "verb_occurrences": 1577795,
+    "adjective_alternative_analyses": 1037923,
+    "verb_alternative_analyses": 1322803,
+    "adjective_occurrences": 267380,
+    "participle_analyses": 193434,
+    "templates": 600963,
+    "template_occurrences": 741716,
+    "templates_with_adjectives": 168289,
+    "verb_lemmas": 6898,
+    "adjective_lemmas": 5981,
+    "verb_alternative_lemmas": 5803,
+    "adjective_alternative_forms": 7299,
+    "sentence_templates_covered": 307734,
+    "predicate_templates_covered": 176076,
+    "constructions": 26717,
     "entities": 414,
     "entity_candidates": 49,
     "nominals": 4159
   },
   "validation": {
     "status": "passed",
-    "source_sha256": "f6ff096d754958631c4bc413befd55fc3006dc038953715977eda7d9f5c9a85e",
-    "templates": 600164,
-    "attested_roundtrips": 740876,
-    "source_records": 740917,
-    "token_spans": 6031364,
-    "verbs_occurrences": 1575732,
-    "adjectives_occurrences": 266832
+    "source_sha256": "fb592f8c86338c825652e3cf2d21ecc3102a5d1e043af0c926b83abe805bb456",
+    "templates": 600963,
+    "attested_roundtrips": 741675,
+    "source_records": 741716,
+    "token_spans": 6040923,
+    "verbs_occurrences": 1577795,
+    "adjectives_occurrences": 267380
   }
 }

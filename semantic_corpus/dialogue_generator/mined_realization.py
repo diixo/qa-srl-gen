@@ -75,6 +75,8 @@ def mined_lexeme(predicate):
 
 def active_phrase(record, head_slot, canonical, paradigms, person_names, *, reviewed=None):
     """License every clause before exposing any event in a multi-clause source."""
+    if record.get('usage_constraints') is not None:
+        return None, 'reviewed_context_only'
     record, reviews = reviewed if reviewed is not None else review_template(record, lexicon())
     if reviews[head_slot]['status'] == 'quotation_only':
         return None, reviews[head_slot]['reason']
@@ -213,6 +215,8 @@ def _active_phrase(record, head_slot, canonical, paradigms, person_names, *, voi
         return None, 'not_a_lexical_verb'
     if len(record['predicate_groups']) != 1:
         return None, 'embedded_or_coordinated_predicates'
+    if sum(c['kind'] == 'particle' for c in record['predicate_groups'][0].get('constructions', ())) > 1:
+        return None, 'coordinated_particle_constructions'
     subjects = [k for k, s in slots.items() if s.get('head_slot') == head_slot and s.get('dependency') == 'nsubj']
     if len(subjects) != 1:
         return None, 'missing_active_subject'

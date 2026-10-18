@@ -448,19 +448,30 @@ def test_a_bare_locative_object_is_not_an_adjunct():
     ), answers
 
 
-def test_the_passive_paraphrase_rebuilds_the_verb_chain():
+@pytest.mark.parametrize('agent_text,agent_label,agent_type,wh', [
+    ('Anna', Label.PERSON, None, 'By whom'),
+    ('a team', Label.GROUP, 'human_group', 'By which group'),
+])
+def test_the_passive_paraphrase_rebuilds_the_verb_chain(agent_text, agent_label, agent_type, wh):
     from semantic_corpus.question_generator import passive_paraphrase_questions
     from semantic_corpus.semantic_generator.frames import GIVE
+    from semantic_corpus.semantic_generator import Entity, Situation, realize
+    from semantic_corpus.ontology import load_default_hierarchy
 
-    document, run = to_canonical(
-        next(iter(Generator(seed=7, frames=(GIVE,)).generate(1))), document_id="p"
-    )
+    # The voice transformation must not depend on which entity seed=7 draws
+    # after the shared pool grows. Exercise both licensed agent question forms.
+    situation = Situation(GIVE, {
+        'agent': Entity(agent_text, LabelSet(frozenset({agent_label})), type_name=agent_type),
+        'theme': Entity('a book', LabelSet(frozenset({Label.PHYSICAL_OBJECT}))),
+        'recipient': Entity('Lee', LabelSet(frozenset({Label.PERSON}))),
+    }, DEFAULT_PARADIGMS['give'], hierarchy=load_default_hierarchy())
+    document, run = to_canonical(realize(situation), document_id="p")
     produced = passive_paraphrase_questions(
         document, run, resolver=ParadigmResolver(known=DEFAULT_PARADIGMS)
     )
     assert produced
     questions = [e.question for e in produced]
-    assert any(q.startswith("By whom") for q in questions)
+    assert f"{wh} was a book given to Lee?" in questions
     assert any(" by " in q for q in questions)
     for example in produced:
         assert example.kind is QAKind.PARAPHRASE

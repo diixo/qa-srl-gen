@@ -63,6 +63,14 @@ class TemplateAnnotator:
         slots, spans = syntax.get('slots', {}), syntax.get('spans', {})
         groups = syntax.get('predicate_groups', [])
         mentions, predicates, relations, properties, skipped = {}, [], [], [], []
+        if syntax.get('usage_constraints') is not None:
+            # The embedded interpretation is specific to an observed context.
+            # It is not a license to turn questions, hearsay or idioms into facts.
+            coverage = {'version': VERSION, 'predicates': len(groups), 'annotated_predicates': 0,
+                        'properties': 0, 'complete': False,
+                        'skipped': [{'head_slot': None, 'reason': 'reviewed_context_only'}],
+                        'review_status': str(ReviewStatus.UNREVIEWED)}
+            return SemanticResult(replace(document, metadata={**syntax, 'template_semantics': coverage}), None)
         for group in groups:
             head = group.get('head_slot')
             try:
