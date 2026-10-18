@@ -228,6 +228,31 @@ def test_same_surface_has_different_meaning_in_visible_context():
         assert [s.turn_id for s in claim.evidence] == ['u2', 'a1']
 
 
+def test_literal_feeling_outside_starter_vocabulary_can_generate_in_every_split(monkeypatch):
+    from semantic_corpus.dialogue_generator import fragments
+    from semantic_corpus.dialogue_generator.generator import _context_split
+
+    pattern = dict(id='literal_feeling', kind='fact', context=True,
+                   assistant='How do you feel?', reply='Very excited.',
+                   relation='feeling', value='very excited', question='How do I feel?')
+    monkeypatch.setattr(fragments, 'load_fragment_patterns', lambda: [pattern])
+    generator = DialogueGenerator(seed=12, user_assistant_only=True)
+    seen = set()
+    for split in ('train', 'validation', 'test'):
+        episodes = list(generator.generate('fragment_meaning', 4, split=split))
+        assert len(episodes) == 4
+        assert episodes == list(generator.generate('fragment_meaning', 4, split=split))
+        for e in episodes:
+            assert e.memory.find('user', 'feeling').value == 'very excited'
+            for transition in e.transitions:
+                values = tuple(transition.after.find('user', r).value
+                               for r in ('location', 'feeling', 'drink'))
+                assert _context_split(values) == split
+        current = {prompt_key(extraction_row(e, t)) for e in episodes for t in e.transitions}
+        assert not seen & current
+        seen.update(current)
+
+
 @pytest.mark.parametrize('user_only', [True, False])
 def test_reviewed_interpretations_distinguish_refusal_and_disbelief(user_only):
     context = ('the kitchen', 'tired', 'tea') if user_only else ('Anna', 'Rome')

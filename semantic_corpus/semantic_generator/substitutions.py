@@ -273,14 +273,16 @@ class EntityPool:
     # -- splitting ---------------------------------------------------------
 
     def split_key(self, text: str) -> str:
-        """The form whose split *text* follows.
+        """The shortest legacy anchor for the surface form.
 
         A held-out name must not reappear inside a longer one: holding out
         ``America`` while training on ``North America`` puts the string in
         the training text anyway, and the unseen-name test silently measures
         less than it claims. So a form that contains a shorter pool form as
         a whole word inherits that form's split, and the shortest member of
-        such a group decides for all of them.
+        such a group supplies its primary anchor. If a compound contains
+        several independent names, split_of also considers the other anchors:
+        a shorter surname must not override a held-out given name.
         """
         if text in self._split_keys:
             return self._split_keys[text]
@@ -334,7 +336,26 @@ class EntityPool:
         test_share: float = 0.1,
         salt: str = "",
     ) -> Split:
-        return _split_of(self.split_key(text), dev_share, test_share, salt)
+        # A compound can contain independently partitioned names, e.g.
+        # Nathaniel (test) and Brown (train). Preserve the legacy anchor but
+        # let every contained held-out name reserve the longer surface too.
+        # test > dev > train avoids leaking either held-out subset into train;
+        # a single-anchor name keeps its previous assignment.
+        chosen = _split_of(self.split_key(text), dev_share, test_share, salt)
+        if chosen == "test":
+            return chosen
+        words = tuple(text.split())
+        for size in self._split_word_lengths:
+            for start in range(len(words) - size + 1):
+                candidate = self._split_forms.get(words[start:start + size])
+                if candidate is None or candidate[0] >= len(text):
+                    continue
+                part = _split_of(self.split_key(candidate[2]), dev_share, test_share, salt)
+                if part == "test":
+                    return "test"
+                if part == "dev":
+                    chosen = "dev"
+        return chosen
 
 
 def _split_of(text: str, dev_share: float, test_share: float, salt: str) -> Split:

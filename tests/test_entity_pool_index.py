@@ -139,21 +139,36 @@ def test_readings_ambiguity_and_order_follow_mutations_without_duplicates():
     )
 
 
-def test_all_builtin_entities_keep_legacy_partitions():
+def test_builtin_keys_stay_stable_and_compounds_respect_every_held_out_name():
     pool = default_pool()
     forms = pool.surface_forms
     # Calculate the quadratic reference once, then reuse it for salts/shares.
     expected_keys = {text: legacy_split_key(text, forms) for text in forms}
     assert {text: pool.split_key(text) for text in forms} == expected_keys
+    form_words = {text: tuple(text.split()) for text in forms}
+    contained = {}
+    for text, words in form_words.items():
+        pieces = {words[start:end] for start in range(len(words) + 1)
+                  for end in range(start, len(words) + 1)}
+        contained[text] = [other for other, parts in form_words.items()
+                           if len(other) < len(text) and parts in pieces]
     for dev, test, salt in (
         (0.1, 0.1, ""),
         (0.25, 0.2, "custom split"),
         (0.0, 0.0, ""),
         (0.01, 0.8, "\u00e9"),
     ):
-        assignments = {
+        primary = {
             text: legacy_split_of(key, dev, test, salt)
             for text, key in expected_keys.items()
+        }
+        # Independent, slow reference: every complete contained pool phrase
+        # can reserve its enclosing compound for a held-out subset.
+        priority = {"train": 0, "dev": 1, "test": 2}
+        assignments = {
+            text: max([primary[text], *(primary[other] for other in contained[text])],
+                      key=priority.__getitem__)
+            for text in forms
         }
         assert {
             text: pool.split_of(text, dev_share=dev, test_share=test, salt=salt)
@@ -163,3 +178,28 @@ def test_all_builtin_entities_keep_legacy_partitions():
             assert pool.split(
                 split, dev_share=dev, test_share=test, salt=salt,
             ).entities == tuple(item for item in pool if assignments[item.text] == split)
+
+
+def test_short_surname_cannot_leak_a_held_out_given_name():
+    pool = EntityPool(entity(text) for text in ("Nathaniel", "Brown", "Nathaniel Brown"))
+    assert pool.split_key("Nathaniel Brown") == "Brown"
+    assert pool.split_of("Brown") == "train"
+    assert pool.split_of("Nathaniel") == "test"
+    assert pool.split_of("Nathaniel Brown") == "test"
+    assert "Nathaniel Brown" not in pool.split("train").surface_forms
+
+
+def test_compound_reservations_use_custom_shares_salt_and_new_readings():
+    names = [f"Name{i}" for i in range(200)]
+    shares = dict(dev_share=0.25, test_share=0.2, salt="entity regression")
+    by_split = {s: next(n for n in names if legacy_split_of(n, 0.25, 0.2, shares['salt']) == s)
+                for s in SPLITS}
+    pool = EntityPool(entity(n) for n in by_split.values())
+    train_dev = by_split['train'] + ' ' + by_split['dev']
+    train_test = by_split['train'] + ' ' + by_split['test']
+    assert pool.split_of(train_dev, **shares) == 'dev'
+    assert pool.split_of(train_test, **shares) == 'test'
+    pool.extend([entity(train_test), entity(train_test, Label.LOCATION)])
+    assert len(pool.split('test', **shares).readings(train_test)) == 2
+    assert not pool.split('train', **shares).readings(train_test)
+    assert pool.split_of(train_test, dev_share=0, test_share=0) == 'train'

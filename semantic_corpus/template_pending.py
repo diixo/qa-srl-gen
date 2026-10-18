@@ -2,6 +2,8 @@
 
 pending.json records immutable byte ranges, just as manifest.json does for
 published sources. Publishing another source never rewrites these ranges.
+Optional source review metadata records decisions about individual readings;
+it does not publish the pending source or alter its import identity.
 """
 from __future__ import annotations
 
@@ -122,7 +124,7 @@ def store_pending(source, root, *, source_id, inventories=False):
         entries = load_pending(root)
         existing = next((e for e in entries if e['id'] == source_id), None)
         if existing:
-            if {k: v for k, v in existing.items() if k not in {'files', 'sha256'}} != identity:
+            if {k: v for k, v in existing.items() if k not in {'files', 'sha256', 'review'}} != identity:
                 raise FileExistsError('A different pending source has this ID')
             verify_pending(root)
             return existing

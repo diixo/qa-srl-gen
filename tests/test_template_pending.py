@@ -48,6 +48,42 @@ def test_historical_reviewed_entities_stay_out_of_typed_generation(tmp_path):
     assert load_pending(root)[0]['kind'] == 'inventories'
 
 
+def test_reading_review_survives_retry_and_new_import_without_publishing(tmp_path):
+    from semantic_corpus.semantic_generator.substitutions import default_pool
+    from semantic_corpus.template_bank import fingerprint
+
+    root, _ = publish(tmp_path / 'repo', tmp_path / 'active')
+    before = list(default_pool(mined_bank=root))
+    source = tmp_path / 'inventories'
+    write_json(source / 'manifest.json', {'review_status': 'UNREVIEWED'})
+    write_rows(source / 'entities.jsonl.gz', [{'review_status': 'REVIEWED',
+        'entity': {'text': 'Unique Pending Name', 'labels': ['PERSON', 'NAMED_ENTITY'], 'named': True}}])
+    entry = store_pending(source, root, source_id='resources', inventories=True)
+    review = {'entities.jsonl.gz': {'decisions': [{'row_index': 0, 'outcome': 'admitted'}]}}
+    index = root / 'pending.json'
+    data = json.loads(index.read_text())
+    entry['review'] = review
+    entry['sha256'] = fingerprint({k: v for k, v in entry.items() if k != 'sha256'})
+    data['sources'][0] = entry
+    write_json(index, data)
+    lengths = {name: (root / name).stat().st_size for name in entry['files']}
+
+    assert store_pending(source, root, source_id='resources', inventories=True) == entry
+    assert lengths == {name: (root / name).stat().st_size for name in entry['files']}
+    other, _, _ = make_bank(tmp_path / 'other')
+    store_pending(other, root, source_id='other')
+    assert verify_pending(root)[0] == entry
+    assert list(default_pool(mined_bank=root)) == before
+    assert all(e['generation_enabled'] is False for e in load_pending(root))
+
+    # Review decisions are included in the metadata checksum, too.
+    data = json.loads(index.read_text())
+    data['sources'][0]['review']['entities.jsonl.gz']['decisions'][0]['outcome'] = 'held'
+    write_json(index, data)
+    with pytest.raises(ValueError, match='metadata changed'):
+        load_pending(root)
+
+
 def test_interrupted_append_is_invisible_and_retry_preserves_active_data(tmp_path, monkeypatch):
     from semantic_corpus import template_pending
     root, text = publish(tmp_path / 'repo', tmp_path / 'active')

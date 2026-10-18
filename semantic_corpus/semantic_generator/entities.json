@@ -37021,6 +37021,4312 @@
       ],
       "type": "human",
       "named": true
+    },
+    {
+      "text": "82nd Street",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "ABC Company",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Aaron Johnson",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Abraham Lincoln",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Air China",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Alberta",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Alex Brent",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Allan Parker",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Allen",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Altadena",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Altadena Drive",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "American Airlines",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Andrew Smith",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Andy Lau",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Angelina Jolie",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Anne Hathaway",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Anne Smith",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Anthony Hopkins",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Argentina",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Arnold Schwarzenegger",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Auckland",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Baker",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Bali",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Bank of America",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Bank of China",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Barker",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Barkley",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Basil",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Beidaihe",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Beijing International Airport",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Beijing Road",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Beijing University",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Belgium",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Bell",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Bellow",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Bergeron",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Berkeley",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Bermuda",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Betty Sue",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Bill Smith",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Birmingham",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Black",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Bob Copeland",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Bob Thomas",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Bonn",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Boris",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Brad Pitt",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Bremen",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Brisbane",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Britney",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Broadway",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Brooklyn",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Brown",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Bruce Lee",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Brussels",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Bucharest",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Buckingham Palace",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Budapest",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Buenos Aires",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Cambridge",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Campbell",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Canterbury",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Carmichael",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Catharine",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Cathy",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Celia",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Central America",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Chandler",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Chanel",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Chang",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Changchun",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Changsha",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Charles Brown",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Charles Dickens",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Charlie Chaplin",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Chen",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Chen Liang",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Cheng Long",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Chengdu",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Oriental China Airlines",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Chinatown",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Chongqing",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Chuck Jones",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Clare Williams",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Cleveland",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Clinton",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Colombia",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Congo",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Connecticut",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Conrad Reeves",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Costa Rica",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Crane",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Dalian",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Dan",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Dan Robson",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Darren McDowell",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "David Richton",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Del Mar",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Denver",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Dickens",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Dina",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Don",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Donald Eakins",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Dora",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Dresden",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Du Tao",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Dubai",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Eakins",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Eastern Europe",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Ecuador",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Ed",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Edward Norton",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "the Eiffel Tower",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Ellen Bower",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Emory",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Ernie",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Ethiopia",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Fair Oaks",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Fitzgerald",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Foster",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Frankfurt",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Frans Smith",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Frida",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Fuxingmen",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Gansu",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Gansu Province",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Geoff",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Grangerfield",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "town",
+      "named": true
+    },
+    {
+      "text": "Grant",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Great Britain",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Green",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Greenwich",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Greenwich Village",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Greg Wu",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Guangdong",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Guatemala",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Guizhou",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Hamburg",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Hangzhou",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Harbin",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Harrison Ford",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Hawkins",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Heathrow Airport",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Helen Baker",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Hilary",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Hollywood",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Honda",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Honduras",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Hongkong",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Huang",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Huangshan",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Hunan",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Hunter",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "IBA Bank",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "IKEA",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Iran",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Iraq",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Jack Nicklaus",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jackie Chan",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "James Mason",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "James Smith",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jane Austen",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Janet Smith",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jason Huntley",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jenkins",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jesus Christ",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jim Stewart",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jim Thomas",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jim White",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jin Lili",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Jingdezhen",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Jingshan",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Jingshan Park",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Jiuzhaigou Valley",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Jo",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Joanna Stevens",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Joanne",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "John Anderson",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "John Brown",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "John Phillips",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "John Sandals",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "John Taylor",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "John White",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Josh O'Neil",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Judy Liao",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Julia Roberts",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Julianne Horton",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "KFC",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Kara",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Karen Marsh",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Karl Miller",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Kate Hudson",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Kathmandu",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Katie Holmes",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Kennedy Airport",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Kentucky",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Kim",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Kobe Bryant",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Kowalski",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Kunming",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Las Vegas",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Latin America",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Lawson",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Leeds",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Li",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Li Hong",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Li Lan",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Li Lei",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Li Lin",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Li Mei",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Li Ming",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Li Ping",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Li River",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Liang",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Lili",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Lillian",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Lincoln Bank",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Liu",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Liu Wei",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Liu Yi",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Lizzy",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Long Island",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Lulu",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true,
+      "appositive": "a colleague"
+    },
+    {
+      "text": "Lulu",
+      "labels": [
+        "ANIMAL",
+        "NAMED_ENTITY"
+      ],
+      "type": "bird",
+      "named": true,
+      "appositive": "a parrot"
+    },
+    {
+      "text": "Luoyang",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Macao",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Macau",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Macmillan",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Madrid",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Main Street",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Mainland China",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Malaysia",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Malia",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Manchester",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Manchester University",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Manhattan",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Marcia",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Marcia Gleason",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Margaret Mitchell",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Marian",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Mark Benson",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Mark Wyatt",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Marsha",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Mary Kelly",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Mary Smith",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Maryland",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Massachusetts",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Maurice Richard",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Max Richards",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "McBride",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "McCain",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Mecca",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Mei",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Mel",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Mel Gibson",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Melbourne",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Meng",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Miao Li",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Miao Ping",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Michael Baker",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Michael Jackson",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Michael Johnson",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Michael Jordan",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Michael Milliken",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Microsoft",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Mike Sanderson",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Milan",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Milwaukee",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Minneapolis",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Minnesota",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Mona White",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Montreal",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Morley",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Munich",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "the NBA",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Nanchang",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Nancy Brown",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Nanjing",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Nanjing Road",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Nashville",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Nathaniel Brown",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Nelson",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Nepal",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "New England",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "New Guinea",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "New Haven",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "New Jersey",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "New Orleans",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Nigel",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Nigel Smith",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Nigeria",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Noirin O'Neil",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Northern China",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Obama",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Ophelia",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Oregon",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Orlando",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Ottawa",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Owen Wilson",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Oxford",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Pakistan",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Panama",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Panda Express",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Park Avenue",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Parsons",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Pasadena",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Patty Smith Hill",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Paula",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Pauline",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Pavel Bure",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Peckham",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Peking University",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Pennsylvania",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Pete",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Peter Brown",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Peter Kaufman",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Peter Smith",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Phillips",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Phoebe",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Phoenix",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Phyllis Seymour",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Portland",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Prague",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Providence",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Qingdao",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Quebec",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Randy Horn",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Ray",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Rhode Island",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Rick Fields",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Ricky Martin",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Robbins",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Robert Jordan",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Robert Smith",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Robin Williams",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Robinson",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Rockefeller Center",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Rodgers",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Rodriguez",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Roger Vargas",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Romania",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Ron",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Rose Green",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Rose Teller",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Ross",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Rudy Randolph",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Salt Lake City",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "San Diego",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "San Marino",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Sandy",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Santa Barbara",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Sara Ralston",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Sara Wilson",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Sarah O'Connell",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Saudi Arabia",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Schmidt",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Shandong",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Shaquille O'Neal",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Sharon Stone",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Shenyang",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Shenzhen",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Sherry",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Sheryl",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Sichuan",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Silicon Valley",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Simpson",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Sony",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "South London",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Southeast Asia",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Southwest China",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Steve Schliessman",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Steven Michael",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Steven Smith",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Stewart",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "the Summer Palace",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Susan Marshall",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Susan Miller",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Susan Ransom",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Suzhou",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Suzy",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Sylvester Stallone",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Taichung",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Tainan",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Tampa",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Tang",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Tangshan",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Tao",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Tasha",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Taylor Smith",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Temple City",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Terry Chen",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Terry Graham",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Tiananmen Square",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Tianjin",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Tibet",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Times Square",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Tom Baker",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Tom Cruise",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Tom Smith",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Tonia",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Tower Bridge",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Tsinghua University",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Tulsa",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "the UK",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Union Square",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "United Airlines",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Urumqi",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Utah",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Vancouver",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Vargas",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "the Vatican",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Venezuela",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Versailles",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Vic",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Walker",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Wang",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Wang Li",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Wang Lin",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Wang Wei",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Warsaw",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Washington D. C.",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Washington DC",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Washington Square Park",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Wei",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "West Lake",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "White",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Whole Foods",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "William Smith",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Wimbledon",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Winston Churchill",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Winthrop",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Wood",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "the World Bank",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Wrigley Field",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Wudaokou",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Wuhan",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "XYZ Company",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Xi'an",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Xiamen",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Xinjiang",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Xizhimen",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Xu",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Xu Hua",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Yale",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Yang Tang",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Yao Ming",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Yolanda",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "York",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Yuanmingyuan",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "the Yucatan",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Yunnan Province",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Yvonne",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Zhang",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Zhang Hua",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Zhang Wei",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Zhang Yong",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Zhejiang",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Zhenjiang",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Zhongshan Road",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Zhouzhuang",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Zhuang",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "human",
+      "named": true
+    },
+    {
+      "text": "Zhuhai",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Zurich",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "eBay",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "the Alps",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true,
+      "number": "plural"
+    },
+    {
+      "text": "the British Museum",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "the Caribbean",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "the Colorado River",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "the Forbidden City",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "the Great Wall",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "the Indian Ocean",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "the Louvre Museum",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "the Middle East",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "the North Pole",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "the Rocky Mountains",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true,
+      "number": "plural"
+    },
+    {
+      "text": "the Statue of Liberty",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "the West Lake",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "the Yangtze River",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
     }
   ]
 }

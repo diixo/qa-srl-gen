@@ -152,7 +152,24 @@ def fragment_episodes(generator, count, split):
     patterns = load_fragment_patterns()
     rng = random.Random(fingerprint(['fragment-meaning-v1', generator.seed, split, patterns]))
     if generator.user_assistant_only:
-        contexts = [c for c in product(COMMON_PLACES, FEELINGS, DRINKS) if _context_split(c) == split]
+        # A reviewed update may use a literal outside the starter vocabulary.
+        # Include that value among possible starting states: otherwise no
+        # starter context may share its split, starving this pattern forever.
+        # The transition checks below still keep EVERY visible state in one split.
+        initial_values = {
+            'location': list(COMMON_PLACES),
+            'feeling': list(FEELINGS),
+            'drink': list(DRINKS),
+        }
+        for pattern in patterns:
+            relation = pattern.get('relation')
+            if (pattern['kind'] == 'fact' and not pattern.get('negative', False)
+                    and relation in initial_values):
+                value = pattern['value']
+                if '{' not in value and '}' not in value and value not in initial_values[relation]:
+                    initial_values[relation].append(value)
+        contexts = [c for c in product(*(initial_values[r] for r in ('location', 'feeling', 'drink')))
+                    if _context_split(c) == split]
     else:
         pool = generator.pool.split('dev' if split == 'validation' else split)
         safe = [e for e in pool if e.is_named and e.number == 'singular' and re.fullmatch('[A-Z][a-z]{2,}', e.text)]
