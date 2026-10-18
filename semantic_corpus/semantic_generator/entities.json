@@ -41327,6 +41327,125 @@
       ],
       "type": "place",
       "named": true
+    },
+    {
+      "text": "an American Express card",
+      "labels": [
+        "PHYSICAL_OBJECT",
+        "NAMED_ENTITY"
+      ],
+      "type": "artifact",
+      "named": true
+    },
+    {
+      "text": "a \"Love, Amy Card\"",
+      "labels": [
+        "PHYSICAL_OBJECT",
+        "NAMED_ENTITY"
+      ],
+      "type": "artifact",
+      "named": true
+    },
+    {
+      "text": "Baltimore",
+      "labels": [
+        "GROUP",
+        "NAMED_ENTITY"
+      ],
+      "type": "human_group",
+      "named": true,
+      "appositive": "a sports team"
+    },
+    {
+      "text": "Harry Potter",
+      "labels": [
+        "PHYSICAL_OBJECT",
+        "NAMED_ENTITY"
+      ],
+      "type": "document",
+      "named": true,
+      "appositive": "a book"
+    },
+    {
+      "text": "Hartford public relations",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "institution",
+      "named": true
+    },
+    {
+      "text": "Kazakhstan",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "country",
+      "named": true
+    },
+    {
+      "text": "Kitty's",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "a MasterCard credit card",
+      "labels": [
+        "PHYSICAL_OBJECT",
+        "NAMED_ENTITY"
+      ],
+      "type": "artifact",
+      "named": true
+    },
+    {
+      "text": "Peking duck",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ]
+    },
+    {
+      "text": "a Peking wonton",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ]
+    },
+    {
+      "text": "a Plymouth car",
+      "labels": [
+        "PHYSICAL_OBJECT",
+        "NAMED_ENTITY"
+      ],
+      "type": "car",
+      "named": true
+    },
+    {
+      "text": "the Powell orchestra",
+      "labels": [
+        "GROUP",
+        "NAMED_ENTITY"
+      ],
+      "type": "human_group",
+      "named": true
+    },
+    {
+      "text": "rice",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ]
+    },
+    {
+      "text": "Yancheng store",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "building",
+      "named": true
     }
   ]
 }

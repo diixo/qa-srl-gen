@@ -1,4 +1,4 @@
-"""Occurrence-level holds; reviewed adjacent fragments are explicit exceptions.
+"""Occurrence-level holds; reviewed fragments are explicit exceptions.
 
 The register lives beside the reviewed catalog. Runtime checks need neither the
 original DailyDialog files nor candidate artifacts. A hold is lifted by a new
@@ -36,7 +36,7 @@ def load_holds(path):
         if (not isinstance(identity, str) or not _ID.fullmatch(identity) or identity in seen
                 or entry.get('template_admission') is not False
                 or entry.get('automatic_retry') is not False
-                or entry.get('status') not in {'deferred_missing_evidence', 'adapter_only'}
+                or entry.get('status') not in {'deferred_missing_evidence', 'adapter_only', 'source_variant_only'}
                 or not entry.get('reason') or not entry.get('reopen_when') or not entry.get('unknown')):
             raise ValueError('Invalid DailyDialog quarantine decision')
         seen.add(identity)
@@ -58,6 +58,16 @@ def load_holds(path):
             raise ValueError('Invalid DailyDialog quarantine adapter exceptions')
         if bool(allowed) != (entry['status'] == 'adapter_only'):
             raise ValueError('Only reviewed adjacent fragments can have adapter exceptions')
+        variant = entry.get('source_variant')
+        if entry['status'] == 'source_variant_only':
+            if (not isinstance(variant, dict) or not isinstance(variant.get('pattern_id'), str)
+                    or not variant['pattern_id']
+                    or not isinstance(variant.get('pattern_sha256'), str)
+                    or re.fullmatch('[0-9a-f]{64}', variant['pattern_sha256']) is None
+                    or not isinstance(variant.get('reason'), str) or not variant['reason']):
+                raise ValueError('A source variant needs a reviewed, pinned adapter')
+        elif variant is not None:
+            raise ValueError('Source variant attached to an incompatible quarantine status')
     return tuple(entries)
 
 
@@ -95,6 +105,26 @@ def check_template(record, entries):
 
 def check_fragment_catalog(patterns, catalog):
     entries = load_holds(Path(catalog).parent / REGISTER_NAME)
+    by_id = {p['id']: p for p in patterns}
+    for entry in entries:
+        if entry['status'] != 'source_variant_only':
+            continue
+        variant = entry['source_variant']
+        pattern = by_id.get(variant['pattern_id'])
+        if pattern is None or fingerprint(pattern) != variant['pattern_sha256']:
+            raise ValueError('Reviewed source variant adapter was lost or changed: ' + entry['id'])
+        source = pattern.get('source', {})
+        context, turn = source.get('context'), source.get('turn')
+        text = source.get('text', '')
+        old_turn, old_text = entry['original_prefix'][-1], entry['source']['text']
+        if (pattern.get('review', {}).get('method') != 'direct_assistant_fragment_adapter'
+                or matches_source(entry, source)
+                or not isinstance(context, list) or type(turn) is not int
+                or not 1 <= turn <= len(context) or not isinstance(context[turn-1], str)
+                or not isinstance(text, str) or len(text) <= len(old_text)
+                or not context[turn-1].casefold().startswith(old_turn.casefold())
+                or not text.casefold().startswith(old_text.casefold())):
+            raise ValueError('Source variant does not preserve and extend the original turn: ' + entry['id'])
     for pattern in patterns:
         for entry in entries:
             if matches_source(entry, pattern.get('source', {})):

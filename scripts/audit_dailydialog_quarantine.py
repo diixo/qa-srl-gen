@@ -1,7 +1,7 @@
 """Audit deferred DailyDialog sources against the currently published pool.
 
 Read-only for source data, candidates and the pool. The report distinguishes
-unresolved warnings from two usable adjacent fragment adapters; it never marks
+unresolved warnings from usable fragment adapters and complete source variants; it never marks
 the candidate reviewed or treats deferral as an annotation correction.
 """
 from __future__ import annotations
@@ -116,7 +116,12 @@ def audit(repo, ledger=None):
     warnings = list(read_rows(ledger/'quarantined-warnings.jsonl.gz'))
     cases = {r['id']:r for r in read_rows(ledger/'quarantine-cases.jsonl.gz')}
     indexed = {row['id']:row for row in holds}
-    if set(indexed) != set(cases) or len(warnings) != register['unresolved_warnings']:
+    unresolved_keys = {tuple(r['warning_key']) for r in holds if r['status'] != 'source_variant_only'}
+    resolved_keys = {tuple(r['warning_key']) for r in holds} - unresolved_keys
+    if (set(indexed) != set(cases)
+            or len(warnings) != register.get('source_warnings', register['unresolved_warnings'])
+            or len(unresolved_keys) != register['unresolved_warnings']
+            or len(resolved_keys) != register.get('source_variant_resolved_warnings', 0)):
         raise ValueError('Register does not cover the current quarantine')
     verify_evidence(repo, register)
     for warning in warnings:
@@ -144,9 +149,15 @@ def audit(repo, ledger=None):
     patterns = load_fragment_patterns(catalog_path)
     by_pattern = {p['id']:p for p in patterns}
     allowed = {identity:sha for entry in holds for identity,sha in entry['allowed_adapters'].items()}
+    variants = {e['source_variant']['pattern_id']:e['source_variant']['pattern_sha256']
+                for e in holds if e['status']=='source_variant_only'}
     if any(identity not in by_pattern or fingerprint(by_pattern[identity]) != sha
            for identity,sha in allowed.items()):
         raise ValueError('A reviewed adjacent adapter was lost or changed')
+    for identity in variants:
+        source = by_pattern[identity]['source']
+        if raw[source['split']][source['dialogue']-1] != source['context']:
+            raise ValueError('Reviewed source variant differs from preserved source: '+identity)
     bank = TemplateBank(pool)
     inspected = []
     rendered = 0
@@ -186,7 +197,7 @@ def audit(repo, ledger=None):
         raise ValueError('Full unreviewed candidate could be published')
 
     episodes = extraction = responses = 0
-    for identity in allowed:
+    for identity in {*allowed, *variants}:
         for user_only in (True,False):
             context = ('the kitchen','tired','tea') if user_only else ('Anna','Rome')
             episode = fragment_episode(by_pattern[identity], context, split='train', user_only=user_only)
@@ -218,7 +229,8 @@ def audit(repo, ledger=None):
     manual = {(r['split'],r['dialogue']) for p in inputs['annotations'].glob('part-*.jsonl')
               for r in read_rows(p)}
     return dict(status='passed',register=register_path.relative_to(repo).as_posix(),register_sha256=digest(register_path),
-        unresolved_warnings=len(warnings),active_automatic_retries=0,
+        source_warnings=len(warnings),unresolved_warnings=len(unresolved_keys),active_automatic_retries=0,
+        source_variant_resolved_warnings=len(resolved_keys),source_variant_adapters=len(variants),
         input_layout='shared_pool' if inputs['centralized'] else 'historical_source_workspace',
         review_parts_required=not inputs['centralized'],
         deferred_occurrences=sum(r['status']=='deferred_missing_evidence' for r in holds),

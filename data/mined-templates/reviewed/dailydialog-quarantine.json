@@ -1,12 +1,12 @@
 {
   "format": "dailydialog-quarantine-v1",
-  "date": "2026-10-18",
+  "date": "2026-10-19",
   "review_method": "direct_assistant_disposition_review",
-  "note": "19 unresolved warnings are deferred, not fixed or deleted. Only two exact previously reviewed adjacent adapters are permitted. All originals remain available.",
-  "unresolved_warnings": 19,
+  "note": "Five complete parallel sources supply usable continuations. Fourteen warning meanings remain unresolved, including one with a reviewed partial hearsay adapter. All 21 damaged or restricted original occurrences remain blocked as templates; exact pinned adapters are the only exceptions. Original texts and historical warning evidence are preserved.",
+  "unresolved_warnings": 14,
   "blocked_template_occurrences": 21,
-  "deferred_occurrences": 19,
-  "adapter_only_occurrences": 2,
+  "deferred_occurrences": 13,
+  "adapter_only_occurrences": 3,
   "candidate": "data/mined-templates",
   "previous_progress": "data/dailydialog/review-parts/hybrid-luna-offline-progress-queue-v34.json",
   "evidence": {
@@ -25,10 +25,10 @@
         "236d803bbf2f076e168de9534287150ef6f2d6eac1195204f4d72a3fbed75441"
       ],
       "warning_sha256": "be2f82d7b0cdb732961492687a63113498e581a8c11d40f7a5c64d94e1e75566",
-      "status": "deferred_missing_evidence",
-      "category": "truncated_content",
-      "reason": "The obligation is visible, but very c does not identify the required property. Do not insert careful or cautious.",
-      "reopen_when": "Obtain the missing source continuation or explicit author clarification, then review again without rewriting the preserved original.",
+      "status": "source_variant_only",
+      "category": "complete_source_variant",
+      "reason": "A complete parallel turn supplies the continuation at train:4547:2. Use its reviewed adapter only; the original truncated occurrence remains blocked.",
+      "reopen_when": "The complete source adapter is usable now. Any direct use of the damaged original still requires a separate review that preserves its missing information.",
       "automatic_retry": false,
       "template_admission": false,
       "allowed_adapters": {},
@@ -51,7 +51,12 @@
       "unknown": [
         "The word after very is truncated at c; do not guess careful or cautious."
       ],
-      "candidate_image_sha256": "ad808e826f096866f409ed937ca62c87251fab9cf9d4dddd48dc7b4b1ade6f93"
+      "candidate_image_sha256": "ad808e826f096866f409ed937ca62c87251fab9cf9d4dddd48dc7b4b1ade6f93",
+      "source_variant": {
+        "pattern_id": "dd_complete_computer_care",
+        "pattern_sha256": "85eefc4d6a195683f8cb653aed095a781a767a44cfffd99a8523cd0c6375f0ca",
+        "reason": "The full parallel turn preserves the original prefix (case-insensitive) and contains this continuation. No original text is changed."
+      }
     },
     {
       "id": "test:45:3:2",
@@ -262,13 +267,15 @@
         "f60687a06c46b5d23e00f191b58e86024a084bfafb4a090b6cebf93ba442c7a5"
       ],
       "warning_sha256": "94eed94a3c8e10a2b2999e6f611b63eb4284fb30c9f4c924f7efa15e6aa87149",
-      "status": "deferred_missing_evidence",
-      "category": "unclear_wording",
-      "reason": "The hearsay frame is explicit, but leading a double wife does not establish its content. Do not assert an affair, bigamy or two wives, or silently substitute life. The later accusation is not earlier-turn evidence.",
-      "reopen_when": "Obtain disambiguating source evidence available at this turn, then review again; later dialogue turns alone do not license an earlier target.",
+      "status": "adapter_only",
+      "category": "reviewed_partial_interpretation",
+      "reason": "The hearsay frame and John support a partial interpretation. The content of leading a double wife remains unclear; the pinned adapter preserves that uncertainty and confirms no affair or bigamy.",
+      "reopen_when": "Use only the pinned partial adapter. A full proposition still requires disambiguating evidence available at this turn.",
       "automatic_retry": false,
       "template_admission": false,
-      "allowed_adapters": {},
+      "allowed_adapters": {
+        "dd_partial_hearsay_about_john": "d5c0a012cf677d901f11754ce52ba2612300b16b24755c93701c33edac515963"
+      },
       "source": {
         "split": "test",
         "dialogue": 856,
@@ -419,10 +426,10 @@
         "ccd6e10ce5069b03f0dff1fecad407f01da40c16d84f5ad65df59af433585a43"
       ],
       "warning_sha256": "d8df6613f7ff6ae9743ac7b6760f7635abe8d7020fbe70433297ebabe74ab003",
-      "status": "deferred_missing_evidence",
-      "category": "truncated_content",
-      "reason": "The final A is an incomplete or extraneous letter. Do not append a word to the beach description.",
-      "reopen_when": "Obtain the missing source continuation or explicit author clarification, then review again without rewriting the preserved original.",
+      "status": "source_variant_only",
+      "category": "complete_source_variant",
+      "reason": "A complete parallel turn supplies the continuation at train:925:1. Use its reviewed adapter only; the original truncated occurrence remains blocked.",
+      "reopen_when": "The complete source adapter is usable now. Any direct use of the damaged original still requires a separate review that preserves its missing information.",
       "automatic_retry": false,
       "template_admission": false,
       "allowed_adapters": {},
@@ -444,7 +451,12 @@
       "unknown": [
         "The missing word and continuation are not guessed."
       ],
-      "candidate_image_sha256": "c975b056b06cb215ffa23538d232a84fda544dff425a372eb6760251a2dc566e"
+      "candidate_image_sha256": "c975b056b06cb215ffa23538d232a84fda544dff425a372eb6760251a2dc566e",
+      "source_variant": {
+        "pattern_id": "dd_complete_beach_relaxation",
+        "pattern_sha256": "822175a81e9fbc9d84830f07596168f66edc03cba54b6ee7625639b9c3373e79",
+        "reason": "The full parallel turn preserves the original prefix (case-insensitive) and contains this continuation. No original text is changed."
+      }
     },
     {
       "id": "train:10542:8:4",
@@ -454,10 +466,10 @@
         "c0cf0791108c2a23669ff9cbf163880c1ac8af271abf44d72b15a72f7309b88d"
       ],
       "warning_sha256": "d93de36e1ef01c47e7055093f2b8e3830e600a9727658c362a222384635c3acd",
-      "status": "deferred_missing_evidence",
-      "category": "truncated_content",
-      "reason": "Th after the pricing advice supplies no complete word or further instruction.",
-      "reopen_when": "Obtain the missing source continuation or explicit author clarification, then review again without rewriting the preserved original.",
+      "status": "source_variant_only",
+      "category": "complete_source_variant",
+      "reason": "A complete parallel turn supplies the continuation at train:4304:8. Use its reviewed adapter only; the original truncated occurrence remains blocked.",
+      "reopen_when": "The complete source adapter is usable now. Any direct use of the damaged original still requires a separate review that preserves its missing information.",
       "automatic_retry": false,
       "template_admission": false,
       "allowed_adapters": {},
@@ -486,7 +498,12 @@
       "unknown": [
         "Do not complete the word from the preceding business advice."
       ],
-      "candidate_image_sha256": "962d1b91b8e825749d1da0ccf5ca80758d93febc722aecc574cbadf7d23433ef"
+      "candidate_image_sha256": "962d1b91b8e825749d1da0ccf5ca80758d93febc722aecc574cbadf7d23433ef",
+      "source_variant": {
+        "pattern_id": "dd_complete_cheap_quality_belief",
+        "pattern_sha256": "7d3f23d2cb0126890eaf607b4f746eb45df5c3b4533621dcb55728f09fd9d914",
+        "reason": "The full parallel turn preserves the original prefix (case-insensitive) and contains this continuation. No original text is changed."
+      }
     },
     {
       "id": "train:1061:1:1",
@@ -715,10 +732,10 @@
         "8aec10f9bc99bc38b417f3e8c3de62fabaed4266ebe6dbc0a0ebb1362f9cd9ee"
       ],
       "warning_sha256": "1cc7263a6ed5c8bc82dacb6113e31ac9a39f66b10b28a9c8df5fca064d05f8e8",
-      "status": "deferred_missing_evidence",
-      "category": "truncated_content",
-      "reason": "There are many s omits its noun. The preceding restaurant discussion does not identify shops, shows or another referent.",
-      "reopen_when": "Obtain the missing source continuation or explicit author clarification, then review again without rewriting the preserved original.",
+      "status": "source_variant_only",
+      "category": "complete_source_variant",
+      "reason": "A complete parallel turn supplies the continuation at train:2630:6. Use its reviewed adapter only; the original truncated occurrence remains blocked.",
+      "reopen_when": "The complete source adapter is usable now. Any direct use of the damaged original still requires a separate review that preserves its missing information.",
       "automatic_retry": false,
       "template_admission": false,
       "allowed_adapters": {},
@@ -745,7 +762,12 @@
       "unknown": [
         "The noun cut off at s is missing; do not guess shops or restaurants."
       ],
-      "candidate_image_sha256": "e994082c927131493b76c946192a0781720c3708af717172d04a6a7957bec8f9"
+      "candidate_image_sha256": "e994082c927131493b76c946192a0781720c3708af717172d04a6a7957bec8f9",
+      "source_variant": {
+        "pattern_id": "dd_complete_city_sports",
+        "pattern_sha256": "4baccba4fb79163ce888490f3ece78c8b4ead7daf3296e421e185061a6abb2b1",
+        "reason": "The full parallel turn preserves the original prefix (case-insensitive) and contains this continuation. No original text is changed."
+      }
     },
     {
       "id": "train:1674:10:4",
@@ -755,10 +777,10 @@
         "1bbf71fa2e80922163b2980f4bdedc1de6ffd13e19a16e5522e3f0c0ddb6a125"
       ],
       "warning_sha256": "9d0149a1d4c97d58c5a185c44d5b5aa105b65b6f5fe0a57f92130211a7aa0fa1",
-      "status": "deferred_missing_evidence",
-      "category": "truncated_content",
-      "reason": "It would almost b contains modality but no recoverable predicate or complement. Do not infer that dismissal would be welcome.",
-      "reopen_when": "Obtain the missing source continuation or explicit author clarification, then review again without rewriting the preserved original.",
+      "status": "source_variant_only",
+      "category": "complete_source_variant",
+      "reason": "A complete parallel turn supplies the continuation at train:10944:10. Use its reviewed adapter only; the original truncated occurrence remains blocked.",
+      "reopen_when": "The complete source adapter is usable now. Any direct use of the damaged original still requires a separate review that preserves its missing information.",
       "automatic_retry": false,
       "template_admission": false,
       "allowed_adapters": {},
@@ -789,7 +811,12 @@
       "unknown": [
         "Do not infer that dismissal would be welcome or complete the word b."
       ],
-      "candidate_image_sha256": "99b8ffa950e597ab15019b22c7abbdb57e39fea3da983aaf00b9f6876c742c87"
+      "candidate_image_sha256": "99b8ffa950e597ab15019b22c7abbdb57e39fea3da983aaf00b9f6876c742c87",
+      "source_variant": {
+        "pattern_id": "dd_complete_dismissal_evaluation",
+        "pattern_sha256": "2c386680a7c58dd93e54f1bb44395ad1abd090e4d915a101475c219825b440a6",
+        "reason": "The full parallel turn preserves the original prefix (case-insensitive) and contains this continuation. No original text is changed."
+      }
     },
     {
       "id": "train:2502:5:4",
@@ -838,5 +865,8 @@
   },
   "import_state": "data/mined-templates/audit/import.json",
   "historical_candidate": "artifacts/dailydialog-hybrid-source-v34",
-  "candidate_source_id": "dailydialog"
+  "candidate_source_id": "dailydialog",
+  "source_warnings": 19,
+  "source_variant_resolved_warnings": 5,
+  "source_variant_occurrences": 5
 }

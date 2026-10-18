@@ -37073,6 +37073,1257 @@
         "adaptation": "Keep alternative desired job fields as alternatives, not two current occupations. Original reply preserved. The synthetic prompt exposes only reviewed antecedents; approval is limited to this visible pair."
       },
       "interpretation_topic": "dd_local_job_alternatives"
+    },
+    {
+      "id": "dd_complete_computer_care",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What precautions are needed when using the internet?",
+      "reply": "You have to be very careful and keep you computer clean.",
+      "source": {
+        "split": "train",
+        "dialogue": 4547,
+        "turn": 2,
+        "span": [
+          179,
+          235
+        ],
+        "text": "You have to be very careful and keep you computer clean.",
+        "context": [
+          "Do you use an anti-virus program to protect your computer?",
+          "Yes, I do. I also use an anti-spyware program and a firewall. There are so many nasties on the internet and so many people who are trying to use the internet to hurt other users. You have to be very careful and keep you computer clean.",
+          "How often do you run your anti-virus program?",
+          "I usually run it every few days. It finds a virus about half the time.",
+          "Which anti-virus program would you recommend?",
+          "How you tried this one? It's very good and you can download it for free on the internet. You can also download updates for free.",
+          "That sounds very good. Which website should I visit to download it?",
+          "Just a minute... go to this one. I'll send you an email with the line in it. It only takes a few minutes to download. Then you have to go through the set up procedures. But they are not complicated.",
+          "What do you use your computer for?",
+          "I use it for several things-surfing the net, word processing and creating presentations. I don't play many games on my computer, but I do a lot of work with photographs. Using c computer program, you can edit and resize photographs. You can also make them brighter or darker and cut pieces from different photographs to create new ones.",
+          "Computers are great, aren't they? I should download some program and learn how to use them."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2
+        ],
+        "source_sha256": "c56cf9f6f83a70824b7635aefdc878bcb896da41d35100a90e719cf180d5c659",
+        "context_sha256": "56b52be6f52112131b6d62814bcb306a06a14563977b92914746c66e372f2541",
+        "adaptation": "Reviewed complete parallel source for test:364:2:4. The damaged occurrence is kept intact and blocked; the target comes only from this complete source. Modal, conditional and reported scopes are retained. Original wording is preserved; only the visible adapted pair is approved."
+      },
+      "value": "tell me to be very careful and keep my computer clean; you express an obligation, not confirmation that I have done so",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_complete_computer_care"
+    },
+    {
+      "id": "dd_complete_beach_relaxation",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What do you expect at the beach while the children play?",
+      "reply": "And we'll be able to relax in the sun while they're playing.",
+      "source": {
+        "split": "train",
+        "dialogue": 925,
+        "turn": 1,
+        "span": [
+          198,
+          258
+        ],
+        "text": "And we'll be able to relax in the sun while they're playing.",
+        "context": [
+          "Oh, George, what a beautiful day it is today! The sun is hot and there are just a few clouds scattered here and there! What a perfect day to be at the beach! The kids are going to have so much fun! And we'll be able to relax in the sun while they're playing.",
+          "It does seem like the perfect day! I'm glad we chose to get out of the city and enjoy the nice weather! This looks like the perfect spot! Ok kids, put on your sunscreen while your mom and I set up camp. Here, Mary, help me lay down these beach towels.",
+          "There we go. Can you help me with the umbrella? Perfect.",
+          "Ok kids, here's a beach ball and a Frisbee, a pail and a shovel. I want to see an impressive sandcastle by the time we leave. Don't stray too far. Wait! Leave your sandals here or put on your wet shoes.",
+          "And stay in the shallow area. I don't want to see you go any farther than that sandbar! It's too deep out there and we didn't bring your floatier.",
+          "You're back already? The water was too cold, huh? I'll tell you a secret. Do you see that small pool of water over there? It'll be warmer in there. Go see if you can find some seashells or catch some minnows.",
+          "What is that? A jellyfish? Jeremy, put that down right now! It could sting you!",
+          "Ah! Not on me! Ow!"
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1
+        ],
+        "source_sha256": "779961f6c30a33c90a6de91f548b8a56aa037604c7b17f154c6f52b171ad3f9a",
+        "context_sha256": "624ede459ca3fbf630a0c85d1a32476d94e952a8ac3894ea6dbcfeba6267a69a",
+        "adaptation": "Reviewed complete parallel source for train:1040:1:5. The damaged occurrence is kept intact and blocked; the target comes only from this complete source. Modal, conditional and reported scopes are retained. Original wording is preserved; only the visible adapted pair is approved."
+      },
+      "value": "expect that we will be able to relax in the sun while the children play; you do not report that this has already happened",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_complete_beach_relaxation"
+    },
+    {
+      "id": "dd_complete_cheap_quality_belief",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Why do many customers distrust very cheap products?",
+      "reply": "They think that is must be poor quality if it's that cheap.",
+      "source": {
+        "split": "train",
+        "dialogue": 4304,
+        "turn": 8,
+        "span": [
+          198,
+          257
+        ],
+        "text": "They think that is must be poor quality if it's that cheap.",
+        "context": [
+          "What do you think are the most important things to do when running a business?",
+          "Well, there are several things. Of course, you must do everything you can to keep costs down and revenues high.",
+          "So, do you think workers should be paid as little as possible?",
+          "No. if you do that, the workers won't like their jobs. They will be less efficient and you will get a high staff turnover. Those things will increase you costs.",
+          "How can a business maximise revenues?",
+          "You need to invest in some good advertising. You have to know where your potential customers are and target them. It's no good trying to sell computer games to older people. The market is too small.",
+          "What else do you suggest?",
+          "Find out what other companies charge for the same products or services. Price yourself near the low end. Don't be much cheaper than everyone else, because many customers distrust very cheap things. They think that is must be poor quality if it's that cheap."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "source_sha256": "d00087e4c7274276635d126ade61ca9dcbeb2a4027b313a1a95cc1371e441d28",
+        "context_sha256": "05ecfde65304ff6ae304ecaa197d42d4edb52c8860325b94b0a9e7f27660a4c5",
+        "adaptation": "Reviewed complete parallel source for train:10542:8:4. The damaged occurrence is kept intact and blocked; the target comes only from this complete source. Modal, conditional and reported scopes are retained. Original wording is preserved; only the visible adapted pair is approved."
+      },
+      "value": "attribute to those customers the belief that a very cheap product must be poor quality; you do not establish the actual quality of a product",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_complete_cheap_quality_belief"
+    },
+    {
+      "id": "dd_complete_city_sports",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What entertainment is available in your city?",
+      "reply": "There are many sports events in my city.",
+      "source": {
+        "split": "train",
+        "dialogue": 2630,
+        "turn": 6,
+        "span": [
+          184,
+          224
+        ],
+        "text": "There are many sports events in my city.",
+        "context": [
+          "What's your city like?",
+          "It's quite an interesting place to live. The best thing to do in my city is go shopping. There are several indoor and outdoor markets, department stores and shopping malls.",
+          "Is the traffic bad in the city centre?",
+          "Not really. Cars are not permitted in several parts of city centre, especially in the main shopping areas. The public transport system is pretty good.",
+          "What about restaurants and entertainment?",
+          "There are restaurants with food from all over the world. We have a small Chinatown near the city centre. There are many Indian, Thai, and Italian restaurants all over the city centre. There are many sports events in my city. We have several sports venues for football, rugby, and cricket-even ice-skating and ice hockey.",
+          "Is there a lot of nightlife in your city?",
+          "There are several good clubs near the city centre. Many people in my city prefer something more'cultural ”, so we several theatres and venues for classical music concerts and operas.",
+          "It sounds like a really exciting city to live in.",
+          "It is. I hope you'll have time to come for a visit soon. You really should come during the summer, when the weather is better and there's more happening outdoors."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "source_sha256": "2c1574e982895a0afccabb85daee8bf48d32a42f698f88a568520c66e97a5e70",
+        "context_sha256": "2ff026a948b85ad7e17a7c9853bda7855095807a983cdaf6a7d4104384fc564d",
+        "adaptation": "Reviewed complete parallel source for train:1466:6:4. The damaged occurrence is kept intact and blocked; the target comes only from this complete source. Modal, conditional and reported scopes are retained. Original wording is preserved; only the visible adapted pair is approved."
+      },
+      "value": "say there are many sports events in your city; you do not name the city, give a schedule or say you attended an event",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_complete_city_sports"
+    },
+    {
+      "id": "dd_complete_dismissal_evaluation",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "How would you feel about being fired from your workplace?",
+      "reply": "It would almost be a blessing to be fired from this place.",
+      "source": {
+        "split": "train",
+        "dialogue": 10944,
+        "turn": 10,
+        "span": [
+          184,
+          242
+        ],
+        "text": "It would almost be a blessing to be fired from this place.",
+        "context": [
+          "Our company is going to do some cutbacks soon.",
+          "Really? Where did you hear that?",
+          "I met with the supervisor just this morning. I don't know, but I am a little worried. Who do you think will get sacked?",
+          "I'm not sure... Well, first, it couldn't be George. He is such a kiss-ass. He'd wash the boss's dog if he asked.",
+          "No, it's not going to be George. I don't think it's Andy either. He is involved with the boss's sister in-law. And you know how whipped our boss is.",
+          "That's true. What about Lisa? I bet there's nobody who could do a worse job than her.",
+          "Lisa? No way. I've heard a rumor that she and the boss were having an affair. You know rumors can't come out from nowhere.",
+          "Well, okay. Then there is still Michael. But he's the boss' pet after having the best sales record for three months in a row. It definitely won't be Michael.",
+          "No, that would be crazy. But then who will it be? Oh dear, it must be me. I should have known it! Why else would he have talked to me alone about the downsizing. What should I do? I've got a family to support.",
+          "Well, it could be me too. But I am not too worried. This place is suffocating me with this boss being such a hard-ass and colleagues who barely know how to get dressed in the morning. It would almost be a blessing to be fired from this place."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source_sha256": "bd8e5dbbafa0ef2908416c8c311d495ea70b531173ef26dba724b871e8b0a619",
+        "context_sha256": "073b19c1566c58a69407396b81d69a63a8dc31f9c565b4983e3fa6b2786eacd5",
+        "adaptation": "Reviewed complete parallel source for train:1674:10:4. The damaged occurrence is kept intact and blocked; the target comes only from this complete source. Modal, conditional and reported scopes are retained. Original wording is preserved; only the visible adapted pair is approved."
+      },
+      "value": "say being fired from this workplace would almost be a blessing; this is a hypothetical evaluation, not a report that you were fired",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_complete_dismissal_evaluation"
+    },
+    {
+      "id": "dd_partial_hearsay_about_john",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What have you heard about John?",
+      "reply": "I hear that John's leading a double wife.",
+      "source": {
+        "split": "test",
+        "dialogue": 856,
+        "turn": 3,
+        "span": [
+          0,
+          41
+        ],
+        "text": "I hear that John's leading a double wife.",
+        "context": [
+          "It's said that John's broken up.",
+          "Really? But his wife has always waited on him hand and foot.",
+          "I hear that John's leading a double wife.",
+          "It's very bad of him to cheat on a lady like his wife."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3
+        ],
+        "source_sha256": "88224607396978449e3db625d2657aa1231ae6bd2bcfcbe9e8effa6cf77cd718",
+        "context_sha256": "6f7a5a20997b2d43758f997665b7b5892cecebf535b35f7ab8cbf370f598b8cc",
+        "adaptation": "The first-person hearsay frame and John are explicit. Do not replace wife with life or use the later accusation as evidence. Only the recoverable reporting frame is interpreted. Original wording is preserved; only the visible adapted pair is approved."
+      },
+      "value": "report hearing something about John, but 'leading a double wife' leaves the exact claim unclear; you do not establish an affair, two wives or a confirmed event",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_partial_hearsay_about_john"
+    },
+    {
+      "id": "dd_language_learning_preference",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Which language do you prefer to learn?",
+      "reply": "I prefer to learn English.",
+      "source": {
+        "split": "train",
+        "dialogue": 526,
+        "turn": 6,
+        "span": [
+          0,
+          26
+        ],
+        "text": "I prefer to learn English.",
+        "context": [
+          "Hi. Are you new in this class?",
+          "Yes, I am. I really don't know anyone.",
+          "My name is Steven. What's your name?",
+          "My name is Bill. How are your lessons going?",
+          "Very well. And my favorite subject is Chinese.",
+          "I prefer to learn English. In my opinion, English is easier than Chinese.",
+          "I guess English has fewer characters.",
+          "You are right."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "source_sha256": "ffce1b5c0e4438a87d406c2fd8d6498108d4e4594b2d99b269ae5813ed556bae",
+        "context_sha256": "238f219e2411330fcb91e66721b25d443a6735289ff57439bfe8ebfc6aee6499",
+        "adaptation": "A learning preference is not completed learning or language proficiency. Original wording is preserved; only the visible adapted pair is approved."
+      },
+      "value": "express a preference for learning English; you do not claim to have learned it",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_language_learning_preference"
+    },
+    {
+      "id": "dd_doctor_occupation",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What do you do for work?",
+      "reply": "I'm a doctor.",
+      "source": {
+        "split": "train",
+        "dialogue": 527,
+        "turn": 5,
+        "span": [
+          0,
+          13
+        ],
+        "text": "I'm a doctor.",
+        "context": [
+          "Robert, this is my friend, Mrs. Smith.",
+          "Hi, Nice to meet you.",
+          "Nice to meet you too.",
+          "Mrs. Smith, what do you do for work?",
+          "I'm a doctor.",
+          "Oh. Where do you work?",
+          "New York University hospital in New York City. What do you do?",
+          "I'm a teacher.",
+          "What do you teach?",
+          "I teach English.",
+          "Where?",
+          "At a high school in New Jersey.",
+          "That's nice. How old are you?",
+          "I'm 32."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "source_sha256": "5acce9e40a91bc0840b4cecbe2b0f7a99913007c1372ffb119b7b4e9a4755a4e",
+        "context_sha256": "1f9570687dcc3f033a0b50152ef17a71ce6d2ec264877614fac81a195ff5d694",
+        "adaptation": "The speaker explicitly states their occupation; the prompt retains the work context. Original wording is preserved; only the visible adapted pair is approved."
+      },
+      "value": "state that you are a doctor; you do not identify a hospital or report treating a patient",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_doctor_occupation"
+    },
+    {
+      "id": "dd_teaching_workplace",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Where do you teach English?",
+      "reply": "At a high school in New Jersey.",
+      "source": {
+        "split": "train",
+        "dialogue": 527,
+        "turn": 12,
+        "span": [
+          0,
+          31
+        ],
+        "text": "At a high school in New Jersey.",
+        "context": [
+          "Robert, this is my friend, Mrs. Smith.",
+          "Hi, Nice to meet you.",
+          "Nice to meet you too.",
+          "Mrs. Smith, what do you do for work?",
+          "I'm a doctor.",
+          "Oh. Where do you work?",
+          "New York University hospital in New York City. What do you do?",
+          "I'm a teacher.",
+          "What do you teach?",
+          "I teach English.",
+          "Where?",
+          "At a high school in New Jersey.",
+          "That's nice. How old are you?",
+          "I'm 32."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source_sha256": "093feeea1e0e6947c11d4401994a16bac1cc0840f394cda8fdb6809dd1373e64",
+        "context_sha256": "1f9570687dcc3f033a0b50152ef17a71ce6d2ec264877614fac81a195ff5d694",
+        "adaptation": "Turns 8-11 establish teaching and a workplace question. Do not change the current location or infer residence in New Jersey. Original wording is preserved; only the visible adapted pair is approved."
+      },
+      "value": "say you teach English at a high school in New Jersey; this gives your workplace, not your current location or home",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_teaching_workplace"
+    },
+    {
+      "id": "dd_probably_married",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What do you think about Femi now?",
+      "reply": "She's probably married.",
+      "source": {
+        "split": "train",
+        "dialogue": 528,
+        "turn": 3,
+        "span": [
+          41,
+          64
+        ],
+        "text": "She's probably married.",
+        "context": [
+          "Hah! For three hours while you threw up. And Femi dumped me for that. I really loved her.",
+          "I'm so sorry, Taylor. Go talk to her. I'm sure she'd be happy to see you.",
+          "She probably wouldn't even recognize me. She's probably married.",
+          "Yi-jun said Femi was talking about you. So get out there, Tiger!",
+          "Was she really? So you're telling me there's a chance?",
+          "Can't hurt to try. Carpe diem. Who can say if we'll be here tomorrow or not?"
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3
+        ],
+        "source_sha256": "4e6ff76c7b20a45ed3b389cedab5bf0b0ea4274fc68f26e726e98ac405f08bee",
+        "context_sha256": "4de00036955b1e4f2d74d6d1af1babae242cb8ef231dede890b3e6a0381c532c",
+        "adaptation": "She refers to Femi from preceding turns. Probably must remain uncertain; no future turn supplies confirmation. Original wording is preserved; only the visible adapted pair is approved."
+      },
+      "value": "say Femi is probably married; you express uncertainty rather than establish her marital status",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_probably_married"
+    },
+    {
+      "id": "dd_rare_meteor_risk",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Is it possible for space travelers to be hit by meteors?",
+      "reply": "It's once in blue moon.",
+      "source": {
+        "split": "train",
+        "dialogue": 529,
+        "turn": 4,
+        "span": [
+          0,
+          23
+        ],
+        "text": "It's once in blue moon.",
+        "context": [
+          "Oh, Ralph, I heard it is very dangerous traveling in space. Disasters have happened before. If the spaceship were out of order...",
+          "You should be optimistic about this. Things have taken a good turn. You should remember that less than two centuries ago the dangers of train travel seemed similarly terrible.",
+          "But is it possible that travelers could be hit by meteors?",
+          "It's once in blue moon.",
+          "What do you think is the real danger man faced in space?",
+          "The main one is radiation. There are two sorts of radiation man must fear in space. The first is radiation from the sun, and this is particularly dangerous when the sun is very active and explosions are occurring on its surface. The second, less harmful, comes from the so-called Van Allen Belts."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "source_sha256": "0075a70302eb64e6a7d2fd1fae2ce0c7160f3831542aabf78543bad7ed791d6c",
+        "context_sha256": "43052972b22f1ef3d8274c4aac7c40332b18af401cce8a741d5ebc5d11a685b5",
+        "adaptation": "Preserve the nonstandard missing article in the idiom and its low-frequency meaning; do not create a lunar event. Original wording is preserved; only the visible adapted pair is approved."
+      },
+      "value": "describe a meteor hitting space travelers as very rare, not impossible; you give no date or numerical probability",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_rare_meteor_risk"
+    },
+    {
+      "id": "dd_need_watch_final",
+      "kind": "mined_event",
+      "context": true,
+      "assistant": "The final is next week. What do you think I should do?",
+      "reply": "You have to watch it.",
+      "source": {
+        "split": "train",
+        "dialogue": 530,
+        "turn": 5,
+        "span": [
+          30,
+          51
+        ],
+        "text": "You have to watch it.",
+        "context": [
+          "Hi, Mark, did you catch the game last night?",
+          "No, I was out. Was it worth watching?",
+          "You didn't hear? Spain won, two to zero.",
+          "Oh, really? So, Spain is through to the next round?",
+          "Yeah. The final is next week. You have to watch it."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "source_sha256": "5403cd66b82a0d6ad95257bd701e09112166fe79072d0c9c753f7086a0e95560",
+        "context_sha256": "f785b307b967abf27403eb8923843bd401f663853229689541357c343e7e07a2",
+        "adaptation": "The preceding sentence in the same original turn supplies the final and its time. The visible prompt exposes it; you addresses the assistant. Necessity is not completed watching. Original wording is preserved; only the visible adapted pair is approved."
+      },
+      "predicate": "watch",
+      "operators": [
+        "have_to"
+      ],
+      "tense": "present",
+      "subject": {
+        "text": "assistant",
+        "label": "PERSON",
+        "number": "singular"
+      },
+      "time": "next week",
+      "arguments": [
+        [
+          "complement",
+          "the final",
+          "UNRESOLVED"
+        ],
+        [
+          "object",
+          "the final",
+          "ABSTRACT_ENTITY"
+        ]
+      ],
+      "question": "Have you already watched the final?"
+    },
+    {
+      "id": "dd_recommend_cycling_to_work",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What should I do about my commute?",
+      "reply": "I recommend you ride a bike instead of commuting by bus.",
+      "source": {
+        "split": "train",
+        "dialogue": 531,
+        "turn": 4,
+        "span": [
+          0,
+          56
+        ],
+        "text": "I recommend you ride a bike instead of commuting by bus.",
+        "context": [
+          "Get up as early as six o'clock only to be jammed at every crossroad and still late for work. What a life! I've had enough of it.",
+          "Cool down, man. Everyone is fed up with the rush-hour traffic. But life isn't really all that. You should take the initiative and make some changes first.",
+          "What should I do then?",
+          "I recommend you ride a bike instead of commuting by bus. It may offer you many benefits. First, it's good for your health. I'm afraid it's not necessary for me to further elaborate. While lots of people spend time like an hour each morning exercising, a bike ride to work not only builds you up, but also makes full use of time. You might as well sleep out for a longer hour.",
+          "I know cycling is always a more favorable choice than a bus. After all, it's a sport. But do you think it a pleasant experience to take in the dirty, polled air on the road?",
+          "Well, such things are just unavoidable in a great metropolis like Beijing. I think a still more desirable benefit is psychological. Bicycling home after work can help release your stress. Life in the offices is miserable. You just sit there in a daze, gazing at the monitor and dealing with files and documents. Why don't you give a full play to your energy after work? Enjoy the speed on the road. Just think, you are flashing past the poles with your own energy. How great!"
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "source_sha256": "bd5f9284839c47a3d9c3914b23b4d207fd396211283517c0a61055264709a65c",
+        "context_sha256": "ed4b7bf496f4651fd62a006fd749ab6a640201322fe8f29b8541552194d42740",
+        "adaptation": "Keep the recommendation and replacement alternative; no uptake or completed journey is asserted. Original wording is preserved; only the visible adapted pair is approved."
+      },
+      "value": "recommend that I ride a bike instead of commuting by bus; you do not say I agreed or already rode a bike",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_recommend_cycling_to_work"
+    },
+    {
+      "id": "dd_brother_age_reply",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "How old is your brother?",
+      "reply": "Eighteen.",
+      "source": {
+        "split": "train",
+        "dialogue": 532,
+        "turn": 4,
+        "span": [
+          0,
+          9
+        ],
+        "text": "Eighteen.",
+        "context": [
+          "How many people are there in your family?",
+          "Five. Besides my parents and me, there are my brother and sister.",
+          "That's a big family. How old is your brother?",
+          "Eighteen.",
+          "What about your sister?",
+          "She's not quite twenty-five.",
+          "Do you miss your family?",
+          "Yes.",
+          "Do you often go home?",
+          "No. But I often send e-mail to them. And make a call to my parents regularly.",
+          "How often do you call to them?",
+          "Once a week."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "source_sha256": "f9d30a703667963a18c6692af3d826923ec3c1d57b2cae917080aed8c54e1c97",
+        "context_sha256": "70378d31dc0d10250fd6a8468b4dc138924f2cb6b17cd864bfee37a1564ce2f7",
+        "adaptation": "The preceding question supplies age and the brother referent. This is not the speaker's age or a count of siblings. Original wording is preserved; only the visible adapted pair is approved."
+      },
+      "value": "say your brother is eighteen years old; you do not give your own age or the number of siblings",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_brother_age_reply"
+    },
+    {
+      "id": "dd_sister_approximate_age",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "How old is your sister?",
+      "reply": "She's not quite twenty-five.",
+      "source": {
+        "split": "train",
+        "dialogue": 532,
+        "turn": 6,
+        "span": [
+          0,
+          28
+        ],
+        "text": "She's not quite twenty-five.",
+        "context": [
+          "How many people are there in your family?",
+          "Five. Besides my parents and me, there are my brother and sister.",
+          "That's a big family. How old is your brother?",
+          "Eighteen.",
+          "What about your sister?",
+          "She's not quite twenty-five.",
+          "Do you miss your family?",
+          "Yes.",
+          "Do you often go home?",
+          "No. But I often send e-mail to them. And make a call to my parents regularly.",
+          "How often do you call to them?",
+          "Once a week."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "source_sha256": "09178aacb53e5289cb9868b199830a829327da8c85c7da5de74748b0af5203d3",
+        "context_sha256": "70378d31dc0d10250fd6a8468b4dc138924f2cb6b17cd864bfee37a1564ce2f7",
+        "adaptation": "Preserve not quite and the sister antecedent. Do not convert the approximate age to twenty-four or twenty-five. Original wording is preserved; only the visible adapted pair is approved."
+      },
+      "value": "say your sister is slightly younger than twenty-five; you do not specify an exact age",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_sister_approximate_age"
+    },
+    {
+      "id": "dd_current_terribly_nervous",
+      "kind": "fact",
+      "context": true,
+      "assistant": "How do you feel?",
+      "reply": "I'm terribly nervous.",
+      "source": {
+        "split": "train",
+        "dialogue": 533,
+        "turn": 1,
+        "span": [
+          0,
+          21
+        ],
+        "text": "I'm terribly nervous.",
+        "context": [
+          "I'm terribly nervous.",
+          "Calm down!"
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1
+        ],
+        "source_sha256": "318126598c5cfa1d09c9635f45b14689135e5c4d8d4e6f9805055570bdd7d1c9",
+        "context_sha256": "f4f2babbecf1e746b8468408f51b21c22f532ef7564f62961d62130dc54b95d8",
+        "adaptation": "An explicit current feeling, with the degree retained. Do not infer an upcoming test or another cause. Original wording is preserved; only the visible adapted pair is approved."
+      },
+      "value": "terribly nervous",
+      "relation": "feeling",
+      "question": "How do I feel?"
+    },
+    {
+      "id": "dd_challenge_alien_claim",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "We are discussing claims about who built the Pyramids.",
+      "reply": "You're not going to tell me that aliens built the Pyramids, are you?",
+      "source": {
+        "split": "train",
+        "dialogue": 534,
+        "turn": 5,
+        "span": [
+          23,
+          91
+        ],
+        "text": "You're not going to tell me that aliens built the Pyramids, are you?",
+        "context": [
+          "What's wrong? You don't like ancient Egypt?",
+          "Actually, I don't like history. Lately, these shows are always about the Pyramids.",
+          "The Pyramids are amazing! Millions of gigantic stones... each one perfect...",
+          "And nobody knows who built them, right? It's a total mystery!",
+          "You sound like the TV! You're not going to tell me that aliens built the Pyramids, are you?"
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "source_sha256": "1e4d3353131f86b446f7d0ffa8b26c566c187197fded440e8483dd9be1fd3bf6",
+        "context_sha256": "ed2b3b58f3fd25d3afb2334e2fec45b44e88700b80ce8d40e1cc64af4fbab99d",
+        "adaptation": "This is a skeptical question about a possible claim. Neither the embedded proposition nor a future claim is an observed event. Original wording is preserved; only the visible adapted pair is approved."
+      },
+      "value": "challenge the possibility that I will claim aliens built the Pyramids; you do not assert that aliens built them",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_challenge_alien_claim"
+    },
+    {
+      "id": "dd_boss_trying_to_avoid",
+      "kind": "mined_event",
+      "context": true,
+      "assistant": "What is happening with your boss?",
+      "reply": "Worse still, he is trying to avoid me these days.",
+      "source": {
+        "split": "train",
+        "dialogue": 535,
+        "turn": 12,
+        "span": [
+          0,
+          49
+        ],
+        "text": "Worse still, he is trying to avoid me these days.",
+        "context": [
+          "What's the problem, Nada? You look down in the dumps.",
+          "I don't know. My life is a big mess. Everything is so complicated.",
+          "Come on, nothing can be that bad.",
+          "But promise me, you'll keep it a secret.",
+          "Ok, I promise. So what's troubling you so much?",
+          "I've fallen in love with my boss.",
+          "Really? Is he married?",
+          "Bo, of course not. He is still single.",
+          "Then what's your problem?",
+          "I try to keep it to myself. But there is a lot of gossip about us.",
+          "Oh, I see. Office romance tends to be the subject of gossip.",
+          "Worse still, he is trying to avoid me these days.",
+          "Office romance is very tricky.",
+          "It gives me a lot of pressure and I feel depressed.",
+          "Cheer up, Nada. You'll be fine."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source_sha256": "a0ddb6e76183a31ba4e79ab9fff0f385824ca7f17899b38e9e6cee70499b8114",
+        "context_sha256": "371b87c13fb4011906df2a0df1ab8e44f9d32c018de9c5fd237798a4133b6acd",
+        "adaptation": "He refers to the boss; me is the user in the adapted dialogue. Trying does not establish successful avoidance, firing or a completed relationship event. Original wording is preserved; only the visible adapted pair is approved. In the event representation, me is normalized to user in both the complement and its object role; the rendered reply is unchanged."
+      },
+      "predicate": "avoid",
+      "operators": [
+        "try"
+      ],
+      "tense": "present",
+      "subject": {
+        "text": "my boss",
+        "label": "PERSON",
+        "number": "singular"
+      },
+      "time": "these days",
+      "arguments": [
+        [
+          "complement",
+          "user",
+          "UNRESOLVED"
+        ],
+        [
+          "object",
+          "user",
+          "PERSON"
+        ]
+      ],
+      "question": "Has my boss already avoided me?"
+    },
+    {
+      "id": "dd_american_express_card_choice",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What kind of credit card will you use?",
+      "reply": "American Express.",
+      "source": {
+        "split": "train",
+        "dialogue": 4790,
+        "turn": 13,
+        "span": [
+          0,
+          17
+        ],
+        "text": "American Express.",
+        "context": [
+          "Good morning. I'd like to check out right now.",
+          "May I have your room number 。 Sir?",
+          "Room 103.",
+          "Just a minute, Sir. Are you Mr Wang from China?",
+          "Yes. Wang Bin.",
+          "Mr Wang, did you sign any bill in the last two hours in our hotel?",
+          "No.",
+          "Have you used any hotel services this morning?",
+          "No, I have not.",
+          "Here is your bill. It totals 3250 dollars.",
+          "All right. Can I pay with credit cards?",
+          "What kind of card?",
+          "American Express.",
+          "Yes, we do. Here is your bill and receipt."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "source_sha256": "d7a3aaf1ce81e03ead7792d1fdcd789028a44a9b720200370a499f2dfba20ef9",
+        "context_sha256": "47df515b8b25e4b42ca9461a7701ecd8cea2faccd5610e53438fb7372e625320",
+        "adaptation": "The two preceding questions explicitly concern paying by credit card. Preserve the short answer and its card reading. Original wording is preserved; only the visible adapted pair is approved."
+      },
+      "value": "name American Express as the kind of credit card; you do not identify an employer or confirm that payment succeeded",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_american_express_card_choice"
+    },
+    {
+      "id": "dd_harry_potter_book_title",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What is the title of the book you read?",
+      "reply": "Harry Potter.",
+      "source": {
+        "split": "test",
+        "dialogue": 859,
+        "turn": 2,
+        "span": [
+          0,
+          13
+        ],
+        "text": "Harry Potter.",
+        "context": [
+          "Excuse me, can you tell me the name of the book you read?",
+          "Harry Potter.",
+          "Harry Potter? Is that book funny?",
+          "Actually, the language itself is not so funny, but you can imagine the scene, that's funny.",
+          "Got it.",
+          "Have you ever read this book before?",
+          "No, but my little brother likes it very much.",
+          "It's really a good book. You will like it too.",
+          "I'll try to read it. Actually, I like literature very much.",
+          "Wow, that sounds like a scholar. By the way, who's your favorite writer?",
+          "Jane Austen.",
+          "Me too. Pride and Prejudice is my favorite.",
+          "I like it too. But Sense and Sensibility is my favorite."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2
+        ],
+        "source_sha256": "52e031278488a6cedd731f039832f0a811cc2ec077f89f2812df292930f14295",
+        "context_sha256": "d8b874149c14f2c706bd0be9952fdad9b5fbefcc1511f150603b9b54b1f37408",
+        "adaptation": "The immediately preceding question supplies the book-title role; do not add a volume number or movie title. Original wording is preserved; only the visible adapted pair is approved."
+      },
+      "value": "give Harry Potter as a book title; you do not identify a person",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_harry_potter_book_title"
+    },
+    {
+      "id": "dd_kwon_understood_question",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "We are discussing the novel Pride and Prejudice.",
+      "reply": "Do you Kwon what it's about?",
+      "source": {
+        "split": "train",
+        "dialogue": 2718,
+        "turn": 4,
+        "span": [
+          33,
+          61
+        ],
+        "text": "Do you Kwon what it's about?",
+        "context": [
+          "I can't believe my English teacher is making me read pride and prejudice!",
+          "Why not! It's a classic; in fact, it's one of my favorite novels.",
+          "But it's so old.",
+          "Don't judge a book by its cover. Do you Kwon what it's about?",
+          "No, not at all.",
+          "First of all, it's a romance novel, set in the early 19th century.",
+          "I didn't realize it was a romance novel. What's the main storyline?",
+          "It's basically about a father who tried to marry off one of his five girls.",
+          "Why does he want to do that?",
+          "Since he doesn't have a son, he hopes that one of the girls will marry a wealthy man. That way, all of his daughters will be cared for.",
+          "Won't they get his inheritance?",
+          "No, that's the problem. Though they are well-off, once he dies, his house will go to his cousin. So, when he dies, the girls will have nothing.",
+          "I see. This sounds interesting! Maybe my teacher isn't so horrible after all.",
+          "So, are you going to read the novel or watch the movie?",
+          "There's movie? My teacher didn't tell me that!",
+          "That's probably because she wants you to read the book first.",
+          "It would take a lot less time..",
+          "How about this. When you finish the book. I'll get the movie and watch it with you.",
+          "Ok. That sounds like a deal."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "source_sha256": "a33980d7b7d473479193a8de4b66cc8dfe07df5fbc7f9715c3ad8c6ad2d22633",
+        "context_sha256": "c56c7b35a5242e94ad0230fb0142dda0932b7519eee9034f03e99fd66a51460e",
+        "adaptation": "The prior turns establish the novel; the question structure makes the typo know recoverable. Preserve Kwon in the reply and do not assert that the listener knows the plot. Original wording is preserved; only the visible adapted pair is approved."
+      },
+      "value": "ask whether I know what Pride and Prejudice is about; Kwon is a typo in the question, not a person being mentioned",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_kwon_understood_question"
+    },
+    {
+      "id": "dd_alabama_website_reference",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "Can you suggest a B2B website?",
+      "reply": "Of course, such as the Alabama, which is a famous website.",
+      "value": "refer to Alabama as a website in your recommendation; you do not use it as a geographic location",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_alabama_website_reference",
+      "source": {
+        "split": "train",
+        "dialogue": 2298,
+        "turn": 14,
+        "span": [
+          0,
+          58
+        ],
+        "text": "Of course, such as the Alabama, which is a famous website.",
+        "context": [
+          "How do you usually sell your products now?",
+          "I'm doing business through Internet now.",
+          "Oh, really? Is it a good way?",
+          "Yes, very good.",
+          "What advantages does it have?",
+          "It is very convenient. You know you can browse the website and send e-mails to your customers at any time.",
+          "Yes, if we do business through other ways, it will cost a lot of time.",
+          "Also it has low cost, and you know you only need to pay the fee of Internet, which is very cheap.",
+          "Yes, going abroad to join the exhibition will cost much. But does it have any disadvantages?",
+          "To be frank, sometimes it is not so safe as doing business through traditional ways.",
+          "You mean there may be credit problems?",
+          "Yes, but if you choose some good B2B websites, such problems can be avoided.",
+          "Will you give some suggestion?",
+          "Of course, such as the Alabama, which is a famous website.",
+          "Thanks. Maybe I will do business through Internet in the future."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "source_sha256": "c191f91abdc9d2e2a91477bb510400e7b60c955f5b0dc77af0436d630055a65a",
+        "context_sha256": "2cb40103d8c27c47a3b95da48fab64e613562dbcdca50d49babccb3a78e1b21f",
+        "adaptation": "The source spelling is preserved, not silently corrected to Alibaba. A website reading does not license arbitrary give/say frames. Original wording is preserved; the interpretation describes this visible pair only.",
+        "context_entity_readings": [
+          {
+            "text": "Alabama",
+            "labels": [
+              "ABSTRACT_ENTITY",
+              "NAMED_ENTITY"
+            ],
+            "type": "notion",
+            "named": true,
+            "appositive": "a website"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dd_eurasia_plate_reference",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What geographic plate does your explanation refer to?",
+      "reply": "Well, China is located on the Eurasia plate, where earthquakes happen frequently due to the earth's plates knocking against each other.",
+      "value": "refer to the Eurasia plate as the plate on which China is located and offer plate movement as an explanation for earthquakes; you do not identify a separate place named Eurasia",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_eurasia_plate_reference",
+      "source": {
+        "split": "train",
+        "dialogue": 2905,
+        "turn": 6,
+        "span": [
+          0,
+          135
+        ],
+        "text": "Well, China is located on the Eurasia plate, where earthquakes happen frequently due to the earth's plates knocking against each other.",
+        "context": [
+          "Terrible. How about people's lives?",
+          "Fortunately, there is no person died.",
+          "That's great. It seems that Typhoon is not as bad as earthquake.",
+          "Yeah. Earthquake is one of the most badly natural disasters in the world.",
+          "That's why many people died in the earthquake.",
+          "Well, China is located on the Eurasia plate, where earthquakes happen frequently due to the earth's plates knocking against each other.",
+          "Oh, China does have been plagued by numerous destructive earthquakes during its long history.",
+          "Yeah, we've experienced the 8.0 magnitude earthquake in Wenchman.",
+          "We're all familiar with natural disasters. But we still feel weak when we face Wenchman earthquake.",
+          "Right. But people at that time only know two words, \" save \" and \" assistance \", they will never don't lift a finger. Life is the most important compared with anything else.",
+          "That's the point. Love among human beings is not limited by geography."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "source_sha256": "7ccd66b6b6050a2bc8e58e4708f408326f4be6911199b7be358de86675551d02",
+        "context_sha256": "4ba4140886db44abf21bac10e10fa71156d2716c4a7d5a7f6dc234029f767186",
+        "adaptation": "Keep the whole geological name and source wording. This geography statement is not a reviewed destination for generic visit/go sentences. Original wording is preserved; the interpretation describes this visible pair only.",
+        "context_entity_readings": [
+          {
+            "text": "the Eurasia plate",
+            "labels": [
+              "LOCATION",
+              "NAMED_ENTITY"
+            ],
+            "type": "place",
+            "named": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "dd_hurricane_and_possible_tsunami",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "What does the weather report say about the hurricane and the possible tsunami?",
+      "reply": "Meanwhile, Mexico's coast has been hit by hurricane Liliana and officials say that all the seismic activity leads them to believe that a tsunami may hit Central America, affecting Honduras, Guatemala and Panama.",
+      "value": "report a hurricane named Liliana hitting the coast of Mexico, and attribute to officials the possibility of a tsunami hitting Central America; you do not report that the tsunami already happened",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_hurricane_and_possible_tsunami",
+      "source": {
+        "split": "train",
+        "dialogue": 1250,
+        "turn": 4,
+        "span": [
+          122,
+          333
+        ],
+        "text": "Meanwhile, Mexico's coast has been hit by hurricane Liliana and officials say that all the seismic activity leads them to believe that a tsunami may hit Central America, affecting Honduras, Guatemala and Panama.",
+        "context": [
+          "Those are the headlines for today, and now for the international weather report with Mike Sanderson.",
+          "Thank you, Bob! This past week has been the beginning of Armageddon for many, a series of unprecedented meteorological events occurred around the world. In Switzerland, a major avalanche was reported in the Alps. Fortunately, no one was injured. Due to to the extreme cold this winter, a blizzard has struck the US Midwest, causing classes in schools and universities to be temporarily canceled. Moving to to Latin American, Ecuador has suffered a six month drought that has not only affected farming, but has also forced the closure of the hydroelectric power plant that provides electricity for the entire country. In Chile, a major earthquake that registered seven point five on the Richter scale struck the southern region. Losses are reported to be in the billions. Authorities have not yet released an official statement.",
+          "Not a great week for the world! Any good news?",
+          "I'm afraid not, Bob. One of the major volcanoes in Mexico has erupted, causing major floods and landslides in the region. Meanwhile, Mexico's coast has been hit by hurricane Liliana and officials say that all the seismic activity leads them to believe that a tsunami may hit Central America, affecting Honduras, Guatemala and Panama. That's all the news we have for today, but stay tuned for updates on the six o'clock news. Back to you Bob."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "source_sha256": "75c9555f3d7f0ebaf53d3ee56a21ab0d435235614b8b1bded6d498bb23adc4ac",
+        "context_sha256": "0f71e3fba2f1f5f4be0e3234fd7b5e1b8b7dd617deb607c7bf16fa5d67311366",
+        "adaptation": "Liliana is a named weather event, not a person or a transferable object. Separate the reported hurricane from the embedded possible tsunami. Original wording is preserved; the interpretation describes this visible pair only.",
+        "context_entity_readings": [
+          {
+            "text": "hurricane Liliana",
+            "labels": [
+              "ABSTRACT_ENTITY",
+              "NAMED_ENTITY"
+            ],
+            "type": "event",
+            "named": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "dd_seinfeld_blackout",
+      "kind": "interpretation",
+      "context": true,
+      "assistant": "There is a blackout. What can you no longer watch?",
+      "reply": "Now I can't see Seinfeld.",
+      "value": "say the blackout prevents you from watching the television programme Seinfeld; you do not report meeting a person named Seinfeld",
+      "question": "What did I convey in my last reply?",
+      "interpretation_topic": "dd_seinfeld_blackout",
+      "source": {
+        "split": "train",
+        "dialogue": 1206,
+        "turn": 2,
+        "span": [
+          17,
+          42
+        ],
+        "text": "Now I can't see Seinfeld.",
+        "context": [
+          "Ah! No! Damn it!",
+          "It's a blackout. Now I can't see Seinfeld.",
+          "So what? I just lost one hour's worth of work.",
+          "Really? How could you do that? Don't you save every couple minutes?",
+          "No, I didn't save this time. Damn it! And I'm sick of writing this paper. Now I have to write it all over again too.",
+          "I've had that problem too many times. So I learned to save. When I'm writing something, I save every three sentences or so. I don't want to lose anything.",
+          "I hate computers. Sometimes I think they cause more trouble than they're worth.",
+          "What are we going to do now?",
+          "I don't know. I feel like going out.",
+          "I wonder how much of the city is down.",
+          "It doesn't matter. I still can go out and buy a beer.",
+          "Maybe. But if there's a blackout, probably the pubs are closed. And besides, I know you have a political science exam tomorrow. I thought you had a lot of reading to do.",
+          "Yes, that's true. Damn! I just lost half my paper, and now I can't even do my homework. This is a bad time for this to happen.",
+          "I have a flashlight in my closet. If you want to use that to read, you can."
+        ]
+      },
+      "review": {
+        "method": "direct_assistant_fragment_adapter",
+        "scope": "adapted_visible_pair_only",
+        "evidence_turns": [
+          1,
+          2
+        ],
+        "source_sha256": "f92161c2cb46aa6ff6b18cd7c5e2e3cc9ef5edc60f80f0d9e9d72453a8d2fbf6",
+        "context_sha256": "fea04ca34c4f96b25fc95fdac62b58849c9009ad25049e3c324134816330a7af",
+        "adaptation": "The prompt exposes the blackout from the same source turn. This programme reading is approved for this viewing context, not arbitrary abstract-object frames. Original wording is preserved; the interpretation describes this visible pair only.",
+        "context_entity_readings": [
+          {
+            "text": "Seinfeld",
+            "labels": [
+              "ABSTRACT_ENTITY",
+              "NAMED_ENTITY"
+            ],
+            "type": "notion",
+            "named": true,
+            "appositive": "a television programme"
+          }
+        ]
+      }
     }
   ]
 }

@@ -91,6 +91,40 @@ def test_only_exact_adjacent_adapter_survives_without_source_files(tmp_path, hel
         check_template({'usage_constraints':{'source_id':held['id']}}, load_holds(tmp_path/REGISTER_NAME))
 
 
+@pytest.mark.parametrize('defect', [None, 'missing', 'edited', 'unrelated', 'same_occurrence'])
+def test_complete_source_variant_keeps_truncated_original_blocked(tmp_path, held, defect):
+    complete = deepcopy(held)
+    text = 'You have to be very careful.'
+    complete['source'].update(split='train', dialogue=42, span=[0, len(text)], text=text)
+    complete['original_prefix'] = [text]
+    adapter = pattern(complete)
+    adapter['value'] = 'express an obligation to be careful, not its fulfillment'
+    if defect == 'unrelated':
+        adapter['source']['context'] = ['A different turn with no shared prefix.']
+    elif defect == 'same_occurrence':
+        adapter['source'].update(split='test', dialogue=364)
+    held.update(status='source_variant_only', source_variant={
+        'pattern_id': adapter['id'], 'pattern_sha256': fingerprint(adapter),
+        'reason': 'A complete duplicate exists; do not repair the original in place.'})
+    path = save_hold(tmp_path, held)
+    if defect == 'edited':
+        adapter['value'] = 'have already done everything required'
+    patterns = [] if defect == 'missing' else [adapter]
+    if defect is None:
+        check_fragment_catalog(patterns, tmp_path/'catalog.json')
+    else:
+        with pytest.raises(ValueError, match='variant'):
+            check_fragment_catalog(patterns, tmp_path/'catalog.json')
+    with pytest.raises(ValueError, match='quarantine blocks'):
+        check_template({'usage_constraints': {'source_id': held['id']}}, load_holds(path))
+
+
+def test_source_variant_requires_a_pinned_review(tmp_path, held):
+    held['status'] = 'source_variant_only'
+    with pytest.raises(ValueError, match='source variant'):
+        load_holds(save_hold(tmp_path, held))
+
+
 def test_renumbering_or_joining_does_not_bypass_span_hold(tmp_path, held):
     path = save_hold(tmp_path, held)
     renamed = dict(held['source'], segment=99, span=[0, len(held['source']['text'])+20])
