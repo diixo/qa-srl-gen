@@ -45,7 +45,10 @@ EVENT_LEXEMES = (
     EventLexeme('have', 'had', 'has', 'having', 'had', 'possession', False),
     EventLexeme('be', 'was', 'is', 'being', 'been', 'location', False),
 )
-EVENT_BY_LEMMA = {item.lemma: item for item in EVENT_LEXEMES}
+# Explicit fragment adapters can use these shared frames without adding them
+# to the random event sampler's reviewed filler combinations.
+FRAGMENT_LEXEMES = (EventLexeme('say', 'said', 'says', 'saying', 'said', 'transitive', False),)
+EVENT_BY_LEMMA = {item.lemma: item for item in (*EVENT_LEXEMES, *FRAGMENT_LEXEMES)}
 ACTION_LEXEMES = tuple(item for item in EVENT_LEXEMES if item.frame.predicate_type == Label.ACTION)
 STATE_LEXEMES = tuple(item for item in EVENT_LEXEMES if item.frame.predicate_type == Label.STATE)
 

@@ -11,26 +11,65 @@ import random
 import re
 
 from ..ontology import Label
+from ..template_bank import fingerprint
 from .events import Event, EventArgument
+from .mined_subjects import MinedSubject
 from .models import Episode, Query, answer_query
 
 CATALOG = Path(__file__).resolve().parents[2] / 'data/mined-templates/reviewed/dialogue-fragments.json'
 
 
 def load_fragment_patterns(path=CATALOG):
+    from ..dailydialog_quarantine import check_fragment_catalog
+
     content = json.loads(Path(path).read_text(encoding='utf-8'))
     if content.get('format') != 'reviewed-dialogue-fragments-v1':
         raise ValueError('Unsupported reviewed fragment catalog')
     patterns = content['patterns']
+    validate_fragment_patterns(patterns)
+    check_fragment_catalog(patterns, path)
+    return patterns
+
+
+def validate_fragment_patterns(patterns):
     ids = [p['id'] for p in patterns]
     if not ids or len(set(ids)) != len(ids):
         raise ValueError('Reviewed fragments need distinct IDs')
     for row in patterns:
-        if row['kind'] not in {'fact', 'partial', 'event', 'refine', 'ambiguous', 'no_change'}:
+        if row['kind'] not in {'fact', 'partial', 'event', 'refine', 'mined_event', 'ambiguous', 'no_change', 'interpretation'}:
             raise ValueError('Unknown reviewed fragment meaning')
         if type(row['context']) is not bool or not row['assistant'].strip() or not row['reply'].strip():
             raise ValueError('Reviewed fragments need visible dialogue context')
-    return patterns
+        if row['kind'] == 'interpretation':
+            if (not row['context'] or not isinstance(row.get('value'), str) or not row['value'].strip()
+                    or not row.get('question') or row.get('review', {}).get('method') != 'direct_assistant_fragment_adapter'):
+                raise ValueError('An utterance interpretation needs an explicit review and visible context')
+        if row['kind'] == 'mined_event':
+            if not row['context'] or row.get('phase', 'unspecified') != 'unspecified':
+                raise ValueError('Reviewed elliptical events need context and cannot imply completion')
+            if row.get('review', {}).get('method') != 'direct_assistant_fragment_adapter':
+                raise ValueError('An elliptical mined event requires an explicit contextual adapter')
+        if 'review' in row:
+            review, source = row['review'], row.get('source', {})
+            if (review.get('method') != 'direct_assistant_fragment_adapter' or
+                    review.get('scope') != 'adapted_visible_pair_only' or not review.get('adaptation')):
+                raise ValueError('Fragment review must state its limited adaptation scope')
+            context, turn = source.get('context'), source.get('turn')
+            span = source.get('span')
+            if (not isinstance(context, list) or not context or
+                    any(not isinstance(t, str) for t in context) or type(turn) is not int or
+                    not 1 <= turn <= len(context) or not isinstance(span, list) or len(span) != 2 or
+                    any(type(n) is not int for n in span) or
+                    not 0 <= span[0] < span[1] <= len(context[turn-1]) or
+                    context[turn-1][span[0]:span[1]] != source.get('text')):
+                raise ValueError('Fragment review needs an exact source span and embedded context')
+            if (review.get('context_sha256') != fingerprint(context) or
+                    review.get('source_sha256') != fingerprint(source['text'])):
+                raise ValueError('Stale fragment review source or context')
+            evidence = review.get('evidence_turns')
+            if (not isinstance(evidence, list) or turn not in evidence or
+                    any(type(t) is not int or not 1 <= t <= turn for t in evidence)):
+                raise ValueError('Fragment review cannot use future turns as evidence')
 
 
 def fragment_episode(pattern, context, *, split, user_only, variant=0):
@@ -60,16 +99,23 @@ def fragment_episode(pattern, context, *, split, user_only, variant=0):
     reference = prompt if pattern['context'] else None
     text = pattern['reply'].format(**values)
     kind = pattern['kind']
-    if kind == 'fact':
+    if kind == 'interpretation':
+        # A claim about the reply's meaning, not a claim that an embedded
+        # action happened. Keep the assistant prompt in its evidence.
+        c.pair(text, facts=(_fact('user', 'utterance_interpretation', pattern['value'].format(**values)),), reference=reference)
+        query = Query('lookup', relation='utterance_interpretation')
+    elif kind == 'fact':
         c.pair(text, facts=(_fact('user', pattern['relation'], pattern['value'].format(**values),
                                   negative=pattern.get('negative', False)),), reference=reference)
         query = Query('lookup', relation=pattern['relation'])
-    elif kind in ('partial', 'event', 'refine'):
+    elif kind in ('partial', 'event', 'refine', 'mined_event'):
         arguments = tuple(sorted(EventArgument(role, value.format(**values), label)
                                  for role, value, label in pattern['arguments']))
-        event = Event(pattern['predicate'], arguments, time='unspecified',
+        subject = MinedSubject(**pattern['subject']) if kind == 'mined_event' else None
+        event = Event(pattern['predicate'], arguments, time=pattern.get('time', 'unspecified').format(**values),
                       operators=tuple(pattern['operators']), tense=pattern['tense'],
-                      missing_roles=tuple(pattern.get('missing_roles', ())))
+                      missing_roles=tuple(pattern.get('missing_roles', ())),
+                      mined=kind == 'mined_event', subject=subject)
         c.pair(text, events=(event,), reference=reference)
         if kind == 'refine':
             prior = c.memory.find_event(event)
@@ -121,10 +167,25 @@ def fragment_episodes(generator, count, split):
     for cycle in range(max(20, count)):
         for context in contexts:
             pattern = patterns[index % len(patterns)]
-            index += 1
             episode = fragment_episode(pattern, context, split=split,
                                        user_only=generator.user_assistant_only,
                                        variant=rng.randrange(420))
+            if generator.user_assistant_only:
+                # Extraction exports current facts, not their retired values.
+                # A location update can therefore erase the distinction between
+                # two starting contexts. Keep every resulting visible context
+                # in the same partition as the starting one.
+                visible_contexts = [
+                    tuple(t.after.find('user', relation) for relation in ('location', 'feeling', 'drink'))
+                    for t in episode.transitions
+                ]
+                if any(any(f is None or f.polarity != 'positive' for f in facts)
+                       or _context_split(tuple(f.value for f in facts)) != split
+                       for facts in visible_contexts):
+                    continue
+            # A cross-split rejection must not skip first-pass pattern coverage.
+            # A repeated scenario can move on to another pattern as before.
+            index += 1
             if episode.scenario_key in seen:
                 continue
             seen.add(episode.scenario_key)

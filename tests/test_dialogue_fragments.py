@@ -12,7 +12,8 @@ from semantic_corpus.dialogue_generator.events import (
 )
 from semantic_corpus.dialogue_generator.export import extraction_row, response_row, prompt_key
 from semantic_corpus.dialogue_generator.extraction_text import decode_update, parse_prompt
-from semantic_corpus.dialogue_generator.fragments import fragment_episode, load_fragment_patterns
+from semantic_corpus.dialogue_generator.fragments import fragment_episode, load_fragment_patterns, validate_fragment_patterns
+from semantic_corpus.template_bank import fingerprint
 from semantic_corpus.dialogue_generator.models import Delta, Memory, Turn
 
 
@@ -53,6 +54,32 @@ def test_choice_is_not_a_preference_and_learning_location_is_not_current_locatio
     assert e.memory.find('user', 'location').value == 'the kitchen'
     assert 'China' in e.answer
     assert 'the kitchen' not in e.answer
+
+
+@pytest.mark.parametrize('user_only', [True, False])
+def test_reviewed_short_replies_keep_context_without_inventing_completed_actions(user_only):
+    expected = {
+        'dd_v16_certainly_service': ('utterance_interpretation', 'acknowledged my request for a black suit and agreed to help'),
+        'dd_v16_high_heels_choice': ('selection', 'high heels'),
+        'dd_v16_ticket_payment_amount': ('utterance_interpretation', 'specified 50 dollars as the amount to insert into the ticket machine'),
+        'dd_v16_thanks_directions': ('utterance_interpretation', 'thanked me for directions to the bank'),
+        'dd_v16_thanks_report': ('utterance_interpretation', 'thanked me for the report'),
+        'dd_v17_thanks_order': ('utterance_interpretation', 'thanked me for specifying my drink order'),
+        'dd_v17_acknowledge_study_advice': ('utterance_interpretation', 'acknowledged my advice about focusing on the civil war for the exam'),
+    }
+    for identity, (relation, value) in expected.items():
+        e = episode(identity, user_only)
+        claim = e.memory.find('user', relation)
+        assert claim.value == value
+        assert [source.turn_id for source in claim.evidence] == ['u2', 'a1']
+        assert not e.memory.events
+        assert not any(e.memory.find('user', action) for action in ('bought', 'visited', 'read', 'sent'))
+        if user_only:
+            assert e.memory.find('user', 'location').value == 'the kitchen'
+            assert e.memory.find('user', 'drink').value == 'tea'
+        target = extraction_row(e, e.transitions[1])['messages'][-1]['content']
+        assert target == f'SET_CONTEXT user | {relation} | asserted | positive | {value}'
+        assert extraction_row(e, e.transitions[-1])['messages'][-1]['content'] == 'NO_CHANGE'
 
 
 def test_known_clause_survives_cut_off_continuation():
@@ -157,7 +184,7 @@ def test_deterministic_balanced_generation_and_no_cross_split_prompts(user_only)
     generator = DialogueGenerator(seed=12, user_assistant_only=user_only)
     keys, scenarios = set(), set()
     for split in ('train', 'validation', 'test'):
-        rows = list(generator.generate('fragment_meaning', 32, split=split))
+        rows = list(generator.generate('fragment_meaning', len(PATTERNS), split=split))
         assert rows[:5] == list(generator.generate('fragment_meaning', 5, split=split))
         assert {e.condition for e in rows} == set(PATTERNS)
         current = {prompt_key(extraction_row(e, t)) for e in rows for t in e.transitions}
@@ -165,3 +192,166 @@ def test_deterministic_balanced_generation_and_no_cross_split_prompts(user_only)
         keys.update(current)
         assert not scenarios & {e.scenario_key for e in rows}
         scenarios.update(e.scenario_key for e in rows)
+
+
+@pytest.mark.parametrize('seed', [0, 12, 22])
+def test_location_updates_cannot_merge_extraction_prompts_across_splits(monkeypatch, seed):
+    from semantic_corpus.dialogue_generator import fragments
+
+    # Exercise the state-replacing patterns without depending on catalog size
+    # or on whether a rare collision happens to be drawn in the full task mix.
+    location_patterns = [PATTERNS['current_location'], PATTERNS['dd_market_current_location']]
+    monkeypatch.setattr(fragments, 'load_fragment_patterns', lambda: list(location_patterns))
+    generator = DialogueGenerator(seed=seed, user_assistant_only=True)
+    seen = set()
+    for split in ('train', 'validation', 'test'):
+        episodes = list(generator.generate('fragment_meaning', 64, split=split))
+        assert episodes[:5] == list(generator.generate('fragment_meaning', 5, split=split))
+        assert {e.condition for e in episodes[:2]} == {p['id'] for p in location_patterns}
+        current = {prompt_key(extraction_row(e, t)) for e in episodes for t in e.transitions}
+        assert not seen & current
+        seen.update(current)
+
+
+def test_same_surface_has_different_meaning_in_visible_context():
+    meeting = episode('dd_market_meeting')
+    location = episode('dd_market_current_location')
+    assert meeting.transitions[1].turn.text == location.transitions[1].turn.text == 'In the market.'
+    assert meeting.memory.find('user', 'location').value == 'the kitchen'
+    event = meeting.memory.events[0].event
+    assert event.predicate == 'meet' and event.operators == ('plan',)
+    assert event.subject.text == 'we' and event.time == 'unspecified'
+    assert meeting.expected_action == 'unknown'
+    assert location.memory.find('user', 'location').value == 'the market'
+    assert not location.memory.events
+    for claim in (meeting.memory.events[0], location.memory.find('user', 'location')):
+        assert [s.turn_id for s in claim.evidence] == ['u2', 'a1']
+
+
+@pytest.mark.parametrize('user_only', [True, False])
+def test_reviewed_interpretations_distinguish_refusal_and_disbelief(user_only):
+    context = ('the kitchen', 'tired', 'tea') if user_only else ('Anna', 'Rome')
+    episodes = []
+    for number, (prompt, meaning) in enumerate([
+        ('Why not talk to that person?', 'refused the suggestion to talk to that person'),
+        ('I think your colleague will be sacked.', 'expressed disbelief about your colleague being sacked'),
+    ], 1):
+        turns = [prompt, 'No way.']
+        pattern = dict(id=f'interpretation_{number}', kind='interpretation', context=True,
+            assistant=prompt, reply=turns[1], value=meaning, question='What did my reply mean?',
+            source=dict(split='test', dialogue=number, turn=2, text=turns[1], span=[0, 7], context=turns),
+            review=dict(method='direct_assistant_fragment_adapter', scope='adapted_visible_pair_only',
+                        adaptation='Distinguish a refusal from disbelief using the preceding utterance only.',
+                        evidence_turns=[1, 2], source_sha256=fingerprint(turns[1]), context_sha256=fingerprint(turns)))
+        validate_fragment_patterns([pattern])
+        e = fragment_episode(pattern, context, split='test', user_only=user_only)
+        episodes.append(e)
+        claim = e.memory.find('user', 'utterance_interpretation')
+        assert claim.value == meaning and [v.turn_id for v in claim.evidence] == ['u2', 'a1']
+        assert not e.memory.events and not e.memory.find('user', 'selection')
+        assert e.answer == 'You '+meaning+'.'
+        row = extraction_row(e, e.transitions[1])
+        assert row['messages'][0]['content'] == extraction_row(e, e.transitions[0])['messages'][0]['content']
+        assert 'SET_CONTEXT with utterance_interpretation' in row['messages'][0]['content']
+        assert 'Questions, thanks, unresolved references add nothing.' not in row['messages'][0]['content']
+        final = extraction_row(e, e.transitions[-1])
+        assert 'Questions about earlier replies add nothing.' in final['messages'][0]['content']
+        assert final['messages'][-1]['content'] == 'NO_CHANGE'
+        prompt_text, target = [m['content'] for m in row['messages'][1:]]
+        memory, turn, previous = parse_prompt(prompt_text)
+        assert not target.startswith(('{', '['))
+        decode_update(target, memory, turn, previous)
+        assert 'reply was interpreted as:' in response_row(e, 'memory')['messages'][1]['content']
+    assert episodes[0].transitions[1].turn.text == episodes[1].transitions[1].turn.text
+    assert episodes[0].answer != episodes[1].answer
+    legacy = extraction_row(episode('acknowledgement'), episode('acknowledgement').transitions[1])
+    assert legacy['messages'][-1]['content'] == 'NO_CHANGE'
+    assert 'Questions, thanks, unresolved references add nothing.' in legacy['messages'][0]['content']
+
+
+def test_interpretations_cannot_bypass_contextual_review():
+    with pytest.raises(ValueError, match='explicit review'):
+        validate_fragment_patterns([dict(id='unreviewed', kind='interpretation', context=True,
+            assistant='What happened?', reply='Okay.', value='confirmed payment', question='Did I pay?')])
+
+
+@pytest.mark.parametrize('user_only', [True, False])
+def test_full_sentence_interpretations_preserve_reviewed_meaning_in_all_exports(user_only):
+    # Regression: v36 descriptions previously produced "You The user ... .."
+    # and contradicted the instruction requiring a verb phrase after You.
+    context = ('the kitchen', 'tired', 'tea') if user_only else ('Anna', 'Rome')
+    patterns = [p for p in PATTERNS.values() if p['kind'] == 'interpretation'
+                and p['value'].startswith('The user ')]
+    assert patterns
+    for pattern in patterns:
+        e = fragment_episode(pattern, context, split='test', user_only=user_only)
+        assert e.answer == pattern['value']
+        assert e.transitions[1].turn.text == pattern['reply']
+        assert e.memory.find('user', 'utterance_interpretation').value == pattern['value']
+        assert not e.memory.events
+        for view in ('history', 'memory'):
+            assert response_row(e, view)['messages'][-1]['content'] == pattern['value']
+        memory_prompt = response_row(e, 'memory')['messages'][1]['content']
+        assert 'interpreted as: ' + pattern['value'] in memory_prompt
+        assert pattern['value'] + '.' not in memory_prompt
+        row = extraction_row(e, e.transitions[1])
+        assert 'complete sentence beginning The user' in row['messages'][0]['content']
+        assert decode_update(row['messages'][-1]['content'], e.transitions[1].before,
+                             e.transitions[1].turn, e.transitions[1].previous_assistant) == e.transitions[1].delta
+
+
+def test_instruction_time_is_not_a_report_of_taking_medicine():
+    e = episode('dd_instruction_after_meals')
+    event = e.memory.events[0].event
+    assert event.subject.text == 'assistant'
+    assert event.predicate == 'take' and event.operators == ('should',)
+    assert event.tense == 'modal' and event.phase == 'unspecified'
+    assert event.time == 'after the meals'
+    assert completion_evidence(event) == 'unknown'
+    assert e.expected_action == 'unknown'
+    target = extraction_row(e, e.transitions[1])['messages'][-1]['content']
+    assert target.startswith('MINED_CONTEXT take | after the meals | should |')
+    assert 'dosage' not in target.lower()
+
+
+def test_short_refusal_denies_desire_not_execution():
+    e = episode('dd_not_really_want_watch')
+    event = e.memory.events[0].event
+    assert event.operators == ('not', 'want') and event.predicate == 'watch'
+    assert event.phase == 'unspecified'
+    assert e.expected_action == 'unknown'
+
+
+@pytest.mark.parametrize('key', ['dd_say_missing_message', 'dd_embedded_say_missing_message'])
+def test_unfinished_say_keeps_speaker_and_never_borrows_future_content(key):
+    e = episode(key)
+    event = e.memory.events[0].event
+    assert event.predicate == 'say' and event.operators == ('want',)
+    assert event.arguments == (EventArgument('speaker', 'user', 'PERSON'),)
+    assert event.missing_roles == ('message',)
+    assert e.expected_action == 'unknown'
+    row = extraction_row(e, e.transitions[1])
+    target = row['messages'][-1]['content']
+    assert target == 'PARTIAL say | unspecified | want | unspecified | present | missing=message | speaker=PERSON:user'
+    assert 'I love you' not in json.dumps(row)
+    assert len(e.memory.events[0].evidence) == 1
+
+
+@pytest.mark.parametrize('key', ['dd_farewell', 'dd_gratitude', 'dd_unfinished_answer'])
+def test_social_or_unfinished_replies_do_not_invent_memory_facts(key):
+    e = episode(key)
+    assert e.transitions[1].delta == Delta()
+    assert extraction_row(e, e.transitions[1])['messages'][-1]['content'] == 'NO_CHANGE'
+    if key == 'dd_unfinished_answer':
+        assert all('Venus' not in t.text and 'Pluto' not in t.text for t in e.turns)
+
+
+def test_should_negation_cannot_reverse_scope_or_fabricate_a_tense():
+    args = (EventArgument('agent', 'user', 'PERSON'), EventArgument('theme', 'a book', 'PHYSICAL_OBJECT'))
+    with pytest.raises(ValueError):
+        Event('buy', args, operators=('not', 'should'), tense='modal')
+    with pytest.raises(ValueError):
+        Event('buy', args, operators=('should',), tense='past')
+    event = Event('buy', args, operators=('should', 'not'), tense='modal')
+    assert 'should not buy' in event_statement(event, perspective='user')
+    assert completion_evidence(event) == 'unknown'

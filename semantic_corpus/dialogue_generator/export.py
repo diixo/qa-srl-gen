@@ -10,6 +10,7 @@ import json
 from pathlib import Path
 import re
 from tempfile import TemporaryDirectory
+import time
 import unicodedata
 from typing import Callable
 
@@ -17,10 +18,10 @@ from ..semantic_generator.substitutions import ENTITIES_PATH
 from .generator import GENERATOR_VERSION, DialogueGenerator, fingerprint
 from .memory_text import MEMORY_TEXT_VERSION, render_memory
 from .actions import CONTRAST_TASKS
-from .extraction_text import EXTRACT_SYSTEM, EXTRACTION_TEXT_VERSION, render_prompt, render_update
+from .extraction_text import EXTRACT_SYSTEM, INTERPRETATION_EXTRACT_SYSTEM, EXTRACTION_TEXT_VERSION, render_prompt, render_update
 from .models import Episode, SCHEMA_VERSION, Transition
 
-PROMPT_VERSION = "dialogue-prompts-v10"
+PROMPT_VERSION = "dialogue-prompts-v13"
 RESPONSE_SYSTEM = (
     "You are a friendly AI personal assistant. Reply briefly and naturally to the latest user message. "
     "Use only the supplied conversation context. If information is missing, say you don't know; "
@@ -64,11 +65,12 @@ def response_row(episode: Episode, view: str, *, memory_style: int | None = None
 
 def extraction_row(episode: Episode, transition: Transition) -> dict:
     prompt = render_prompt(transition.before, transition.turn, transition.previous_assistant)
+    system = INTERPRETATION_EXTRACT_SYSTEM if episode.query.relation == 'utterance_interpretation' else EXTRACT_SYSTEM
     return {"id": episode.id + ":" + transition.turn.id, "scenario_key": episode.scenario_key,
             "task": episode.task,
             **({'source_lemma': episode.mined_source['raw_lemma'],
                 'realization': episode.mined_source['realization'], 'review_status': 'UNREVIEWED'} if episode.mined_source else {}),
-            "messages": _messages(EXTRACT_SYSTEM, prompt, render_update(transition))}
+            "messages": _messages(system, prompt, render_update(transition))}
 
 
 def prompt_key(row: dict) -> str:
@@ -99,6 +101,25 @@ def _training_report(path: Path | None, seed: int) -> dict | None:
     return {"settings": {"model": settings["model"], "max_tokens": settings["max_tokens"], "seed": seed},
             "chat_template_sha256": digest, "token_validation": "deferred_to_training_loader",
             "tokenizer_contract_source_sha256": _sha256(path)}
+
+
+def _publish_directory(staging: Path, out: Path) -> None:
+    """Publish atomically, allowing brief Windows sharing/access conflicts.
+
+    Antivirus/indexing can temporarily hold a just-closed output directory.
+    Retry only Windows access/sharing errors, for at most 1.55 seconds; never
+    fall back to copying over an existing dataset or suppress a lasting error.
+    """
+    for attempt in range(6):
+        if out.exists():
+            raise FileExistsError(f"Choose a new output directory: {out}")
+        try:
+            staging.rename(out)
+            return
+        except PermissionError as error:
+            if getattr(error, 'winerror', None) not in {5, 32, 33} or attempt == 5:
+                raise
+            time.sleep(0.05 * 2 ** attempt)
 
 
 def build_dialogue_dataset(out: Path, *, train: int = 200, validation: int = 20,
@@ -353,5 +374,5 @@ def build_dialogue_dataset(out: Path, *, train: int = 200, validation: int = 20,
         manifest["files"] = {path.relative_to(staging).as_posix(): _sha256(path)
                              for path in sorted(staging.rglob("*")) if path.is_file()}
         (staging / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-        staging.rename(out)
+        _publish_directory(staging, out)
     return manifest

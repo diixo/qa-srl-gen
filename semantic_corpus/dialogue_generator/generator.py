@@ -18,7 +18,7 @@ from .models import (
     Replacement, Transition, Turn, answer_query, apply_delta, EventClaim, EventReplacement,
 )
 
-GENERATOR_VERSION = "dialogue-babi-0.10.0"
+GENERATOR_VERSION = "dialogue-babi-0.11.0"
 TASKS = (
     "recall", "correction", "different_people", "negation", "desire_vs_done",
     "option_reference", "ambiguous_reference", "unknown", "suggestion_vs_done",

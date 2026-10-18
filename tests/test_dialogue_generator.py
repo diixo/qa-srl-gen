@@ -288,6 +288,10 @@ def test_cli_dialogue_build_and_refusal(tmp_path, capsys):
 
 def test_user_only_scenarios_need_no_names_and_keep_context_splits_across_seeds(monkeypatch):
     from semantic_corpus.dialogue_generator import generator as module
+    from semantic_corpus.dialogue_generator.fragments import load_fragment_patterns
+
+    reviewed_places = {p['value'] for p in load_fragment_patterns()
+                       if p['kind'] == 'fact' and p['relation'] in ('location', 'visited')}
 
     def refuse_pool():
         raise AssertionError('Simple conversations must not load the named entity pool')
@@ -306,7 +310,12 @@ def test_user_only_scenarios_need_no_names_and_keep_context_splits_across_seeds(
                 for episode in episodes:
                     assert episode.query.subject == 'user'
                     assert all(f.subject == 'user' for f in (*episode.memory.facts, *episode.memory.retired))
-                    assert all(f.value in module.COMMON_PLACES for f in episode.memory.facts
+                    # Explicitly reviewed fragment replies can introduce a place
+                    # outside the random context vocabulary, without person names.
+                    allowed_places = set(module.COMMON_PLACES)
+                    if task == 'fragment_meaning':
+                        allowed_places |= reviewed_places
+                    assert all(f.value in allowed_places for f in episode.memory.facts
                                if f.relation in ('location', 'visited'))
                     context = tuple((f.relation, f.value) for f in episode.transitions[0].after.facts)
                     assert context_splits.setdefault(context, split) == split
@@ -322,9 +331,9 @@ def test_default_sizes_have_no_duplicate_or_cross_split_prompts(tmp_path, user_o
     manifest = build_dialogue_dataset(tmp_path / 'dataset', user_assistant_only=user_only)
     assert 'entities.json' in manifest['resources']
     assert 'semantic_generator/frames.py' in manifest['resources']
-    assert manifest['prompt_version'] == 'dialogue-prompts-v10'
-    assert manifest['content_formats'] == {'history': 'history-text-v1', 'memory': 'memory-text-v9',
-                                            'extraction': 'extraction-text-v8'}
+    assert manifest['prompt_version'] == 'dialogue-prompts-v13'
+    assert manifest['content_formats'] == {'history': 'history-text-v1', 'memory': 'memory-text-v11',
+                                            'extraction': 'extraction-text-v11'}
     for view in ('history', 'memory', 'extraction'):
         seen = set()
         for split, count in (('train', 200), ('validation', 20), ('test', 20)):
@@ -345,3 +354,79 @@ def test_user_only_exhaustion_refuses_to_pad_or_publish_partial_data(tmp_path):
         build_dialogue_dataset(tmp_path / 'too-many', train=impossible, validation=1, test=1,
                                user_assistant_only=True)
     assert list(tmp_path.iterdir()) == []
+
+
+@pytest.mark.parametrize('winerror', [5, 32, 33])
+def test_dataset_publication_retries_transient_windows_locks(tmp_path, monkeypatch, winerror):
+    from pathlib import Path
+    from semantic_corpus.dialogue_generator import export
+
+    staging, out = tmp_path / 'staging', tmp_path / 'dataset'
+    staging.mkdir()
+    (staging / 'record.json').write_text('{"complete": true}')
+    original = Path.rename
+    calls, pauses = [], []
+
+    def rename(path, target):
+        calls.append((path, target))
+        if len(calls) < 3:
+            error = PermissionError('temporary directory lock')
+            error.winerror = winerror
+            raise error
+        return original(path, target)
+
+    monkeypatch.setattr(Path, 'rename', rename)
+    monkeypatch.setattr(export.time, 'sleep', pauses.append)
+    export._publish_directory(staging, out)
+    assert len(calls) == 3 and pauses == [0.05, 0.1]
+    assert not staging.exists()
+    assert json.loads((out / 'record.json').read_text()) == {'complete': True}
+
+
+@pytest.mark.parametrize('winerror,attempts', [(5, 6), (None, 1)])
+def test_dataset_publication_never_hides_persistent_denial(tmp_path, monkeypatch, winerror, attempts):
+    from pathlib import Path
+    from semantic_corpus.dialogue_generator import export
+
+    staging, out = tmp_path / 'staging', tmp_path / 'dataset'
+    staging.mkdir()
+    calls, pauses = [], []
+
+    def rename(path, target):
+        calls.append((path, target))
+        error = PermissionError('persistent denial')
+        if winerror is not None:
+            error.winerror = winerror
+        raise error
+
+    monkeypatch.setattr(Path, 'rename', rename)
+    monkeypatch.setattr(export.time, 'sleep', pauses.append)
+    with pytest.raises(PermissionError, match='persistent denial'):
+        export._publish_directory(staging, out)
+    assert len(calls) == attempts and len(pauses) == attempts - 1
+    assert sum(pauses) <= 1.55
+    assert staging.exists() and not out.exists()
+
+
+def test_dataset_publication_does_not_replace_a_destination_created_during_retry(tmp_path, monkeypatch):
+    from pathlib import Path
+    from semantic_corpus.dialogue_generator import export
+
+    staging, out = tmp_path / 'staging', tmp_path / 'dataset'
+    staging.mkdir()
+
+    def rename(path, target):
+        error = PermissionError('temporary lock')
+        error.winerror = 5
+        raise error
+
+    def competing_writer(_):
+        out.mkdir()
+        (out / 'existing.json').write_text('unchanged')
+
+    monkeypatch.setattr(Path, 'rename', rename)
+    monkeypatch.setattr(export.time, 'sleep', competing_writer)
+    with pytest.raises(FileExistsError):
+        export._publish_directory(staging, out)
+    assert (out / 'existing.json').read_text() == 'unchanged'
+    assert staging.exists()

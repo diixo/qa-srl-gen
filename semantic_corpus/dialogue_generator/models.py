@@ -9,7 +9,7 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass
 from .events import Event, completion_evidence, state_evidence, occurrence_evidence
 
-SCHEMA_VERSION = "dialogue-memory-v9"
+SCHEMA_VERSION = "dialogue-memory-v10"
 
 
 @dataclass(frozen=True)
@@ -257,6 +257,13 @@ def answer_query(memory: Memory, query: Query) -> tuple[str, str, tuple[str, ...
         answer = f"You chose {fact.value}."
     elif query.relation == "learning_location":
         answer = f"{subject} learned {fact.value}."
+    elif query.relation == "utterance_interpretation":
+        # Reviewed targets include both verb phrases ("declined ...") and
+        # complete descriptions ("The user declined ..."). Preserve their
+        # wording without prepending a second subject or a second full stop.
+        description = (fact.value if fact.value.startswith('The user ')
+                       else f"{subject} {fact.value}")
+        answer = description if description.endswith(('.', '!', '?')) else description + '.'
     else:
         raise ValueError(f"Unsupported query: {query}")
     return answer, "answer", (fact.id,)

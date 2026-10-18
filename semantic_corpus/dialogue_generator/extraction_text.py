@@ -13,9 +13,9 @@ from .events import Event, EventArgument
 from .observed_clauses import ObservedClause
 from .mined_subjects import MinedSubject
 
-EXTRACTION_TEXT_VERSION = 'extraction-text-v8'
+EXTRACTION_TEXT_VERSION = 'extraction-text-v11'
 PROMPT_PREFIX = 'Current memory:\n'
-STATE_RELATIONS = frozenset(('location', 'learning_location', 'meeting_day', 'feeling', 'selection', 'drink'))
+STATE_RELATIONS = frozenset(('location', 'learning_location', 'meeting_day', 'feeling', 'selection', 'drink', 'utterance_interpretation'))
 ESCAPES = {'\\': '\\', '|': '|', 'n': '\n', 'r': '\r', 't': '\t'}
 ENCODE_ESCAPES = {value: '\\' + key for key, value in ESCAPES.items()}
 
@@ -30,17 +30,29 @@ EXTRACT_SYSTEM = (
     'Questions, thanks, unresolved references add nothing. Preserve known fragment meaning without guessing. '
     'EVENT predicate | time | scope | phase | tense | role=TYPE:value ... '
     'Scope: outer>inner or none; not negates its child. Phase: unspecified/ongoing/completed. '
-    'Tense: present/past/future/modal; can/could/must/may/might use modal. let needs permitter=PERSON:value. '
+    'Tense: present/past/future/modal; can/could/must/may/might/should use modal. let needs permitter=PERSON:value. '
     'Lexical be/have are states; auxiliaries are operators. Wishes/plans/suggestions/attempts/starts/stops never prove completion. '
-    'PARTIAL uses EVENT fields plus missing=role,role; only known arguments, unspecified phase, absent time=unspecified. '
+    'PARTIAL adds missing=role,role to EVENT; only known arguments, unspecified phase, absent time=unspecified. '
     'MINED uses EVENT fields plus subject=TYPE:text | number=singular/plural; optional voice=passive(default active), complement=UNRESOLVED:text. '
-    'Grammatical roles object/indirect_object/oblique_PREPOSITION/by_phrase locate unique complement phrases. '
+    'Roles object/indirect_object/oblique_PREPOSITION/by_phrase mark unique complement spans. '
     'Resolve I/me/you to user/assistant; retain user perspective. Types: pool labels/UNRESOLVED; weather it=IMPERSONAL. '
     'MINED reported phase means bare past, not completion. Separate independent events. '
     'QUOTE status | text: reported/denied/desired/planned/suggested/possible/required/permitted wording. '
     'Quotes never confirm embedded events; partial events never prove completion. '
     'REMOVE_ prefixes EVENT/MINED/QUOTE/PARTIAL to withdraw an exact report.'
 )
+
+# Explicit task mode keeps legacy NO_CHANGE examples consistent. The switch
+# is set for the entire interpretation episode, including its initial facts;
+# it is not inferred from an individual target command.
+INTERPRETATION_EXTRACT_SYSTEM = EXTRACT_SYSTEM.replace(
+    'Relations: location,', 'Relations: utterance_interpretation, location,').replace(
+    'Questions, thanks, unresolved references add nothing. Preserve known fragment meaning without guessing. ',
+    'For a contextual reply to the last assistant, use SET_CONTEXT with utterance_interpretation to describe its meaning. '
+    'Its value describes the user reply: a verb phrase following You, in assistant perspective, '
+    'or a complete sentence beginning The user. Retain uncertainty. '
+    'This describes the reply, never completion or truth of embedded events. '
+    'Initial self-descriptions use ordinary relations. Questions about earlier replies add nothing. ')
 
 
 def _escape(value: str) -> str:

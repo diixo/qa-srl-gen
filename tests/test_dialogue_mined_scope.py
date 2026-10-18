@@ -45,6 +45,10 @@ def paradigms(lemma='leave'):
     ("can't leave", ('not', 'can'), 'modal', 'unspecified', 'unknown'),
     ('may not leave', ('may', 'not'), 'modal', 'unspecified', 'unknown'),
     ('must not leave', ('must', 'not'), 'modal', 'unspecified', 'unknown'),
+    ('should leave', ('should',), 'modal', 'unspecified', 'unknown'),
+    ("shouldn't leave", ('should', 'not'), 'modal', 'unspecified', 'unknown'),
+    ('should not leave', ('should', 'not'), 'modal', 'unspecified', 'unknown'),
+    ('should have left', ('should', 'have'), 'modal', 'unspecified', 'unknown'),
     ('might have managed to leave', ('might', 'have', 'manage'), 'modal', 'unspecified', 'unknown'),
     ('must have left', ('must', 'have'), 'modal', 'unspecified', 'unknown'),
     ('had to leave', ('have_to',), 'past', 'unspecified', 'unknown'),
@@ -76,7 +80,7 @@ def test_scope_and_evidence_survive_text_commands(text, operators, tense, phase,
         assert answer.startswith('Yes' if evidence == 'yes' else 'No')
 
 
-@pytest.mark.parametrize('text', ['stopped to leave', 'tried leaving', 'would leave', 'should leave',
+@pytest.mark.parametrize('text', ['stopped to leave', 'tried leaving', 'would leave',
                                  'must can leave', 'wanted Tom to leave', 'has to left',
                                  'was left', 'wanted probably to leave', 'never left',
                                  'may have been left', 'want want leave',

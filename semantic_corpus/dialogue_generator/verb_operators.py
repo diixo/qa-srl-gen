@@ -33,7 +33,8 @@ OPERATORS = {item.lemma: item for item in (
     Operator('stop', 'stopped', 'stops', 'stopping', 'gerund', 'cessation'),
     *(Operator(word, None, None, None, 'modal', category) for word, category in (
         ('can', 'ability_or_permission'), ('could', 'remote_ability_or_possibility'),
-        ('must', 'obligation_or_deduction'), ('may', 'possibility_or_permission'), ('might', 'possibility'))),
+        ('must', 'obligation_or_deduction'), ('may', 'possibility_or_permission'), ('might', 'possibility'),
+        ('should', 'advice_or_expectation'))),
     Operator('have_to', 'had', 'has', 'having', 'have_to', 'obligation', 'had'),
     Operator('be_able_to', 'was', 'is', 'being', 'be_able_to', 'ability', 'been'),
     Operator('be_going_to', 'was', 'is', None, 'be_going_to', 'prospective', 'been'),
@@ -65,7 +66,7 @@ def validate_chain(operators, tense, *, is_state=False):
             raise ValueError('A finite modal must head its chain and use modal tense; no infinitive/gerund modals')
     elif tense == 'modal':
         raise ValueError('Modal tense requires a finite modal')
-    if operators[:2] in (('not', 'must'), ('not', 'may'), ('not', 'might')):
+    if operators[:2] in (('not', 'must'), ('not', 'may'), ('not', 'might'), ('not', 'should')):
         raise ValueError('Use modal > not for embedded negation; not > have_to for absence of obligation')
     if operators[:2] in (('can', 'not'), ('could', 'not')):
         raise ValueError('Use not > can/could for inability; ability to refrain needs a separate lexical construction')

@@ -128,9 +128,11 @@ its own checks. The CLI trainer still defaults to 512.
 
 ### Short replies and unfinished utterances
 
-The central bank's `reviewed/dialogue-fragments.json` contains 16 explicit
-interpretation patterns. Four cite already reviewed DailyDialog fragments;
-the remaining patterns are authored controls and extensions. Their prompts,
+The central bank's `reviewed/dialogue-fragments.json` contains 772 reviewed
+patterns (18 October 2026), including 743 reply interpretations and 29 factual,
+partial-event, clarification and no-change patterns. Amounts and selections do
+not establish payment or purchase; thanks do not establish arrival or reading,
+and acknowledging advice does not establish studying or exam completion. Their prompts,
 replies and semantic targets are self-contained. No source file or NLP parser is
 needed during generation. This is a bounded set of reviewed constructions, not
 automatic semantic coverage of every archived DailyDialog fragment. A fragment
@@ -146,7 +148,7 @@ Context-dependent updates cite the last assistant turn through `_CONTEXT`.
 invented. Ambiguous `This one.` triggers clarification, while an acknowledgement
 of an invitation supplies no factual update.
 
-The text contract `extraction-text-v8` adds:
+The text contract supports partial events (introduced in `extraction-text-v8`):
 
 ```text
 PARTIAL buy | unspecified | want | unspecified | present | missing=theme | agent=PERSON:user
@@ -156,9 +158,39 @@ Partial events use the existing reviewed frame roles. Known arguments must pass
 the same type checks as complete events; `missing` must exactly list the other
 required roles. No placeholder entity, date or completion is inferred. They
 remain distinct from complete event identities, and completion/state queries
-return unknown even for partial past reports. The initial examples cover `buy`,
-phrasal `pick up`, and directional `go`, alongside full but merely possible visits.
+return unknown even for partial past reports. Examples cover `buy`, phrasal
+`pick up`, directional `go`, and unfinished `say`, alongside merely possible visits.
 Partial mined predicates with unresolved valency are deliberately not accepted.
+
+The current `extraction-text-v11` prompt also covers modal `should` and an unknown
+`say` message. `I want to say...` retains `speaker=user`, `want`, and
+`missing=message`; a later source reply never supplies the missing content.
+Reviewed elliptical replies can supply time or place to a scoped mined event:
+`After the meals.` after an explicit instruction question retains `should`,
+not completion. `In the market.` after a meeting-plan question supplies the
+meeting place; after `Where are you now?` it updates current location. `Not really.`
+after a desire question uses `not > want`, not denial that the action happened.
+In the original factual-update mode, farewells, thanks, and a hesitation with no
+specified complement yield `NO_CHANGE`. The reviewed `kind: interpretation` adapters
+explicitly select a reply-interpretation instruction for the entire episode.
+They use `SET_CONTEXT user | utterance_interpretation | asserted | positive | ...`
+to retain a request, refusal, greeting, confirmation or partial information. The
+value can be a verb phrase following **You**, in assistant perspective, for example
+`declined the suggestion to go to a disco after dinner`, or a complete description
+beginning **The user**. Existing reviewed wording is preserved; complete descriptions
+do not receive an extra **You** prefix or a duplicated final full stop. This describes the
+reply; it never establishes completion or truth of an embedded event. Uncertain
+targets remain uncertain, and evidence includes the visible assistant prompt.
+Memory renders this as `Your reply was interpreted as: ...`; the content remains
+text, without nested JSON. This extends `fragment_meaning`, without a new task
+family. The two instruction modes are explicit so old `NO_CHANGE` examples do
+not conflict with the new interpretation targets.
+
+Each new adapter embeds its source context, exact span, hashes and review scope.
+Only the adapted, visible dialogue pair is licensed. Import through
+`scripts/admit_dailydialog_fragments.py` checks those references and all three
+exports before appending to the central catalog. It neither approves the full
+candidate syntax bank nor makes arbitrary fragments interpretable.
 
 `PARTIAL_CONTEXT` adds assistant evidence; `REMOVE_PARTIAL` withdraws an exact
 partial report. In refinement examples, `I want to buy...` followed by the answer
@@ -629,9 +661,9 @@ The internal memory and audit keep their structured schema. **Extraction** uses
 the text command contract described below, with lossless conversion to internal
 deltas for the supported pilot scenarios.
 
-The manifest now records `schema_version: dialogue-memory-v8`,
-`prompt_version: dialogue-prompts-v10`, `content_formats.memory: memory-text-v8` and
-`content_formats.extraction: extraction-text-v7`. Generate a new job/directory to get
+The manifest now records `schema_version: dialogue-memory-v10`,
+`prompt_version: dialogue-prompts-v13`, `content_formats.memory: memory-text-v11` and
+`content_formats.extraction: extraction-text-v11`. Generate a new job/directory to get
 the text format; existing output files are not rewritten. Text-based prompt
 deduplication can select different episodes when older prompts differed only
 by internal identifiers. Paired History/Memory targets and split checks remain

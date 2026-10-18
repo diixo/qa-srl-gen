@@ -5,6 +5,7 @@ from dataclasses import replace
 import pytest
 
 from semantic_corpus.dialogue_generator import DialogueGenerator
+from semantic_corpus.dialogue_generator.fragments import load_fragment_patterns
 from semantic_corpus.dialogue_generator.export import extraction_row
 from semantic_corpus.dialogue_generator.extraction_text import (
     decode_update, parse_prompt, render_prompt, render_update,
@@ -19,7 +20,8 @@ def test_all_tasks_roundtrip_updates_including_sources_and_retirements(user_only
     generator = DialogueGenerator(seed=19, user_assistant_only=user_only)
     operations = set()
     for task in generator.tasks:
-        for episode in generator.generate(task, 18, split='test'):
+        count = max(18, len(load_fragment_patterns())) if task == 'fragment_meaning' else 18
+        for episode in generator.generate(task, count, split='test'):
             for transition in episode.transitions:
                 row = extraction_row(episode, transition)
                 prompt, target = (message['content'] for message in row['messages'][1:])
@@ -34,9 +36,24 @@ def test_all_tasks_roundtrip_updates_including_sources_and_retirements(user_only
                 # Evaluation can replay using only information in the input.
                 decode_update(target, visible, user, previous)
                 operations.update(line.partition(' ')[0] for line in target.splitlines())
-    assert operations == {'SET', 'SET_CONTEXT', 'REMOVE', 'NO_CHANGE', 'EVENT', 'EVENT_CONTEXT',
-                          'REMOVE_EVENT', 'MINED', 'REMOVE_MINED', 'QUOTE',
-                          'PARTIAL', 'PARTIAL_CONTEXT', 'REMOVE_PARTIAL'}
+    required = {'SET', 'SET_CONTEXT', 'REMOVE', 'NO_CHANGE', 'EVENT', 'EVENT_CONTEXT',
+                'REMOVE_EVENT', 'MINED', 'MINED_CONTEXT', 'QUOTE',
+                'PARTIAL', 'PARTIAL_CONTEXT', 'REMOVE_PARTIAL'}
+    assert required <= operations <= required | {'REMOVE_MINED'}
+
+
+def test_mined_withdrawal_roundtrips_without_depending_on_random_bank_selection():
+    user = Turn('u1', 'user', 'I sold a ticket yesterday.')
+    payload = ('sell | yesterday | none | reported | past | subject=PERSON:user | number=singular | '
+               'complement=UNRESOLVED:a ticket | object=PHYSICAL_OBJECT:a ticket')
+    delta = decode_update('MINED '+payload, Memory(), user)
+    memory = apply_delta(Memory(), delta, (user,))
+    withdrawal = Turn('u2', 'user', 'Withdraw my report about selling a ticket yesterday.')
+    delta = decode_update('REMOVE_MINED '+payload, memory, withdrawal)
+    after = apply_delta(memory, delta, (withdrawal,))
+    assert not after.events and after.retired_events == memory.events
+    transition = Transition(withdrawal, memory, delta, after, None)
+    assert render_update(transition) == 'REMOVE_MINED '+payload
 
 
 def test_commands_preserve_modality_and_do_not_turn_removal_into_negative_claim():
