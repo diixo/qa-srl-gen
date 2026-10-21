@@ -2,11 +2,11 @@
   "format": "dailydialog-quarantine-v1",
   "date": "2026-10-19",
   "review_method": "direct_assistant_disposition_review",
-  "note": "Five complete parallel sources supply usable continuations. Fourteen warning meanings remain unresolved, including one with a reviewed partial hearsay adapter. All 21 damaged or restricted original occurrences remain blocked as templates; exact pinned adapters are the only exceptions. Original texts and historical warning evidence are preserved.",
-  "unresolved_warnings": 14,
+  "note": "Five complete parallel sources and three pinned limited adapters remain usable. The other unresolved meanings are excluded and closed by user decision, not corrected: there is no remaining review queue or retry requirement. All 21 original restricted spans remain ineligible as unrestricted templates. Historical source evidence stays unchanged to prevent accidental re-import.",
+  "unresolved_warnings": 0,
   "blocked_template_occurrences": 21,
-  "deferred_occurrences": 13,
-  "adapter_only_occurrences": 3,
+  "deferred_occurrences": 0,
+  "adapter_only_occurrences": 0,
   "candidate": "data/mined-templates",
   "previous_progress": "data/dailydialog/review-parts/hybrid-luna-offline-progress-queue-v34.json",
   "evidence": {
@@ -66,10 +66,9 @@
         "e61840a79e599ef24e74bef99486e63b432363356d79a81cdb6e8832d45154b4"
       ],
       "warning_sha256": "0d88a4ad0cb2670c98db6e0f779593ef986062ad81d5b1575022afdb2c203261",
-      "status": "deferred_missing_evidence",
+      "status": "excluded",
       "category": "unclear_wording",
-      "reason": "What we live has no reliable reading. The unavailable toilets and later thanks do not identify the intended proposition or emotional reaction.",
-      "reopen_when": "Obtain disambiguating source evidence available at this turn, then review again; later dialogue turns alone do not license an earlier target.",
+      "reason": "What we live has no reliable reading. The unavailable toilets and later thanks do not identify the intended proposition or emotional reaction. Closed by user decision: discard the unresolved meaning, do not retry or block further imports. Only previously pinned, understood adapter meanings remain usable.",
       "automatic_retry": false,
       "template_admission": false,
       "allowed_adapters": {},
@@ -93,7 +92,9 @@
       "unknown": [
         "The expression what we live cannot be reconstructed reliably."
       ],
-      "candidate_image_sha256": "79238b64506073cc6a8511e2875e26f54ec37d77647adc76b2b6d41ef40bfbe1"
+      "candidate_image_sha256": "79238b64506073cc6a8511e2875e26f54ec37d77647adc76b2b6d41ef40bfbe1",
+      "previous_status": "deferred_missing_evidence",
+      "review_closed": true
     },
     {
       "id": "test:493:3:2",
@@ -103,10 +104,9 @@
         "a8fee753044af9d93ea285885b94ba5d7b33ceb95533eda56ce51424beb07d2d"
       ],
       "warning_sha256": "2d4c71604099cd38a700500828b8d7c95ec0eca815b624ca1a26cbe75e8e4397",
-      "status": "deferred_missing_evidence",
+      "status": "excluded",
       "category": "truncated_content",
-      "reason": "The isolated B follows a complete hair-treatment question. It is neither a reliable word nor an established speaker label.",
-      "reopen_when": "Obtain the missing source continuation or explicit author clarification, then review again without rewriting the preserved original.",
+      "reason": "The isolated B follows a complete hair-treatment question. It is neither a reliable word nor an established speaker label. Closed by user decision: discard the unresolved meaning, do not retry or block further imports. Only previously pinned, understood adapter meanings remain usable.",
       "automatic_retry": false,
       "template_admission": false,
       "allowed_adapters": {},
@@ -130,7 +130,9 @@
       "unknown": [
         "It may be a label or artifact; no missing meaning is invented."
       ],
-      "candidate_image_sha256": "972a5261016a900b56f514199220bd5c3381c92736411d495fa405dd5c8339f1"
+      "candidate_image_sha256": "972a5261016a900b56f514199220bd5c3381c92736411d495fa405dd5c8339f1",
+      "previous_status": "deferred_missing_evidence",
+      "review_closed": true
     },
     {
       "id": "test:679:5:1",
@@ -140,10 +142,9 @@
         "ff5dbcea8441253ea546ff1bd29045d06564c788d60a297a1b7d66c09ab255bb"
       ],
       "warning_sha256": "5746118015e68341ca64feabf9318ca25338fe0f774b6f0ae08ebb8148549d4c",
-      "status": "deferred_missing_evidence",
+      "status": "excluded",
       "category": "unclear_wording",
-      "reason": "Hug may be a literal request or damaged interjection. The clothing discussion does not establish which; do not substitute Ugh.",
-      "reopen_when": "Obtain disambiguating source evidence available at this turn, then review again; later dialogue turns alone do not license an earlier target.",
+      "reason": "Hug may be a literal request or damaged interjection. The clothing discussion does not establish which; do not substitute Ugh. Closed by user decision: discard the unresolved meaning, do not retry or block further imports. Only previously pinned, understood adapter meanings remain usable.",
       "automatic_retry": false,
       "template_admission": false,
       "allowed_adapters": {},
@@ -169,7 +170,9 @@
       "unknown": [
         "Do not replace it with Ugh or invent a hug request."
       ],
-      "candidate_image_sha256": "16d0e4165f38438a66cf3cb0f614a6e179a1296085ddfedc61840cc58a711a59"
+      "candidate_image_sha256": "16d0e4165f38438a66cf3cb0f614a6e179a1296085ddfedc61840cc58a711a59",
+      "previous_status": "deferred_missing_evidence",
+      "review_closed": true
     },
     {
       "id": "test:794:7:3",
@@ -179,10 +182,9 @@
         "8ecbe8543c3902e57b2ad1caf8b58bfcdd69c3f5d4412a02cecd161d116e3905"
       ],
       "warning_sha256": "9f3388b7cdccfd96e6823da9e4da61c86ae16765ccc5040b34482c59c50e512c",
-      "status": "deferred_missing_evidence",
+      "status": "excluded",
       "category": "truncated_content",
-      "reason": "It is really lacks its predicate complement. Earlier praise and a visit to Dalian do not supply the omitted property.",
-      "reopen_when": "Obtain the missing source continuation or explicit author clarification, then review again without rewriting the preserved original.",
+      "reason": "It is really lacks its predicate complement. Earlier praise and a visit to Dalian do not supply the omitted property. Closed by user decision: discard the unresolved meaning, do not retry or block further imports. Only previously pinned, understood adapter meanings remain usable.",
       "automatic_retry": false,
       "template_admission": false,
       "allowed_adapters": {},
@@ -210,7 +212,9 @@
       "unknown": [
         "Do not borrow the preceding holiday praise as the missing continuation."
       ],
-      "candidate_image_sha256": "cc6d18a3ccbb3609208e7c4c243acfbcb76e0c8f17121b7ea7754bd65fbfed3e"
+      "candidate_image_sha256": "cc6d18a3ccbb3609208e7c4c243acfbcb76e0c8f17121b7ea7754bd65fbfed3e",
+      "previous_status": "deferred_missing_evidence",
+      "review_closed": true
     },
     {
       "id": "test:808:13:3",
@@ -220,10 +224,9 @@
         "3eaaf4f09423ae5a5005eacb54bac7dc8e2e0386a0f2fdce5b7b2b45d5348935"
       ],
       "warning_sha256": "97fac26f8b637048ac7a4a6e75a943eb81d463742af2c6f8d274e7735582d3c3",
-      "status": "deferred_missing_evidence",
+      "status": "excluded",
       "category": "unclear_wording",
-      "reason": "Egg after the farewell is anomalous. The following insult does not justify a food entity or a guessed interjection.",
-      "reopen_when": "Obtain disambiguating source evidence available at this turn, then review again; later dialogue turns alone do not license an earlier target.",
+      "reason": "Egg after the farewell is anomalous. The following insult does not justify a food entity or a guessed interjection. Closed by user decision: discard the unresolved meaning, do not retry or block further imports. Only previously pinned, understood adapter meanings remain usable.",
       "automatic_retry": false,
       "template_admission": false,
       "allowed_adapters": {},
@@ -257,7 +260,9 @@
       "unknown": [
         "Do not invent a food entity or replace it with a guessed interjection."
       ],
-      "candidate_image_sha256": "4f41d5ed7eae227098f8f82adc241538d8d342918fde728d2c27fd36fe739bc6"
+      "candidate_image_sha256": "4f41d5ed7eae227098f8f82adc241538d8d342918fde728d2c27fd36fe739bc6",
+      "previous_status": "deferred_missing_evidence",
+      "review_closed": true
     },
     {
       "id": "test:856:3:1",
@@ -267,10 +272,9 @@
         "f60687a06c46b5d23e00f191b58e86024a084bfafb4a090b6cebf93ba442c7a5"
       ],
       "warning_sha256": "94eed94a3c8e10a2b2999e6f611b63eb4284fb30c9f4c924f7efa15e6aa87149",
-      "status": "adapter_only",
+      "status": "excluded",
       "category": "reviewed_partial_interpretation",
-      "reason": "The hearsay frame and John support a partial interpretation. The content of leading a double wife remains unclear; the pinned adapter preserves that uncertainty and confirms no affair or bigamy.",
-      "reopen_when": "Use only the pinned partial adapter. A full proposition still requires disambiguating evidence available at this turn.",
+      "reason": "The hearsay frame and John support a partial interpretation. The content of leading a double wife remains unclear; the pinned adapter preserves that uncertainty and confirms no affair or bigamy. Closed by user decision: discard the unresolved meaning, do not retry or block further imports. Only previously pinned, understood adapter meanings remain usable.",
       "automatic_retry": false,
       "template_admission": false,
       "allowed_adapters": {
@@ -296,7 +300,9 @@
       "unknown": [
         "Do not infer an affair, bigamy, two wives, or replace wife with life."
       ],
-      "candidate_image_sha256": "f4ce66a3a77d5a0370eba7e4e84b66377d1ae30def29e2e05cbd29949662c426"
+      "candidate_image_sha256": "f4ce66a3a77d5a0370eba7e4e84b66377d1ae30def29e2e05cbd29949662c426",
+      "previous_status": "adapter_only",
+      "review_closed": true
     },
     {
       "id": "test:961:1:1",
@@ -306,10 +312,9 @@
         "fa8db00c91b2bd333b8207dc11b3d35c050a727c8db36f27ea96a1bf2b42b070"
       ],
       "warning_sha256": "cf7e3b6ba1787942a700588342680c8698063ed20d51ae939415f6c4e8db491d",
-      "status": "deferred_missing_evidence",
+      "status": "excluded",
       "category": "unclear_wording",
-      "reason": "Spoke in all of the table clock does not identify an event. The later apology and payment offer cannot establish spilled liquid, damage or a tablecloth.",
-      "reopen_when": "Obtain disambiguating source evidence available at this turn, then review again; later dialogue turns alone do not license an earlier target.",
+      "reason": "Spoke in all of the table clock does not identify an event. The later apology and payment offer cannot establish spilled liquid, damage or a tablecloth. Closed by user decision: discard the unresolved meaning, do not retry or block further imports. Only previously pinned, understood adapter meanings remain usable.",
       "automatic_retry": false,
       "template_admission": false,
       "allowed_adapters": {},
@@ -331,7 +336,9 @@
       "unknown": [
         "Do not infer spilling, damage, a tablecloth, or another guessed action or object."
       ],
-      "candidate_image_sha256": "8f4bd1a21213d659d698aa4711acfc7162b931d4c8cdf87f352c79074e35a4ea"
+      "candidate_image_sha256": "8f4bd1a21213d659d698aa4711acfc7162b931d4c8cdf87f352c79074e35a4ea",
+      "previous_status": "deferred_missing_evidence",
+      "review_closed": true
     },
     {
       "id": "train:10044:10:4",
@@ -341,10 +348,9 @@
         "1a2e1d097a886b4e7a5902a4bb4a8aa48aa5b9c662a60bca822765c27df9c924"
       ],
       "warning_sha256": "95effa963ea164d97b5978293e473c416c19fda46d79e72984088a9e5a98955d",
-      "status": "deferred_missing_evidence",
+      "status": "excluded",
       "category": "truncated_content",
-      "reason": "I followed by an apostrophe has no predicate. Earlier currency trades do not supply the missing continuation.",
-      "reopen_when": "Obtain the missing source continuation or explicit author clarification, then review again without rewriting the preserved original.",
+      "reason": "I followed by an apostrophe has no predicate. Earlier currency trades do not supply the missing continuation. Closed by user decision: discard the unresolved meaning, do not retry or block further imports. Only previously pinned, understood adapter meanings remain usable.",
       "automatic_retry": false,
       "template_admission": false,
       "allowed_adapters": {},
@@ -375,7 +381,9 @@
       "unknown": [
         "The preceding currency trades do not supply the missing continuation."
       ],
-      "candidate_image_sha256": "f68c8d575595ccef342c13049db1232642ddb07e7d7bd72661df52d624f28e4e"
+      "candidate_image_sha256": "f68c8d575595ccef342c13049db1232642ddb07e7d7bd72661df52d624f28e4e",
+      "previous_status": "deferred_missing_evidence",
+      "review_closed": true
     },
     {
       "id": "train:10158:7:2",
@@ -385,10 +393,9 @@
         "3346dd26109669a5f55a2dece9d7ffd249997e52a78b4eafef0806817a4b173f"
       ],
       "warning_sha256": "0a141eb8faa29e20dc1f7423189fd5f8910c256cb17394a91736721bcd728930",
-      "status": "deferred_missing_evidence",
+      "status": "excluded",
       "category": "truncated_content",
-      "reason": "S after the salary figure does not establish a salary period, condition or continuation.",
-      "reopen_when": "Obtain the missing source continuation or explicit author clarification, then review again without rewriting the preserved original.",
+      "reason": "S after the salary figure does not establish a salary period, condition or continuation. Closed by user decision: discard the unresolved meaning, do not retry or block further imports. Only previously pinned, understood adapter meanings remain usable.",
       "automatic_retry": false,
       "template_admission": false,
       "allowed_adapters": {},
@@ -416,7 +423,9 @@
       "unknown": [
         "Do not infer a salary period or a missing condition."
       ],
-      "candidate_image_sha256": "6bff37ff4871388559ccd9776c8e6cc0d5a755ab5b3d03e4eba09d919ce04a6d"
+      "candidate_image_sha256": "6bff37ff4871388559ccd9776c8e6cc0d5a755ab5b3d03e4eba09d919ce04a6d",
+      "previous_status": "deferred_missing_evidence",
+      "review_closed": true
     },
     {
       "id": "train:1040:1:5",
@@ -513,10 +522,9 @@
         "ae2730ae19096af2a16bb0fe1c51c49ad317dbf75467baf999066bdf7cbc115b"
       ],
       "warning_sha256": "3d72958fc7cd22f078f0aa65ff2ade704020a90a73f77587a2d1f2e8a6fb3da1",
-      "status": "deferred_missing_evidence",
+      "status": "excluded",
       "category": "unclear_wording",
-      "reason": "The opening Cheer lacks prior context distinguishing a toast, exhortation or source error. Bottoms up appears only in future turns and cannot license the earlier training target.",
-      "reopen_when": "Obtain disambiguating source evidence available at this turn, then review again; later dialogue turns alone do not license an earlier target.",
+      "reason": "The opening Cheer lacks prior context distinguishing a toast, exhortation or source error. Bottoms up appears only in future turns and cannot license the earlier training target. Closed by user decision: discard the unresolved meaning, do not retry or block further imports. Only previously pinned, understood adapter meanings remain usable.",
       "automatic_retry": false,
       "template_admission": false,
       "allowed_adapters": {},
@@ -538,7 +546,9 @@
       "unknown": [
         "Do not decide between a toast, an exhortation, or a misspelling."
       ],
-      "candidate_image_sha256": "963628985053af2033ba8340de7cfed648615c29a5b756c66f028b6a562978ce"
+      "candidate_image_sha256": "963628985053af2033ba8340de7cfed648615c29a5b756c66f028b6a562978ce",
+      "previous_status": "deferred_missing_evidence",
+      "review_closed": true
     },
     {
       "id": "train:1061:2:1",
@@ -548,10 +558,9 @@
         "ae2730ae19096af2a16bb0fe1c51c49ad317dbf75467baf999066bdf7cbc115b"
       ],
       "warning_sha256": "5663024df98bd13936276ff8a3e0635d3f650e6b851e0acbe21e7cb2520ebc96",
-      "status": "deferred_missing_evidence",
+      "status": "excluded",
       "category": "unclear_wording",
-      "reason": "Repeating Cheer does not resolve its function. The later drinking exchange cannot be used as evidence available at this turn.",
-      "reopen_when": "Obtain disambiguating source evidence available at this turn, then review again; later dialogue turns alone do not license an earlier target.",
+      "reason": "Repeating Cheer does not resolve its function. The later drinking exchange cannot be used as evidence available at this turn. Closed by user decision: discard the unresolved meaning, do not retry or block further imports. Only previously pinned, understood adapter meanings remain usable.",
       "automatic_retry": false,
       "template_admission": false,
       "allowed_adapters": {},
@@ -574,7 +583,9 @@
       "unknown": [
         "Do not infer a toast or a completed cheering event from repetition."
       ],
-      "candidate_image_sha256": "65f24f4424a0ec61fa13cd62471db2f772d2c48749621cf441e2c72ff1f1f555"
+      "candidate_image_sha256": "65f24f4424a0ec61fa13cd62471db2f772d2c48749621cf441e2c72ff1f1f555",
+      "previous_status": "deferred_missing_evidence",
+      "review_closed": true
     },
     {
       "id": "train:10882:5:4",
@@ -584,10 +595,9 @@
         "3c559a37f45ae0f7cca12e1be113c3f1df254aed8c326c4e54d90092cc5cce24"
       ],
       "warning_sha256": "02d5554599c20e1ce60d11125e81d902ea23d5d1b4231787088dda69a75cc121",
-      "status": "deferred_missing_evidence",
+      "status": "excluded",
       "category": "truncated_content",
-      "reason": "The final A after a breakfast question supplies neither a selected item nor a speaker identity.",
-      "reopen_when": "Obtain the missing source continuation or explicit author clarification, then review again without rewriting the preserved original.",
+      "reason": "The final A after a breakfast question supplies neither a selected item nor a speaker identity. Closed by user decision: discard the unresolved meaning, do not retry or block further imports. Only previously pinned, understood adapter meanings remain usable.",
       "automatic_retry": false,
       "template_admission": false,
       "allowed_adapters": {},
@@ -613,7 +623,9 @@
       "unknown": [
         "Do not choose a breakfast item or treat it as a speaker label."
       ],
-      "candidate_image_sha256": "b8a2314453117108884e21257fc9748a00eba9a342b489a1115a22f6523810ef"
+      "candidate_image_sha256": "b8a2314453117108884e21257fc9748a00eba9a342b489a1115a22f6523810ef",
+      "previous_status": "deferred_missing_evidence",
+      "review_closed": true
     },
     {
       "id": "train:1273:1:1",
@@ -623,10 +635,9 @@
         "b26a95ed612398b3ff8b006cdcc80caf173ec43b05106b084e10eb0245699169"
       ],
       "warning_sha256": "84c16984c55092604b5e0c12172d84f5aaf279fb9658c170f6b93aaf03022979",
-      "status": "deferred_missing_evidence",
+      "status": "excluded",
       "category": "truncated_content",
-      "reason": "Too before the ellipsis has no reliable attachment. Preserve the separate oily-face assessment and favorable reaction, without extending the degree word across the break.",
-      "reopen_when": "Obtain the missing source continuation or explicit author clarification, then review again without rewriting the preserved original.",
+      "reason": "Too before the ellipsis has no reliable attachment. Preserve the separate oily-face assessment and favorable reaction, without extending the degree word across the break. Closed by user decision: discard the unresolved meaning, do not retry or block further imports. Only previously pinned, understood adapter meanings remain usable.",
       "automatic_retry": false,
       "template_admission": false,
       "allowed_adapters": {},
@@ -648,7 +659,9 @@
       "unknown": [
         "Do not force attachment to oily across the interruption."
       ],
-      "candidate_image_sha256": "82bf4f2a1b7082744045f1a02a3a1075b0828444910093589db35265acb615cb"
+      "candidate_image_sha256": "82bf4f2a1b7082744045f1a02a3a1075b0828444910093589db35265acb615cb",
+      "previous_status": "deferred_missing_evidence",
+      "review_closed": true
     },
     {
       "id": "train:1273:1:2",
@@ -658,10 +671,9 @@
         "b26a95ed612398b3ff8b006cdcc80caf173ec43b05106b084e10eb0245699169"
       ],
       "warning_sha256": "84c16984c55092604b5e0c12172d84f5aaf279fb9658c170f6b93aaf03022979",
-      "status": "adapter_only",
+      "status": "excluded",
       "category": "reviewed_adjacent_fragment",
-      "reason": "Use only the existing reviewed visible-pair adapter for this separate span. The earlier Too is unresolved; do not publish the sentence as a freely usable template.",
-      "reopen_when": "A new explicit review is required to change this adapter or to admit the full sentence; its current limited meaning is already usable.",
+      "reason": "Use only the existing reviewed visible-pair adapter for this separate span. The earlier Too is unresolved; do not publish the sentence as a freely usable template. Closed by user decision: discard the unresolved meaning, do not retry or block further imports. Only previously pinned, understood adapter meanings remain usable.",
       "automatic_retry": false,
       "template_admission": false,
       "allowed_adapters": {
@@ -685,7 +697,9 @@
       "unknown": [
         "The scope of the earlier Too fragment is unresolved."
       ],
-      "candidate_image_sha256": "407caaa0c8905a81b03eb2f02abb8567023593e7c83a2e1d11267840362e7a3c"
+      "candidate_image_sha256": "407caaa0c8905a81b03eb2f02abb8567023593e7c83a2e1d11267840362e7a3c",
+      "previous_status": "adapter_only",
+      "review_closed": true
     },
     {
       "id": "train:1273:1:3",
@@ -695,10 +709,9 @@
         "b26a95ed612398b3ff8b006cdcc80caf173ec43b05106b084e10eb0245699169"
       ],
       "warning_sha256": "84c16984c55092604b5e0c12172d84f5aaf279fb9658c170f6b93aaf03022979",
-      "status": "adapter_only",
+      "status": "excluded",
       "category": "reviewed_adjacent_fragment",
-      "reason": "Use only the existing reviewed visible-pair adapter for this separate span. The earlier Too is unresolved; do not publish the sentence as a freely usable template.",
-      "reopen_when": "A new explicit review is required to change this adapter or to admit the full sentence; its current limited meaning is already usable.",
+      "reason": "Use only the existing reviewed visible-pair adapter for this separate span. The earlier Too is unresolved; do not publish the sentence as a freely usable template. Closed by user decision: discard the unresolved meaning, do not retry or block further imports. Only previously pinned, understood adapter meanings remain usable.",
       "automatic_retry": false,
       "template_admission": false,
       "allowed_adapters": {
@@ -722,7 +735,9 @@
       "unknown": [
         "The exact evaluative target and relation to Too remain unresolved."
       ],
-      "candidate_image_sha256": "be439038fc30428a80483628ef5d5d74160b1a12a1b68b7fd6bcdb2041f8c313"
+      "candidate_image_sha256": "be439038fc30428a80483628ef5d5d74160b1a12a1b68b7fd6bcdb2041f8c313",
+      "previous_status": "adapter_only",
+      "review_closed": true
     },
     {
       "id": "train:1466:6:4",
@@ -826,10 +841,9 @@
         "5b9df5a3ba1ce742070945845114d964f0cad75e2ea6b6d26bad4ed8c5683688"
       ],
       "warning_sha256": "b54202b4b06e8498682df2a3408d15de2623a769a48f9de149d9ad5a72049c6d",
-      "status": "deferred_missing_evidence",
+      "status": "excluded",
       "category": "truncated_content",
-      "reason": "Someone wit has no complete property or predicate. It does not establish qualifications, a job offer or a genetics claim.",
-      "reopen_when": "Obtain the missing source continuation or explicit author clarification, then review again without rewriting the preserved original.",
+      "reason": "Someone wit has no complete property or predicate. It does not establish qualifications, a job offer or a genetics claim. Closed by user decision: discard the unresolved meaning, do not retry or block further imports. Only previously pinned, understood adapter meanings remain usable.",
       "automatic_retry": false,
       "template_admission": false,
       "allowed_adapters": {},
@@ -855,7 +869,9 @@
       "unknown": [
         "Do not invent a qualification or employment offer."
       ],
-      "candidate_image_sha256": "3732b87eee0a22e7cf79e8ca11e89313d4c2cd62c71cf0a1bdfeaea21b9ef366"
+      "candidate_image_sha256": "3732b87eee0a22e7cf79e8ca11e89313d4c2cd62c71cf0a1bdfeaea21b9ef366",
+      "previous_status": "deferred_missing_evidence",
+      "review_closed": true
     }
   ],
   "catalog_evidence": {
@@ -868,5 +884,8 @@
   "candidate_source_id": "dailydialog",
   "source_warnings": 19,
   "source_variant_resolved_warnings": 5,
-  "source_variant_occurrences": 5
+  "source_variant_occurrences": 5,
+  "excluded_warnings": 14,
+  "excluded_occurrences": 16,
+  "review_policy": "Unresolved source meanings are excluded and closed by user decision. They are not a review backlog. Keep exact reviewed adapters and complete source variants; exclusion never grants template admission."
 }

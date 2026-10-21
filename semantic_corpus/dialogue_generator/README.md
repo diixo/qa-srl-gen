@@ -186,6 +186,25 @@ text, without nested JSON. This extends `fragment_meaning`, without a new task
 family. The two instruction modes are explicit so old `NO_CHANGE` examples do
 not conflict with the new interpretation targets.
 
+The same catalog also stores finite reviewed `substitutions`. These keep the
+original patterns and source hashes intact and derive synthetic alternatives
+by changing the visible prompt, reply and interpretation together. For
+`train:1846–1905`, 60 rules expand 298 interpretation adapters. They preserve
+questions, negation, modality and uncertainty; they do not infer new events.
+For example, changing the borrower Jack to Alex changes the corresponding
+interpretation too, while retaining that the debt has **not** been repaid.
+
+Synthetic corpus uses the same rules when recombination is enabled: 71 of
+the 573 admitted sentence templates have compatible nominal/adjective slots,
+giving 204 approved surface variants. The other 502 retain their original
+bindings. Fixed syntax, verbs and idioms cannot be changed by this mechanism.
+Arbitrary explicit bindings are still rejected. Source-attestation and adapter
+hashes are checked before applying a rule; changed evidence requires review.
+Generated metadata identifies the rule, choice and original attestation.
+Dependency structure is inherited from the source and remains unavailable
+for automatic factual QA; dialogue Extraction uses the reviewed interpretation.
+No extra bank, task family or external API is required.
+
 Each new adapter embeds its source context, exact span, hashes and review scope.
 Only the adapted, visible dialogue pair is licensed. Import through
 `scripts/admit_dailydialog_fragments.py` checks those references and all three
@@ -662,7 +681,7 @@ the text command contract described below, with lossless conversion to internal
 deltas for the supported pilot scenarios.
 
 The manifest now records `schema_version: dialogue-memory-v10`,
-`prompt_version: dialogue-prompts-v13`, `content_formats.memory: memory-text-v11` and
+`prompt_version: dialogue-prompts-v14`, `content_formats.memory: memory-text-v11` and
 `content_formats.extraction: extraction-text-v11`. Generate a new job/directory to get
 the text format; existing output files are not rewritten. Text-based prompt
 deduplication can select different episodes when older prompts differed only

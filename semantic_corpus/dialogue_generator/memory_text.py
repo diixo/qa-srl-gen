@@ -40,7 +40,8 @@ def _fact_text(fact: Fact, style: int = 0) -> str:
         return f"{subject} {'did not learn' if negative else 'learned'} {value}."
     if fact.relation == "utterance_interpretation":
         description = f"{possessive} reply {'was not' if negative else 'was'} interpreted as: {value}"
-        return description if description.endswith(('.', '!', '?')) else description + '.'
+        return (description if description.rstrip('\'"\u2019\u201d').endswith(('.', '!', '?'))
+                else description + '.')
     raise ValueError(f"Unsupported fact relation: {fact.relation}")
 
 

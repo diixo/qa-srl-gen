@@ -417,6 +417,49 @@ def test_simultaneous_sources_are_serialized_without_lost_updates(tmp_path):
     assert validate_bank(TemplateBank(paths[0]))['source_records'] == 2
 
 
+def test_writer_lock_initializes_once_when_both_workers_open_an_empty_file(tmp_path, monkeypatch):
+    from concurrent.futures import ThreadPoolExecutor
+    from pathlib import Path
+    from threading import Barrier, Event, local
+    from semantic_corpus.template_registry import _writer_lock
+
+    root = tmp_path / 'data' / 'mined-templates'
+    both_open = Barrier(2, timeout=10)
+    holder_entered, contender_ready, contender_entered = Event(), Event(), Event()
+    worker = local()
+    original_open = Path.open
+
+    def synchronized_open(path, *args, **kwargs):
+        stream = original_open(path, *args, **kwargs)
+        if path.name == '.mined-templates.lock' and args == ('a+b',):
+            # Both descriptors retain their initial position of zero. Let the
+            # holder initialize and lock the file before returning the other.
+            both_open.wait()
+            if not worker.holder:
+                assert holder_entered.wait(10)
+                contender_ready.set()
+        return stream
+
+    monkeypatch.setattr(Path, 'open', synchronized_open)
+
+    def acquire(holder):
+        worker.holder = holder
+        with _writer_lock(root):
+            if holder:
+                holder_entered.set()
+                assert contender_ready.wait(10)
+                assert not contender_entered.wait(0.2)
+            else:
+                contender_entered.set()
+
+    with ThreadPoolExecutor(max_workers=2) as workers:
+        futures = [workers.submit(acquire, holder) for holder in (True, False)]
+        for future in futures:
+            future.result()
+    assert contender_entered.is_set()
+    assert (root.parent / '.mined-templates.lock').read_bytes() == b'0'
+
+
 def test_partial_gzip_tail_is_not_consumed_and_truncated_committed_data_is_rejected(tmp_path):
     repo = tmp_path / 'repo'
     target, first_text = publish(repo, tmp_path / 'first')

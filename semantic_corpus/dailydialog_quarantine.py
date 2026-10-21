@@ -36,9 +36,14 @@ def load_holds(path):
         if (not isinstance(identity, str) or not _ID.fullmatch(identity) or identity in seen
                 or entry.get('template_admission') is not False
                 or entry.get('automatic_retry') is not False
-                or entry.get('status') not in {'deferred_missing_evidence', 'adapter_only', 'source_variant_only'}
-                or not entry.get('reason') or not entry.get('reopen_when') or not entry.get('unknown')):
+                or entry.get('status') not in {'deferred_missing_evidence', 'adapter_only', 'source_variant_only', 'excluded'}
+                or not entry.get('reason') or not entry.get('unknown')):
             raise ValueError('Invalid DailyDialog quarantine decision')
+        if entry['status'] == 'excluded':
+            if entry.get('review_closed') is not True or entry.get('reopen_when') is not None:
+                raise ValueError('An excluded occurrence must be closed without a retry condition')
+        elif not entry.get('reopen_when'):
+            raise ValueError('An open quarantine decision needs its evidence condition')
         seen.add(identity)
         split, dialogue, turn, segment = identity.split(':')
         if (source.get('split') != split or source.get('dialogue') != int(dialogue)
@@ -56,7 +61,7 @@ def load_holds(path):
                 not isinstance(k, str) or not k or not isinstance(v, str)
                 or re.fullmatch('[0-9a-f]{64}', v) is None for k, v in allowed.items()):
             raise ValueError('Invalid DailyDialog quarantine adapter exceptions')
-        if bool(allowed) != (entry['status'] == 'adapter_only'):
+        if entry['status'] != 'excluded' and bool(allowed) != (entry['status'] == 'adapter_only'):
             raise ValueError('Only reviewed adjacent fragments can have adapter exceptions')
         variant = entry.get('source_variant')
         if entry['status'] == 'source_variant_only':

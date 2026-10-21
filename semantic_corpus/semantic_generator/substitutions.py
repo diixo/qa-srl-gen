@@ -23,6 +23,7 @@ from __future__ import annotations
 import hashlib
 import json
 import random
+import re
 from dataclasses import dataclass
 from functools import lru_cache
 from pathlib import Path
@@ -164,7 +165,9 @@ class EntityPool:
             rank = len(self._readings)
             self._readings[entity.text] = []
             self._surface_forms = None
-            words = tuple(entity.text.split())
+            # Possessives and punctuation preserve contained-name boundaries:
+            # holding out "people" must also hold out "people's noses".
+            words = tuple(re.findall(r"\w+|[^\w\s]", entity.text))
             candidate = (len(entity.text), rank, entity.text)
             previous = self._split_forms.get(words)
             if previous is None or candidate < previous:
@@ -286,7 +289,7 @@ class EntityPool:
         """
         if text in self._split_keys:
             return self._split_keys[text]
-        words = tuple(text.split())
+        words = tuple(re.findall(r"\w+|[^\w\s]", text))
         # Only strictly shorter forms may replace text. The sentinel rank -1
         # excludes same-length candidates without changing insertion-order ties.
         best = (len(text), -1, text)
@@ -344,7 +347,7 @@ class EntityPool:
         chosen = _split_of(self.split_key(text), dev_share, test_share, salt)
         if chosen == "test":
             return chosen
-        words = tuple(text.split())
+        words = tuple(re.findall(r"\w+|[^\w\s]", text))
         for size in self._split_word_lengths:
             for start in range(len(words) - size + 1):
                 candidate = self._split_forms.get(words[start:start + size])

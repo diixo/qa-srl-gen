@@ -43,6 +43,98 @@ def test_reviewed_fragment_scenarios_roundtrip_in_all_views(key, user_only):
         assert not messages[1]['content'].startswith(('{', '['))
 
 
+@pytest.mark.parametrize('user_only', [True, False])
+def test_completed_purchase_is_distinct_from_wanting_to_return_and_future_progress(user_only):
+    bought = episode('dd_bought_scarf_yesterday', user_only)
+    purchase = bought.memory.events[0].event
+    assert purchase.phase == 'completed' and purchase.time == 'yesterday'
+    assert completion_evidence(purchase) == 'yes'
+    assert bought.expected_action == 'answer'
+    wanted = episode('dd_want_return_library_video', user_only)
+    intention = wanted.memory.events[0].event
+    assert intention.operators == ('want',)
+    assert completion_evidence(intention) == 'unknown'
+    assert wanted.expected_action == 'unknown'
+    predicted = episode('dd_already_in_future_progress', user_only)
+    assert not predicted.memory.events
+    meaning = predicted.memory.find('user', 'utterance_interpretation').value
+    assert 'future' in meaning and 'does not establish progress now' in meaning
+
+
+@pytest.mark.parametrize('user_only', [True, False])
+def test_need_to_leave_and_wanted_party_keep_incomplete_or_intended_action(user_only):
+    leaving = episode('dd_need_leave_unspecified_destination', user_only)
+    event = leaving.memory.events[0].event
+    assert event.predicate == 'go' and event.operators == ('have_to',)
+    assert event.missing_roles == ('destination',)
+    assert {arg.role for arg in event.arguments} == {'agent'}
+    assert event.time == 'now' and completion_evidence(event) == 'unknown'
+
+    party = episode('dd_want_birthday_party', user_only)
+    intention = party.memory.events[0].event
+    assert intention.predicate == 'hold' and intention.operators == ('want',)
+    assert intention.time == 'next month'
+    assert completion_evidence(intention) == 'unknown'
+    assert leaving.expected_action == party.expected_action == 'unknown'
+
+
+@pytest.mark.parametrize('user_only', [True, False])
+def test_camera_purchase_is_completed_but_baby_shower_and_donation_are_not(user_only):
+    purchase = episode('dd_bought_digital_camera_last_week', user_only)
+    bought = purchase.memory.events[0].event
+    assert bought.predicate == 'buy' and bought.time == 'last week'
+    assert completion_evidence(bought) == 'yes'
+    plan = episode('dd_plan_baby_shower', user_only)
+    planned = plan.memory.events[0].event
+    assert planned.operators == ('plan',) and planned.time == 'next Sunday'
+    assert completion_evidence(planned) == 'unknown'
+    assert plan.expected_action == 'unknown'
+    proposal = episode('dd_pool_money_charitable_proposal', user_only)
+    assert not proposal.memory.events
+    assert proposal.memory.find('user', 'utterance_interpretation')
+
+
+@pytest.mark.parametrize('user_only', [True, False])
+def test_course_count_question_never_borrows_the_later_numeric_answer(user_only):
+    question = PATTERNS['dd_how_many_courses_total']
+    answer = PATTERNS['dd_dinner_eight_courses']
+    assert question['source']['dialogue'] == answer['source']['dialogue']
+    assert question['source']['turn'] < answer['source']['turn']
+    assert answer['source']['turn'] not in question['review']['evidence_turns']
+    e = episode(question['id'], user_only)
+    assert all('eight' not in turn.text.casefold() for turn in e.turns)
+    meaning = e.memory.find('user', 'utterance_interpretation').value
+    assert 'eight' not in meaning.casefold()
+    assert 'eight' in episode(answer['id'], user_only).memory.find(
+        'user', 'utterance_interpretation').value
+    assert not e.memory.events
+
+
+@pytest.mark.parametrize('user_only', [True, False])
+def test_contextual_past_location_approach_and_drink_request_do_not_replace_current_state(user_only):
+    for key in ('dd_past_cousin_dallas_residence', 'dd_almost_there_not_arrived',
+                'dd_screwdriver_drink_order', 'dd_never_visa_denial'):
+        e = episode(key, user_only)
+        transition = e.transitions[1]
+        assert not e.memory.events
+        assert e.memory.find('user', 'utterance_interpretation')
+        # Past residence and approaching a destination do not mean arrival;
+        # ordering a drink does not mean receiving it. Only the reviewed
+        # interpretation may change, leaving all previously known facts intact.
+        before = [fact for fact in transition.before.facts
+                  if fact.relation != 'utterance_interpretation']
+        after = [fact for fact in transition.after.facts
+                 if fact.relation != 'utterance_interpretation']
+        assert after == before
+
+
+@pytest.mark.parametrize('kind', ['partial', 'refine', 'mined_event', 'interpretation'])
+def test_completed_phase_cannot_promote_a_partial_or_interpreted_fragment(kind):
+    pattern = dict(PATTERNS['dd_bought_scarf_yesterday'], kind=kind)
+    with pytest.raises(ValueError, match='phase|completion|interpretation'):
+        validate_fragment_patterns([pattern])
+
+
 def test_choice_is_not_a_preference_and_learning_location_is_not_current_location():
     e = episode('coffee_choice')
     assert e.memory.find('user', 'selection').value == 'white coffee'
@@ -302,14 +394,16 @@ def test_interpretations_cannot_bypass_contextual_review():
 
 @pytest.mark.parametrize('user_only', [True, False])
 def test_full_sentence_interpretations_preserve_reviewed_meaning_in_all_exports(user_only):
+    from semantic_corpus.reviewed_substitutions import realize_pattern
     # Regression: v36 descriptions previously produced "You The user ... .."
     # and contradicted the instruction requiring a verb phrase after You.
     context = ('the kitchen', 'tired', 'tea') if user_only else ('Anna', 'Rome')
     patterns = [p for p in PATTERNS.values() if p['kind'] == 'interpretation'
-                and p['value'].startswith('The user ')]
+                and p['value'][:1].isupper()]
     assert patterns
     for pattern in patterns:
         e = fragment_episode(pattern, context, split='test', user_only=user_only)
+        pattern = realize_pattern(pattern, 0)
         assert e.answer == pattern['value']
         assert e.transitions[1].turn.text == pattern['reply']
         assert e.memory.find('user', 'utterance_interpretation').value == pattern['value']
@@ -320,7 +414,7 @@ def test_full_sentence_interpretations_preserve_reviewed_meaning_in_all_exports(
         assert 'interpreted as: ' + pattern['value'] in memory_prompt
         assert pattern['value'] + '.' not in memory_prompt
         row = extraction_row(e, e.transitions[1])
-        assert 'complete sentence beginning The user' in row['messages'][0]['content']
+        assert 'capitalized standalone description' in row['messages'][0]['content']
         assert decode_update(row['messages'][-1]['content'], e.transitions[1].before,
                              e.transitions[1].turn, e.transitions[1].previous_assistant) == e.transitions[1].delta
 

@@ -65,8 +65,9 @@ def fingerprint(value):
 
 
 class CorpusTemplate:
-    def __init__(self, record):
+    def __init__(self, record, *, substitution_rule=None):
         self.record = record
+        self.substitution_rule = substitution_rule
         self.template_id = record["template_id"]
         self.slots = record["slots"]
 
@@ -148,6 +149,14 @@ class CorpusTemplate:
         rng = random.Random(fingerprint([seed, self.template_id, variant]))
         attested = self.attested(adjective_forms)
         if self.record.get('usage_constraints') is not None:
+            if recombine and self.substitution_rule is not None and adjective_forms is None:
+                from .reviewed_substitutions import render_template
+                choices = list(range(len(self.substitution_rule['choices'])))
+                rng.shuffle(choices)
+                for choice in choices:
+                    rendered = render_template(self, self.substitution_rule, choice)
+                    if rendered is not None:
+                        return rendered
             # A recombination request cannot override an occurrence's review.
             return self.render(rng.choice(attested))
         if recombine:
@@ -254,6 +263,8 @@ class TemplateBank:
             return
         files = ([f"templates/{template_id[:2]}.jsonl.gz"] if template_id
                  else sorted(name for name in self.files if name.startswith('templates/')))
+        from .reviewed_substitutions import template_rules
+        substitutions = template_rules(self.path)
         for file in files:
             if file not in self.files:
                 continue
@@ -264,7 +275,7 @@ class TemplateBank:
                     continue
                 if adjective is not None and adjective not in row.get("adjective_lemmas", ()):
                     continue
-                yield CorpusTemplate(row)
+                yield CorpusTemplate(row, substitution_rule=substitutions.get(row['template_id']))
 
     def verbs(self):
         return self.rows('verbs.jsonl.gz')

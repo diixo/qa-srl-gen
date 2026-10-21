@@ -213,6 +213,8 @@ class BuiltInPool:
                     if not selected:
                         continue
                     key = fingerprint([identity, CONTROLLED_VERSION, row["template_id"], row["bindings"], recombine])
+                    if 'reviewed_substitution' in row:
+                        key = fingerprint([key, row['reviewed_substitution']])
                     source = bank.source_label
                     yield Document(
                         document_id=f"mined-{key}", text=row["text"], source=source, split=split,
@@ -220,7 +222,8 @@ class BuiltInPool:
                                   "resource_pool": "built-in", "bank_manifest_sha256": identity,
                                   "controlled_policy": CONTROLLED_VERSION,
                                   "bank_source_sha256": bank.manifest.get("source_sha256"),
-                                  "recombined": recombine and 'usage_constraints' not in row,
+                                  "recombined": recombine and ('usage_constraints' not in row or
+                                                               'reviewed_substitution' in row),
                                   "split_policy": SPLIT_POLICY})
             except ValueError as error:
                 if str(error) != "no templates match the selection":

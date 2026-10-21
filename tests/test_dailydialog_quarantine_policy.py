@@ -125,6 +125,25 @@ def test_source_variant_requires_a_pinned_review(tmp_path, held):
         load_holds(save_hold(tmp_path, held))
 
 
+@pytest.mark.parametrize('keep_adapter', [False, True])
+def test_excluded_occurrence_stays_closed_and_cannot_be_published(tmp_path, held, keep_adapter):
+    adapter = pattern(held)
+    held.update(status='excluded', review_closed=True,
+                allowed_adapters={adapter['id']: fingerprint(adapter)} if keep_adapter else {})
+    held.pop('reopen_when')
+    entries = load_holds(save_hold(tmp_path, held))
+    with pytest.raises(ValueError, match='quarantine blocks'):
+        check_template({'usage_constraints': {'source_id': held['id']}}, entries)
+    if keep_adapter:
+        check_fragment_catalog([adapter], tmp_path/'catalog.json')
+        adapter['value'] = 'invented completion'
+    with pytest.raises(ValueError, match='quarantine blocks'):
+        check_fragment_catalog([adapter], tmp_path/'catalog.json')
+    held['reopen_when'] = 'try later'
+    with pytest.raises(ValueError, match='closed without a retry'):
+        load_holds(save_hold(tmp_path, held))
+
+
 def test_renumbering_or_joining_does_not_bypass_span_hold(tmp_path, held):
     path = save_hold(tmp_path, held)
     renamed = dict(held['source'], segment=99, span=[0, len(held['source']['text'])+20])

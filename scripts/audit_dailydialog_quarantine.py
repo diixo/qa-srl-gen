@@ -116,11 +116,14 @@ def audit(repo, ledger=None):
     warnings = list(read_rows(ledger/'quarantined-warnings.jsonl.gz'))
     cases = {r['id']:r for r in read_rows(ledger/'quarantine-cases.jsonl.gz')}
     indexed = {row['id']:row for row in holds}
-    unresolved_keys = {tuple(r['warning_key']) for r in holds if r['status'] != 'source_variant_only'}
-    resolved_keys = {tuple(r['warning_key']) for r in holds} - unresolved_keys
+    unresolved_keys = {tuple(r['warning_key']) for r in holds
+                       if r['status'] not in {'source_variant_only', 'excluded'}}
+    excluded_keys = {tuple(r['warning_key']) for r in holds if r['status'] == 'excluded'} - unresolved_keys
+    resolved_keys = {tuple(r['warning_key']) for r in holds} - unresolved_keys - excluded_keys
     if (set(indexed) != set(cases)
             or len(warnings) != register.get('source_warnings', register['unresolved_warnings'])
             or len(unresolved_keys) != register['unresolved_warnings']
+            or len(excluded_keys) != register.get('excluded_warnings', 0)
             or len(resolved_keys) != register.get('source_variant_resolved_warnings', 0)):
         raise ValueError('Register does not cover the current quarantine')
     verify_evidence(repo, register)
@@ -230,6 +233,8 @@ def audit(repo, ledger=None):
               for r in read_rows(p)}
     return dict(status='passed',register=register_path.relative_to(repo).as_posix(),register_sha256=digest(register_path),
         source_warnings=len(warnings),unresolved_warnings=len(unresolved_keys),active_automatic_retries=0,
+        excluded_warnings=len(excluded_keys),
+        excluded_occurrences=sum(r['status']=='excluded' for r in holds),
         source_variant_resolved_warnings=len(resolved_keys),source_variant_adapters=len(variants),
         input_layout='shared_pool' if inputs['centralized'] else 'historical_source_workspace',
         review_parts_required=not inputs['centralized'],

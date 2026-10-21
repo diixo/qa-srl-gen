@@ -282,6 +282,23 @@ def test_splits_partition_the_pool():
     assert all(size > 0 for size in sizes.values())
 
 
+def test_possessive_and_punctuated_forms_cannot_leak_held_out_words():
+    from semantic_corpus.semantic_generator.substitutions import Entity, EntityPool
+    from semantic_corpus.ontology import Label, LabelSet
+
+    forms = ['people', "people's noses", 'people’s noses', 'people-related',
+             '(people)', 'peoples', 'a group of people']
+    pool = EntityPool(Entity(text, LabelSet.of(Label.PHYSICAL_OBJECT)) for text in forms)
+    assert pool.split_of('people') == 'test'
+    for text in forms:
+        if text == 'peoples':
+            assert pool.split_key(text) == 'peoples'
+        else:
+            assert pool.split_key(text) == 'people'
+            assert pool.split_of(text) == 'test'
+            assert text not in pool.split('train').surface_forms
+
+
 def test_split_assignment_does_not_depend_on_run_or_order():
     pool = default_pool(load_default_hierarchy())
     assignment = {form: pool.split_of(form) for form in pool.surface_forms}

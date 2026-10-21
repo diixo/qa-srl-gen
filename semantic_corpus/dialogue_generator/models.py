@@ -259,11 +259,15 @@ def answer_query(memory: Memory, query: Query) -> tuple[str, str, tuple[str, ...
         answer = f"{subject} learned {fact.value}."
     elif query.relation == "utterance_interpretation":
         # Reviewed targets include both verb phrases ("declined ...") and
-        # complete descriptions ("The user declined ..."). Preserve their
+        # complete descriptions ("The user declined ...", "Mary asks ...").
+        # In the reviewed catalog verb phrases start lowercase; standalone
+        # descriptions start uppercase. This is a rendering convention,
+        # not an inference about who performed an embedded action. Preserve
         # wording without prepending a second subject or a second full stop.
-        description = (fact.value if fact.value.startswith('The user ')
+        description = (fact.value if fact.value[:1].isupper()
                        else f"{subject} {fact.value}")
-        answer = description if description.endswith(('.', '!', '?')) else description + '.'
+        answer = (description if description.rstrip('\'"\u2019\u201d').endswith(('.', '!', '?'))
+                  else description + '.')
     else:
         raise ValueError(f"Unsupported query: {query}")
     return answer, "answer", (fact.id,)

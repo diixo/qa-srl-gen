@@ -21,7 +21,7 @@ from .actions import CONTRAST_TASKS
 from .extraction_text import EXTRACT_SYSTEM, INTERPRETATION_EXTRACT_SYSTEM, EXTRACTION_TEXT_VERSION, render_prompt, render_update
 from .models import Episode, SCHEMA_VERSION, Transition
 
-PROMPT_VERSION = "dialogue-prompts-v13"
+PROMPT_VERSION = "dialogue-prompts-v14"
 RESPONSE_SYSTEM = (
     "You are a friendly AI personal assistant. Reply briefly and naturally to the latest user message. "
     "Use only the supplied conversation context. If information is missing, say you don't know; "
@@ -216,6 +216,8 @@ def build_dialogue_dataset(out: Path, *, train: int = 200, validation: int = 20,
     for path in resources:
         manifest["resources"][path.name] = _sha256(path)
     manifest['resources']['data/mined-templates/reviewed/dialogue-fragments.json'] = _sha256(CATALOG)
+    manifest['resources']['semantic_corpus/reviewed_substitutions.py'] = _sha256(
+        Path(__file__).resolve().parents[1] / 'reviewed_substitutions.py')
     frame_path = Path(__file__).parent.parent / 'semantic_generator' / 'frames.py'
     manifest['resources']['semantic_generator/frames.py'] = _sha256(frame_path)
     if token_counter:

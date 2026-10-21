@@ -49,8 +49,7 @@ INTERPRETATION_EXTRACT_SYSTEM = EXTRACT_SYSTEM.replace(
     'Relations: location,', 'Relations: utterance_interpretation, location,').replace(
     'Questions, thanks, unresolved references add nothing. Preserve known fragment meaning without guessing. ',
     'For a contextual reply to the last assistant, use SET_CONTEXT with utterance_interpretation to describe its meaning. '
-    'Its value describes the user reply: a verb phrase following You, in assistant perspective, '
-    'or a complete sentence beginning The user. Retain uncertainty. '
+    'Describe the user reply with a lowercase verb phrase after You, or a capitalized standalone description. Retain uncertainty. '
     'This describes the reply, never completion or truth of embedded events. '
     'Initial self-descriptions use ordinary relations. Questions about earlier replies add nothing. ')
 

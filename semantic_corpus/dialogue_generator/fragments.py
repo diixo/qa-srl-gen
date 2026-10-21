@@ -28,7 +28,8 @@ def load_fragment_patterns(path=CATALOG):
     patterns = content['patterns']
     validate_fragment_patterns(patterns)
     check_fragment_catalog(patterns, path)
-    return patterns
+    from ..reviewed_substitutions import expand_patterns
+    return expand_patterns(patterns, content.get('substitutions', []))
 
 
 def validate_fragment_patterns(patterns):
@@ -49,6 +50,10 @@ def validate_fragment_patterns(patterns):
                 raise ValueError('Reviewed elliptical events need context and cannot imply completion')
             if row.get('review', {}).get('method') != 'direct_assistant_fragment_adapter':
                 raise ValueError('An elliptical mined event requires an explicit contextual adapter')
+        if row.get('phase', 'unspecified') != 'unspecified':
+            if (row['kind'] != 'event'
+                    or row.get('review', {}).get('method') != 'direct_assistant_fragment_adapter'):
+                raise ValueError('An explicit action phase needs a reviewed complete event')
         if 'review' in row:
             review, source = row['review'], row.get('source', {})
             if (review.get('method') != 'direct_assistant_fragment_adapter' or
@@ -74,6 +79,9 @@ def validate_fragment_patterns(patterns):
 
 def fragment_episode(pattern, context, *, split, user_only, variant=0):
     from .generator import _Conversation, _fact, fingerprint, COMMON_PLACES, DAYS, FEELINGS
+    from ..reviewed_substitutions import realize_pattern
+
+    pattern = realize_pattern(pattern, variant)
 
     c = _Conversation()
     if user_only:
@@ -114,6 +122,7 @@ def fragment_episode(pattern, context, *, split, user_only, variant=0):
         subject = MinedSubject(**pattern['subject']) if kind == 'mined_event' else None
         event = Event(pattern['predicate'], arguments, time=pattern.get('time', 'unspecified').format(**values),
                       operators=tuple(pattern['operators']), tense=pattern['tense'],
+                      phase=pattern.get('phase', 'unspecified'),
                       missing_roles=tuple(pattern.get('missing_roles', ())),
                       mined=kind == 'mined_event', subject=subject)
         c.pair(text, events=(event,), reference=reference)
@@ -138,6 +147,8 @@ def fragment_episode(pattern, context, *, split, user_only, variant=0):
     answer, action, supports = answer_query(c.memory, query)
     plan = dict(task='fragment_meaning', pattern=pattern['id'], context=context,
                 query=asdict(query), updates=[asdict(t.delta) for t in c.transitions])
+    if 'realized_substitution' in pattern:
+        plan['reviewed_substitution'] = pattern['realized_substitution']
     key = fingerprint(plan)
     episode = Episode(f'dialogue-{key[:24]}', 'fragment_meaning', split, key,
                       tuple(c.turns), tuple(c.transitions), c.memory, query, answer, action, supports,

@@ -128,9 +128,6 @@ def _writer_lock(root):
     # Never unlink the lock: otherwise workers could lock different file objects.
     root.parent.mkdir(parents=True, exist_ok=True)
     with (root.parent / ".mined-templates.lock").open("a+b") as stream:
-        if stream.tell() == 0:
-            stream.write(b"0")
-            stream.flush()
         deadline = time.monotonic() + 60
         while True:
             try:
@@ -147,6 +144,12 @@ def _writer_lock(root):
                     raise TimeoutError("another worker is updating the mined bank")
                 time.sleep(0.1)
         try:
+            # Locking beyond EOF is supported. Initialize only while holding
+            # the lock: a competing opener may still have seen an empty file.
+            stream.seek(0, os.SEEK_END)
+            if stream.tell() == 0:
+                stream.write(b"0")
+                stream.flush()
             yield
         finally:
             stream.seek(0)
