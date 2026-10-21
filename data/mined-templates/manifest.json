@@ -52101,41 +52101,2280 @@
           23350
         ]
       }
+    },
+    {
+      "id": "dailydialog-backfill-2146-2205",
+      "manifest": {
+        "format": "corpus-templates-v1",
+        "status": "complete",
+        "full_input": true,
+        "model": {
+          "name": "direct-model-reviewed-cached-syntax"
+        },
+        "review_status": "UNREVIEWED",
+        "field": "example",
+        "note": "Model-reviewed source sentences with explicit context restrictions; cached syntax is not semantic factual QA.",
+        "counts": {
+          "input_records": 590,
+          "compiled_records": 590,
+          "roundtrips_verified": 590,
+          "tokens_audited": 5393,
+          "verb_alternative_analyses": 1136,
+          "verb_occurrences": 1226,
+          "adjective_occurrences": 315,
+          "adjective_alternative_analyses": 402,
+          "participle_analyses": 131,
+          "templates": 590,
+          "template_occurrences": 590,
+          "templates_with_adjectives": 254,
+          "verb_lemmas": 191,
+          "adjective_lemmas": 154,
+          "verb_alternative_lemmas": 320,
+          "adjective_alternative_forms": 135,
+          "sentence_templates_covered": 537,
+          "predicate_templates_covered": 672,
+          "constructions": 265
+        },
+        "analyses": {
+          "parsed_verbal": 577,
+          "lexical_alternatives_recorded": 1,
+          "model_reviewed_sentence": 12
+        },
+        "elapsed_seconds": 6.124,
+        "source_sha256": "8e7ba69e06caaa0df369ad143e80c356bb373db6ada10ab597a176d4fcbb7526",
+        "hybrid_import": {
+          "review_status": "REVIEWED_ATTESTATIONS",
+          "admitted_occurrences": [
+            "train:2146:1:1",
+            "train:2146:2:2",
+            "train:2146:3:3",
+            "train:2146:3:4",
+            "train:2146:4:1",
+            "train:2146:4:2",
+            "train:2146:4:3",
+            "train:2146:4:4",
+            "train:2146:4:5",
+            "train:2146:4:6",
+            "train:2147:1:1",
+            "train:2147:2:2",
+            "train:2147:3:1",
+            "train:2147:4:1",
+            "train:2147:5:1",
+            "train:2147:6:1",
+            "train:2148:1:1",
+            "train:2148:2:1",
+            "train:2148:2:2",
+            "train:2148:3:1",
+            "train:2149:2:1",
+            "train:2149:2:2",
+            "train:2149:3:1",
+            "train:2149:3:2",
+            "train:2149:4:2",
+            "train:2149:5:2",
+            "train:2149:5:3",
+            "train:2149:6:2",
+            "train:2149:8:1",
+            "train:2149:9:1",
+            "train:2149:10:1",
+            "train:2149:11:1",
+            "train:2149:11:2",
+            "train:2149:12:1",
+            "train:2149:13:1",
+            "train:2149:13:2",
+            "train:2149:13:5",
+            "train:2150:1:1",
+            "train:2150:1:2",
+            "train:2150:2:1",
+            "train:2150:3:1",
+            "train:2150:3:2",
+            "train:2150:4:1",
+            "train:2151:1:1",
+            "train:2151:1:2",
+            "train:2151:3:1",
+            "train:2151:4:1",
+            "train:2151:5:1",
+            "train:2151:6:2",
+            "train:2151:7:1",
+            "train:2151:7:2",
+            "train:2151:8:1",
+            "train:2151:9:2",
+            "train:2151:10:1",
+            "train:2152:1:2",
+            "train:2152:2:1",
+            "train:2152:3:1",
+            "train:2152:3:2",
+            "train:2152:4:2",
+            "train:2152:5:1",
+            "train:2152:6:2",
+            "train:2152:7:1",
+            "train:2152:8:1",
+            "train:2152:8:2",
+            "train:2153:1:2",
+            "train:2153:1:3",
+            "train:2153:2:1",
+            "train:2153:2:2",
+            "train:2153:2:3",
+            "train:2153:3:1",
+            "train:2153:3:2",
+            "train:2153:4:1",
+            "train:2153:4:2",
+            "train:2153:4:3",
+            "train:2153:5:1",
+            "train:2153:5:2",
+            "train:2153:6:1",
+            "train:2153:6:2",
+            "train:2153:6:3",
+            "train:2153:7:2",
+            "train:2153:8:2",
+            "train:2153:8:3",
+            "train:2153:8:4",
+            "train:2153:9:1",
+            "train:2153:9:2",
+            "train:2153:10:2",
+            "train:2153:10:3",
+            "train:2153:11:1",
+            "train:2153:12:1",
+            "train:2153:12:2",
+            "train:2153:12:3",
+            "train:2153:12:4",
+            "train:2153:13:1",
+            "train:2153:13:2",
+            "train:2153:13:3",
+            "train:2153:14:3",
+            "train:2153:14:4",
+            "train:2153:15:1",
+            "train:2153:15:2",
+            "train:2153:16:1",
+            "train:2153:16:2",
+            "train:2154:1:1",
+            "train:2154:2:1",
+            "train:2154:3:1",
+            "train:2154:4:1",
+            "train:2154:7:1",
+            "train:2154:8:1",
+            "train:2154:8:2",
+            "train:2154:9:1",
+            "train:2154:10:1",
+            "train:2154:10:2",
+            "train:2154:11:3",
+            "train:2154:12:1",
+            "train:2154:13:1",
+            "train:2154:14:1",
+            "train:2154:15:1",
+            "train:2154:16:1",
+            "train:2154:17:1",
+            "train:2155:3:1",
+            "train:2155:3:2",
+            "train:2155:4:1",
+            "train:2155:4:2",
+            "train:2155:4:3",
+            "train:2155:5:2",
+            "train:2156:1:1",
+            "train:2156:1:2",
+            "train:2156:2:1",
+            "train:2156:3:1",
+            "train:2156:3:2",
+            "train:2156:4:1",
+            "train:2156:5:1",
+            "train:2157:1:1",
+            "train:2157:2:1",
+            "train:2157:2:2",
+            "train:2157:2:3",
+            "train:2157:3:1",
+            "train:2157:3:2",
+            "train:2157:3:3",
+            "train:2157:4:2",
+            "train:2157:4:3",
+            "train:2157:5:2",
+            "train:2157:6:1",
+            "train:2157:6:2",
+            "train:2157:8:1",
+            "train:2157:8:2",
+            "train:2157:9:2",
+            "train:2157:10:1",
+            "train:2157:11:1",
+            "train:2157:12:1",
+            "train:2157:12:2",
+            "train:2157:12:3",
+            "train:2157:13:1",
+            "train:2158:1:1",
+            "train:2158:2:1",
+            "train:2158:3:1",
+            "train:2158:4:1",
+            "train:2158:5:1",
+            "train:2159:1:1",
+            "train:2159:2:1",
+            "train:2159:3:1",
+            "train:2159:4:1",
+            "train:2160:1:2",
+            "train:2160:3:1",
+            "train:2160:3:2",
+            "train:2160:4:1",
+            "train:2160:5:1",
+            "train:2160:5:2",
+            "train:2160:6:1",
+            "train:2160:6:2",
+            "train:2160:6:3",
+            "train:2160:7:1",
+            "train:2160:8:1",
+            "train:2160:8:2",
+            "train:2160:9:1",
+            "train:2160:9:2",
+            "train:2160:9:3",
+            "train:2160:9:4",
+            "train:2161:1:2",
+            "train:2161:2:2",
+            "train:2161:2:3",
+            "train:2161:3:1",
+            "train:2161:3:2",
+            "train:2161:3:4",
+            "train:2161:3:5",
+            "train:2161:4:1",
+            "train:2161:4:2",
+            "train:2161:5:1",
+            "train:2161:5:2",
+            "train:2161:5:3",
+            "train:2161:5:4",
+            "train:2161:5:6",
+            "train:2162:1:1",
+            "train:2162:1:2",
+            "train:2162:2:1",
+            "train:2162:3:2",
+            "train:2162:4:1",
+            "train:2162:4:2",
+            "train:2162:5:2",
+            "train:2162:6:1",
+            "train:2162:6:2",
+            "train:2162:6:3",
+            "train:2162:6:4",
+            "train:2162:7:1",
+            "train:2162:8:1",
+            "train:2162:8:2",
+            "train:2162:9:1",
+            "train:2162:10:1",
+            "train:2163:1:1",
+            "train:2163:2:2",
+            "train:2163:3:2",
+            "train:2163:4:1",
+            "train:2163:4:2",
+            "train:2164:1:2",
+            "train:2164:2:2",
+            "train:2165:1:1",
+            "train:2165:2:1",
+            "train:2166:1:1",
+            "train:2167:1:2",
+            "train:2167:2:1",
+            "train:2167:3:1",
+            "train:2167:3:2",
+            "train:2167:4:1",
+            "train:2167:6:1",
+            "train:2167:6:2",
+            "train:2167:6:3",
+            "train:2167:6:4",
+            "train:2167:6:5",
+            "train:2167:8:1",
+            "train:2167:8:3",
+            "train:2167:9:2",
+            "train:2168:1:1",
+            "train:2168:1:2",
+            "train:2168:2:1",
+            "train:2168:3:1",
+            "train:2168:4:1",
+            "train:2169:1:1",
+            "train:2169:2:1",
+            "train:2169:3:1",
+            "train:2169:3:2",
+            "train:2169:4:1",
+            "train:2170:1:1",
+            "train:2170:1:2",
+            "train:2170:2:1",
+            "train:2170:2:2",
+            "train:2170:2:3",
+            "train:2170:3:1",
+            "train:2170:3:2",
+            "train:2170:3:3",
+            "train:2170:5:1",
+            "train:2170:6:1",
+            "train:2170:6:2",
+            "train:2170:6:3",
+            "train:2170:7:1",
+            "train:2170:7:2",
+            "train:2170:7:3",
+            "train:2170:8:1",
+            "train:2170:8:2",
+            "train:2170:9:1",
+            "train:2171:2:1",
+            "train:2171:2:2",
+            "train:2171:4:1",
+            "train:2171:5:1",
+            "train:2171:6:1",
+            "train:2171:6:2",
+            "train:2171:7:2",
+            "train:2171:8:1",
+            "train:2171:9:1",
+            "train:2171:9:2",
+            "train:2171:9:3",
+            "train:2171:10:1",
+            "train:2171:12:2",
+            "train:2172:1:1",
+            "train:2172:2:1",
+            "train:2172:2:2",
+            "train:2172:2:3",
+            "train:2172:3:1",
+            "train:2172:3:2",
+            "train:2172:3:3",
+            "train:2172:4:2",
+            "train:2172:4:3",
+            "train:2172:5:2",
+            "train:2172:6:1",
+            "train:2172:6:2",
+            "train:2172:8:1",
+            "train:2172:8:2",
+            "train:2172:9:2",
+            "train:2172:10:1",
+            "train:2172:11:1",
+            "train:2172:12:1",
+            "train:2172:12:2",
+            "train:2172:12:3",
+            "train:2172:13:1",
+            "train:2173:1:1",
+            "train:2173:2:2",
+            "train:2173:3:1",
+            "train:2173:4:1",
+            "train:2173:4:2",
+            "train:2173:4:3",
+            "train:2174:1:1",
+            "train:2174:2:1",
+            "train:2174:3:2",
+            "train:2174:4:1",
+            "train:2174:5:1",
+            "train:2174:6:1",
+            "train:2174:6:2",
+            "train:2174:7:1",
+            "train:2174:7:2",
+            "train:2175:1:1",
+            "train:2175:2:1",
+            "train:2175:3:1",
+            "train:2176:1:2",
+            "train:2176:2:2",
+            "train:2176:3:2",
+            "train:2176:3:3",
+            "train:2176:3:4",
+            "train:2176:4:1",
+            "train:2176:5:1",
+            "train:2176:7:1",
+            "train:2176:7:2",
+            "train:2176:7:3",
+            "train:2177:1:1",
+            "train:2177:2:1",
+            "train:2177:2:2",
+            "train:2177:3:1",
+            "train:2177:4:1",
+            "train:2177:4:2",
+            "train:2177:4:3",
+            "train:2177:5:1",
+            "train:2177:6:1",
+            "train:2177:6:2",
+            "train:2177:7:1",
+            "train:2178:1:1",
+            "train:2178:1:2",
+            "train:2178:2:2",
+            "train:2178:3:2",
+            "train:2178:4:1",
+            "train:2178:4:2",
+            "train:2178:5:3",
+            "train:2178:6:1",
+            "train:2178:6:2",
+            "train:2178:7:1",
+            "train:2178:7:2",
+            "train:2178:8:1",
+            "train:2179:1:1",
+            "train:2179:2:1",
+            "train:2179:3:2",
+            "train:2180:1:1",
+            "train:2180:1:2",
+            "train:2180:2:1",
+            "train:2180:2:2",
+            "train:2180:4:2",
+            "train:2180:5:1",
+            "train:2180:6:1",
+            "train:2180:7:1",
+            "train:2180:8:2",
+            "train:2181:1:1",
+            "train:2181:2:1",
+            "train:2181:3:1",
+            "train:2181:3:2",
+            "train:2181:4:1",
+            "train:2181:5:1",
+            "train:2181:6:1",
+            "train:2181:6:2",
+            "train:2181:7:1",
+            "train:2182:1:1",
+            "train:2183:1:1",
+            "train:2183:1:2",
+            "train:2183:2:1",
+            "train:2183:2:2",
+            "train:2183:3:1",
+            "train:2183:4:1",
+            "train:2183:4:2",
+            "train:2183:5:1",
+            "train:2183:6:1",
+            "train:2183:6:2",
+            "train:2183:7:1",
+            "train:2183:7:2",
+            "train:2183:8:1",
+            "train:2183:8:2",
+            "train:2183:8:4",
+            "train:2183:8:7",
+            "train:2183:9:1",
+            "train:2183:9:2",
+            "train:2183:9:3",
+            "train:2183:10:1",
+            "train:2183:10:2",
+            "train:2183:12:1",
+            "train:2183:14:2",
+            "train:2183:14:3",
+            "train:2183:14:4",
+            "train:2183:15:1",
+            "train:2183:16:1",
+            "train:2183:16:2",
+            "train:2184:1:1",
+            "train:2184:1:2",
+            "train:2184:2:1",
+            "train:2184:2:2",
+            "train:2184:3:1",
+            "train:2184:4:1",
+            "train:2185:1:1",
+            "train:2185:1:2",
+            "train:2185:2:1",
+            "train:2185:2:2",
+            "train:2185:3:1",
+            "train:2185:3:2",
+            "train:2185:4:1",
+            "train:2185:4:2",
+            "train:2185:4:3",
+            "train:2185:5:1",
+            "train:2185:6:1",
+            "train:2185:7:1",
+            "train:2185:8:1",
+            "train:2186:2:1",
+            "train:2186:2:2",
+            "train:2186:3:2",
+            "train:2186:4:1",
+            "train:2186:5:2",
+            "train:2186:6:1",
+            "train:2186:7:2",
+            "train:2186:7:3",
+            "train:2187:1:2",
+            "train:2187:2:2",
+            "train:2187:3:1",
+            "train:2187:4:1",
+            "train:2187:4:2",
+            "train:2187:4:3",
+            "train:2187:5:2",
+            "train:2187:6:1",
+            "train:2187:7:1",
+            "train:2187:8:1",
+            "train:2187:8:2",
+            "train:2188:1:1",
+            "train:2188:2:2",
+            "train:2188:4:1",
+            "train:2189:1:1",
+            "train:2189:2:1",
+            "train:2189:3:1",
+            "train:2189:4:1",
+            "train:2189:4:2",
+            "train:2189:5:1",
+            "train:2189:5:2",
+            "train:2190:1:1",
+            "train:2190:2:1",
+            "train:2190:3:1",
+            "train:2190:4:1",
+            "train:2190:5:1",
+            "train:2190:6:1",
+            "train:2190:8:1",
+            "train:2190:9:1",
+            "train:2190:10:1",
+            "train:2190:11:1",
+            "train:2191:1:2",
+            "train:2191:2:1",
+            "train:2191:3:1",
+            "train:2191:3:2",
+            "train:2191:6:3",
+            "train:2191:9:2",
+            "train:2191:9:3",
+            "train:2191:9:4",
+            "train:2191:9:5",
+            "train:2191:9:6",
+            "train:2191:10:2",
+            "train:2191:10:3",
+            "train:2191:12:1",
+            "train:2192:1:1",
+            "train:2192:2:1",
+            "train:2192:3:1",
+            "train:2192:4:1",
+            "train:2193:1:1",
+            "train:2193:2:2",
+            "train:2193:3:1",
+            "train:2193:4:2",
+            "train:2193:4:3",
+            "train:2193:6:1",
+            "train:2193:7:1",
+            "train:2193:10:1",
+            "train:2193:10:2",
+            "train:2193:11:1",
+            "train:2193:12:2",
+            "train:2194:1:2",
+            "train:2194:2:2",
+            "train:2194:3:2",
+            "train:2194:5:1",
+            "train:2194:6:2",
+            "train:2195:1:1",
+            "train:2195:2:2",
+            "train:2195:3:1",
+            "train:2195:3:2",
+            "train:2195:3:3",
+            "train:2195:4:1",
+            "train:2195:4:3",
+            "train:2195:4:4",
+            "train:2195:5:1",
+            "train:2195:5:2",
+            "train:2195:6:1",
+            "train:2195:6:2",
+            "train:2195:7:1",
+            "train:2195:8:1",
+            "train:2195:8:2",
+            "train:2195:8:3",
+            "train:2195:9:1",
+            "train:2195:9:2",
+            "train:2195:9:3",
+            "train:2196:1:1",
+            "train:2196:2:1",
+            "train:2196:4:1",
+            "train:2196:5:1",
+            "train:2196:6:1",
+            "train:2196:6:2",
+            "train:2196:6:3",
+            "train:2197:1:1",
+            "train:2197:2:1",
+            "train:2197:3:1",
+            "train:2198:1:1",
+            "train:2198:1:2",
+            "train:2198:2:2",
+            "train:2198:3:1",
+            "train:2198:3:2",
+            "train:2198:4:1",
+            "train:2198:5:1",
+            "train:2198:6:1",
+            "train:2198:7:1",
+            "train:2198:8:2",
+            "train:2198:9:1",
+            "train:2198:9:2",
+            "train:2198:10:1",
+            "train:2198:10:2",
+            "train:2198:10:3",
+            "train:2198:11:1",
+            "train:2198:11:2",
+            "train:2198:11:3",
+            "train:2198:12:1",
+            "train:2198:12:2",
+            "train:2198:13:1",
+            "train:2198:14:1",
+            "train:2199:1:1",
+            "train:2199:2:1",
+            "train:2199:3:1",
+            "train:2199:4:1",
+            "train:2199:5:1",
+            "train:2199:7:1",
+            "train:2199:8:1",
+            "train:2199:9:1",
+            "train:2199:10:2",
+            "train:2199:10:3",
+            "train:2199:11:1",
+            "train:2199:11:2",
+            "train:2200:1:1",
+            "train:2200:2:1",
+            "train:2201:1:1",
+            "train:2201:1:2",
+            "train:2201:2:1",
+            "train:2201:3:1",
+            "train:2201:4:1",
+            "train:2201:5:1",
+            "train:2201:6:2",
+            "train:2201:7:1",
+            "train:2201:7:2",
+            "train:2201:8:2",
+            "train:2202:1:1",
+            "train:2202:1:3",
+            "train:2202:2:2",
+            "train:2202:3:1",
+            "train:2202:3:2",
+            "train:2202:3:3",
+            "train:2202:4:1",
+            "train:2202:4:2",
+            "train:2202:5:1",
+            "train:2202:5:2",
+            "train:2203:1:2",
+            "train:2203:3:1",
+            "train:2203:3:2",
+            "train:2203:4:1",
+            "train:2203:4:2",
+            "train:2203:4:3",
+            "train:2203:4:4",
+            "train:2204:1:1",
+            "train:2204:2:1",
+            "train:2204:3:1",
+            "train:2204:3:2",
+            "train:2204:4:1",
+            "train:2204:5:1",
+            "train:2204:6:1",
+            "train:2204:6:2",
+            "train:2204:6:3",
+            "train:2204:7:1",
+            "train:2205:1:1",
+            "train:2205:2:1",
+            "train:2205:3:1",
+            "train:2205:4:2"
+          ],
+          "semantic_approval": false,
+          "note": "Individual source sentences and pinned full-turn interpretations, not automatic semantic QA."
+        }
+      },
+      "validation": {
+        "status": "passed",
+        "source_sha256": "8e7ba69e06caaa0df369ad143e80c356bb373db6ada10ab597a176d4fcbb7526",
+        "templates": 590,
+        "attested_roundtrips": 590,
+        "source_records": 590,
+        "token_spans": 5393,
+        "verbs_occurrences": 1226,
+        "adjectives_occurrences": 315
+      },
+      "publication": {
+        "format": "built-in-template-component-v1",
+        "bank_id": "dailydialog-backfill-2146-2205",
+        "source_sha256": "8e7ba69e06caaa0df369ad143e80c356bb373db6ada10ab597a176d4fcbb7526",
+        "manifest_sha256": "a63907c79f69acc1e87db244d92438b907105f71b05571660c690b121bfbc27e",
+        "validation_sha256": "2fb4758df123794fe922c464bfd4a4aed3c9ad57423e435633fdc8cc2384e1c9"
+      },
+      "files": {
+        "adjective_alternatives.jsonl.gz": [
+          2387334,
+          11890
+        ],
+        "adjectives.jsonl.gz": [
+          2056616,
+          11847
+        ],
+        "constructions.jsonl.gz": [
+          7510175,
+          17991
+        ],
+        "occurrences/00000.jsonl.gz": [
+          24047000,
+          485429
+        ],
+        "templates/00.jsonl.gz": [
+          605629,
+          2673
+        ],
+        "templates/03.jsonl.gz": [
+          589611,
+          5094
+        ],
+        "templates/05.jsonl.gz": [
+          585387,
+          854
+        ],
+        "templates/06.jsonl.gz": [
+          588694,
+          2082
+        ],
+        "templates/07.jsonl.gz": [
+          577081,
+          1891
+        ],
+        "templates/08.jsonl.gz": [
+          613972,
+          1890
+        ],
+        "templates/09.jsonl.gz": [
+          596910,
+          1948
+        ],
+        "templates/0a.jsonl.gz": [
+          579684,
+          1097
+        ],
+        "templates/0b.jsonl.gz": [
+          591290,
+          3750
+        ],
+        "templates/0c.jsonl.gz": [
+          592421,
+          1564
+        ],
+        "templates/0d.jsonl.gz": [
+          603624,
+          2435
+        ],
+        "templates/0e.jsonl.gz": [
+          618903,
+          1248
+        ],
+        "templates/0f.jsonl.gz": [
+          623263,
+          3141
+        ],
+        "templates/10.jsonl.gz": [
+          606996,
+          3387
+        ],
+        "templates/11.jsonl.gz": [
+          623706,
+          1405
+        ],
+        "templates/12.jsonl.gz": [
+          600682,
+          1709
+        ],
+        "templates/13.jsonl.gz": [
+          611333,
+          1132
+        ],
+        "templates/14.jsonl.gz": [
+          615249,
+          4156
+        ],
+        "templates/15.jsonl.gz": [
+          623625,
+          3189
+        ],
+        "templates/16.jsonl.gz": [
+          602823,
+          1722
+        ],
+        "templates/17.jsonl.gz": [
+          595189,
+          4158
+        ],
+        "templates/18.jsonl.gz": [
+          618935,
+          1229
+        ],
+        "templates/19.jsonl.gz": [
+          592589,
+          1452
+        ],
+        "templates/1a.jsonl.gz": [
+          607737,
+          1476
+        ],
+        "templates/1b.jsonl.gz": [
+          612034,
+          2412
+        ],
+        "templates/1c.jsonl.gz": [
+          612372,
+          2539
+        ],
+        "templates/1d.jsonl.gz": [
+          612955,
+          3626
+        ],
+        "templates/1e.jsonl.gz": [
+          599509,
+          4419
+        ],
+        "templates/1f.jsonl.gz": [
+          605916,
+          1474
+        ],
+        "templates/20.jsonl.gz": [
+          598995,
+          2645
+        ],
+        "templates/21.jsonl.gz": [
+          583388,
+          2064
+        ],
+        "templates/23.jsonl.gz": [
+          636703,
+          1191
+        ],
+        "templates/24.jsonl.gz": [
+          589486,
+          1985
+        ],
+        "templates/26.jsonl.gz": [
+          606549,
+          3458
+        ],
+        "templates/27.jsonl.gz": [
+          598741,
+          5030
+        ],
+        "templates/28.jsonl.gz": [
+          605454,
+          1512
+        ],
+        "templates/29.jsonl.gz": [
+          593171,
+          4192
+        ],
+        "templates/2b.jsonl.gz": [
+          635581,
+          1303
+        ],
+        "templates/2d.jsonl.gz": [
+          647172,
+          2004
+        ],
+        "templates/2e.jsonl.gz": [
+          599951,
+          1318
+        ],
+        "templates/2f.jsonl.gz": [
+          592288,
+          1123
+        ],
+        "templates/30.jsonl.gz": [
+          589188,
+          1135
+        ],
+        "templates/31.jsonl.gz": [
+          603521,
+          1895
+        ],
+        "templates/32.jsonl.gz": [
+          606843,
+          3953
+        ],
+        "templates/33.jsonl.gz": [
+          601395,
+          2486
+        ],
+        "templates/34.jsonl.gz": [
+          617499,
+          1458
+        ],
+        "templates/35.jsonl.gz": [
+          620501,
+          2098
+        ],
+        "templates/36.jsonl.gz": [
+          606778,
+          3962
+        ],
+        "templates/37.jsonl.gz": [
+          618659,
+          1700
+        ],
+        "templates/38.jsonl.gz": [
+          604453,
+          3230
+        ],
+        "templates/39.jsonl.gz": [
+          583536,
+          2695
+        ],
+        "templates/3b.jsonl.gz": [
+          600373,
+          1306
+        ],
+        "templates/3c.jsonl.gz": [
+          609233,
+          1762
+        ],
+        "templates/3d.jsonl.gz": [
+          598747,
+          3081
+        ],
+        "templates/3e.jsonl.gz": [
+          580018,
+          2922
+        ],
+        "templates/3f.jsonl.gz": [
+          608650,
+          3080
+        ],
+        "templates/40.jsonl.gz": [
+          601962,
+          2262
+        ],
+        "templates/41.jsonl.gz": [
+          594019,
+          1202
+        ],
+        "templates/42.jsonl.gz": [
+          592417,
+          3309
+        ],
+        "templates/43.jsonl.gz": [
+          588086,
+          3295
+        ],
+        "templates/44.jsonl.gz": [
+          607256,
+          1122
+        ],
+        "templates/45.jsonl.gz": [
+          603868,
+          2069
+        ],
+        "templates/46.jsonl.gz": [
+          570915,
+          1660
+        ],
+        "templates/48.jsonl.gz": [
+          622453,
+          2749
+        ],
+        "templates/49.jsonl.gz": [
+          591166,
+          3671
+        ],
+        "templates/4b.jsonl.gz": [
+          584684,
+          1910
+        ],
+        "templates/4c.jsonl.gz": [
+          620217,
+          3373
+        ],
+        "templates/4d.jsonl.gz": [
+          606600,
+          2140
+        ],
+        "templates/4e.jsonl.gz": [
+          591080,
+          1624
+        ],
+        "templates/4f.jsonl.gz": [
+          609205,
+          1520
+        ],
+        "templates/50.jsonl.gz": [
+          607768,
+          2877
+        ],
+        "templates/51.jsonl.gz": [
+          606829,
+          2299
+        ],
+        "templates/52.jsonl.gz": [
+          617695,
+          1798
+        ],
+        "templates/53.jsonl.gz": [
+          616486,
+          2762
+        ],
+        "templates/54.jsonl.gz": [
+          608612,
+          1323
+        ],
+        "templates/55.jsonl.gz": [
+          624975,
+          1637
+        ],
+        "templates/56.jsonl.gz": [
+          595652,
+          1653
+        ],
+        "templates/57.jsonl.gz": [
+          602072,
+          1371
+        ],
+        "templates/58.jsonl.gz": [
+          624331,
+          7290
+        ],
+        "templates/59.jsonl.gz": [
+          580992,
+          2850
+        ],
+        "templates/5a.jsonl.gz": [
+          603705,
+          4131
+        ],
+        "templates/5b.jsonl.gz": [
+          605225,
+          3994
+        ],
+        "templates/5c.jsonl.gz": [
+          622333,
+          3244
+        ],
+        "templates/5d.jsonl.gz": [
+          595324,
+          1531
+        ],
+        "templates/5e.jsonl.gz": [
+          618740,
+          3134
+        ],
+        "templates/5f.jsonl.gz": [
+          623606,
+          2477
+        ],
+        "templates/61.jsonl.gz": [
+          614285,
+          2218
+        ],
+        "templates/62.jsonl.gz": [
+          586041,
+          3054
+        ],
+        "templates/64.jsonl.gz": [
+          613013,
+          2242
+        ],
+        "templates/65.jsonl.gz": [
+          593913,
+          2227
+        ],
+        "templates/66.jsonl.gz": [
+          629529,
+          2897
+        ],
+        "templates/67.jsonl.gz": [
+          623585,
+          2309
+        ],
+        "templates/68.jsonl.gz": [
+          583986,
+          1164
+        ],
+        "templates/6a.jsonl.gz": [
+          594259,
+          1413
+        ],
+        "templates/6b.jsonl.gz": [
+          593380,
+          2417
+        ],
+        "templates/6c.jsonl.gz": [
+          631394,
+          1720
+        ],
+        "templates/6d.jsonl.gz": [
+          597093,
+          1233
+        ],
+        "templates/6e.jsonl.gz": [
+          607031,
+          1193
+        ],
+        "templates/6f.jsonl.gz": [
+          596040,
+          2960
+        ],
+        "templates/70.jsonl.gz": [
+          607625,
+          1941
+        ],
+        "templates/71.jsonl.gz": [
+          613757,
+          2570
+        ],
+        "templates/72.jsonl.gz": [
+          607422,
+          2931
+        ],
+        "templates/73.jsonl.gz": [
+          601541,
+          2846
+        ],
+        "templates/74.jsonl.gz": [
+          598724,
+          4524
+        ],
+        "templates/75.jsonl.gz": [
+          590697,
+          3985
+        ],
+        "templates/76.jsonl.gz": [
+          599349,
+          3085
+        ],
+        "templates/77.jsonl.gz": [
+          630341,
+          2744
+        ],
+        "templates/78.jsonl.gz": [
+          584283,
+          4162
+        ],
+        "templates/79.jsonl.gz": [
+          598435,
+          4139
+        ],
+        "templates/7a.jsonl.gz": [
+          605034,
+          1437
+        ],
+        "templates/7b.jsonl.gz": [
+          608982,
+          997
+        ],
+        "templates/7c.jsonl.gz": [
+          620729,
+          3286
+        ],
+        "templates/7d.jsonl.gz": [
+          612340,
+          3137
+        ],
+        "templates/7e.jsonl.gz": [
+          586197,
+          1876
+        ],
+        "templates/7f.jsonl.gz": [
+          605314,
+          3305
+        ],
+        "templates/80.jsonl.gz": [
+          599387,
+          3586
+        ],
+        "templates/81.jsonl.gz": [
+          625789,
+          2340
+        ],
+        "templates/82.jsonl.gz": [
+          605218,
+          1897
+        ],
+        "templates/83.jsonl.gz": [
+          603417,
+          1595
+        ],
+        "templates/84.jsonl.gz": [
+          602374,
+          4369
+        ],
+        "templates/85.jsonl.gz": [
+          584735,
+          1805
+        ],
+        "templates/86.jsonl.gz": [
+          623409,
+          2043
+        ],
+        "templates/87.jsonl.gz": [
+          621527,
+          2360
+        ],
+        "templates/88.jsonl.gz": [
+          601794,
+          4470
+        ],
+        "templates/89.jsonl.gz": [
+          605553,
+          2519
+        ],
+        "templates/8a.jsonl.gz": [
+          601476,
+          1602
+        ],
+        "templates/8b.jsonl.gz": [
+          603490,
+          1793
+        ],
+        "templates/8c.jsonl.gz": [
+          601284,
+          1793
+        ],
+        "templates/8e.jsonl.gz": [
+          602188,
+          2559
+        ],
+        "templates/8f.jsonl.gz": [
+          612252,
+          1211
+        ],
+        "templates/90.jsonl.gz": [
+          576150,
+          2590
+        ],
+        "templates/92.jsonl.gz": [
+          602341,
+          1655
+        ],
+        "templates/93.jsonl.gz": [
+          603991,
+          2673
+        ],
+        "templates/94.jsonl.gz": [
+          582255,
+          3294
+        ],
+        "templates/95.jsonl.gz": [
+          614188,
+          2289
+        ],
+        "templates/97.jsonl.gz": [
+          596073,
+          1431
+        ],
+        "templates/98.jsonl.gz": [
+          581647,
+          1398
+        ],
+        "templates/99.jsonl.gz": [
+          597830,
+          2158
+        ],
+        "templates/9a.jsonl.gz": [
+          617624,
+          2390
+        ],
+        "templates/9c.jsonl.gz": [
+          592541,
+          1450
+        ],
+        "templates/9d.jsonl.gz": [
+          621342,
+          1206
+        ],
+        "templates/9e.jsonl.gz": [
+          594501,
+          1279
+        ],
+        "templates/a0.jsonl.gz": [
+          567735,
+          4704
+        ],
+        "templates/a1.jsonl.gz": [
+          597711,
+          3254
+        ],
+        "templates/a2.jsonl.gz": [
+          586731,
+          4243
+        ],
+        "templates/a3.jsonl.gz": [
+          628587,
+          2655
+        ],
+        "templates/a4.jsonl.gz": [
+          606633,
+          1915
+        ],
+        "templates/a5.jsonl.gz": [
+          603008,
+          1206
+        ],
+        "templates/a6.jsonl.gz": [
+          588575,
+          1774
+        ],
+        "templates/a7.jsonl.gz": [
+          606758,
+          1308
+        ],
+        "templates/a8.jsonl.gz": [
+          577350,
+          6021
+        ],
+        "templates/a9.jsonl.gz": [
+          611273,
+          1407
+        ],
+        "templates/aa.jsonl.gz": [
+          612742,
+          4080
+        ],
+        "templates/ab.jsonl.gz": [
+          614678,
+          3329
+        ],
+        "templates/ac.jsonl.gz": [
+          628339,
+          1029
+        ],
+        "templates/ad.jsonl.gz": [
+          621894,
+          1539
+        ],
+        "templates/ae.jsonl.gz": [
+          608929,
+          4243
+        ],
+        "templates/af.jsonl.gz": [
+          610863,
+          2678
+        ],
+        "templates/b0.jsonl.gz": [
+          623393,
+          2469
+        ],
+        "templates/b1.jsonl.gz": [
+          596404,
+          6860
+        ],
+        "templates/b2.jsonl.gz": [
+          597082,
+          2077
+        ],
+        "templates/b3.jsonl.gz": [
+          610788,
+          3028
+        ],
+        "templates/b4.jsonl.gz": [
+          610424,
+          3937
+        ],
+        "templates/b5.jsonl.gz": [
+          608917,
+          1319
+        ],
+        "templates/b6.jsonl.gz": [
+          618899,
+          2637
+        ],
+        "templates/b7.jsonl.gz": [
+          624019,
+          2090
+        ],
+        "templates/b9.jsonl.gz": [
+          617582,
+          2568
+        ],
+        "templates/ba.jsonl.gz": [
+          608734,
+          2297
+        ],
+        "templates/bb.jsonl.gz": [
+          605510,
+          2615
+        ],
+        "templates/bc.jsonl.gz": [
+          622339,
+          3472
+        ],
+        "templates/bd.jsonl.gz": [
+          602463,
+          2489
+        ],
+        "templates/be.jsonl.gz": [
+          630084,
+          3082
+        ],
+        "templates/bf.jsonl.gz": [
+          591907,
+          1420
+        ],
+        "templates/c0.jsonl.gz": [
+          604612,
+          2679
+        ],
+        "templates/c1.jsonl.gz": [
+          628536,
+          2506
+        ],
+        "templates/c2.jsonl.gz": [
+          609829,
+          2064
+        ],
+        "templates/c3.jsonl.gz": [
+          596555,
+          2426
+        ],
+        "templates/c4.jsonl.gz": [
+          603700,
+          1095
+        ],
+        "templates/c5.jsonl.gz": [
+          645961,
+          1368
+        ],
+        "templates/c6.jsonl.gz": [
+          606073,
+          1133
+        ],
+        "templates/c7.jsonl.gz": [
+          608943,
+          2122
+        ],
+        "templates/c8.jsonl.gz": [
+          585183,
+          6336
+        ],
+        "templates/c9.jsonl.gz": [
+          609950,
+          2331
+        ],
+        "templates/ca.jsonl.gz": [
+          586539,
+          2884
+        ],
+        "templates/cb.jsonl.gz": [
+          617417,
+          1624
+        ],
+        "templates/cc.jsonl.gz": [
+          593225,
+          1830
+        ],
+        "templates/cd.jsonl.gz": [
+          593775,
+          2962
+        ],
+        "templates/ce.jsonl.gz": [
+          642776,
+          4294
+        ],
+        "templates/cf.jsonl.gz": [
+          596625,
+          4505
+        ],
+        "templates/d0.jsonl.gz": [
+          591517,
+          2751
+        ],
+        "templates/d1.jsonl.gz": [
+          602816,
+          1240
+        ],
+        "templates/d2.jsonl.gz": [
+          605349,
+          2638
+        ],
+        "templates/d3.jsonl.gz": [
+          632488,
+          2640
+        ],
+        "templates/d5.jsonl.gz": [
+          614525,
+          1651
+        ],
+        "templates/d6.jsonl.gz": [
+          602135,
+          3337
+        ],
+        "templates/d7.jsonl.gz": [
+          604459,
+          1944
+        ],
+        "templates/d8.jsonl.gz": [
+          619431,
+          2777
+        ],
+        "templates/d9.jsonl.gz": [
+          585994,
+          1635
+        ],
+        "templates/da.jsonl.gz": [
+          616943,
+          2545
+        ],
+        "templates/db.jsonl.gz": [
+          596978,
+          3290
+        ],
+        "templates/dc.jsonl.gz": [
+          628922,
+          2826
+        ],
+        "templates/dd.jsonl.gz": [
+          615487,
+          4488
+        ],
+        "templates/de.jsonl.gz": [
+          603422,
+          2274
+        ],
+        "templates/df.jsonl.gz": [
+          591566,
+          2908
+        ],
+        "templates/e0.jsonl.gz": [
+          598205,
+          1051
+        ],
+        "templates/e1.jsonl.gz": [
+          612069,
+          2755
+        ],
+        "templates/e2.jsonl.gz": [
+          580342,
+          1490
+        ],
+        "templates/e3.jsonl.gz": [
+          600043,
+          2553
+        ],
+        "templates/e4.jsonl.gz": [
+          596568,
+          2882
+        ],
+        "templates/e5.jsonl.gz": [
+          616479,
+          3526
+        ],
+        "templates/e6.jsonl.gz": [
+          599038,
+          1258
+        ],
+        "templates/e7.jsonl.gz": [
+          593634,
+          1931
+        ],
+        "templates/e8.jsonl.gz": [
+          589761,
+          3516
+        ],
+        "templates/e9.jsonl.gz": [
+          579418,
+          1179
+        ],
+        "templates/ea.jsonl.gz": [
+          588048,
+          1224
+        ],
+        "templates/eb.jsonl.gz": [
+          619073,
+          3468
+        ],
+        "templates/ee.jsonl.gz": [
+          617176,
+          3621
+        ],
+        "templates/ef.jsonl.gz": [
+          603291,
+          3374
+        ],
+        "templates/f0.jsonl.gz": [
+          603479,
+          3005
+        ],
+        "templates/f1.jsonl.gz": [
+          600882,
+          1080
+        ],
+        "templates/f2.jsonl.gz": [
+          609868,
+          1985
+        ],
+        "templates/f3.jsonl.gz": [
+          593410,
+          3017
+        ],
+        "templates/f4.jsonl.gz": [
+          617154,
+          2047
+        ],
+        "templates/f6.jsonl.gz": [
+          578627,
+          3465
+        ],
+        "templates/f7.jsonl.gz": [
+          592799,
+          1201
+        ],
+        "templates/f8.jsonl.gz": [
+          601378,
+          1158
+        ],
+        "templates/f9.jsonl.gz": [
+          606615,
+          2916
+        ],
+        "templates/fa.jsonl.gz": [
+          574057,
+          2155
+        ],
+        "templates/fb.jsonl.gz": [
+          615394,
+          4317
+        ],
+        "templates/fc.jsonl.gz": [
+          625946,
+          3598
+        ],
+        "templates/fd.jsonl.gz": [
+          604550,
+          1293
+        ],
+        "templates/fe.jsonl.gz": [
+          621582,
+          3190
+        ],
+        "templates/ff.jsonl.gz": [
+          607490,
+          2123
+        ],
+        "verb_alternatives.jsonl.gz": [
+          3803179,
+          34402
+        ],
+        "verbs.jsonl.gz": [
+          3096014,
+          22585
+        ]
+      }
+    },
+    {
+      "id": "dailydialog-backfill-2206-2215",
+      "manifest": {
+        "format": "corpus-templates-v1",
+        "status": "complete",
+        "full_input": true,
+        "model": {
+          "name": "direct-model-reviewed-attestations"
+        },
+        "review_status": "UNREVIEWED",
+        "field": "example",
+        "note": "Directly reviewed original sentences; parser inventories are audit evidence, not semantic approval.",
+        "counts": {
+          "input_records": 131,
+          "compiled_records": 131,
+          "roundtrips_verified": 131,
+          "tokens_audited": 1165,
+          "verb_occurrences": 272,
+          "verb_alternative_analyses": 210,
+          "adjective_occurrences": 63,
+          "adjective_alternative_analyses": 89,
+          "participle_analyses": 27,
+          "templates": 131,
+          "template_occurrences": 131,
+          "templates_with_adjectives": 58,
+          "verb_lemmas": 92,
+          "adjective_lemmas": 48,
+          "verb_alternative_lemmas": 107,
+          "adjective_alternative_forms": 60,
+          "sentence_templates_covered": 127,
+          "predicate_templates_covered": 179,
+          "constructions": 58
+        },
+        "analyses": {
+          "parsed_verbal": 131
+        },
+        "elapsed_seconds": 2.82,
+        "source_sha256": "50199046c201a21410d39ea37f4d8dd52bd624a6c2fa283f10938171766f96f6",
+        "hybrid_import": {
+          "review_status": "REVIEWED_ATTESTATIONS",
+          "admitted_occurrences": [
+            "train:2206:1:1",
+            "train:2206:1:2",
+            "train:2206:2:1",
+            "train:2206:3:2",
+            "train:2206:4:2",
+            "train:2206:5:1",
+            "train:2206:6:1",
+            "train:2206:7:2",
+            "train:2206:8:2",
+            "train:2206:8:3",
+            "train:2206:9:2",
+            "train:2206:10:1",
+            "train:2206:12:1",
+            "train:2206:13:1",
+            "train:2206:13:2",
+            "train:2206:14:1",
+            "train:2206:14:2",
+            "train:2206:15:2",
+            "train:2207:1:1",
+            "train:2207:2:1",
+            "train:2207:3:1",
+            "train:2207:3:2",
+            "train:2207:4:1",
+            "train:2208:1:1",
+            "train:2208:2:2",
+            "train:2208:2:3",
+            "train:2208:3:1",
+            "train:2208:4:1",
+            "train:2208:4:2",
+            "train:2208:5:1",
+            "train:2208:6:1",
+            "train:2208:6:2",
+            "train:2209:1:1",
+            "train:2209:2:1",
+            "train:2209:3:1",
+            "train:2209:5:1",
+            "train:2209:6:1",
+            "train:2209:7:1",
+            "train:2209:8:1",
+            "train:2209:9:1",
+            "train:2209:11:1",
+            "train:2209:12:1",
+            "train:2210:1:2",
+            "train:2210:1:3",
+            "train:2210:2:2",
+            "train:2210:2:3",
+            "train:2210:3:2",
+            "train:2210:4:1",
+            "train:2210:5:2",
+            "train:2210:5:3",
+            "train:2210:6:1",
+            "train:2210:7:2",
+            "train:2210:7:3",
+            "train:2211:1:1",
+            "train:2211:1:2",
+            "train:2211:1:3",
+            "train:2211:2:1",
+            "train:2211:2:2",
+            "train:2211:3:2",
+            "train:2211:3:3",
+            "train:2211:3:4",
+            "train:2211:4:1",
+            "train:2211:4:2",
+            "train:2211:4:3",
+            "train:2211:5:1",
+            "train:2211:5:2",
+            "train:2211:6:1",
+            "train:2211:6:2",
+            "train:2211:7:1",
+            "train:2211:8:1",
+            "train:2211:9:1",
+            "train:2211:10:1",
+            "train:2211:10:2",
+            "train:2211:10:3",
+            "train:2211:10:4",
+            "train:2211:11:1",
+            "train:2211:12:1",
+            "train:2211:12:2",
+            "train:2211:12:3",
+            "train:2211:12:4",
+            "train:2211:13:1",
+            "train:2211:14:1",
+            "train:2211:14:2",
+            "train:2211:14:3",
+            "train:2211:15:2",
+            "train:2211:16:1",
+            "train:2211:16:2",
+            "train:2211:18:1",
+            "train:2211:18:2",
+            "train:2211:18:3",
+            "train:2211:19:2",
+            "train:2211:20:1",
+            "train:2211:20:2",
+            "train:2211:20:3",
+            "train:2211:21:1",
+            "train:2212:1:1",
+            "train:2212:2:1",
+            "train:2212:3:1",
+            "train:2212:4:2",
+            "train:2213:1:1",
+            "train:2213:2:1",
+            "train:2213:2:2",
+            "train:2213:3:2",
+            "train:2213:4:1",
+            "train:2213:5:2",
+            "train:2213:6:2",
+            "train:2214:1:1",
+            "train:2214:1:2",
+            "train:2214:2:1",
+            "train:2214:2:2",
+            "train:2214:3:1",
+            "train:2214:3:2",
+            "train:2214:4:1",
+            "train:2214:4:2",
+            "train:2214:4:3",
+            "train:2214:5:1",
+            "train:2214:6:1",
+            "train:2214:6:2",
+            "train:2214:7:1",
+            "train:2214:8:1",
+            "train:2214:8:2",
+            "train:2215:1:2",
+            "train:2215:1:3",
+            "train:2215:2:1",
+            "train:2215:3:1",
+            "train:2215:4:1",
+            "train:2215:4:2",
+            "train:2215:5:1",
+            "train:2215:6:1",
+            "train:2215:6:2",
+            "train:2215:7:1"
+          ],
+          "semantic_approval": false,
+          "note": "Only original sentence replay and pinned contextual interpretations; finite substitutions are separately reviewed."
+        }
+      },
+      "validation": {
+        "status": "passed",
+        "source_sha256": "50199046c201a21410d39ea37f4d8dd52bd624a6c2fa283f10938171766f96f6",
+        "templates": 131,
+        "attested_roundtrips": 131,
+        "source_records": 131,
+        "token_spans": 1165,
+        "verbs_occurrences": 272,
+        "adjectives_occurrences": 63
+      },
+      "publication": {
+        "format": "built-in-template-component-v1",
+        "bank_id": "dailydialog-backfill-2206-2215",
+        "source_sha256": "50199046c201a21410d39ea37f4d8dd52bd624a6c2fa283f10938171766f96f6",
+        "manifest_sha256": "ebd4f656de81d0b94310af13f89b063882b9b47a153cf318c66b652a755c1730",
+        "validation_sha256": "95b1971f463fda1863032fd411c1c8c3b63dc9695ec93756e3f591c1f02c9377"
+      },
+      "files": {
+        "adjective_alternatives.jsonl.gz": [
+          2399224,
+          4273
+        ],
+        "adjectives.jsonl.gz": [
+          2068463,
+          3277
+        ],
+        "constructions.jsonl.gz": [
+          7528166,
+          3527
+        ],
+        "occurrences/00000.jsonl.gz": [
+          24532429,
+          106980
+        ],
+        "templates/03.jsonl.gz": [
+          594705,
+          2901
+        ],
+        "templates/04.jsonl.gz": [
+          576623,
+          1803
+        ],
+        "templates/05.jsonl.gz": [
+          586241,
+          1203
+        ],
+        "templates/09.jsonl.gz": [
+          598858,
+          1575
+        ],
+        "templates/0a.jsonl.gz": [
+          580781,
+          1789
+        ],
+        "templates/0b.jsonl.gz": [
+          595040,
+          1222
+        ],
+        "templates/10.jsonl.gz": [
+          610383,
+          994
+        ],
+        "templates/11.jsonl.gz": [
+          625111,
+          1286
+        ],
+        "templates/12.jsonl.gz": [
+          602391,
+          991
+        ],
+        "templates/16.jsonl.gz": [
+          604545,
+          1206
+        ],
+        "templates/17.jsonl.gz": [
+          599347,
+          1759
+        ],
+        "templates/19.jsonl.gz": [
+          594041,
+          1309
+        ],
+        "templates/20.jsonl.gz": [
+          601640,
+          2404
+        ],
+        "templates/23.jsonl.gz": [
+          637894,
+          2478
+        ],
+        "templates/26.jsonl.gz": [
+          610007,
+          3435
+        ],
+        "templates/29.jsonl.gz": [
+          597363,
+          1288
+        ],
+        "templates/2a.jsonl.gz": [
+          627091,
+          2133
+        ],
+        "templates/2f.jsonl.gz": [
+          593411,
+          1861
+        ],
+        "templates/30.jsonl.gz": [
+          590323,
+          4427
+        ],
+        "templates/31.jsonl.gz": [
+          605416,
+          1483
+        ],
+        "templates/33.jsonl.gz": [
+          603881,
+          1635
+        ],
+        "templates/34.jsonl.gz": [
+          618957,
+          1458
+        ],
+        "templates/35.jsonl.gz": [
+          622599,
+          1846
+        ],
+        "templates/36.jsonl.gz": [
+          610740,
+          1714
+        ],
+        "templates/37.jsonl.gz": [
+          620359,
+          1175
+        ],
+        "templates/38.jsonl.gz": [
+          607683,
+          1193
+        ],
+        "templates/3a.jsonl.gz": [
+          601055,
+          1897
+        ],
+        "templates/3c.jsonl.gz": [
+          610995,
+          1079
+        ],
+        "templates/3e.jsonl.gz": [
+          582940,
+          1340
+        ],
+        "templates/3f.jsonl.gz": [
+          611730,
+          1602
+        ],
+        "templates/42.jsonl.gz": [
+          595726,
+          1763
+        ],
+        "templates/46.jsonl.gz": [
+          572575,
+          1217
+        ],
+        "templates/47.jsonl.gz": [
+          609379,
+          1744
+        ],
+        "templates/48.jsonl.gz": [
+          625202,
+          1752
+        ],
+        "templates/4b.jsonl.gz": [
+          586594,
+          1764
+        ],
+        "templates/4c.jsonl.gz": [
+          623590,
+          2122
+        ],
+        "templates/4d.jsonl.gz": [
+          608740,
+          1599
+        ],
+        "templates/50.jsonl.gz": [
+          610645,
+          1567
+        ],
+        "templates/51.jsonl.gz": [
+          609128,
+          1339
+        ],
+        "templates/53.jsonl.gz": [
+          619248,
+          1728
+        ],
+        "templates/55.jsonl.gz": [
+          626612,
+          1629
+        ],
+        "templates/5d.jsonl.gz": [
+          596855,
+          1416
+        ],
+        "templates/64.jsonl.gz": [
+          615255,
+          1423
+        ],
+        "templates/65.jsonl.gz": [
+          596140,
+          1083
+        ],
+        "templates/67.jsonl.gz": [
+          625894,
+          1291
+        ],
+        "templates/69.jsonl.gz": [
+          596410,
+          1601
+        ],
+        "templates/6b.jsonl.gz": [
+          595797,
+          3029
+        ],
+        "templates/6d.jsonl.gz": [
+          598326,
+          1851
+        ],
+        "templates/71.jsonl.gz": [
+          616327,
+          1708
+        ],
+        "templates/72.jsonl.gz": [
+          610353,
+          2248
+        ],
+        "templates/74.jsonl.gz": [
+          603248,
+          1624
+        ],
+        "templates/78.jsonl.gz": [
+          588445,
+          1391
+        ],
+        "templates/7d.jsonl.gz": [
+          615477,
+          1307
+        ],
+        "templates/7e.jsonl.gz": [
+          588073,
+          1955
+        ],
+        "templates/82.jsonl.gz": [
+          607115,
+          2088
+        ],
+        "templates/88.jsonl.gz": [
+          606264,
+          1183
+        ],
+        "templates/89.jsonl.gz": [
+          608072,
+          1510
+        ],
+        "templates/8a.jsonl.gz": [
+          603078,
+          2465
+        ],
+        "templates/8f.jsonl.gz": [
+          613463,
+          1755
+        ],
+        "templates/90.jsonl.gz": [
+          578740,
+          1685
+        ],
+        "templates/94.jsonl.gz": [
+          585549,
+          2229
+        ],
+        "templates/96.jsonl.gz": [
+          611597,
+          1334
+        ],
+        "templates/99.jsonl.gz": [
+          599988,
+          1234
+        ],
+        "templates/9a.jsonl.gz": [
+          620014,
+          1742
+        ],
+        "templates/9c.jsonl.gz": [
+          593991,
+          1679
+        ],
+        "templates/a1.jsonl.gz": [
+          600965,
+          1275
+        ],
+        "templates/a3.jsonl.gz": [
+          631242,
+          1185
+        ],
+        "templates/a4.jsonl.gz": [
+          608548,
+          1276
+        ],
+        "templates/a6.jsonl.gz": [
+          590349,
+          1336
+        ],
+        "templates/a8.jsonl.gz": [
+          583371,
+          1563
+        ],
+        "templates/ab.jsonl.gz": [
+          618007,
+          2354
+        ],
+        "templates/ac.jsonl.gz": [
+          629368,
+          1833
+        ],
+        "templates/ad.jsonl.gz": [
+          623433,
+          1223
+        ],
+        "templates/ae.jsonl.gz": [
+          613172,
+          2569
+        ],
+        "templates/b3.jsonl.gz": [
+          613816,
+          2390
+        ],
+        "templates/b5.jsonl.gz": [
+          610236,
+          1341
+        ],
+        "templates/b7.jsonl.gz": [
+          626109,
+          1616
+        ],
+        "templates/b8.jsonl.gz": [
+          587437,
+          1144
+        ],
+        "templates/ba.jsonl.gz": [
+          611031,
+          1069
+        ],
+        "templates/be.jsonl.gz": [
+          633166,
+          1585
+        ],
+        "templates/c0.jsonl.gz": [
+          607291,
+          1169
+        ],
+        "templates/c3.jsonl.gz": [
+          598981,
+          1704
+        ],
+        "templates/c8.jsonl.gz": [
+          591519,
+          1707
+        ],
+        "templates/cc.jsonl.gz": [
+          595055,
+          1370
+        ],
+        "templates/cd.jsonl.gz": [
+          596737,
+          2888
+        ],
+        "templates/d0.jsonl.gz": [
+          594268,
+          1671
+        ],
+        "templates/d1.jsonl.gz": [
+          604056,
+          1058
+        ],
+        "templates/d2.jsonl.gz": [
+          607987,
+          1638
+        ],
+        "templates/d5.jsonl.gz": [
+          616176,
+          1620
+        ],
+        "templates/d6.jsonl.gz": [
+          605472,
+          1628
+        ],
+        "templates/d9.jsonl.gz": [
+          587629,
+          2292
+        ],
+        "templates/e1.jsonl.gz": [
+          614824,
+          1174
+        ],
+        "templates/e2.jsonl.gz": [
+          581832,
+          1095
+        ],
+        "templates/e3.jsonl.gz": [
+          602596,
+          1691
+        ],
+        "templates/e4.jsonl.gz": [
+          599450,
+          1891
+        ],
+        "templates/e5.jsonl.gz": [
+          620005,
+          2368
+        ],
+        "templates/e7.jsonl.gz": [
+          595565,
+          2022
+        ],
+        "templates/f3.jsonl.gz": [
+          596427,
+          1795
+        ],
+        "templates/f4.jsonl.gz": [
+          619201,
+          2508
+        ],
+        "templates/f5.jsonl.gz": [
+          591725,
+          1650
+        ],
+        "templates/f7.jsonl.gz": [
+          594000,
+          1473
+        ],
+        "verb_alternatives.jsonl.gz": [
+          3837581,
+          9252
+        ],
+        "verbs.jsonl.gz": [
+          3118599,
+          8373
+        ]
+      }
     }
   ],
-  "source_sha256": "765e94e19791ff653d3cdcd6bc6a0ee859cd7046a355349176a4f82bf080133c",
+  "source_sha256": "12c77aba9077cbf50f6ac37e02675d84402333ab085028637ac75d2ea6db61a9",
   "counts": {
-    "input_records": 750013,
-    "compiled_records": 750013,
-    "roundtrips_verified": 750013,
-    "tokens_audited": 6119655,
-    "verb_occurrences": 1595569,
-    "adjective_alternative_analyses": 1043725,
-    "verb_alternative_analyses": 1339108,
-    "adjective_occurrences": 271905,
-    "participle_analyses": 195599,
-    "templates": 609260,
-    "template_occurrences": 750013,
-    "templates_with_adjectives": 171859,
-    "verb_lemmas": 10339,
-    "adjective_lemmas": 8449,
-    "verb_alternative_lemmas": 11423,
-    "adjective_alternative_forms": 9859,
-    "sentence_templates_covered": 315498,
-    "predicate_templates_covered": 186638,
-    "constructions": 30517,
+    "input_records": 750734,
+    "compiled_records": 750734,
+    "roundtrips_verified": 750734,
+    "tokens_audited": 6126213,
+    "verb_occurrences": 1597067,
+    "adjective_alternative_analyses": 1044216,
+    "verb_alternative_analyses": 1340454,
+    "adjective_occurrences": 272283,
+    "participle_analyses": 195757,
+    "templates": 609981,
+    "template_occurrences": 750734,
+    "templates_with_adjectives": 172171,
+    "verb_lemmas": 10622,
+    "adjective_lemmas": 8651,
+    "verb_alternative_lemmas": 11850,
+    "adjective_alternative_forms": 10054,
+    "sentence_templates_covered": 316162,
+    "predicate_templates_covered": 187489,
+    "constructions": 30840,
     "entities": 414,
     "entity_candidates": 49,
     "nominals": 4159
   },
   "validation": {
     "status": "passed",
-    "source_sha256": "765e94e19791ff653d3cdcd6bc6a0ee859cd7046a355349176a4f82bf080133c",
-    "templates": 609260,
-    "attested_roundtrips": 749972,
-    "source_records": 750013,
-    "token_spans": 6119655,
-    "verbs_occurrences": 1595569,
-    "adjectives_occurrences": 271905
+    "source_sha256": "12c77aba9077cbf50f6ac37e02675d84402333ab085028637ac75d2ea6db61a9",
+    "templates": 609981,
+    "attested_roundtrips": 750693,
+    "source_records": 750734,
+    "token_spans": 6126213,
+    "verbs_occurrences": 1597067,
+    "adjectives_occurrences": 272283
   }
 }

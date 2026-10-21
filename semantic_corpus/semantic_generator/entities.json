@@ -59870,6 +59870,1355 @@
       "number": "plural",
       "named": false,
       "type": "physical_object_group"
+    },
+    {
+      "text": "Brian Okapi",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true,
+      "type": "human"
+    },
+    {
+      "text": "the Dai people",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "plural",
+      "named": false,
+      "type": "human_group"
+    },
+    {
+      "text": "MIT",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true,
+      "type": "place"
+    },
+    {
+      "text": "Nescafe coffee",
+      "labels": [
+        "PHYSICAL_OBJECT",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true,
+      "type": "physical_object"
+    },
+    {
+      "text": "Okapi",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true,
+      "type": "human"
+    },
+    {
+      "text": "Richie Stadium",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true,
+      "type": "place"
+    },
+    {
+      "text": "the Russian hockey team",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "human_group"
+    },
+    {
+      "text": "The Matrix",
+      "labels": [
+        "ABSTRACT_ENTITY",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true
+    },
+    {
+      "text": "a lotus flower",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "physical_object"
+    },
+    {
+      "text": "the Music Hall",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true,
+      "type": "place"
+    },
+    {
+      "text": "a curveball",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "American people",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "plural",
+      "named": false,
+      "type": "human_group"
+    },
+    {
+      "text": "Christmas",
+      "labels": [
+        "ABSTRACT_ENTITY",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true
+    },
+    {
+      "text": "a contact lens",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "physical_object"
+    },
+    {
+      "text": "a language department",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "human_group"
+    },
+    {
+      "text": "the French team",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "human_group"
+    },
+    {
+      "text": "Irish coffee",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "physical_object"
+    },
+    {
+      "text": "disposable contact lenses",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "plural",
+      "named": false,
+      "type": "physical_object_group"
+    },
+    {
+      "text": "a study",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a peach blossom",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "physical_object"
+    },
+    {
+      "text": "a slap shot",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a big town",
+      "labels": [
+        "LOCATION"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "place"
+    },
+    {
+      "text": "a catcher",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "human"
+    },
+    {
+      "text": "defenders",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "plural",
+      "named": false,
+      "type": "human_group"
+    },
+    {
+      "text": "an outfielder",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "human"
+    },
+    {
+      "text": "a pitcher",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "human"
+    },
+    {
+      "text": "players",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "plural",
+      "named": false,
+      "type": "human_group"
+    },
+    {
+      "text": "a survey",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "UV protection",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a Christmas carol",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a Christmas tree",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "physical_object"
+    },
+    {
+      "text": "a psychology class",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a bad attitude",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a breakaway",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a close relationship",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a coffeehouse",
+      "labels": [
+        "LOCATION"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "place"
+    },
+    {
+      "text": "a coupon",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "physical_object"
+    },
+    {
+      "text": "a dishonest person",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "human"
+    },
+    {
+      "text": "a double feature",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a night's sleep",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a grudge",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a line drive",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a mountain village",
+      "labels": [
+        "LOCATION"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "place"
+    },
+    {
+      "text": "a newspaper columnist",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "human"
+    },
+    {
+      "text": "a piano recital",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a regular customer",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "human"
+    },
+    {
+      "text": "an indiscretion",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "factory employees",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "plural",
+      "named": false,
+      "type": "human_group"
+    },
+    {
+      "text": "town citizens",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "plural",
+      "named": false,
+      "type": "human_group"
+    },
+    {
+      "text": "an action movie",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "an extrovert",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "human"
+    },
+    {
+      "text": "an introvert",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "human"
+    },
+    {
+      "text": "camping",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "champions",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "plural",
+      "named": false,
+      "type": "human_group"
+    },
+    {
+      "text": "chicken stock",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "physical_object"
+    },
+    {
+      "text": "commentary",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "strangers",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "plural",
+      "named": false,
+      "type": "human_group"
+    },
+    {
+      "text": "curiosity",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "demands",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "equality",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "older people",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "plural",
+      "named": false,
+      "type": "human_group"
+    },
+    {
+      "text": "unreliable friends",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "plural",
+      "named": false,
+      "type": "human_group"
+    },
+    {
+      "text": "fat",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "physical_object"
+    },
+    {
+      "text": "first base",
+      "labels": [
+        "LOCATION"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "place"
+    },
+    {
+      "text": "popcorn",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "physical_object"
+    },
+    {
+      "text": "fresh air",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "physical_object"
+    },
+    {
+      "text": "good marks",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "healthy food",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "physical_object"
+    },
+    {
+      "text": "families",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "plural",
+      "named": false,
+      "type": "human_group"
+    },
+    {
+      "text": "jokes",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "honesty",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "instant coffee",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "physical_object"
+    },
+    {
+      "text": "saline solution",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "physical_object"
+    },
+    {
+      "text": "junk food",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "physical_object"
+    },
+    {
+      "text": "low-income groups",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "plural",
+      "named": false,
+      "type": "human_group"
+    },
+    {
+      "text": "the management",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "human_group"
+    },
+    {
+      "text": "medical insurance",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "young people",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "plural",
+      "named": false,
+      "type": "human_group"
+    },
+    {
+      "text": "bosses",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "plural",
+      "named": false,
+      "type": "human_group"
+    },
+    {
+      "text": "clothes",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "plural",
+      "named": false,
+      "type": "physical_object_group"
+    },
+    {
+      "text": "sympathy",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "records",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "plural",
+      "named": false,
+      "type": "physical_object_group"
+    },
+    {
+      "text": "oil",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "physical_object"
+    },
+    {
+      "text": "a friendship",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a schedule",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "picket signs",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "plural",
+      "named": false,
+      "type": "physical_object_group"
+    },
+    {
+      "text": "prescription contact lenses",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "plural",
+      "named": false,
+      "type": "physical_object_group"
+    },
+    {
+      "text": "pay raises",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "slogans",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "literary works",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "garlic",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "physical_object"
+    },
+    {
+      "text": "men",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "plural",
+      "named": false,
+      "type": "human_group"
+    },
+    {
+      "text": "excuses",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "an honest man",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "human"
+    },
+    {
+      "text": "girls",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "plural",
+      "named": false,
+      "type": "human_group"
+    },
+    {
+      "text": "takeaway coffee",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "physical_object"
+    },
+    {
+      "text": "the rink boards",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "plural",
+      "named": false,
+      "type": "physical_object_group"
+    },
+    {
+      "text": "city hall",
+      "labels": [
+        "LOCATION"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "place"
+    },
+    {
+      "text": "a cloud",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "physical_object"
+    },
+    {
+      "text": "a face-off",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "safety hazards",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "a fashion show",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "the fifth inning",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a front cover",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "physical_object"
+    },
+    {
+      "text": "a goalkeeper",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "human"
+    },
+    {
+      "text": "a literature course",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a queue",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "human_group"
+    },
+    {
+      "text": "motivation",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a film showing",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "available classes",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "a passage",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "plum blossoms",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "plural",
+      "named": false,
+      "type": "physical_object_group"
+    },
+    {
+      "text": "a puck",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "physical_object"
+    },
+    {
+      "text": "a small mountain village",
+      "labels": [
+        "LOCATION"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "place"
+    },
+    {
+      "text": "a textbook",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "physical_object"
+    },
+    {
+      "text": "employees",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "plural",
+      "named": false,
+      "type": "human_group"
+    },
+    {
+      "text": "the world cup",
+      "labels": [
+        "ABSTRACT_ENTITY",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true
+    },
+    {
+      "text": "a beach trip",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a town",
+      "labels": [
+        "LOCATION"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "place"
+    },
+    {
+      "text": "ticket scalpers",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "plural",
+      "named": false,
+      "type": "human_group"
+    },
+    {
+      "text": "inspiration",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "complimentary tickets",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "plural",
+      "named": false,
+      "type": "physical_object_group"
+    },
+    {
+      "text": "an arrival",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "books",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "plural",
+      "named": false,
+      "type": "physical_object_group"
+    },
+    {
+      "text": "sadness",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a Bloody Mary cocktail",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "physical_object"
+    },
+    {
+      "text": "Chinese cocktails",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "plural",
+      "named": false,
+      "type": "physical_object_group"
+    },
+    {
+      "text": "Mr. Bellow",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true,
+      "type": "human"
+    },
+    {
+      "text": "parking",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a weather report",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a childless marriage",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "suggestions",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "architecture",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "snowstorms",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "childless couples",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "plural",
+      "named": false,
+      "type": "human_group"
+    },
+    {
+      "text": "chores",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "a gin fizz",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "physical_object"
+    },
+    {
+      "text": "reviews",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "grandchildren",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "plural",
+      "named": false,
+      "type": "human_group"
+    },
+    {
+      "text": "household chores",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "buyers",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "plural",
+      "named": false,
+      "type": "human_group"
+    },
+    {
+      "text": "happiness",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a neighbour",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "human"
+    },
+    {
+      "text": "patience",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "ingredients",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "plural",
+      "named": false,
+      "type": "physical_object_group"
+    },
+    {
+      "text": "washing",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a heater",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "physical_object"
+    },
+    {
+      "text": "lights",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "plural",
+      "named": false,
+      "type": "physical_object_group"
+    },
+    {
+      "text": "a university major",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a public restroom",
+      "labels": [
+        "LOCATION"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "place"
+    },
+    {
+      "text": "a dilemma",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a restroom",
+      "labels": [
+        "LOCATION"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "place"
+    },
+    {
+      "text": "a seller's history",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a ditch",
+      "labels": [
+        "LOCATION"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "place"
+    },
+    {
+      "text": "a Shanghai cocktail",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "physical_object"
+    },
+    {
+      "text": "kindness",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
     }
   ]
 }

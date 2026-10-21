@@ -138,11 +138,22 @@ def test_generated_variants_keep_splits_disjoint(monkeypatch):
         seen[split] = prompts, scenarios
 
 
-@pytest.mark.parametrize('component', ['dailydialog-backfill-1846-1905',
+@pytest.mark.parametrize('component', ['dailydialog-backfill-sentences-1406-1465',
+                                       'dailydialog-backfill-completion-1406-1465',
+                                       'dailydialog-backfill-1466-1485',
+                                       'dailydialog-backfill-1486-1545',
+                                       'dailydialog-backfill-1546-1605',
+                                       'dailydialog-backfill-1606-1665',
+                                       'dailydialog-backfill-1666-1725',
+                                       'dailydialog-backfill-1726-1785',
+                                       'dailydialog-backfill-1786-1845',
+                                       'dailydialog-backfill-1846-1905',
                                        'dailydialog-backfill-1906-1965',
                                        'dailydialog-backfill-1966-2025',
                                        'dailydialog-backfill-2026-2085',
-                                       'dailydialog-backfill-2086-2145'])
+                                       'dailydialog-backfill-2086-2145',
+                                       'dailydialog-backfill-2146-2205',
+                                       'dailydialog-backfill-2206-2215'])
 def test_native_slots_keep_source_pins_and_block_unreviewed_qa(component):
     bank = next(b for b in TemplateBank(ROOT).components()
                 if b.source_id == component)
@@ -300,3 +311,101 @@ def test_backfill_distinguishes_idioms_claims_and_promises_from_events():
     assert 'specious' in by_id['dd_backfill_turn_2095_6']['reply']
     for dialogue in (2094, 2108, 2114, 2117, 2125, 2129, 2142):
         assert not any(r['dialogue'] == dialogue for r in RULES)
+
+
+def test_backfill_retains_damaged_names_fragments_and_uncompleted_plans():
+    indexed = {p['id']: p for p in CATALOG['patterns']}
+    cases = {
+        '2149_13': 'tickets are not yet reported bought',
+        '2160_4': 'residence is not specified',
+        '2162_4': 'suspects',
+        '2172_3': 'Mary/May mismatch is unresolved',
+        '2176_7': "speaker's advice, not verified treatment",
+        '2179_3': 'intended place remains uncertain',
+        '2180_7': 'relocation is not completed',
+        '2183_13': 'no money has been staked',
+        '2190_12': 'completed enrollment is not explicitly reported',
+        '2195_4': 'list breaks off',
+        '2195_6': 'unfinished and not expanded',
+        '2198_14': 'reconciliation is not reported',
+        '2200_2': 'current location is not specified',
+        '2202_5': 'improvements are not completed',
+    }
+    for suffix, expected in cases.items():
+        p = indexed['dd_backfill_turn_' + suffix]
+        assert expected in p['value']
+        assert max(p['review']['evidence_turns']) <= p['source']['turn']
+    assert 'May' in indexed['dd_backfill_turn_2172_3']['reply']
+    assert indexed['dd_backfill_turn_2195_4']['reply'].endswith('music, a')
+    assert indexed['dd_backfill_turn_2195_6']['reply'].endswith('radar h')
+    subject = next(p for p in PATTERNS if p['substitution_base_id'] == 'dd_backfill_turn_2190_3')
+    changed = realize_pattern(subject, 0)
+    assert 'History' in changed['reply'] and 'History' in changed['value']
+    assert 'psychology' not in changed['value'].lower()
+    for d in (2178, 2179, 2182, 2193, 2197, 2199):
+        assert not any(r['dialogue'] == d for r in RULES)
+
+
+def test_legacy_adapter_links_require_reviewed_record_and_meaning():
+    linked = next(r for r in RULES if r.get('template_adapters'))
+    validate_rules([linked], CATALOG['patterns'])
+    for field in ('sha256', 'interpretation'):
+        changed = deepcopy(linked)
+        ref = next(iter(changed['template_adapters'].values()))
+        ref[field] = 'unreviewed'
+        with pytest.raises(ValueError, match='Unreviewed'):
+            validate_rules([changed], CATALOG['patterns'])
+    changed = deepcopy(linked)
+    key = next(iter(changed['template_adapters']))
+    changed['templates'][key] = '0' * 64
+    with pytest.raises(ValueError, match='Unreviewed'):
+        validate_rules([changed], CATALOG['patterns'])
+
+
+def test_last_backfill_keeps_wishes_hypotheses_and_stage_actions_distinct():
+    indexed = {p['id']: p for p in CATALOG['patterns']}
+    cases = {
+        '2206_6': 'differs from the earlier brief answer',
+        '2208_5': 'hypothetical, not an established fraud',
+        '2209_12': 'consultation is not completed',
+        '2211_14': 'not verified safety guidance or completed action',
+        '2211_21': 'compliance is not yet reported',
+        '2213_5': 'reports making and handing over the cocktail',
+        '2214_8': 'acceptance remains undecided',
+        '2215_5': 'ironing has not occurred',
+        '2215_6': 'a wish and a metaphor',
+    }
+    for suffix, expected in cases.items():
+        p = indexed['dd_backfill_turn_' + suffix]
+        assert expected in p['value']
+        assert max(p['review']['evidence_turns']) <= p['source']['turn']
+    assert 'Leo' not in indexed['dd_backfill_link_1420_2_1']['value']
+    assert 'subsequently' not in indexed['dd_backfill_link_1406_4_1']['value']
+    for d, key, expected in ((2208, 'dd_backfill_turn_2208_2', 'a ninety-five-dollar'),
+                             (1641, 'dd_backfill_turn_1641_3', 'folk-music')):
+        p = next(p for p in PATTERNS if p['substitution_base_id'] == key)
+        assert expected in realize_pattern(p, 0)['value']
+
+
+def test_historical_backfill_has_no_unreviewed_substitution_holes():
+    pending = json.loads((ROOT / 'pending.json').read_text(encoding='utf-8'))
+    state = pending['sources'][0]['review']['backfill_1406_2215']
+    review = state['substitution_review']
+    licensed = {r['dialogue'] for r in RULES if r['split'] == 'train'}
+    restricted = set(review['restricted_dialogues'])
+    assert not licensed.intersection(restricted)
+    assert licensed | restricted == set(range(1406, 2216))
+    assert review['remaining_dialogues'] == state['remaining_dialogues'] == 0
+    assert state['templates_remaining_occurrences'] == 0
+    assert not any(state['linked_lexical_remaining'].values())
+
+
+def test_article_aware_choices_agree_in_context_and_extraction():
+    for identity, field, expected, forbidden in (
+        ('dd_backfill_turn_1519_3', 'assistant', 'A glass ashtray', 'An glass'),
+        ('dd_backfill_turn_1719_1', 'value', 'a French test', 'an French'),
+        ('dd_backfill_turn_1719_6', 'assistant', 'a French test', 'an French'),
+    ):
+        pattern = next(p for p in PATTERNS if p['substitution_base_id'] == identity)
+        text = realize_pattern(pattern, 0)[field]
+        assert expected in text and forbidden not in text

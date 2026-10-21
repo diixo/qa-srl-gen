@@ -54,6 +54,18 @@ def validate_rules(rules, patterns):
         for key, digest in rule['templates'].items():
             if not all(isinstance(x, str) and re.fullmatch('[0-9a-f]{64}', x) for x in (key, digest)):
                 raise ValueError('Invalid substitution template identity')
+        # Early admitted sentences have a reviewed interpretation but predate
+        # explicit adapter pins. Bind them without rewriting source evidence.
+        links = rule.get('template_adapters', {})
+        if not isinstance(links, dict) or set(links) - set(rule['templates']):
+            raise ValueError('Invalid substitution template adapter links')
+        for key, ref in links.items():
+            if (not isinstance(ref, dict) or set(ref) != {'id', 'sha256', 'interpretation'} or
+                    ref['id'] not in indexed or
+                    rule['adapters'].get(ref['id']) != ref['sha256'] or
+                    indexed[ref['id']].get('review', {}).get('template_sha256') != rule['templates'][key] or
+                    indexed[ref['id']].get('value') != ref['interpretation']):
+                raise ValueError('Unreviewed substitution template adapter link')
 
 
 @lru_cache(maxsize=4)
@@ -118,7 +130,9 @@ def render_template(template, rule, choice):
     policy = record['usage_constraints']
     if policy['mode'] != 'attested_sentence':
         raise ValueError('Substitution requires an admitted sentence')
-    ref = policy['meaning']['extraction_adapter']
+    ref = policy['meaning'].get('extraction_adapter') or rule.get('template_adapters', {}).get(template.template_id)
+    if not ref:
+        raise ValueError('Substitution requires a reviewed template adapter link')
     if rule['adapters'].get(ref['id']) != ref['sha256']:
         raise ValueError('Substitution does not match template interpretation')
     edits = rule['choices'][choice]
@@ -162,7 +176,11 @@ def render_template(template, rule, choice):
         new_start = len(substitute(text[:a], edits))
         expression['span'] = [new_start, new_start + b - a]
     for field in ('interpretation', 'enclosing_turn_text'):
-        updated['meaning'][field] = substitute(policy['meaning'][field], edits)
+        if field in policy['meaning']:
+            updated['meaning'][field] = substitute(policy['meaning'][field], edits)
+    if 'interpretation' in ref:
+        updated['meaning']['interpretation'] = substitute(ref['interpretation'], edits)
+    updated['meaning']['extraction_adapter'] = {k: ref[k] for k in ('id', 'sha256')}
     proof = dict(rule=rule['id'], rule_sha256=fingerprint(rule), choice=choice,
                  source_template_sha256=fingerprint(record),
                  adapter_id=ref['id'], source_text=policy['text'])
