@@ -1,0 +1,233 @@
+{% extends 'app_main/base.html' %}
+{% load static %}
+
+{% block extra_style %}
+<link rel="stylesheet" href="{% static 'app_main/css/knowledge.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="knowledge" lang="ru" id="knowledge-top">
+    <nav class="knowledge-breadcrumb" aria-label="Хлебные крошки">
+        <span class="material-icons" aria-hidden="true">menu_book</span>
+        <span>Knowledge</span><span aria-hidden="true">/</span><span>Semantic corpus</span>
+    </nav>
+
+    <div class="knowledge-layout">
+        <article class="knowledge-document">
+            <header class="knowledge-header">
+                <span class="knowledge-kicker">ENGINEERING KNOWLEDGE BASE</span>
+                <h1>Semantic corpus</h1>
+                <p class="knowledge-lead">От исходного текста — к семантике,<br class="knowledge-wide-break"> вопросам и диалоговым датасетам.</p>
+                <div class="knowledge-meta">
+                    <span><span class="material-icons" aria-hidden="true">account_tree</span>Архитектура и связи</span>
+                    <span>{{ modules|length }} блоков</span>
+                    <span>{{ task_count }} dialogue tasks</span>
+                </div>
+                <div class="knowledge-quicklinks">
+                    <a href="{% url 'app_main:pools' %}">Built-in pool <span aria-hidden="true">↗</span></a>
+                    <a href="{% url 'app_main:chat_dataset' %}">Chat dataset <span aria-hidden="true">↗</span></a>
+                    <a href="{% url 'app_main:slots' %}">Frames & slots <span aria-hidden="true">↗</span></a>
+                </div>
+            </header>
+
+            <section class="knowledge-section" id="overview" aria-labelledby="overview-title">
+                <div class="knowledge-section-heading"><span>01</span><h2 id="overview-title">Общая картина</h2><a href="#overview" aria-label="Ссылка на раздел «Общая картина»">#</a></div>
+                <p>Проект объединяет два направления. <strong>Corpus pipeline</strong> создаёт или импортирует тексты,
+                    связывает их с разметкой и строит QA. <strong>Dialogue pipeline</strong> моделирует разговор,
+                    состояние памяти и изменения этого состояния, затем экспортирует обучающие примеры.</p>
+                <div class="knowledge-principles">
+                    <div><span class="material-icons" aria-hidden="true">hub</span><h3>Общие ресурсы</h3><p>Один Built-in pool для фреймов, сущностей и намайненного банка.</p></div>
+                    <div><span class="material-icons" aria-hidden="true">fact_check</span><h3>Явный смысл</h3><p>Участники, отрицание, модальность и стадия действия сохраняются отдельно.</p></div>
+                    <div><span class="material-icons" aria-hidden="true">history</span><h3>Проверяемый результат</h3><p>Исходный текст, привязки, решения и происхождение данных остаются доступными.</p></div>
+                </div>
+
+                <figure class="knowledge-figure">
+                    <div class="knowledge-figure-label"><span>СХЕМА 01</span> Общий пул и два направления генерации</div>
+                    <div class="knowledge-diagram-scroll" tabindex="0" role="region" aria-label="Схема архитектуры, доступна горизонтальная прокрутка">
+                        <svg class="knowledge-architecture" viewBox="0 0 960 380" role="img" aria-labelledby="architecture-title architecture-desc">
+                            <title id="architecture-title">Связи общего пула, генераторов и экспорта</title>
+                            <desc id="architecture-desc">Майнинг и проверка источников пополняют BuiltInPool. Он используется semantic_generator для предложений и QA и dialogue_generator для Episode, из которых создаются History, Memory и Extraction. Блоки ведут к описаниям модулей.</desc>
+                            <defs><marker id="knowledge-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#8b9ab1"/></marker></defs>
+                            <g class="knowledge-connectors" fill="none" stroke="#8b9ab1" stroke-width="1.8" marker-end="url(#knowledge-arrow)">
+                                <path d="M190 183 H242"/><path d="M445 183 H470 V83 H498"/><path d="M470 183 V283 H498"/>
+                                <path d="M690 83 H747"/><path d="M690 283 H747"/>
+                            </g>
+                            <a href="#module-mining" aria-label="Модуль майнинга"><g class="knowledge-svg-node"><rect x="20" y="139" width="170" height="88" rx="10"/><text x="105" y="170" class="knowledge-svg-title">Mining & review</text><text x="105" y="194">Текст · DailyDialog</text><text x="105" y="212">шаблоны · словари</text></g></a>
+                            <a href="#module-pool" aria-label="Модуль BuiltInPool"><g class="knowledge-svg-node knowledge-svg-primary"><rect x="245" y="133" width="200" height="100" rx="12"/><text x="345" y="164" class="knowledge-svg-title">BuiltInPool</text><text x="345" y="188">сущности + фреймы</text><text x="345" y="208">единый mined bank</text></g></a>
+                            <a href="#module-synthetic" aria-label="Semantic generator"><g class="knowledge-svg-node"><rect x="500" y="39" width="190" height="88" rx="10"/><text x="595" y="71" class="knowledge-svg-title">Semantic generator</text><text x="595" y="96">предложения + разметка</text></g></a>
+                            <a href="#module-dialogues" aria-label="Dialogue generator"><g class="knowledge-svg-node"><rect x="500" y="239" width="190" height="88" rx="10"/><text x="595" y="271" class="knowledge-svg-title">Dialogue generator</text><text x="595" y="296">сценарии + память</text></g></a>
+                            <a href="#module-questions" aria-label="QA и экспорт корпуса"><g class="knowledge-svg-node knowledge-svg-output"><rect x="750" y="39" width="190" height="88" rx="10"/><text x="845" y="71" class="knowledge-svg-title">Corpus → QA</text><text x="845" y="96">SFT · BIO / BILOU</text></g></a>
+                            <a href="#datasets" aria-label="Представления диалогового датасета"><g class="knowledge-svg-node knowledge-svg-output"><rect x="750" y="239" width="190" height="88" rx="10"/><text x="845" y="271" class="knowledge-svg-title">Episode → datasets</text><text x="845" y="296">History · Memory · Extraction</text></g></a>
+                            <text x="595" y="25" class="knowledge-svg-caption">CORPUS PIPELINE</text>
+                            <text x="595" y="225" class="knowledge-svg-caption">DIALOGUE PIPELINE</text>
+                            <text x="480" y="362" class="knowledge-svg-footnote">Правила использования сопровождают ресурсы на всём пути</text>
+                        </svg>
+                    </div>
+                    <figcaption>Нажмите на блок, чтобы перейти к модулю. Импорт готового корпуса также может идти напрямую в разметку, без майнинга шаблонов.</figcaption>
+                </figure>
+                <aside class="knowledge-callout"><span class="material-icons" aria-hidden="true">lightbulb</span><div><strong>Шаблон и правило — разные вещи.</strong><p>Шаблон хранит структуру предложения и слоты. Правило определяет, какие заполнения, конструкции, значения и замены допустимы. Воспроизведение исходного текста не даёт автоматического разрешения на любые новые сочетания.</p></div></aside>
+            </section>
+
+            <section class="knowledge-section" id="modules" aria-labelledby="modules-title">
+                <div class="knowledge-section-heading"><span>02</span><h2 id="modules-title">Карта модулей</h2><a href="#modules" aria-label="Ссылка на карту модулей">#</a></div>
+                <p>Раскройте блок, чтобы увидеть его входы, выходы и файлы реализации. Поиск ниже также фильтрует каталог задач.</p>
+                <div class="knowledge-search" hidden data-knowledge-search>
+                    <label for="knowledge-query"><span class="material-icons" aria-hidden="true">search</span><span class="visually-hidden">Поиск по модулям и задачам</span></label>
+                    <input id="knowledge-query" type="search" placeholder="Найти модуль или task… например, extraction" autocomplete="off" aria-describedby="knowledge-search-count">
+                    <button type="button" data-search-clear aria-label="Очистить поиск" hidden>×</button>
+                </div>
+                <p id="knowledge-search-count" class="knowledge-search-count" role="status" aria-live="polite"></p>
+                <div class="knowledge-modules">
+                    {% for module in modules %}
+                    <details class="knowledge-module" id="module-{{ module.id }}" data-search-item>
+                        <summary>
+                            <span class="knowledge-module-icon material-icons" aria-hidden="true">{{ module.icon }}</span>
+                            <span class="knowledge-module-heading"><span class="knowledge-module-title">{{ module.name }}</span><span class="knowledge-module-summary">{{ module.summary }}</span></span>
+                            <span class="knowledge-tag">{{ module.layer }}</span>
+                            <span class="material-icons knowledge-chevron" aria-hidden="true">expand_more</span>
+                        </summary>
+                        <div class="knowledge-module-body">
+                            <dl><div><dt>Вход</dt><dd>{{ module.input }}</dd></div><div><dt>Выход</dt><dd>{{ module.output }}</dd></div></dl>
+                            <p>{{ module.detail }}</p>
+                            <ul class="knowledge-files" aria-label="Файлы реализации">{% for file in module.files %}<li><code>{{ file }}</code></li>{% endfor %}</ul>
+                        </div>
+                    </details>
+                    {% endfor %}
+                </div>
+                <p class="knowledge-empty" data-empty-modules hidden>Модули не найдены. Попробуйте название файла или другой термин.</p>
+            </section>
+
+            <section class="knowledge-section" id="contracts" aria-labelledby="contracts-title">
+                <div class="knowledge-section-heading"><span>03</span><h2 id="contracts-title">Объекты и связи</h2><a href="#contracts" aria-label="Ссылка на объекты и связи">#</a></div>
+                <div class="knowledge-contracts">
+                    <div><h3><span class="knowledge-dot"></span> Корпус</h3><ol class="knowledge-chain"><li><code>Document</code><small>исходный текст</small></li><li><code>Passage / Utterance</code><small>фрагменты и реплики</small></li><li><code>AnnotationRun</code><small>версия разметки</small></li><li><code>Span + RelationEdge</code><small>сущности, предикаты, свойства и связи</small></li><li><code>QA example</code><small>вопрос и привязанный ответ</small></li></ol></div>
+                    <div><h3><span class="knowledge-dot knowledge-dot-green"></span> Диалог</h3><ol class="knowledge-chain"><li><code>Episode</code><small>контролируемый сценарий</small></li><li><code>Turn + AssistantAction</code><small>реплики, предложения и варианты</small></li><li><code>Transition / Delta</code><small>изменение фактов и событий</small></li><li><code>Memory + Query</code><small>актуальное состояние и вопрос</small></li><li><code>Answer + evidence</code><small>ответ и его основания</small></li></ol></div>
+                </div>
+                <p class="knowledge-caption">Это связи объектов, а не обязательный порядок сериализации. Исходный текст корпуса и память диалога имеют разные контракты.</p>
+                <div class="knowledge-example">
+                    <span class="knowledge-kicker">WHY IT MATTERS</span>
+                    <h3>«Хочет сделать» ≠ «сделал»</h3>
+                    <div class="knowledge-example-pair"><code>I want to pick up the parcel.</code><span>Намерение; получение посылки не подтверждено.</span></div>
+                    <div class="knowledge-example-pair"><code>I picked up the parcel.</code><span>Сообщение о выполненном действии.</span></div>
+                    <div class="knowledge-example-pair"><code>I didn't pick up the parcel.</code><span>Отрицание выполнения, а не неизвестное значение.</span></div>
+                    <p>Фразовый глагол, его аргументы и операторы рассматриваются вместе. Форма глагола помогает построить текст, но не заменяет разбор смысла.</p>
+                </div>
+            </section>
+
+            <section class="knowledge-section" id="admission" aria-labelledby="admission-title">
+                <div class="knowledge-section-heading"><span>04</span><h2 id="admission-title">Как ресурс попадает в генерацию</h2><a href="#admission" aria-label="Ссылка на допуск ресурсов">#</a></div>
+                <p>Общий банк хранит и рабочие ресурсы, и материалы для проверки. Их физическое соседство не означает одинаковые права использования.</p>
+                <figure class="knowledge-figure">
+                    <div class="knowledge-figure-label"><span>СХЕМА 02</span> Проверки и разрешённые способы использования</div>
+                    <ol class="knowledge-flow">
+                        <li><span class="knowledge-step">1</span><strong>Извлечение</strong><small>Текст, границы, слоты, формы и вхождения</small></li>
+                        <li><span class="knowledge-step">2</span><strong>Структура</strong><small>Восстановление текста, span, ссылки и целостность</small></li>
+                        <li><span class="knowledge-step">3</span><strong>Смысл</strong><small>Участники, свойства, отрицание, модальность и контекст</small></li>
+                        <li><span class="knowledge-step">4</span><strong>Допуск</strong><small>Решение для конкретного вхождения и способа использования</small></li>
+                    </ol>
+                    <div class="knowledge-permissions">
+                        <div><span class="knowledge-tag">Attested sentence</span><strong>Исходное предложение</strong><p>Воспроизведение с сохранением проверенного контекста и заполнений.</p></div>
+                        <div><span class="knowledge-tag">Reviewed adapter</span><strong>Интерпретация реплики</strong><p>Extraction получает проверенный смысл доступного текста и предыдущего контекста.</p></div>
+                        <div><span class="knowledge-tag">Finite substitutions</span><strong>Новые варианты</strong><p>Только согласованные замены с сохранением связей и обновлением интерпретации.</p></div>
+                    </div>
+                    <figcaption>Эти допуски проверяются отдельно. Для неподтверждённого смысла сохраняется ограничение; недостающий текст не дописывается догадкой.</figcaption>
+                </figure>
+                <aside class="knowledge-callout knowledge-callout-amber"><span class="material-icons" aria-hidden="true">rule</span><div><strong>UNREVIEWED — не оценка качества всей программы.</strong><p>Это отсутствие подтверждённого семантического допуска ресурса. Кандидатный банк не становится рабочим целиком после структурной проверки; решения могут относиться к отдельным вхождениям. Для опубликованных синтаксических ресурсов также действуют ограничения их конкретного пути генерации.</p></div></aside>
+                <p><code>data/mined-templates/manifest.json</code> хранит опубликованные компоненты,
+                    <code>pending.json</code> — кандидатные диапазоны и решения,
+                    <code>reviewed/dialogue-fragments.json</code> — проверенные адаптации и правила замен.</p>
+            </section>
+
+            <section class="knowledge-section" id="datasets" aria-labelledby="datasets-title">
+                <div class="knowledge-section-heading"><span>05</span><h2 id="datasets-title">Один Episode — три представления</h2><a href="#datasets" aria-label="Ссылка на представления датасета">#</a></div>
+                <p>History и Memory учат отвечать на вопрос. Extraction учит изменять память по новой реплике. Это разные цели обучения.</p>
+                <figure class="knowledge-figure knowledge-dataset-figure">
+                    <div class="knowledge-figure-label"><span>СХЕМА 03</span> Что видит и что выдаёт модель</div>
+                    <div class="knowledge-episode"><span class="material-icons" aria-hidden="true">forum</span><div><strong>Episode</strong><small>Реплики + точное состояние памяти + переходы + вопрос и ответ</small></div></div>
+                    <div class="knowledge-dataset-branches">
+                        <div><span class="knowledge-dataset-name">History</span><p>Предыдущий разговор<br>+ текущий вопрос</p><span class="knowledge-output-arrow" aria-hidden="true">↓</span><strong>Естественный ответ</strong><code>history/*.json</code></div>
+                        <div><span class="knowledge-dataset-name">Memory</span><p>Актуальная память<br>+ контекст + вопрос</p><span class="knowledge-output-arrow" aria-hidden="true">↓</span><strong>Тот же ответ</strong><code>memory/*.json</code></div>
+                        <div><span class="knowledge-dataset-name">Extraction</span><p>Память до изменения<br>+ контекст + новая реплика</p><span class="knowledge-output-arrow" aria-hidden="true">↓</span><strong>Команды изменения памяти</strong><code>extraction/*.json</code></div>
+                    </div>
+                    <figcaption>В Memory используется точная память генератора (oracle memory), а не предсказания обученной модели. Extraction создаётся из переходов, поэтому число его строк отличается от числа диалогов.</figcaption>
+                </figure>
+                <div class="knowledge-code-example">
+                    <div><span>НОВАЯ РЕПЛИКА</span><pre><code>Actually, my meeting is on Friday.</code></pre></div>
+                    <div><span>EXTRACTION TARGET</span><pre><code>SET user | meeting_day | asserted | positive | Friday</code></pre></div>
+                    <p>Обновляется день встречи. Старое значение не остаётся активным. Это пример текстового контракта <code>extraction_text.py</code>.</p>
+                </div>
+                <p>Снаружи файл остаётся JSON с <code>messages</code>. Внутри сообщений — текст: естественный ответ или структурированные команды обновления, <strong>без вложенного JSON</strong>. <code>Include metadata</code> управляет внешними служебными полями.</p>
+                <div class="knowledge-two-columns">
+                    <div><h3>Разделение выборок</h3><p>Проверяются сценарии и видимые входы. В профиле user/assistant исходные контексты закреплены за выборками; в именном профиле используются разделения пула. Это не обещание обобщения на любой естественный диалог.</p></div>
+                    <div><h3>Длина и воспроизводимость</h3><p>Seed и снимок ресурсов определяют генерацию. Лимит GPT-2 учитывает весь ChatML: инструкции, контекст и ответ. Слишком длинный пример заменяется, а не обрезается.</p></div>
+                </div>
+            </section>
+
+            <section class="knowledge-section" id="tasks" aria-labelledby="tasks-title">
+                <div class="knowledge-section-heading"><span>06</span><h2 id="tasks-title">Каталог dialogue tasks</h2><a href="#tasks" aria-label="Ссылка на каталог задач">#</a></div>
+                <p><strong>{{ task_count }} задач</strong> в полном профиле и <strong>{{ simple_task_count }}</strong> при <code>User and assistant only</code>.
+                    Список и доступность получены из реестра генератора. Task задаёт сценарий; History, Memory и Extraction задают представление его данных.</p>
+                <a class="knowledge-inline-link" href="#knowledge-query">Поиск по задачам <span aria-hidden="true">↑</span></a>
+                {% for group, tasks in task_groups %}
+                <div class="knowledge-task-group" data-task-group>
+                    <h3>{{ group }} <span>{{ tasks|length }}</span></h3>
+                    <div class="knowledge-task-list">
+                        {% for task in tasks %}
+                        <div class="knowledge-task" data-search-item>
+                            <div><code>{{ task.code }}</code>{% if task.named_only %}<span class="knowledge-tag knowledge-tag-amber">Named people only</span>{% endif %}</div>
+                            <p>{{ task.description }}</p><small>{{ task.label }}</small>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+                <p class="knowledge-empty" data-empty-tasks hidden>Задачи не найдены. Очистите поиск, чтобы увидеть весь каталог.</p>
+                <aside class="knowledge-callout"><span class="material-icons" aria-hidden="true">link</span><div><strong>Связь с намайненным банком</strong><p><code>mined_predicates</code> использует адаптацию предикатов, а <code>fragment_meaning</code> — проверенные смыслы реплик и допустимые варианты. Намайненный глагол не подставляется автоматически во все ручные задачи. В обоих профилях цитата источника может содержать имена и других участников.</p></div></aside>
+            </section>
+
+            <section class="knowledge-section" id="storage" aria-labelledby="storage-title">
+                <div class="knowledge-section-heading"><span>07</span><h2 id="storage-title">Где что хранится</h2><a href="#storage" aria-label="Ссылка на расположение данных">#</a></div>
+                <div class="knowledge-table-wrap" tabindex="0" role="region" aria-label="Расположение данных">
+                    <table class="knowledge-table"><thead><tr><th scope="col">Ресурс</th><th scope="col">Расположение</th><th scope="col">Назначение</th></tr></thead><tbody>
+                        <tr><th scope="row">Намайненные шаблоны</th><td><code>data/mined-templates/templates/*.jsonl.gz</code></td><td>Общие сжатые шарды; доступ к диапазонам определяют реестры.</td></tr>
+                        <tr><th scope="row">Публикация и кандидаты</th><td><code>data/mined-templates/manifest.json</code><br><code>data/mined-templates/pending.json</code></td><td>Опубликованные компоненты, неподтверждённые ресурсы и решения.</td></tr>
+                        <tr><th scope="row">Адаптации и замены</th><td><code>data/mined-templates/reviewed/dialogue-fragments.json</code></td><td>Смысл реплик, контекст, привязки и конечные варианты замен.</td></tr>
+                        <tr><th scope="row">Сущности и фреймы</th><td><code>semantic_corpus/semantic_generator/entities.json</code><br><code>semantic_corpus/semantic_generator/frames.py</code></td><td>Типизированные заполнения и ручные семантические конструкции.</td></tr>
+                        <tr><th scope="row">Формы глаголов</th><td><code>data/wiktionary/en_verb_inflections.txt</code></td><td>Морфология для нормализации и реализации, не готовая семантика.</td></tr>
+                        <tr><th scope="row">Исходники и аудит</th><td><code>data/dailydialog/filtered/</code><br><code>data/mined-templates/sources/</code><br><code>data/mined-templates/audit/</code></td><td>Исходные материалы, происхождение и сохранённые решения. Не всё здесь является входом генерации.</td></tr>
+                        <tr><th scope="row">Corpus store</th><td><code>&lt;store&gt;/*.jsonl</code></td><td>Документы, разметка, связи, QA и версии датасетов. Страница Corpora находит хранилища в data и artifacts.</td></tr>
+                        <tr><th scope="row">Диалоговый датасет UI</th><td><code>artifacts/ui/jobs/&lt;id&gt;/dataset/</code></td><td>History, Memory, Extraction, episodes.jsonl и manifest. Корень меняется через CORPUS_UI_ROOT.</td></tr>
+                        <tr><th scope="row">История заданий</th><td><code>ui/db.sqlite3</code></td><td>Job, состояние очереди и настройки worker; не содержимое корпусов.</td></tr>
+                    </tbody></table>
+                </div>
+            </section>
+
+            <section class="knowledge-section" id="workflows" aria-labelledby="workflows-title">
+                <div class="knowledge-section-heading"><span>08</span><h2 id="workflows-title">Рабочие маршруты</h2><a href="#workflows" aria-label="Ссылка на рабочие маршруты">#</a></div>
+                <div class="knowledge-workflows">
+                    <a href="{% url 'app_main:template_mining' %}"><span class="material-icons" aria-hidden="true">manage_search</span><div><h3>Пополнить ресурсы</h3><p>Источник → майнинг → структурная проверка → общий банк → смысловой допуск и ограничения.</p><span>Template mining ↗</span></div></a>
+                    <a href="{% url 'app_main:pipeline' %}"><span class="material-icons" aria-hidden="true">schema</span><div><h3>Подготовить корпус QA</h3><p>Генерация или импорт → разметка → вопросы → проверка → экспорт.</p><span>New job ↗</span></div></a>
+                    <a href="{% url 'app_main:chat_dataset' %}"><span class="material-icons" aria-hidden="true">forum</span><div><h3>Собрать диалоговый датасет</h3><p>Профиль и квоты → сценарии → переходы памяти → три представления → проверка и сохранение.</p><span>Chat dataset ↗</span></div></a>
+                </div>
+                <p class="knowledge-maintenance">Обучение запускается отдельно через <code>python -m semantic_corpus.dialogue_generator.trainer</code>.
+                    Эта страница описывает архитектуру; текущие объёмы ресурсов смотрите в <a href="{% url 'app_main:pools' %}">Built-in pool</a>, состояние выполнения — в <a href="{% url 'app_main:jobs' %}">Job history</a>.</p>
+            </section>
+            <footer class="knowledge-footer"><span>Semantic corpus · Architecture guide</span><a href="#knowledge-top">К началу ↑</a></footer>
+        </article>
+
+        <aside class="knowledge-toc" aria-label="Оглавление">
+            <div class="knowledge-toc-inner">
+                <p>НА ЭТОЙ СТРАНИЦЕ</p>
+                <nav aria-label="Разделы Knowledge">
+                    <a href="#overview">Общая картина</a><a href="#modules">Карта модулей</a>
+                    <a href="#contracts">Объекты и связи</a><a href="#admission">Допуск ресурсов</a>
+                    <a href="#datasets">Три представления</a><a href="#tasks">Dialogue tasks</a>
+                    <a href="#storage">Хранение данных</a><a href="#workflows">Рабочие маршруты</a>
+                </nav>
+                <div class="knowledge-toc-note"><span class="material-icons" aria-hidden="true">info</span><p>Код tasks — из реестра.<br>Описания — карта реализации.<br>Счётчики банка — на странице Pools.</p></div>
+            </div>
+        </aside>
+    </div>
+</div>
+<script src="{% static 'app_main/js/knowledge.js' %}" defer></script>
+{% endblock %}

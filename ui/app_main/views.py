@@ -42,7 +42,8 @@ NAV = [
         ('quality', 'Quality', 'verified')]),
     ('Data and resources', [('corpora', 'Corpora', 'storage'), ('pools', 'Built-in pool', 'category'),
         ('template_mining', 'Template mining', 'manage_search'),
-        ('slots', 'Frames and slots', 'account_tree'), ('tools', 'Tools', 'build')]),
+        ('slots', 'Frames and slots', 'account_tree'), ('tools', 'Tools', 'build'),
+        ('knowledge', 'Knowledge', 'menu_book')]),
 ]
 
 
@@ -56,6 +57,13 @@ def page(request, template, **context):
 @require_safe
 def main(request):
     return page(request, 'index.html', title='Home')
+
+
+@require_safe
+def knowledge(request):
+    from .knowledge import knowledge_context
+
+    return page(request, 'knowledge.html', title='Knowledge', **knowledge_context())
 
 
 @require_safe

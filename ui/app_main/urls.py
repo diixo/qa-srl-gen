@@ -22,6 +22,7 @@ urlpatterns = [
     path('template-mining', views.template_mining, name='template_mining'),
     path('chat-dataset', views.chat_dataset, name='chat_dataset'),
     path('slots', views.slots, name='slots'),
+    path('knowledge', views.knowledge, name='knowledge'),
     path('upload', views.upload, name='upload'),
 ]
 
