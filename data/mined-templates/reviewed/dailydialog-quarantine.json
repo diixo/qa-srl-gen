@@ -843,10 +843,12 @@
       "warning_sha256": "b54202b4b06e8498682df2a3408d15de2623a769a48f9de149d9ad5a72049c6d",
       "status": "excluded",
       "category": "truncated_content",
-      "reason": "Someone wit has no complete property or predicate. It does not establish qualifications, a job offer or a genetics claim. Closed by user decision: discard the unresolved meaning, do not retry or block further imports. Only previously pinned, understood adapter meanings remain usable.",
+      "reason": "Someone wit has no complete property or predicate. It does not establish qualifications, a job offer or a genetics claim. Closed by user decision: discard the unresolved meaning, do not retry or block further imports. Only previously pinned, understood adapter meanings remain usable. Direct review of train:2456-2515 permits the pinned full-turn interpretation of the preceding complete clauses, explicitly leaving Someone wit uninterpreted. The truncated segment remains excluded from template admission and has no inferred continuation.",
       "automatic_retry": false,
       "template_admission": false,
-      "allowed_adapters": {},
+      "allowed_adapters": {
+        "dd_review_turn_2502_5": "63aeeb36350f37494913c71c66ef450a144afeae7e514694442e1ad579008ce5"
+      },
       "source": {
         "split": "train",
         "dialogue": 2502,

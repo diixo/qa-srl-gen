@@ -54,6 +54,52 @@ def validate_rules(rules, patterns):
         for key, digest in rule['templates'].items():
             if not all(isinstance(x, str) and re.fullmatch('[0-9a-f]{64}', x) for x in (key, digest)):
                 raise ValueError('Invalid substitution template identity')
+        literal_choices = rule.get('literal_choices', {})
+        if not isinstance(literal_choices, dict):
+            raise ValueError('Invalid reviewed literal templates')
+        for key, choices in literal_choices.items():
+            if key not in rule['templates'] or not isinstance(choices, list):
+                raise ValueError('Invalid reviewed literal template')
+            indices = set()
+            for item in choices:
+                index = item.get('choice')
+                if (type(index) is not int or not 0 <= index < len(rule['choices'])
+                        or index in indices or not item.get('reason')
+                        or item.get('choice_sha256') != fingerprint(rule['choices'][index])
+                        or not item.get('parts')):
+                    raise ValueError('Invalid reviewed literal choice')
+                indices.add(index)
+                parts = set()
+                for edit in item['parts']:
+                    if (type(edit.get('part')) is not int or edit['part'] < 0
+                            or edit['part'] in parts
+                            or not isinstance(edit.get('before'), str)
+                            or not isinstance(edit.get('after'), str)
+                            or edit['before'] == edit['after']):
+                        raise ValueError('Invalid reviewed literal part')
+                    parts.add(edit['part'])
+        slot_choices = rule.get('slot_choices', {})
+        if not isinstance(slot_choices, dict):
+            raise ValueError('Invalid reviewed slot templates')
+        for key, choices in slot_choices.items():
+            if key not in rule['templates'] or not isinstance(choices, list):
+                raise ValueError('Invalid reviewed slot template')
+            indices = set()
+            for item in choices:
+                index = item.get('choice')
+                if (type(index) is not int or not 0 <= index < len(rule['choices'])
+                        or index in indices or not item.get('reason')
+                        or item.get('choice_sha256') != fingerprint(rule['choices'][index])
+                        or not isinstance(item.get('bindings'), dict) or not item['bindings']):
+                    raise ValueError('Invalid reviewed slot choice')
+                indices.add(index)
+                for slot, edit in item['bindings'].items():
+                    if (not isinstance(slot, str) or not slot
+                            or not isinstance(edit, dict) or set(edit) != {'before', 'after'}
+                            or any(not isinstance(edit[f], str) or not edit[f].strip()
+                                   or any(c in edit[f] for c in '{}\r\n') for f in ('before', 'after'))
+                            or edit['before'] == edit['after']):
+                        raise ValueError('Invalid reviewed slot binding')
         # Early admitted sentences have a reviewed interpretation but predate
         # explicit adapter pins. Bind them without rewriting source evidence.
         links = rule.get('template_adapters', {})
@@ -140,11 +186,55 @@ def render_template(template, rule, choice):
     original = template.render()
     text = original['text']
     target = substitute(text, edits)
+    raw = deepcopy(record)
+    raw.pop('usage_constraints')
+    # Individually pinned finite edits can cover numbers/vocatives retained by
+    # the compiler as literals. They do not turn fixed text into free slots.
+    for license in rule.get('literal_choices', {}).get(template.template_id, []):
+        if license['choice'] != choice:
+            continue
+        if license['choice_sha256'] != fingerprint(edits):
+            raise ValueError('Stale reviewed literal choice')
+        for edit in license['parts']:
+            index = edit['part']
+            if (index >= len(raw['parts']) or
+                    raw['parts'][index].get('literal') != edit['before']):
+                raise ValueError('Stale reviewed literal part')
+            operations = SequenceMatcher(None, edit['before'], edit['after'], autojunk=False).get_opcodes()
+            for group in raw['predicate_groups']:
+                for construction in group['constructions']:
+                    for marker in construction['markers']:
+                        if marker.get('part') != index:
+                            continue
+                        start, end = marker['start'], marker['end']
+                        # A particle/preposition must survive wholly inside one
+                        # unchanged block, even when a preceding number grows.
+                        block = next((op for op in operations if op[0] == 'equal'
+                                      and op[1] <= start <= end <= op[2]), None)
+                        if block is None:
+                            return None
+                        marker['start'] = block[3] + start - block[1]
+                        marker['end'] = block[3] + end - block[1]
+            raw['parts'][index]['literal'] = edit['after']
+    # An explicitly reviewed alignment can disambiguate a diff spanning several
+    # adjacent noun/adjective slots. It cannot change syntax, verbs or the target.
+    for license in rule.get('slot_choices', {}).get(template.template_id, []):
+        if license['choice'] != choice:
+            continue
+        if license['choice_sha256'] != fingerprint(edits):
+            raise ValueError('Stale reviewed slot choice')
+        for key, edit in license['bindings'].items():
+            if (template.slots.get(key, {}).get('kind') not in {'nominal', 'adjective'}
+                    or values.get(key) != edit['before']
+                    or not isinstance(edit['after'], str) or not edit['after'].strip()):
+                raise ValueError('Invalid or stale reviewed slot binding')
+            values[key] = edit['after']
+    surface = CorpusTemplate(raw).render(values)
     changes = {}
-    for tag, a, b, c, d in SequenceMatcher(None, text, target, autojunk=False).get_opcodes():
+    for tag, a, b, c, d in SequenceMatcher(None, surface['text'], target, autojunk=False).get_opcodes():
         if tag == 'equal':
             continue
-        owners = [(key, span) for key, span in original['spans'].items()
+        owners = [(key, span) for key, span in surface['spans'].items()
                   if span[0] <= a <= b <= span[1]
                   and template.slots[key]['kind'] in {'nominal', 'adjective'}]
         if len(owners) != 1:
@@ -154,10 +244,8 @@ def render_template(template, rule, choice):
     for key, pieces in changes.items():
         for a, b, replacement in reversed(pieces):
             values[key] = values[key][:a] + replacement + values[key][b:]
-    if values == record['defaults']:
+    if values == record['defaults'] and surface['text'] == text:
         return None
-    raw = deepcopy(record)
-    raw.pop('usage_constraints')
     result = CorpusTemplate(raw).render(values)
     if result['text'] != target:
         return None  # Never change only half of a repeated/literal reference.

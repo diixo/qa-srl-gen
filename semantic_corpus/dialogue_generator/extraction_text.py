@@ -45,7 +45,10 @@ EXTRACT_SYSTEM = (
 # Explicit task mode keeps legacy NO_CHANGE examples consistent. The switch
 # is set for the entire interpretation episode, including its initial facts;
 # it is not inferred from an individual target command.
-INTERPRETATION_EXTRACT_SYSTEM = EXTRACT_SYSTEM.replace(
+# Interpretation episodes emit ordinary initial facts, SET_CONTEXT for the
+# reviewed meaning and NO_CHANGE for recall questions. They never emit events.
+# Do not spend their context window teaching unrelated EVENT/MINED commands.
+INTERPRETATION_EXTRACT_SYSTEM = EXTRACT_SYSTEM.split('EVENT predicate', 1)[0].replace(
     'Relations: location,', 'Relations: utterance_interpretation, location,').replace(
     'Questions, thanks, unresolved references add nothing. Preserve known fragment meaning without guessing. ',
     'For a contextual reply to the last assistant, use SET_CONTEXT with utterance_interpretation to describe its meaning. '
