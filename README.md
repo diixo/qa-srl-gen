@@ -45,6 +45,12 @@ python ui/manage.py runserver 127.0.0.1:8000
 ```
 
 Open `http://127.0.0.1:8000/workspace`. Submitting a job starts the worker automatically.
+**Data and resources → Knowledge** (`/knowledge`) is the local architecture guide:
+module inputs/outputs, clickable diagrams, resource admission, storage locations,
+and the History/Memory/Extraction contracts. It includes searchable module and
+task catalogues; task membership is read from the generator. The guide works
+without external diagram services.
+
 The Workers page controls concurrency, pauses dispatch after current jobs finish,
 and resumes the queue. Job pages show progress, logs, cancellation, retries,
 quality findings and downloadable results. The worker stops after 60 idle seconds.

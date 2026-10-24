@@ -32,6 +32,116 @@ def test_simultaneous_replacements_respect_words_and_possessives():
         "Beth's aunt Anne met Sue."
 
 
+def test_remaining_46_restrictions_have_real_native_variants_and_no_open_dialogue_debt():
+    review = json.loads((ROOT / 'pending.json').read_text(encoding='utf8'))['sources'][0]['review']
+    followup = review['substitution_restriction_followup']
+    report = followup['passes']['remaining_46_complete_phrases']
+    expected = {1623,1648,1680,1986,2020,2074,2083,2117,2142,2164,2179,2188,
+                2365,2393,2397,2428,2440,2496,2583,2593,2604,2641,2668,2702,
+                2719,2731,2786,2806,2838,2845,3023,3027,3032,3052,3066,3076,
+                3179,3193,3207,3218,3245,3317,3333,3341,3386,3391}
+    assert set(report['dialogues_reviewed']) == set(report['native_variant_dialogues']) == expected
+    assert report['new_rules'] == report['checks']['native_variants'] == 46
+    assert not report['retained_restrictions'] and not report['adapter_only_rule_ids']
+    assert not report['native_blocked_choices_added']
+    assert followup['remaining_dialogue_restrictions'] == 0 and followup['new_finite_rules'] == 654
+    assert not review['backfill_1406_2215']['substitution_review']['restricted_dialogues']
+    assert all(not b.get('substitution_restrictions') for b in review['batches'].values())
+    assert followup['native_limits']['blocked_template_choices'] == []
+    assert followup['native_limits']['adapter_only_rule_ids'] == []
+    bank = next(b for b in TemplateBank(ROOT).components() if b.source_id == report['new_bank_component'])
+    count = 0
+    for template in bank.templates():
+        record = deepcopy(template.record)
+        rule = template.substitution_rule
+        assert rule['dialogue'] in expected
+        original = template.sample(recombine=False)
+        variant = template.sample(recombine=True)
+        assert original['text'] == record['usage_constraints']['text']
+        assert variant['text'] != original['text']
+        assert variant['text'] == substitute(original['text'],rule['choices'][0])
+        assert variant['usage_constraints']['mode'] == 'context_only'
+        assert not variant['slots'] and not variant['predicate_groups']
+        assert template.record == record
+        doc = Document('finite-phrase',variant['text'],metadata={k:v for k,v in variant.items() if k!='text'})
+        assert TemplateAnnotator(entities=EntityPool([])).annotate(doc).run is None
+        count += 1
+    assert count == 46
+    assert not report['checks']['overlength'] and report['checks']['max_tokens'] <= 768
+    assert not any(report['checks']['split_prompt_overlap'].values())
+
+
+def test_effective_interpretations_fix_sleep_laughter_stock_and_obsolete_wording():
+    effective = {p['id']:p for p in load_fragment_patterns()}
+    original = {p['id']:p for p in CATALOG['patterns']}
+    assert 'precise sleep effect remains unclear' in effective['dd_review_turn_2496_4']['value']
+    assert 'prevented sleep' in original['dd_review_turn_2496_4']['value']  # Archived preimage.
+    assert 'actual laughter' in effective['dd_review_turn_2731_8']['value']
+    assert 'no question about stock' in effective['dd_review_turn_3341_4']['value']
+    for p in effective.values():
+        if p.get('substitution_rule'):
+            p = realize_pattern(p,0)
+        if p.get('source',{}).get('dialogue') in {2496,2731,3341}:
+            assert 'listener laughs before' not in p['assistant']+p['value']
+            assert 'asks about suitable stock' not in p['assistant']+p['value']
+            assert 'and prevented sleep' not in p['assistant']+p['value']
+    old = original['dd_v23_train_2641_12_4']
+    corrected = effective['dd_v23_train_2641_12_4']
+    assert 'sand bath' in old['reply'] and 'sunbathe' in corrected['reply']
+    assert old['source'] == corrected['source'] and 'not a completed activity' in corrected['value']
+    changed = realize_pattern(effective['dd_review_turn_2641_12_substitution'],0)
+    assert 'warm and sunny' in changed['reply'] and 'warm sunny weather' in changed['value']
+    assert 'an amusing joke' in realize_pattern(effective['dd_review_turn_2731_1_substitution'],0)['reply']
+    assert 'an intuitive feeling' in realize_pattern(effective['dd_backfill_turn_2083_2_substitution'],0)['value']
+
+
+def test_lexical_verb_restriction_pass_accounts_for_all_fifty():
+    review = json.loads((ROOT / 'pending.json').read_text(encoding='utf8'))['sources'][0]['review']
+    f = review['substitution_restriction_followup']
+    report = f['passes']['train_1431_2731_lexical_verbs']
+    selected = set(report['dialogues_reviewed'])
+    retained = set(map(int, report['retained_restrictions']))
+    licensed = set(report['native_variant_dialogues'])
+    assert len(selected) == 50 and len(licensed) == report['new_rules'] == 24
+    assert len(retained) == 26 and not retained & licensed and retained | licensed == selected
+    assert set(report['revisited_dialogues']) == selected and not report['first_review_dialogues']
+    assert report['previous_remaining'] == 70 and report['remaining_dialogue_restrictions'] == 46
+    assert report['checks']['native_variants'] == 24
+    assert not report['checks']['overlength'] and report['checks']['max_tokens'] <= 768
+    assert not any(report['checks']['split_prompt_overlap'].values())
+    assert not report['adapter_only_rule_ids'] and report['native_blocked_choices_added'] == 0
+    assert f['native_limits']['blocked_template_choices'] == []
+    assert f['native_limits']['adapter_only_rule_ids'] == []
+    assert {x['dialogue'] for x in report['semantic_followup_required']} == {2496,2641,2731}
+    ps = [p for p in CATALOG['patterns'] if p['kind']=='interpretation'
+          and p['source']['split']=='train' and p['source']['dialogue'] in selected]
+    assert fingerprint(ps) == report['reviewed_patterns_sha256']
+    rules = [r for r in RULES if r['dialogue'] in licensed and r['split']=='train']
+    assert len(rules) == 24
+    assert {r['dialogue'] for r in rules if r.get('verb_choices')} == {1441,1546,1832,1921,2072,2197,2444}
+
+
+@pytest.mark.parametrize('dialogue,reply,meaning', [
+    (1441, "Don't fire.", 'not fire'),
+    (1546, "I've got to leave", 'must leave'),
+    (1832, 'if I sang?', 'hypothetical past form'),
+    (1921, 'got dismissed', 'being dismissed'),
+    (2072, 'Why are you crying?', 'why the listener is crying'),
+    (2197, 'snow', 'predict'),
+    (2444, "It's snowing.", 'current snow'),
+    (2502, 'marvellous', 'neither research employment nor a breakthrough is completed'),
+    (2642, 'unnecessary things', 'attributed generalization'),
+    (2646, 'their duties', 'no present cohabitation or illness'),
+    (2707, 'excellent', 'reports hearing'),
+    (2708, 'favorable side', 'accuses'),
+    (2723, 'tasty meals', 'attributed generalization'),
+])
+def test_lexical_verb_pass_keeps_contextual_meaning(dialogue, reply, meaning):
+    rows = [realize_pattern(p, 0) for p in PATTERNS
+            if p['substitution_rule']['id'] == f'dd_restriction_followup_{dialogue}']
+    assert any(reply in p['reply'] and meaning.lower() in p['value'].lower() for p in rows)
+
+
 def test_new_batch_keeps_originals_and_covers_every_turn():
     catalog = {p['id']: p for p in CATALOG['patterns']}
     source = Path(__file__).resolve().parents[1] / 'data/dailydialog/filtered/dailydialog-train.jsonl'
@@ -145,7 +255,10 @@ def test_weekend_and_noncompletion_survive_recombination():
 def test_expansion_preserves_source_catalog_and_detects_stale_patterns():
     before = deepcopy(CATALOG['patterns'])
     expanded = expand_patterns(before, RULES)
-    assert expanded[:len(before)] == CATALOG['patterns']
+    assert before == CATALOG['patterns']
+    from semantic_corpus.reviewed_substitutions import revise_pattern
+    revisions = {key:r for r in RULES for key in r.get('adapter_revisions',{})}
+    assert expanded[:len(before)] == [revise_pattern(p,revisions[p['id']]) if p['id'] in revisions else p for p in before]
     validate_fragment_patterns(expanded)
     bad = deepcopy(PATTERNS[0])
     bad['reply'] += ' Changed.'
@@ -234,15 +347,23 @@ def test_native_slots_keep_source_pins_and_block_unreviewed_qa(component):
             for slot, span in row['spans'].items():
                 assert row['text'][span[0]:span[1]] == row['bindings'][slot]
                 if row['slots'][slot]['kind'] == 'verb':
-                    assert row['bindings'][slot] == before['defaults'][slot]
+                    license = next((x['bindings'][slot] for x in rule.get('verb_choices', {}).get(template.template_id, [])
+                                    if x['choice'] == choice and slot in x['bindings']), None)
+                    assert row['bindings'][slot] == (license['after'] if license else before['defaults'][slot])
+                    metadata = deepcopy(before['slots'][slot])
+                    if license:
+                        assert fingerprint(metadata) == license['slot_sha256']
+                        metadata['lemma'] = license['lemma']
+                    assert row['slots'][slot] == metadata
             doc = Document('reviewed-variant', row['text'],
                            metadata={k: v for k, v in row.items() if k != 'text'})
             assert TemplateAnnotator(entities=EntityPool([])).annotate(doc).run is None
-            if row['bindings'] != before['defaults']:
+            if row['slots'] and row['bindings'] != before['defaults']:
                 with pytest.raises(ValueError, match='slot replacement'):
                     template.render(row['bindings'])
             else:
-                # A pinned literal variant is not an unrestricted source edit.
+                # Literal/opaque variants have no editable slot bindings.
+                # Passing {} to the source renderer still means its defaults.
                 assert template.render(row['bindings'])['text'] == before['usage_constraints']['text']
                 assert row['text'] != before['usage_constraints']['text']
         sampled = template.sample(recombine=True)
@@ -278,7 +399,9 @@ def test_backfill_preserves_uncertainty_offers_and_incomplete_meaning():
         assert all(t <= pattern['source']['turn'] for t in pattern['review']['evidence_turns'])
     # The earlier compact adaptation used a later reply to assert ignorance.
     assert 'does not know her condition' not in by_id['dd_1937_t13']['value']
-    assert not any(r['dialogue'] in {1912, 1921, 1961} for r in RULES)
+    assert {r['id'] for r in RULES if r['dialogue'] == 1921} == {'dd_restriction_followup_1921'}
+    assert next(r for r in RULES if r['dialogue'] == 1912)['choices'] == [{'long time': 'long while'}]
+    assert next(r for r in RULES if r['dialogue'] == 1961)['choices'] == [{'enemies': 'adversaries'}]
     geography = next(r for r in RULES if r['dialogue'] == 1959)
     assert geography['choices'] == [{'map': 'wall map'}]
 
@@ -307,7 +430,7 @@ def test_backfill_keeps_proposals_inferences_and_unanswered_confessions_distinct
     assert "Daniel's father" in realized['value']
     assert 'explicitly uncertain' in realized['value']
     for dialogue in (1968, 1971, 1986, 1993, 2003, 2008, 2020):
-        assert not any(r['dialogue'] == dialogue for r in RULES)
+        assert {r['id'] for r in RULES if r['dialogue'] == dialogue} == {f'dd_restriction_followup_{dialogue}'}
 
 
 def test_backfill_preserves_noncompletion_and_does_not_fill_from_future_turns():
@@ -335,7 +458,7 @@ def test_backfill_preserves_noncompletion_and_does_not_fill_from_future_turns():
     assert 'partner' in realized['reply'] and 'partner' in realized['value']
     assert 'was supposed to call last night but did not' in realized['value']
     for dialogue in (2035, 2047, 2052, 2072, 2074, 2083):
-        assert not any(r['dialogue'] == dialogue for r in RULES)
+        assert {r['id'] for r in RULES if r['dialogue'] == dialogue} == {f'dd_restriction_followup_{dialogue}'}
 
 
 def test_backfill_distinguishes_idioms_claims_and_promises_from_events():
@@ -369,7 +492,7 @@ def test_backfill_distinguishes_idioms_claims_and_promises_from_events():
     assert 'planes' in by_id['dd_backfill_turn_2117_2']['reply']
     assert 'specious' in by_id['dd_backfill_turn_2095_6']['reply']
     for dialogue in (2094, 2108, 2114, 2117, 2129, 2142):
-        assert not any(r['dialogue'] == dialogue for r in RULES)
+        assert {r['id'] for r in RULES if r['dialogue'] == dialogue} == {f'dd_restriction_followup_{dialogue}'}
 
 
 def test_backfill_retains_damaged_names_fragments_and_uncompleted_plans():
@@ -401,8 +524,8 @@ def test_backfill_retains_damaged_names_fragments_and_uncompleted_plans():
     changed = realize_pattern(subject, 0)
     assert 'History' in changed['reply'] and 'History' in changed['value']
     assert 'psychology' not in changed['value'].lower()
-    for d in (2178, 2179, 2182, 2193, 2197, 2199):
-        assert not any(r['dialogue'] == d for r in RULES)
+    for d in (2179, 2197):
+        assert {r['id'] for r in RULES if r['dialogue'] == d} == {f'dd_restriction_followup_{d}'}
 
 
 def test_legacy_adapter_links_require_reviewed_record_and_meaning():
@@ -1351,7 +1474,7 @@ def test_batch_2876_2935_covers_sources_candidates_and_lexical_evidence():
     assert sum(x['added_decisions'] for x in report['lexical'].values()) == 525
     licensed = {r['dialogue'] for r in RULES if r['split'] == 'train' and 2876 <= r['dialogue'] <= 2935}
     restricted = {r['dialogue'] for r in report['substitution_restrictions']}
-    assert len(licensed) == 29 and len(restricted) == 31
+    assert len(licensed) == 60 and len(restricted) == 0
     assert not licensed & restricted and licensed | restricted == set(range(2876, 2936))
     for change in report['source_corrections']:
         _, d, t = change['address'].split(':')
@@ -1464,7 +1587,7 @@ def test_batch_2936_2995_full_coverage_source_repairs_and_restrictions():
     assert sum(x['added_decisions'] for x in report['lexical'].values()) == 389
     licensed = {r['dialogue'] for r in RULES if r['split'] == 'train' and 2936 <= r['dialogue'] <= 2995}
     restricted = {r['dialogue'] for r in report['substitution_restrictions']}
-    assert len(licensed) == 32 and len(restricted) == 28
+    assert len(licensed) == 60 and len(restricted) == 0
     assert not licensed & restricted and licensed | restricted == set(range(2936, 2996))
     assert len(report['source_corrections']) == 51
     for change in report['source_corrections']:
@@ -1582,7 +1705,7 @@ def test_batch_2996_3055_full_coverage_and_preserved_uncertainty():
     assert sum(x['added_decisions'] for x in report['lexical'].values()) == 339
     licensed = {r['dialogue'] for r in RULES if r['split'] == 'train' and 2996 <= r['dialogue'] <= 3055}
     restricted = {r['dialogue'] for r in report['substitution_restrictions']}
-    assert len(licensed) == 30 and len(restricted) == 30
+    assert len(licensed) == 60 and not restricted
     assert not licensed & restricted and licensed | restricted == set(range(2996, 3056))
     assert len(report['source_corrections']) == 42
     for c in report['source_corrections']:
@@ -1696,7 +1819,7 @@ def test_batch_3056_3115_source_coverage_and_evidence_boundaries():
     assert sum(x['added_decisions'] for x in report['lexical'].values()) == 473
     licensed = {r['dialogue'] for r in RULES if r['split'] == 'train' and 3056 <= r['dialogue'] <= 3115}
     restricted = {r['dialogue'] for r in report['substitution_restrictions']}
-    assert len(licensed) == 41 and len(restricted) == 19
+    assert len(licensed) == 60 and not restricted
     assert not licensed & restricted and licensed | restricted == set(range(3056, 3116))
     assert len(report['source_corrections']) == 65
     for change in report['source_corrections']:
@@ -1820,7 +1943,7 @@ def test_batch_3116_3175_source_coverage_and_preserved_incomplete_replies():
     assert sum(x['added_decisions'] for x in report['lexical'].values()) == 372
     licensed = {r['dialogue'] for r in RULES if r['split'] == 'train' and 3116 <= r['dialogue'] <= 3175}
     restricted = {r['dialogue'] for r in report['substitution_restrictions']}
-    assert len(licensed) == 41 and len(restricted) == 19
+    assert len(licensed) == 60 and len(restricted) == 0
     assert not licensed & restricted and licensed | restricted == set(range(3116, 3176))
     assert len(report['source_corrections']) == 59
     for c in report['source_corrections']:
@@ -1961,7 +2084,7 @@ def test_batch_3176_3235_source_coverage_and_preserved_incomplete_replies():
     assert sum(x['added_decisions'] for x in report['lexical'].values()) == 378
     licensed = {r['dialogue'] for r in RULES if r['split'] == 'train' and 3176 <= r['dialogue'] <= 3235}
     restricted = {r['dialogue'] for r in report['substitution_restrictions']}
-    assert len(licensed) == 36 and len(restricted) == 24
+    assert len(licensed) == 60 and not restricted
     assert not licensed & restricted and licensed | restricted == set(range(3176, 3236))
     assert len(report['source_corrections']) == 54
     for c in report['source_corrections']:
@@ -2067,7 +2190,7 @@ def test_batch_3296_3355_covers_sources_candidates_and_lexical_entries():
     assert sum(x['added_decisions'] for x in report['lexical'].values()) == 467
     licensed = {r['dialogue'] for r in RULES if r['split'] == 'train' and 3296 <= r['dialogue'] <= 3355}
     restricted = {r['dialogue'] for r in report['substitution_restrictions']}
-    assert len(licensed) == 28 and len(restricted) == 32
+    assert len(licensed) == 60 and not restricted
     assert not licensed & restricted and licensed | restricted == set(range(3296, 3356))
     for c in report['source_corrections']:
         _, d, t = c['address'].split(':')
@@ -2179,7 +2302,7 @@ def test_batch_3236_3295_source_coverage_and_preserved_incomplete_replies():
     assert sum(x['added_decisions'] for x in report['lexical'].values()) == 362
     licensed = {r['dialogue'] for r in RULES if r['split'] == 'train' and 3236 <= r['dialogue'] <= 3295}
     restricted = {r['dialogue'] for r in report['substitution_restrictions']}
-    assert len(licensed) == 37 and len(restricted) == 23
+    assert len(licensed) == 60 and not restricted
     assert not licensed & restricted and licensed | restricted == set(range(3236, 3296))
     assert len(report['source_corrections']) == 45
     for c in report['source_corrections']:
@@ -2442,7 +2565,7 @@ def test_batch_3356_3415_covers_sources_candidates_and_lexical_entries():
     assert sum(x['added_decisions'] for x in report['lexical'].values()) == 363
     licensed = {r['dialogue'] for r in RULES if r['split'] == 'train' and 3356 <= r['dialogue'] <= 3415}
     restricted = {r['dialogue'] for r in report['substitution_restrictions']}
-    assert len(licensed) == 46 and len(restricted) == 14
+    assert len(licensed) == 60 and not restricted
     assert not licensed & restricted and licensed | restricted == set(range(3356, 3416))
     for c in report['source_corrections']:
         _, d, t = c['address'].split(':')
@@ -2456,13 +2579,13 @@ def test_cross_batch_restriction_followup_preserves_coverage_and_pins():
     review = pending['sources'][0]['review']
     followup = review['substitution_restriction_followup']
     assert followup['restrictions_considered'] == 654
-    assert followup['new_finite_rules'] == len(followup['decisions']) == 143
+    assert followup['new_finite_rules'] == len(followup['decisions']) == 654
     remaining = set(review['backfill_1406_2215']['substitution_review']['restricted_dialogues'])
     remaining.update(r['dialogue'] for b in review['batches'].values()
                      for r in b.get('substitution_restrictions', []))
     added = {d['dialogue'] for d in followup['decisions']}
-    assert len(remaining) == followup['remaining_dialogue_restrictions'] == 511
-    assert len(added) == 143 and not added & remaining
+    assert len(remaining) == followup['remaining_dialogue_restrictions'] == 0
+    assert len(added) == 654 and not added & remaining
     indexed = {r['id']: r for r in RULES}
     for decision in followup['decisions']:
         rule = indexed[decision['rule']]
@@ -2510,8 +2633,8 @@ def test_restriction_debt_keeps_unresolved_cases_visible():
     assert report['new_rules'] == 16
     assert set(map(int, report['retained_restrictions'])) == {2288, 2290, 2305, 2306, 2310}
     batch = review['batches']['train_2276_2335']
-    assert {r['dialogue'] for r in batch['substitution_restrictions']} == {2288, 2290, 2305, 2306, 2310}
-    assert batch['substitution_rules'] == 55
+    assert not batch['substitution_restrictions']
+    assert batch['substitution_rules'] == 60
     assert report['checks']['native_variants'] == 19
     assert report['native_blocked_choices_added'] == 0
     assert report['checks']['max_tokens'] <= 768
@@ -2564,8 +2687,8 @@ def test_restriction_followup_2336_2395_covers_the_whole_pending_group():
     assert report['new_rules'] == 22
     assert set(map(int, report['retained_restrictions'])) == {2350, 2365, 2383, 2393}
     batch = review['batches']['train_2336_2395']
-    assert batch['substitution_rules'] == 56
-    assert {r['dialogue'] for r in batch['substitution_restrictions']} == {2350, 2365, 2383, 2393}
+    assert batch['substitution_rules'] == 60
+    assert not batch['substitution_restrictions']
     assert report['checks']['native_variants'] == 28
     assert len(report['native_variant_dialogues']) == 22
     assert not report['adapter_only_rule_ids'] and report['native_blocked_choices_added'] == 0
@@ -2636,7 +2759,7 @@ def test_restriction_followup_2397_2588_accounts_for_all_fifty():
     selected = set(report['dialogues_reviewed'])
     retained = set(map(int, report['retained_restrictions']))
     rules = [r for r in RULES if r['id'].startswith('dd_restriction_followup_')
-             and r['dialogue'] in selected]
+             and r['dialogue'] in report['native_variant_dialogues']]
     licensed = {r['dialogue'] for r in rules}
     assert len(selected) == 50 and len(licensed) == report['new_rules'] == 34
     assert len(retained) == 16 and not retained & licensed
@@ -2650,7 +2773,8 @@ def test_restriction_followup_2397_2588_accounts_for_all_fifty():
     assert not report['checks']['overlength'] and not any(report['checks']['split_prompt_overlap'].values())
     remaining = {r['dialogue'] for b in review['batches'].values()
                  for r in b.get('substitution_restrictions', [])}
-    assert retained <= remaining and not licensed & remaining
+    later_licensed = {r['dialogue'] for r in RULES} & retained
+    assert retained - later_licensed <= remaining and not licensed & remaining
     patterns = [p for p in CATALOG['patterns'] if p['kind'] == 'interpretation'
                 and p['source']['split'] == 'train' and p['source']['dialogue'] in selected]
     assert fingerprint(patterns) == report['reviewed_patterns_sha256']
@@ -2724,3 +2848,1374 @@ def test_restriction_followup_2397_2588_keeps_unknowns_and_negation():
     assert 'The first thing' in anniversary['reply']
     assert 'second anniversary' in anniversary['value']
     assert 4 * 0.25 == 1
+
+
+def test_restriction_followup_2591_2708_accounts_for_all_fifty():
+    review = json.loads((ROOT / 'pending.json').read_text(encoding='utf8'))['sources'][0]['review']
+    report = review['substitution_restriction_followup']['passes']['train_2591_2708']
+    selected = set(report['dialogues_reviewed'])
+    retained = set(map(int, report['retained_restrictions']))
+    licensed = {r['dialogue'] for r in RULES if r['id'].startswith('dd_restriction_followup_')
+                and r['dialogue'] in report['native_variant_dialogues']}
+    assert len(selected) == 50 and len(licensed) == report['new_rules'] == 38
+    assert len(retained) == 12 and not retained & licensed
+    assert licensed | retained == selected
+    assert set(report['native_variant_dialogues']) == licensed
+    assert report['checks']['native_variants'] == 41
+    assert report['previous_remaining'] - report['remaining_dialogue_restrictions'] == 38
+    assert not report['adapter_only_rule_ids'] and not report['native_blocked_choices_added']
+    assert report['checks']['episodes'] == 1212 and report['checks']['extraction_rows'] == 3636
+    assert report['checks']['max_tokens'] <= 768
+    assert not report['checks']['overlength'] and not any(report['checks']['split_prompt_overlap'].values())
+    remaining = {r['dialogue'] for b in review['batches'].values()
+                 for r in b.get('substitution_restrictions', [])}
+    later_licensed = {r['dialogue'] for r in RULES if r['split'] == 'train'} & retained
+    assert retained - later_licensed <= remaining and not licensed & remaining
+    patterns = [p for p in CATALOG['patterns'] if p['kind'] == 'interpretation'
+                and p['source']['split'] == 'train' and p['source']['dialogue'] in selected]
+    assert fingerprint(patterns) == report['reviewed_patterns_sha256']
+    assert report['semantic_followup_required'][0]['dialogue'] == 2641
+    assert 2641 in retained
+
+
+@pytest.mark.parametrize('dialogue,turn,reply,value', [
+    (2591, 2, 'ten minutes', 'optimistically predicts'),
+    (2597, 1, 'barbecue', 'not a verified universal pattern'),
+    (2610, 3, 'classroom', 'not independently verified'),
+    (2615, 1, 'Osaka branch', 'Osaka branch'),
+    (2620, 5, 'three years ago', 'three years ago'),
+    (2622, 2, 'if our product launch goes well', 'no realized profit is established'),
+    (2623, 9, 'supervisor', 'arrival is not reported'),
+    (2625, 1, 'posted last week', 'no application is completed'),
+    (2627, 1, 'a week', 'weekly earnings'),
+    (2628, 1, 'harsh words', 'reaction is not confirmed'),
+    (2629, 4, 'almost every week', 'does not establish Olympic-level skill'),
+    (2630, 6, 'Mexican', 'Chinatown does not identify the city'),
+    (2631, 6, 'tasty food', 'no meal preparation is completed'),
+    (2633, 3, 'bid on the vase', 'winning, buying or paying is not reported'),
+    (2635, 1, 'Darling', 'destination is not yet stated'),
+    (2645, 1, 'Buster Keaton', 'Buster Keaton'),
+    (2649, 2, 'impressive piece', 'inferior to earlier ones'),
+    (2650, 1, 'regard for you', 'act is not yet identified'),
+    (2657, 8, 'next month', 'shared carpool arrangement'),
+    (2661, 2, 'older ones', 'older machines'),
+    (2663, 2, 'magazine', 'failing to find'),
+    (2664, 1, 'apartment', 'apartment has internet'),
+    (2669, 6, 'so thoughtful', 'thoughtfulness'),
+    (2673, 6, 'cousin', 'cousin there'),
+    (2674, 4, 'advertisements', 'not wholly rejected'),
+    (2679, 6, 'so thoughtful', 'thoughtfulness'),
+    (2681, 2, 'So am I.', 'neither has resigned'),
+    (2685, 3, 'breakfast', 'breakfast is not yet eaten'),
+    (2686, 1, 'last week', 'last week'),
+    (2688, 1, "last month's class", "last month's class"),
+    (2689, 1, 'exam score', 'possible exam-score error'),
+    (2690, 3, 'comedy film', 'comedy film'),
+    (2692, 1, 'lecturer', 'opinion of their lecturer'),
+    (2695, 7, 'restrooms', 'absence is a question, not established'),
+    (2696, 9, 'fourth grade', 'prompting recognition'),
+    (2698, 7, 'physician', 'no consultation has occurred'),
+    (2699, 3, 'next quarter', 'distinct timing'),
+    (2704, 3, 'year of the tiger', 'asks whether'),
+])
+def test_restriction_followup_2591_2708_preserves_scope(dialogue, turn, reply, value):
+    variant = _restriction_variant(dialogue, turn)
+    assert reply in variant['reply'] and value in variant['value']
+
+
+def test_restriction_followup_2591_2708_preserves_denial_identity_and_source_damage():
+    originals = {p['id']: p for p in CATALOG['patterns']}
+
+    def effective(dialogue, turn):
+        identity = f'dd_review_turn_{dialogue}_{turn}'
+        variant = next((p for p in PATTERNS if p['substitution_base_id'] == identity), None)
+        return realize_pattern(variant, 0) if variant else originals[identity]
+
+    assert 'no salary is supplied' in effective(2627, 2)['value']
+    assert '1996' in effective(2629, 4)['value']
+    assert 'pumpkin pie' in effective(2631, 6)['value']
+    assert 'likely sarcastic' in effective(2635, 8)['value']
+    assert 'liking the performance from disliking the story' in effective(2645, 4)['value']
+    assert 'Manakin Skywalker' in effective(2649, 13)['reply']
+    assert 'definite schedule' in effective(2649, 15)['value']
+    assert 'not a received gift' in effective(2650, 8)['value']
+    assert "next month's pickup has not happened" in effective(2657, 9)['value']
+    assert 'successful purchase is not confirmed' in effective(2661, 12)['value']
+    assert 'completed reservation is not reported' in effective(2663, 11)['value']
+    assert 'not reconstructed' in effective(2664, 8)['value']
+    assert 'not completed' in effective(2664, 10)['value']
+    for dialogue in (2669, 2679):
+        assert 'kind of help remains unspecified' in effective(dialogue, 8)['value']
+        assert 'thoughtful of help' not in effective(dialogue, 8)['value']
+    assert 'not identified as Colorado' in effective(2685, 5)['value']
+    assert 'expressing disagreement' in effective(2686, 9)['value']
+    assert 'not merely late' in effective(2688, 3)['value']
+    assert 'score was changed' in effective(2689, 12)['value']
+    assert "man's identity has not yet been established" in effective(2696, 7)['value']
+    assert 'fourth-grade friend' in effective(2696, 9)['value']
+    assert 'without relief' in effective(2698, 6)['value']
+    assert 'motive is speculation' in effective(2699, 4)['value']
+    assert 'no objective personality traits' in effective(2704, 5)['value']
+    assert 'monkey suit' in originals['dd_review_turn_2704_1']['reply']
+    assert 'tiger suit' in effective(2704, 1)['reply']
+
+
+def test_restriction_followup_2710_2841_accounts_for_all_fifty():
+    review = json.loads((ROOT / 'pending.json').read_text(encoding='utf8'))['sources'][0]['review']
+    report = review['substitution_restriction_followup']['passes']['train_2710_2841']
+    selected = set(report['dialogues_reviewed'])
+    retained = set(map(int, report['retained_restrictions']))
+    licensed = {r['dialogue'] for r in RULES if r['id'].startswith('dd_restriction_followup_')
+                and r['dialogue'] in report['native_variant_dialogues']}
+    assert len(selected) == 50 and len(licensed) == report['new_rules'] == 44
+    assert retained == {2719, 2723, 2731, 2786, 2806, 2838}
+    assert not retained & licensed and licensed | retained == selected
+    assert set(report['native_variant_dialogues']) == licensed
+    assert report['checks']['native_variants'] == 48
+    assert report['previous_remaining'] - report['remaining_dialogue_restrictions'] == 44
+    assert not report['adapter_only_rule_ids'] and not report['native_blocked_choices_added']
+    assert report['checks']['episodes'] == 1308 and report['checks']['extraction_rows'] == 3924
+    assert report['checks']['max_tokens'] <= 768
+    assert not report['checks']['overlength'] and not any(report['checks']['split_prompt_overlap'].values())
+    remaining = {r['dialogue'] for b in review['batches'].values()
+                 for r in b.get('substitution_restrictions', [])}
+    later_licensed = {r['dialogue'] for r in RULES if r['split'] == 'train'} & retained
+    assert retained - later_licensed <= remaining and not licensed & remaining
+    patterns = [p for p in CATALOG['patterns'] if p['kind'] == 'interpretation'
+                and p['source']['split'] == 'train' and p['source']['dialogue'] in selected]
+    assert fingerprint(patterns) == report['reviewed_patterns_sha256']
+    assert {r['dialogue'] for r in report['semantic_followup_required']} == {2719, 2734}
+
+
+@pytest.mark.parametrize('dialogue,turn,reply,value', [
+    (2710, 3, 'kind girl', 'subjective judgment'),
+    (2712, 3, 'publication', "publication's quizzes"),
+    (2713, 5, 'ten minutes', 'contest has not started'),
+    (2718, 1, 'literature teacher', 'reading is not yet completed'),
+    (2725, 11, 'boring place', 'asks to leave'),
+    (2734, 4, 'difficulty', 'comprehension difficulty'),
+    (2735, 4, 'three-year-old boy', 'three-year-old son'),
+    (2738, 2, 'banquet', 'events remain scheduled'),
+    (2740, 6, 'modest deposits', 'oil discovery or successful extraction is not established'),
+    (2741, 4, 'television', 'no specific viewing'),
+    (2745, 6, 'our daughter', 'not independently observed neglect'),
+    (2752, 2, 'My mother', "mother's business failure"),
+    (2756, 4, 'next month', 'name remains undecided'),
+    (2758, 1, 'your mother', 'asks whether'),
+    (2760, 8, 'elegant suit', 'new suggestion'),
+    (2761, 1, 'older brother', 'an older brother'),
+    (2766, 6, 'next week', 'no visit has happened'),
+    (2770, 5, 'this afternoon', 'heard directly from David'),
+    (2772, 3, 'last summer', 'causal assessment is attributed'),
+    (2774, 1, 'English-language newspaper', 'buying an English-language newspaper'),
+    (2777, 3, 'damp', 'moving is not completed'),
+    (2778, 2, 'values', 'distinguishes compassion'),
+    (2779, 11, 'pencil', 'not yet received or completed'),
+    (2782, 1, 'twenty seconds', 'claims a woman ran twenty seconds'),
+    (2784, 12, 'an outstanding job', 'no amount or specific organization'),
+    (2785, 4, 'mechanical engineering', 'asks for a country recommendation'),
+    (2791, 2, 'lovely country', 'praises its beauty'),
+    (2793, 1, 'keep silent', 'requests silence'),
+    (2798, 1, 'Next week', 'promises to take'),
+    (2801, 2, 'a few months ago', 'cleaner does not mean safe'),
+    (2805, 1, 'poor boy', 'a boy is overwhelmed'),
+    (2807, 1, 'impartial', 'this is an opinion'),
+    (2808, 3, 'physician', 'does not establish a second visit'),
+    (2809, 2, 'gentle breeze', 'gentle breeze'),
+    (2810, 1, 'this afternoon', 'asks whether'),
+    (2816, 2, 'complex', 'rhythms as complex'),
+    (2823, 1, 'last week', 'saw last week'),
+    (2826, 3, 'black electric guitar', 'black electric guitar'),
+    (2829, 2, "Lunch's on me", 'payment has not occurred'),
+    (2830, 1, '3 years', 'three years in the job'),
+    (2833, 1, 'tomorrow night', 'invites the listener'),
+    (2835, 1, 'awful', 'current boyfriend worse'),
+    (2837, 2, 'pleasant day', 'wishes them a pleasant day'),
+    (2841, 7, 'black shoes', 'not a universal rule or a completed clothing change'),
+])
+def test_restriction_followup_2710_2841_preserves_scope(dialogue, turn, reply, value):
+    variant = _restriction_variant(dialogue, turn)
+    assert reply in variant['reply'] and value in variant['value']
+
+
+def test_restriction_followup_2710_2841_preserves_references_and_uncertainty():
+    originals = {p['id']: p for p in CATALOG['patterns']}
+
+    def effective(dialogue, turn):
+        identity = f'dd_review_turn_{dialogue}_{turn}'
+        variant = next((p for p in PATTERNS if p['substitution_base_id'] == identity), None)
+        return realize_pattern(variant, 0) if variant else originals[identity]
+
+    assert 'not a legal rule' in effective(2718, 12)['value']
+    assert 'When you finish the book' in effective(2718, 18)['reply']
+    assert 'network' in effective(2725, 3)['reply']
+    assert 'Frida' in effective(2725, 12)['value']
+    assert 'purchasing is completed' in effective(2725, 12)['value']
+    assert 'actual disposal or departure is not reported' in effective(2725, 13)['value']
+    assert 'pop songs' in effective(2734, 4)['reply']
+    assert 'by herself' in effective(2745, 6)['reply']
+    assert 'their daughter' in effective(2745, 6)['value']
+    assert 'inheritance is not reported completed' in effective(2761, 3)['value']
+    assert effective(2766, 1)['reply'].endswith('the battle of')
+    assert 'no ski trip is inferred' in effective(2770, 7)['value']
+    assert 'no election or removal has occurred' in effective(2772, 5)['value']
+    assert 'not literally receiving twice as many banknotes' in effective(2774, 9)['value']
+    assert 'cause remains disputed' in effective(2779, 7)['value']
+    assert 'no pearls, pigs or actual throwing' in effective(2793, 2)['value']
+    assert 'he has' in effective(2805, 2)['reply']
+    assert 'not recast as a clear claim' in effective(2805, 3)['value']
+    assert 'not ten completed days of rest' in effective(2808, 9)['value']
+    assert 'Wen' in effective(2816, 5)['reply']
+    assert 'rejects that stereotype' in effective(2816, 5)['value']
+    assert 'successful gifts or autographs are not established' in effective(2823, 13)['value']
+    assert 'lending is not completed' in effective(2826, 8)['value']
+    assert 'not independently verified current exam specifications' in effective(2830, 6)['value']
+    assert 'no literal heat or cooking' in effective(2835, 2)['value']
+    assert 'transom' in effective(2841, 4)['reply']
+
+
+def test_restriction_followup_2842_2937_accounts_for_all_fifty():
+    review = json.loads((ROOT / 'pending.json').read_text(encoding='utf8'))['sources'][0]['review']
+    report = review['substitution_restriction_followup']['passes']['train_2842_2937']
+    selected = set(report['dialogues_reviewed'])
+    retained = set(map(int, report['retained_restrictions']))
+    licensed = {r['dialogue'] for r in RULES if r['id'].startswith('dd_restriction_followup_')
+                and r['dialogue'] in report['native_variant_dialogues']}
+    assert len(selected) == 50 and len(licensed) == report['new_rules'] == 49
+    assert retained == {2845} and not retained & licensed
+    assert licensed | retained == selected
+    assert set(report['native_variant_dialogues']) == licensed
+    assert report['checks']['native_variants'] == 55
+    assert report['previous_remaining'] - report['remaining_dialogue_restrictions'] == 49
+    assert not report['adapter_only_rule_ids'] and not report['native_blocked_choices_added']
+    assert report['checks']['episodes'] == 1284 and report['checks']['extraction_rows'] == 3852
+    assert report['checks']['max_tokens'] <= 768
+    assert not report['checks']['overlength'] and not any(report['checks']['split_prompt_overlap'].values())
+    remaining = {r['dialogue'] for b in review['batches'].values()
+                 for r in b.get('substitution_restrictions', [])}
+    later_licensed = {r['dialogue'] for r in RULES if r['split'] == 'train'} & retained
+    assert retained - later_licensed <= remaining and not licensed & remaining
+    patterns = [p for p in CATALOG['patterns'] if p['kind'] == 'interpretation'
+                and p['source']['split'] == 'train' and p['source']['dialogue'] in selected]
+    assert fingerprint(patterns) == report['reviewed_patterns_sha256']
+
+
+@pytest.mark.parametrize('dialogue,turn,reply,value', [
+    (2842, 1, 'unhappy', 'asks why'),
+    (2844, 4, 'another institution', 'first college year is not confirmed'),
+    (2848, 8, 'every evening', 'advice, not completed activity'),
+    (2850, 8, 'trash can', 'action underway'),
+    (2851, 1, 'next weekend', 'plans for next weekend'),
+    (2853, 9, 'body wash', 'not higher-end items'),
+    (2854, 1, 'last week', "last week's fashion awards"),
+    (2855, 2, 'positive phenomenon', 'reported growth'),
+    (2858, 5, 'foolish', 'no precise age'),
+    (2860, 1, 'tomorrow night', 'proposes a concert'),
+    (2861, 8, 'two weeks', 'not proof of registration'),
+    (2863, 4, 'large room', 'preferred summer retreats'),
+    (2866, 7, 'My aunt', "aunt's ownership is not the speaker's ownership"),
+    (2869, 3, 'my cousin', 'reports no weight loss'),
+    (2870, 6, 'tomorrow night', 'does not recognize'),
+    (2873, 5, 'delicious meat', 'does not identify the full meal'),
+    (2876, 1, 'boring', 'disliking their color'),
+    (2879, 1, 'show just shown', 'title of the show'),
+    (2880, 7, 'financial newspaper', 'not a verified current market rate'),
+    (2884, 2, 'afraid', 'not a physical action'),
+    (2885, 9, 'my darling', 'affectionately'),
+    (2891, 1, 'beautiful and gentle', 'both beautiful and gentle'),
+    (2895, 2, 'three weeks', 'approaching departure'),
+    (2897, 1, 'last week', "last week's live World Cup"),
+    (2898, 1, 'chocolate birthday cake', 'arrival of the chocolate birthday cake'),
+    (2900, 4, 'every three weeks', 'roughly every three weeks'),
+    (2904, 4, 'an outstanding benefits package', 'reported benefits'),
+    (2905, 4, 'natural catastrophes', 'broad assessment'),
+    (2907, 3, 'your support', 'offered support'),
+    (2910, 2, 'south', 'Neither country is named'),
+    (2911, 4, 'His mother', 'mother, not the son'),
+    (2912, 6, 'firm', 'acceptance and relocation are not established'),
+    (2913, 6, 'My uncle', "does not change the speaker's own amount"),
+    (2914, 1, 'impolite', 'rudeness toward their wife'),
+    (2915, 8, 'Mumbai', 'does not resolve the conflicting name spelling'),
+    (2916, 1, 'silent', 'asks the other person'),
+    (2917, 1, 'next Monday', 'absence is planned, not already taken'),
+    (2919, 2, 'supervisor', 'nicest they have had'),
+    (2920, 2, 'serious concern', 'serious concern'),
+    (2921, 3, 'attractive girls', 'speculates'),
+    (2922, 1, 'workshop', 'not a medical diagnosis'),
+    (2925, 3, 'three weeks ago', 'estimates'),
+    (2930, 8, 'meteorologist', 'can conflict with the perceived signs'),
+    (2932, 1, 'invitation letters', 'whether writing invitation letters is obligatory'),
+    (2933, 10, 'six years', 'about six years'),
+    (2934, 1, 'tomorrow night', 'no animal identity is asserted'),
+    (2935, 1, 'television', 'watching a television documentary'),
+    (2936, 12, 'train station', 'no encounter is reported completed'),
+    (2937, 9, 'pleasant', 'offers the opinion'),
+])
+def test_restriction_followup_2842_2937_preserves_scope(dialogue, turn, reply, value):
+    variant = _restriction_variant(dialogue, turn)
+    assert reply in variant['reply'] and value in variant['value']
+
+
+def test_restriction_followup_2842_2937_keeps_uncertainty_and_action_stages():
+    originals = {p['id']: p for p in CATALOG['patterns']}
+
+    def effective(dialogue, turn):
+        identity = f'dd_review_turn_{dialogue}_{turn}'
+        variant = next((p for p in PATTERNS if p['substitution_base_id'] == identity), None)
+        return realize_pattern(variant, 0) if variant else originals[identity]
+
+    for dialogue, turn, phrase in [
+        (2842, 8, 'completed move or divorce is not established'),
+        (2844, 12, "bachelor's degree is not completed"),
+        (2848, 9, 'no death, diagnosis or concrete self-harm plan'),
+        (2850, 9, 'recycling is not yet completed'),
+        (2851, 2, 'does not establish they will do nothing all next weekend'),
+        (2853, 6, 'exact compared categories are not reconstructed'),
+        (2860, 9, 'no identity or reason for departure is invented'),
+        (2861, 4, 'signing and enrollment are not yet confirmed'),
+        (2869, 9, 'not achieved loss or a safe recommended rate'),
+        (2876, 4, 'final shoe color remains unspecified'),
+        (2879, 4, 'denies suspense'),
+        (2880, 12, 'erroneous claim about 1'),
+        (2880, 13, 'does not make 1 prime'),
+        (2885, 5, 'declines the boat trip'),
+        (2891, 2, 'does not identify which'),
+        (2891, 4, 'does not resolve which'),
+        (2895, 13, 'flight leaves in two hours'),
+        (2898, 5, 'content and fulfillment are unknown'),
+        (2900, 7, 'damaged final phrase'),
+        (2904, 8, 'offer is conditional, not already received'),
+        (2905, 10, 'damaged double-negative'),
+        (2910, 5, 'no discovery is not proof of no coal'),
+        (2912, 8, 'has not accepted the job'),
+        (2913, 8, "uncle's death"),
+        (2913, 8, 'not completed cessation'),
+        (2915, 6, 'N-A-N-J-U, conflicting with Nandu'),
+        (2916, 2, 'silence after the apology is not separately established'),
+        (2917, 6, 'conditional on missing the class'),
+        (2919, 5, 'no promotion is established'),
+        (2921, 4, 'without establishing it as the sole cause'),
+        (2922, 3, 'resignation has not occurred'),
+        (2925, 1, 'do not support definite measurements'),
+        (2932, 2, 'advice is not a requirement'),
+        (2932, 3, 'no letters are written yet'),
+        (2933, 12, 'neither misconduct nor divorce is established'),
+        (2935, 9, 'nor completed ride is established'),
+        (2936, 15, 'no approach, invitation or acceptance is established'),
+    ]:
+        assert phrase in effective(dialogue, turn)['value']
+    assert 'working with her' in effective(2866, 7)['reply']
+    assert 'twenty pounds in four weeks' in effective(2869, 9)['reply']
+    assert 'Just after 2 am' in effective(2912, 2)['reply']
+    assert 'seven years' in effective(2933, 9)['reply']
+
+
+def test_restriction_followup_2942_3045_accounts_for_all_fifty():
+    review = json.loads((ROOT / 'pending.json').read_text(encoding='utf8'))['sources'][0]['review']
+    report = review['substitution_restriction_followup']['passes']['train_2942_3045']
+    selected = set(report['dialogues_reviewed'])
+    retained = set(map(int, report['retained_restrictions']))
+    licensed = {r['dialogue'] for r in RULES if r['id'].startswith('dd_restriction_followup_') and r['dialogue'] in report['native_variant_dialogues']}
+    assert len(selected) == 50 and len(licensed) == report['new_rules'] == 47
+    assert retained == {3023, 3027, 3032} and not retained & licensed
+    assert licensed | retained == selected
+    assert set(report['native_variant_dialogues']) == licensed
+    assert report['checks']['native_variants'] == 55
+    assert report['previous_remaining'] - report['remaining_dialogue_restrictions'] == 47
+    assert not report['adapter_only_rule_ids'] and not report['native_blocked_choices_added']
+    assert report['checks']['episodes'] == 948 and report['checks']['extraction_rows'] == 2844
+    assert report['checks']['max_tokens'] <= 768
+    assert not report['checks']['overlength'] and not any(report['checks']['split_prompt_overlap'].values())
+    remaining = {r['dialogue'] for b in review['batches'].values() for r in b.get('substitution_restrictions', [])}
+    later_licensed = {r['dialogue'] for r in RULES if r['split'] == 'train'} & retained
+    assert retained - later_licensed <= remaining and not licensed & remaining
+    patterns = [p for p in CATALOG['patterns'] if p['kind'] == 'interpretation'
+                and p['source']['split'] == 'train' and p['source']['dialogue'] in selected]
+    assert fingerprint(patterns) == report['reviewed_patterns_sha256']
+
+
+@pytest.mark.parametrize('dialogue,turn,reply,value', [
+    (2942, 3, 'tomorrow night', 'unexplained venue term'),
+    (2944, 1, 'awful', 'not yet specified'),
+    (2950, 2, 'my essay', 'an essay tonight'),
+    (2951, 9, 'pleasant scent', 'asks whether'),
+    (2952, 6, 'a receipt', 'asks for a receipt'),
+    (2954, 4, 'difficult to say', 'not that there is definite majority support'),
+    (2955, 1, 'uncle', "uncle has been"),
+    (2956, 4, 'bookshop', 'missing schedule is not thereby supplied'),
+    (2959, 1, 'lecturer', 'wishes the requirement were absent'),
+    (2961, 2, 'competent', 'both characterizations remain attributed'),
+    (2966, 2, 'brother', 'move is not completed'),
+    (2967, 3, 'valuable chance', 'predicted, not established'),
+    (2968, 3, 'workplace', 'a workplace desk'),
+    (2972, 2, 'lodging', 'rather than reporting a booking'),
+    (2973, 1, 'gate', 'opening it is not explicitly completed'),
+    (2975, 1, 'two hours', "speaker's payment is complete"),
+    (2976, 5, 'apartment', "other's home is on their route"),
+    (2978, 1, 'authorities', 'not a verified current event'),
+    (2979, 1, 'met him', 'unnamed man'),
+    (2983, 6, 'Spanish', 'not full fluency'),
+    (2984, 10, 'television', 'viewing has not happened yet'),
+    (2986, 4, 'plot', 'does not mean both are disliked'),
+    (2988, 7, 'My brother', 'receipt is complete but attendance is not'),
+    (2990, 1, 'her advice', 'exact relationship is not yet stated'),
+    (2992, 8, 'moving', 'calls it moving'),
+    (2994, 17, 'kind invitation', 'acceptance remains tentative'),
+    (2997, 7, 'thankful', 'reiterates gratitude'),
+    (2998, 2, 'silly', 'feel like acting silly'),
+    (3000, 10, 'My father', "father's insistence but no longer taking them"),
+    (3005, 1, 'competitor', 'no present result is specified'),
+    (3008, 1, 'CD', 'implicitly asks for lower volume'),
+    (3009, 8, 'workout clothes', 'asks for time to gather'),
+    (3010, 1, 'supervisor', 'angry at the listener'),
+    (3019, 3, 'My parents are', 'parents expect them home soon'),
+    (3021, 1, 'warm', 'complains that it is very warm'),
+    (3022, 1, 'beautiful day', 'initially judges'),
+    (3024, 10, 'supervisor', 'leave has not been granted'),
+    (3028, 2, 'classmate', 'explaining the first meeting'),
+    (3029, 3, 'seminar', 'asks when'),
+    (3033, 5, 'reviewer', 'asks what the reviewer said'),
+    (3036, 5, 'colleague', 'offers a future visit'),
+    (3038, 12, 'volume', 'distinct pictured structures'),
+    (3039, 3, 'supervisor', 'no replacement or refund has occurred'),
+    (3040, 5, 'knowledgeable', 'praises the explanation'),
+    (3041, 7, 'comfortable shoes', 'seeks agreement to return'),
+    (3043, 5, 'beautiful', 'praises the garden'),
+    (3045, 4, 'student ID card', 'no checkout has occurred'),
+])
+def test_restriction_followup_2942_3045_preserves_scope(dialogue, turn, reply, value):
+    variant = _restriction_variant(dialogue, turn)
+    assert reply in variant['reply'] and value in variant['value']
+
+
+def test_restriction_followup_2942_3045_keeps_denials_revisions_and_limits():
+    originals = {p['id']: p for p in CATALOG['patterns']}
+
+    def effective(dialogue, turn):
+        identity = f'dd_review_turn_{dialogue}_{turn}'
+        variant = next((p for p in PATTERNS if p['substitution_base_id'] == identity), None)
+        return realize_pattern(variant, 0) if variant else originals[identity]
+
+    for dialogue, turn, phrase in [
+        (2942, 8, 'six too early and proposes seven'),
+        (2942, 9, 'attendance is still planned, not completed'),
+        (2950, 4, 'not permission for this evening'),
+        (2951, 10, 'tentatively identifies plum blossoms'),
+        (2952, 3, 'alcohol content and intoxication are not specified'),
+        (2952, 8, 'not a validated legal procedure or proof of guilt'),
+        (2955, 2, 'not resolved by this reply alone'),
+        (2955, 4, 'no dismissal or job loss'),
+        (2956, 8, 'no sale or payment occurs'),
+        (2966, 4, 'participation is not confirmed'),
+        (2967, 2, "not entirely the speaker's fault"),
+        (2968, 7, 'without success'),
+        (2973, 4, 'without specifying a completed task'),
+        (2975, 2, 'has not paid'),
+        (2976, 6, 'ride and arrival are not completed'),
+        (2978, 3, 'suspicion is not a conviction'),
+        (2979, 2, 'not a denial'),
+        (2983, 4, 'England as a child'),
+        (2988, 12, 'purchase and entry are not established'),
+        (2992, 12, 'no award or eligibility is established'),
+        (2994, 7, 'unfinished'),
+        (2997, 1, 'identity or family relationship is unspecified'),
+        (2998, 4, 'tentatively attributes'),
+        (3000, 8, "ends at 'try'"),
+        (3005, 2, 'figurative'),
+        (3008, 4, 'intention is not an actual prior request'),
+        (3009, 20, 'no exercise or purchase is completed'),
+        (3010, 2, "does not request a person's identity"),
+        (3021, 2, 'not a literal request for repetition'),
+        (3022, 3, 'onset of light rain'),
+        (3024, 13, 'no gifts were brought'),
+        (3028, 4, 'not a marriage claim'),
+        (3029, 2, '7:12; morning or evening is unspecified'),
+        (3033, 6, 'did not call it bad'),
+        (3036, 6, 'no visit has occurred'),
+        (3038, 13, 'missing components'),
+        (3040, 3, 'no collision is said to have happened'),
+        (3041, 8, 'refuses to return'),
+        (3043, 7, 'individual plants are unspecified'),
+    ]:
+        assert phrase in effective(dialogue, turn)['value']
+    assert 'nine' not in effective(2942, 8)['value']
+    assert 'a receipt' in effective(2952, 6)['reply']
+    assert 'an receipt' not in effective(2952, 6)['reply']
+
+
+def test_restriction_followup_3046_3191_accounts_for_all_fifty():
+    review = json.loads((ROOT / 'pending.json').read_text(encoding='utf8'))['sources'][0]['review']
+    report = review['substitution_restriction_followup']['passes']['train_3046_3191']
+    selected = set(report['dialogues_reviewed'])
+    retained = set(map(int, report['retained_restrictions']))
+    licensed = {r['dialogue'] for r in RULES if r['id'].startswith('dd_restriction_followup_') and r['dialogue'] in report['native_variant_dialogues']}
+    assert len(selected) == 50 and len(licensed) == report['new_rules'] == 46
+    assert retained == {3052, 3066, 3076, 3179} and not retained & licensed
+    assert licensed | retained == selected
+    assert set(report['native_variant_dialogues']) == licensed
+    assert report['checks']['native_variants'] == 55
+    assert report['previous_remaining'] - report['remaining_dialogue_restrictions'] == 46
+    assert not report['adapter_only_rule_ids'] and not report['native_blocked_choices_added']
+    assert report['checks']['episodes'] == 1332 and report['checks']['extraction_rows'] == 3996
+    assert report['checks']['max_tokens'] <= 768
+    assert not report['checks']['overlength'] and not any(report['checks']['split_prompt_overlap'].values())
+    remaining = {r['dialogue'] for b in review['batches'].values() for r in b.get('substitution_restrictions', [])}
+    later_licensed = {r['dialogue'] for r in RULES if r['split'] == 'train'} & retained
+    assert retained - later_licensed <= remaining and not licensed & remaining
+    patterns = [p for p in CATALOG['patterns'] if p['kind'] == 'interpretation'
+                and p['source']['split'] == 'train' and p['source']['dialogue'] in selected]
+    assert fingerprint(patterns) == report['reviewed_patterns_sha256']
+
+
+@pytest.mark.parametrize('dialogue,turn,reply,value', [
+    (3046, 2, 'two sons', 'two sons and a grandson'),
+    (3049, 1, 'Song Dynasty', 'historian as famous'),
+    (3053, 4, 'notable Don', 'not independently verified'),
+    (3054, 6, 'a bar', 'does not by itself prove a romantic affair'),
+    (3055, 7, 'photography studio', 'asks whether'),
+    (3058, 7, 'to three inches', 'remaining length'),
+    (3059, 1, 'theater', 'choice between'),
+    (3062, 2, 'informative', 'an informative program about Islam'),
+    (3063, 10, 'two years', 'stay is not completed'),
+    (3067, 1, 'seven days', 'anticipates'),
+    (3070, 18, 'coffee waiting', 'promises'),
+    (3071, 6, 'rigorous rules', 'fortunate people'),
+    (3072, 1, 'literature teacher', 'being assigned Pride and Prejudice'),
+    (3075, 1, 'Mom', 'their mother'),
+    (3089, 4, 'educational', 'educational and inspiring'),
+    (3102, 6, 'RCC', 'studying at RCC'),
+    (3103, 3, 'the position', 'no hiring decision is known'),
+    (3105, 1, 'apartment', 'responsibility is not proven'),
+    (3111, 7, 'my father', 'repeatedly gives the same advice'),
+    (3113, 7, 'cigarette pack', 'suggests warnings'),
+    (3114, 1, 'birthday gift', 'presents a birthday gift'),
+    (3115, 9, 'my wife', 'no invitation or visit has happened'),
+    (3117, 4, 'my skills', 'job prevents'),
+    (3118, 1, 'beach', 'no trip has happened'),
+    (3120, 1, 'a film', 'no attendance is established'),
+    (3121, 3, 'jackets', 'rather than jackets or shoes'),
+    (3123, 1, 'hallway', 'pacing back and forth'),
+    (3127, 1, 'holiday', 'Wishes'),
+    (3128, 4, 'rainy', 'hope that rainy weather will not return'),
+    (3130, 2, 'manager', 'just losing the job'),
+    (3144, 1, 'last Friday', "last Friday's workshop"),
+    (3145, 1, 'tutor', 'unnamed male person'),
+    (3147, 1, 'juice', 'Offers more juice'),
+    (3148, 1, 'inconvenience', 'Apologizes'),
+    (3152, 8, 'shopping mall', 'not independently verified'),
+    (3153, 1, 'Alex', 'Greets Alex'),
+    (3159, 5, 'chicken dinner', 'ownership of the brother reference uncertain'),
+    (3166, 5, 'flatmate', 'attendance is not explicitly stated'),
+    (3168, 4, 'yard', 'desired property'),
+    (3169, 7, 'magazine', 'no named borrower or theft is established'),
+    (3172, 1, 'my exam score', 'an exam score believed to be wrong'),
+    (3180, 3, 'checkers', 'expanding internet use'),
+    (3181, 3, 'university graduate', "speaker's account"),
+    (3189, 2, 'with her', 'unnamed female person'),
+    (3190, 3, '60 %', 'sixty-percent reduction'),
+    (3191, 6, 'dull', 'reiterates dissatisfaction'),
+])
+def test_restriction_followup_3046_3191_preserves_scope(dialogue, turn, reply, value):
+    variant = _restriction_variant(dialogue, turn)
+    assert reply in variant['reply'] and value in variant['value']
+
+
+def test_restriction_followup_3046_3191_preserves_context_and_noncompletion():
+    originals = {p['id']: p for p in CATALOG['patterns']}
+
+    def effective(dialogue, turn):
+        identity = f'dd_review_turn_{dialogue}_{turn}'
+        variant = next((p for p in PATTERNS if p['substitution_base_id'] == identity), None)
+        return realize_pattern(variant, 0) if variant else originals[identity]
+
+    for dialogue, turn, phrase in [
+        (3046, 7, 'consequences are hypothetical'),
+        (3049, 2, 'not a seasoning location'),
+        (3053, 6, 'no guarantee of safety or completed meal'),
+        (3054, 8, 'confrontation did not occur'),
+        (3054, 11, 'her regret is not confirmed'),
+        (3055, 8, 'simple but functional studio'),
+        (3058, 12, 'haircut has not been completed'),
+        (3062, 16, 'not a validated medical explanation'),
+        (3063, 4, 'return to teaching is conditional'),
+        (3067, 8, 'spirits are not asserted as real'),
+        (3070, 11, 'neither action is completed'),
+        (3070, 17, 'delay or disappearance has not happened'),
+        (3071, 8, 'not independently verified current policy'),
+        (3072, 12, 'does not report a real death'),
+        (3072, 18, 'both activities remain future'),
+        (3075, 2, 'not falling animals'),
+        (3075, 5, 'actual reported change'),
+        (3089, 6, 'not a verified publication schedule'),
+        (3102, 12, 'RCC; no transfer is planned now'),
+        (3105, 4, 'does not establish a murder'),
+        (3111, 11, 'not a completed cessation'),
+        (3111, 13, 'do not establish sustained abstinence'),
+        (3113, 8, 'implementation is not established'),
+        (3114, 2, 'thanks the speaker for attending'),
+        (3115, 4, 'no award has been won'),
+        (3115, 8, 'tragic outcome is not confirmed'),
+        (3117, 2, 'no resignation has occurred'),
+        (3118, 2, 'not an actual death'),
+        (3120, 5, "does not know the film's subject"),
+        (3121, 12, 'no particular jurisdiction or rate'),
+        (3123, 4, 'worry cannot be helped'),
+        (3127, 2, 'Reciprocates the holiday wish'),
+        (3128, 3, 'not a confirmed change'),
+        (3130, 4, 'tentatively attributes'),
+        (3144, 4, 'both personal and personnel wording'),
+        (3144, 6, 'implementation has not occurred'),
+        (3145, 2, 'exact task of summing up is unspecified'),
+        (3147, 3, 'no stopping amount or completed pour'),
+        (3152, 6, 'no website is named yet'),
+        (3153, 4, 'missing complement is not invented'),
+        (3153, 6, 'supplies no additional specific instruction'),
+        (3153, 9, 'no shooting or arrival is completed'),
+        (3159, 5, 'no guest arrival or dinner is completed'),
+        (3166, 4, 'attendance is not established'),
+        (3168, 2, 'completed purchase is not established'),
+        (3169, 9, 'acquisition is not completed'),
+        (3169, 11, 'completion of the reservation is not explicitly reported'),
+        (3172, 10, 'no corrected score is established'),
+        (3180, 5, 'not completed purchases'),
+        (3189, 3, 'no retaliation occurs'),
+        (3189, 4, 'declines that offer'),
+        (3190, 3, 'not independently verified statistics'),
+        (3191, 1, 'actual universal contempt is not established'),
+        (3191, 4, 'no specific self-harm plan or act'),
+    ]:
+        assert phrase in effective(dialogue, turn)['value']
+    parent = effective(3111, 7)
+    assert "my father. That's what he keeps saying" in parent['reply']
+    assert 'she' not in parent['reply'].split()
+    assert 'three inches' in effective(3058, 7)['reply']
+    assert 'cut it to' in effective(3058, 7)['reply']
+    assert 'cut it off' not in effective(3058, 7)['reply']
+    assert effective(3120, 3)['reply'] == 'Gone with the Wind.'
+    assert effective(3153, 4)['reply'].endswith('improve you')
+    assert effective(3153, 6)['reply'].endswith('in order to be')
+    assert 'a exam' not in effective(3172, 1)['value']
+
+
+def test_restriction_followup_3193_3313_accounts_for_all_fifty():
+    review = json.loads((ROOT / 'pending.json').read_text(encoding='utf8'))['sources'][0]['review']
+    report = review['substitution_restriction_followup']['passes']['train_3193_3313']
+    selected = set(report['dialogues_reviewed'])
+    retained = set(map(int, report['retained_restrictions']))
+    licensed = {r['dialogue'] for r in RULES if r['id'].startswith('dd_restriction_followup_') and r['dialogue'] in report['native_variant_dialogues']}
+    assert len(selected) == 50 and len(licensed) == report['new_rules'] == 46
+    assert retained == {3193, 3207, 3218, 3245} and not retained & licensed
+    assert licensed | retained == selected
+    assert set(report['native_variant_dialogues']) == licensed
+    assert report['checks']['native_variants'] == 50
+    assert report['previous_remaining'] - report['remaining_dialogue_restrictions'] == 46
+    assert not report['adapter_only_rule_ids'] and not report['native_blocked_choices_added']
+    assert report['checks']['episodes'] == 876 and report['checks']['extraction_rows'] == 2628
+    assert report['checks']['max_tokens'] <= 768
+    assert not report['checks']['overlength'] and not any(report['checks']['split_prompt_overlap'].values())
+    remaining = {r['dialogue'] for b in review['batches'].values() for r in b.get('substitution_restrictions', [])}
+    later_licensed = {r['dialogue'] for r in RULES if r['split'] == 'train'} & retained
+    assert retained - later_licensed <= remaining and not licensed & remaining
+    patterns = [p for p in CATALOG['patterns'] if p['kind'] == 'interpretation'
+                and p['source']['split'] == 'train' and p['source']['dialogue'] in selected]
+    assert fingerprint(patterns) == report['reviewed_patterns_sha256']
+
+
+@pytest.mark.parametrize('dialogue,turn,reply,value', [
+    (3194, 5, 'blankets and food', 'no donation has occurred'),
+    (3201, 1, "9 o'clock", 'nine in the morning to five in the afternoon'),
+    (3204, 4, 'oatmeal', 'sometimes cooks an English breakfast'),
+    (3206, 9, 'a cafe', 'Denies a crash'),
+    (3209, 6, 'skilled wing-backs', 'unusual names are not silently repaired'),
+    (3211, 4, 'ancient Japanese buildings', 'Reports studying'),
+    (3212, 1, 'a recital', 'Invites'),
+    (3216, 6, 'impressive', 'impressive but crowded'),
+    (3220, 3, 'bronze Buddha', 'no purchase or verified authenticity'),
+    (3222, 1, 'final exam', 'Reports failing'),
+    (3227, 1, 'overwhelmed', 'unsure how to finish'),
+    (3229, 3, 'delicious', 'offers the listener a taste'),
+    (3231, 3, 'town', 'town noise is intolerable'),
+    (3232, 1, 'best actress', 'expected to win the Best Actress Oscar'),
+    (3234, 3, 'lip gloss', 'application is not completed'),
+    (3236, 9, 'canteen', 'without naming food'),
+    (3237, 7, 'airplane', 'takeoff has not occurred'),
+    (3239, 1, 'small bonus', 'bonus is not established'),
+    (3249, 3, '85 degrees Fahrenheit', 'forecast of eighty-five degrees Fahrenheit'),
+    (3251, 9, 'staff', 'no emergency has happened'),
+    (3255, 5, 'workplace tomorrow', 'Names the employer'),
+    (3256, 2, 'one-all draw', 'neither team won'),
+    (3261, 1, 'chair', 'occupied or reserved'),
+    (3262, 1, 'movie theater tonight', 'Suggests'),
+    (3265, 7, 'only three inches long', 'not a specified number of inches to remove'),
+    (3268, 6, 'newspapers', 'standing orders for newspaper subscriptions'),
+    (3269, 6, 'Toss a die', 'no toss or choice is completed'),
+    (3271, 5, 'dull', 'Rejects the museum suggestion'),
+    (3273, 3, 'another position', 'has considered'),
+    (3275, 3, 'College graduates', 'perceives increasing'),
+    (3279, 1, 'dull', 'expresses boredom'),
+    (3282, 1, 'volleyball team', 'accepting that position or playing has not yet occurred'),
+    (3283, 2, 'severe headache', 'apparent pain'),
+    (3284, 3, 'intercom', 'no hot water'),
+    (3285, 10, 'motorcycle', 'attributed country-level claims'),
+    (3289, 1, 'customers', 'delivery has not happened'),
+    (3294, 4, 'she is the sole breadwinner', 'father as a househusband'),
+    (3298, 4, 'motel', 'not completed travel'),
+    (3302, 2, 'awful weather', 'pleasant current weather'),
+    (3303, 2, 'scared of dogs', 'Denies keeping pets'),
+    (3304, 11, 'life story', 'no writing is completed'),
+    (3305, 4, 'woodland', 'formerly living'),
+    (3309, 6, 'photography studio', 'Denies having a darkroom'),
+    (3311, 3, 'study art', 'intended art studies'),
+    (3312, 5, 'wise mother', "mother's judgment"),
+    (3313, 6, 'laptop', 'personal pace'),
+])
+def test_restriction_followup_3193_3313_preserves_scope(dialogue, turn, reply, value):
+    variant = _restriction_variant(dialogue, turn)
+    assert reply in variant['reply'] and value in variant['value']
+
+
+def test_restriction_followup_3193_3313_preserves_linked_meanings():
+    originals = {p['id']: p for p in CATALOG['patterns']}
+
+    def effective(dialogue, turn):
+        identity = f'dd_review_turn_{dialogue}_{turn}'
+        variant = next((p for p in PATTERNS if p['substitution_base_id'] == identity), None)
+        return realize_pattern(variant, 0) if variant else originals[identity]
+
+    for dialogue, turn, phrase in [
+        (3194, 3, 'attributed to the news report'),
+        (3201, 3, 'five-and-a-half-day week'),
+        (3201, 9, 'completed registration are not supplied'),
+        (3204, 2, 'precise seasonal difference'),
+        (3204, 6, 'no travel duration is supplied'),
+        (3206, 11, 'hope was not fulfilled'),
+        (3209, 7, 'uncertain spellings'),
+        (3212, 2, 'recital attendance has not occurred'),
+        (3216, 4, 'Forbidden City; no visit is completed'),
+        (3220, 6, 'neither purchase nor actual fraud'),
+        (3222, 2, 'driving me up the wall is figurative'),
+        (3227, 2, 'not a literal boat location'),
+        (3229, 6, 'not reliably recoverable'),
+        (3231, 9, 'distinct from the vacation ending the following day'),
+        (3232, 2, 'indifferent to the result'),
+        (3234, 5, 'already obtaining'),
+        (3234, 6, 'stage cue'),
+        (3234, 8, 'without identifying the gift'),
+        (3236, 5, '12:30'),
+        (3236, 7, 'one to two'),
+        (3236, 10, 'no unmentioned time jump'),
+        (3237, 3, 'only if time permits'),
+        (3237, 8, 'arrival and the call remain future'),
+        (3239, 2, 'definite cancellation is not reported'),
+        (3249, 6, 'fifty degrees Fahrenheit'),
+        (3251, 6, 'no spasm is occurring'),
+        (3251, 10, 'no rescue is completed'),
+        (3255, 3, 'guilt is not established'),
+        (3255, 6, 'finding them is not confirmed'),
+        (3255, 8, 'not independently verified regulation'),
+        (3256, 4, 'player or a team is not clear'),
+        (3261, 2, 'sitting is not explicitly completed'),
+        (3262, 3, 'title is not supplied'),
+        (3262, 6, 'neither arrival nor call has happened'),
+        (3265, 10, 'if the customer truly wants'),
+        (3265, 12, 'not yet reported as completed'),
+        (3268, 10, 'Denies having that kind of deposit account'),
+        (3268, 11, 'preference, not a guarantee'),
+        (3269, 2, 'none is reported as undertaken'),
+        (3271, 7, 'no visit has occurred'),
+        (3273, 1, 'overtime pay or work'),
+        (3273, 4, 'no resignation, application or new position'),
+        (3275, 5, 'Declines quitting for now'),
+        (3279, 3, 'trailing objection is not completed'),
+        (3282, 2, 'figurative, not a food event'),
+        (3283, 4, 'measured fever is not established'),
+        (3283, 7, 'not a confirmed diagnosis'),
+        (3284, 4, 'does not establish a completed move'),
+        (3285, 2, 'country is unnamed'),
+        (3289, 6, 'no rehearsal or successful delivery'),
+        (3294, 2, 'three family members'),
+        (3298, 12, 'not a verified current schedule'),
+        (3302, 4, 'departure is not explicitly completed'),
+        (3303, 4, 'dogs dirty; this is a personal belief'),
+        (3304, 6, 'ends at it and is not completed'),
+        (3304, 10, 'no missing event type is supplied'),
+        (3305, 5, 'extinction is not established'),
+        (3309, 8, 'damaged more phrase'),
+        (3311, 4, 'unfinished'),
+        (3311, 7, 'visits are not completed'),
+        (3312, 4, 'idioms, not literal pouring'),
+        (3313, 2, 'Reports quitting the old job'),
+        (3313, 12, 'exercise has not resumed'),
+    ]:
+        assert phrase in effective(dialogue, turn)['value']
+    family = effective(3294, 4)
+    assert family['reply'] == 'My mother supports the family, and she is the sole breadwinner. My father is a househusband.'
+    assert 'mother as sole income earner' in family['value']
+    assert 'dogs, cats?' in effective(3303, 1)['reply']
+    assert 'dogs or cats' in effective(3303, 1)['value']
+    assert effective(3261, 2)['reply'] == 'No. Have a seat.'
+    diagnostic = next(p for p in PATTERNS if p['substitution_base_id'] == 'dd_diagnostic_train_3234_4_1')
+    assert realize_pattern(diagnostic, 0)['value'] == 'reacted positively to my lip gloss suggestion'
+
+
+def test_restriction_followup_3314_backfill_covers_all_fifty_decisions():
+    review = json.loads((ROOT / 'pending.json').read_text(encoding='utf8'))['sources'][0]['review']
+    report = review['substitution_restriction_followup']['passes']['train_3314_3412_backfill_1409_1464']
+    expected = {3314, 3315, 3316, 3317, 3319, 3322, 3324, 3327, 3328, 3330, 3333,
+                3337, 3339, 3341, 3342, 3343, 3345, 3346, 3348, 3349, 3352, 3354,
+                3355, 3365, 3367, 3369, 3370, 3371, 3373, 3376, 3385, 3386, 3391,
+                3397, 3399, 3407, 3412, 1409, 1414, 1417, 1430, 1431, 1433, 1438,
+                1439, 1441, 1447, 1455, 1457, 1464}
+    retained = {3317, 3333, 3341, 3386, 3391, 1431, 1441, 1464}
+    assert len(report['dialogues_reviewed']) == len(expected) == 50
+    assert set(report['dialogues_reviewed']) == expected
+    assert set(map(int, report['retained_restrictions'])) == retained
+    assert set(report['native_variant_dialogues']) == expected - retained
+    assert report['new_rules'] == 42 and report['checks']['native_variants'] == 50
+    assert report['remaining_dialogue_restrictions'] == 199
+    assert report['next_unreviewed_restriction_dialogue'] == 1465
+    assert not report['adapter_only_rule_ids'] and report['native_blocked_choices_added'] == 0
+    assert not report['checks']['overlength'] and report['checks']['max_tokens'] <= 768
+    assert not any(report['checks']['split_prompt_overlap'].values())
+    originals = [p for p in CATALOG['patterns'] if p.get('kind') == 'interpretation'
+                 and p['source']['split'] == 'train' and p['source']['dialogue'] in expected]
+    assert fingerprint(originals) == report['reviewed_patterns_sha256']
+    backfill = review['backfill_1406_2215']['substitution_review']
+    licensed_backfill = {r['dialogue'] for r in RULES
+                         if r['split'] == 'train' and 1406 <= r['dialogue'] <= 2215}
+    assert backfill['finite_rules'] == len(licensed_backfill)
+    assert len(licensed_backfill) + len(backfill['restricted_dialogues']) == 810
+    remaining = set(backfill['restricted_dialogues'])
+    remaining.update(x['dialogue'] for b in review['batches'].values()
+                     for x in b.get('substitution_restrictions', []))
+    assert retained - {r['dialogue'] for r in RULES if r['split']=='train'} <= remaining and not (expected - retained) & remaining
+    assert {x['dialogue'] for x in report['retained_restrictions_before_review']} == retained
+    assert {x['dialogue'] for x in report['semantic_followup_required']} == {3341}
+    assert not any(r['dialogue'] in remaining and r['split'] == 'train' for r in RULES)
+
+
+@pytest.mark.parametrize('identity,reply,value', [
+    ('dd_review_turn_3314_2', 'an essential decision', 'no specific initial silence'),
+    ('dd_review_turn_3315_1', 'some cash', 'Requests a loan'),
+    ('dd_review_turn_3316_2', 'with my friends', 'usually taking trips with friends'),
+    ('dd_review_turn_3319_6', 'cloudy tomorrow', 'differs from an observed current condition'),
+    ('dd_review_turn_3322_1', 'your husband', 'relationship with the husband'),
+    ('dd_review_turn_3324_5', 'less than 80 meters', 'below eighty meters'),
+    ('dd_review_turn_3327_4', 'advertisements', 'no verified medical assessment'),
+    ('dd_review_turn_3328_1', "9 o'clock", 'nine in the morning to five'),
+    ('dd_review_turn_3330_7', 'block of apartments', 'Asks whether anyone was seen'),
+    ('dd_review_turn_3337_7', 'doing sales', 'starting work is not explicitly reported'),
+    ('dd_review_turn_3339_1', 'nice holiday', 'Wishes the listener'),
+    ('dd_review_turn_3342_3', 'recital tomorrow', 'joint attendance is not explicitly proposed'),
+    ('dd_review_turn_3343_5', 'more movies', 'unfinished word'),
+    ('dd_review_turn_3345_6', 'articles about it', 'Accepts the offered reading'),
+    ('dd_review_turn_3346_3', 'score was excellent', 'allegations are not verified'),
+    ('dd_review_turn_3348_5', 'Jan Green', 'preceding Jane Green'),
+    ('dd_review_turn_3349_6', 'poor typist', 'Declines the invitation'),
+    ('dd_review_turn_3352_2', 'Maria', "speaker's account and judgment"),
+    ('dd_review_turn_3354_3', '5 percent', 'attributed statistics'),
+    ('dd_review_turn_3355_6', "He's trying", 'his worry is not directly quoted'),
+    ('dd_review_turn_3365_5', 'out next week', 'promises to arrange help next week'),
+    ('dd_review_turn_3367_4', 'woodland', 'formerly living'),
+    ('dd_review_turn_3369_4', 'three-year-old boy', 'three-year-old son'),
+    ('dd_review_turn_3370_3', 'old concert hall', 'old concert hall'),
+    ('dd_review_turn_3371_1', 'hot dog and juice', 'Hands over'),
+    ('dd_review_turn_3373_1', 'film twice', 'film twice'),
+    ('dd_review_turn_3376_2', 'big apartment', 'Questions affordability'),
+    ('dd_review_turn_3385_2', 'company is fuming', 'spilled the beans is figurative'),
+    ('dd_review_turn_3397_10', '80 dollars', 'no exact current price is verified'),
+    ('dd_review_turn_3399_11', 'magazine in', 'arrival is future'),
+    ('dd_review_turn_3407_1', 'firearm', 'no actual shooting is reported'),
+    ('dd_review_turn_3412_2', 'service in there is awful', 'no current meal or actual vomiting'),
+    ('dd_1409_t2', 'wonderful', 'performance absorbed them'),
+    ('dd_backfill_link_1414_1_1', '1868', 'not verified biographical information'),
+    ('dd_1417_t2', '2 to 1', 'Ukraine led two to one'),
+    ('dd_1430_t3', 'new town', 'opportunity to make changes'),
+    ('dd_backfill_segment_1433_5_1', 'pool or a lake', 'asks whether'),
+    ('dd_backfill_segment_1438_9_1', 'official just called', 'infers the tackle'),
+    ('dd_backfill_segment_1439_3_1', 'woman her change', 'not independently verified'),
+    ('dd_backfill_segment_1447_4_1', 'moments moved me', 'cry from emotion'),
+    ('dd_backfill_segment_1455_6_2', 'more elegant', 'comparative impression'),
+    ('dd_backfill_segment_1457_1_2', "husband's cooking", 'invites the group'),
+])
+def test_restriction_followup_3314_backfill_preserves_meaning(identity, reply, value):
+    pattern = next(p for p in PATTERNS if p['substitution_base_id'] == identity)
+    variant = realize_pattern(pattern, 0)
+    assert reply in variant['reply'] and value in variant['value']
+
+
+def test_restriction_followup_3314_backfill_keeps_linked_context_and_unresolved_meaning():
+    def variant(identity):
+        return realize_pattern(next(p for p in PATTERNS if p['substitution_base_id'] == identity), 0)
+
+    assert 'Returns the holiday wish' in variant('dd_review_turn_3339_2')['value']
+    assert 'not having decided' in variant('dd_review_turn_3339_5')['value']
+    assert 'Jane Green' in variant('dd_review_turn_3348_4')['reply']
+    assert 'spelling conflict is preserved' in variant('dd_review_turn_3348_5')['value']
+    assert 'husband' in variant('dd_review_turn_3355_5')['value']
+    spouse = variant('dd_review_turn_3355_6')
+    assert 'he is very worried' in spouse['reply'] and 'infers that he is worried' in spouse['value']
+    assert 'no new income or apartment purchase occurs' in variant('dd_review_turn_3376_3')['value']
+    assert 'Cannot find the magazine' in variant('dd_review_turn_3399_4')['value']
+    assert 'catalog lists the magazine' in variant('dd_review_turn_3399_8')['value']
+    assert 'rejects the 1868 date' in variant('dd_1414_t2')['value']
+    assert '16th century' in variant('dd_1414_t2')['reply']
+    assert 'some experience swimming in a pool or lake' in variant('dd_backfill_segment_1433_6_1')['value']
+    assert 'husband very much enjoys cooking' in variant('dd_backfill_segment_1457_3_2')['value']
+    assert 'husband who cooks well' in variant('dd_backfill_segment_1457_4_1')['value']
+    original = next(p for p in CATALOG['patterns'] if p['id'] == 'dd_review_turn_3341_4')
+    # This known unsupported clause remains explicitly pending, never licensed as a new variant.
+    assert 'asks about suitable stock' in original['value']
+    assert 'stock' not in original['reply']
+    assert not any(p['substitution_base_id'] == original['id'] for p in PATTERNS)
+
+
+def test_restriction_followup_1465_1709_keeps_complete_decision_coverage():
+    review = json.loads((ROOT / 'pending.json').read_text(encoding='utf8'))['sources'][0]['review']
+    followup = review['substitution_restriction_followup']
+    report = followup['passes']['train_1465_1709']
+    expected = {1465, 1470, 1473, 1484, 1497, 1499, 1502, 1508, 1511, 1531,
+                1535, 1537, 1538, 1540, 1543, 1546, 1553, 1556, 1562, 1564,
+                1573, 1574, 1588, 1593, 1595, 1597, 1599, 1603, 1604, 1606,
+                1613, 1619, 1621, 1623, 1638, 1648, 1650, 1657, 1658, 1665,
+                1680, 1681, 1684, 1688, 1690, 1696, 1699, 1702, 1708, 1709}
+    retained = {1546, 1623, 1648, 1680}
+    assert len(report['dialogues_reviewed']) == len(expected) == 50
+    assert set(report['dialogues_reviewed']) == expected
+    assert set(map(int, report['retained_restrictions'])) == retained
+    assert set(report['native_variant_dialogues']) == expected - retained
+    assert report['new_rules'] == 46 and report['checks']['native_variants'] == 53
+    assert report['previous_remaining'] == 199 and report['remaining_dialogue_restrictions'] == 153
+    assert not report['adapter_only_rule_ids'] and report['native_blocked_choices_added'] == 0
+    assert report['checks']['max_tokens'] <= 768 and not report['checks']['overlength']
+    assert not any(report['checks']['split_prompt_overlap'].values())
+    originals = [p for p in CATALOG['patterns'] if p.get('kind') == 'interpretation'
+                 and p['source']['split'] == 'train' and p['source']['dialogue'] in expected]
+    assert fingerprint(originals) == report['reviewed_patterns_sha256']
+    b = review['backfill_1406_2215']['substitution_review']
+    licensed_backfill = {r['dialogue'] for r in RULES
+                         if r['split'] == 'train' and 1406 <= r['dialogue'] <= 2215}
+    assert b['finite_rules'] == len(licensed_backfill)
+    assert len(licensed_backfill) + len(b['restricted_dialogues']) == 810
+    assert retained - licensed_backfill <= set(b['restricted_dialogues'])
+    assert not (expected - retained) & set(b['restricted_dialogues'])
+    assert {x['dialogue'] for x in report['retained_restrictions_before_review']} == retained
+    assert not any(r['dialogue'] in (retained - licensed_backfill) and r['split'] == 'train' for r in RULES)
+    # The previous known semantic problem is not silently closed by this unrelated pass.
+    earlier = followup['passes']['train_3314_3412_backfill_1409_1464']
+    assert earlier['semantic_followup_required'][0]['dialogue'] == 3341
+    assert earlier['semantic_followup_required'][0]['status'] == 'pending_pinned_adapter_correction'
+
+
+@pytest.mark.parametrize('dialogue,reply,value', [
+    (1465, "That's excellent!", 'praises the preceding idea'),
+    (1470, 'the movie was', 'reports hearing'),
+    (1473, 'just pleasant', "praises Beijing's weather"),
+    (1484, 'My aunt passed away', 'aunt died last night'),
+    (1497, 'Table tennis is', 'country is unspecified'),
+    (1499, 'nice meeting you', 'pleasure at having met'),
+    (1502, 'next week', 'scheduled to open'),
+    (1508, 'look happier', 'compliments'),
+    (1511, 'chemistry and biology', 'enrollment is not confirmed'),
+    (1531, 'signal of wind', 'weather prediction'),
+    (1535, 'skilled people', 'previous city'),
+    (1537, '2 to 1', 'Ukraine leading two to one'),
+    (1538, 'dragon boat races', 'anticipates eating'),
+    (1540, 'only have sixteen', 'at least eighteen credits'),
+    (1543, 'frozen yogurt', 'without reporting that any was eaten or bought'),
+    (1553, 'cold lake', 'must expresses inference'),
+    (1556, 'busy tomorrow evening', 'requests postponement'),
+    (1562, "He's inconsiderate", 'inch-and-mile expression is figurative'),
+    (1564, 'look so distressed', 'looks distressed'),
+    (1573, 'wool coat', 'hypothetical gift'),
+    (1574, 'like rabbits', 'says they like rabbits'),
+    (1588, 'my home', 'rejects publicity-driven appearances'),
+    (1593, 'dreadful weather', "last week's unpleasant weather"),
+    (1595, 'when he talks', "husband's talk"),
+    (1597, 'elder sister', 'pregnant and feels nauseated'),
+    (1599, 'my dear friend', 'a dear friend'),
+    (1603, 'extremely late', 'pins and needles is figurative'),
+    (1604, "It's wonderful", 'tie the knot means marry'),
+    (1606, 'too selective', 'accuses the listener'),
+    (1613, 'when I was 18', 'first cigarette at eighteen'),
+    (1619, 'hard to learn', 'learning is hard'),
+    (1621, 'time for lunch', 'whether it is lunch time'),
+    (1638, 'over fifty', 'over fifty and invites surprise'),
+    (1650, "I'm annoyed", 'speaker is annoyed'),
+    (1657, 'three-year-old boy', 'three-year-old son'),
+    (1658, 'feel awful', 'actual motive remains unconfirmed'),
+    (1665, 'an excellent job', 'seventy-fifth birthday'),
+    (1681, 'Call me tomorrow evening', 'asks for a call'),
+    (1684, 'extremely quiet', 'notices unusual quiet'),
+    (1688, 'Volleyball and swimming', 'volleyball and swimming'),
+    (1690, 'very picturesque', "speaker's geographical claims"),
+    (1696, "That's wonderful", 'intends to try'),
+    (1699, 'a good-looking guy', 'suggests arranging a date'),
+    (1702, 'the address', 'just-completed address'),
+    (1708, 'your cousin', "listener's cousin"),
+    (1709, 'on television', 'likes watching but does not play'),
+])
+def test_restriction_followup_1465_1709_preserves_semantic_scope(dialogue, reply, value):
+    variants = [realize_pattern(p, 0) for p in PATTERNS
+                if p['substitution_rule']['id'] == f'dd_restriction_followup_{dialogue}']
+    assert any(reply in p['reply'] and value in p['value'] for p in variants)
+
+
+def test_restriction_followup_1465_1709_preserves_cross_turn_limits_and_grammar():
+    originals = {p['id']: p for p in CATALOG['patterns']}
+    variants = {p['substitution_base_id']: p for p in PATTERNS}
+
+    def effective(identity):
+        return realize_pattern(variants[identity], 0) if identity in variants else originals[identity]
+
+    for identity, phrase in [
+        ('dd_backfill_segment_1465_1_2', 'not reported as implemented'),
+        ('dd_backfill_segment_1470_3_1', 'without verifying or correcting'),
+        ('dd_backfill_segment_1473_7_3', 'does not reliably identify'),
+        ('dd_backfill_turn_1497_2', 'cannot play it well'),
+        ('dd_backfill_turn_1499_4', 'no departure or next meeting is completed'),
+        ('dd_backfill_turn_1502_7', 'check has not occurred'),
+        ('dd_backfill_turn_1502_8', 'none are reported as made'),
+        ('dd_backfill_turn_1511_6', 'revises it to hoping'),
+        ('dd_backfill_turn_1531_2', 'not literal horse tails'),
+        ('dd_backfill_turn_1531_4', 'previously associated those clouds with rain'),
+        ('dd_backfill_turn_1535_1', 'mayor or military major'),
+        ('dd_backfill_turn_1537_3', 'no draw or qualification is confirmed'),
+        ('dd_backfill_turn_1540_4', 'neither option is yet chosen'),
+        ('dd_backfill_turn_1553_4', 'health claim is attributed hearsay'),
+        ('dd_backfill_turn_1556_3', 'accepts the postponement'),
+        ('dd_backfill_turn_1562_12', 'elapsed or planned remains unclear'),
+        ('dd_backfill_turn_1564_6', 'reports that she refused'),
+        ('dd_backfill_turn_1573_11', 'they have not won'),
+        ('dd_backfill_turn_1573_14', 'lacks money for a wool coat'),
+        ('dd_backfill_turn_1573_18', 'purchase or consumption is not confirmed'),
+        ('dd_backfill_turn_1574_2', 'also likes rabbits but dislikes cats'),
+        ('dd_backfill_turn_1574_7', 'exact attitude toward those people is unresolved'),
+        ('dd_backfill_turn_1593_5', 'refers to health, not weather conditions'),
+        ('dd_backfill_turn_1597_3', 'sister loses her appetite'),
+        ('dd_backfill_turn_1597_4', 'not confirmation of recovery'),
+        ('dd_backfill_turn_1606_2', 'denies being too selective'),
+        ('dd_backfill_turn_1613_8', 'success is not asserted'),
+        ('dd_backfill_turn_1619_5', 'learning is easy'),
+        ('dd_backfill_turn_1658_1', 'avoidance is not established'),
+        ('dd_backfill_turn_1665_14', 'hopes to attend'),
+        ('dd_backfill_turn_1684_4', 'no rule or departure is independently confirmed'),
+        ('dd_backfill_turn_1688_4', 'most people rather than everyone'),
+        ('dd_backfill_turn_1688_9', 'also enjoys volleyball'),
+        ('dd_backfill_turn_1688_10', 'if the speaker has free time'),
+        ('dd_backfill_turn_1696_13', 'not an infestation report'),
+        ('dd_backfill_turn_1699_4', 'already found a dating partner'),
+        ('dd_backfill_turn_1699_5', 'shared interests are not confirmed'),
+        ('dd_backfill_turn_1702_3', "address's truth is not independently assessed"),
+        ('dd_backfill_turn_1708_4', 'illness remains unspecified'),
+        ('dd_backfill_turn_1708_5', 'promises to convey'),
+    ]:
+        assert phrase in effective(identity)['value']
+    assert 'a dear friend' in effective('dd_backfill_turn_1599_2')['value']
+    assert 'an dear friend' not in effective('dd_backfill_turn_1599_2')['value']
+    assert 'a signal of rain' in effective('dd_backfill_turn_1531_4')['reply']
+    assert 'a good-looking guy' in effective('dd_backfill_turn_1699_3')['reply']
+    assert 'busy tomorrow evening' in effective('dd_backfill_turn_1556_2')['reply']
+
+
+def test_restriction_followup_1710_1921_covers_all_fifty_decisions():
+    review = json.loads((ROOT / 'pending.json').read_text(encoding='utf8'))['sources'][0]['review']
+    f = review['substitution_restriction_followup']
+    report = f['passes']['train_1710_1921']
+    expected = {1710, 1715, 1720, 1723, 1728, 1729, 1735, 1740, 1741, 1747,
+                1748, 1749, 1755, 1757, 1759, 1761, 1762, 1765, 1767, 1771,
+                1774, 1775, 1778, 1780, 1783, 1789, 1790, 1792, 1793, 1795,
+                1797, 1799, 1800, 1803, 1804, 1807, 1812, 1814, 1816, 1819,
+                1820, 1826, 1827, 1828, 1829, 1832, 1836, 1841, 1912, 1921}
+    retained = {1789, 1832, 1841, 1921}
+    assert len(report['dialogues_reviewed']) == len(expected) == 50
+    assert set(report['dialogues_reviewed']) == expected
+    assert set(map(int, report['retained_restrictions'])) == retained
+    assert set(report['native_variant_dialogues']) == expected - retained
+    assert report['new_rules'] == 46 and report['checks']['native_variants'] == 58
+    assert report['previous_remaining'] == 153 and report['remaining_dialogue_restrictions'] == 107
+    assert not report['adapter_only_rule_ids'] and report['native_blocked_choices_added'] == 0
+    assert report['checks']['max_tokens'] <= 768 and not report['checks']['overlength']
+    assert not any(report['checks']['split_prompt_overlap'].values())
+    originals = [p for p in CATALOG['patterns'] if p.get('kind') == 'interpretation'
+                 and p['source']['split'] == 'train' and p['source']['dialogue'] in expected]
+    assert fingerprint(originals) == report['reviewed_patterns_sha256']
+    b = review['backfill_1406_2215']['substitution_review']
+    licensed_backfill = {r['dialogue'] for r in RULES if r['split'] == 'train'
+                        and 1406 <= r['dialogue'] <= 2215}
+    assert b['finite_rules'] == len(licensed_backfill)
+    assert len(licensed_backfill) + len(b['restricted_dialogues']) == 810
+    assert retained - licensed_backfill <= set(b['restricted_dialogues'])
+    assert not (expected - retained) & set(b['restricted_dialogues'])
+    assert {x['dialogue'] for x in report['retained_restrictions_before_review']} == retained
+    assert not any(r['dialogue'] in (retained - licensed_backfill) and r['split'] == 'train' for r in RULES)
+    assert f['native_limits']['blocked_template_choices'] == []
+    assert f['native_limits']['adapter_only_rule_ids'] == []
+
+
+@pytest.mark.parametrize('dialogue,reply,value', [
+    (1710, 'make Santa biscuits', "eater's identity is unknown"),
+    (1715, 'favorable side', 'overlooking favorable aspects'),
+    (1720, 'lovely trip', 'wishes a pleasant trip'),
+    (1723, 'give a talk', 'admits forgetting to prepare'),
+    (1728, 'attractive models', 'suggests the real attraction'),
+    (1729, 'your firm hire', 'cleaners the firm employs'),
+    (1735, 'quite impressive', 'seeing the jewels previously'),
+    (1740, "you're wonderful", 'without yet answering the love question'),
+    (1741, 'lost 4 pounds', 'reports losing four pounds'),
+    (1747, 'It is hard', 'generalizes that older people'),
+    (1748, 'Spanish, not Greek', 'identifies Spanish'),
+    (1749, 'my daughter', 'seeing their daughter dispels worries'),
+    (1755, 'lovely city', 'calls Dalian lovely'),
+    (1757, 'motel rooms', 'events are not established facts'),
+    (1759, 'an exceptional work', 'admired artwork'),
+    (1761, 'the movie will begin', "movie's starting time"),
+    (1762, 'on television', 'reported 2005 Grammy Awards'),
+    (1765, 'This leaflet', 'actual times and location are not spoken'),
+    (1767, 'a fine job', 'predicts an acceptable result'),
+    (1771, '98:80 victory', '98 to 80 victory'),
+    (1774, 'an outstanding speaker', 'praises speaking ability'),
+    (1775, 'on the terrace', 'proposes sunbathing on a terrace'),
+    (1778, 'television weather forecast', 'not completed events'),
+    (1780, 'that bulky bag', 'rejects the bulky carry-on'),
+    (1783, 'kind of music like Nirvana', 'asks whether music like Nirvana'),
+    (1790, 'a little lightheaded', 'slight lightheadedness'),
+    (1792, "our firm's website", 'visits to the firm website'),
+    (1793, 'acting is fine', 'acting as acceptable'),
+    (1795, 'suede shoes', 'had expected suede shoes'),
+    (1797, 'about 40 minutes', 'about forty minutes'),
+    (1799, 'quite high', 'causation is not independently established'),
+    (1800, "won't be so enjoyable", 'would be less enjoyable'),
+    (1803, 'an essay about language', 'essay about a single global language'),
+    (1804, 'The difficulty is', 'using hard nut to crack'),
+    (1807, 'looks fascinating', 'finds it fascinating'),
+    (1812, 'for the third time', 'brought before authorities'),
+    (1814, 'at the shop', 'buying CDs in a shop'),
+    (1816, 'just meaningless', 'agrees with that negative evaluation'),
+    (1819, 'really sociable', 'estimates about thirty'),
+    (1820, 'wife and son', 'plans lunch with wife and son'),
+    (1826, "haven't noticed the notice", 'confirms the nonsmoking restriction'),
+    (1827, 'too significant', 'matter is significant'),
+    (1828, 'terrible to grow old', 'not a universal established fact'),
+    (1829, 'reasonably quick', 'present is damaged wording'),
+    (1836, 'difficult to say', 'tentatively favors telling the truth'),
+    (1912, 'a long while', "children being grown"),
+])
+def test_restriction_followup_1710_1921_preserves_semantic_scope(dialogue, reply, value):
+    variants = [realize_pattern(p, 0) for p in PATTERNS
+                if p['substitution_rule']['id'] == f'dd_restriction_followup_{dialogue}']
+    assert any(reply in p['reply'] and value in p['value'] for p in variants)
+
+
+def test_restriction_followup_1710_1921_keeps_linked_meanings():
+    originals = {p['id']: p for p in CATALOG['patterns']}
+    variants = {p['substitution_base_id']: p for p in PATTERNS}
+
+    def effective(identity):
+        return realize_pattern(variants[identity], 0) if identity in variants else originals[identity]
+
+    for identity, phrase in [
+        ('dd_backfill_turn_1710_4', "Santa's presence is not established"),
+        ('dd_backfill_turn_1710_11', 'does not establish that Santa ate them'),
+        ('dd_backfill_turn_1715_3', 'conflicting voices cannot be reliably assigned'),
+        ('dd_backfill_turn_1715_5', 'speaker attribution is mixed'),
+        ('dd_backfill_turn_1720_1', "today's planned departure"),
+        ('dd_backfill_turn_1723_4', 'improvising the talk, not literal flight'),
+        ('dd_backfill_turn_1728_3', 'insult or tease rather than a diagnosis'),
+        ('dd_backfill_turn_1729_3', 'generalization is not endorsed'),
+        ('dd_backfill_turn_1735_2', 'not independently verified'),
+        ('dd_backfill_turn_1740_7', 'rather than reciprocal love'),
+        ('dd_backfill_turn_1740_14', 'compliance and any prior threat are not established'),
+        ('dd_backfill_turn_1741_10', 'qualifying the earlier vegetarian and no-meat description'),
+        ('dd_backfill_turn_1741_16', 'dinner has not occurred'),
+        ('dd_backfill_turn_1747_3', 'success is not established'),
+        ('dd_backfill_turn_1748_2', 'not identifying Greek as the language'),
+        ('dd_backfill_turn_1748_5', 'need to study Spanish'),
+        ('dd_backfill_turn_1749_6', 'not a completed solution'),
+        ('dd_backfill_turn_1755_7', 'not a literal supernatural place'),
+        ('dd_backfill_turn_1757_4', 'rejects them as urban legends'),
+        ('dd_backfill_turn_1759_9', 'unnamed painting at about eighty million'),
+        ('dd_backfill_turn_1761_6', 'without specifying morning or evening'),
+        ('dd_backfill_turn_1762_2', 'not verified history'),
+        ('dd_backfill_turn_1765_4', 'infers the parents are devastated'),
+        ('dd_backfill_turn_1767_3', 'promises their best effort'),
+        ('dd_backfill_turn_1771_2', "without correcting the team's identity"),
+        ('dd_backfill_turn_1774_1', 'not as current officeholder'),
+        ('dd_backfill_turn_1775_4', 'not a diagnosis'),
+        ('dd_backfill_turn_1778_4', 'without naming a scale'),
+        ('dd_backfill_turn_1780_6', 'not converted to distance'),
+        ('dd_backfill_turn_1780_10', 'payment is not reported'),
+        ('dd_backfill_turn_1783_4', 'this is their categorization'),
+        ('dd_backfill_turn_1790_3', 'no cause is established'),
+        ('dd_backfill_turn_1792_4', 'attributed findings and opinions'),
+        ('dd_backfill_turn_1793_4', 'they know less'),
+        ('dd_backfill_turn_1795_12', 'recovery is not confirmed'),
+        ('dd_backfill_turn_1797_8', 'Dad is not deceased'),
+        ('dd_backfill_turn_1800_6', 'does not plan to tell her'),
+        ('dd_backfill_turn_1803_4', 'not verified global statistics'),
+        ('dd_backfill_turn_1803_9', 'no new learning is completed'),
+        ('dd_backfill_turn_1804_1', 'supplied wording is damaged'),
+        ('dd_backfill_turn_1807_11', 'no diagnosis is established'),
+        ('dd_backfill_turn_1812_2', 'asks whether this means'),
+        ('dd_backfill_turn_1814_4', 'not a completed download'),
+        ('dd_backfill_turn_1816_4', 'no mental-health diagnosis'),
+        ('dd_backfill_turn_1820_5', 'attendance is not agreed'),
+        ('dd_backfill_turn_1826_10', 'does not grant smoking permission'),
+        ('dd_backfill_turn_1827_4', 'still an attributed claim'),
+        ('dd_backfill_turn_1836_6', 'hypothetical advice, not an action report'),
+        ('dd_backfill_turn_1912_3', 'heart in mouth is figurative'),
+    ]:
+        assert phrase in effective(identity)['value']
+    assert 'Spanish, not Greek' in effective('dd_backfill_turn_1748_3')['reply']
+    assert 'four pounds' in effective('dd_backfill_turn_1741_8')['value']
+    assert '98 to 80' in effective('dd_backfill_turn_1771_4')['value'] and 98 > 80
+    assert 'third time' in effective('dd_backfill_turn_1812_1')['value']
+    assert 'notice on the window' in effective('dd_backfill_turn_1826_8')['value']
+    assert 'daughter' not in effective('dd_backfill_turn_1820_4')['reply']
+    assert "haven't lived with a child" in effective('dd_backfill_turn_1912_4')['reply']
+
+
+def test_restriction_followup_1961_2487_finishes_unique_queue_reread():
+    review = json.loads((ROOT / 'pending.json').read_text(encoding='utf8'))['sources'][0]['review']
+    followup = review['substitution_restriction_followup']
+    report = followup['passes']['train_1961_2206_revisit_2288_2487']
+    expected = {1961,1968,1971,1986,1993,2003,2008,2020,2035,2047,
+                2052,2072,2074,2083,2094,2108,2114,2117,2129,2142,
+                2150,2152,2164,2166,2169,2178,2179,2181,2182,2184,
+                2188,2193,2197,2199,2205,2206,2288,2290,2305,2306,
+                2310,2350,2383,2397,2398,2406,2440,2447,2483,2487}
+    retained = {1986,2020,2072,2074,2083,2117,2142,2164,2179,2188,2197,2397,2440}
+    assert len(report['dialogues_reviewed']) == 50 and set(report['dialogues_reviewed']) == expected
+    assert len(report['first_review_dialogues']) == 36 and len(report['revisited_dialogues']) == 14
+    assert set(report['first_review_dialogues']).isdisjoint(report['revisited_dialogues'])
+    assert set(report['first_review_dialogues']) | set(report['revisited_dialogues']) == expected
+    assert set(map(int, report['retained_restrictions'])) == retained
+    assert set(report['native_variant_dialogues']) == expected - retained
+    assert report['new_rules'] == 37 and report['checks']['native_variants'] == 41
+    assert report['previous_remaining'] == 107 and report['remaining_dialogue_restrictions'] == 70
+    assert report['remaining_not_reread'] == 0 and report['next_unreviewed_restriction_dialogue'] is None
+    reviewed = {d for p in followup['passes'].values() for d in p['dialogues_reviewed']}
+    licensed = {d['dialogue'] for d in followup['decisions']}
+    reviewed.update(licensed)  # Early decisions predate the per-pass report format.
+    remaining = set(review['backfill_1406_2215']['substitution_review']['restricted_dialogues'])
+    remaining.update(x['dialogue'] for b in review['batches'].values() for x in b.get('substitution_restrictions', []))
+    assert len(reviewed) == 654 and reviewed == licensed | remaining
+    assert len(licensed) == 654 and len(remaining) == 0 and not licensed & remaining
+    assert remaining <= set(report['remaining_reviewed_but_unlicensed'])
+    assert retained - licensed <= remaining and not (expected - retained) & remaining
+    assert not report['adapter_only_rule_ids'] and report['native_blocked_choices_added'] == 0
+    assert followup['native_limits']['blocked_template_choices'] == []
+    assert followup['native_limits']['adapter_only_rule_ids'] == []
+    assert not report['checks']['overlength'] and report['checks']['max_tokens'] <= 768
+    assert not any(report['checks']['split_prompt_overlap'].values())
+    originals = [p for p in CATALOG['patterns'] if p.get('kind') == 'interpretation'
+                 and p['source']['split'] == 'train' and p['source']['dialogue'] in expected]
+    assert fingerprint(originals) == report['reviewed_patterns_sha256']
+
+
+@pytest.mark.parametrize('dialogue,reply,value', [
+    (1961, 'worse than adversaries', 'friends worse than adversaries'),
+    (1968, 'wonderful', 'unspecified shared experience'),
+    (1971, 'afraid of the dark', 'fear of the dark'),
+    (1993, 'square face', 'all mouth exaggerates'),
+    (2003, 'so lovely', 'admires it'),
+    (2008, 'too harsh', 'self-critical'),
+    (2035, 'Those fellows', 'expected not to lose'),
+    (2047, 'pleasant time', 'pleasant time'),
+    (2052, 'complete bastard', 'not a diagnosis'),
+    (2094, 'very friendly', 'friendliness'),
+    (2108, 'same posture', 'Infers prolonged sitting'),
+    (2114, 'a lift back home', 'Requests a lift home'),
+    (2129, 'no genuine love', 'not established motives'),
+    (2150, 'so considerate', "supporter's consideration"),
+    (2152, 'a dreadful team', 'match outcome remains unknown'),
+    (2166, 'around the globe', 'hypothetically'),
+    (2169, 'her manager', 'must avoid trouble'),
+    (2178, 'three blocks', 'inconsistent wording Kts'),
+    (2181, 'the instructors', 'neither is inherently better'),
+    (2182, 'program your classes', 'predicting no difficulty'),
+    (2184, 'very unhappy', "wife's death"),
+    (2193, 'need our coats', 'whether coats will be needed'),
+    (2199, 'really lovely', "peach blossom's beauty"),
+    (2205, "We're sad", 'regret about the departure'),
+    (2206, 'a dispute last night', 'argument occurred last night'),
+    (2288, 'It is grave', 'situation grave'),
+    (2290, 'Chinese classes', 'progress in Chinese classes'),
+    (2305, "it's peaceful", 'enjoyment of the peace'),
+    (2306, 'dangerous business', 'consequences were deserved'),
+    (2310, 'pretty large', 'asks whether it will be kept'),
+    (2350, 'a wager', 'Challenges the other person'),
+    (2383, 'Argentine forward', 'no actual wager'),
+    (2398, 'totally absurd', 'superstition as absurd'),
+    (2406, 'a fine idea', 'Approves the suggestion'),
+    (2447, 'pretty fast', 'Infers that online purchasing'),
+    (2483, 'really lovely', "praises Beijing's autumn"),
+    (2487, 'sounds awful', 'recalls personal difficulty'),
+])
+def test_restriction_followup_1961_2487_finite_meanings(dialogue, reply, value):
+    variants = [realize_pattern(p, 0) for p in PATTERNS
+                if p['substitution_rule']['id'] == f'dd_restriction_followup_{dialogue}']
+    assert any(reply in p['reply'] and value in p['value'] for p in variants)
+
+
+def test_restriction_followup_1961_2487_retains_cross_turn_scope():
+    originals = {p['id']: p for p in CATALOG['patterns']}
+    variants = {p['substitution_base_id']: p for p in PATTERNS}
+
+    def effective(identity):
+        return realize_pattern(variants[identity], 0) if identity in variants else originals[identity]
+
+    for identity, phrase in [
+        ('dd_backfill_turn_1961_2', 'their existence is not confirmed'),
+        ('dd_backfill_turn_1968_4', 'no further occasion is reported'),
+        ('dd_backfill_turn_1971_2', 'no journey is completed'),
+        ('dd_backfill_turn_1993_4', 'Denies curls'),
+        ('dd_backfill_turn_1993_6', 'Denies glasses'),
+        ('dd_backfill_turn_1993_9', 'cannot identify her'),
+        ('dd_backfill_turn_2003_9', 'Prefers cold weather'),
+        ('dd_backfill_turn_2008_3', 'possible achievements'),
+        ('dd_backfill_turn_2008_5', 'dead tired is figurative'),
+        ('dd_backfill_turn_2035_2', 'not a literal fall'),
+        ('dd_backfill_turn_2047_3', 'Declines the extra drink'),
+        ('dd_backfill_turn_2052_2', 'without reporting departure'),
+        ('dd_backfill_turn_2094_5', 'never gather'),
+        ('dd_backfill_turn_2094_7', 'hardly speak'),
+        ('dd_backfill_turn_2108_3', 'stretching is not yet reported'),
+        ('dd_backfill_turn_2114_2', 'arrival home is not reported'),
+        ('dd_backfill_turn_2129_8', 'neither explanation is established'),
+        ('dd_backfill_turn_2129_12', 'missing items are not invented'),
+        ('dd_backfill_turn_2129_13', 'some mixed marriages'),
+        ('dd_backfill_turn_2150_3', 'predicts no blame'),
+        ('dd_backfill_turn_2152_3', 'no bet or result is reported'),
+        ('dd_backfill_turn_2166_2', 'not a completed trip'),
+        ('dd_v22_train_2169_4_1', 'stereotype is not endorsed'),
+        ('dd_backfill_turn_2178_8', 'arrival is not reported'),
+        ('dd_backfill_turn_2181_8', 'without making it universal'),
+        ('dd_backfill_turn_2182_4', 'registration and completion are not reported'),
+        ('dd_backfill_turn_2184_4', 'recovery is not complete'),
+        ('dd_backfill_turn_2193_12', 'actual arrival weather is unknown'),
+        ('dd_backfill_turn_2199_9', 'no lotus flowers are available'),
+        ('dd_backfill_turn_2199_11', 'no visit is completed'),
+        ('dd_backfill_turn_2205_4', 'no return has occurred'),
+        ('dd_backfill_turn_2206_6', 'differs from the earlier brief answer'),
+        ('dd_backfill_turn_2206_12', 'no such harm to this couple is established'),
+        ('dd_backfill_turn_2206_13', 'glue is figurative'),
+        ('dd_review_turn_2288_4', 'does not reliably identify the vehicle'),
+        ('dd_review_turn_2290_3', 'an opinion'),
+        ('dd_review_turn_2306_3', 'regret is not directly observed'),
+        ('dd_review_turn_2310_4', 'legality of this specific catch is not established'),
+        ('dd_review_turn_2350_4', 'no wager amount or payment'),
+        ('dd_v26_train_2383_1_1', "second team's identity unresolved"),
+        ('dd_review_turn_2398_5', 'rejects a link with supernatural bad luck'),
+        ('dd_review_turn_2406_5', 'no search result is promised'),
+        ('dd_review_turn_2447_5', 'internet access is required'),
+        ('dd_review_turn_2483_8', 'rain may return'),
+        ('dd_review_turn_2483_20', 'not a completed action or established illness'),
+        ('dd_review_turn_2487_7', 'boarding a crowded second one'),
+        ('dd_review_turn_2487_10', 'deliberate or actual groping is not reported'),
+    ]:
+        assert phrase in effective(identity)['value']
+    assert 'three blocks away' in effective('dd_backfill_turn_2178_7')['value']
+    assert 'a dreadful team' in effective('dd_backfill_turn_2152_8')['reply']
+    assert 'a dispute last night' in effective('dd_backfill_turn_2206_8')['reply']
+    assert 'a... square face' in effective('dd_backfill_turn_1993_8')['reply']

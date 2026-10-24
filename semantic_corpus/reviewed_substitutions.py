@@ -54,6 +54,45 @@ def validate_rules(rules, patterns):
         for key, digest in rule['templates'].items():
             if not all(isinstance(x, str) and re.fullmatch('[0-9a-f]{64}', x) for x in (key, digest)):
                 raise ValueError('Invalid substitution template identity')
+        for key, revision in rule.get('adapter_revisions', {}).items():
+            if (key not in rule['adapters'] or not revision.get('reason')
+                    or revision.get('source_sha256') != rule['adapters'][key]
+                    or not revision.get('fields')):
+                raise ValueError('Invalid reviewed adapter revision')
+            for field, edit in revision['fields'].items():
+                if (field not in FIELDS or set(edit) != {'before', 'after'}
+                        or indexed[key][field] != edit['before']
+                        or not isinstance(edit['after'], str) or not edit['after'].strip()):
+                    raise ValueError('Stale reviewed adapter revision')
+        for key, licenses in rule.get('adapter_choices', {}).items():
+            if key not in rule['adapters'] or not isinstance(licenses, list):
+                raise ValueError('Invalid reviewed adapter choices')
+            indices = set()
+            for item in licenses:
+                index = item.get('choice')
+                if (type(index) is not int or not 0 <= index < len(rule['choices'])
+                        or index in indices or not item.get('reason')
+                        or item.get('choice_sha256') != fingerprint(rule['choices'][index])
+                        or not isinstance(item.get('fields'), dict) or not item['fields']
+                        or any(f not in FIELDS or not isinstance(v, str) or not v.strip()
+                               for f, v in item['fields'].items())):
+                    raise ValueError('Invalid reviewed adapter choice')
+                indices.add(index)
+        for key, licenses in rule.get('phrase_choices', {}).items():
+            if key not in rule['templates'] or not isinstance(licenses, list):
+                raise ValueError('Invalid reviewed phrase template')
+            seen_choices = set()
+            for item in licenses:
+                index = item.get('choice')
+                if (type(index) is not int or not 0 <= index < len(rule['choices'])
+                        or index in seen_choices or not item.get('reason')
+                        or item.get('choice_sha256') != fingerprint(rule['choices'][index])
+                        or not isinstance(item.get('before'), str) or not item['before'].strip()
+                        or not isinstance(item.get('after'), str) or not item['after'].strip()
+                        or item['before'] == item['after']
+                        or substitute(item['before'], rule['choices'][index]) != item['after']):
+                    raise ValueError('Invalid reviewed phrase choice')
+                seen_choices.add(index)
         literal_choices = rule.get('literal_choices', {})
         if not isinstance(literal_choices, dict):
             raise ValueError('Invalid reviewed literal templates')
@@ -100,6 +139,31 @@ def validate_rules(rules, patterns):
                                    or any(c in edit[f] for c in '{}\r\n') for f in ('before', 'after'))
                             or edit['before'] == edit['after']):
                         raise ValueError('Invalid reviewed slot binding')
+        verbs = rule.get('verb_choices', {})
+        if not isinstance(verbs, dict) or set(verbs) - set(rule['templates']):
+            raise ValueError('Invalid reviewed verb templates')
+        for licenses in verbs.values():
+            indices = set()
+            if not isinstance(licenses, list):
+                raise ValueError('Invalid reviewed verb choices')
+            for item in licenses:
+                index = item.get('choice')
+                if (type(index) is not int or not 0 <= index < len(rule['choices'])
+                        or index in indices or not item.get('reason')
+                        or item.get('choice_sha256') != fingerprint(rule['choices'][index])
+                        or not isinstance(item.get('bindings'), dict) or not item['bindings']):
+                    raise ValueError('Invalid reviewed verb choice')
+                indices.add(index)
+                for key, edit in item['bindings'].items():
+                    if (not isinstance(key, str) or not key or not isinstance(edit, dict)
+                            or set(edit) != {'before', 'after', 'lemma', 'tag', 'slot_sha256'}
+                            or any(not isinstance(edit[f], str) or not re.fullmatch('[A-Za-z]+', edit[f])
+                                   for f in ('before', 'after', 'lemma'))
+                            or edit['before'] == edit['after']
+                            or edit['tag'] not in {'VB', 'VBP', 'VBZ', 'VBD', 'VBG', 'VBN'}
+                            or not isinstance(edit['slot_sha256'], str)
+                            or not re.fullmatch('[0-9a-f]{64}', edit['slot_sha256'])):
+                        raise ValueError('Invalid reviewed verb binding')
         # Early admitted sentences have a reviewed interpretation but predate
         # explicit adapter pins. Bind them without rewriting source evidence.
         links = rule.get('template_adapters', {})
@@ -130,6 +194,29 @@ def template_rules(root):
     return _read(str(path.resolve()), stat.st_mtime_ns, stat.st_size)
 
 
+def template_adapter_revisions(root):
+    """Export corrected meanings alongside immutable attested template records."""
+    rules = {r['id']: r for r in template_rules(root).values()}
+    return {key: revision for r in rules.values()
+            for key, revision in r.get('adapter_revisions', {}).items()}
+
+
+def revise_pattern(pattern, rule):
+    """Apply exact reviewed corrections without rewriting archived evidence."""
+    from .template_bank import fingerprint
+    revision = rule.get('adapter_revisions', {}).get(pattern['id'])
+    if not revision:
+        return pattern
+    if fingerprint(pattern) != revision['source_sha256']:
+        raise ValueError('Stale reviewed adapter revision')
+    result = deepcopy(pattern)
+    for field, edit in revision['fields'].items():
+        if field not in FIELDS or result[field] != edit['before']:
+            raise ValueError('Stale reviewed adapter revision')
+        result[field] = edit['after']
+    return result
+
+
 def expand_patterns(patterns, rules):
     """Keep original catalog rows/pins and add opt-in synthetic pattern families."""
     validate_rules(rules, patterns)
@@ -138,7 +225,9 @@ def expand_patterns(patterns, rules):
     for rule in rules:
         for key in rule['adapters']:
             base = indexed[key]
-            if not any(any(substitute(base[f], c) != base[f] for f in FIELDS) for c in rule['choices']):
+            effective = revise_pattern(base, rule)
+            if (not rule.get('adapter_choices', {}).get(key) and
+                    not any(any(substitute(effective[f], c) != effective[f] for f in FIELDS) for c in rule['choices'])):
                 continue
             row = deepcopy(base)
             row['id'] = key + '_substitution'
@@ -147,6 +236,9 @@ def expand_patterns(patterns, rules):
             row['substitution_rule'] = deepcopy(rule)
             row['substitution_base_id'] = key
             expanded.append(row)
+        for key in rule.get('adapter_revisions', {}):
+            index = next(i for i, p in enumerate(patterns) if p['id'] == key)
+            expanded[index] = revise_pattern(patterns[index], rule)
     return expanded
 
 
@@ -161,8 +253,14 @@ def realize_pattern(pattern, variant):
         raise ValueError('Stale synthetic pattern base')
     index = variant % len(rule['choices'])
     result = deepcopy(pattern)
+    effective = revise_pattern(base, rule)
     for field in FIELDS:
-        result[field] = substitute(pattern[field], rule['choices'][index])
+        result[field] = substitute(effective[field], rule['choices'][index])
+    for item in rule.get('adapter_choices', {}).get(base['id'], []):
+        if item['choice'] == index:
+            if item['choice_sha256'] != fingerprint(rule['choices'][index]):
+                raise ValueError('Stale reviewed adapter choice')
+            result.update(item['fields'])
     result['realized_substitution'] = {'rule': rule['id'], 'choice': index}
     return result
 
@@ -188,9 +286,21 @@ def render_template(template, rule, choice):
     target = substitute(text, edits)
     raw = deepcopy(record)
     raw.pop('usage_constraints')
+    phrase = next((x for x in rule.get('phrase_choices', {}).get(template.template_id, [])
+                   if x['choice'] == choice), None)
+    if phrase:
+        if (phrase['choice_sha256'] != fingerprint(edits) or phrase['before'] != text
+                or phrase['after'] != target or not phrase.get('reason') or target == text):
+            raise ValueError('Stale reviewed phrase choice')
+        # A whole-phrase paraphrase licenses exactly one surface, not a newly
+        # inferred dependency tree or free slots. The reviewed interpretation
+        # remains the only semantic adapter for this context-only realization.
+        raw.update(parts=[{'literal': target}], slots={}, defaults={},
+                   verbs=[], constructions=[], predicate_groups=[], attributes=[])
+        values = {}
     # Individually pinned finite edits can cover numbers/vocatives retained by
     # the compiler as literals. They do not turn fixed text into free slots.
-    for license in rule.get('literal_choices', {}).get(template.template_id, []):
+    for license in ([] if phrase else rule.get('literal_choices', {}).get(template.template_id, [])):
         if license['choice'] != choice:
             continue
         if license['choice_sha256'] != fingerprint(edits):
@@ -218,7 +328,7 @@ def render_template(template, rule, choice):
             raw['parts'][index]['literal'] = edit['after']
     # An explicitly reviewed alignment can disambiguate a diff spanning several
     # adjacent noun/adjective slots. It cannot change syntax, verbs or the target.
-    for license in rule.get('slot_choices', {}).get(template.template_id, []):
+    for license in ([] if phrase else rule.get('slot_choices', {}).get(template.template_id, [])):
         if license['choice'] != choice:
             continue
         if license['choice_sha256'] != fingerprint(edits):
@@ -229,6 +339,34 @@ def render_template(template, rule, choice):
                     or not isinstance(edit['after'], str) or not edit['after'].strip()):
                 raise ValueError('Invalid or stale reviewed slot binding')
             values[key] = edit['after']
+    # Lexical verbs need an additional model-reviewed surface/form license.
+    # Keep auxiliaries, tense/aspect, negation, dependencies and particles fixed.
+    for license in ([] if phrase else rule.get('verb_choices', {}).get(template.template_id, [])):
+        if license['choice'] != choice:
+            continue
+        if license['choice_sha256'] != fingerprint(edits):
+            raise ValueError('Stale reviewed verb choice')
+        for key, edit in license['bindings'].items():
+            slot = raw['slots'].get(key, {})
+            if (slot.get('kind') != 'verb' or slot.get('pos') != 'VERB'
+                    or slot.get('dependency') in {'aux', 'auxpass', 'cop'}
+                    or slot.get('tag') != edit['tag']
+                    or fingerprint(slot) != edit['slot_sha256']
+                    or values.get(key) != edit['before']
+                    or not all(isinstance(edit[f], str) and re.fullmatch('[A-Za-z]+', edit[f])
+                               for f in ('after', 'lemma'))):
+                raise ValueError('Invalid or stale reviewed verb binding')
+            groups = [g for g in raw['predicate_groups'] if g['head_slot'] == key]
+            if (any(g['constructions'] for g in groups)
+                    or any(m.get('slot') == key for g in raw['predicate_groups']
+                           for c in g['constructions'] for m in c['markers'])):
+                return None  # Phrasal/prepositional constructions need their own review.
+            values[key] = edit['after']
+            slot['lemma'] = edit['lemma']
+            for group in groups:
+                group['lemma'] = edit['lemma']
+    if rule.get('verb_choices', {}).get(template.template_id):
+        raw['verbs'] = sorted({s['lemma'] for s in raw['slots'].values() if s['kind'] == 'verb'})
     surface = CorpusTemplate(raw).render(values)
     changes = {}
     for tag, a, b, c, d in SequenceMatcher(None, surface['text'], target, autojunk=False).get_opcodes():
@@ -257,6 +395,10 @@ def render_template(template, rule, choice):
                    context=[substitute(t, edits) for t in context],
                    span=[len(prefix), len(prefix)+len(result['text'])],
                    reasons=['Synthetic lexical variant licensed by ' + rule['id'], rule['reason']])
+    if phrase:
+        # Structural and expression annotations describe the old surface only.
+        for field in ('fixed_expressions', 'property_bindings', 'alternative_properties'):
+            updated.pop(field, None)
     for expression in updated.get('fixed_expressions', []):
         a, b = expression['span']
         if substitute(text[a:b], edits) != text[a:b]:
@@ -268,6 +410,14 @@ def render_template(template, rule, choice):
             updated['meaning'][field] = substitute(policy['meaning'][field], edits)
     if 'interpretation' in ref:
         updated['meaning']['interpretation'] = substitute(ref['interpretation'], edits)
+    revision = rule.get('adapter_revisions', {}).get(ref['id'], {})
+    if 'value' in revision.get('fields', {}):
+        updated['meaning']['interpretation'] = substitute(revision['fields']['value']['after'], edits)
+    for item in rule.get('adapter_choices', {}).get(ref['id'], []):
+        if item['choice'] == choice and 'value' in item['fields']:
+            if item['choice_sha256'] != fingerprint(edits):
+                raise ValueError('Stale reviewed adapter choice')
+            updated['meaning']['interpretation'] = item['fields']['value']
     updated['meaning']['extraction_adapter'] = {k: ref[k] for k in ('id', 'sha256')}
     proof = dict(rule=rule['id'], rule_sha256=fingerprint(rule), choice=choice,
                  source_template_sha256=fingerprint(record),

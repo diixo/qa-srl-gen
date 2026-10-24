@@ -135,3 +135,128 @@ def test_slot_alignment_choice_hash_cannot_be_reused():
     rule['choices'][0]['book'] = 'magazine'
     with pytest.raises(ValueError, match='Stale reviewed slot choice'):
         render_template(CorpusTemplate(record), rule, 0)
+
+
+def verb_fixture():
+    record, rule, _ = fixture()
+    record['predicate_groups'][0]['constructions'] = []
+    rule['templates'][record['template_id']] = fingerprint(record)
+    rule['choices'] = [{'bought': 'purchased'}]
+    rule['verb_choices'] = {record['template_id']: [dict(
+        choice=0, choice_sha256=fingerprint(rule['choices'][0]), reason='Reviewed same-form lexical pair',
+        bindings={'v0': dict(before='bought', after='purchased', lemma='purchase', tag='VBD',
+                             slot_sha256=fingerprint(record['slots']['v0']))})]}
+    return record, rule
+
+
+def test_verb_license_updates_lemma_and_spans_without_mutating_source():
+    record, rule = verb_fixture()
+    original = deepcopy(record)
+    row = render_template(CorpusTemplate(record), rule, 0)
+    assert row['text'] == 'Anna purchased a book for 9 dollars.'
+    assert row['slots']['v0'] == {**record['slots']['v0'], 'lemma': 'purchase'}
+    assert row['predicate_groups'][0]['lemma'] == 'purchase'
+    assert row['verbs'] == ['purchase']
+    assert row['text'][slice(*row['spans']['v0'])] == 'purchased'
+    assert row['usage_constraints']['mode'] == 'context_only'
+    assert record == original
+
+
+@pytest.mark.parametrize('field,value', [('tag','VB'), ('before','buys'), ('slot_sha256','0'*64),
+                                       ('after','will purchase'), ('lemma','')])
+def test_verb_license_rejects_stale_form_and_multiword_rewrite(field, value):
+    record, rule = verb_fixture()
+    rule['verb_choices'][record['template_id']][0]['bindings']['v0'][field] = value
+    with pytest.raises(ValueError, match='reviewed verb binding'):
+        render_template(CorpusTemplate(record), rule, 0)
+
+
+def test_verb_license_rejects_auxiliary_even_with_updated_pins():
+    record, rule = verb_fixture()
+    record['slots']['v0'].update(pos='AUX', dependency='aux')
+    rule['templates'][record['template_id']] = fingerprint(record)
+    rule['verb_choices'][record['template_id']][0]['bindings']['v0']['slot_sha256'] = fingerprint(record['slots']['v0'])
+    with pytest.raises(ValueError, match='reviewed verb binding'):
+        render_template(CorpusTemplate(record), rule, 0)
+
+
+def test_verb_license_cannot_change_construction_or_reuse_choice():
+    record, rule = verb_fixture()
+    original, _, _ = fixture()
+    record['predicate_groups'] = original['predicate_groups']
+    rule['templates'][record['template_id']] = fingerprint(record)
+    assert render_template(CorpusTemplate(record), rule, 0) is None
+    rule['choices'][0]['bought'] = 'sold'
+    with pytest.raises(ValueError, match='Stale reviewed verb choice'):
+        render_template(CorpusTemplate(record), rule, 0)
+
+
+def test_verb_license_must_render_exact_approved_target():
+    record, rule = verb_fixture()
+    rule['verb_choices'][record['template_id']][0]['bindings']['v0'].update(after='sold', lemma='sell')
+    assert render_template(CorpusTemplate(record), rule, 0) is None
+
+
+def phrase_fixture():
+    record, rule, _ = fixture()
+    rule['choices'] = [{'bought': 'purchased'}]
+    before = CorpusTemplate(record).render()['text']
+    rule['phrase_choices'] = {record['template_id']: [dict(
+        choice=0, choice_sha256=fingerprint(rule['choices'][0]), reason='Reviewed complete paraphrase',
+        before=before, after=before.replace('bought', 'purchased'))]}
+    return record, rule
+
+
+def test_whole_phrase_license_does_not_inherit_an_unreviewed_parse():
+    record, rule = phrase_fixture()
+    original = deepcopy(record)
+    row = render_template(CorpusTemplate(record), rule, 0)
+    assert row['text'] == 'Anna purchased a book for 9 dollars.'
+    assert row['slots'] == row['bindings'] == row['spans'] == {}
+    assert not row['predicate_groups'] and not row['verbs'] and not row['attributes']
+    assert row['usage_constraints']['mode'] == 'context_only'
+    assert record == original
+    del rule['phrase_choices']
+    assert render_template(CorpusTemplate(record), rule, 0) is None
+
+
+@pytest.mark.parametrize('field,value', [('before','Different source'),('after','Anna will purchase a book.'),
+                                       ('choice_sha256','0'*64),('reason','')])
+def test_whole_phrase_license_rejects_stale_or_unlicensed_surface(field,value):
+    record, rule = phrase_fixture()
+    rule['phrase_choices'][record['template_id']][0][field] = value
+    with pytest.raises(ValueError, match='Stale reviewed phrase'):
+        render_template(CorpusTemplate(record), rule, 0)
+
+
+def test_correction_applies_to_original_and_variant_without_changing_source():
+    from semantic_corpus.reviewed_substitutions import expand_patterns, realize_pattern, validate_rules
+    record, rule = phrase_fixture()
+    p = dict(id='adapter', kind='interpretation', source=dict(split='train',dialogue=1),
+             assistant='Context',reply='Anna bought a book.',value='Incorrect meaning',question='Meaning?')
+    rule.update(version='reviewed-substitutions-v1',split='train',dialogue=1,adapters={'adapter':fingerprint(p)},
+        adapter_revisions={'adapter':dict(source_sha256=fingerprint(p),reason='Direct reread',
+            fields={'value':dict(before='Incorrect meaning',after='Reports a purchase.')})})
+    original = deepcopy(p)
+    effective, variant = expand_patterns([p], [rule])
+    assert effective['value'] == realize_pattern(variant,0)['value'] == 'Reports a purchase.'
+    assert realize_pattern(variant,0)['reply'] == 'Anna purchased a book.'
+    assert p == original
+    assert effective['source'] == p['source']
+    rule['adapter_revisions']['adapter']['fields']['value']['before'] = 'Stale'
+    with pytest.raises(ValueError, match='Stale reviewed adapter'):
+        validate_rules([rule],[p])
+
+
+def test_effective_template_meaning_keeps_archived_record_and_revision_proof():
+    record, _, _ = fixture()
+    original = deepcopy(record)
+    revision = dict(source_sha256='1'*64,reason='Correct a semantic inference',
+                    fields={'value':dict(before='Reports buying a book for 9 dollars.',after='Reported purchase, not independently verified.')})
+    row = CorpusTemplate(record,adapter_revisions={'adapter':revision}).render()
+    assert row['usage_constraints']['meaning']['interpretation'] == 'Reported purchase, not independently verified.'
+    assert row['usage_constraints']['meaning']['adapter_revision'] == revision
+    assert record == original
+    revision['source_sha256'] = '0'*64
+    with pytest.raises(ValueError, match='Stale template adapter'):
+        CorpusTemplate(record,adapter_revisions={'adapter':revision}).render()

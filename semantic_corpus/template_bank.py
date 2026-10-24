@@ -65,9 +65,10 @@ def fingerprint(value):
 
 
 class CorpusTemplate:
-    def __init__(self, record, *, substitution_rule=None):
+    def __init__(self, record, *, substitution_rule=None, adapter_revisions=None):
         self.record = record
         self.substitution_rule = substitution_rule
+        self.adapter_revisions = adapter_revisions or {}
         self.template_id = record["template_id"]
         self.slots = record["slots"]
 
@@ -129,6 +130,17 @@ class CorpusTemplate:
                        "target_span": spans.get(a["target_slot"])} for a in self.record.get("attributes", ())]
         if usage is not None:
             validate_usage(usage, result, self.slots)
+            usage = deepcopy(usage)
+            ref = usage.get('meaning', {}).get('extraction_adapter', {})
+            revision = self.adapter_revisions.get(ref.get('id'))
+            if revision:
+                if revision['source_sha256'] != ref.get('sha256'):
+                    raise ValueError('Stale template adapter revision')
+                usage['meaning']['adapter_revision'] = deepcopy(revision)
+                # An old textual source variant keeps its original interpretation;
+                # its corrected adapted reply is explicit in the revision record.
+                if 'reply' not in revision['fields'] and 'value' in revision['fields']:
+                    usage['meaning']['interpretation'] = revision['fields']['value']['after']
         return {"template_id": self.template_id, "text": result, "bindings": values, "slots": self.slots,
                 "spans": spans, "verbs": list(self.verbs),
                 "predicate_groups": groups, "attributes": attributes,
@@ -263,8 +275,9 @@ class TemplateBank:
             return
         files = ([f"templates/{template_id[:2]}.jsonl.gz"] if template_id
                  else sorted(name for name in self.files if name.startswith('templates/')))
-        from .reviewed_substitutions import template_rules
+        from .reviewed_substitutions import template_rules, template_adapter_revisions
         substitutions = template_rules(self.path)
+        revisions = template_adapter_revisions(self.path)
         for file in files:
             if file not in self.files:
                 continue
@@ -275,7 +288,8 @@ class TemplateBank:
                     continue
                 if adjective is not None and adjective not in row.get("adjective_lemmas", ()):
                     continue
-                yield CorpusTemplate(row, substitution_rule=substitutions.get(row['template_id']))
+                yield CorpusTemplate(row, substitution_rule=substitutions.get(row['template_id']),
+                                     adapter_revisions=revisions)
 
     def verbs(self):
         return self.rows('verbs.jsonl.gz')
