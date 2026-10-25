@@ -85667,41 +85667,4925 @@
           37
         ]
       }
+    },
+    {
+      "id": "dailydialog-reviewed-3416-3475",
+      "manifest": {
+        "format": "corpus-templates-v1",
+        "status": "complete",
+        "source": "C:\\git\\qa-srl-gen\\artifacts\\_batch3416\\sentences.jsonl",
+        "full_input": true,
+        "model": {
+          "name": "direct-model-reviewed-complete-utterances",
+          "version": "1"
+        },
+        "review_status": "UNREVIEWED",
+        "field": "example",
+        "note": "Exact complete source utterances with reviewed interpretations and finite variants. No inferred dependency structure or free factual QA.",
+        "counts": {
+          "input_records": 1063,
+          "compiled_records": 1063,
+          "roundtrips_verified": 1063,
+          "tokens_audited": 6090,
+          "adjective_occurrences": 309,
+          "verb_alternative_analyses": 1191,
+          "verb_occurrences": 1222,
+          "participle_analyses": 137,
+          "adjective_alternative_analyses": 402,
+          "templates": 1063,
+          "template_occurrences": 1063,
+          "templates_with_adjectives": 240,
+          "verb_lemmas": 223,
+          "adjective_lemmas": 153,
+          "verb_alternative_lemmas": 343,
+          "adjective_alternative_forms": 164,
+          "sentence_templates_covered": 1012,
+          "predicate_templates_covered": 749,
+          "constructions": 267
+        },
+        "analyses": {
+          "direct_review_opaque_utterance": 485,
+          "parsed_verbal": 578
+        },
+        "elapsed_seconds": 6.468,
+        "source_sha256": "17354f6ef266f21ed0c0cf1cf74b6e814cb07621790ad5c25a09ec4c876677bf"
+      },
+      "validation": {
+        "status": "passed",
+        "source_sha256": "17354f6ef266f21ed0c0cf1cf74b6e814cb07621790ad5c25a09ec4c876677bf",
+        "templates": 1063,
+        "attested_roundtrips": 1063,
+        "source_records": 1063,
+        "token_spans": 6090,
+        "verbs_occurrences": 1222,
+        "adjectives_occurrences": 309
+      },
+      "publication": {
+        "format": "built-in-template-component-v1",
+        "bank_id": "dailydialog-reviewed-3416-3475",
+        "source_sha256": "17354f6ef266f21ed0c0cf1cf74b6e814cb07621790ad5c25a09ec4c876677bf",
+        "manifest_sha256": "ff61d9a5ae009a02e7f37fed7651d9d4c9aad7fb89c9fce7ace8efbcbcd87014",
+        "validation_sha256": "22fb0fa720b907340cb8171b65a128951bf9e06483101f49e9f4d3b1adb2dd46"
+      },
+      "files": {
+        "adjective_alternatives.jsonl.gz": [
+          2656122,
+          13422
+        ],
+        "adjectives.jsonl.gz": [
+          2295511,
+          11800
+        ],
+        "constructions.jsonl.gz": [
+          7854117,
+          16630
+        ],
+        "occurrences/00000.jsonl.gz": [
+          32161350,
+          403860
+        ],
+        "templates/00.jsonl.gz": [
+          653049,
+          2958
+        ],
+        "templates/02.jsonl.gz": [
+          661121,
+          3862
+        ],
+        "templates/03.jsonl.gz": [
+          642379,
+          3942
+        ],
+        "templates/04.jsonl.gz": [
+          626661,
+          1735
+        ],
+        "templates/05.jsonl.gz": [
+          630244,
+          3005
+        ],
+        "templates/06.jsonl.gz": [
+          628520,
+          1611
+        ],
+        "templates/07.jsonl.gz": [
+          619114,
+          1712
+        ],
+        "templates/08.jsonl.gz": [
+          659439,
+          1486
+        ],
+        "templates/09.jsonl.gz": [
+          644273,
+          2300
+        ],
+        "templates/0a.jsonl.gz": [
+          619085,
+          3232
+        ],
+        "templates/0b.jsonl.gz": [
+          647109,
+          2798
+        ],
+        "templates/0c.jsonl.gz": [
+          641264,
+          1778
+        ],
+        "templates/0d.jsonl.gz": [
+          649684,
+          2157
+        ],
+        "templates/0e.jsonl.gz": [
+          665962,
+          2672
+        ],
+        "templates/0f.jsonl.gz": [
+          674149,
+          4210
+        ],
+        "templates/10.jsonl.gz": [
+          659110,
+          2382
+        ],
+        "templates/11.jsonl.gz": [
+          673184,
+          5262
+        ],
+        "templates/12.jsonl.gz": [
+          648382,
+          3288
+        ],
+        "templates/13.jsonl.gz": [
+          659702,
+          1775
+        ],
+        "templates/14.jsonl.gz": [
+          670070,
+          3287
+        ],
+        "templates/15.jsonl.gz": [
+          674469,
+          4471
+        ],
+        "templates/16.jsonl.gz": [
+          653405,
+          2942
+        ],
+        "templates/17.jsonl.gz": [
+          642752,
+          2986
+        ],
+        "templates/18.jsonl.gz": [
+          674529,
+          3556
+        ],
+        "templates/19.jsonl.gz": [
+          649216,
+          2916
+        ],
+        "templates/1a.jsonl.gz": [
+          653860,
+          3580
+        ],
+        "templates/1b.jsonl.gz": [
+          656695,
+          2518
+        ],
+        "templates/1c.jsonl.gz": [
+          660360,
+          3359
+        ],
+        "templates/1d.jsonl.gz": [
+          670282,
+          1141
+        ],
+        "templates/1e.jsonl.gz": [
+          646912,
+          1591
+        ],
+        "templates/1f.jsonl.gz": [
+          658799,
+          3523
+        ],
+        "templates/20.jsonl.gz": [
+          650022,
+          3436
+        ],
+        "templates/21.jsonl.gz": [
+          621280,
+          3141
+        ],
+        "templates/22.jsonl.gz": [
+          639185,
+          1543
+        ],
+        "templates/23.jsonl.gz": [
+          674665,
+          2226
+        ],
+        "templates/24.jsonl.gz": [
+          635029,
+          1649
+        ],
+        "templates/25.jsonl.gz": [
+          651002,
+          1917
+        ],
+        "templates/26.jsonl.gz": [
+          655385,
+          1546
+        ],
+        "templates/27.jsonl.gz": [
+          661154,
+          5032
+        ],
+        "templates/28.jsonl.gz": [
+          645444,
+          2639
+        ],
+        "templates/29.jsonl.gz": [
+          643201,
+          2061
+        ],
+        "templates/2a.jsonl.gz": [
+          677213,
+          4783
+        ],
+        "templates/2b.jsonl.gz": [
+          682195,
+          3287
+        ],
+        "templates/2c.jsonl.gz": [
+          646702,
+          960
+        ],
+        "templates/2d.jsonl.gz": [
+          684553,
+          2392
+        ],
+        "templates/2e.jsonl.gz": [
+          644369,
+          2905
+        ],
+        "templates/2f.jsonl.gz": [
+          635343,
+          3288
+        ],
+        "templates/30.jsonl.gz": [
+          644791,
+          3176
+        ],
+        "templates/31.jsonl.gz": [
+          649640,
+          2878
+        ],
+        "templates/32.jsonl.gz": [
+          652978,
+          1782
+        ],
+        "templates/33.jsonl.gz": [
+          657040,
+          5727
+        ],
+        "templates/34.jsonl.gz": [
+          666803,
+          2803
+        ],
+        "templates/35.jsonl.gz": [
+          662750,
+          798
+        ],
+        "templates/36.jsonl.gz": [
+          654581,
+          3360
+        ],
+        "templates/37.jsonl.gz": [
+          652574,
+          2538
+        ],
+        "templates/38.jsonl.gz": [
+          652258,
+          3422
+        ],
+        "templates/39.jsonl.gz": [
+          631834,
+          1161
+        ],
+        "templates/3b.jsonl.gz": [
+          641481,
+          800
+        ],
+        "templates/3c.jsonl.gz": [
+          670182,
+          1832
+        ],
+        "templates/3d.jsonl.gz": [
+          641722,
+          2629
+        ],
+        "templates/3e.jsonl.gz": [
+          625318,
+          2556
+        ],
+        "templates/3f.jsonl.gz": [
+          657321,
+          2467
+        ],
+        "templates/40.jsonl.gz": [
+          648946,
+          2060
+        ],
+        "templates/41.jsonl.gz": [
+          635957,
+          2470
+        ],
+        "templates/42.jsonl.gz": [
+          648325,
+          3090
+        ],
+        "templates/43.jsonl.gz": [
+          635782,
+          2903
+        ],
+        "templates/44.jsonl.gz": [
+          657532,
+          3426
+        ],
+        "templates/45.jsonl.gz": [
+          638323,
+          2786
+        ],
+        "templates/46.jsonl.gz": [
+          621119,
+          2673
+        ],
+        "templates/47.jsonl.gz": [
+          656639,
+          4957
+        ],
+        "templates/48.jsonl.gz": [
+          679159,
+          1905
+        ],
+        "templates/49.jsonl.gz": [
+          638152,
+          3112
+        ],
+        "templates/4a.jsonl.gz": [
+          644405,
+          2993
+        ],
+        "templates/4b.jsonl.gz": [
+          628135,
+          4277
+        ],
+        "templates/4c.jsonl.gz": [
+          673384,
+          2025
+        ],
+        "templates/4d.jsonl.gz": [
+          652519,
+          2687
+        ],
+        "templates/4e.jsonl.gz": [
+          634378,
+          2651
+        ],
+        "templates/4f.jsonl.gz": [
+          654296,
+          4227
+        ],
+        "templates/50.jsonl.gz": [
+          658159,
+          6420
+        ],
+        "templates/51.jsonl.gz": [
+          661677,
+          4199
+        ],
+        "templates/52.jsonl.gz": [
+          660745,
+          3732
+        ],
+        "templates/53.jsonl.gz": [
+          663340,
+          3526
+        ],
+        "templates/54.jsonl.gz": [
+          651659,
+          2163
+        ],
+        "templates/55.jsonl.gz": [
+          677982,
+          3702
+        ],
+        "templates/56.jsonl.gz": [
+          651407,
+          3194
+        ],
+        "templates/57.jsonl.gz": [
+          653951,
+          1136
+        ],
+        "templates/58.jsonl.gz": [
+          684116,
+          3325
+        ],
+        "templates/59.jsonl.gz": [
+          629424,
+          3011
+        ],
+        "templates/5a.jsonl.gz": [
+          641274,
+          1712
+        ],
+        "templates/5b.jsonl.gz": [
+          653557,
+          4680
+        ],
+        "templates/5c.jsonl.gz": [
+          668425,
+          865
+        ],
+        "templates/5d.jsonl.gz": [
+          649444,
+          3047
+        ],
+        "templates/5e.jsonl.gz": [
+          669389,
+          983
+        ],
+        "templates/5f.jsonl.gz": [
+          667496,
+          3691
+        ],
+        "templates/60.jsonl.gz": [
+          620132,
+          4106
+        ],
+        "templates/61.jsonl.gz": [
+          667194,
+          2937
+        ],
+        "templates/62.jsonl.gz": [
+          634332,
+          2685
+        ],
+        "templates/63.jsonl.gz": [
+          664314,
+          3160
+        ],
+        "templates/64.jsonl.gz": [
+          657015,
+          1756
+        ],
+        "templates/65.jsonl.gz": [
+          635793,
+          3310
+        ],
+        "templates/66.jsonl.gz": [
+          671864,
+          1761
+        ],
+        "templates/67.jsonl.gz": [
+          669053,
+          3084
+        ],
+        "templates/68.jsonl.gz": [
+          618444,
+          2320
+        ],
+        "templates/69.jsonl.gz": [
+          636551,
+          2561
+        ],
+        "templates/6a.jsonl.gz": [
+          643585,
+          3122
+        ],
+        "templates/6b.jsonl.gz": [
+          659075,
+          2493
+        ],
+        "templates/6c.jsonl.gz": [
+          671407,
+          3985
+        ],
+        "templates/6d.jsonl.gz": [
+          646882,
+          1623
+        ],
+        "templates/6e.jsonl.gz": [
+          661151,
+          5080
+        ],
+        "templates/6f.jsonl.gz": [
+          658457,
+          699
+        ],
+        "templates/70.jsonl.gz": [
+          653605,
+          5385
+        ],
+        "templates/71.jsonl.gz": [
+          661657,
+          3753
+        ],
+        "templates/72.jsonl.gz": [
+          650329,
+          1071
+        ],
+        "templates/73.jsonl.gz": [
+          654961,
+          4303
+        ],
+        "templates/74.jsonl.gz": [
+          650424,
+          2869
+        ],
+        "templates/75.jsonl.gz": [
+          633442,
+          2649
+        ],
+        "templates/76.jsonl.gz": [
+          642141,
+          1705
+        ],
+        "templates/77.jsonl.gz": [
+          671983,
+          1871
+        ],
+        "templates/78.jsonl.gz": [
+          632539,
+          3463
+        ],
+        "templates/79.jsonl.gz": [
+          648003,
+          2624
+        ],
+        "templates/7a.jsonl.gz": [
+          655366,
+          3423
+        ],
+        "templates/7b.jsonl.gz": [
+          656910,
+          3927
+        ],
+        "templates/7c.jsonl.gz": [
+          663056,
+          4273
+        ],
+        "templates/7d.jsonl.gz": [
+          667869,
+          2923
+        ],
+        "templates/7e.jsonl.gz": [
+          627425,
+          2753
+        ],
+        "templates/7f.jsonl.gz": [
+          652528,
+          2613
+        ],
+        "templates/80.jsonl.gz": [
+          657089,
+          2086
+        ],
+        "templates/81.jsonl.gz": [
+          667958,
+          3391
+        ],
+        "templates/82.jsonl.gz": [
+          662099,
+          2296
+        ],
+        "templates/83.jsonl.gz": [
+          645893,
+          3814
+        ],
+        "templates/84.jsonl.gz": [
+          647099,
+          2241
+        ],
+        "templates/85.jsonl.gz": [
+          634368,
+          1105
+        ],
+        "templates/86.jsonl.gz": [
+          669289,
+          1592
+        ],
+        "templates/87.jsonl.gz": [
+          672347,
+          2863
+        ],
+        "templates/88.jsonl.gz": [
+          654502,
+          4911
+        ],
+        "templates/89.jsonl.gz": [
+          655394,
+          3488
+        ],
+        "templates/8a.jsonl.gz": [
+          646759,
+          2704
+        ],
+        "templates/8b.jsonl.gz": [
+          655108,
+          3794
+        ],
+        "templates/8c.jsonl.gz": [
+          652055,
+          4145
+        ],
+        "templates/8d.jsonl.gz": [
+          670213,
+          1808
+        ],
+        "templates/8e.jsonl.gz": [
+          650223,
+          2062
+        ],
+        "templates/8f.jsonl.gz": [
+          656648,
+          4985
+        ],
+        "templates/90.jsonl.gz": [
+          627744,
+          3870
+        ],
+        "templates/91.jsonl.gz": [
+          660131,
+          2732
+        ],
+        "templates/92.jsonl.gz": [
+          640121,
+          1544
+        ],
+        "templates/93.jsonl.gz": [
+          651104,
+          5489
+        ],
+        "templates/94.jsonl.gz": [
+          632496,
+          3220
+        ],
+        "templates/95.jsonl.gz": [
+          656345,
+          1667
+        ],
+        "templates/96.jsonl.gz": [
+          658167,
+          2175
+        ],
+        "templates/97.jsonl.gz": [
+          641281,
+          3341
+        ],
+        "templates/98.jsonl.gz": [
+          622637,
+          3049
+        ],
+        "templates/99.jsonl.gz": [
+          652364,
+          2586
+        ],
+        "templates/9a.jsonl.gz": [
+          667775,
+          2452
+        ],
+        "templates/9b.jsonl.gz": [
+          629733,
+          2443
+        ],
+        "templates/9c.jsonl.gz": [
+          634424,
+          1497
+        ],
+        "templates/9d.jsonl.gz": [
+          669660,
+          1833
+        ],
+        "templates/9e.jsonl.gz": [
+          641751,
+          1451
+        ],
+        "templates/9f.jsonl.gz": [
+          676755,
+          2426
+        ],
+        "templates/a0.jsonl.gz": [
+          624742,
+          2947
+        ],
+        "templates/a1.jsonl.gz": [
+          643265,
+          3263
+        ],
+        "templates/a2.jsonl.gz": [
+          625252,
+          3098
+        ],
+        "templates/a3.jsonl.gz": [
+          677679,
+          3759
+        ],
+        "templates/a4.jsonl.gz": [
+          644018,
+          2089
+        ],
+        "templates/a5.jsonl.gz": [
+          637928,
+          4820
+        ],
+        "templates/a6.jsonl.gz": [
+          629938,
+          3376
+        ],
+        "templates/a7.jsonl.gz": [
+          648934,
+          4534
+        ],
+        "templates/a8.jsonl.gz": [
+          633630,
+          1222
+        ],
+        "templates/a9.jsonl.gz": [
+          657596,
+          3414
+        ],
+        "templates/aa.jsonl.gz": [
+          661843,
+          4395
+        ],
+        "templates/ab.jsonl.gz": [
+          665939,
+          3424
+        ],
+        "templates/ac.jsonl.gz": [
+          672657,
+          3991
+        ],
+        "templates/ad.jsonl.gz": [
+          670994,
+          1856
+        ],
+        "templates/ae.jsonl.gz": [
+          666878,
+          3281
+        ],
+        "templates/af.jsonl.gz": [
+          655099,
+          2246
+        ],
+        "templates/b0.jsonl.gz": [
+          670537,
+          3092
+        ],
+        "templates/b1.jsonl.gz": [
+          649578,
+          4405
+        ],
+        "templates/b2.jsonl.gz": [
+          654671,
+          1980
+        ],
+        "templates/b3.jsonl.gz": [
+          661949,
+          2597
+        ],
+        "templates/b4.jsonl.gz": [
+          668158,
+          2424
+        ],
+        "templates/b5.jsonl.gz": [
+          656371,
+          4392
+        ],
+        "templates/b6.jsonl.gz": [
+          665089,
+          4294
+        ],
+        "templates/b7.jsonl.gz": [
+          672887,
+          1146
+        ],
+        "templates/b8.jsonl.gz": [
+          631686,
+          695
+        ],
+        "templates/b9.jsonl.gz": [
+          665151,
+          3569
+        ],
+        "templates/ba.jsonl.gz": [
+          650444,
+          3008
+        ],
+        "templates/bb.jsonl.gz": [
+          656785,
+          1619
+        ],
+        "templates/bc.jsonl.gz": [
+          668443,
+          3854
+        ],
+        "templates/bd.jsonl.gz": [
+          644791,
+          3147
+        ],
+        "templates/be.jsonl.gz": [
+          685870,
+          1859
+        ],
+        "templates/bf.jsonl.gz": [
+          634301,
+          1330
+        ],
+        "templates/c0.jsonl.gz": [
+          661268,
+          1881
+        ],
+        "templates/c1.jsonl.gz": [
+          681519,
+          692
+        ],
+        "templates/c2.jsonl.gz": [
+          655960,
+          2446
+        ],
+        "templates/c3.jsonl.gz": [
+          648893,
+          2981
+        ],
+        "templates/c4.jsonl.gz": [
+          653484,
+          1978
+        ],
+        "templates/c5.jsonl.gz": [
+          683512,
+          3658
+        ],
+        "templates/c6.jsonl.gz": [
+          647953,
+          2521
+        ],
+        "templates/c7.jsonl.gz": [
+          649506,
+          3255
+        ],
+        "templates/c8.jsonl.gz": [
+          641146,
+          3829
+        ],
+        "templates/c9.jsonl.gz": [
+          662295,
+          1665
+        ],
+        "templates/ca.jsonl.gz": [
+          635061,
+          4970
+        ],
+        "templates/cb.jsonl.gz": [
+          671771,
+          3534
+        ],
+        "templates/cc.jsonl.gz": [
+          643263,
+          2547
+        ],
+        "templates/cd.jsonl.gz": [
+          652878,
+          2655
+        ],
+        "templates/ce.jsonl.gz": [
+          698660,
+          2792
+        ],
+        "templates/cf.jsonl.gz": [
+          637394,
+          1352
+        ],
+        "templates/d0.jsonl.gz": [
+          636164,
+          1678
+        ],
+        "templates/d1.jsonl.gz": [
+          655482,
+          2202
+        ],
+        "templates/d2.jsonl.gz": [
+          660310,
+          2012
+        ],
+        "templates/d3.jsonl.gz": [
+          672341,
+          1318
+        ],
+        "templates/d4.jsonl.gz": [
+          632134,
+          4101
+        ],
+        "templates/d5.jsonl.gz": [
+          653749,
+          4286
+        ],
+        "templates/d6.jsonl.gz": [
+          650255,
+          2249
+        ],
+        "templates/d7.jsonl.gz": [
+          648272,
+          4072
+        ],
+        "templates/d8.jsonl.gz": [
+          675009,
+          4903
+        ],
+        "templates/d9.jsonl.gz": [
+          634485,
+          1593
+        ],
+        "templates/da.jsonl.gz": [
+          668339,
+          3162
+        ],
+        "templates/db.jsonl.gz": [
+          640590,
+          1677
+        ],
+        "templates/dc.jsonl.gz": [
+          674548,
+          1952
+        ],
+        "templates/dd.jsonl.gz": [
+          659630,
+          4411
+        ],
+        "templates/de.jsonl.gz": [
+          658570,
+          2912
+        ],
+        "templates/df.jsonl.gz": [
+          638531,
+          1246
+        ],
+        "templates/e0.jsonl.gz": [
+          653663,
+          1948
+        ],
+        "templates/e1.jsonl.gz": [
+          663327,
+          3357
+        ],
+        "templates/e2.jsonl.gz": [
+          627085,
+          2218
+        ],
+        "templates/e3.jsonl.gz": [
+          645727,
+          4212
+        ],
+        "templates/e4.jsonl.gz": [
+          658422,
+          1940
+        ],
+        "templates/e5.jsonl.gz": [
+          670952,
+          2887
+        ],
+        "templates/e6.jsonl.gz": [
+          651799,
+          1879
+        ],
+        "templates/e7.jsonl.gz": [
+          653907,
+          2282
+        ],
+        "templates/e8.jsonl.gz": [
+          633996,
+          2344
+        ],
+        "templates/e9.jsonl.gz": [
+          625823,
+          2496
+        ],
+        "templates/ea.jsonl.gz": [
+          620292,
+          2139
+        ],
+        "templates/eb.jsonl.gz": [
+          664215,
+          1941
+        ],
+        "templates/ec.jsonl.gz": [
+          663496,
+          1375
+        ],
+        "templates/ed.jsonl.gz": [
+          655955,
+          4149
+        ],
+        "templates/ee.jsonl.gz": [
+          659411,
+          2549
+        ],
+        "templates/ef.jsonl.gz": [
+          648796,
+          1080
+        ],
+        "templates/f0.jsonl.gz": [
+          650488,
+          2700
+        ],
+        "templates/f2.jsonl.gz": [
+          661028,
+          3319
+        ],
+        "templates/f3.jsonl.gz": [
+          648900,
+          1808
+        ],
+        "templates/f4.jsonl.gz": [
+          664376,
+          1284
+        ],
+        "templates/f5.jsonl.gz": [
+          648823,
+          2755
+        ],
+        "templates/f6.jsonl.gz": [
+          624612,
+          3303
+        ],
+        "templates/f7.jsonl.gz": [
+          642116,
+          1969
+        ],
+        "templates/f8.jsonl.gz": [
+          649715,
+          4252
+        ],
+        "templates/f9.jsonl.gz": [
+          658474,
+          2205
+        ],
+        "templates/fa.jsonl.gz": [
+          612784,
+          2212
+        ],
+        "templates/fb.jsonl.gz": [
+          663489,
+          2942
+        ],
+        "templates/fc.jsonl.gz": [
+          665295,
+          4264
+        ],
+        "templates/fd.jsonl.gz": [
+          649832,
+          3631
+        ],
+        "templates/fe.jsonl.gz": [
+          668123,
+          2369
+        ],
+        "templates/ff.jsonl.gz": [
+          655419,
+          1939
+        ],
+        "verb_alternatives.jsonl.gz": [
+          4530794,
+          37285
+        ],
+        "verbs.jsonl.gz": [
+          3579413,
+          25982
+        ]
+      }
+    },
+    {
+      "id": "dailydialog-reviewed-3476-3535",
+      "manifest": {
+        "format": "corpus-templates-v1",
+        "status": "complete",
+        "source": "C:\\git\\qa-srl-gen\\artifacts\\_batch3476\\source.jsonl",
+        "full_input": true,
+        "model": {
+          "name": "direct-model-reviewed-complete-utterances",
+          "version": "1"
+        },
+        "review_status": "UNREVIEWED",
+        "field": "example",
+        "note": "Exact reviewed sentence attestations and complete contextual utterances with pinned interpretations and finite alternatives. Inherited automatic syntax is not verified for free factual QA.",
+        "counts": {
+          "input_records": 1089,
+          "compiled_records": 1089,
+          "roundtrips_verified": 1089,
+          "tokens_audited": 6174,
+          "verb_occurrences": 1312,
+          "verb_alternative_analyses": 1233,
+          "adjective_occurrences": 324,
+          "adjective_alternative_analyses": 401,
+          "participle_analyses": 165,
+          "templates": 1089,
+          "template_occurrences": 1089,
+          "templates_with_adjectives": 263,
+          "verb_lemmas": 195,
+          "adjective_lemmas": 142,
+          "verb_alternative_lemmas": 346,
+          "adjective_alternative_forms": 174,
+          "sentence_templates_covered": 1039,
+          "predicate_templates_covered": 762,
+          "constructions": 281
+        },
+        "analyses": {
+          "direct_review_opaque_utterance": 483,
+          "parsed_verbal": 595,
+          "model_reviewed_sentence": 11
+        },
+        "elapsed_seconds": 7.274,
+        "source_sha256": "93edae083a7e9b7c6d564076729d7a58623d262b079b4ffd704027be12c46cac"
+      },
+      "validation": {
+        "status": "passed",
+        "source_sha256": "93edae083a7e9b7c6d564076729d7a58623d262b079b4ffd704027be12c46cac",
+        "templates": 1089,
+        "attested_roundtrips": 1089,
+        "source_records": 1089,
+        "token_spans": 6174,
+        "verbs_occurrences": 1312,
+        "adjectives_occurrences": 324
+      },
+      "publication": {
+        "format": "built-in-template-component-v1",
+        "bank_id": "dailydialog-reviewed-3476-3535",
+        "source_sha256": "93edae083a7e9b7c6d564076729d7a58623d262b079b4ffd704027be12c46cac",
+        "manifest_sha256": "2b55ad56dd72b8a719d1e820868c71094376acbbf758a4e84d7c6a77e0e8ecbe",
+        "validation_sha256": "d5209d1bbb04da94141af37c061e92e9f8f0af6f9dd6bf2f50e9a451e57066b3"
+      },
+      "files": {
+        "adjective_alternatives.jsonl.gz": [
+          2669544,
+          13687
+        ],
+        "adjectives.jsonl.gz": [
+          2307311,
+          11506
+        ],
+        "constructions.jsonl.gz": [
+          7870747,
+          18034
+        ],
+        "occurrences/00000.jsonl.gz": [
+          32565210,
+          418388
+        ],
+        "templates/00.jsonl.gz": [
+          656007,
+          1946
+        ],
+        "templates/01.jsonl.gz": [
+          637182,
+          3814
+        ],
+        "templates/02.jsonl.gz": [
+          664983,
+          1313
+        ],
+        "templates/03.jsonl.gz": [
+          646321,
+          3587
+        ],
+        "templates/04.jsonl.gz": [
+          628396,
+          3799
+        ],
+        "templates/05.jsonl.gz": [
+          633249,
+          2851
+        ],
+        "templates/06.jsonl.gz": [
+          630131,
+          2160
+        ],
+        "templates/07.jsonl.gz": [
+          620826,
+          2861
+        ],
+        "templates/08.jsonl.gz": [
+          660925,
+          2781
+        ],
+        "templates/09.jsonl.gz": [
+          646573,
+          3074
+        ],
+        "templates/0a.jsonl.gz": [
+          622317,
+          920
+        ],
+        "templates/0b.jsonl.gz": [
+          649907,
+          1886
+        ],
+        "templates/0c.jsonl.gz": [
+          643042,
+          2154
+        ],
+        "templates/0d.jsonl.gz": [
+          651841,
+          2917
+        ],
+        "templates/0e.jsonl.gz": [
+          668634,
+          1838
+        ],
+        "templates/0f.jsonl.gz": [
+          678359,
+          4163
+        ],
+        "templates/10.jsonl.gz": [
+          661492,
+          2791
+        ],
+        "templates/11.jsonl.gz": [
+          678446,
+          2493
+        ],
+        "templates/12.jsonl.gz": [
+          651670,
+          2750
+        ],
+        "templates/14.jsonl.gz": [
+          673357,
+          3579
+        ],
+        "templates/15.jsonl.gz": [
+          678940,
+          2438
+        ],
+        "templates/16.jsonl.gz": [
+          656347,
+          6177
+        ],
+        "templates/17.jsonl.gz": [
+          645738,
+          1706
+        ],
+        "templates/18.jsonl.gz": [
+          678085,
+          3204
+        ],
+        "templates/19.jsonl.gz": [
+          652132,
+          1412
+        ],
+        "templates/1a.jsonl.gz": [
+          657440,
+          3700
+        ],
+        "templates/1b.jsonl.gz": [
+          659213,
+          2382
+        ],
+        "templates/1c.jsonl.gz": [
+          663719,
+          2996
+        ],
+        "templates/1d.jsonl.gz": [
+          671423,
+          2111
+        ],
+        "templates/1e.jsonl.gz": [
+          648503,
+          5336
+        ],
+        "templates/1f.jsonl.gz": [
+          662322,
+          4219
+        ],
+        "templates/20.jsonl.gz": [
+          653458,
+          2042
+        ],
+        "templates/22.jsonl.gz": [
+          640728,
+          1452
+        ],
+        "templates/23.jsonl.gz": [
+          676891,
+          4194
+        ],
+        "templates/24.jsonl.gz": [
+          636678,
+          2817
+        ],
+        "templates/25.jsonl.gz": [
+          652919,
+          1826
+        ],
+        "templates/26.jsonl.gz": [
+          656931,
+          5657
+        ],
+        "templates/27.jsonl.gz": [
+          666186,
+          4157
+        ],
+        "templates/28.jsonl.gz": [
+          648083,
+          3497
+        ],
+        "templates/29.jsonl.gz": [
+          645262,
+          2044
+        ],
+        "templates/2a.jsonl.gz": [
+          681996,
+          3631
+        ],
+        "templates/2b.jsonl.gz": [
+          685482,
+          3300
+        ],
+        "templates/2c.jsonl.gz": [
+          647662,
+          2545
+        ],
+        "templates/2d.jsonl.gz": [
+          686945,
+          1339
+        ],
+        "templates/2e.jsonl.gz": [
+          647274,
+          2248
+        ],
+        "templates/2f.jsonl.gz": [
+          638631,
+          2876
+        ],
+        "templates/30.jsonl.gz": [
+          647967,
+          2802
+        ],
+        "templates/31.jsonl.gz": [
+          652518,
+          2125
+        ],
+        "templates/32.jsonl.gz": [
+          654760,
+          1628
+        ],
+        "templates/33.jsonl.gz": [
+          662767,
+          2846
+        ],
+        "templates/34.jsonl.gz": [
+          669606,
+          1169
+        ],
+        "templates/35.jsonl.gz": [
+          663548,
+          2509
+        ],
+        "templates/36.jsonl.gz": [
+          657941,
+          4042
+        ],
+        "templates/37.jsonl.gz": [
+          655112,
+          1658
+        ],
+        "templates/38.jsonl.gz": [
+          655680,
+          4160
+        ],
+        "templates/39.jsonl.gz": [
+          632995,
+          4616
+        ],
+        "templates/3a.jsonl.gz": [
+          638048,
+          1998
+        ],
+        "templates/3b.jsonl.gz": [
+          642281,
+          2898
+        ],
+        "templates/3c.jsonl.gz": [
+          672014,
+          4195
+        ],
+        "templates/3d.jsonl.gz": [
+          644351,
+          5120
+        ],
+        "templates/3e.jsonl.gz": [
+          627874,
+          2398
+        ],
+        "templates/3f.jsonl.gz": [
+          659788,
+          2032
+        ],
+        "templates/40.jsonl.gz": [
+          651006,
+          3823
+        ],
+        "templates/41.jsonl.gz": [
+          638427,
+          3551
+        ],
+        "templates/42.jsonl.gz": [
+          651415,
+          3408
+        ],
+        "templates/43.jsonl.gz": [
+          638685,
+          4155
+        ],
+        "templates/45.jsonl.gz": [
+          641109,
+          1665
+        ],
+        "templates/47.jsonl.gz": [
+          661596,
+          2478
+        ],
+        "templates/48.jsonl.gz": [
+          681064,
+          1617
+        ],
+        "templates/49.jsonl.gz": [
+          641264,
+          4261
+        ],
+        "templates/4a.jsonl.gz": [
+          647398,
+          4409
+        ],
+        "templates/4b.jsonl.gz": [
+          632412,
+          3158
+        ],
+        "templates/4c.jsonl.gz": [
+          675409,
+          962
+        ],
+        "templates/4d.jsonl.gz": [
+          655206,
+          1665
+        ],
+        "templates/4e.jsonl.gz": [
+          637029,
+          4111
+        ],
+        "templates/4f.jsonl.gz": [
+          658523,
+          2795
+        ],
+        "templates/50.jsonl.gz": [
+          664579,
+          1632
+        ],
+        "templates/51.jsonl.gz": [
+          665876,
+          2739
+        ],
+        "templates/52.jsonl.gz": [
+          664477,
+          2425
+        ],
+        "templates/53.jsonl.gz": [
+          666866,
+          2667
+        ],
+        "templates/54.jsonl.gz": [
+          653822,
+          2967
+        ],
+        "templates/55.jsonl.gz": [
+          681684,
+          3565
+        ],
+        "templates/56.jsonl.gz": [
+          654601,
+          3713
+        ],
+        "templates/57.jsonl.gz": [
+          655087,
+          2288
+        ],
+        "templates/59.jsonl.gz": [
+          632435,
+          3402
+        ],
+        "templates/5a.jsonl.gz": [
+          642986,
+          4142
+        ],
+        "templates/5b.jsonl.gz": [
+          658237,
+          3992
+        ],
+        "templates/5c.jsonl.gz": [
+          669290,
+          1051
+        ],
+        "templates/5d.jsonl.gz": [
+          652491,
+          779
+        ],
+        "templates/5e.jsonl.gz": [
+          670372,
+          2421
+        ],
+        "templates/5f.jsonl.gz": [
+          671187,
+          4259
+        ],
+        "templates/60.jsonl.gz": [
+          624238,
+          3543
+        ],
+        "templates/61.jsonl.gz": [
+          670131,
+          1597
+        ],
+        "templates/62.jsonl.gz": [
+          637017,
+          3480
+        ],
+        "templates/63.jsonl.gz": [
+          667474,
+          1539
+        ],
+        "templates/64.jsonl.gz": [
+          658771,
+          2275
+        ],
+        "templates/65.jsonl.gz": [
+          639103,
+          1010
+        ],
+        "templates/66.jsonl.gz": [
+          673625,
+          999
+        ],
+        "templates/67.jsonl.gz": [
+          672137,
+          1720
+        ],
+        "templates/68.jsonl.gz": [
+          620764,
+          4547
+        ],
+        "templates/69.jsonl.gz": [
+          639112,
+          2115
+        ],
+        "templates/6a.jsonl.gz": [
+          646707,
+          4344
+        ],
+        "templates/6b.jsonl.gz": [
+          661568,
+          3118
+        ],
+        "templates/6c.jsonl.gz": [
+          675392,
+          2297
+        ],
+        "templates/6d.jsonl.gz": [
+          648505,
+          3057
+        ],
+        "templates/6e.jsonl.gz": [
+          666231,
+          1872
+        ],
+        "templates/6f.jsonl.gz": [
+          659156,
+          3095
+        ],
+        "templates/70.jsonl.gz": [
+          658990,
+          4591
+        ],
+        "templates/71.jsonl.gz": [
+          665410,
+          3474
+        ],
+        "templates/72.jsonl.gz": [
+          651400,
+          4051
+        ],
+        "templates/73.jsonl.gz": [
+          659264,
+          3299
+        ],
+        "templates/74.jsonl.gz": [
+          653293,
+          2364
+        ],
+        "templates/75.jsonl.gz": [
+          636091,
+          3961
+        ],
+        "templates/76.jsonl.gz": [
+          643846,
+          4176
+        ],
+        "templates/77.jsonl.gz": [
+          673854,
+          4082
+        ],
+        "templates/78.jsonl.gz": [
+          636002,
+          1834
+        ],
+        "templates/79.jsonl.gz": [
+          650627,
+          1620
+        ],
+        "templates/7a.jsonl.gz": [
+          658789,
+          2962
+        ],
+        "templates/7b.jsonl.gz": [
+          660837,
+          2283
+        ],
+        "templates/7c.jsonl.gz": [
+          667329,
+          4101
+        ],
+        "templates/7d.jsonl.gz": [
+          670792,
+          3269
+        ],
+        "templates/7e.jsonl.gz": [
+          630178,
+          3260
+        ],
+        "templates/7f.jsonl.gz": [
+          655141,
+          4109
+        ],
+        "templates/80.jsonl.gz": [
+          659175,
+          4965
+        ],
+        "templates/81.jsonl.gz": [
+          671349,
+          1382
+        ],
+        "templates/82.jsonl.gz": [
+          664395,
+          2517
+        ],
+        "templates/83.jsonl.gz": [
+          649707,
+          2864
+        ],
+        "templates/84.jsonl.gz": [
+          649340,
+          1838
+        ],
+        "templates/85.jsonl.gz": [
+          635473,
+          1397
+        ],
+        "templates/86.jsonl.gz": [
+          670881,
+          4988
+        ],
+        "templates/87.jsonl.gz": [
+          675210,
+          1768
+        ],
+        "templates/88.jsonl.gz": [
+          659413,
+          2957
+        ],
+        "templates/89.jsonl.gz": [
+          658882,
+          1197
+        ],
+        "templates/8a.jsonl.gz": [
+          649463,
+          2581
+        ],
+        "templates/8b.jsonl.gz": [
+          658902,
+          1187
+        ],
+        "templates/8c.jsonl.gz": [
+          656200,
+          3647
+        ],
+        "templates/8d.jsonl.gz": [
+          672021,
+          2432
+        ],
+        "templates/8e.jsonl.gz": [
+          652285,
+          3585
+        ],
+        "templates/8f.jsonl.gz": [
+          661633,
+          3194
+        ],
+        "templates/90.jsonl.gz": [
+          631614,
+          3396
+        ],
+        "templates/91.jsonl.gz": [
+          662863,
+          2577
+        ],
+        "templates/93.jsonl.gz": [
+          656593,
+          2898
+        ],
+        "templates/94.jsonl.gz": [
+          635716,
+          3443
+        ],
+        "templates/95.jsonl.gz": [
+          658012,
+          2229
+        ],
+        "templates/96.jsonl.gz": [
+          660342,
+          2984
+        ],
+        "templates/97.jsonl.gz": [
+          644622,
+          3301
+        ],
+        "templates/98.jsonl.gz": [
+          625686,
+          3854
+        ],
+        "templates/99.jsonl.gz": [
+          654950,
+          3368
+        ],
+        "templates/9a.jsonl.gz": [
+          670227,
+          2520
+        ],
+        "templates/9b.jsonl.gz": [
+          632176,
+          2571
+        ],
+        "templates/9c.jsonl.gz": [
+          635921,
+          2677
+        ],
+        "templates/9d.jsonl.gz": [
+          671493,
+          2852
+        ],
+        "templates/9e.jsonl.gz": [
+          643202,
+          2096
+        ],
+        "templates/9f.jsonl.gz": [
+          679181,
+          4241
+        ],
+        "templates/a0.jsonl.gz": [
+          627689,
+          4035
+        ],
+        "templates/a1.jsonl.gz": [
+          646528,
+          1355
+        ],
+        "templates/a2.jsonl.gz": [
+          628350,
+          6531
+        ],
+        "templates/a3.jsonl.gz": [
+          681438,
+          3914
+        ],
+        "templates/a4.jsonl.gz": [
+          646107,
+          3495
+        ],
+        "templates/a5.jsonl.gz": [
+          642748,
+          1723
+        ],
+        "templates/a6.jsonl.gz": [
+          633314,
+          1671
+        ],
+        "templates/a7.jsonl.gz": [
+          653468,
+          2941
+        ],
+        "templates/a8.jsonl.gz": [
+          634852,
+          4112
+        ],
+        "templates/a9.jsonl.gz": [
+          661010,
+          1067
+        ],
+        "templates/aa.jsonl.gz": [
+          666238,
+          2676
+        ],
+        "templates/ab.jsonl.gz": [
+          669363,
+          1393
+        ],
+        "templates/ac.jsonl.gz": [
+          676648,
+          3432
+        ],
+        "templates/ad.jsonl.gz": [
+          672850,
+          2486
+        ],
+        "templates/ae.jsonl.gz": [
+          670159,
+          2912
+        ],
+        "templates/af.jsonl.gz": [
+          657345,
+          3709
+        ],
+        "templates/b0.jsonl.gz": [
+          673629,
+          1203
+        ],
+        "templates/b1.jsonl.gz": [
+          653983,
+          2954
+        ],
+        "templates/b2.jsonl.gz": [
+          656651,
+          3099
+        ],
+        "templates/b3.jsonl.gz": [
+          664546,
+          3018
+        ],
+        "templates/b4.jsonl.gz": [
+          670582,
+          2470
+        ],
+        "templates/b5.jsonl.gz": [
+          660763,
+          4511
+        ],
+        "templates/b6.jsonl.gz": [
+          669383,
+          980
+        ],
+        "templates/b7.jsonl.gz": [
+          674033,
+          2880
+        ],
+        "templates/b8.jsonl.gz": [
+          632381,
+          3277
+        ],
+        "templates/b9.jsonl.gz": [
+          668720,
+          4187
+        ],
+        "templates/ba.jsonl.gz": [
+          653452,
+          1267
+        ],
+        "templates/bb.jsonl.gz": [
+          658404,
+          2622
+        ],
+        "templates/bc.jsonl.gz": [
+          672297,
+          2237
+        ],
+        "templates/bd.jsonl.gz": [
+          647938,
+          2968
+        ],
+        "templates/be.jsonl.gz": [
+          687729,
+          3208
+        ],
+        "templates/bf.jsonl.gz": [
+          635631,
+          3347
+        ],
+        "templates/c0.jsonl.gz": [
+          663149,
+          5397
+        ],
+        "templates/c1.jsonl.gz": [
+          682211,
+          2654
+        ],
+        "templates/c2.jsonl.gz": [
+          658406,
+          4169
+        ],
+        "templates/c3.jsonl.gz": [
+          651874,
+          2110
+        ],
+        "templates/c4.jsonl.gz": [
+          655462,
+          2706
+        ],
+        "templates/c5.jsonl.gz": [
+          687170,
+          2215
+        ],
+        "templates/c6.jsonl.gz": [
+          650474,
+          4449
+        ],
+        "templates/c7.jsonl.gz": [
+          652761,
+          870
+        ],
+        "templates/c8.jsonl.gz": [
+          644975,
+          2712
+        ],
+        "templates/c9.jsonl.gz": [
+          663960,
+          2280
+        ],
+        "templates/ca.jsonl.gz": [
+          640031,
+          3065
+        ],
+        "templates/cb.jsonl.gz": [
+          675305,
+          3032
+        ],
+        "templates/cc.jsonl.gz": [
+          645810,
+          3425
+        ],
+        "templates/cd.jsonl.gz": [
+          655533,
+          2787
+        ],
+        "templates/ce.jsonl.gz": [
+          701452,
+          5416
+        ],
+        "templates/cf.jsonl.gz": [
+          638746,
+          2464
+        ],
+        "templates/d0.jsonl.gz": [
+          637842,
+          2532
+        ],
+        "templates/d1.jsonl.gz": [
+          657684,
+          1661
+        ],
+        "templates/d2.jsonl.gz": [
+          662322,
+          4533
+        ],
+        "templates/d3.jsonl.gz": [
+          673659,
+          3534
+        ],
+        "templates/d4.jsonl.gz": [
+          636235,
+          1170
+        ],
+        "templates/d5.jsonl.gz": [
+          658035,
+          2162
+        ],
+        "templates/d6.jsonl.gz": [
+          652504,
+          2874
+        ],
+        "templates/d7.jsonl.gz": [
+          652344,
+          1991
+        ],
+        "templates/d8.jsonl.gz": [
+          679912,
+          4546
+        ],
+        "templates/d9.jsonl.gz": [
+          636078,
+          2445
+        ],
+        "templates/da.jsonl.gz": [
+          671501,
+          2290
+        ],
+        "templates/db.jsonl.gz": [
+          642267,
+          3128
+        ],
+        "templates/dc.jsonl.gz": [
+          676500,
+          1719
+        ],
+        "templates/dd.jsonl.gz": [
+          664041,
+          3814
+        ],
+        "templates/de.jsonl.gz": [
+          661482,
+          1716
+        ],
+        "templates/df.jsonl.gz": [
+          639777,
+          3061
+        ],
+        "templates/e0.jsonl.gz": [
+          655611,
+          2035
+        ],
+        "templates/e1.jsonl.gz": [
+          666684,
+          2461
+        ],
+        "templates/e2.jsonl.gz": [
+          629303,
+          3611
+        ],
+        "templates/e3.jsonl.gz": [
+          649939,
+          3039
+        ],
+        "templates/e4.jsonl.gz": [
+          660362,
+          2952
+        ],
+        "templates/e5.jsonl.gz": [
+          673839,
+          790
+        ],
+        "templates/e6.jsonl.gz": [
+          653678,
+          2488
+        ],
+        "templates/e7.jsonl.gz": [
+          656189,
+          4357
+        ],
+        "templates/e8.jsonl.gz": [
+          636340,
+          3697
+        ],
+        "templates/e9.jsonl.gz": [
+          628319,
+          2551
+        ],
+        "templates/ea.jsonl.gz": [
+          622431,
+          3852
+        ],
+        "templates/eb.jsonl.gz": [
+          666156,
+          1824
+        ],
+        "templates/ec.jsonl.gz": [
+          664871,
+          3842
+        ],
+        "templates/ed.jsonl.gz": [
+          660104,
+          4670
+        ],
+        "templates/ee.jsonl.gz": [
+          661960,
+          2328
+        ],
+        "templates/ef.jsonl.gz": [
+          649876,
+          2596
+        ],
+        "templates/f0.jsonl.gz": [
+          653188,
+          1675
+        ],
+        "templates/f1.jsonl.gz": [
+          647946,
+          5388
+        ],
+        "templates/f2.jsonl.gz": [
+          664347,
+          2215
+        ],
+        "templates/f3.jsonl.gz": [
+          650708,
+          1819
+        ],
+        "templates/f4.jsonl.gz": [
+          665660,
+          1386
+        ],
+        "templates/f5.jsonl.gz": [
+          651578,
+          701
+        ],
+        "templates/f6.jsonl.gz": [
+          627915,
+          1965
+        ],
+        "templates/f7.jsonl.gz": [
+          644085,
+          2441
+        ],
+        "templates/f8.jsonl.gz": [
+          653967,
+          2915
+        ],
+        "templates/f9.jsonl.gz": [
+          660679,
+          5675
+        ],
+        "templates/fa.jsonl.gz": [
+          614996,
+          2880
+        ],
+        "templates/fb.jsonl.gz": [
+          666431,
+          1558
+        ],
+        "templates/fc.jsonl.gz": [
+          669559,
+          1666
+        ],
+        "templates/fd.jsonl.gz": [
+          653463,
+          1904
+        ],
+        "templates/fe.jsonl.gz": [
+          670492,
+          3472
+        ],
+        "templates/ff.jsonl.gz": [
+          657358,
+          1975
+        ],
+        "verb_alternatives.jsonl.gz": [
+          4568079,
+          37041
+        ],
+        "verbs.jsonl.gz": [
+          3605395,
+          23175
+        ]
+      }
+    },
+    {
+      "id": "dailydialog-reviewed-3536-3595",
+      "manifest": {
+        "format": "corpus-templates-v1",
+        "status": "complete",
+        "source": "C:\\git\\qa-srl-gen\\artifacts\\_batch3536\\source.jsonl",
+        "full_input": true,
+        "model": {
+          "name": "direct-model-reviewed-complete-utterances",
+          "version": "1"
+        },
+        "review_status": "UNREVIEWED",
+        "field": "example",
+        "note": "Exact reviewed attestations and contextual meanings; automatic candidate syntax is not gold semantic annotation.",
+        "counts": {
+          "input_records": 889,
+          "compiled_records": 889,
+          "roundtrips_verified": 889,
+          "tokens_audited": 4795,
+          "verb_occurrences": 1029,
+          "verb_alternative_analyses": 866,
+          "adjective_occurrences": 255,
+          "adjective_alternative_analyses": 302,
+          "participle_analyses": 134,
+          "templates": 889,
+          "template_occurrences": 889,
+          "templates_with_adjectives": 189,
+          "verb_lemmas": 182,
+          "adjective_lemmas": 139,
+          "verb_alternative_lemmas": 300,
+          "adjective_alternative_forms": 143,
+          "sentence_templates_covered": 848,
+          "predicate_templates_covered": 573,
+          "constructions": 208
+        },
+        "analyses": {
+          "direct_review_opaque_utterance": 405,
+          "parsed_verbal": 467,
+          "model_reviewed_sentence": 17
+        },
+        "elapsed_seconds": 6.815,
+        "source_sha256": "bcdd4b860380d0b1b31d001c6275c3f81124a92496e630d0372630102de3c41e"
+      },
+      "validation": {
+        "status": "passed",
+        "source_sha256": "bcdd4b860380d0b1b31d001c6275c3f81124a92496e630d0372630102de3c41e",
+        "templates": 889,
+        "attested_roundtrips": 889,
+        "source_records": 889,
+        "token_spans": 4795,
+        "verbs_occurrences": 1029,
+        "adjectives_occurrences": 255
+      },
+      "publication": {
+        "format": "built-in-template-component-v1",
+        "bank_id": "dailydialog-reviewed-3536-3595",
+        "source_sha256": "bcdd4b860380d0b1b31d001c6275c3f81124a92496e630d0372630102de3c41e",
+        "manifest_sha256": "d07b78b9b8e21d4ba69b60203404b77c3e8de73b7bd451cd2dfc23a068442c63",
+        "validation_sha256": "7d76a4d9068fb31dbdcf9142181b0deae174063457cec53a83d73f9f9e4a4146"
+      },
+      "files": {
+        "adjective_alternatives.jsonl.gz": [
+          2683231,
+          11299
+        ],
+        "adjectives.jsonl.gz": [
+          2318817,
+          10276
+        ],
+        "constructions.jsonl.gz": [
+          7888781,
+          12776
+        ],
+        "occurrences/00000.jsonl.gz": [
+          32983598,
+          334450
+        ],
+        "templates/00.jsonl.gz": [
+          657953,
+          2045
+        ],
+        "templates/01.jsonl.gz": [
+          640996,
+          1847
+        ],
+        "templates/02.jsonl.gz": [
+          666296,
+          1695
+        ],
+        "templates/03.jsonl.gz": [
+          649908,
+          1547
+        ],
+        "templates/04.jsonl.gz": [
+          632195,
+          4256
+        ],
+        "templates/05.jsonl.gz": [
+          636100,
+          4536
+        ],
+        "templates/06.jsonl.gz": [
+          632291,
+          1902
+        ],
+        "templates/07.jsonl.gz": [
+          623687,
+          2713
+        ],
+        "templates/08.jsonl.gz": [
+          663706,
+          5202
+        ],
+        "templates/09.jsonl.gz": [
+          649647,
+          1688
+        ],
+        "templates/0a.jsonl.gz": [
+          623237,
+          2585
+        ],
+        "templates/0b.jsonl.gz": [
+          651793,
+          3524
+        ],
+        "templates/0c.jsonl.gz": [
+          645196,
+          2122
+        ],
+        "templates/0d.jsonl.gz": [
+          654758,
+          4006
+        ],
+        "templates/0e.jsonl.gz": [
+          670472,
+          2376
+        ],
+        "templates/0f.jsonl.gz": [
+          682522,
+          1302
+        ],
+        "templates/10.jsonl.gz": [
+          664283,
+          2507
+        ],
+        "templates/11.jsonl.gz": [
+          680939,
+          2478
+        ],
+        "templates/12.jsonl.gz": [
+          654420,
+          1018
+        ],
+        "templates/13.jsonl.gz": [
+          661477,
+          2815
+        ],
+        "templates/14.jsonl.gz": [
+          676936,
+          3665
+        ],
+        "templates/15.jsonl.gz": [
+          681378,
+          2450
+        ],
+        "templates/16.jsonl.gz": [
+          662524,
+          2318
+        ],
+        "templates/17.jsonl.gz": [
+          647444,
+          1388
+        ],
+        "templates/18.jsonl.gz": [
+          681289,
+          2224
+        ],
+        "templates/19.jsonl.gz": [
+          653544,
+          2221
+        ],
+        "templates/1a.jsonl.gz": [
+          661140,
+          1037
+        ],
+        "templates/1b.jsonl.gz": [
+          661595,
+          854
+        ],
+        "templates/1c.jsonl.gz": [
+          666715,
+          1038
+        ],
+        "templates/1d.jsonl.gz": [
+          673534,
+          2358
+        ],
+        "templates/1e.jsonl.gz": [
+          653839,
+          2658
+        ],
+        "templates/1f.jsonl.gz": [
+          666541,
+          1302
+        ],
+        "templates/20.jsonl.gz": [
+          655500,
+          1761
+        ],
+        "templates/21.jsonl.gz": [
+          624421,
+          2577
+        ],
+        "templates/22.jsonl.gz": [
+          642180,
+          1868
+        ],
+        "templates/23.jsonl.gz": [
+          681085,
+          2358
+        ],
+        "templates/24.jsonl.gz": [
+          639495,
+          1337
+        ],
+        "templates/25.jsonl.gz": [
+          654745,
+          1543
+        ],
+        "templates/26.jsonl.gz": [
+          662588,
+          2579
+        ],
+        "templates/27.jsonl.gz": [
+          670343,
+          3349
+        ],
+        "templates/28.jsonl.gz": [
+          651580,
+          2165
+        ],
+        "templates/29.jsonl.gz": [
+          647306,
+          1693
+        ],
+        "templates/2a.jsonl.gz": [
+          685627,
+          4544
+        ],
+        "templates/2b.jsonl.gz": [
+          688782,
+          2033
+        ],
+        "templates/2c.jsonl.gz": [
+          650207,
+          1893
+        ],
+        "templates/2d.jsonl.gz": [
+          688284,
+          2555
+        ],
+        "templates/2e.jsonl.gz": [
+          649522,
+          1050
+        ],
+        "templates/2f.jsonl.gz": [
+          641507,
+          1977
+        ],
+        "templates/30.jsonl.gz": [
+          650769,
+          1767
+        ],
+        "templates/31.jsonl.gz": [
+          654643,
+          1448
+        ],
+        "templates/33.jsonl.gz": [
+          665613,
+          4516
+        ],
+        "templates/34.jsonl.gz": [
+          670775,
+          2902
+        ],
+        "templates/35.jsonl.gz": [
+          666057,
+          3668
+        ],
+        "templates/36.jsonl.gz": [
+          661983,
+          1440
+        ],
+        "templates/37.jsonl.gz": [
+          656770,
+          814
+        ],
+        "templates/38.jsonl.gz": [
+          659840,
+          2617
+        ],
+        "templates/39.jsonl.gz": [
+          637611,
+          2052
+        ],
+        "templates/3a.jsonl.gz": [
+          640046,
+          2710
+        ],
+        "templates/3b.jsonl.gz": [
+          645179,
+          2876
+        ],
+        "templates/3c.jsonl.gz": [
+          676209,
+          1853
+        ],
+        "templates/3d.jsonl.gz": [
+          649471,
+          2018
+        ],
+        "templates/3e.jsonl.gz": [
+          630272,
+          3312
+        ],
+        "templates/3f.jsonl.gz": [
+          661820,
+          3372
+        ],
+        "templates/40.jsonl.gz": [
+          654829,
+          2906
+        ],
+        "templates/41.jsonl.gz": [
+          641978,
+          1353
+        ],
+        "templates/42.jsonl.gz": [
+          654823,
+          2933
+        ],
+        "templates/44.jsonl.gz": [
+          660958,
+          2402
+        ],
+        "templates/45.jsonl.gz": [
+          642774,
+          1690
+        ],
+        "templates/46.jsonl.gz": [
+          623792,
+          2138
+        ],
+        "templates/47.jsonl.gz": [
+          664074,
+          2837
+        ],
+        "templates/48.jsonl.gz": [
+          682681,
+          1649
+        ],
+        "templates/49.jsonl.gz": [
+          645525,
+          1409
+        ],
+        "templates/4a.jsonl.gz": [
+          651807,
+          1388
+        ],
+        "templates/4b.jsonl.gz": [
+          635570,
+          1794
+        ],
+        "templates/4c.jsonl.gz": [
+          676371,
+          2186
+        ],
+        "templates/4d.jsonl.gz": [
+          656871,
+          2130
+        ],
+        "templates/4e.jsonl.gz": [
+          641140,
+          2527
+        ],
+        "templates/4f.jsonl.gz": [
+          661318,
+          3198
+        ],
+        "templates/50.jsonl.gz": [
+          666211,
+          3311
+        ],
+        "templates/51.jsonl.gz": [
+          668615,
+          2749
+        ],
+        "templates/52.jsonl.gz": [
+          666902,
+          2448
+        ],
+        "templates/53.jsonl.gz": [
+          669533,
+          2104
+        ],
+        "templates/54.jsonl.gz": [
+          656789,
+          1437
+        ],
+        "templates/55.jsonl.gz": [
+          685249,
+          3019
+        ],
+        "templates/56.jsonl.gz": [
+          658314,
+          2995
+        ],
+        "templates/57.jsonl.gz": [
+          657375,
+          1694
+        ],
+        "templates/58.jsonl.gz": [
+          687441,
+          2707
+        ],
+        "templates/59.jsonl.gz": [
+          635837,
+          3031
+        ],
+        "templates/5a.jsonl.gz": [
+          647128,
+          3307
+        ],
+        "templates/5b.jsonl.gz": [
+          662229,
+          1768
+        ],
+        "templates/5c.jsonl.gz": [
+          670341,
+          3873
+        ],
+        "templates/5d.jsonl.gz": [
+          653270,
+          2237
+        ],
+        "templates/5e.jsonl.gz": [
+          672793,
+          2133
+        ],
+        "templates/5f.jsonl.gz": [
+          675446,
+          1740
+        ],
+        "templates/60.jsonl.gz": [
+          627781,
+          1194
+        ],
+        "templates/61.jsonl.gz": [
+          671728,
+          2121
+        ],
+        "templates/62.jsonl.gz": [
+          640497,
+          2327
+        ],
+        "templates/63.jsonl.gz": [
+          669013,
+          3385
+        ],
+        "templates/64.jsonl.gz": [
+          661046,
+          3323
+        ],
+        "templates/65.jsonl.gz": [
+          640113,
+          3504
+        ],
+        "templates/66.jsonl.gz": [
+          674624,
+          1809
+        ],
+        "templates/67.jsonl.gz": [
+          673857,
+          791
+        ],
+        "templates/68.jsonl.gz": [
+          625311,
+          3096
+        ],
+        "templates/69.jsonl.gz": [
+          641227,
+          4157
+        ],
+        "templates/6a.jsonl.gz": [
+          651051,
+          2072
+        ],
+        "templates/6b.jsonl.gz": [
+          664686,
+          3042
+        ],
+        "templates/6c.jsonl.gz": [
+          677689,
+          2284
+        ],
+        "templates/6d.jsonl.gz": [
+          651562,
+          1182
+        ],
+        "templates/6e.jsonl.gz": [
+          668103,
+          1721
+        ],
+        "templates/6f.jsonl.gz": [
+          662251,
+          2255
+        ],
+        "templates/70.jsonl.gz": [
+          663581,
+          3067
+        ],
+        "templates/71.jsonl.gz": [
+          668884,
+          3086
+        ],
+        "templates/72.jsonl.gz": [
+          655451,
+          2303
+        ],
+        "templates/73.jsonl.gz": [
+          662563,
+          3527
+        ],
+        "templates/74.jsonl.gz": [
+          655657,
+          1433
+        ],
+        "templates/75.jsonl.gz": [
+          640052,
+          4373
+        ],
+        "templates/76.jsonl.gz": [
+          648022,
+          3757
+        ],
+        "templates/77.jsonl.gz": [
+          677936,
+          3023
+        ],
+        "templates/78.jsonl.gz": [
+          637836,
+          1036
+        ],
+        "templates/79.jsonl.gz": [
+          652247,
+          2554
+        ],
+        "templates/7a.jsonl.gz": [
+          661751,
+          2274
+        ],
+        "templates/7b.jsonl.gz": [
+          663120,
+          1915
+        ],
+        "templates/7c.jsonl.gz": [
+          671430,
+          2251
+        ],
+        "templates/7d.jsonl.gz": [
+          674061,
+          2751
+        ],
+        "templates/7e.jsonl.gz": [
+          633438,
+          864
+        ],
+        "templates/7f.jsonl.gz": [
+          659250,
+          4902
+        ],
+        "templates/80.jsonl.gz": [
+          664140,
+          1638
+        ],
+        "templates/81.jsonl.gz": [
+          672731,
+          2404
+        ],
+        "templates/82.jsonl.gz": [
+          666912,
+          3255
+        ],
+        "templates/83.jsonl.gz": [
+          652571,
+          3581
+        ],
+        "templates/84.jsonl.gz": [
+          651178,
+          1848
+        ],
+        "templates/85.jsonl.gz": [
+          636870,
+          2374
+        ],
+        "templates/86.jsonl.gz": [
+          675869,
+          1336
+        ],
+        "templates/87.jsonl.gz": [
+          676978,
+          1844
+        ],
+        "templates/88.jsonl.gz": [
+          662370,
+          2408
+        ],
+        "templates/89.jsonl.gz": [
+          660079,
+          2039
+        ],
+        "templates/8a.jsonl.gz": [
+          652044,
+          1411
+        ],
+        "templates/8b.jsonl.gz": [
+          660089,
+          2482
+        ],
+        "templates/8c.jsonl.gz": [
+          659847,
+          1626
+        ],
+        "templates/8d.jsonl.gz": [
+          674453,
+          1186
+        ],
+        "templates/8e.jsonl.gz": [
+          655870,
+          3734
+        ],
+        "templates/8f.jsonl.gz": [
+          664827,
+          2053
+        ],
+        "templates/90.jsonl.gz": [
+          635010,
+          2919
+        ],
+        "templates/91.jsonl.gz": [
+          665440,
+          1667
+        ],
+        "templates/92.jsonl.gz": [
+          641665,
+          3178
+        ],
+        "templates/94.jsonl.gz": [
+          639159,
+          2403
+        ],
+        "templates/95.jsonl.gz": [
+          660241,
+          3301
+        ],
+        "templates/96.jsonl.gz": [
+          663326,
+          3578
+        ],
+        "templates/97.jsonl.gz": [
+          647923,
+          5282
+        ],
+        "templates/98.jsonl.gz": [
+          629540,
+          2257
+        ],
+        "templates/99.jsonl.gz": [
+          658318,
+          1915
+        ],
+        "templates/9a.jsonl.gz": [
+          672747,
+          2213
+        ],
+        "templates/9c.jsonl.gz": [
+          638598,
+          2745
+        ],
+        "templates/9d.jsonl.gz": [
+          674345,
+          1010
+        ],
+        "templates/9e.jsonl.gz": [
+          645298,
+          2877
+        ],
+        "templates/9f.jsonl.gz": [
+          683422,
+          3964
+        ],
+        "templates/a0.jsonl.gz": [
+          631724,
+          2061
+        ],
+        "templates/a1.jsonl.gz": [
+          647883,
+          2802
+        ],
+        "templates/a2.jsonl.gz": [
+          634881,
+          3176
+        ],
+        "templates/a3.jsonl.gz": [
+          685352,
+          3050
+        ],
+        "templates/a4.jsonl.gz": [
+          649602,
+          1139
+        ],
+        "templates/a5.jsonl.gz": [
+          644471,
+          2471
+        ],
+        "templates/a7.jsonl.gz": [
+          656409,
+          1954
+        ],
+        "templates/a8.jsonl.gz": [
+          638964,
+          1281
+        ],
+        "templates/a9.jsonl.gz": [
+          662077,
+          819
+        ],
+        "templates/aa.jsonl.gz": [
+          668914,
+          2121
+        ],
+        "templates/ab.jsonl.gz": [
+          670756,
+          1384
+        ],
+        "templates/ac.jsonl.gz": [
+          680080,
+          3419
+        ],
+        "templates/ad.jsonl.gz": [
+          675336,
+          2332
+        ],
+        "templates/ae.jsonl.gz": [
+          673071,
+          763
+        ],
+        "templates/af.jsonl.gz": [
+          661054,
+          2453
+        ],
+        "templates/b0.jsonl.gz": [
+          674832,
+          1868
+        ],
+        "templates/b1.jsonl.gz": [
+          656937,
+          2652
+        ],
+        "templates/b2.jsonl.gz": [
+          659750,
+          1660
+        ],
+        "templates/b3.jsonl.gz": [
+          667564,
+          1993
+        ],
+        "templates/b4.jsonl.gz": [
+          673052,
+          2575
+        ],
+        "templates/b5.jsonl.gz": [
+          665274,
+          1467
+        ],
+        "templates/b6.jsonl.gz": [
+          670363,
+          3249
+        ],
+        "templates/b7.jsonl.gz": [
+          676913,
+          3111
+        ],
+        "templates/b8.jsonl.gz": [
+          635658,
+          2134
+        ],
+        "templates/b9.jsonl.gz": [
+          672907,
+          2135
+        ],
+        "templates/ba.jsonl.gz": [
+          654719,
+          2019
+        ],
+        "templates/bb.jsonl.gz": [
+          661026,
+          2060
+        ],
+        "templates/bc.jsonl.gz": [
+          674534,
+          3137
+        ],
+        "templates/bd.jsonl.gz": [
+          650906,
+          1939
+        ],
+        "templates/be.jsonl.gz": [
+          690937,
+          4022
+        ],
+        "templates/bf.jsonl.gz": [
+          638978,
+          2717
+        ],
+        "templates/c0.jsonl.gz": [
+          668546,
+          2340
+        ],
+        "templates/c1.jsonl.gz": [
+          684865,
+          2164
+        ],
+        "templates/c2.jsonl.gz": [
+          662575,
+          1049
+        ],
+        "templates/c3.jsonl.gz": [
+          653984,
+          3083
+        ],
+        "templates/c4.jsonl.gz": [
+          658168,
+          1335
+        ],
+        "templates/c5.jsonl.gz": [
+          689385,
+          3466
+        ],
+        "templates/c6.jsonl.gz": [
+          654923,
+          4107
+        ],
+        "templates/c7.jsonl.gz": [
+          653631,
+          765
+        ],
+        "templates/c8.jsonl.gz": [
+          647687,
+          1731
+        ],
+        "templates/c9.jsonl.gz": [
+          666240,
+          2835
+        ],
+        "templates/ca.jsonl.gz": [
+          643096,
+          1396
+        ],
+        "templates/cb.jsonl.gz": [
+          678337,
+          735
+        ],
+        "templates/cc.jsonl.gz": [
+          649235,
+          2601
+        ],
+        "templates/cd.jsonl.gz": [
+          658320,
+          1830
+        ],
+        "templates/ce.jsonl.gz": [
+          706868,
+          1152
+        ],
+        "templates/cf.jsonl.gz": [
+          641210,
+          1633
+        ],
+        "templates/d0.jsonl.gz": [
+          640374,
+          2555
+        ],
+        "templates/d1.jsonl.gz": [
+          659345,
+          1505
+        ],
+        "templates/d2.jsonl.gz": [
+          666855,
+          1227
+        ],
+        "templates/d3.jsonl.gz": [
+          677193,
+          2481
+        ],
+        "templates/d4.jsonl.gz": [
+          637405,
+          1256
+        ],
+        "templates/d5.jsonl.gz": [
+          660197,
+          1892
+        ],
+        "templates/d6.jsonl.gz": [
+          655378,
+          3194
+        ],
+        "templates/d7.jsonl.gz": [
+          654335,
+          2519
+        ],
+        "templates/d8.jsonl.gz": [
+          684458,
+          1555
+        ],
+        "templates/d9.jsonl.gz": [
+          638523,
+          2967
+        ],
+        "templates/da.jsonl.gz": [
+          673791,
+          2328
+        ],
+        "templates/dc.jsonl.gz": [
+          678219,
+          1915
+        ],
+        "templates/dd.jsonl.gz": [
+          667855,
+          2652
+        ],
+        "templates/de.jsonl.gz": [
+          663198,
+          3233
+        ],
+        "templates/df.jsonl.gz": [
+          642838,
+          2929
+        ],
+        "templates/e0.jsonl.gz": [
+          657646,
+          1541
+        ],
+        "templates/e1.jsonl.gz": [
+          669145,
+          1470
+        ],
+        "templates/e2.jsonl.gz": [
+          632914,
+          1455
+        ],
+        "templates/e3.jsonl.gz": [
+          652978,
+          2822
+        ],
+        "templates/e4.jsonl.gz": [
+          663314,
+          2299
+        ],
+        "templates/e5.jsonl.gz": [
+          674629,
+          2561
+        ],
+        "templates/e6.jsonl.gz": [
+          656166,
+          3849
+        ],
+        "templates/e7.jsonl.gz": [
+          660546,
+          1595
+        ],
+        "templates/e8.jsonl.gz": [
+          640037,
+          2739
+        ],
+        "templates/e9.jsonl.gz": [
+          630870,
+          2232
+        ],
+        "templates/eb.jsonl.gz": [
+          667980,
+          2164
+        ],
+        "templates/ec.jsonl.gz": [
+          668713,
+          2594
+        ],
+        "templates/ed.jsonl.gz": [
+          664774,
+          1567
+        ],
+        "templates/ee.jsonl.gz": [
+          664288,
+          4268
+        ],
+        "templates/ef.jsonl.gz": [
+          652472,
+          2792
+        ],
+        "templates/f0.jsonl.gz": [
+          654863,
+          2006
+        ],
+        "templates/f1.jsonl.gz": [
+          653334,
+          1971
+        ],
+        "templates/f2.jsonl.gz": [
+          666562,
+          699
+        ],
+        "templates/f3.jsonl.gz": [
+          652527,
+          3295
+        ],
+        "templates/f4.jsonl.gz": [
+          667046,
+          2442
+        ],
+        "templates/f5.jsonl.gz": [
+          652279,
+          1690
+        ],
+        "templates/f7.jsonl.gz": [
+          646526,
+          2567
+        ],
+        "templates/f8.jsonl.gz": [
+          656882,
+          2471
+        ],
+        "templates/f9.jsonl.gz": [
+          666354,
+          2532
+        ],
+        "templates/fa.jsonl.gz": [
+          617876,
+          1247
+        ],
+        "templates/fb.jsonl.gz": [
+          667989,
+          2537
+        ],
+        "templates/fc.jsonl.gz": [
+          671225,
+          1964
+        ],
+        "templates/fd.jsonl.gz": [
+          655367,
+          777
+        ],
+        "templates/fe.jsonl.gz": [
+          673964,
+          2748
+        ],
+        "templates/ff.jsonl.gz": [
+          659333,
+          1820
+        ],
+        "verb_alternatives.jsonl.gz": [
+          4605120,
+          28434
+        ],
+        "verbs.jsonl.gz": [
+          3628570,
+          21114
+        ]
+      }
+    },
+    {
+      "id": "dailydialog-completion-3536-3595",
+      "manifest": {
+        "format": "corpus-templates-v1",
+        "status": "complete",
+        "source": "C:\\git\\qa-srl-gen\\artifacts\\_close3536\\source.jsonl",
+        "full_input": true,
+        "model": {
+          "name": "direct-reviewed-semantic-units",
+          "version": "1"
+        },
+        "review_status": "UNREVIEWED",
+        "field": "example",
+        "note": "Reviewed exact sentence and fragment units; interpretations are scoped to the visible source, not automatic dependency frames.",
+        "counts": {
+          "input_records": 158,
+          "compiled_records": 158,
+          "roundtrips_verified": 158,
+          "tokens_audited": 158,
+          "templates": 158,
+          "template_occurrences": 158,
+          "templates_with_adjectives": 0,
+          "verb_lemmas": 0,
+          "adjective_lemmas": 0,
+          "verb_alternative_lemmas": 0,
+          "adjective_alternative_forms": 0,
+          "sentence_templates_covered": 148,
+          "predicate_templates_covered": 0,
+          "constructions": 0
+        },
+        "analyses": {
+          "direct_review_opaque_unit": 158
+        },
+        "elapsed_seconds": 3.439,
+        "source_sha256": "a6c6812eeb89a8404127d34513ee9b86c8a06d6908b006c5397927375b3179f3"
+      },
+      "validation": {
+        "status": "passed",
+        "source_sha256": "a6c6812eeb89a8404127d34513ee9b86c8a06d6908b006c5397927375b3179f3",
+        "templates": 158,
+        "attested_roundtrips": 158,
+        "source_records": 158,
+        "token_spans": 158,
+        "verbs_occurrences": 0,
+        "adjectives_occurrences": 0
+      },
+      "publication": {
+        "format": "built-in-template-component-v1",
+        "bank_id": "dailydialog-completion-3536-3595",
+        "source_sha256": "a6c6812eeb89a8404127d34513ee9b86c8a06d6908b006c5397927375b3179f3",
+        "manifest_sha256": "8772c749f029f49da9d1cd0b6842d50e2a89522a5cb96e94bd0f48b84004f69c",
+        "validation_sha256": "d4d2bd683945e2b76f19334d25b1e4f299ee8847194684f23f6a6392eafe6439"
+      },
+      "files": {
+        "adjective_alternatives.jsonl.gz": [
+          2694530,
+          54
+        ],
+        "adjectives.jsonl.gz": [
+          2329093,
+          42
+        ],
+        "constructions.jsonl.gz": [
+          7901557,
+          45
+        ],
+        "occurrences/00000.jsonl.gz": [
+          33318048,
+          15567
+        ],
+        "templates/01.jsonl.gz": [
+          642843,
+          891
+        ],
+        "templates/04.jsonl.gz": [
+          636451,
+          898
+        ],
+        "templates/05.jsonl.gz": [
+          640636,
+          1455
+        ],
+        "templates/08.jsonl.gz": [
+          668908,
+          861
+        ],
+        "templates/0c.jsonl.gz": [
+          647318,
+          863
+        ],
+        "templates/0f.jsonl.gz": [
+          683824,
+          711
+        ],
+        "templates/10.jsonl.gz": [
+          666790,
+          656
+        ],
+        "templates/14.jsonl.gz": [
+          680601,
+          894
+        ],
+        "templates/19.jsonl.gz": [
+          655765,
+          812
+        ],
+        "templates/1d.jsonl.gz": [
+          675892,
+          728
+        ],
+        "templates/1f.jsonl.gz": [
+          667843,
+          1007
+        ],
+        "templates/20.jsonl.gz": [
+          657261,
+          1364
+        ],
+        "templates/24.jsonl.gz": [
+          640832,
+          759
+        ],
+        "templates/26.jsonl.gz": [
+          665167,
+          723
+        ],
+        "templates/28.jsonl.gz": [
+          653745,
+          821
+        ],
+        "templates/2c.jsonl.gz": [
+          652100,
+          1094
+        ],
+        "templates/2d.jsonl.gz": [
+          690839,
+          1389
+        ],
+        "templates/33.jsonl.gz": [
+          670129,
+          667
+        ],
+        "templates/35.jsonl.gz": [
+          669725,
+          1229
+        ],
+        "templates/37.jsonl.gz": [
+          657584,
+          1356
+        ],
+        "templates/38.jsonl.gz": [
+          662457,
+          798
+        ],
+        "templates/39.jsonl.gz": [
+          639663,
+          822
+        ],
+        "templates/3b.jsonl.gz": [
+          648055,
+          1282
+        ],
+        "templates/3e.jsonl.gz": [
+          633584,
+          848
+        ],
+        "templates/3f.jsonl.gz": [
+          665192,
+          902
+        ],
+        "templates/40.jsonl.gz": [
+          657735,
+          751
+        ],
+        "templates/44.jsonl.gz": [
+          663360,
+          660
+        ],
+        "templates/45.jsonl.gz": [
+          644464,
+          1084
+        ],
+        "templates/47.jsonl.gz": [
+          666911,
+          1076
+        ],
+        "templates/4b.jsonl.gz": [
+          637364,
+          1021
+        ],
+        "templates/4c.jsonl.gz": [
+          678557,
+          733
+        ],
+        "templates/4e.jsonl.gz": [
+          643667,
+          1177
+        ],
+        "templates/50.jsonl.gz": [
+          669522,
+          697
+        ],
+        "templates/51.jsonl.gz": [
+          671364,
+          894
+        ],
+        "templates/55.jsonl.gz": [
+          688268,
+          674
+        ],
+        "templates/56.jsonl.gz": [
+          661309,
+          1039
+        ],
+        "templates/57.jsonl.gz": [
+          659069,
+          1390
+        ],
+        "templates/59.jsonl.gz": [
+          638868,
+          792
+        ],
+        "templates/5a.jsonl.gz": [
+          650435,
+          760
+        ],
+        "templates/5c.jsonl.gz": [
+          674214,
+          1453
+        ],
+        "templates/5d.jsonl.gz": [
+          655507,
+          1085
+        ],
+        "templates/5e.jsonl.gz": [
+          674926,
+          1064
+        ],
+        "templates/61.jsonl.gz": [
+          673849,
+          854
+        ],
+        "templates/64.jsonl.gz": [
+          664369,
+          1413
+        ],
+        "templates/67.jsonl.gz": [
+          674648,
+          775
+        ],
+        "templates/68.jsonl.gz": [
+          628407,
+          688
+        ],
+        "templates/6a.jsonl.gz": [
+          653123,
+          829
+        ],
+        "templates/6e.jsonl.gz": [
+          669824,
+          807
+        ],
+        "templates/71.jsonl.gz": [
+          671970,
+          802
+        ],
+        "templates/77.jsonl.gz": [
+          680959,
+          736
+        ],
+        "templates/79.jsonl.gz": [
+          654801,
+          791
+        ],
+        "templates/7b.jsonl.gz": [
+          665035,
+          1151
+        ],
+        "templates/7d.jsonl.gz": [
+          676812,
+          722
+        ],
+        "templates/7e.jsonl.gz": [
+          634302,
+          827
+        ],
+        "templates/83.jsonl.gz": [
+          656152,
+          888
+        ],
+        "templates/86.jsonl.gz": [
+          677205,
+          894
+        ],
+        "templates/87.jsonl.gz": [
+          678822,
+          821
+        ],
+        "templates/8b.jsonl.gz": [
+          662571,
+          879
+        ],
+        "templates/8e.jsonl.gz": [
+          659604,
+          707
+        ],
+        "templates/90.jsonl.gz": [
+          637929,
+          839
+        ],
+        "templates/98.jsonl.gz": [
+          631797,
+          879
+        ],
+        "templates/99.jsonl.gz": [
+          660233,
+          1832
+        ],
+        "templates/9b.jsonl.gz": [
+          634747,
+          694
+        ],
+        "templates/9f.jsonl.gz": [
+          687386,
+          748
+        ],
+        "templates/a1.jsonl.gz": [
+          650685,
+          822
+        ],
+        "templates/a2.jsonl.gz": [
+          638057,
+          937
+        ],
+        "templates/a7.jsonl.gz": [
+          658363,
+          951
+        ],
+        "templates/a9.jsonl.gz": [
+          662896,
+          851
+        ],
+        "templates/aa.jsonl.gz": [
+          671035,
+          708
+        ],
+        "templates/ab.jsonl.gz": [
+          672140,
+          1142
+        ],
+        "templates/b0.jsonl.gz": [
+          676700,
+          858
+        ],
+        "templates/b1.jsonl.gz": [
+          659589,
+          1340
+        ],
+        "templates/b4.jsonl.gz": [
+          675627,
+          757
+        ],
+        "templates/b5.jsonl.gz": [
+          666741,
+          1096
+        ],
+        "templates/b6.jsonl.gz": [
+          673612,
+          877
+        ],
+        "templates/b7.jsonl.gz": [
+          680024,
+          1086
+        ],
+        "templates/b8.jsonl.gz": [
+          637792,
+          710
+        ],
+        "templates/b9.jsonl.gz": [
+          675042,
+          790
+        ],
+        "templates/ba.jsonl.gz": [
+          656738,
+          748
+        ],
+        "templates/bb.jsonl.gz": [
+          663086,
+          710
+        ],
+        "templates/bc.jsonl.gz": [
+          677671,
+          711
+        ],
+        "templates/bf.jsonl.gz": [
+          641695,
+          749
+        ],
+        "templates/c1.jsonl.gz": [
+          687029,
+          878
+        ],
+        "templates/c3.jsonl.gz": [
+          657067,
+          1426
+        ],
+        "templates/c4.jsonl.gz": [
+          659503,
+          1249
+        ],
+        "templates/c6.jsonl.gz": [
+          659030,
+          784
+        ],
+        "templates/c7.jsonl.gz": [
+          654396,
+          1204
+        ],
+        "templates/c8.jsonl.gz": [
+          649418,
+          689
+        ],
+        "templates/cf.jsonl.gz": [
+          642843,
+          1094
+        ],
+        "templates/d0.jsonl.gz": [
+          642929,
+          762
+        ],
+        "templates/d1.jsonl.gz": [
+          660850,
+          1126
+        ],
+        "templates/d3.jsonl.gz": [
+          679674,
+          1045
+        ],
+        "templates/d5.jsonl.gz": [
+          662089,
+          1287
+        ],
+        "templates/d6.jsonl.gz": [
+          658572,
+          744
+        ],
+        "templates/d9.jsonl.gz": [
+          641490,
+          1161
+        ],
+        "templates/db.jsonl.gz": [
+          645395,
+          737
+        ],
+        "templates/dc.jsonl.gz": [
+          680134,
+          743
+        ],
+        "templates/dd.jsonl.gz": [
+          670507,
+          690
+        ],
+        "templates/df.jsonl.gz": [
+          645767,
+          1028
+        ],
+        "templates/e1.jsonl.gz": [
+          670615,
+          1477
+        ],
+        "templates/e2.jsonl.gz": [
+          634369,
+          1606
+        ],
+        "templates/e3.jsonl.gz": [
+          655800,
+          1009
+        ],
+        "templates/e4.jsonl.gz": [
+          665613,
+          940
+        ],
+        "templates/e5.jsonl.gz": [
+          677190,
+          881
+        ],
+        "templates/e6.jsonl.gz": [
+          660015,
+          996
+        ],
+        "templates/e8.jsonl.gz": [
+          642776,
+          729
+        ],
+        "templates/ed.jsonl.gz": [
+          666341,
+          991
+        ],
+        "templates/ef.jsonl.gz": [
+          655264,
+          784
+        ],
+        "templates/f1.jsonl.gz": [
+          655305,
+          1297
+        ],
+        "templates/f2.jsonl.gz": [
+          667261,
+          1043
+        ],
+        "templates/f3.jsonl.gz": [
+          655822,
+          799
+        ],
+        "templates/f5.jsonl.gz": [
+          653969,
+          830
+        ],
+        "templates/f6.jsonl.gz": [
+          629880,
+          1395
+        ],
+        "templates/f7.jsonl.gz": [
+          649093,
+          825
+        ],
+        "templates/fa.jsonl.gz": [
+          619123,
+          728
+        ],
+        "templates/fc.jsonl.gz": [
+          673189,
+          745
+        ],
+        "templates/fd.jsonl.gz": [
+          656144,
+          748
+        ],
+        "templates/ff.jsonl.gz": [
+          661153,
+          1127
+        ],
+        "verb_alternatives.jsonl.gz": [
+          4633554,
+          49
+        ],
+        "verbs.jsonl.gz": [
+          3649684,
+          37
+        ]
+      }
+    },
+    {
+      "id": "dailydialog-reviewed-3596-3655",
+      "manifest": {
+        "format": "corpus-templates-v1",
+        "status": "complete",
+        "source": "C:\\git\\qa-srl-gen\\artifacts\\_batch3596\\sentences.jsonl",
+        "full_input": true,
+        "model": {
+          "name": "explicit model-authored sentence reviews",
+          "parser": null
+        },
+        "review_status": "UNREVIEWED",
+        "field": "example",
+        "note": "Model-authored syntax; semantic generation remains subject to admission rules.",
+        "counts": {
+          "input_records": 838,
+          "compiled_records": 838,
+          "roundtrips_verified": 838,
+          "tokens_audited": 838,
+          "templates": 838,
+          "template_occurrences": 838,
+          "templates_with_adjectives": 0,
+          "verb_lemmas": 0,
+          "adjective_lemmas": 0,
+          "verb_alternative_lemmas": 0,
+          "adjective_alternative_forms": 0,
+          "sentence_templates_covered": 804,
+          "predicate_templates_covered": 0,
+          "constructions": 0
+        },
+        "analyses": {
+          "direct_review_opaque_unit": 838
+        },
+        "elapsed_seconds": 6.332,
+        "source_sha256": "3222cbf352f92834f0e1eb1bdaefca078c3a9d0c94e15aedefd12ba0790aae98"
+      },
+      "validation": {
+        "status": "passed",
+        "source_sha256": "3222cbf352f92834f0e1eb1bdaefca078c3a9d0c94e15aedefd12ba0790aae98",
+        "templates": 838,
+        "attested_roundtrips": 838,
+        "source_records": 838,
+        "token_spans": 838,
+        "verbs_occurrences": 0,
+        "adjectives_occurrences": 0
+      },
+      "publication": {
+        "format": "built-in-template-component-v1",
+        "bank_id": "dailydialog-reviewed-3596-3655",
+        "source_sha256": "3222cbf352f92834f0e1eb1bdaefca078c3a9d0c94e15aedefd12ba0790aae98",
+        "manifest_sha256": "4630ac2eac3367eaed2064460a7c9b7b169522b9b496fa47bbfb31f106b3ce9d",
+        "validation_sha256": "d01b8ff78f4724a8b55a695511d3886e82a719f55b9a3c3e34840cf3ae4a7e3f"
+      },
+      "files": {
+        "adjective_alternatives.jsonl.gz": [
+          2694584,
+          54
+        ],
+        "adjectives.jsonl.gz": [
+          2329135,
+          42
+        ],
+        "constructions.jsonl.gz": [
+          7901602,
+          45
+        ],
+        "occurrences/00000.jsonl.gz": [
+          33333615,
+          80309
+        ],
+        "templates/00.jsonl.gz": [
+          659998,
+          996
+        ],
+        "templates/01.jsonl.gz": [
+          643734,
+          982
+        ],
+        "templates/02.jsonl.gz": [
+          667991,
+          990
+        ],
+        "templates/03.jsonl.gz": [
+          651455,
+          1881
+        ],
+        "templates/04.jsonl.gz": [
+          637349,
+          1556
+        ],
+        "templates/06.jsonl.gz": [
+          634193,
+          1099
+        ],
+        "templates/07.jsonl.gz": [
+          626400,
+          832
+        ],
+        "templates/08.jsonl.gz": [
+          669769,
+          2066
+        ],
+        "templates/09.jsonl.gz": [
+          651335,
+          1869
+        ],
+        "templates/0a.jsonl.gz": [
+          625822,
+          2572
+        ],
+        "templates/0b.jsonl.gz": [
+          655317,
+          1048
+        ],
+        "templates/0c.jsonl.gz": [
+          648181,
+          1255
+        ],
+        "templates/0d.jsonl.gz": [
+          658764,
+          1834
+        ],
+        "templates/0e.jsonl.gz": [
+          672848,
+          644
+        ],
+        "templates/0f.jsonl.gz": [
+          684535,
+          1125
+        ],
+        "templates/10.jsonl.gz": [
+          667446,
+          1735
+        ],
+        "templates/11.jsonl.gz": [
+          683417,
+          850
+        ],
+        "templates/12.jsonl.gz": [
+          655438,
+          1742
+        ],
+        "templates/13.jsonl.gz": [
+          664292,
+          934
+        ],
+        "templates/14.jsonl.gz": [
+          681495,
+          1798
+        ],
+        "templates/15.jsonl.gz": [
+          683828,
+          644
+        ],
+        "templates/16.jsonl.gz": [
+          664842,
+          962
+        ],
+        "templates/17.jsonl.gz": [
+          648832,
+          1577
+        ],
+        "templates/18.jsonl.gz": [
+          683513,
+          1969
+        ],
+        "templates/19.jsonl.gz": [
+          656577,
+          2022
+        ],
+        "templates/1a.jsonl.gz": [
+          662177,
+          1726
+        ],
+        "templates/1b.jsonl.gz": [
+          662449,
+          3157
+        ],
+        "templates/1c.jsonl.gz": [
+          667753,
+          2028
+        ],
+        "templates/1d.jsonl.gz": [
+          676620,
+          1899
+        ],
+        "templates/1e.jsonl.gz": [
+          656497,
+          1180
+        ],
+        "templates/1f.jsonl.gz": [
+          668850,
+          1023
+        ],
+        "templates/20.jsonl.gz": [
+          658625,
+          1418
+        ],
+        "templates/21.jsonl.gz": [
+          626998,
+          2276
+        ],
+        "templates/23.jsonl.gz": [
+          683443,
+          2144
+        ],
+        "templates/24.jsonl.gz": [
+          641591,
+          2096
+        ],
+        "templates/25.jsonl.gz": [
+          656288,
+          3315
+        ],
+        "templates/26.jsonl.gz": [
+          665890,
+          905
+        ],
+        "templates/27.jsonl.gz": [
+          673692,
+          1013
+        ],
+        "templates/28.jsonl.gz": [
+          654566,
+          1448
+        ],
+        "templates/29.jsonl.gz": [
+          648999,
+          2056
+        ],
+        "templates/2a.jsonl.gz": [
+          690171,
+          1880
+        ],
+        "templates/2b.jsonl.gz": [
+          690815,
+          2973
+        ],
+        "templates/2c.jsonl.gz": [
+          653194,
+          1940
+        ],
+        "templates/2d.jsonl.gz": [
+          692228,
+          2628
+        ],
+        "templates/2e.jsonl.gz": [
+          650572,
+          2230
+        ],
+        "templates/2f.jsonl.gz": [
+          643484,
+          1839
+        ],
+        "templates/30.jsonl.gz": [
+          652536,
+          1304
+        ],
+        "templates/31.jsonl.gz": [
+          656091,
+          1850
+        ],
+        "templates/32.jsonl.gz": [
+          656388,
+          708
+        ],
+        "templates/33.jsonl.gz": [
+          670796,
+          2804
+        ],
+        "templates/34.jsonl.gz": [
+          673677,
+          2159
+        ],
+        "templates/35.jsonl.gz": [
+          670954,
+          1014
+        ],
+        "templates/36.jsonl.gz": [
+          663423,
+          1561
+        ],
+        "templates/37.jsonl.gz": [
+          658940,
+          1803
+        ],
+        "templates/39.jsonl.gz": [
+          640485,
+          2432
+        ],
+        "templates/3a.jsonl.gz": [
+          642756,
+          2822
+        ],
+        "templates/3b.jsonl.gz": [
+          649337,
+          2214
+        ],
+        "templates/3c.jsonl.gz": [
+          678062,
+          2177
+        ],
+        "templates/3d.jsonl.gz": [
+          651489,
+          1484
+        ],
+        "templates/3e.jsonl.gz": [
+          634432,
+          1189
+        ],
+        "templates/3f.jsonl.gz": [
+          666094,
+          1871
+        ],
+        "templates/40.jsonl.gz": [
+          658486,
+          1756
+        ],
+        "templates/41.jsonl.gz": [
+          643331,
+          2280
+        ],
+        "templates/42.jsonl.gz": [
+          657756,
+          1309
+        ],
+        "templates/43.jsonl.gz": [
+          642840,
+          997
+        ],
+        "templates/44.jsonl.gz": [
+          664020,
+          2257
+        ],
+        "templates/46.jsonl.gz": [
+          625930,
+          887
+        ],
+        "templates/47.jsonl.gz": [
+          667987,
+          2945
+        ],
+        "templates/48.jsonl.gz": [
+          684330,
+          2791
+        ],
+        "templates/49.jsonl.gz": [
+          646934,
+          891
+        ],
+        "templates/4a.jsonl.gz": [
+          653195,
+          1621
+        ],
+        "templates/4b.jsonl.gz": [
+          638385,
+          1873
+        ],
+        "templates/4c.jsonl.gz": [
+          679290,
+          1378
+        ],
+        "templates/4d.jsonl.gz": [
+          659001,
+          2361
+        ],
+        "templates/4e.jsonl.gz": [
+          644844,
+          2494
+        ],
+        "templates/4f.jsonl.gz": [
+          664516,
+          1773
+        ],
+        "templates/50.jsonl.gz": [
+          670219,
+          1638
+        ],
+        "templates/51.jsonl.gz": [
+          672258,
+          2061
+        ],
+        "templates/52.jsonl.gz": [
+          669350,
+          2680
+        ],
+        "templates/53.jsonl.gz": [
+          671637,
+          1351
+        ],
+        "templates/54.jsonl.gz": [
+          658226,
+          2374
+        ],
+        "templates/55.jsonl.gz": [
+          688942,
+          1268
+        ],
+        "templates/56.jsonl.gz": [
+          662348,
+          2831
+        ],
+        "templates/57.jsonl.gz": [
+          660459,
+          1704
+        ],
+        "templates/58.jsonl.gz": [
+          690148,
+          2090
+        ],
+        "templates/59.jsonl.gz": [
+          639660,
+          1023
+        ],
+        "templates/5a.jsonl.gz": [
+          651195,
+          2191
+        ],
+        "templates/5b.jsonl.gz": [
+          663997,
+          1394
+        ],
+        "templates/5c.jsonl.gz": [
+          675667,
+          1452
+        ],
+        "templates/5d.jsonl.gz": [
+          656592,
+          2907
+        ],
+        "templates/5e.jsonl.gz": [
+          675990,
+          2775
+        ],
+        "templates/5f.jsonl.gz": [
+          677186,
+          1656
+        ],
+        "templates/60.jsonl.gz": [
+          628975,
+          1230
+        ],
+        "templates/61.jsonl.gz": [
+          674703,
+          2741
+        ],
+        "templates/62.jsonl.gz": [
+          642824,
+          1826
+        ],
+        "templates/63.jsonl.gz": [
+          672398,
+          2407
+        ],
+        "templates/64.jsonl.gz": [
+          665782,
+          1213
+        ],
+        "templates/65.jsonl.gz": [
+          643617,
+          3661
+        ],
+        "templates/66.jsonl.gz": [
+          676433,
+          2501
+        ],
+        "templates/67.jsonl.gz": [
+          675423,
+          769
+        ],
+        "templates/68.jsonl.gz": [
+          629095,
+          1882
+        ],
+        "templates/69.jsonl.gz": [
+          645384,
+          1013
+        ],
+        "templates/6a.jsonl.gz": [
+          653952,
+          3372
+        ],
+        "templates/6b.jsonl.gz": [
+          667728,
+          1455
+        ],
+        "templates/6c.jsonl.gz": [
+          679973,
+          3192
+        ],
+        "templates/6d.jsonl.gz": [
+          652744,
+          2229
+        ],
+        "templates/6e.jsonl.gz": [
+          670631,
+          696
+        ],
+        "templates/6f.jsonl.gz": [
+          664506,
+          1645
+        ],
+        "templates/70.jsonl.gz": [
+          666648,
+          1115
+        ],
+        "templates/71.jsonl.gz": [
+          672772,
+          846
+        ],
+        "templates/72.jsonl.gz": [
+          657754,
+          2312
+        ],
+        "templates/73.jsonl.gz": [
+          666090,
+          2027
+        ],
+        "templates/74.jsonl.gz": [
+          657090,
+          775
+        ],
+        "templates/75.jsonl.gz": [
+          644425,
+          1701
+        ],
+        "templates/76.jsonl.gz": [
+          651779,
+          1449
+        ],
+        "templates/77.jsonl.gz": [
+          681695,
+          900
+        ],
+        "templates/78.jsonl.gz": [
+          638872,
+          955
+        ],
+        "templates/79.jsonl.gz": [
+          655592,
+          1298
+        ],
+        "templates/7a.jsonl.gz": [
+          664025,
+          1758
+        ],
+        "templates/7b.jsonl.gz": [
+          666186,
+          1509
+        ],
+        "templates/7d.jsonl.gz": [
+          677534,
+          1562
+        ],
+        "templates/7e.jsonl.gz": [
+          635129,
+          627
+        ],
+        "templates/7f.jsonl.gz": [
+          664152,
+          1770
+        ],
+        "templates/80.jsonl.gz": [
+          665778,
+          1898
+        ],
+        "templates/81.jsonl.gz": [
+          675135,
+          2042
+        ],
+        "templates/82.jsonl.gz": [
+          670167,
+          1197
+        ],
+        "templates/83.jsonl.gz": [
+          657040,
+          2065
+        ],
+        "templates/84.jsonl.gz": [
+          653026,
+          2109
+        ],
+        "templates/85.jsonl.gz": [
+          639244,
+          713
+        ],
+        "templates/86.jsonl.gz": [
+          678099,
+          1836
+        ],
+        "templates/87.jsonl.gz": [
+          679643,
+          1564
+        ],
+        "templates/88.jsonl.gz": [
+          664778,
+          1718
+        ],
+        "templates/89.jsonl.gz": [
+          662118,
+          1602
+        ],
+        "templates/8a.jsonl.gz": [
+          653455,
+          1896
+        ],
+        "templates/8b.jsonl.gz": [
+          663450,
+          1118
+        ],
+        "templates/8c.jsonl.gz": [
+          661473,
+          2004
+        ],
+        "templates/8d.jsonl.gz": [
+          675639,
+          3116
+        ],
+        "templates/8e.jsonl.gz": [
+          660311,
+          1000
+        ],
+        "templates/8f.jsonl.gz": [
+          666880,
+          771
+        ],
+        "templates/90.jsonl.gz": [
+          638768,
+          2131
+        ],
+        "templates/91.jsonl.gz": [
+          667107,
+          1795
+        ],
+        "templates/92.jsonl.gz": [
+          644843,
+          1114
+        ],
+        "templates/93.jsonl.gz": [
+          659491,
+          1252
+        ],
+        "templates/94.jsonl.gz": [
+          641562,
+          1126
+        ],
+        "templates/95.jsonl.gz": [
+          663542,
+          1219
+        ],
+        "templates/96.jsonl.gz": [
+          666904,
+          961
+        ],
+        "templates/97.jsonl.gz": [
+          653205,
+          1620
+        ],
+        "templates/98.jsonl.gz": [
+          632676,
+          1592
+        ],
+        "templates/9a.jsonl.gz": [
+          674960,
+          721
+        ],
+        "templates/9b.jsonl.gz": [
+          635441,
+          1648
+        ],
+        "templates/9c.jsonl.gz": [
+          641343,
+          2347
+        ],
+        "templates/9d.jsonl.gz": [
+          675355,
+          1390
+        ],
+        "templates/9e.jsonl.gz": [
+          648175,
+          1321
+        ],
+        "templates/9f.jsonl.gz": [
+          688134,
+          2596
+        ],
+        "templates/a0.jsonl.gz": [
+          633785,
+          1643
+        ],
+        "templates/a1.jsonl.gz": [
+          651507,
+          1660
+        ],
+        "templates/a2.jsonl.gz": [
+          638994,
+          941
+        ],
+        "templates/a3.jsonl.gz": [
+          688402,
+          2304
+        ],
+        "templates/a4.jsonl.gz": [
+          650741,
+          1596
+        ],
+        "templates/a5.jsonl.gz": [
+          646942,
+          2741
+        ],
+        "templates/a6.jsonl.gz": [
+          634985,
+          1038
+        ],
+        "templates/a7.jsonl.gz": [
+          659314,
+          1464
+        ],
+        "templates/a8.jsonl.gz": [
+          640245,
+          2570
+        ],
+        "templates/a9.jsonl.gz": [
+          663747,
+          1562
+        ],
+        "templates/aa.jsonl.gz": [
+          671743,
+          1946
+        ],
+        "templates/ab.jsonl.gz": [
+          673282,
+          2357
+        ],
+        "templates/ac.jsonl.gz": [
+          683499,
+          1457
+        ],
+        "templates/ad.jsonl.gz": [
+          677668,
+          1271
+        ],
+        "templates/ae.jsonl.gz": [
+          673834,
+          2673
+        ],
+        "templates/af.jsonl.gz": [
+          663507,
+          1064
+        ],
+        "templates/b0.jsonl.gz": [
+          677558,
+          956
+        ],
+        "templates/b1.jsonl.gz": [
+          660929,
+          1114
+        ],
+        "templates/b2.jsonl.gz": [
+          661410,
+          1162
+        ],
+        "templates/b3.jsonl.gz": [
+          669557,
+          1450
+        ],
+        "templates/b4.jsonl.gz": [
+          676384,
+          1541
+        ],
+        "templates/b5.jsonl.gz": [
+          667837,
+          1527
+        ],
+        "templates/b6.jsonl.gz": [
+          674489,
+          1588
+        ],
+        "templates/b7.jsonl.gz": [
+          681110,
+          1806
+        ],
+        "templates/b8.jsonl.gz": [
+          638502,
+          3680
+        ],
+        "templates/b9.jsonl.gz": [
+          675832,
+          2990
+        ],
+        "templates/ba.jsonl.gz": [
+          657486,
+          1160
+        ],
+        "templates/bb.jsonl.gz": [
+          663796,
+          992
+        ],
+        "templates/bc.jsonl.gz": [
+          678382,
+          677
+        ],
+        "templates/bd.jsonl.gz": [
+          652845,
+          1511
+        ],
+        "templates/be.jsonl.gz": [
+          694959,
+          1433
+        ],
+        "templates/bf.jsonl.gz": [
+          642444,
+          1210
+        ],
+        "templates/c0.jsonl.gz": [
+          670886,
+          661
+        ],
+        "templates/c1.jsonl.gz": [
+          687907,
+          2233
+        ],
+        "templates/c2.jsonl.gz": [
+          663624,
+          1381
+        ],
+        "templates/c3.jsonl.gz": [
+          658493,
+          867
+        ],
+        "templates/c4.jsonl.gz": [
+          660752,
+          1441
+        ],
+        "templates/c5.jsonl.gz": [
+          692851,
+          1405
+        ],
+        "templates/c6.jsonl.gz": [
+          659814,
+          1661
+        ],
+        "templates/c7.jsonl.gz": [
+          655600,
+          1229
+        ],
+        "templates/c8.jsonl.gz": [
+          650107,
+          1902
+        ],
+        "templates/c9.jsonl.gz": [
+          669075,
+          2146
+        ],
+        "templates/ca.jsonl.gz": [
+          644492,
+          1126
+        ],
+        "templates/cb.jsonl.gz": [
+          679072,
+          728
+        ],
+        "templates/cc.jsonl.gz": [
+          651836,
+          644
+        ],
+        "templates/cd.jsonl.gz": [
+          660150,
+          1315
+        ],
+        "templates/ce.jsonl.gz": [
+          708020,
+          3514
+        ],
+        "templates/d0.jsonl.gz": [
+          643691,
+          2176
+        ],
+        "templates/d1.jsonl.gz": [
+          661976,
+          1557
+        ],
+        "templates/d2.jsonl.gz": [
+          668082,
+          2056
+        ],
+        "templates/d3.jsonl.gz": [
+          680719,
+          1312
+        ],
+        "templates/d4.jsonl.gz": [
+          638661,
+          1367
+        ],
+        "templates/d5.jsonl.gz": [
+          663376,
+          1011
+        ],
+        "templates/d6.jsonl.gz": [
+          659316,
+          1939
+        ],
+        "templates/d7.jsonl.gz": [
+          656854,
+          2026
+        ],
+        "templates/d8.jsonl.gz": [
+          686013,
+          2759
+        ],
+        "templates/d9.jsonl.gz": [
+          642651,
+          1758
+        ],
+        "templates/da.jsonl.gz": [
+          676119,
+          1232
+        ],
+        "templates/db.jsonl.gz": [
+          646132,
+          2201
+        ],
+        "templates/dc.jsonl.gz": [
+          680877,
+          1557
+        ],
+        "templates/dd.jsonl.gz": [
+          671197,
+          1185
+        ],
+        "templates/de.jsonl.gz": [
+          666431,
+          2212
+        ],
+        "templates/df.jsonl.gz": [
+          646795,
+          959
+        ],
+        "templates/e0.jsonl.gz": [
+          659187,
+          1956
+        ],
+        "templates/e1.jsonl.gz": [
+          672092,
+          2021
+        ],
+        "templates/e2.jsonl.gz": [
+          635975,
+          1146
+        ],
+        "templates/e3.jsonl.gz": [
+          656809,
+          3059
+        ],
+        "templates/e4.jsonl.gz": [
+          666553,
+          696
+        ],
+        "templates/e5.jsonl.gz": [
+          678071,
+          1651
+        ],
+        "templates/e6.jsonl.gz": [
+          661011,
+          1921
+        ],
+        "templates/e7.jsonl.gz": [
+          662141,
+          1333
+        ],
+        "templates/e8.jsonl.gz": [
+          643505,
+          1723
+        ],
+        "templates/e9.jsonl.gz": [
+          633102,
+          654
+        ],
+        "templates/ea.jsonl.gz": [
+          626283,
+          2026
+        ],
+        "templates/eb.jsonl.gz": [
+          670144,
+          744
+        ],
+        "templates/ed.jsonl.gz": [
+          667332,
+          2113
+        ],
+        "templates/ee.jsonl.gz": [
+          668556,
+          1144
+        ],
+        "templates/ef.jsonl.gz": [
+          656048,
+          1194
+        ],
+        "templates/f0.jsonl.gz": [
+          656869,
+          2954
+        ],
+        "templates/f1.jsonl.gz": [
+          656602,
+          1273
+        ],
+        "templates/f2.jsonl.gz": [
+          668304,
+          2206
+        ],
+        "templates/f3.jsonl.gz": [
+          656621,
+          1854
+        ],
+        "templates/f4.jsonl.gz": [
+          669488,
+          747
+        ],
+        "templates/f5.jsonl.gz": [
+          654799,
+          1005
+        ],
+        "templates/f6.jsonl.gz": [
+          631275,
+          728
+        ],
+        "templates/f7.jsonl.gz": [
+          649918,
+          2030
+        ],
+        "templates/f8.jsonl.gz": [
+          659353,
+          1907
+        ],
+        "templates/f9.jsonl.gz": [
+          668886,
+          2003
+        ],
+        "templates/fa.jsonl.gz": [
+          619851,
+          1015
+        ],
+        "templates/fb.jsonl.gz": [
+          670526,
+          1237
+        ],
+        "templates/fc.jsonl.gz": [
+          673934,
+          1740
+        ],
+        "templates/fd.jsonl.gz": [
+          656892,
+          690
+        ],
+        "templates/ff.jsonl.gz": [
+          662280,
+          1178
+        ],
+        "verb_alternatives.jsonl.gz": [
+          4633603,
+          49
+        ],
+        "verbs.jsonl.gz": [
+          3649721,
+          37
+        ]
+      }
     }
   ],
-  "source_sha256": "c637b179e1c77231f99fc923ec9cdacd9b70ebeda7911b9e9ad8381f6e23cc1b",
+  "source_sha256": "89c60a935dc3037d02f43a26bb30a7f06476329a5e9e850ee68b3aae0fc82201",
   "counts": {
-    "input_records": 762179,
-    "compiled_records": 762179,
-    "roundtrips_verified": 762179,
-    "tokens_audited": 6231808,
-    "verb_occurrences": 1621134,
-    "adjective_alternative_analyses": 1051835,
-    "verb_alternative_analyses": 1362273,
-    "adjective_occurrences": 278038,
-    "participle_analyses": 198746,
-    "templates": 621426,
-    "template_occurrences": 762179,
-    "templates_with_adjectives": 176753,
-    "verb_lemmas": 14487,
-    "adjective_lemmas": 11567,
-    "verb_alternative_lemmas": 18410,
-    "adjective_alternative_forms": 13128,
-    "sentence_templates_covered": 326853,
-    "predicate_templates_covered": 201395,
-    "constructions": 35914,
+    "input_records": 766216,
+    "compiled_records": 766216,
+    "roundtrips_verified": 766216,
+    "tokens_audited": 6249863,
+    "verb_occurrences": 1624697,
+    "adjective_alternative_analyses": 1052940,
+    "verb_alternative_analyses": 1365563,
+    "adjective_occurrences": 278926,
+    "participle_analyses": 199182,
+    "templates": 625463,
+    "template_occurrences": 766216,
+    "templates_with_adjectives": 177445,
+    "verb_lemmas": 15087,
+    "adjective_lemmas": 12001,
+    "verb_alternative_lemmas": 19399,
+    "adjective_alternative_forms": 13609,
+    "sentence_templates_covered": 330704,
+    "predicate_templates_covered": 203479,
+    "constructions": 36670,
     "entities": 414,
     "entity_candidates": 49,
     "nominals": 4159
   },
   "validation": {
     "status": "passed",
-    "source_sha256": "c637b179e1c77231f99fc923ec9cdacd9b70ebeda7911b9e9ad8381f6e23cc1b",
-    "templates": 621426,
-    "attested_roundtrips": 762138,
-    "source_records": 762179,
-    "token_spans": 6231808,
-    "verbs_occurrences": 1621134,
-    "adjectives_occurrences": 278038
+    "source_sha256": "89c60a935dc3037d02f43a26bb30a7f06476329a5e9e850ee68b3aae0fc82201",
+    "templates": 625463,
+    "attested_roundtrips": 766175,
+    "source_records": 766216,
+    "token_spans": 6249863,
+    "verbs_occurrences": 1624697,
+    "adjectives_occurrences": 278926
   }
 }

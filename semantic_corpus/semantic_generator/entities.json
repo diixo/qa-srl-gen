@@ -80621,6 +80621,4066 @@
       ],
       "number": "singular",
       "named": false
+    },
+    {
+      "text": "Derek Schneider",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "person",
+      "named": true
+    },
+    {
+      "text": "Gale",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "person",
+      "named": true
+    },
+    {
+      "text": "Lin Ping",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "person",
+      "named": true
+    },
+    {
+      "text": "Olympia",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "Shan",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "person",
+      "named": true
+    },
+    {
+      "text": "Whit",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "type": "person",
+      "named": true
+    },
+    {
+      "text": "Qinghai Lake",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "type": "place",
+      "named": true
+    },
+    {
+      "text": "a three-pointer",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "American universities",
+      "labels": [
+        "LOCATION"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "Chinese girls",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "Korean shows",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "a hip",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a permission letter",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "newcomers",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "a counselor",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "an insect",
+      "labels": [
+        "ANIMAL"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "plants",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "eye shadow",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a Chinese seal",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a beauty shop",
+      "labels": [
+        "LOCATION"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a beer run",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a church wedding",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a civil ceremony",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a defeat",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a disability",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a folk concert",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a grown-up",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a hike",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a long hike",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a history",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a parking place",
+      "labels": [
+        "LOCATION"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a peace treaty",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a parking spot",
+      "labels": [
+        "LOCATION"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "activities",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "efforts",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "procedures",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "summer sports",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "universities",
+      "labels": [
+        "LOCATION"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "an American university",
+      "labels": [
+        "LOCATION"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "application forms",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "chapped lips",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "chess",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "colors",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "disabilities",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "disadvantages",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "evaporation",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a species",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "evidence",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "free throws",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "fresh fruit",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "global warming",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a best man",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "human interaction",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a space vehicle",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "long roots",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "makeup",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "applicants",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "personal space",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "an interest",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "official transcripts",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "planets",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "application materials",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "space shuttles",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "parking permits",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "peppermint ice cream",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "picnics",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "pink eye shadow",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a recommendation",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "species",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "skating",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "documents",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "flavors",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "software standards",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "pollen",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "corporate spirit",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "stock prices",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "dry desert conditions",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "long nails",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "an emblem",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "Korean soap operas",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "a bestselling book",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a carrot",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "discussions",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "an essence",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "festivities",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "a file",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a national forest",
+      "labels": [
+        "LOCATION"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "nectar",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "nights",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "a pocket edition",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a rental library",
+      "labels": [
+        "LOCATION"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a math class",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a school counselor",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "smells",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "a stamp exhibition",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a stove",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "displays",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "staff training",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "features",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "a waste of time",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "water loss",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "unusual plants",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "an English composition",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a cape",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "competence",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a completed application form",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a favorite color",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a favorite season",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a request",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "undergraduate work",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "3rd Street",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true,
+      "type": "place"
+    },
+    {
+      "text": "Chang An Street",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true,
+      "type": "place"
+    },
+    {
+      "text": "Crenshaw",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true,
+      "type": "place"
+    },
+    {
+      "text": "Hawthorne",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true,
+      "type": "place"
+    },
+    {
+      "text": "Pebble Beach",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true,
+      "type": "place"
+    },
+    {
+      "text": "Foreign Languages Department",
+      "labels": [
+        "NAMED_ENTITY",
+        "ORGANIZATION"
+      ],
+      "number": "singular",
+      "named": true
+    },
+    {
+      "text": "Ming dynasty",
+      "labels": [
+        "ABSTRACT_ENTITY",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true
+    },
+    {
+      "text": "Tian'an Men Square",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true,
+      "type": "place"
+    },
+    {
+      "text": "a learned person",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "affirmative action",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "MP3 music",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "medicine",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "Mrs. Clinton",
+      "labels": [
+        "NAMED_ENTITY",
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": true,
+      "type": "person"
+    },
+    {
+      "text": "Q-Duck",
+      "labels": [
+        "NAMED_ENTITY",
+        "ORGANIZATION"
+      ],
+      "number": "singular",
+      "named": true
+    },
+    {
+      "text": "Shan Haiguan",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true,
+      "type": "place"
+    },
+    {
+      "text": "society",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "mosquitoes",
+      "labels": [
+        "ANIMAL"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "earphones",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "a BA",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a Sichuan hot pot restaurant",
+      "labels": [
+        "LOCATION"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a birdie",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a bogey",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a career counselor",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a career woman",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "poor-quality work",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a house-warming party",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a long-distance trip",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a masterpiece",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a nation",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a life stage",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "par",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a professional football player",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a public officer",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a science-fiction movie",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a robot girlfriend",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a rush of work",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a seven-day vacation",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a sleeping pill",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "strain",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "advertising agencies",
+      "labels": [
+        "ORGANIZATION"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "fashion trends",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "neon signs",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "a hot pot restaurant",
+      "labels": [
+        "LOCATION"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "an honest answer",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "an international conference",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "animal control",
+      "labels": [
+        "ORGANIZATION"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "bathroom products",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "a beautiful view",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "billboards",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "brand loyalty",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "brand-name products",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "broadcasts",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "buying",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "discrimination",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a caddie",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "eye-catching pictures",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "opportunities",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "stores",
+      "labels": [
+        "LOCATION"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "first prize",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "government officials",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "a golf ball",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a golf driver",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "hot pot",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "improvement",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "jingles",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "joys",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "ladies",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "leaflets",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "legislation",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "management quotas",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "English signs",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "career tracks",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "golfers",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "landmarks",
+      "labels": [
+        "LOCATION"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "male managers",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "issues",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "carelessness",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "an economics final",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "fashion magazines",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "housemates",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "an iPod",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a routine",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "outside noises",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "red diplomas",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "red meat",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "science-fiction movies",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "sexual discrimination",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "snacks",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "Sichuan hotpot",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "schoolmates",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "golf hazards",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "sorrows",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "hearing damage",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "spam",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "StarCraft",
+      "labels": [
+        "ABSTRACT_ENTITY",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true
+    },
+    {
+      "text": "stereo headphones",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "important work",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "supermarkets",
+      "labels": [
+        "LOCATION"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "a writing contest",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "China World Trade Towers",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true,
+      "type": "place"
+    },
+    {
+      "text": "Chinese people",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "Holiday Inn",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true,
+      "type": "place"
+    },
+    {
+      "text": "an MP3 chip",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a bloody scene",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a cleaning bill",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a commencement ceremony",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "culture",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a deposit",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a golf hole",
+      "labels": [
+        "LOCATION"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a roast-duck store",
+      "labels": [
+        "LOCATION"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "the grand prize",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "low pressure",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "neighbors",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "an opening speech",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a college president",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a tennis racket",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a school auditorium",
+      "labels": [
+        "LOCATION"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "an intersection",
+      "labels": [
+        "LOCATION"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "volume",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "the workforce",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a golf shot",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "traditional social customs",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "AA batteries",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "spelling errors",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "an ear",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a semester",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "interests",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "study preferences",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "a top choice",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "Dear Abby",
+      "labels": [
+        "ABSTRACT_ENTITY",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true
+    },
+    {
+      "text": "Edinburgh University",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true
+    },
+    {
+      "text": "Gaoxiong",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true
+    },
+    {
+      "text": "Gavin White",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true
+    },
+    {
+      "text": "MicroPower",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true
+    },
+    {
+      "text": "Net Love",
+      "labels": [
+        "ABSTRACT_ENTITY",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true
+    },
+    {
+      "text": "Rachael",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true
+    },
+    {
+      "text": "Thomas Cook Travel",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true
+    },
+    {
+      "text": "Happy Farm",
+      "labels": [
+        "ABSTRACT_ENTITY",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true
+    },
+    {
+      "text": "Waterloo Bridge",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true
+    },
+    {
+      "text": "volunteers",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "climate change",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "sob stories",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "English classes",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "Hamburger Heaven",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true
+    },
+    {
+      "text": "office workers",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "Mexican food",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "Mr. Bean",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true
+    },
+    {
+      "text": "summer vacation",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a bulletin",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a business plan",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a fast food restaurant",
+      "labels": [
+        "LOCATION"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "enemies",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "a group class",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "an occasion",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a hiking trip",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a multinational enterprise",
+      "labels": [
+        "ORGANIZATION"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a one-to-one course",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a private tutor",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a part-time course",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a pre-sessional interview",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a prescription",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a scolding",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a first aid kit",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a business model",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a touching movie",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "club members",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "gift packages",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "an American girl",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "an enterprise",
+      "labels": [
+        "ORGANIZATION"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "an entrepreneur",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "medicine",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a companion",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "scary movies",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "cities",
+      "labels": [
+        "LOCATION"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "club officials",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "cold medicine",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "colored electric lights",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "colored paper",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a department",
+      "labels": [
+        "ORGANIZATION"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "floods",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "a tennis match",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "human activities",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "industry",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "loneliness",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "an MA",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "handwriting",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a transfer",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "tuition",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "nominees",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "online courses",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "qualified teachers",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "a program",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "dry winters",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "tips",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "a blue dress",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a paper",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "election times",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "a basis",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a ski trip",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a front door",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "importance",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a mood",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "nominations",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "an oath",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a policy",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a screen display",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "success stories",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "sweet words",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "a treasure house",
+      "labels": [
+        "LOCATION"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a group of colleagues",
+      "labels": [
+        "GROUP"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "birthdays",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "a strip",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "tours",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "co-workers",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "encouragement",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "12 o'clock",
+      "labels": [
+        "TIME"
+      ],
+      "number": "singular",
+      "named": false,
+      "preposition": "at"
+    },
+    {
+      "text": "2000",
+      "labels": [
+        "DATE"
+      ],
+      "number": "singular",
+      "named": false,
+      "preposition": "in"
+    },
+    {
+      "text": "about three years",
+      "labels": [
+        "TIME"
+      ],
+      "number": "plural",
+      "named": false,
+      "preposition": "for"
+    },
+    {
+      "text": "a party pooper",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "half past two in the afternoon",
+      "labels": [
+        "TIME"
+      ],
+      "number": "singular",
+      "named": false,
+      "preposition": "at"
+    },
+    {
+      "text": "last week",
+      "labels": [
+        "DATE"
+      ],
+      "number": "singular",
+      "named": false,
+      "preposition": ""
+    },
+    {
+      "text": "thirty meters",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "a hundred years ago",
+      "labels": [
+        "DATE"
+      ],
+      "number": "singular",
+      "named": false,
+      "preposition": ""
+    },
+    {
+      "text": "almost six o'clock",
+      "labels": [
+        "TIME"
+      ],
+      "number": "singular",
+      "named": false,
+      "preposition": "at"
+    },
+    {
+      "text": "almost every year",
+      "labels": [
+        "TIME"
+      ],
+      "number": "singular",
+      "named": false,
+      "preposition": ""
+    },
+    {
+      "text": "the first week at work",
+      "labels": [
+        "TIME"
+      ],
+      "number": "singular",
+      "named": false,
+      "preposition": "during"
+    },
+    {
+      "text": "a hundred pages",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "one o'clock",
+      "labels": [
+        "TIME"
+      ],
+      "number": "singular",
+      "named": false,
+      "preposition": "at"
+    },
+    {
+      "text": "three dollars",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "seventy-five million",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "ten dollars",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "the past two hundred years",
+      "labels": [
+        "TIME"
+      ],
+      "number": "plural",
+      "named": false,
+      "preposition": "during"
+    },
+    {
+      "text": "rush hours",
+      "labels": [
+        "TIME"
+      ],
+      "number": "plural",
+      "named": false,
+      "preposition": "during"
+    },
+    {
+      "text": "the week after the nominations",
+      "labels": [
+        "TIME"
+      ],
+      "number": "singular",
+      "named": false,
+      "preposition": "during"
+    },
+    {
+      "text": "the last three summers",
+      "labels": [
+        "TIME"
+      ],
+      "number": "plural",
+      "named": false,
+      "preposition": "during"
+    },
+    {
+      "text": "two people",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "a predicament",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "time management",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a birthday celebrant",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a lifelong companion",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "the first day of class",
+      "labels": [
+        "TIME"
+      ],
+      "number": "singular",
+      "named": false,
+      "preposition": "on"
+    },
+    {
+      "text": "potential customers",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "an Internet division",
+      "labels": [
+        "ORGANIZATION"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "virtual vegetables",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "three people",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "12:30",
+      "labels": [
+        "TIME"
+      ],
+      "number": "singular",
+      "named": false,
+      "preposition": "at"
+    },
+    {
+      "text": "6:30 pm",
+      "labels": [
+        "TIME"
+      ],
+      "number": "singular",
+      "named": false,
+      "preposition": "at"
+    },
+    {
+      "text": "Sammo Hung",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true
+    },
+    {
+      "text": "Bill Peters",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true
+    },
+    {
+      "text": "Boeing",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true
+    },
+    {
+      "text": "Copernicus",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true
+    },
+    {
+      "text": "Everest",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true
+    },
+    {
+      "text": "Galileo",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true
+    },
+    {
+      "text": "Mr. Keller",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true
+    },
+    {
+      "text": "labour",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "Northwest Orient Airlines",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true
+    },
+    {
+      "text": "Sanyu Restaurant",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true
+    },
+    {
+      "text": "the StudioClassroom.com.tw website",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "Susan Jackson",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true
+    },
+    {
+      "text": "this weekend",
+      "labels": [
+        "TIME"
+      ],
+      "number": "singular",
+      "named": false,
+      "preposition": "during"
+    },
+    {
+      "text": "Zhang Lin",
+      "labels": [
+        "PERSON",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true
+    },
+    {
+      "text": "Zhumulangma",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true
+    },
+    {
+      "text": "a couple of weeks ago",
+      "labels": [
+        "TIME"
+      ],
+      "number": "singular",
+      "named": false,
+      "preposition": ""
+    },
+    {
+      "text": "a year or so",
+      "labels": [
+        "TIME"
+      ],
+      "number": "singular",
+      "named": false,
+      "preposition": "after"
+    },
+    {
+      "text": "around 8 pm",
+      "labels": [
+        "TIME"
+      ],
+      "number": "singular",
+      "named": false,
+      "preposition": ""
+    },
+    {
+      "text": "a few weeks",
+      "labels": [
+        "TIME"
+      ],
+      "number": "plural",
+      "named": false,
+      "preposition": "for"
+    },
+    {
+      "text": "lasagne",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "food"
+    },
+    {
+      "text": "last May",
+      "labels": [
+        "TIME"
+      ],
+      "number": "singular",
+      "named": false,
+      "preposition": ""
+    },
+    {
+      "text": "an oven",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "several weeks",
+      "labels": [
+        "TIME"
+      ],
+      "number": "plural",
+      "named": false,
+      "preposition": "for"
+    },
+    {
+      "text": "the Campus Band",
+      "labels": [
+        "ORGANIZATION"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "kung fu films",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "a slam dunk",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a wild dancer",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "Chinese dishes",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "plural",
+      "named": false,
+      "type": "food"
+    },
+    {
+      "text": "club soda",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "food"
+    },
+    {
+      "text": "profits",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "San Francisco",
+      "labels": [
+        "ABSTRACT_ENTITY",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true,
+      "appositive": "a song"
+    },
+    {
+      "text": "special effects",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "a TV room",
+      "labels": [
+        "LOCATION"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "the Johnsons",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "the band members",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "the original story",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "price wars",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "Tuesday night",
+      "labels": [
+        "TIME"
+      ],
+      "number": "singular",
+      "named": false,
+      "preposition": "on"
+    },
+    {
+      "text": "UCLA",
+      "labels": [
+        "ORGANIZATION",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true
+    },
+    {
+      "text": "Wednesday",
+      "labels": [
+        "TIME"
+      ],
+      "number": "singular",
+      "named": false,
+      "preposition": "on"
+    },
+    {
+      "text": "late fees",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "Zhang Lin's home",
+      "labels": [
+        "LOCATION",
+        "NAMED_ENTITY"
+      ],
+      "number": "singular",
+      "named": true
+    },
+    {
+      "text": "a Chinese guest",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "an LCD screen",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a basketball game",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a different environment",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a plot twist",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a long game",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a new TV",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a sociable man",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a professional singer",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a basketball shot",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a roller coaster",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a sad song",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a safe landing",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a very small budget",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a stir-fry",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "food"
+    },
+    {
+      "text": "a traffic problem",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "an art lover",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "an educational institution",
+      "labels": [
+        "ORGANIZATION"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "an abundant resource",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "an art enthusiast",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "an art exhibition",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "an early lunch",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "food"
+    },
+    {
+      "text": "an exciting story",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "an important visitor",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "an independent producer",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "an optimistic man",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "an outgoing personality",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "brunch",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "food"
+    },
+    {
+      "text": "conversations",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "nightclubs",
+      "labels": [
+        "LOCATION"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "established authorities",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "extracurricular activities",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "fencing",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "good students",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "Greek and Roman sculpture",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "heavy fog",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a culinary motto",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "introductions",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "a mountain summit",
+      "labels": [
+        "LOCATION"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "live bands",
+      "labels": [
+        "ORGANIZATION"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "abundant resources",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "restaurant bookings",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "martial arts",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a left foot",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "new recipes",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "profitability",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "production cost",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a product model",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a mathematics teacher",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a personnel committee",
+      "labels": [
+        "ORGANIZATION"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "profit",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "winters",
+      "labels": [
+        "TIME"
+      ],
+      "number": "plural",
+      "named": false,
+      "preposition": "during"
+    },
+    {
+      "text": "personalities",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "production",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "sculpture",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "seven years",
+      "labels": [
+        "TIME"
+      ],
+      "number": "plural",
+      "named": false,
+      "preposition": "for"
+    },
+    {
+      "text": "garlic bread",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "food"
+    },
+    {
+      "text": "musical training",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "university courses",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "useful skills",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "a lovely voice",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "teenagers",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "a party atmosphere",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a baking sheet",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a bird's-eye view",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a boarding announcement",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "the business environment",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a casserole dish",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "competing companies",
+      "labels": [
+        "ORGANIZATION"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "a cupboard",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "exhibits",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "ingredients",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "plural",
+      "named": false,
+      "type": "food"
+    },
+    {
+      "text": "a stir-fry mixture",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "food"
+    },
+    {
+      "text": "the national gallery",
+      "labels": [
+        "ORGANIZATION"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "the next holiday",
+      "labels": [
+        "TIME"
+      ],
+      "number": "singular",
+      "named": false,
+      "preposition": "during"
+    },
+    {
+      "text": "pliers",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "current prices",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "a recipe",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a salad bowl",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a saucepan",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a school choir",
+      "labels": [
+        "ORGANIZATION"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a screwdriver",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "sea level",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a conversation topic",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a toilet",
+      "labels": [
+        "LOCATION"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "a vacuum cleaner",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "theatre",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "bad behaviour",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "children's personalities",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "fish with white sauce",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "food"
+    },
+    {
+      "text": "handsome band members",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "trick photography",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "Western cooking",
+      "labels": [
+        "ABSTRACT_ENTITY"
+      ],
+      "number": "singular",
+      "named": false
+    },
+    {
+      "text": "Western food",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "food"
+    },
+    {
+      "text": "white-collar workers",
+      "labels": [
+        "PERSON"
+      ],
+      "number": "plural",
+      "named": false
+    },
+    {
+      "text": "white sauce",
+      "labels": [
+        "PHYSICAL_OBJECT"
+      ],
+      "number": "singular",
+      "named": false,
+      "type": "food"
     }
   ]
 }

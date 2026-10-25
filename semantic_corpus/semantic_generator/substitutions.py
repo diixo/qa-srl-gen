@@ -66,6 +66,7 @@ class Entity:
     #: The preposition this entity takes when it appears as an adjunct
     #: (``at noon`` but ``on Monday``). Kept out of ``text`` so that the
     #: recorded span covers the entity itself and nothing else.
+    #: None inherits the frame default; "" explicitly omits a preposition.
     adjunct_preposition: str | None = None
     #: A parenthetical gloss that makes the reading recoverable from the
     #: sentence itself: ``Rex, a German shepherd,``. Without one, a name whose
@@ -418,7 +419,7 @@ def entity_to_json(entity: Entity) -> dict[str, object]:
         ("property_degree", entity.property_degree),
         ("number", entity.number if entity.number != "singular" else None),
     ):
-        if value:
+        if value or (key == "preposition" and value == ""):
             row[key] = value
     return row
 

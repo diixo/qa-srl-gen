@@ -89,6 +89,7 @@ def validate_rules(rules, patterns):
                         or item.get('choice_sha256') != fingerprint(rule['choices'][index])
                         or not isinstance(item.get('before'), str) or not item['before'].strip()
                         or not isinstance(item.get('after'), str) or not item['after'].strip()
+                        or item.get('source_mode', 'attested_sentence') not in {'attested_sentence', 'context_only'}
                         or item['before'] == item['after']
                         or substitute(item['before'], rule['choices'][index]) != item['after']):
                     raise ValueError('Invalid reviewed phrase choice')
@@ -272,7 +273,18 @@ def render_template(template, rule, choice):
     if fingerprint(record) != rule['templates'].get(template.template_id):
         raise ValueError('Stale reviewed substitution template')
     policy = record['usage_constraints']
-    if policy['mode'] != 'attested_sentence':
+    phrase = next((x for x in rule.get('phrase_choices', {}).get(template.template_id, [])
+                   if x['choice'] == choice), None)
+    # A contextual reply is not promoted to an independently usable sentence.
+    # Only a pinned, opaque, complete-turn paraphrase can vary it; partial
+    # fragments and structural slot edits still require sentence admission.
+    contextual_phrase = (policy['mode'] == 'context_only' and phrase is not None
+                         and phrase.get('source_mode') == 'context_only'
+                         and not record['slots']
+                         and record['parts'] == [{'literal': policy['text']}]
+                         and policy['span'] == [0, len(policy['text'])]
+                         and policy['context'][policy['turn']-1] == policy['text'])
+    if policy['mode'] != 'attested_sentence' and not contextual_phrase:
         raise ValueError('Substitution requires an admitted sentence')
     ref = policy['meaning'].get('extraction_adapter') or rule.get('template_adapters', {}).get(template.template_id)
     if not ref:
@@ -286,8 +298,6 @@ def render_template(template, rule, choice):
     target = substitute(text, edits)
     raw = deepcopy(record)
     raw.pop('usage_constraints')
-    phrase = next((x for x in rule.get('phrase_choices', {}).get(template.template_id, [])
-                   if x['choice'] == choice), None)
     if phrase:
         if (phrase['choice_sha256'] != fingerprint(edits) or phrase['before'] != text
                 or phrase['after'] != target or not phrase.get('reason') or target == text):

@@ -343,7 +343,10 @@ def realize(
         if name not in situation.bindings or name in chosen.omits:
             continue
         entity = situation.bindings[name]
-        place(name, entity.adjunct_preposition or default_preposition)
+        # An explicit empty preposition is meaningful ("last week", not
+        # "on last week"). Only an unspecified value inherits the frame.
+        place(name, default_preposition if entity.adjunct_preposition is None
+              else entity.adjunct_preposition)
 
     # A sentence-final appositive would otherwise leave ``shepherd,.``
     builder.strip_trailing(",")

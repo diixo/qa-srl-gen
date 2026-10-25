@@ -2594,7 +2594,7 @@ def test_cross_batch_restriction_followup_preserves_coverage_and_pins():
     assert followup['checks']['max_tokens'] <= 768
     assert not followup['checks']['overlength']
     assert not any(followup['checks']['split_prompt_overlap'].values())
-    assert review['next_source_dialogue']['dialogue'] == 3416
+    assert review['next_source_dialogue']['dialogue'] >= 3416
 
 
 @pytest.mark.parametrize('dialogue,turn,reply,value', [
