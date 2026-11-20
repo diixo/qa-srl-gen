@@ -60,7 +60,9 @@ def validate_bank(bank, source=None, *, rendered=None, _sink=None):
     source = source or bank.manifest.get('source')
     if not source:
         raise ValueError('a source JSONL path is required for this bank')
-    counts, template_counts = Counter(), {}
+    # Required report fields must remain explicit even for literal-only banks.
+    counts = Counter(source_records=0, templates=0, token_spans=0)
+    template_counts = {}
     attested = set()
     sink = _rendered_file(rendered) if rendered is not None else _sink
     try:

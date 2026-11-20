@@ -23,8 +23,9 @@ from semantic_corpus.template_semantics import TemplateAnnotator
 ROOT = Path(__file__).resolve().parents[1] / 'data/mined-templates'
 CATALOG = json.loads((ROOT / 'reviewed/dialogue-fragments.json').read_text(encoding='utf-8'))
 RULES = CATALOG['substitutions']
+RULE_IDS = {r['id'] for r in RULES}
 PATTERNS = [p for p in load_fragment_patterns() if p.get('substitution_rule', {}).get('id')
-            in {r['id'] for r in RULES}]
+            in RULE_IDS]
 
 
 def test_simultaneous_replacements_respect_words_and_possessives():

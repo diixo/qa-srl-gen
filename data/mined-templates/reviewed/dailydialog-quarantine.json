@@ -2,9 +2,9 @@
   "format": "dailydialog-quarantine-v1",
   "date": "2026-10-19",
   "review_method": "direct_assistant_disposition_review",
-  "note": "Five complete parallel sources and three pinned limited adapters remain usable. The other unresolved meanings are excluded and closed by user decision, not corrected: there is no remaining review queue or retry requirement. All 21 original restricted spans remain ineligible as unrestricted templates. Historical source evidence stays unchanged to prevent accidental re-import.",
+  "note": "Five complete parallel sources and three pinned limited adapters remain usable. The other unresolved meanings are excluded and closed by user decision, not corrected: there is no remaining review queue or retry requirement. All 21 original restricted spans remain ineligible as unrestricted templates. Historical source evidence stays unchanged to prevent accidental re-import. Two additional occurrences from train:506:14 are closed user exclusions, separate from the historical API-warning ledger. One additional occurrence from train:6773:5 is closed as code contamination after direct review; it is separate from historical API warnings and user exclusions.",
   "unresolved_warnings": 0,
-  "blocked_template_occurrences": 21,
+  "blocked_template_occurrences": 24,
   "deferred_occurrences": 0,
   "adapter_only_occurrences": 0,
   "candidate": "data/mined-templates",
@@ -874,6 +874,130 @@
       "candidate_image_sha256": "3732b87eee0a22e7cf79e8ca11e89313d4c2cd62c71cf0a1bdfeaea21b9ef366",
       "previous_status": "deferred_missing_evidence",
       "review_closed": true
+    },
+    {
+      "id": "train:506:14:1",
+      "decision_origin": "user_exclusion",
+      "decision_date": "2026-10-26",
+      "status": "excluded",
+      "review_closed": true,
+      "reopen_when": null,
+      "category": "non_english_reply",
+      "reason": "Excluded from analysis and generation by explicit user request: omit the entire non-English reply, including damaged Spanish. No retry or inferred reconstruction.",
+      "automatic_retry": false,
+      "template_admission": false,
+      "allowed_adapters": {},
+      "unknown": [
+        "No proposition from this excluded reply is admitted."
+      ],
+      "source": {
+        "split": "train",
+        "dialogue": 506,
+        "turn": 14,
+        "span": [
+          0,
+          9
+        ],
+        "text": "Que bien!",
+        "segment": 1
+      },
+      "original_prefix": [
+        "Where to, miss?",
+        "Hi! Crenshaw and Hawthorne, at the Holiday Inn that is on that corner.",
+        "Sure thing. So, where are you flying in from?",
+        "From China.",
+        "Really? You don't look very Chinese to me, if you don't mind me saying so.",
+        "It's fine. I am actually from Mexico. I was in China on a business trip, visiting some local companies that manufacture bathroom products.",
+        "Wow, that sounds interesting! Excuse me if I am being a bit nosy, but how old are you?",
+        "Don't you know it's rude to ask a lady her age?",
+        "Don't get me wrong! It's just that you seem so young and already doing business overseas!",
+        "Well thank you! In that case, I am 26 years old, and what about yourself?",
+        "I am 40 years old and was born and raised here in the good old U. S. of A., although I have some Colombian heritage.",
+        "Really? That's great! Do you speak some Spanish?",
+        "Uh... yeah... of course!",
+        "Que bien! Sentences poems habeas en espanol!"
+      ],
+      "original_prefix_sha256": "9aa24368412a1b93410ae880010908433632cfa715c27275f306d64f4fd645fa"
+    },
+    {
+      "id": "train:506:14:2",
+      "decision_origin": "user_exclusion",
+      "decision_date": "2026-10-26",
+      "status": "excluded",
+      "review_closed": true,
+      "reopen_when": null,
+      "category": "non_english_reply",
+      "reason": "Excluded from analysis and generation by explicit user request: omit the entire non-English reply, including damaged Spanish. No retry or inferred reconstruction.",
+      "automatic_retry": false,
+      "template_admission": false,
+      "allowed_adapters": {},
+      "unknown": [
+        "No proposition from this excluded reply is admitted."
+      ],
+      "source": {
+        "split": "train",
+        "dialogue": 506,
+        "turn": 14,
+        "span": [
+          10,
+          44
+        ],
+        "text": "Sentences poems habeas en espanol!",
+        "segment": 2
+      },
+      "original_prefix": [
+        "Where to, miss?",
+        "Hi! Crenshaw and Hawthorne, at the Holiday Inn that is on that corner.",
+        "Sure thing. So, where are you flying in from?",
+        "From China.",
+        "Really? You don't look very Chinese to me, if you don't mind me saying so.",
+        "It's fine. I am actually from Mexico. I was in China on a business trip, visiting some local companies that manufacture bathroom products.",
+        "Wow, that sounds interesting! Excuse me if I am being a bit nosy, but how old are you?",
+        "Don't you know it's rude to ask a lady her age?",
+        "Don't get me wrong! It's just that you seem so young and already doing business overseas!",
+        "Well thank you! In that case, I am 26 years old, and what about yourself?",
+        "I am 40 years old and was born and raised here in the good old U. S. of A., although I have some Colombian heritage.",
+        "Really? That's great! Do you speak some Spanish?",
+        "Uh... yeah... of course!",
+        "Que bien! Sentences poems habeas en espanol!"
+      ],
+      "original_prefix_sha256": "9aa24368412a1b93410ae880010908433632cfa715c27275f306d64f4fd645fa"
+    },
+    {
+      "id": "train:6773:5:1",
+      "decision_origin": "direct_model_data_quality_review",
+      "decision_date": "2026-11-10",
+      "status": "excluded",
+      "review_closed": true,
+      "reopen_when": null,
+      "category": "non_dialogue_code_contamination",
+      "reason": "Code-like contamination replaces the answer about tour duration. Preserve source bytes; no code execution, template, adapter, lexical admission or invented duration. Final disposition, not deferred review.",
+      "automatic_retry": false,
+      "template_admission": false,
+      "allowed_adapters": {},
+      "unknown": [
+        "The requested tour duration is absent."
+      ],
+      "source": {
+        "split": "train",
+        "dialogue": 6773,
+        "turn": 5,
+        "segment": 1,
+        "span": [
+          0,
+          46
+        ],
+        "text": "Print (md5 (this_is_a_test_string)); die ();/*"
+      },
+      "original_prefix": [
+        "Wonderland Travel, may I help you?",
+        "Yes. I'm interested in your package tour to Paris. Could you tell me more about it?",
+        "Certainly. The package includes air travel to and from Paris, accommodations, meals and transportation around the city.",
+        "How long is the tour?",
+        "Print (md5 (this_is_a_test_string)); die ();/*"
+      ],
+      "original_prefix_sha256": "e3cf73599d507d90b5f46d8a0734587c240ced26ef4b7b4d5a6fc70c143dbab6",
+      "candidate_occurrence_sha256": "7c47453f922d793903b601b661d2c9fcc5a51b4450e120bff77aaa8cecc58dbd"
     }
   ],
   "catalog_evidence": {
@@ -888,6 +1012,8 @@
   "source_variant_resolved_warnings": 5,
   "source_variant_occurrences": 5,
   "excluded_warnings": 14,
-  "excluded_occurrences": 16,
-  "review_policy": "Unresolved source meanings are excluded and closed by user decision. They are not a review backlog. Keep exact reviewed adapters and complete source variants; exclusion never grants template admission."
+  "excluded_occurrences": 19,
+  "review_policy": "Unresolved source meanings are excluded and closed by user decision. They are not a review backlog. Keep exact reviewed adapters and complete source variants; exclusion never grants template admission.",
+  "user_excluded_occurrences": 2,
+  "data_quality_excluded_occurrences": 1
 }

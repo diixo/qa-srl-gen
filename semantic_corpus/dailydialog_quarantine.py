@@ -44,6 +44,10 @@ def load_holds(path):
                 raise ValueError('An excluded occurrence must be closed without a retry condition')
         elif not entry.get('reopen_when'):
             raise ValueError('An open quarantine decision needs its evidence condition')
+        if entry.get('decision_origin') == 'user_exclusion':
+            if (entry['status'] != 'excluded' or entry.get('allowed_adapters')
+                    or 'warning_key' in entry or 'warning_sha256' in entry):
+                raise ValueError('A user exclusion must be closed without adapter exceptions or an API warning')
         seen.add(identity)
         split, dialogue, turn, segment = identity.split(':')
         if (source.get('split') != split or source.get('dialogue') != int(dialogue)

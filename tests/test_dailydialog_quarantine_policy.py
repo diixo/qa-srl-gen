@@ -41,6 +41,23 @@ def save_hold(directory, entry):
     return path
 
 
+def test_user_exclusion_needs_no_api_warning_and_blocks_reimport(tmp_path, held):
+    entry = deepcopy(held)
+    entry.update(status='excluded', review_closed=True, reopen_when=None,
+                 decision_origin='user_exclusion')
+    path = save_hold(tmp_path, entry)
+    assert load_holds(path) == (entry,)
+    with pytest.raises(ValueError, match='quarantine blocks fragment'):
+        check_fragment_catalog([pattern(entry)], tmp_path/'dialogue-fragments.json')
+    with pytest.raises(ValueError, match='quarantine blocks template'):
+        check_template({'usage_constraints': {'source_id': entry['id']}}, load_holds(path))
+    for invalid in (dict(allowed_adapters={'invented': 'a'*64}),
+                    dict(warning_key=['invented']), dict(status='adapter_only')):
+        save_hold(tmp_path, dict(entry, **invalid))
+        with pytest.raises(ValueError):
+            load_holds(path)
+
+
 def pattern(entry):
     source = dict(entry['source'], context=entry['original_prefix'])
     return dict(id='reviewed-test', kind='interpretation', context=True,

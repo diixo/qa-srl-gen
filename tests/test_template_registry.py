@@ -25,7 +25,7 @@ def write_rows(path, values):
             stream.write(json.dumps(value) + "\n")
 
 
-def make_bank(directory, *, subject="Ada", verb="run", adjective="bright"):
+def make_bank(directory, *, subject="Ada", verb="run", adjective="bright", literal=False):
     """A small complete bank checked by the real, NLP-independent validator."""
     bindings = {"n0": subject, "v0": verb, "a0": adjective}
     text = f"{subject} {verb} {adjective}."
@@ -38,12 +38,15 @@ def make_bank(directory, *, subject="Ada", verb="run", adjective="bright"):
                      "a0": {"kind": "adjective", "pos": "ADJ", "tag": "JJ"}},
            "verbs": [verb], "constructions": [], "predicate_groups": [],
            "attributes": [{"slot": "a0", "target_slot": "n0", "degree": ["Pos"]}]}
+    if literal:
+        bindings = {}
+        row.update(parts=[{"literal": text}], slots={}, verbs=[], attributes=[])
     row["template_id"] = fingerprint(row)
     row.update(defaults=bindings, attested_bindings=[bindings], count=1,
-               adjective_lemmas=[adjective], fillers={k: [v] for k, v in bindings.items()})
+               adjective_lemmas=[] if literal else [adjective], fillers={k: [v] for k, v in bindings.items()})
     write_rows(directory / "templates" / f"{row['template_id'][:2]}.jsonl.gz", [row])
-    write_rows(directory / "verbs.jsonl.gz", [{"lemma": verb, "forms": {verb: 1}}])
-    write_rows(directory / "adjectives.jsonl.gz", [{"lemma": adjective, "forms": {adjective: 1}}])
+    write_rows(directory / "verbs.jsonl.gz", [] if literal else [{"lemma": verb, "forms": {verb: 1}}])
+    write_rows(directory / "adjectives.jsonl.gz", [] if literal else [{"lemma": adjective, "forms": {adjective: 1}}])
     for name in ("constructions", "verb_alternatives", "adjective_alternatives"):
         write_rows(directory / f"{name}.jsonl.gz", [])
     tokens, cursor = [], 0
@@ -55,11 +58,12 @@ def make_bank(directory, *, subject="Ada", verb="run", adjective="bright"):
         cursor += len(word) + 1
     write_rows(directory / "occurrences" / "00000.jsonl.gz",
                [{"line": 1, "idx": 1, "text": text, "template_id": row["template_id"],
-                 "bindings": bindings, "tokens": tokens}])
+                 "bindings": bindings, "tokens": [] if literal else tokens}])
     manifest = {"format": FORMAT, "status": "complete", "field": "example",
                 "source_sha256": hashlib.sha256(source.read_bytes()).hexdigest(),
                 "counts": {"input_records": 1, "compiled_records": 1, "templates": 1,
-                           "tokens_audited": 3, "verb_lemmas": 1, "adjective_lemmas": 1,
+                           "tokens_audited": 0 if literal else 3,
+                           "verb_lemmas": 0 if literal else 1, "adjective_lemmas": 0 if literal else 1,
                            "constructions": 0, "verb_alternative_lemmas": 0,
                            "adjective_alternative_forms": 0}}
     write_json(directory / "manifest.json", manifest)
@@ -89,6 +93,17 @@ def test_publication_preserves_validated_bank_and_source_and_is_idempotent(tmp_p
     before = {path.relative_to(target): path.read_bytes() for path in target.rglob("*") if path.is_file()}
     assert register_bank(bank, source, repo_root=repo, bank_id="job-one") == target
     assert before == {path.relative_to(target): path.read_bytes() for path in target.rglob("*") if path.is_file()}
+
+
+def test_literal_only_bank_preserves_zero_token_count_through_publication(tmp_path):
+    bank, source, text = make_bank(tmp_path / "literal", literal=True)
+    report = validate_bank(TemplateBank(bank), source)
+    assert report["token_spans"] == 0
+    assert report["source_records"] == report["templates"] == 1
+    target = register_bank(bank, source, repo_root=tmp_path / "repo", bank_id="literal")
+    published = TemplateBank(target)
+    assert validate_bank(published)["token_spans"] == 0
+    assert next(published.templates()).render()["text"] == text
 
 
 @pytest.mark.parametrize("bank_id", ["../outside", "/outside", "..", ".staging", "Bank", ""])
