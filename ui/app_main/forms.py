@@ -17,13 +17,17 @@ class JobForm(forms.Form):
     count = forms.IntegerField(label='Situations per frame', min_value=1, max_value=1000000, initial=20)
     template_count = forms.IntegerField(label='Examples per mined template', min_value=0, max_value=1000000,
         initial=1, required=False,
-        help_text='Every mined template is included. Set 0 to skip mined templates. '
+        help_text='Quota for each mined template, subject to the overall limits. Set 0 to skip mined templates. '
                   'Quota is before split filtering and deduplication. '
                   'Many templates have only one attested example.')
     recombine = forms.BooleanField(label='Recombine observed slot fillers', required=False,
         help_text='Creates new combinations that need grammatical and semantic review. Unchecked: use attested combinations.')
-    limit = forms.IntegerField(label='Input document limit', min_value=1, required=False,
-                              help_text='Leave blank to process the entire input corpus.')
+    limit = forms.IntegerField(label='Document limit', min_value=1, required=False,
+        help_text='Synthetic corpus: maximum unique stored sentences across frames and mined templates. '
+                  'Other operations: input document limit. Leave blank for no limit.')
+    qa_limit = forms.IntegerField(label='Total QA example limit', min_value=1, required=False,
+        help_text='Synthetic corpus: maximum stored question-answer pairs after balancing and deduplication. '
+                  'If both limits are set, generation stops at whichever is reached first. Leave blank for no limit.')
     seed = forms.IntegerField(label='Seed', initial=42, min_value=0, max_value=2147483647)
     split = forms.ChoiceField(label='Split', choices=[(s, s) for s in ('train', 'dev', 'test')])
     pool = forms.ChoiceField(label='Entity component', required=False,
@@ -49,6 +53,12 @@ class JobForm(forms.Form):
             choices = [(code, label) for code, label in choices
                        if code not in ('templates', 'template_mining', 'chat_dataset')]
         self.fields['operation'].choices = choices
+        initial_operation = self.initial.get('operation', choices[0][0] if choices else None)
+        if not self.is_bound and initial_operation == 'build':
+            # Prefill new forms only. Submitted blanks (and historical jobs
+            # without limits) must remain unlimited.
+            for name in ('limit', 'qa_limit'):
+                self.initial.setdefault(name, 1000)
         self.fields['source'].choices = [('', 'Select a file')] + [(s['path'], s['path']) for s in catalog.sources()]
         self.fields['store'].choices = [('', 'Select a corpus')] + [(s['path'], s['path']) for s in catalog.stores()]
         self.fields['pool'].choices = catalog.pool_choices()
@@ -58,7 +68,7 @@ class JobForm(forms.Form):
         self.fields['template_count'].widget.attrs['data-template-count'] = self.resources['templates']
         self.fields['count'].help_text = (
             f'Distinct situations for each of {frame_count} curated frames. '
-            'Total = this value times the number of frames. Each situation produces multiple QA examples. '
+            'Before overall limits, total = this value times the number of frames. Each situation produces multiple QA examples. '
             'If the selected pool is too small, reduce this value or expand the pool.')
         # Defaults apply to options hidden for the selected operation as well.
         for name in ('count', 'seed', 'split', 'input_format', 'context_turns', 'scheme', 'teacher'):

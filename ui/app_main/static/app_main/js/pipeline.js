@@ -35,7 +35,7 @@
   }
   const form = document.querySelector('[data-operation-form]');
   const fields = {
-    build: ['count', 'template_count', 'recombine', 'seed', 'split', 'pool', 'scheme', 'max_per_kind', 'no_answer_share'],
+    build: ['count', 'template_count', 'limit', 'qa_limit', 'recombine', 'seed', 'split', 'pool', 'scheme', 'max_per_kind', 'no_answer_share'],
     templates: ['template_count', 'recombine', 'seed', 'split'],
     dailydialog: ['source', 'limit', 'seed', 'context_turns'],
     ingest: ['source', 'input_format', 'limit', 'split', 'context_turns', 'seed'],
@@ -58,6 +58,8 @@
     const operation = form.querySelector('[name=operation]');
     const count = form.querySelector('[name=count]');
     const templateCount = form.querySelector('[name=template_count]');
+    const documentLimit = form.querySelector('[name=limit]');
+    const qaLimit = form.querySelector('[name=qa_limit]');
     const update = () => {
       const visible = new Set(['operation', ...(fields[operation.value] || [])]);
       form.querySelectorAll('[data-field]').forEach(el => {
@@ -76,12 +78,20 @@
           const templates = Number(templateCount.dataset.templateCount);
           mined = `${perTemplate.toLocaleString('en-US')} per mined template × ${templates.toLocaleString('en-US')} templates = ${(perTemplate * templates).toLocaleString('en-US')} candidates before split filtering and deduplication.`;
         }
-        hint = `${curated} ${mined} ${hint}`;
+        const limits = [];
+        if (documentLimit.value && documentLimit.validity.valid) {
+          limits.push(`${Number(documentLimit.value).toLocaleString('en-US')} unique sentences`);
+        }
+        if (qaLimit.value && qaLimit.validity.valid) {
+          limits.push(`${Number(qaLimit.value).toLocaleString('en-US')} QA examples`);
+        }
+        const cap = limits.length ? ` Stop after ${limits.join(' or ')} have been stored, whichever comes first. Quotas above are before these limits.` : '';
+        hint = `${curated} ${mined}${cap} ${hint}`;
       }
       form.querySelector('[data-operation-hint]').textContent = hint;
     };
     operation.addEventListener('change', update);
-    [count, templateCount].forEach(input => input.addEventListener('input', update));
+    [count, templateCount, documentLimit, qaLimit].forEach(input => input.addEventListener('input', update));
     update();
     form.addEventListener('submit', () => { form.querySelector('button[type=submit]').disabled = true; });
   }

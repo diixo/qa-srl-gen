@@ -5,7 +5,9 @@ import io
 import json
 import tempfile
 from collections import Counter
+from dataclasses import replace
 from pathlib import Path
+from types import SimpleNamespace
 from unittest.mock import patch
 
 from django.test import SimpleTestCase, TestCase, override_settings
@@ -58,6 +60,32 @@ class PoolFixtures:
 
 
 class UnifiedPoolFormTests(PoolFixtures, SimpleTestCase):
+    def test_build_limits_prefill_new_forms_but_preserve_explicit_values(self):
+        for initial in ({}, {'operation': 'build'}):
+            form = JobForm(initial=initial)
+            self.assertEqual(form['limit'].value(), 1000)
+            self.assertEqual(form['qa_limit'].value(), 1000)
+        explicit = JobForm(initial={'operation': 'build', 'limit': 250, 'qa_limit': None})
+        self.assertEqual(explicit['limit'].value(), 250)
+        self.assertIsNone(explicit['qa_limit'].value())
+        other = JobForm(initial={'operation': 'annotate'})
+        self.assertIsNone(other['limit'].value())
+        self.assertIsNone(other['qa_limit'].value())
+
+    def test_build_limits_are_optional_positive_and_independent(self):
+        for values in ({}, {'limit': '', 'qa_limit': ''}, {'limit': 1000}, {'qa_limit': 1000},
+                       {'limit': 1000, 'qa_limit': 1000}):
+            with self.subTest(values=values):
+                form = JobForm({'operation': 'build', 'template_count': 0, **values})
+                self.assertTrue(form.is_valid(), form.errors)
+                for key in ('limit', 'qa_limit'):
+                    self.assertEqual(form.cleaned_data[key], values.get(key) or None)
+        for key in ('limit', 'qa_limit'):
+            for value in (0, -1, '1.5'):
+                form = JobForm({'operation': 'build', 'template_count': 0, key: value})
+                self.assertFalse(form.is_valid())
+                self.assertIn(key, form.errors)
+
     def test_annotation_form_selects_pending_documents_initially_and_preserves_explicit_choice(self):
         initial = JobForm(initial={'operation': 'annotate'})
         self.assertTrue(initial['pending_only'].value())
@@ -224,11 +252,14 @@ class UnifiedPoolViewTests(PoolFixtures, TestCase):
     def test_retry_preserves_unified_scope_and_explicit_skip(self):
         previous = Job.objects.create(operation='build', config={
             'count': 3, 'count_scope': 'per_frame', 'resource_scope': 'built_in_v1', 'template_count': 0,
+            'limit': 1000, 'qa_limit': 2000,
         }, status=Job.Status.FAILED)
         new = self.retry(previous)
         self.assertEqual(new.config['resource_scope'], 'built_in_v1')
         self.assertEqual(new.config['count_scope'], 'per_frame')
         self.assertEqual(new.config['template_count'], 0)
+        self.assertEqual(new.config['limit'], 1000)
+        self.assertEqual(new.config['qa_limit'], 2000)
 
     def test_historical_template_job_can_still_be_retried(self):
         self.bank()
@@ -244,6 +275,8 @@ class UnifiedPoolViewTests(PoolFixtures, TestCase):
         self.bank()
         response = self.client.get(reverse('app_main:pipeline'))
         self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'name="limit"')
+        self.assertContains(response, 'name="qa_limit"')
         for name in ('template_verb', 'template_adjective'):
             self.assertNotContains(response, f'name="{name}"')
         for route in ('pools', 'slots'):
@@ -254,3 +287,124 @@ class UnifiedPoolViewTests(PoolFixtures, TestCase):
                 self.assertContains(response, 'Alternative adjective / participle entries')
                 self.assertContains(response, 'UNREVIEWED')
                 self.assertNotContains(response, 'Corpus templates: verbs and adjectives')
+
+
+class BuildLimitTests(TestCase):
+    """Exercise the real store/export path with bounded input streams."""
+
+    def build(self, *, limit=None, qa_limit=None, curated_count=2, mined_count=2):
+        from semantic_corpus.documents import AnnotationRun, Document
+        from semantic_corpus.question_generator.answers import QAExample
+        from .operations import execute
+
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        root = Path(temporary.name)
+        pool = EntityPool([])
+        seen = {'curated': 0, 'mined': 0}
+
+        def pair(key):
+            doc = Document(key, f'Anna visited place {key}.', split='train',
+                           metadata={'template_semantics': {'complete': True, 'skipped': []}})
+            return doc, AnnotationRun(f'{key}-run', synthetic=True)
+
+        def curated(*args, **kwargs):
+            for i in range(curated_count):
+                seen['curated'] += 1
+                doc, run = pair(f'curated-{i}')
+                yield doc, run
+                # A duplicate must not spend a document or QA quota.
+                yield replace(doc, document_id=f'duplicate-{i}'), run
+
+        def mined(**kwargs):
+            stats = kwargs['stats']
+            stats.update(rendered=0, eligible=0, split_excluded=0)
+            # This duplicate crosses the curated/mined boundary.
+            if curated_count:
+                stats['rendered'] += 1
+                stats['eligible'] += 1
+                doc, run = pair('curated-0')
+                yield replace(doc, document_id='mined-duplicate'), run
+            for i in range(mined_count):
+                seen['mined'] += 1
+                stats['rendered'] += 1
+                stats['eligible'] += 1
+                yield pair(f'mined-{i}')
+
+        def questions(doc, run):
+            rows = [QAExample(context=doc.text, question=f'Which place, variant {i}?',
+                    answer=doc.text, document_id=doc.document_id, run_id=run.run_id)
+                    for i in range(3)]
+            return [rows[0], rows[0], *rows[1:]]
+
+        generator = SimpleNamespace(frames=[None], pool=pool, paradigms={}, generate_per_frame=lambda _: ())
+        resources = SimpleNamespace(entities=pool, frames=[], paradigms={},
+                                    metadata=lambda **kwargs: {}, mined_records=mined)
+        with override_settings(REPO_ROOT=root, CORPUS_UI_ROOT=root / 'jobs'), \
+                patch('app_main.operations.get_pool', return_value=pool), \
+                patch('semantic_corpus.resource_pool.BuiltInPool', return_value=resources), \
+                patch('app_main.operations.Generator', return_value=generator), \
+                patch('app_main.operations.iter_canonical', side_effect=curated), \
+                patch('app_main.operations.QuestionGenerator.for_document', side_effect=questions), \
+                patch('app_main.operations.balance', side_effect=lambda rows, **kwargs: rows), \
+                patch('sys.stdout', new_callable=io.StringIO):
+            job = Job.objects.create(operation='build', config={
+                'operation': 'build', 'count': curated_count, 'count_scope': 'per_frame',
+                'resource_scope': 'built_in_v1', 'template_count': 1, 'seed': 42, 'split': 'train',
+                'limit': limit, 'qa_limit': qa_limit}, status=Job.Status.RUNNING)
+            execute(job)
+            out = catalog.job_root(job)
+        from semantic_corpus.storage import CorpusStore
+        store = CorpusStore(out / 'store', create=False)
+        summary = json.loads((out / 'generation-summary.json').read_text(encoding='utf-8'))
+        for name, table in (('sft.jsonl', 'qa_examples'), ('bio.jsonl', 'documents')):
+            with (out / name).open(encoding='utf-8') as stream:
+                self.assertEqual(sum(1 for line in stream if line.strip()), store.count(table))
+        self.assertEqual(store.count('annotation_runs'), store.count('documents'))
+        self.assertEqual(summary['stored_documents'], store.count('documents'))
+        self.assertEqual(summary['qa_examples'], store.count('qa_examples'))
+        return store, summary, seen
+
+    def test_document_limit_stops_before_next_curated_or_mined_record(self):
+        store, summary, seen = self.build(limit=1000, curated_count=1005)
+        self.assertEqual(store.count('documents'), 1000)
+        self.assertEqual(store.count('qa_examples'), 3000)
+        self.assertEqual(seen, {'curated': 1000, 'mined': 0})
+        self.assertEqual(summary['stopped_by'], ['documents'])
+        self.assertEqual(summary['mined']['rendered'], 0)
+
+    def test_document_limit_is_shared_with_mined_and_ignores_duplicates(self):
+        store, summary, seen = self.build(limit=3)
+        self.assertEqual(store.count('documents'), 3)
+        self.assertEqual(store.count('qa_examples'), 9)
+        self.assertEqual(seen, {'curated': 2, 'mined': 1})
+        self.assertEqual(summary['curated_duplicates'], 2)
+        self.assertEqual(summary['mined']['duplicates'], 1)
+
+    def test_qa_limit_stops_within_a_document_after_deduplication(self):
+        store, summary, seen = self.build(qa_limit=1000, curated_count=1005)
+        self.assertEqual(store.count('qa_examples'), 1000)
+        self.assertEqual(store.count('documents'), 334)
+        self.assertEqual(seen, {'curated': 334, 'mined': 0})
+        self.assertEqual(summary['stopped_by'], ['qa_examples'])
+
+    def test_qa_limit_is_shared_with_mined(self):
+        store, summary, seen = self.build(qa_limit=8)
+        self.assertEqual(store.count('qa_examples'), 8)
+        self.assertEqual(store.count('documents'), 3)
+        self.assertEqual(seen, {'curated': 2, 'mined': 1})
+        self.assertEqual(summary['stopped_by'], ['qa_examples'])
+
+    def test_combined_limits_and_unlimited_build(self):
+        for limit, qa_limit, documents, qa, stopped in (
+            (1, 5, 1, 3, ['documents']),
+            (3, 4, 2, 4, ['qa_examples']),
+            (2, 6, 2, 6, ['documents', 'qa_examples']),
+            (None, None, 4, 12, []),
+            (1000, 1000, 4, 12, []),
+        ):
+            with self.subTest(limit=limit, qa_limit=qa_limit):
+                store, summary, seen = self.build(limit=limit, qa_limit=qa_limit)
+                self.assertEqual(store.count('documents'), documents)
+                self.assertEqual(store.count('qa_examples'), qa)
+                self.assertEqual(summary['stopped_by'], stopped)

@@ -181,6 +181,11 @@ def _execute_exports(job, out, c, progress):
 def _execute_corpus(job, out, c, progress):
     operation = job.operation
     limit = c.get('limit')
+    qa_limit = c.get('qa_limit') if operation == 'build' else None
+    if operation == 'build':
+        for name, value in (('limit', limit), ('qa_limit', qa_limit)):
+            if value is not None and (type(value) is not int or value < 1):
+                raise ValueError(f'{name} must be a positive integer or null')
     annotation_ids = None
     if operation in ('annotate', 'questions'):
         progress('Creating an independent copy of the corpus')
@@ -227,7 +232,27 @@ def _execute_corpus(job, out, c, progress):
         ambiguous_forms=generator.pool.ambiguous_forms() if generator else ())
     qa = 0
     processed = 0
+    stored = 0
     if operation == 'build':
+        def reached_limits():
+            return [name for name, value, maximum in (
+                ('documents', stored, limit), ('qa_examples', qa, qa_limit))
+                if maximum is not None and value >= maximum]
+
+        def add_build_examples(examples, run_id):
+            if qa_limit is None:
+                return store.add_examples(examples, generation_run_id=run_id)
+            # Count accepted rows, not duplicate proposals. Only the final
+            # document's QA may be shortened; its annotations remain complete.
+            rows = iter(examples)
+            added = 0
+            while qa + added < qa_limit:
+                batch = list(islice(rows, qa_limit - qa - added))
+                if not batch:
+                    break
+                added += store.add_examples(batch, generation_run_id=run_id)
+            return added
+
         scope = c.get('count_scope', 'total')
         if scope == 'per_frame':
             total = c['count'] * len(generator.frames)
@@ -240,44 +265,59 @@ def _execute_corpus(job, out, c, progress):
                      for i, realized in enumerate(generator.generate(c['count']), 1))
         else:
             raise ValueError(f'Unknown count scope: {scope!r}')
+        if limit is not None:
+            total = min(total, limit)
         progress('Generation → annotations → QA', 0, total, qa=qa)
         for i, (doc, run) in enumerate(pairs, 1):
             if store.add_document(doc):
+                stored += 1
                 if build_summary is not None:
                     build_summary['curated_stored'] += 1
                 store.add_run(run, doc)
                 examples = balance(questions.for_document(doc, run), seed=c['seed'],
                     max_per_kind=c.get('max_per_kind'), no_answer_share=c.get('no_answer_share'))
-                qa += store.add_examples(examples, generation_run_id=run.run_id)
+                qa += add_build_examples(examples, run.run_id)
             processed = i
-            progress('Generation → annotations → QA', i, total, qa=qa)
+            progress('Generation → annotations → QA', i, total, qa=qa, stored_documents=stored)
+            if reached_limits():
+                break
         if resources is not None:
             from semantic_corpus.template_semantics import accumulate_coverage
             build_summary['curated_generated'] = processed
             build_summary['curated_duplicates'] = processed - build_summary['curated_stored']
             mined = build_summary['mined']
+            mined.update(rendered=0, split_excluded=0, eligible=0)
             def mined_progress(stats):
                 progress('Generating from the built-in mined templates', stats['rendered'],
                          stored=mined['stored'], split_excluded=stats['split_excluded'], qa=qa)
-            progress('Generating from the built-in mined templates')
-            for doc, run in resources.mined_records(count=c.get('template_count', 1), seed=c['seed'],
+            rows = ()
+            if not reached_limits():
+                progress('Generating from the built-in mined templates')
+                rows = resources.mined_records(count=c.get('template_count', 1), seed=c['seed'],
                     split=c['split'], lemma=c.get('template_verb') or None,
                     adjective=c.get('template_adjective') or None,
-                    recombine=c.get('recombine', False), stats=mined, progress=mined_progress):
+                    recombine=c.get('recombine', False), stats=mined, progress=mined_progress)
+            for doc, run in rows:
                 if store.add_document(doc):
+                    stored += 1
                     mined['stored'] += 1
                     added_qa = 0
                     if run is not None:
                         store.add_run(run, doc)
                         examples = balance(questions.for_document(doc, run), seed=c['seed'],
                             max_per_kind=c.get('max_per_kind'), no_answer_share=c.get('no_answer_share'))
-                        added_qa = store.add_examples(examples, generation_run_id=run.run_id)
+                        added_qa = add_build_examples(examples, run.run_id)
                         qa += added_qa
                     accumulate_coverage(mined, doc, run, added_qa)
                 else:
                     mined['duplicates'] += 1
+                if reached_limits():
+                    break
             processed += mined['rendered']
-            build_summary.update(qa_examples=qa, pending_annotation=mined.get('pending_documents', 0))
+            build_summary.update(qa_examples=qa, stored_documents=stored,
+                                 limits={'documents': limit, 'qa_examples': qa_limit},
+                                 stopped_by=reached_limits(),
+                                 pending_annotation=mined.get('pending_documents', 0))
             (out / 'generation-summary.json').write_text(
                 json.dumps(build_summary, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     elif operation == 'bank':
@@ -333,6 +373,8 @@ def _execute_corpus(job, out, c, progress):
         export_store(store, out, c, progress)
     quality_report(store, out, c, progress)
     metrics = {'qa': qa}
+    if operation == 'build':
+        metrics.update(stored_documents=stored, stopped_by=reached_limits())
     if build_summary is not None:
         metrics.update(pending_annotation=build_summary['pending_annotation'],
                        mined_stored=build_summary['mined']['stored'])
