@@ -1,10 +1,34 @@
 # GPT-2 ChatML SFT trainer
 
 An optional **CLI-only** experiment for the generator's text **Memory**,
-**History** and **Extraction** datasets, selected explicitly with `--view`.
+**History** and **Extraction** datasets, and whole-text **sentence** analysis,
+selected explicitly with `--view`.
 It fine-tunes the standard pretrained `gpt2` using `transformers.Trainer`.
 Memory is the default. Old Extraction JSON is refused. Training is not
 registered as a Django operation.
+
+For whole-text annotation, Synthetic corpus and SFT/BIO export now write
+`sentence-analysis.jsonl` (admitted targets) and
+`sentence-analysis-pending.jsonl` (saved syntax/meanings still requiring review).
+The assistant answer contains the complete saved annotation graph, not one QA
+answer. Pending records are refused by the trainer. This preserves available
+structure; it does not certify all mined templates or automatically resolve
+unsupported meanings.
+
+Use existing independent train/validation outputs without resplitting them:
+
+```powershell
+python -m semantic_corpus.dialogue_generator.trainer train --view sentence --data artifacts/train-job/sentence-analysis.jsonl --validation-data artifacts/validation-job/sentence-analysis.jsonl --out artifacts/training/sentence-run --max-length 1024
+```
+
+`--data` and evaluation `--data` accept a JSON/JSONL file as well as the existing
+dataset directory format. A training file requires `--validation-data`.
+Long targets are rejected without truncation; standard GPT-2 has a 1024-token
+context. Sentence diagnostics validate JSON, offsets and references and compare
+annotation structures; they do not independently judge semantic truth.
+When evaluating full JSON answers, set `--max-new-tokens` to accommodate the
+target and the remaining model context; the default 64 is for short dialogue
+answers and will generally be insufficient for a whole annotation graph.
 
 Install the optional dependencies from the repository root:
 

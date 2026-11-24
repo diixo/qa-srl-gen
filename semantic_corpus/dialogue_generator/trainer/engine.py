@@ -19,7 +19,7 @@ from transformers import AutoConfig, GPT2LMHeadModel, GPT2TokenizerFast, Trainer
 
 from .chatml import CHAT_TEMPLATE, FORMAT_VERSION, IM_START, IM_END, PAD, encode_example
 from .data import check_disjoint, file_sha256, load_rows, validate_view
-from .metrics import AnswerMetrics, ExtractionMetrics
+from .metrics import AnswerMetrics, ExtractionMetrics, SentenceAnalysisMetrics
 
 
 @dataclass(frozen=True)
@@ -42,10 +42,11 @@ class TrainSettings:
     log_every: int = 10
     save_only_model: bool = False
     view: str = 'memory'
+    validation_data: Path | None = None
 
     def validate(self):
-        if self.view not in ('memory', 'history', 'extraction'):
-            raise ValueError('view must be memory, history or extraction')
+        if self.view not in ('memory', 'history', 'extraction', 'sentence'):
+            raise ValueError('view must be memory, history, extraction or sentence')
         for field in ('epochs', 'batch_size', 'accumulation', 'max_length', 'threads', 'log_every'):
             if type(getattr(self, field)) is not int or getattr(self, field) <= 0:
                 raise ValueError(f'{field} must be a positive integer')
@@ -156,7 +157,10 @@ def train(settings: TrainSettings) -> dict:
     torch.set_num_threads(settings.threads)
     set_seed(settings.seed)
 
-    train_path, val_path = settings.data / 'train.json', settings.data / 'validation.json'
+    train_path = settings.data if settings.data.is_file() else settings.data / 'train.json'
+    val_path = settings.validation_data or settings.data / 'validation.json'
+    if settings.data.is_file() and settings.validation_data is None:
+        raise ValueError('A training file requires --validation-data; no automatic split is performed')
     rows, val_rows = load_rows(train_path), load_rows(val_path)
 
     check_disjoint(rows, val_rows)
@@ -206,7 +210,7 @@ def train(settings: TrainSettings) -> dict:
               'versions': {'torch': torch.__version__, 'transformers': transformers.__version__},
               'parameters': model.num_parameters(),
               'vocab_size': len(tokenizer),
-              'source_files': {'train.json': file_sha256(train_path), 'validation.json': file_sha256(val_path)},
+              'source_files': {str(train_path): file_sha256(train_path), str(val_path): file_sha256(val_path)},
               'records': {'train': len(rows), 'validation': len(val_rows)},
               'max_record_tokens': max(len(e.input_ids) for e in examples + validation),
               'test_used_during_training': False
@@ -325,7 +329,7 @@ def evaluate(run: Path, data: Path, out: Path, *, split='test', device='auto', m
     run_report = json.loads((run / 'run.json').read_text(encoding='utf-8'))
     view = run_report.get('view', 'memory')
     model, tokenizer = load_run(run, device)
-    path = data / f'{split}.json'
+    path = data if data.is_file() else data / f'{split}.json'
     rows = load_rows(path)
     keys = json.loads((run / 'split_keys.json').read_text(encoding='utf-8'))
 
@@ -356,7 +360,8 @@ def evaluate(run: Path, data: Path, out: Path, *, split='test', device='auto', m
 
     totals = {'count': 0, 'exact_matches': 0, 'ended': 0}
     by_task = {}
-    diagnostics = ExtractionMetrics() if view == 'extraction' else AnswerMetrics()
+    diagnostics = (ExtractionMetrics() if view == 'extraction' else
+                   SentenceAnalysisMetrics() if view == 'sentence' else AnswerMetrics())
 
     with (out / 'predictions.jsonl').open('w', encoding='utf-8', newline='\n') as stream:
         for index, (row, encoded) in enumerate(zip(rows, examples), 1):
@@ -371,7 +376,7 @@ def evaluate(run: Path, data: Path, out: Path, *, split='test', device='auto', m
             ended = bool(answer_ids and answer_ids[-1] == tokenizer.eos_token_id)
             prediction = tokenizer.decode(answer_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)
             target = row.messages[-1]['content']
-            if view == 'extraction':
+            if view in ('extraction', 'sentence'):
                 diagnostics.add(target, prediction, prompt=row.messages[1]['content'])
             else:
                 diagnostics.add(target, prediction, task=row.task, condition=row.condition, group=row.contrast_group)

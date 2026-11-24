@@ -29,7 +29,17 @@ def file_sha256(path: Path) -> str:
 
 
 def load_rows(path: Path) -> list[Example]:
-    rows = json.loads(path.read_text(encoding="utf-8"))
+    if path.suffix == '.jsonl':
+        rows = []
+        with path.open(encoding='utf-8') as stream:
+            for line_number, line in enumerate(stream, 1):
+                if line.strip():
+                    try:
+                        rows.append(json.loads(line))
+                    except ValueError as error:
+                        raise ValueError(f'{path}, line {line_number}: {error}') from error
+    else:
+        rows = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(rows, list) or not rows:
         raise ValueError(f"{path}: expected a nonempty JSON array")
     examples = []
@@ -39,6 +49,11 @@ def load_rows(path: Path) -> list[Example]:
             if not isinstance(row, dict):
                 raise ValueError("Expected a messages record")
             messages = validate_messages(row.get("messages"))
+            if row.get('task') == 'sentence_analysis':
+                from ...sentence_analysis import validate_target
+                if row.get('training_eligible') is not True:
+                    raise ValueError('Sentence analysis is pending review')
+                validate_target(messages[1]['content'], messages[-1]['content'], require_training=True)
             key = prompt_key(row)
             if key in seen:
                 raise ValueError("Repeated normalized user prompt (duplicate or conflicting answer)")
@@ -69,7 +84,9 @@ def check_disjoint(left: list[Example], right: list[Example]) -> None:
 
 
 def validate_view(rows: list[Example], view: str, split: str) -> None:
-    prefixes = {'memory': 'Known facts:\n', 'history': 'Conversation so far:\n', 'extraction': PROMPT_PREFIX}
+    from ...sentence_analysis import PROMPT_PREFIX as ANALYSIS_PREFIX, validate_target
+    prefixes = {'memory': 'Known facts:\n', 'history': 'Conversation so far:\n',
+                'extraction': PROMPT_PREFIX, 'sentence': ANALYSIS_PREFIX}
     if view not in prefixes:
         raise ValueError(f'Unsupported dataset view: {view}')
     for index, row in enumerate(rows, 1):
@@ -79,5 +96,9 @@ def validate_view(rows: list[Example], view: str, split: str) -> None:
             if view == 'extraction':
                 memory, user, previous = parse_prompt(row.messages[1]['content'])
                 decode_update(row.messages[-1]['content'], memory, user, previous)
+            if view == 'sentence':
+                if row.task != 'sentence_analysis':
+                    raise ValueError('Expected a sentence_analysis task')
+                validate_target(row.messages[1]['content'], row.messages[-1]['content'], require_training=True)
         except ValueError as error:
             raise ValueError(f'{split}, record {index}: {error}') from error

@@ -220,3 +220,37 @@ def test_comparison_preserves_view_specific_metrics(tmp_path, monkeypatch, view)
     rows = json.loads((output / 'comparison.json').read_text(encoding='utf-8'))
     assert ('extraction' in rows[0]) == (view == 'extraction')
     assert ('Matching states' in (output / 'comparison.md').read_text(encoding='utf-8')) == (view == 'extraction')
+
+
+def test_sentence_jsonl_trains_and_evaluates_offline_without_resplitting(tmp_path, fixture_model):
+    from semantic_corpus.documents import AnnotationRun, Document, EntityMention, Predicate, RelationEdge, TextSpan
+    from semantic_corpus.ontology import Label, LabelSet, ReviewStatus, Relation
+    from semantic_corpus.sentence_analysis import analysis_record
+    source, _ = fixture_model
+    # The tiny fixture tokenizer is almost character-level; its context must
+    # accommodate full JSON. No real checkpoint or network call is involved.
+    GPT2LMHeadModel(GPT2Config(vocab_size=len(GPT2TokenizerFast.from_pretrained(source)),
+                   n_positions=4096, n_embd=32, n_layer=1, n_head=2)).save_pretrained(source)
+    paths = []
+    for name in ('Anna', 'Beth', 'Clara'):
+        text = name + ' sleeps.'
+        doc = Document(name, text)
+        run = AnnotationRun(name, model_name='semantic_generator', synthetic=True,
+            mentions=(EntityMention('m', name, TextSpan(0, len(name)), name, LabelSet.of(Label.PERSON),
+                                    review_status=ReviewStatus.VERIFIED),),
+            predicates=(Predicate('p', name, TextSpan(len(name)+1, len(name)+7), 'sleeps', 'sleep',
+                                  tense='present', review_status=ReviewStatus.VERIFIED),),
+            relations=(RelationEdge('m', Relation.AGENT_OF, 'p'),))
+        path = tmp_path / f'{name}.jsonl'
+        path.write_text(json.dumps(analysis_record(doc, run)) + '\n', encoding='utf-8')
+        paths.append(path)
+    settings = TrainSettings(data=paths[0], validation_data=paths[1], out=tmp_path/'sentence-run',
+                             view='sentence', model=str(source), local_files_only=True, max_length=4096,
+                             max_steps=1, batch_size=1, accumulation=1, threads=1, device='cpu')
+    report = train(settings)
+    assert report['status'] == 'complete' and report['records'] == {'train': 1, 'validation': 1}
+    assert set(report['source_files']) == {str(paths[0]), str(paths[1])}
+    result = evaluate(settings.out, paths[2], tmp_path/'sentence-eval', device='cpu', max_new_tokens=2, threads=1)
+    assert result['sentence_analysis']['count'] == 1
+    with pytest.raises(ValueError, match='Evaluation leakage'):
+        evaluate(settings.out, paths[0], tmp_path/'sentence-leak', device='cpu', threads=1)

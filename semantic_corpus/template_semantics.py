@@ -20,7 +20,7 @@ from .question_generator.templates import ParadigmResolver, native_questions, _w
 from .agreement import verb_words
 from .template_syntax import nominal_members
 
-VERSION = 'mined-dependencies-v2'
+VERSION = 'mined-dependencies-v3'
 SOURCE = 'template_semantics'
 _SUBJECT = {'nsubj', 'nsubjpass', 'nsubj:pass'}
 _OBJECT = {'dobj', 'obj'}
@@ -112,8 +112,26 @@ class TemplateAnnotator:
 
         if not groups:
             skipped.append({'head_slot': None, 'reason': 'no_verbal_predicates'})
+        # Predicate QA coverage alone does not cover the sentence. Preserve
+        # unsupported nouns/properties in metadata and report them explicitly.
+        missing_nominals = [key for key, slot in slots.items()
+                            if slot.get('kind') == 'nominal' and key in spans
+                            and not any(m.span.start_char <= spans[key][0] and
+                                        m.span.end_char >= spans[key][1] for m in mentions.values())]
+        missing_attributes = [a['slot'] for a in syntax.get('attributes', [])
+                              if not any(p.span.start_char == spans.get(a['slot'], [None])[0]
+                                         for p in properties)]
+        grouped = {g['head_slot'] for g in groups}
+        missing_predicates = [key for key, slot in slots.items()
+                              if slot.get('pos') == 'VERB' and key not in grouped]
+        for reason, names in (('nominal_not_annotated', missing_nominals),
+                              ('property_not_annotated', missing_attributes),
+                              ('predicate_not_grouped', missing_predicates)):
+            skipped.extend({'slot': key, 'reason': reason} for key in names)
         coverage = {'version': VERSION, 'predicates': len(groups), 'annotated_predicates': len(predicates),
                     'properties': len(properties), 'complete': bool(groups) and not skipped,
+                    'scope': 'stored_predicate_groups_nominals_and_attributes',
+                    'semantic_review_complete': False,
                     'skipped': skipped, 'review_status': str(ReviewStatus.UNREVIEWED)}
         annotated_document = replace(document, metadata={**syntax, 'template_semantics': coverage})
         run = None

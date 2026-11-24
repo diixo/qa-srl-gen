@@ -27,6 +27,7 @@ not.
 from __future__ import annotations
 
 from pathlib import Path
+import json
 from typing import Any, Iterable, Iterator, Mapping
 
 from ..question_generator.answers import QAExample
@@ -115,4 +116,31 @@ def export_sft_splits(
     counts: dict[str, int] = {}
     for split, examples in examples_by_split.items():
         counts[split] = export_sft(examples, directory / f"{split}.jsonl")
+    return counts
+
+
+def export_sentence_analysis(pairs, directory):
+    """One whole-text target per document, independent of the QA budget.
+
+    Pending syntax/meanings are preserved separately, including documents
+    without a successful annotation run. Never turn those into empty gold.
+    """
+    from ..sentence_analysis import analysis_record
+
+    directory = Path(directory)
+    directory.mkdir(parents=True, exist_ok=True)
+    counts = {'documents': 0, 'training': 0, 'pending': 0,
+              'mentions': 0, 'predicates': 0, 'properties': 0, 'relations': 0}
+    with (directory / 'sentence-analysis.jsonl').open('w', encoding='utf-8', newline='\n') as ready, \
+            (directory / 'sentence-analysis-pending.jsonl').open('w', encoding='utf-8', newline='\n') as pending:
+        for document, run in pairs:
+            record = analysis_record(document, run)
+            counts['documents'] += 1
+            target = 'training' if record['training_eligible'] else 'pending'
+            counts[target] += 1
+            if run is not None:
+                for key in ('mentions', 'predicates', 'properties', 'relations'):
+                    counts[key] += len(getattr(run, key))
+            stream = ready if record['training_eligible'] else pending
+            stream.write(json.dumps(record, ensure_ascii=False, allow_nan=False) + '\n')
     return counts

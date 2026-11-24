@@ -142,6 +142,7 @@ class CorpusTemplate:
                 if 'reply' not in revision['fields'] and 'value' in revision['fields']:
                     usage['meaning']['interpretation'] = revision['fields']['value']['after']
         return {"template_id": self.template_id, "text": result, "bindings": values, "slots": self.slots,
+                "parts": deepcopy(self.record["parts"]), "part_spans": part_spans,
                 "spans": spans, "verbs": list(self.verbs),
                 "predicate_groups": groups, "attributes": attributes,
                 "review_status": "UNREVIEWED",

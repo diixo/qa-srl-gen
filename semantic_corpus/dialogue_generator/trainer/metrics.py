@@ -102,3 +102,25 @@ class ExtractionMetrics:
             'note': 'Single-turn replay from supplied prior state; source-mode matching is separate from active-fact matching. '
                     'This is not a rolling-dialogue or independent semantic-grounding evaluation.',
         }}
+
+
+class SentenceAnalysisMetrics:
+    """JSON structure matching against supplied labels, not semantic approval."""
+    def __init__(self):
+        self.count = self.valid = self.matches = 0
+
+    def add(self, reference, prediction, *, prompt):
+        from ...sentence_analysis import validate_target
+        expected = validate_target(prompt, reference)
+        self.count += 1
+        try:
+            actual = validate_target(prompt, prediction)
+        except ValueError:
+            return
+        self.valid += 1
+        self.matches += actual == expected
+
+    def report(self):
+        return {'sentence_analysis': {'count': self.count, 'valid_predictions': self.valid,
+                                      'structure_matches': self.matches,
+                                      'note': 'Equality of supplied annotation structures; not an independent semantic review.'}}

@@ -107,6 +107,74 @@ def test_output_is_byte_stable_across_runs(example, tmp_path):
     assert first.read_bytes() == second.read_bytes()
 
 
+def complete_analysis_pair(name='Anna'):
+    from semantic_corpus.documents import Property, RelationEdge
+    from semantic_corpus.ontology import ReviewStatus, Relation, Polarity
+    text = f'The red book was not given to Ben by {name}.'
+    doc = Document(name, text, split='train')
+    def span(value):
+        start = text.index(value)
+        return TextSpan(start, start + len(value))
+    verified = {'review_status': ReviewStatus.VERIFIED}
+    return doc, AnnotationRun(name + '-run', model_name='semantic_generator', synthetic=True,
+        mentions=(EntityMention('book', name, span('The red book'), 'The red book',
+                                LabelSet.of(Label.PHYSICAL_OBJECT), **verified),
+                  EntityMention('ben', name, span('Ben'), 'Ben', LabelSet.of(Label.PERSON), **verified),
+                  EntityMention('giver', name, span(name), name, LabelSet.of(Label.PERSON), **verified)),
+        predicates=(Predicate('give', name, span('given'), 'given', 'give', voice='passive',
+                               tense='past', aspect='simple', polarity=Polarity.NEGATIVE, **verified),),
+        properties=(Property('red', name, span('red'), 'red', 'red', target_id='book', **verified),),
+        relations=(RelationEdge('book', Relation.THEME_OF, 'give'),
+                   RelationEdge('ben', Relation.RECIPIENT_OF, 'give'),
+                   RelationEdge('giver', Relation.AGENT_OF, 'give'),
+                   RelationEdge('red', Relation.PROPERTY_OF, 'book')))
+
+
+def test_full_analysis_keeps_all_events_roles_properties_and_scope(tmp_path):
+    from semantic_corpus.sentence_analysis import analysis_record, validate_target
+    from semantic_corpus.semantic_generator.canonical import combine
+    from semantic_corpus.exporters import export_sentence_analysis
+    from semantic_corpus.dialogue_generator.trainer.data import load_rows, validate_view
+    doc, run = combine([complete_analysis_pair(), complete_analysis_pair('Elizabeth')], document_id='both')
+    record = analysis_record(doc, run)
+    assert record['training_eligible']
+    target = validate_target(record['messages'][1]['content'], record['messages'][2]['content'], require_training=True)
+    assert len(target['nodes']) == 10 and len(target['relations']) == 8
+    predicates = [n for n in target['nodes'] if n['record'] == 'predicate']
+    assert len(predicates) == 2
+    assert all(p['voice'] == 'passive' and p['polarity'] == 'NEGATIVE' for p in predicates)
+    counts = export_sentence_analysis([(doc, run), (Document('unparsed', 'If only...'), None)], tmp_path)
+    assert counts['documents'] == 2 and counts['training'] == counts['pending'] == 1
+    rows = load_rows(tmp_path / 'sentence-analysis.jsonl')
+    validate_view(rows, 'sentence', 'train')
+    with pytest.raises(ValueError, match='pending review'):
+        load_rows(tmp_path / 'sentence-analysis-pending.jsonl')
+    # A valid JSON object alone cannot bypass span and reference validation.
+    target['relations'][0]['target_id'] = 'absent'
+    with pytest.raises(ValueError, match='not annotated'):
+        validate_target(record['messages'][1]['content'], json.dumps(target))
+
+
+def test_partial_verified_annotations_are_not_promoted_to_complete(tmp_path):
+    from semantic_corpus.sentence_analysis import analysis_record
+    doc, run = complete_analysis_pair()
+    record = analysis_record(doc, replace(run, synthetic=False, model_name='manual'))
+    assert not record['training_eligible']
+    target = json.loads(record['messages'][-1]['content'])
+    assert len(target['nodes']) == len(run.mentions) + len(run.predicates) + len(run.properties)
+    assert target['coverage']['semantic_completeness'] == 'unassessed'
+
+
+@pytest.mark.parametrize('field,value', [('coverage', None), ('structure', []), ('nodes', {})])
+def test_analysis_schema_rejects_malformed_containers(field, value):
+    from semantic_corpus.sentence_analysis import analysis_record, validate_target
+    row = analysis_record(*complete_analysis_pair())
+    target = json.loads(row['messages'][-1]['content'])
+    target[field] = value
+    with pytest.raises(ValueError, match='Invalid sentence-analysis'):
+        validate_target(row['messages'][1]['content'], json.dumps(target))
+
+
 # -- BIO -------------------------------------------------------------------
 
 
@@ -360,9 +428,16 @@ def test_generate_store_export_report(tmp_path):
             assert prop.span.end_char <= owner.span.end_char
     assert bio.dropped_overlapping == sum(len(run.properties) for _, run in pairs)
     part_count = sum(len(predicate.parts) for _, run in pairs for predicate in run.predicates)
-    assert bio.tagged_spans == sum(len(run.mentions) + len(run.predicates) for _, run in pairs) + part_count
+    assert bio.tagged_spans + bio.dropped_unrepresentable == sum(
+        len(run.mentions) + len(run.predicates) for _, run in pairs) + part_count
     assert bio.lost_predicate_links == part_count
-    assert bio.dropped_unrepresentable == 0
+    # Currency such as "$9.95" has a valid semantic span even when the BIO
+    # tokenizer cannot represent it. The full graph must retain every node.
+    from semantic_corpus.sentence_analysis import analysis_record
+    for doc, run in pairs:
+        target = json.loads(analysis_record(doc, run)['messages'][-1]['content'])
+        assert len(target['nodes']) == len(run.mentions) + len(run.predicates) + len(run.properties)
+        assert len(target['relations']) == len(run.relations)
 
     report = build_report(store)
     assert report.is_clean

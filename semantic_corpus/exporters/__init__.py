@@ -8,10 +8,11 @@ multi-label, nestable ontology — it says by how much.
 from .bio import BioReport, Tagging, export_bio, tag_document
 from .jsonl import ExportCounts, read_jsonl, write_jsonl, write_records
 from .report import CorpusReport, LeakageFinding, build_report, write_report
-from .sft import check_record, export_sft, export_sft_splits, to_record
+from .sft import check_record, export_sft, export_sft_splits, export_sentence_analysis, to_record
 
 __all__ = [
     "export_sft",
+    "export_sentence_analysis",
     "export_sft_splits",
     "to_record",
     "check_record",

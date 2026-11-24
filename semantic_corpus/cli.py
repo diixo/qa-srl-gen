@@ -303,7 +303,7 @@ def cmd_questions(args: argparse.Namespace) -> int:
 
 def cmd_build(args: argparse.Namespace) -> int:
     import json
-    from .exporters import build_report, export_bio, export_sft, write_report
+    from .exporters import build_report, export_bio, export_sft, export_sentence_analysis, write_report
     from .question_generator import QuestionGenerator, balance
     from .semantic_generator import Generator
     from .semantic_generator.canonical import iter_canonical
@@ -442,13 +442,16 @@ def cmd_build(args: argparse.Namespace) -> int:
           f"{summary['pending_annotation']} stored documents awaiting annotation")
     written = export_sft(store.examples(split=args.split), out / "sft.jsonl")
     print(f"sft: {written} records -> {out / 'sft.jsonl'}")
-    def stored_pairs():
+    def stored_pairs(include_unannotated=False):
         for doc in store.documents(split=args.split):
             latest = None
             for stored_run in store.runs(document_id=doc.document_id):
                 latest = stored_run
-            if latest is not None:
+            if latest is not None or include_unannotated:
                 yield doc, latest
+    summary['sentence_analysis'] = export_sentence_analysis(stored_pairs(include_unannotated=True), out)
+    (out / 'generation-summary.json').write_text(
+        json.dumps(summary, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     bio = export_bio(stored_pairs(), out / "bio.jsonl", scheme=args.scheme)
     print(f"bio: {bio}")
 

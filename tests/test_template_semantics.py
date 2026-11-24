@@ -94,6 +94,55 @@ def test_active_roles_properties_evidence_and_non_gold_provenance(annotator):
     assert not needs_annotation(result.document, [result.run])
 
 
+def test_whole_analysis_preserves_uninterpreted_properties_and_surface(annotator):
+    from semantic_corpus.sentence_analysis import analysis_record
+    record = template()
+    index = next(i for i, part in enumerate(record['parts']) if part.get('literal') == 'a ')
+    record['parts'][index]['literal'] = 'a very '
+    result, _, _ = annotate(annotator, record)
+    coverage = result.document.metadata['template_semantics']
+    assert not coverage['complete']
+    assert {'slot': 'a0', 'reason': 'property_not_annotated'} in coverage['skipped']
+    exported = analysis_record(result.document, result.run)
+    assert not exported['training_eligible']
+    target = json.loads(exported['messages'][-1]['content'])
+    assert target['structure']['attributes'][0]['slot'] == 'a0'
+    assert target['structure']['bindings']['a0'] == 'red'
+    assert {'literal': 'a very '} in target['structure']['parts']
+    assert len(target['nodes']) == 3  # Two mentions and a predicate; no invented property claim.
+
+
+def test_licensed_substitution_exports_updated_meaning_context_and_offsets():
+    from copy import deepcopy
+    from semantic_corpus.reviewed_substitutions import render_template
+    from semantic_corpus.sentence_analysis import analysis_record
+    record = template()
+    text = CorpusTemplate(record).render()['text']
+    record['usage_constraints'] = dict(version='contextual-attestation-v1', mode='attested_sentence',
+        text=text, source_id='fixture', context=[text], turn=1, span=[0, len(text)],
+        reasons=['Reviewed in context'], meaning={'interpretation': 'Anna bought a red book.',
+        'extraction_adapter': {'id': 'adapter', 'sha256': '1' * 64}})
+    original = deepcopy(record)
+    rule = dict(id='fixture', templates={record['template_id']: fingerprint(record)},
+                adapters={'adapter': '1' * 64}, reason='Reviewed names and objects',
+                choices=[{'Anna': 'Elizabeth', 'book': 'notebook'}])
+    rendered = render_template(CorpusTemplate(record), rule, 0)
+    assert rendered and rendered['text'] == 'Elizabeth bought a red notebook.'
+    doc = Document('variant', rendered['text'], metadata={k:v for k,v in rendered.items() if k != 'text'})
+    exported = analysis_record(doc)
+    assert not exported['training_eligible']  # Context admission does not certify the syntax.
+    target = json.loads(exported['messages'][-1]['content'])
+    assert target['interpretation']['meaning']['interpretation'] == rendered['text']
+    assert target['structure']['spans']['n1'] == [23, 31]
+    assert 'Elizabeth' in exported['messages'][1]['content']
+    assert exported['provenance']['usage_constraints']['meaning']['reviewed_substitution']
+    assert record == original
+    broken = deepcopy(doc.metadata)
+    broken['bindings']['n0'] = 'Anna'
+    with pytest.raises(ValueError, match='Stale template'):
+        analysis_record(replace(doc, metadata=broken))
+
+
 @pytest.mark.parametrize('agent', [True, False])
 def test_passive_maps_subject_to_theme_and_does_not_invent_an_agent(annotator, agent):
     result, qa, _ = annotate(annotator, template(passive=True, agent=agent))

@@ -13,7 +13,7 @@ from time import monotonic
 
 from django.conf import settings
 
-from semantic_corpus.exporters import build_report, export_bio, export_sft, write_report
+from semantic_corpus.exporters import build_report, export_bio, export_sft, export_sentence_analysis, write_report
 from semantic_corpus.question_generator import QuestionGenerator, balance
 from semantic_corpus.semantic_generator import Generator
 from semantic_corpus.semantic_generator.canonical import iter_canonical, to_canonical
@@ -69,14 +69,22 @@ def export_store(store, out, config, progress):
     progress('Exporting SFT')
     count = export_sft(store.examples(), out / 'sft.jsonl')
 
-    def pairs():
+    def pairs(include_unannotated=False):
         for doc in store.documents():
             latest = None
             for run in store.runs(document_id=doc.document_id):
                 latest = run
-            if latest is not None:
+            if latest is not None or include_unannotated:
                 yield doc, latest
 
+    progress('Exporting whole-text analysis', qa=count)
+    analysis = export_sentence_analysis(pairs(include_unannotated=True), out)
+    summary_path = out / 'generation-summary.json'
+    if summary_path.exists():
+        summary = json.loads(summary_path.read_text(encoding='utf-8'))
+        summary['sentence_analysis'] = analysis
+        summary_path.write_text(json.dumps(summary, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+    print(f'Whole-text analysis: {analysis}', flush=True)
     progress('Exporting BIO / BILOU', qa=count)
     bio = export_bio(pairs(), out / 'bio.jsonl', scheme=config.get('scheme', 'BIO'))
     print(f'SFT: {count}; BIO: {bio}', flush=True)

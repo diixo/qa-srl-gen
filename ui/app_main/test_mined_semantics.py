@@ -111,6 +111,14 @@ class MinedSemanticJobTests(TestCase):
             self.assertEqual(summary['pending_annotation'], 0)
             self.assertTrue((catalog.job_root(job) / 'sft.jsonl').read_text().strip())
             self.assertFalse((catalog.job_root(job) / 'bio.jsonl').read_text().strip())
+            self.assertFalse((catalog.job_root(job) / 'sentence-analysis.jsonl').read_text().strip())
+            pending = [json.loads(line) for line in
+                       (catalog.job_root(job) / 'sentence-analysis-pending.jsonl').read_text().splitlines()]
+            self.assertEqual(len(pending), 1)
+            target = json.loads(pending[0]['messages'][-1]['content'])
+            self.assertEqual(len(target['nodes']), 3)
+            self.assertEqual(len(target['structure']['slots']), 3)
+            self.assertFalse(pending[0]['training_eligible'])
             Job.objects.filter(pk=job.pk).update(status=Job.Status.SUCCEEDED)
             response = self.client.get(reverse('app_main:job', args=[job.pk]))
             self.assertEqual(response.status_code, 200)
